@@ -134,6 +134,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HelloController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -153,6 +154,7 @@
     <Content Include="ElaAdmin\assets\css\lib\datatable\buttons.dataTables.min.css" />
     <Content Include="ElaAdmin\assets\css\lib\datatable\dataTables.bootstrap.min.css" />
     <Content Include="ElaAdmin\assets\css\lib\vector-map\jqvmap.min.css" />
+    <Content Include="ElaAdmin\assets\css\normalize.min.css" />
     <Content Include="ElaAdmin\assets\css\style.css" />
     <Content Include="ElaAdmin\assets\fonts\icomoon\icomoon.svg" />
     <Content Include="ElaAdmin\assets\fonts\icomoon\index.html" />
@@ -270,6 +272,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Index1.cshtml" />
+    <Content Include="Views\User\UserList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
