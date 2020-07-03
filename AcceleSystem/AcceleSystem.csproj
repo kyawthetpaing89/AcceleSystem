@@ -138,6 +138,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="ElaAdmin\assets\css\bootstrap.min.css" />
     <Content Include="ElaAdmin\assets\css\cs-skin-elastic.css" />
     <Content Include="ElaAdmin\assets\css\lib\chosen\chosen-sprite%402x.png" />
     <Content Include="ElaAdmin\assets\css\lib\chosen\chosen-sprite.png" />
@@ -186,8 +187,6 @@
     <Content Include="ElaAdmin\charts-chartjs.html" />
     <Content Include="ElaAdmin\charts-flot.html" />
     <Content Include="ElaAdmin\charts-peity.html" />
-    <Content Include="ElaAdmin\CSS\bootstrap.min.css" />
-    <Content Include="ElaAdmin\CSS\normalize.min.css" />
     <Content Include="ElaAdmin\font-fontawesome.html" />
     <Content Include="ElaAdmin\font-themify.html" />
     <Content Include="ElaAdmin\forms-advanced.html" />
