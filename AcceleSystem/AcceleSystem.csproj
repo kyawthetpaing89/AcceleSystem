@@ -202,6 +202,7 @@
     <Content Include="ElaAdmin\images\avatar\6.jpg" />
     <Content Include="ElaAdmin\images\avatar\64-1.jpg" />
     <Content Include="ElaAdmin\images\avatar\64-2.jpg" />
+    <Content Include="ElaAdmin\images\blogoa.png" />
     <Content Include="ElaAdmin\images\favicon.png" />
     <Content Include="ElaAdmin\images\logo.png" />
     <Content Include="ElaAdmin\images\logo2.png" />
