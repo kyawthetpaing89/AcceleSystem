@@ -149,7 +149,6 @@
     <Content Include="ElaAdmin\assets\css\lib\datatable\dataTables.bootstrap.min.css" />
     <Content Include="ElaAdmin\assets\css\lib\vector-map\jqvmap.min.css" />
     <Content Include="ElaAdmin\assets\css\style.css" />
-    <Content Include="ElaAdmin\assets\css\font-awesome.min.css" />
     <Content Include="ElaAdmin\assets\fonts\icomoon\icomoon.svg" />
     <Content Include="ElaAdmin\assets\fonts\icomoon\index.html" />
     <Content Include="ElaAdmin\assets\js\dashboard.js" />
