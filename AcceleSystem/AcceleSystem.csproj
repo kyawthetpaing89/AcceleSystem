@@ -186,6 +186,7 @@
     <Content Include="ElaAdmin\charts-chartjs.html" />
     <Content Include="ElaAdmin\charts-flot.html" />
     <Content Include="ElaAdmin\charts-peity.html" />
+    <Content Include="ElaAdmin\CSS\bootstrap.min.css" />
     <Content Include="ElaAdmin\CSS\normalize.min.css" />
     <Content Include="ElaAdmin\font-fontawesome.html" />
     <Content Include="ElaAdmin\font-themify.html" />
