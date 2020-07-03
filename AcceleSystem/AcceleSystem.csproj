@@ -140,7 +140,9 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="ElaAdmin\assets\css\bootstrap.min.css" />
     <Content Include="ElaAdmin\assets\css\cs-skin-elastic.css" />
+    <Content Include="ElaAdmin\assets\css\flag-icon.min.css" />
     <Content Include="ElaAdmin\assets\css\lib\chosen\chosen-sprite%402x.png" />
     <Content Include="ElaAdmin\assets\css\lib\chosen\chosen-sprite.png" />
     <Content Include="ElaAdmin\assets\css\lib\chosen\chosen.css" />
@@ -149,6 +151,7 @@
     <Content Include="ElaAdmin\assets\css\lib\datatable\buttons.dataTables.min.css" />
     <Content Include="ElaAdmin\assets\css\lib\datatable\dataTables.bootstrap.min.css" />
     <Content Include="ElaAdmin\assets\css\lib\vector-map\jqvmap.min.css" />
+    <Content Include="ElaAdmin\assets\css\pe-icon-7-stroke.min.css" />
     <Content Include="ElaAdmin\assets\css\style.css" />
     <Content Include="ElaAdmin\assets\fonts\icomoon\icomoon.svg" />
     <Content Include="ElaAdmin\assets\fonts\icomoon\index.html" />

@@ -559,7 +559,7 @@ canvas {
 /* Global Styles */
 /* Main Styles */
 aside.left-panel {
-  background: #fff;
+  background: #110f32;
   height: 100vh;
   padding: 0;
   vertical-align: top;
@@ -581,13 +581,14 @@ aside.left-panel {
   margin-left: 83px; }
 
 .navbar {
-  background: #fff;
-  border-radius: 0;
-  border: none;
-  display: inline-block;
-  margin: 0;
-  padding: 0;
-  vertical-align: top; }
+    background: #110f32;
+    border-radius: 0;
+    border: none;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    vertical-align: top;
+}
   .navbar .main-menu {
     float: left;
     padding: 0;
@@ -610,7 +611,7 @@ aside.left-panel {
       padding-left: 30px;
       padding-right: 30px; }
       .navbar .navbar-nav > li.active {
-        background: #fafafa; }
+        background: #110f32 }
     .navbar .navbar-nav li {
       width: 100%; }
       .navbar .navbar-nav li.active .menu-icon, .navbar .navbar-nav li:hover .toggle_nav_button:before,
@@ -665,7 +666,7 @@ aside.left-panel {
           .navbar .navbar-nav li.menu-item-has-children a:hover:before {
             border-color: #03a9f3 #03a9f3 transparent transparent; }
         .navbar .navbar-nav li.menu-item-has-children .sub-menu {
-          background: #fff;
+          background: #110f32;
           border: none;
           -webkit-box-shadow: none;
                   box-shadow: none;
