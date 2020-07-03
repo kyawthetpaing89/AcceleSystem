@@ -9,6 +9,7 @@ namespace AcceleSystem.Controllers
 {
     public class HelloController : ApiController
     {
+        [UserAuthentication]
         public string Get()
         {
             return "Welcome To Web API";
