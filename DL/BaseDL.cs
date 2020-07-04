@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DL
 {
     public class BaseDL
     {
-        public string conStr = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        public string conStr;
+        public BaseDL()
+        {
+            ReadIni ri = new ReadIni();
+            conStr = ri.GetConnectionString();
+        }
+         
         public DataTable SelectData(string sSQL, params SqlParameter[] para)
         {
             DataTable dt = new DataTable();
