@@ -47,7 +47,7 @@ namespace DL
         public string IniReadValue(string Section, string Key)
         {
             StringBuilder temp = new StringBuilder(255);
-            int i = GetPrivateProfileString(Section, Key, "", temp,
+            GetPrivateProfileString(Section, Key, "", temp,
                                             255, this.path);
             return temp.ToString();
         }
