@@ -1,19 +1,14 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using Newtonsoft.Json;
 
 namespace DL
 {
     public class BaseDL
     {
-        public string conStr;
-        public BaseDL()
-        {
-            ReadIni ri = new ReadIni();
-            conStr = ri.GetConnectionString();
-        }
-         
-        public DataTable SelectData(string sSQL, params SqlParameter[] para)
+        public string conStr = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        public string SelectJson(string sSQL, params SqlParameter[] para)
         {
             DataTable dt = new DataTable();
             var newCon = new SqlConnection(conStr);
@@ -26,7 +21,7 @@ namespace DL
                 adapt.Fill(dt);
                 newCon.Close();
             }
-            return dt;
+            return DataTableToJSONWithJSONNet(dt);
         }
 
         public DataSet SelectDataSet(string sSQL, params SqlParameter[] para)
@@ -48,14 +43,19 @@ namespace DL
         public void InsertUpdateDeleteData(string sSQL, params SqlParameter[] para)
         {
             var newCon = new SqlConnection(conStr);
-            SqlCommand cmd = new SqlCommand(sSQL, newCon)
-            {
-                CommandType = CommandType.StoredProcedure
-            };
+            SqlCommand cmd = new SqlCommand(sSQL, newCon);
+            cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddRange(para);
             cmd.Connection.Open();
             cmd.ExecuteNonQuery();
             cmd.Connection.Close();
+        }
+
+        public string DataTableToJSONWithJSONNet(DataTable table)
+        {
+            string JSONString = string.Empty;
+            JSONString = JsonConvert.SerializeObject(table);
+            return JSONString;
         }
     }
 }
