@@ -19,5 +19,9 @@ namespace AcceleSystem.Controllers
             return View();
         }
 
+        public ActionResult UserEntry()
+        {
+            return View();
+        }
     }
 }
