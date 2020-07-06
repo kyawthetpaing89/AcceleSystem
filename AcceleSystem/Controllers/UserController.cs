@@ -13,5 +13,11 @@ namespace AcceleSystem.Controllers
         {
             return View();
         }
+       
+        public ActionResult UserLogIn()
+        {
+            return View();
+        }
+
     }
 }
