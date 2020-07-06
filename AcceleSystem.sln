@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcceleSystem", "AcceleSyste
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DL", "DL\DL.csproj", "{86A23955-7AC1-4263-BC9A-96165936864C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserBL", "UserBL\UserBL.csproj", "{56023BBA-489A-45E5-B8F0-DBC21216383F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{896A79E0-6565-4FC3-B927-50F8F80F5850}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{86A23955-7AC1-4263-BC9A-96165936864C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86A23955-7AC1-4263-BC9A-96165936864C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86A23955-7AC1-4263-BC9A-96165936864C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56023BBA-489A-45E5-B8F0-DBC21216383F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56023BBA-489A-45E5-B8F0-DBC21216383F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56023BBA-489A-45E5-B8F0-DBC21216383F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56023BBA-489A-45E5-B8F0-DBC21216383F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{896A79E0-6565-4FC3-B927-50F8F80F5850}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{896A79E0-6565-4FC3-B927-50F8F80F5850}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{896A79E0-6565-4FC3-B927-50F8F80F5850}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{896A79E0-6565-4FC3-B927-50F8F80F5850}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

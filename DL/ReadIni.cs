@@ -10,7 +10,7 @@ namespace DL
     {
         public string GetConnectionString()
         {
-            string filePath = @"C:\\SMS\\AppData\\CKM.ini";
+            string filePath = @"C:\DBConfig\DBConfig.ini";
 
             if (System.IO.File.Exists(filePath))
             {
