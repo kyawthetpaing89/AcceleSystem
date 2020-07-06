@@ -46,7 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseDL.cs" />
+    <Compile Include="IniFileReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReadIni.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
