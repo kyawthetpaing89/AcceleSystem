@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DL
 {
     public class BaseDL
     {
-        public string conStr = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        public string conStr;
+        public BaseDL()
+        {
+            ReadIni ri = new ReadIni();
+            conStr = ri.GetConnectionString();
+        }
+         
         public DataTable SelectData(string sSQL, params SqlParameter[] para)
         {
             DataTable dt = new DataTable();
@@ -47,8 +48,10 @@ namespace DL
         public void InsertUpdateDeleteData(string sSQL, params SqlParameter[] para)
         {
             var newCon = new SqlConnection(conStr);
-            SqlCommand cmd = new SqlCommand(sSQL, newCon);
-            cmd.CommandType = CommandType.StoredProcedure;
+            SqlCommand cmd = new SqlCommand(sSQL, newCon)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
             cmd.Parameters.AddRange(para);
             cmd.Connection.Open();
             cmd.ExecuteNonQuery();
