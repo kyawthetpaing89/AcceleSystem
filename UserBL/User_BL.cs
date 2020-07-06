@@ -10,11 +10,11 @@ namespace UserBL
         public string UserLogin_Select(UserModel Umodel)
         {
             BaseDL bdl = new BaseDL();
-            SqlParameter[] prms = new SqlParameter[3];
+            SqlParameter[] prms = new SqlParameter[2];
             prms[0] = new SqlParameter("@UserID", SqlDbType.VarChar) { Value = Umodel.UserID };
             prms[1] = new SqlParameter("@Password", SqlDbType.VarChar) { Value = Umodel.Password };
 
-            return bdl.SelectJson("", prms);
+            return bdl.SelectJson("UserLogin_Select", prms);
         }
     }
 }
