@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Security.Principal;
 using System.Threading;
-using System.Web;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 
@@ -50,7 +47,9 @@ namespace AcceleSystem.Controllers
         public static bool IsAuthorizedUser(string Username, string Password)
         {
             // In this method we can handle our database logic here...
-            return true;
+            if (Username.Equals("Capital_MM") && Password.Equals("CKM12345!"))
+                return true;
+            return false;
         }
 
     }

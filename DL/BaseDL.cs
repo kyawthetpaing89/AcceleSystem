@@ -7,7 +7,14 @@ namespace DL
 {
     public class BaseDL
     {
-        public string conStr = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        readonly ReadIni Rini = new ReadIni();
+        public string conStr = string.Empty;
+
+        public BaseDL()
+        {
+            conStr = Rini.GetConnectionString();
+        }
+
         public string SelectJson(string sSQL, params SqlParameter[] para)
         {
             DataTable dt = new DataTable();
@@ -43,8 +50,10 @@ namespace DL
         public void InsertUpdateDeleteData(string sSQL, params SqlParameter[] para)
         {
             var newCon = new SqlConnection(conStr);
-            SqlCommand cmd = new SqlCommand(sSQL, newCon);
-            cmd.CommandType = CommandType.StoredProcedure;
+            SqlCommand cmd = new SqlCommand(sSQL, newCon)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
             cmd.Parameters.AddRange(para);
             cmd.Connection.Open();
             cmd.ExecuteNonQuery();
