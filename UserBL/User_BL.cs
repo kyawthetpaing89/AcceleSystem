@@ -13,6 +13,8 @@ namespace UserBL
             SqlParameter[] prms = new SqlParameter[3];
             prms[0] = new SqlParameter("@UserID", SqlDbType.VarChar) { Value = Umodel.UserID };
             prms[1] = new SqlParameter("@Password", SqlDbType.VarChar) { Value = Umodel.Password };
+
+            return bdl.SelectJson("", prms);
         }
     }
 }
