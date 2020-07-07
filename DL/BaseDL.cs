@@ -31,6 +31,22 @@ namespace DL
             return DataTableToJSONWithJSONNet(dt);
         }
 
+        public DataTable SelectDatatable(string sSQL, params SqlParameter[] para)
+        {
+            DataTable dt = new DataTable();
+            var newCon = new SqlConnection(conStr);
+            using (var adapt = new SqlDataAdapter(sSQL, newCon))
+            {
+                newCon.Open();
+                adapt.SelectCommand.CommandType = CommandType.StoredProcedure;
+                if (para != null)
+                    adapt.SelectCommand.Parameters.AddRange(para);
+                adapt.Fill(dt);
+                newCon.Close();
+            }
+            return dt;
+        }
+
         public DataSet SelectDataSet(string sSQL, params SqlParameter[] para)
         {
             DataSet ds = new DataSet();

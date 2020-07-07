@@ -16,7 +16,7 @@ namespace AcceleSystem.Controllers
        
         public ActionResult UserLogIn()
         {
-            return View();
+            return View();            
         }
 
         public ActionResult UserEntry()

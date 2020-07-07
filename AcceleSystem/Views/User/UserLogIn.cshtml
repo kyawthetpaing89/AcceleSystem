@@ -46,6 +46,7 @@
 
         });
 
+        //prevent default submit
         $("#f1").submit(function (e) {
             return false;
         });
@@ -68,7 +69,15 @@
                     Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
                 },  
                 success: function (data) {
-                    alert(data);
+                    var userdata = JSON.parse(data);
+                    var userinfo = userdata[0].UserID + '_' + userdata[0].UserName
+                    if (data.length > 0) {
+                        $.post('/Home/CreateSession', 
+                        { key : "UserInfo", value : userinfo }, function (data) 
+                        {
+                            //window.location.replace('@Url.Action("Dashboard", "Home")');
+                        });
+                    }                   
                 },
                 error: function (data) {
                     alert("Request failed: " + data);
