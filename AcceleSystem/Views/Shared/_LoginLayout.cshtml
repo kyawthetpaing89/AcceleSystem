@@ -4,7 +4,7 @@
     <link rel="shortcut icon" href="@Url.Content("~/ElaAdmin/images/blogoa.png")" />
 
     <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <link rel="icon" type="image/png" href="@Url.Content("~/ElaAdmin/images/icons/favicon.ico")" />
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/ElaAdmin/assets/css/userlogin/vendor/bootstrap/css/bootstrap.min.css")" />
     <!--===============================================================================================-->
@@ -16,7 +16,9 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/ElaAdmin/assets/css/userlogin/vendor/select2/select2.min.css")" />
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/ElaAdmin/assets/css/userlogin/css/util.css")" />
+
+ 
 
     <link rel="stylesheet" href="@Url.Content("~/ElaAdmin/assets/css/userlogin/userlogin.css")" />
 </head>
@@ -32,6 +34,7 @@
     <script src="@Url.Content("~/ElaAdmin/assets/css/userlogin/vendor/select2/select2.min.js")"></script>
     <!--===============================================================================================-->
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+   
     <script src="@Url.Content("~/ElaAdmin/assets/css/userlogin/vendor/tilt/tilt.jquery.min.js")"></script>
     <script>
         $('.js-tilt').tilt({
@@ -39,7 +42,7 @@
         })
     </script>
     <!--===============================================================================================-->
-    <script src="js/main.js"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/css/userlogin/js/main.js")"></script>
 
     @RenderSection("scripts", required: false)
     @RenderSection("styles", required: false)
