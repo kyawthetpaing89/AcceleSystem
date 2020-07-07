@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using System.Configuration;
 using Newtonsoft.Json;
+using System;
 
 namespace DL
 {
@@ -63,17 +64,26 @@ namespace DL
             return ds;
         }
 
-        public void InsertUpdateDeleteData(string sSQL, params SqlParameter[] para)
+        public string InsertUpdateDeleteData(string sSQL, params SqlParameter[] para)
         {
-            var newCon = new SqlConnection(conStr);
-            SqlCommand cmd = new SqlCommand(sSQL, newCon)
+            try
             {
-                CommandType = CommandType.StoredProcedure
-            };
-            cmd.Parameters.AddRange(para);
-            cmd.Connection.Open();
-            cmd.ExecuteNonQuery();
-            cmd.Connection.Close();
+                var newCon = new SqlConnection(conStr);
+                SqlCommand cmd = new SqlCommand(sSQL, newCon)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.AddRange(para);
+                cmd.Connection.Open();
+                cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+
+                return "true";
+            }
+            catch (Exception)
+            {
+                return "false";
+            }
         }
 
         public string DataTableToJSONWithJSONNet(DataTable table)
