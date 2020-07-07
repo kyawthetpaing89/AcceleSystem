@@ -32,17 +32,30 @@
     <div class="row">
         <div class="col-sm-2">
             <button id="btnAdd" onclick="btnAddClick()">
-                ユーザー名
+                ユーザー追加
             </button>
         </div>
 
-        <div class="col-sm-4">
+        <div class="col-sm-7">
             <i class="fa fa-search"></i>
             <input type="text" placeholder="Search" class="border border-white">
+            <table id="tblUser" class="hrtable col-sm-12">
+                <thead>
+                    <tr>
+                        <td>UserName</td>
+                        <td> <button id="btnEdit" onclick="btnEditClick()" class="bg-light   border-0"> 編集 </button> </td>
+                    </tr>
+                    <tr>
+                        <td>UserID</td>
+                        <td> <button id="btnDelete" onclick="btnDelClick()" class="color-red border-0 bg-light"  > 削除 </button> </td>
+                    </tr>
+               
+                </thead>
+            </table>
         </div>
 
-        <div class="col-sm-6">
-
+        <div class="col-sm-3">
+            apple
         </div>
     </div>
 </div>
@@ -51,16 +64,40 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-        });
+            function btnAddClick() {
+                 $.ajax({
+                url: '@Url.Action("UserLogin_Select", "api/UserApi")',
+                method: 'POST',
+                dataType: 'json',
+                 });
 
-        //prevent default submit
-        $("#f1").submit(function (e) {
-            return false;
-        });
+            @*var table = $('#tblUser').DataTable(
+                {
+                    "order": [[2, "asc"]],
+                    "language": {
+                        "info": "Display _START_ to _END_ of _TOTAL_ records",
+                    },
+                    "oLanguage": {
+                        "sLengthMenu": "Display _MENU_ records",
+                    },
+                    "ajax": {
+                        "url": "@Url.Action("UserLogin_Select", "api/UserApi")",
+                        "type": "GET",
+                        "datatype": "json",
+                        "dataSrc": ""
+                    },
+                    "columns": [
+                        { "data": "UserName", orderable: false, "width": "10%" },
+                        { "data": "UserID", orderable: false, "width": "10%" },
+                    ],
+                }
+            );
 
-        function btnAddClick() {
 
-        }
+
+        });*@
+
+      
 
 
     </script>
