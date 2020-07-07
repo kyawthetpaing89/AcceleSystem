@@ -1,0 +1,16 @@
+﻿body {
+  
+}
+
+.text-line {
+    background-color: transparent;
+    color: #C0C0C0;
+    width : 100%;
+    outline: none;
+    outline-style: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid #C0C0C0 2px;
+    padding: 3px 5px;
+}

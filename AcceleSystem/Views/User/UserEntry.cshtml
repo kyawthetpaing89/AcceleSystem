@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "UserEntry";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles{
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
+}
+
+<div class="container-fluid">
+    <div class="content">
+        <div class="p-5 row">
+            <div class="col-xs-6 col-md-4"></div>
+            <div class="col-xs-6 col-md-4">
+                <div>
+                    <h2 class="text-center">ユーザー登録</h2>
+                </div>
+                <div class="pt-5 md-form">
+                    @*<label for="lblUserName">User Name</label>*@
+                    <input type="text" id="UserName" class="text-line" placeholder="UserName">
+                </div>
+                <div class="pt-5 md-form">
+                    @*<label for="lblUserID">UserID</label>*@
+                    <input type="text" id="UserID" class="text-line" placeholder="UserID">
+                </div>
+                <div class="pt-5 md-form">
+                    @*<label for="lblPassword">Password</label>*@
+                    <input type="text" id="Password" class="text-line" placeholder="Password">
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-4"></div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12 text-center">
+                <div class="card border-bottom-success shadow h-100">
+                    <div class="card-body">
+                        <div class="text-s font-weight-bold text-custom1 text-uppercase mb-1">
+                            <button type="submit" id="btnSave" class="btn btn-success col-xl-3" tabindex="38">&nbsp; Save</button>
+                            <button type="reset" id="btnCancel" class="btn btn-success col-xl-3" tabindex="38">&nbsp; Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
