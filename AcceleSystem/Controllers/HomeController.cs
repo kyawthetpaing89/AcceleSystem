@@ -31,5 +31,18 @@ namespace AcceleSystem.Controllers
 
             return View();
         }
+
+        public ActionResult Dashboard()
+        {
+            string a = Session["UserInfo"].ToString();
+            return View();
+        }
+
+        public ActionResult CreateSession(string key, string value)
+        {
+            Session[key] = value;
+
+            return this.Json(new { success = true });
+        }
     }
 }

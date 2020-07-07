@@ -46,6 +46,7 @@
 
         });
 
+        //prevent default submit
         $("#f1").submit(function (e) {
             return false;
         });
@@ -65,10 +66,18 @@
                 data: JSON.stringify(Umodel),
                 headers:
                 {
-                    Authorization: 'Basic ' + btoa('Capital_MM1' + ':' + 'CKM12345!')
+                    Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
                 },  
                 success: function (data) {
-                    alert(data);
+                    alert(data.length);
+                    if (data.length > 0) {
+                        alert(data[0].UserID);
+                        $.post('/Home/CreateSession', 
+                        { key : "UserInfo", value : 'user' }, function (data) 
+                        {
+                            window.location.replace('@Url.Action("Dashboard", "Home")');
+                        });
+                    }                   
                 },
                 error: function (data) {
                     alert("Request failed: " + data);

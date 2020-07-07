@@ -494,6 +494,7 @@
     <Content Include="Views\User\UserList.cshtml" />
     <Content Include="Views\User\UserLogIn.cshtml" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
