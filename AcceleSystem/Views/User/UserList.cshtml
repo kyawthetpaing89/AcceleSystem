@@ -3,5 +3,65 @@
     ViewBag.Title = "UserList";
 }
 
-<h2>UserList</h2>
+<div class="row">
+    <ul class="breadcrumb">
+        <li><i class="fa fa-list" style="width:1580px;">&nbsp; <b>User List</b></i></li>
+    </ul>
+</div>
+<br />
 
+@*<div class="col-md-12" style="padding:0px">
+        <table class="table table-bordered table-striped nowrap" id="usertbl" style="width:100%">
+            <thead>
+                <tr>
+                    <td class="text-right" width="15%"> <button id="btnAdd">ユーザー名 </button></td>
+                    <td width="30%">
+                        <i class="fa fa-search"></i>
+                        <input type="text" placeholder="Search" class="border border-white">
+
+                    </td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tfoot>
+            </tfoot>
+        </table>
+    </div>*@
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2">
+            <button id="btnAdd" onclick="btnAddClick()">
+                ユーザー名
+            </button>
+        </div>
+
+        <div class="col-sm-4">
+            <i class="fa fa-search"></i>
+            <input type="text" placeholder="Search" class="border border-white">
+        </div>
+
+        <div class="col-sm-6">
+
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+        });
+
+        //prevent default submit
+        $("#f1").submit(function (e) {
+            return false;
+        });
+
+        function btnAddClick() {
+
+        }
+
+
+    </script>
+}
