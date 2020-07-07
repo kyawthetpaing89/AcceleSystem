@@ -69,13 +69,13 @@
                     Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
                 },  
                 success: function (data) {
-                    alert(data.length);
+                    var userdata = JSON.parse(data);
+                    var userinfo = userdata[0].UserID + '_' + userdata[0].UserName
                     if (data.length > 0) {
-                        alert(data[0].UserID);
                         $.post('/Home/CreateSession', 
-                        { key : "UserInfo", value : 'user' }, function (data) 
+                        { key : "UserInfo", value : userinfo }, function (data) 
                         {
-                            window.location.replace('@Url.Action("Dashboard", "Home")');
+                            //window.location.replace('@Url.Action("Dashboard", "Home")');
                         });
                     }                   
                 },
