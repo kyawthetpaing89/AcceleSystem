@@ -33,7 +33,7 @@ namespace UserBL
             prms[1] = new SqlParameter("@UserName", SqlDbType.VarChar) { Value = Umodel.UserName };
             prms[2] = new SqlParameter("@Password", SqlDbType.VarChar) { Value = Umodel.Password };
 
-            return bdl.SelectJson("User_Insert", prms);
+            return bdl.InsertUpdateDeleteData("User_Insert", prms);
         }
     }
 }
