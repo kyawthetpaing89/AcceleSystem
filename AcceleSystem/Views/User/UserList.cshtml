@@ -61,17 +61,20 @@
 </div>
 
 @section Scripts{
-    <script type="text/javascript">
-        $(document).ready(function () {
+<script type="text/javascript">
+    //$(document).ready(function () {
 
-            function btnAddClick() {
-                 $.ajax({
-                url: '@Url.Action("UserLogin_Select", "api/UserApi")',
-                method: 'POST',
-                dataType: 'json',
-                 });
 
-            @*var table = $('#tblUser').DataTable(
+    document.getElementById("btnAdd").onclick = function () {
+        location.href = "UserEntry";
+    }
+</script>
+           
+            
+            @*function btnAddClick() {
+               $.post(@Url.Action("Dashboard", "Home"));*@
+                              
+                        @*var table = $('#tblUser').DataTable(
                 {
                     "order": [[2, "asc"]],
                     "language": {
@@ -96,9 +99,4 @@
 
 
         });*@
-
-      
-
-
-    </script>
-}
+    }
