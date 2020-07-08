@@ -5,6 +5,7 @@
 
 @section Styles{
     <link rel="stylesheet" href="@Url.Content("~/ElaAdmin/assets/css/lib/datatable/dataTables.bootstrap.min.css")" />
+
 }
 
 <div class="row">
@@ -83,15 +84,8 @@
             {
                 "ajax": {
                     "url": "@Url.Action("M_User_Select", "api/UserApi")",
-                    "type": "GET",
-                    "datatype": "json",
                     "dataSrc": ""
                 },
-                "searching": false,
-                "responsive": true,
-                "autoWidth": false,
-                "destroy": "true",
-                "paging": true,
                 "columns": [
                     { "data": "UserName" },
                     { "data": "UserName" },
@@ -108,14 +102,14 @@
                     headers:
                     {
                         Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-                    },  
+                    },
 
                 },
                 "columns": [
-                   
+
                     { "data": "UserName", orderable: false, "width": "50%" },
                     { "data": "ID", orderable: false, "width": "50%" },
-                    
+
                 ],
             });*@
 
