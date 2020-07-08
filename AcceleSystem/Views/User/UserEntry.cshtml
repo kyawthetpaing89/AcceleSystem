@@ -25,7 +25,7 @@
                 </div>
                 <div class="pt-5 md-form">
                     @*<label for="lblPassword">Password</label>*@
-                    <input type="text" id="Password" name="pass" class="text-line" placeholder="Password">
+                    <input type="password" id="Password" name="pass" class="text-line" placeholder="Password">
                 </div>
                 <div class="pt-5 md-form">
                     <div class="col-xl-12 text-center">
@@ -48,20 +48,39 @@
         });
 
         function btnSaveClick() {
-            
+            var uid = '@ViewBag.UserID';
+            alert(uid);
+            var mode = uid.split("_", 2);
+            alert("mode");
+
             var Umodel = {
-                UserID : $("#UserID").val(),
-                UserName : $("UserName").val(),
-                Password : $("Password").val()
+                UserID: $("#UserID").val(),
+                UserName: $("#UserName").val(),
+                Password: $("#Password").val()
             };
-            alert("aa");
-            $.ajax({
-                url: '@Url.Action("User_Insert", "api/UserApi")',
-                method: 'POST',
-                dataType: 'json',
-                contentType: 'application/json; charset=utf-8',
-                data: JSON.stringify(Umodel),
-            });
+
+            if (uid == null || uid == "") {
+                alert("aa");
+                $.ajax({
+                    url: '@Url.Action("User_Insert", "api/UserApi")',
+                    method: 'POST',
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify(Umodel)
+                });
+            }
+            else if (mode == "_e") {
+                $.ajax({
+                    url: '@Url.Action("User_Update", "api/UserApi")',
+                    method: 'POST',
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify(Umodel)
+                });
+            }
+            else {
+
+            }
         }
     </script>
 }
