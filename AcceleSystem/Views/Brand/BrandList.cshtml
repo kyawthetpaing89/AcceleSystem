@@ -4,5 +4,50 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>BrandList</h2>
+@section Styles{
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
 
+}
+
+<table id="tbl1">
+    <thead>
+        <tr>
+            <td>UserID</td>
+            <td>UserName</td>
+        </tr>
+    </thead>
+</table>
+
+@section Scripts{
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            GetUser();
+        });
+
+        function GetUser() {
+            $.ajax({
+                type: "GET",
+                url:"@Url.Action("M_User_Select", "api/UserApi")",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    BindTable(response);
+                }
+            });
+        }
+
+        function BindTable(response) {
+            table = $('#tbl1').DataTable({
+                data: JSON.parse(response),
+                "columns": [
+                    { "data": "ID" },
+                    { "data": "UserName" },
+
+                ]
+            });
+
+        }
+    </script>
+}
