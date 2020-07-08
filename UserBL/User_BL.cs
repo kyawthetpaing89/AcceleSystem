@@ -16,14 +16,13 @@ namespace UserBL
 
             return bdl.SelectJson("UserLogin_Select", prms);
         }
-        public string User_Select(UserModel Umodel)
+        public string M_User_Select(UserModel Umodel)
         {
             BaseDL bdl = new BaseDL();
-            SqlParameter[] prms = new SqlParameter[2];
-            prms[0] = new SqlParameter("@UserID", SqlDbType.VarChar) { Value = Umodel.UserID };
-            prms[1] = new SqlParameter("@UserName", SqlDbType.VarChar) { Value = Umodel.UserName };
+            SqlParameter[] prms = new SqlParameter[1];
+            prms[0] = new SqlParameter("@UserName", SqlDbType.VarChar) { Value = Umodel.UserName };
 
-            return bdl.SelectJson("User_Select", prms);
+            return bdl.SelectJson("M_User_Select", prms);
         }
         public string User_Insert(UserModel Umodel)
         {

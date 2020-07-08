@@ -16,10 +16,10 @@ namespace AcceleSystem.Controllers
         }
         [UserAuthentication]
         [HttpPost]
-        public string User_Select([FromBody] UserModel Umodel)
+        public string M_User_Select([FromBody] UserModel Umodel)
         {
             User_BL Ubl = new User_BL();
-            return Ubl.User_Select(Umodel);
+            return Ubl.M_User_Select(Umodel);
         }
         [UserAuthentication]
         [HttpPost]
