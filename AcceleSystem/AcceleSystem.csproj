@@ -171,7 +171,6 @@
     <Content Include="ElaAdmin\assets\css\normalize.min.css" />
     <Content Include="ElaAdmin\assets\css\pe-icon-7-stroke.min.css" />
     <Content Include="ElaAdmin\assets\css\style.css" />
-    <Content Include="ElaAdmin\assets\css\userlogin\css\main.css" />
     <Content Include="ElaAdmin\assets\css\userlogin\css\util.css" />
     <Content Include="ElaAdmin\assets\css\userlogin\fonts\font-awesome-4.7.0\css\font-awesome.css" />
     <Content Include="ElaAdmin\assets\css\userlogin\fonts\font-awesome-4.7.0\css\font-awesome.min.css" />
@@ -498,6 +497,7 @@
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\Home\Dashboard.cshtml" />
     <Content Include="Views\User\UserEntry.cshtml" />
+    <Content Include="Views\Brand\BrandList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
