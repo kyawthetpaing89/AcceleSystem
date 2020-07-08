@@ -171,7 +171,6 @@
     <Content Include="ElaAdmin\assets\css\normalize.min.css" />
     <Content Include="ElaAdmin\assets\css\pe-icon-7-stroke.min.css" />
     <Content Include="ElaAdmin\assets\css\style.css" />
-    <Content Include="ElaAdmin\assets\css\userlogin\css\main.css" />
     <Content Include="ElaAdmin\assets\css\userlogin\css\util.css" />
     <Content Include="ElaAdmin\assets\css\userlogin\fonts\font-awesome-4.7.0\css\font-awesome.css" />
     <Content Include="ElaAdmin\assets\css\userlogin\fonts\font-awesome-4.7.0\css\font-awesome.min.css" />
