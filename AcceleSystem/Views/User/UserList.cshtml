@@ -3,6 +3,10 @@
     ViewBag.Title = "UserList";
 }
 
+@section Styles{
+    <link rel="stylesheet" href="@Url.Content("~/ElaAdmin/assets/css/lib/datatable/dataTables.bootstrap.min.css")" />
+}
+
 <div class="row">
     <ul class="breadcrumb">
         <li><i class="fa fa-list" style="width:1580px;">&nbsp; <b>User List</b></i></li>
@@ -42,76 +46,110 @@
             <table id="tblUser" class="hrtable col-sm-12">
                 <thead>
                     <tr>
-                        <td id="Name">UserName</td>
+                        <td id="UserName"></td>
                         <td> <button id="btnEdit" onclick="btnEditClick()" class="border-0" style="background-color:white; color:#1a8cff;"> 編集 </button> </td>
                     </tr>
                     <tr>
-                        <td id="ID">UserID</td>
+                        <td id="ID"></td>
                         <td> <button id="btnDelete" onclick="btnDelClick()" class="border-0" style="background-color:white; color:red;"> 削除 </button> </td>
                     </tr>
-               
+
                 </thead>
             </table>
         </div>
 
         <div class="col-sm-3">
-           
+            <table id="tbl1">
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>UserName</td>
+                    </tr>
+                </thead>
+            </table>
         </div>
     </div>
 </div>
 
 @section Scripts{
-<script type="text/javascript">
+    <script type="text/javascript">
     $(document).ready(function () {
 
-        var table = $('#tblStaff').DataTable(
+        var Umodel = {
+            UserName: $('#UserName').val()
+        };
+
+        var table = $("#tbl1").dataTable(
             {
                 "ajax": {
-                    "url":"../api/UserApi/UserLogin_Select",
+                    "url": "@Url.Action("M_User_Select", "api/UserApi")",
                     "type": "GET",
                     "datatype": "json",
                     "dataSrc": ""
                 },
+                "searching": false,
+                "responsive": true,
+                "autoWidth": false,
+                "destroy": "true",
+                "paging": true,
                 "columns": [
+                    { "data": "UserName" },
+                    { "data": "UserName" },
+                ]
+            }
+        );
+
+        @*var table = $('#tblUser').DataTable(
+            {
+                "ajax": {
+                    "url": "@Url.Action("M_User_Select", "api/UserApi")",
+                    "type": "GET",
+                    "datatype": "json",
+                    headers:
                     {
-                        "className": 'details-control',
-                        "orderable": false,
-                        "data": null,
-                        "defaultContent": '',
-                        "width": "2%"
-                    },
-                    { "data": "UserName", orderable: false, "width": "10%" },
-                    { "data": "UserID", orderable: false, "width": "10%" },
+                        Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
+                    },  
+
+                },
+                "columns": [
                    
+                    { "data": "UserName", orderable: false, "width": "50%" },
+                    { "data": "ID", orderable: false, "width": "50%" },
+                    
                 ],
-            });
+            });*@
+
     });
+
     function btnAddClick() {
         location.href = "UserEntry";
     }
-    
-    function btnEditClick() {  
-        
-        //var b = document.getElementById('ID').value
-         //document.getElementById('btnEdit').innerHTML = b;
-        //document.getElementById("btnEdit").onclick = function () {
-        //    location.href = "UserEntry";
-           
-        //};
 
+    function btnEditClick() {
         var b = document.getElementById('ID').value,
-        //var b= 11,
-            url = 'UserEntry?UserID='+ encodeURIComponent(b) +"_e";
+            //var b= 11,
+            url = 'UserEntry?UserID=' + encodeURIComponent(b) + "_e";
 
         document.location.href = url;
     }
 
     function btnDelClick() {
         var b = document.getElementById('ID').value,
-            //var b= 11,
             url = 'UserEntry?UserID=' + encodeURIComponent(b) + "_d";
 
         document.location.href = url;
-    }  
+    }
+
     </script>
- }
+
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/datatables.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/dataTables.bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/dataTables.buttons.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/jszip.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/vfs_fonts.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.html5.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.print.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.colVis.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/init/datatables-init.js")"></script>
+}
