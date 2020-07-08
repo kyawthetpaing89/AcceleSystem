@@ -14,11 +14,15 @@ namespace AcceleSystem.Controllers
             User_BL Ubl = new User_BL();
             return Ubl.UserLogin_Select(Umodel);
         }
+        [UserAuthentication]
+        [HttpPost]
         public string User_Select([FromBody] UserModel Umodel)
         {
             User_BL Ubl = new User_BL();
             return Ubl.User_Select(Umodel);
         }
+        [UserAuthentication]
+        [HttpPost]
         public string User_Insert([FromBody] UserModel Umodel)
         {
             User_BL Ubl = new User_BL();
