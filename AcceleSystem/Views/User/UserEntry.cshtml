@@ -17,15 +17,15 @@
                 </div>
                 <div class="pt-5 md-form">
                     @*<label for="lblUserName">User Name</label>*@
-                    <input type="text" id="UserName" class="text-line" placeholder="UserName">
+                    <input type="text" id="UserName" name="name" class="text-line" placeholder="UserName">
                 </div>
                 <div class="pt-5 md-form">
                     @*<label for="lblUserID">UserID</label>*@
-                    <input type="text" id="UserID" class="text-line" placeholder="UserID">
+                    <input type="text" id="UserID" name="id" class="text-line" placeholder="UserID">
                 </div>
                 <div class="pt-5 md-form">
                     @*<label for="lblPassword">Password</label>*@
-                    <input type="text" id="Password" class="text-line" placeholder="Password">
+                    <input type="text" id="Password" name="pass" class="text-line" placeholder="Password">
                 </div>
                 <div class="pt-5 md-form">
                     <div class="col-xl-12 text-center">
@@ -44,7 +44,25 @@
 
 @section Scripts{
     <script type="text/javascript">
+        $(document).ready(function () {
+        });
 
+        function btnSaveClick() {
+            
+            var Umodel = {
+                UserID : $("#UserID").val(),
+                UserName : $("UserName").val(),
+                Password : $("Password").val()
+            };
+            alert("aa");
+            $.ajax({
+                url: '@Url.Action("User_Insert", "UserApiController")',
+                method: 'POST',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(Umodel),
+            });
+        }
     </script>
 }
 
