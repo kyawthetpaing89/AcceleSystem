@@ -40,33 +40,37 @@
             </button>
         </div>
 
-        <div class="col-sm-7">
+        <div class="col-sm-2">
             <i class="fa fa-search"></i>
             <input type="text" placeholder="Search" class="border border-white"><br />
             <table id="tblUser" class="hrtable col-sm-12">
                 <thead>
                     <tr>
-                        <td id="UserName"></td>
-                        <td> <button id="btnEdit" onclick="btnEditClick()" class="border-0" style="background-color:white; color:#1a8cff;"> 編集 </button> </td>
+                        <th id="UserName"></th>
+                        <th> <button id="btnEdit" onclick="btnEditClick()" class="border-0" style="background-color:white; color:#1a8cff;"> 編集 </button> </th>
                     </tr>
                     <tr>
-                        <td id="ID"></td>
-                        <td> <button id="btnDelete" onclick="btnDelClick()" class="border-0" style="background-color:white; color:red;"> 削除 </button> </td>
+                        <th id="ID"></th>
+                        <th> <button id="btnDelete" onclick="btnDelClick()" class="border-0" style="background-color:white; color:red;"> 削除 </button> </th>
                     </tr>
 
                 </thead>
             </table>
         </div>
 
-        <div class="col-sm-3">
-            <table id="tbl1">
-                <thead>
-                    <tr>
-                        <td>ID</td>
-                        <td>UserName</td>
-                    </tr>
-                </thead>
-            </table>
+        <div class="col-sm-7">
+            <div class="table-responsive">
+                <table id="tbl">
+                    <thead>
+                        <tr>
+                            <th id="ID"></th>
+                            <th id="UserName"></th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                    </tfoot>
+                </table>
+            </div>
         </div>
     </div>
 </div>
@@ -79,7 +83,7 @@
             UserName: $('#UserName').val()
         };
 
-        var table = $("#tbl1").dataTable(
+        @*var table = $("#tbl").dataTable(
             {
                 "ajax": {
                     "url": "@Url.Action("M_User_Select", "api/UserApi")",
@@ -90,16 +94,17 @@
                 "searching": false,
                 "responsive": true,
                 "autoWidth": false,
-                "destroy": "true",
+                "destroy": true,
                 "paging": true,
                 "columns": [
-                    { "data": "UserName" },
-                    { "data": "UserName" },
-                ]
-            }
-        );
+                    { "data":"UserID" },
+                    { "data":"UserName"},
 
-        @*var table = $('#tblUser').DataTable(
+                ]               
+            }
+        );*@
+     
+       $('#tbl').DataTable(
             {
                 "ajax": {
                     "url": "@Url.Action("M_User_Select", "api/UserApi")",
@@ -111,13 +116,33 @@
                     },  
 
                 },
-                "columns": [
-                   
-                    { "data": "UserName", orderable: false, "width": "50%" },
-                    { "data": "ID", orderable: false, "width": "50%" },
+                "columns": [                 
+                    { "data": "UserName" },
+                    { "data": "ID"},
                     
                 ],
-            });*@
+            });
+
+        @*$('#tbl1').DataTable({
+           ajax: {
+                    url: '@Url.Action("M_User_Select","api/UserApi")',
+                    type: "GET",
+               datatype: "json",
+               dataSrc:'responseData',
+                    headers:
+                    {
+                        Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
+                    },  
+
+                },
+            columns: [
+                { data: "UserName" },
+                { data: "ID" },
+                
+            ],
+
+        })*@
+
 
     });
 
