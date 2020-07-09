@@ -52,7 +52,7 @@
         });
 
         function btnLoginClick() {   
-            if (!($('#UserID').val().trim() == '' && $('#Password').val().trim() == '')) {
+            if (!($('#UserID').val().trim() == '' || $('#Password').val().trim() == '')) {
                 var Umodel = {
                 UserID: $('#UserID').val(),
                 Password: $('#Password').val()
