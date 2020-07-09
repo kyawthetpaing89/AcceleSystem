@@ -40,31 +40,31 @@
             </button>
         </div>
 
-        <div class="col-sm-2">
+        <div class="col-sm-7">
             <i class="fa fa-search"></i>
             <input type="text" placeholder="Search" class="border border-white"><br />
             <table id="tblUser" class="hrtable col-sm-12">
                 <thead>
                     <tr>
-                        <th id="UserName"></th>
-                        <th> <button id="btnEdit" onclick="btnEditClick()" class="border-0" style="background-color:white; color:#1a8cff;"> 編集 </button> </th>
+                        <td></td>
+                        <td> <button id="btnEdit" onclick="btnEditClick()" class="border-0" style="background-color:white; color:#1a8cff;"> 編集 </button> </td>
                     </tr>
                     <tr>
-                        <th id="ID"></th>
-                        <th> <button id="btnDelete" onclick="btnDelClick()" class="border-0" style="background-color:white; color:red;"> 削除 </button> </th>
+                        <td></td>
+                        <td> <button id="btnDelete" onclick="btnDelClick()" class="border-0" style="background-color:white; color:red;"> 削除 </button> </td>
                     </tr>
 
                 </thead>
             </table>
         </div>
 
-        <div class="col-sm-7">
+        <div class="col-sm-2">
             <div class="table-responsive">
                 <table id="tbl">
                     <thead>
                         <tr>
-                            <th id="ID"></th>
-                            <th id="UserName"></th>
+                            <td></td>
+                            <td></td>
                         </tr>
                     </thead>
                     <tfoot>
@@ -78,73 +78,31 @@
 @section Scripts{
     <script type="text/javascript">
     $(document).ready(function () {
+        GetUser();
+        });
 
-        var Umodel = {
-            UserName: $('#UserName').val()
-        };
+        function GetUser() {
+            $.ajax({
+                type: "GET",
+                url:"@Url.Action("M_User_Select", "api/UserApi")",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    BindTable(response);
+                }
+            });
+        }
 
-        @*var table = $("#tbl").dataTable(
-            {
-                "ajax": {
-                    "url": "@Url.Action("M_User_Select", "api/UserApi")",
-                    "type": "GET",
-                    "datatype": "json",
-                    "dataSrc": ""
-                },
-                "searching": false,
-                "responsive": true,
-                "autoWidth": false,
-                "destroy": true,
-                "paging": true,
+        function BindTable(response) {
+            table = $('#tblUser').DataTable({
+                data: JSON.parse(response),
                 "columns": [
-                    { "data":"UserID" },
-                    { "data":"UserName"},
-
-                ]               
-            }
-        );*@
-     
-       $('#tbl').DataTable(
-            {
-                "ajax": {
-                    "url": "@Url.Action("M_User_Select", "api/UserApi")",
-                    "type": "GET",
-                    "datatype": "json",
-                    headers:
-                    {
-                        Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-                    },  
-
-                },
-                "columns": [                 
-                    { "data": "UserName" },
-                    { "data": "ID"},
-                    
-                ],
+                    { "data": "UserName", orderable: false, "width": "10%" },
+                    { "data": "ID", orderable: false, "width": "10%" },
+                ]
             });
 
-        @*$('#tbl1').DataTable({
-           ajax: {
-                    url: '@Url.Action("M_User_Select","api/UserApi")',
-                    type: "GET",
-               datatype: "json",
-               dataSrc:'responseData',
-                    headers:
-                    {
-                        Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-                    },  
-
-                },
-            columns: [
-                { data: "UserName" },
-                { data: "ID" },
-                
-            ],
-
-        })*@
-
-
-    });
+        }
 
     function btnAddClick() {
         location.href = "UserEntry";
