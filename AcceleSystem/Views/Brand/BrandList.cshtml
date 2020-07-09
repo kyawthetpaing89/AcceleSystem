@@ -41,6 +41,7 @@
         function BindTable(response) {
             table = $('#tbl1').DataTable({
                 data: JSON.parse(response),
+                "bFilter": false,
                 "columns": [
                     { "data": "ID" },
                     { "data": "UserName" },
