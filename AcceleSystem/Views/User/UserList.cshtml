@@ -42,7 +42,7 @@
 
         <div class="col-sm-7">
             <i class="fa fa-search"></i>
-            <input type="text" placeholder="Search" class="border border-white"><br /><br />
+            <input type="text" id="myInput" placeholder="Search" class="border border-white"><br /><br />
             <table id="tblUser" class="hrtable col-sm-12">
                 <thead>
                 </thead>
@@ -72,8 +72,16 @@
 
 @section Scripts{
     <script type="text/javascript">
-    $(document).ready(function () {
-        GetUser();
+        $(document).ready(function () {
+
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#tblUser tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+
+        GetUser();        
     });
 
        
@@ -88,15 +96,18 @@
                     BindTable(response);
                 }
         });
+        $(".Previous.paginate_button, .Next.paginate_button").hide();
     }
 
     function BindTable(response) {
         table = $('#tblUser').DataTable({
-                data: JSON.parse(response),
+            data: JSON.parse(response),
+            "bFilter": false,                     
                 "columns": [
                     { "data": "UserName", orderable: false, "width": "10%" },
                     { "data": "ID", orderable: false, "width": "10%" }                   
-            ],            
+            ],  
+                
             });
         }
        
@@ -117,7 +128,9 @@
             url = 'UserEntry?UserID=' + encodeURIComponent(b) + "_d";
 
         document.location.href = url;
-    }
+        }
+
+
 
     </script>
 
