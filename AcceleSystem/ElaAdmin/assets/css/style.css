@@ -632,11 +632,10 @@ aside.left-panel {
         width: 100%; }
         .navbar .navbar-nav li > a:hover, .navbar .navbar-nav li > a:hover .menu-icon {
           color: #03a9f3; }
-        .navbar .navbar-nav li > a .menu-icon {
-          color: #607d8b;
+        .navbar .navbar-nav li > a .menu-icon {          
           float: left;
           margin-top: 8px;
-          width: 55px;
+          padding-right: 10px;
           text-align: left;
           z-index: 9; }
         .navbar .navbar-nav li > a .menu-title-text {
