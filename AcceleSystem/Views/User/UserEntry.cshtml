@@ -7,81 +7,101 @@
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
 }
 
-<div class="container-fluid">
-    <div class="content">
-        <div class="p-5 row">
-            <div class="col-xs-6 col-md-4"></div>
-            <div class="col-xs-6 col-md-4">
-                <div>
-                    <h2 class=" hr-text text-center">ユーザー登録</h2>
-                </div>
-                <div class="pt-5 md-form">
-                    @*<label for="lblUserName">User Name</label>*@
-                    <input type="text" id="UserName" name="name" class="text-line" placeholder="UserName">
-                </div>
-                <div class="pt-5 md-form">
-                    @*<label for="lblUserID">UserID</label>*@
-                    <input type="text" id="UserID" name="id" class="text-line" placeholder="UserID">
-                </div>
-                <div class="pt-5 md-form">
-                    @*<label for="lblPassword">Password</label>*@
-                    <input type="password" id="Password" name="pass" class="text-line" placeholder="Password">
-                </div>
-                <div class="pt-5 md-form">
-                    <div class="col-xl-12 text-center">
-                        <div class="text-s text-custom1 text-uppercase mb-1">
-                            <button id="btnSave" onclick="btnSaveClick()" class="btn col-xl-5 text-center" tabindex="38" style="background-color:#212529; color:azure;">&nbsp; Save</button>
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                            <button type="reset" id="btnCancel" class="btn col-xl-5 text-center" tabindex="38" style="background-color:#1a8cff; color:azure;">&nbsp; Cancel</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-6 col-md-4"></div>
-        </div>
-    </div>
-</div>
+  <div class="container-fluid">
+      <div class="content">
+          <div class="p-5 row shadow">
+              <div class="col-xs-6 col-md-4"></div>
+              <div class="col-xs-6 col-md-4">
+                  <div>
+                      <h2 class=" hr-text text-center">ユーザー登録</h2>
+                  </div>
+                  <div class="pt-5 md-form">
+                      @*<label for="lblUserName">User Name</label>*@
+                      <input type="text" id="UserName" name="name" class="text-line" placeholder="ユーザー名" required="required">
+                  </div>
+                  <div class="pt-5 md-form">
+                      @*<label for="lblUserID">UserID</label>*@
+                      <input type="text" id="UserID" name="id" class="text-line" placeholder="ID" required="required">
+                  </div>
+                  <div class="pt-5 md-form">
+                      @*<label for="lblPassword">Password</label>*@
+                      <input type="password" id="Password" name="pass" class="text-line" placeholder="パスワード" required="required">
+                  </div>
+                  <div class="pt-5 md-form">
+                      <div class="col-xl-12 text-center">
+                          <div class="text-s text-custom1 text-uppercase mb-1">
+                              <button id="btnSave" onclick="btnSaveClick()" class="btn col-xl-5 text-center" tabindex="38" style="background-color:#212529; color:azure;">&nbsp; 登録</button>
+                              &nbsp;&nbsp;&nbsp;&nbsp;
+                              <button id="btnUserList" onclick="" class="btn col-xl-5 text-center" tabindex="38" style="background-color:#1a8cff; color:azure;">&nbsp; 戻る</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xs-6 col-md-4"></div>
+          </div>
+      </div>
+  </div>
 
-@section Scripts{
-    <script type="text/javascript">
-        $(document).ready(function () {
-        });
 
-        function btnSaveClick() {
-            var uid = '@ViewBag.UserID';
-            alert(uid);
-            var mode = uid.split("_", 2);
-            alert("mode");
+   @section Scripts{
+       <script type="text/javascript">
+   $(document).ready(function () {
+   });
 
-            var Umodel = {
-                UserID: $("#UserID").val(),
-                UserName: $("#UserName").val(),
-                Password: $("#Password").val()
-            };
+   function btnSaveClick() {
+       //var uid = '@ViewBag.UserID';
+       var uid = "001_e";
+       alert(uid);
 
-            if (uid == null || uid == "") {
-                alert("aa");
-                $.ajax({
-                    url: '@Url.Action("User_Insert", "api/UserApi")',
-                    method: 'POST',
-                    dataType: 'json',
-                    contentType: 'application/json; charset=utf-8',
-                    data: JSON.stringify(Umodel)
-                });
-            }
-            else if (mode == "_e") {
-                $.ajax({
-                    url: '@Url.Action("User_Update", "api/UserApi")',
-                    method: 'POST',
-                    dataType: 'json',
-                    contentType: 'application/json; charset=utf-8',
-                    data: JSON.stringify(Umodel)
-                });
-            }
-            else {
+       var mode = uid.slice(-1);
+       alert(mode);
 
-            }
-        }
-    </script>
-}
+       var id = uid.split("_", 1);
+       alert(id);
+
+       var Umodel = {
+           UserID: $("#UserID").val(),
+           UserName: $("#UserName").val(),
+           Password: $("#Password").val()
+       };
+
+       if (uid == null || uid == "") {
+           alert("aa");
+           $.ajax({
+               url: '@Url.Action("User_Insert", "api/UserApi")',
+               method: 'POST',
+               dataType: 'json',
+               contentType: 'application/json; charset=utf-8',
+               data: JSON.stringify(Umodel)
+           });
+       }
+       else if (mode == "e") {
+           $("#UserID").attr('readonly', true);
+           $("#btnSave").html("Update");
+
+           $.ajax({
+               url: '@Url.Action("User_Update", "api/UserApi")',
+               method: 'POST',
+               dataType: 'json',
+               contentType: 'application/json; charset=utf-8',
+               data: JSON.stringify(Umodel)
+           });
+       }
+       else {
+           $("#UserID").attr('readonly', true);
+           $("#UserName").attr('readonly', true);
+           $("#Password").attr('readonly', true);
+           $("#btnSave").html("Delete");
+
+           $.ajax({
+               url: '@Url.Action("User_Delete", "api/UserApi")',
+               method: 'POST',
+               dataType: 'json',
+               contentType: 'application/json; charset=utf-8',
+               data: JSON.stringify(Umodel)
+           });
+       }
+   }
+       </script>
+   }
 
