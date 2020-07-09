@@ -3,6 +3,10 @@
     ViewBag.Title = "UserList";
 }
 
+@section Styles{
+    <link rel="stylesheet" href="@Url.Content("~/ElaAdmin/assets/css/lib/datatable/dataTables.bootstrap.min.css")" />
+}
+
 <div class="row">
     <ul class="breadcrumb">
         <li><i class="fa fa-list" style="width:1580px;">&nbsp; <b>User List</b></i></li>
@@ -31,70 +35,104 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-2">
-            <button id="btnAdd" onclick="btnAddClick()">
+            <button id="btnAdd" onclick="btnAddClick()" class="btn col-xl-10 text-center" tabindex="38" style="background-color:#1a8cff; color:azure;">
                 ユーザー追加
             </button>
         </div>
 
         <div class="col-sm-7">
             <i class="fa fa-search"></i>
-            <input type="text" placeholder="Search" class="border border-white">
+            <input type="text" placeholder="Search" class="border border-white"><br />
             <table id="tblUser" class="hrtable col-sm-12">
                 <thead>
                     <tr>
-                        <td>UserName</td>
-                        <td> <button id="btnEdit" onclick="btnEditClick()" class="bg-light   border-0"> 編集 </button> </td>
+                        <td></td>
+                        <td> <button id="btnEdit" onclick="btnEditClick()" class="border-0" style="background-color:white; color:#1a8cff;"> 編集 </button> </td>
                     </tr>
                     <tr>
-                        <td>UserID</td>
-                        <td> <button id="btnDelete" onclick="btnDelClick()" class="color-red border-0 bg-light"  > 削除 </button> </td>
+                        <td></td>
+                        <td> <button id="btnDelete" onclick="btnDelClick()" class="border-0" style="background-color:white; color:red;"> 削除 </button> </td>
                     </tr>
-               
+
                 </thead>
             </table>
         </div>
 
-        <div class="col-sm-3">
-            apple
+        <div class="col-sm-2">
+            <div class="table-responsive">
+                <table id="tbl">
+                    <thead>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                    </tfoot>
+                </table>
+            </div>
         </div>
     </div>
 </div>
 
 @section Scripts{
-<script type="text/javascript">
-    document.getElementById("btnAdd").onclick = function () {
+    <script type="text/javascript">
+    $(document).ready(function () {
+        GetUser();
+        });
+
+        function GetUser() {
+            $.ajax({
+                type: "GET",
+                url:"@Url.Action("M_User_Select", "api/UserApi")",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    BindTable(response);
+                }
+            });
+        }
+
+        function BindTable(response) {
+            table = $('#tblUser').DataTable({
+                data: JSON.parse(response),
+                "columns": [
+                    { "data": "UserName", orderable: false, "width": "10%" },
+                    { "data": "ID", orderable: false, "width": "10%" },
+                ]
+            });
+
+        }
+
+    function btnAddClick() {
         location.href = "UserEntry";
     }
-    
-        
-            @*function btnAddClick() {
-               $.post(@Url.Action("Dashboard", "Home"));*@
 
-        @*var table = $('#tblUser').DataTable(
-                {
-                    "order": [[2, "asc"]],
-                    "language": {
-                        "info": "Display _START_ to _END_ of _TOTAL_ records",
-                    },
-                    "oLanguage": {
-                        "sLengthMenu": "Display _MENU_ records",
-                    },
-                    "ajax": {
-                        "url": "@Url.Action("UserLogin_Select", "api/UserApi")",
-                        "type": "GET",
-                        "datatype": "json",
-                        "dataSrc": ""
-                    },
-                    "columns": [
-                        { "data": "UserName", orderable: false, "width": "10%" },
-                        { "data": "UserID", orderable: false, "width": "10%" },
-                    ],
-                }
-            );
+    function btnEditClick() {
+        var b = document.getElementById('ID').value,
+            //var b= 11,
+            url = 'UserEntry?UserID=' + encodeURIComponent(b) + "_e";
 
+        document.location.href = url;
+    }
 
+    function btnDelClick() {
+        var b = document.getElementById('ID').value,
+            url = 'UserEntry?UserID=' + encodeURIComponent(b) + "_d";
 
-        });*@
-  
+        document.location.href = url;
+    }
+
     </script>
- }
+
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/datatables.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/dataTables.bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/dataTables.buttons.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/jszip.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/vfs_fonts.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.html5.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.print.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.colVis.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/init/datatables-init.js")"></script>
+}
