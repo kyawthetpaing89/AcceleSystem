@@ -5,7 +5,6 @@
 
 @section Styles{
     <link rel="stylesheet" href="@Url.Content("~/ElaAdmin/assets/css/lib/datatable/dataTables.bootstrap.min.css")" />
-
 }
 
 <div class="row">
@@ -43,78 +42,75 @@
 
         <div class="col-sm-7">
             <i class="fa fa-search"></i>
-            <input type="text" placeholder="Search" class="border border-white"><br />
+            <input type="text" id="myInput" placeholder="Search" class="border border-white"><br /><br />
             <table id="tblUser" class="hrtable col-sm-12">
                 <thead>
+                </thead>
+                <tbody>
                     <tr>
-                        <td id="UserName"></td>
+                        <td></td>
                         <td> <button id="btnEdit" onclick="btnEditClick()" class="border-0" style="background-color:white; color:#1a8cff;"> 編集 </button> </td>
                     </tr>
                     <tr>
-                        <td id="ID"></td>
-                        <td> <button id="btnDelete" onclick="btnDelClick()" class="border-0" style="background-color:white; color:red;"> 削除 </button> </td>
+                        <td></td>
+                        <td><button id="btnDelete" onclick="btnDelClick()" class="border-0" style="background-color:white; color:red;"> 削除 </button> </td>
                     </tr>
-
-                </thead>
+                </tbody>
             </table>
         </div>
 
-        <div class="col-sm-3">
-            <table id="tbl1">
-                <thead>
-                    <tr>
-                        <td>ID</td>
-                        <td>UserName</td>
-                    </tr>
-                </thead>
-            </table>
+        <div class="col-sm-2">
+            <div class="table-responsive">
+                <table id="tbl">
+                    <thead>
+                    </thead>                     
+                </table>
+            </div>
         </div>
     </div>
 </div>
 
 @section Scripts{
     <script type="text/javascript">
-    $(document).ready(function () {
+        $(document).ready(function () {
 
-        var Umodel = {
-            UserName: $('#UserName').val()
-        };
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#tblUser tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
 
-        var table = $("#tbl1").dataTable(
-            {
-                "ajax": {
-                    "url": "@Url.Action("M_User_Select", "api/UserApi")",
-                    "dataSrc": ""
-                },
-                "columns": [
-                    { "data": "UserName" },
-                    { "data": "UserName" },
-                ]
-            }
-        );
-
-        @*var table = $('#tblUser').DataTable(
-            {
-                "ajax": {
-                    "url": "@Url.Action("M_User_Select", "api/UserApi")",
-                    "type": "GET",
-                    "datatype": "json",
-                    headers:
-                    {
-                        Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-                    },
-
-                },
-                "columns": [
-
-                    { "data": "UserName", orderable: false, "width": "50%" },
-                    { "data": "ID", orderable: false, "width": "50%" },
-
-                ],
-            });*@
-
+        GetUser();        
     });
 
+       
+
+    function GetUser() {
+        $.ajax({
+            type: "GET",
+            url:"@Url.Action("M_User_Select", "api/UserApi")",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                    BindTable(response);
+                }
+        });
+        $(".Previous.paginate_button, .Next.paginate_button").hide();
+    }
+
+    function BindTable(response) {
+        table = $('#tblUser').DataTable({
+            data: JSON.parse(response),
+            "bFilter": false,                     
+                "columns": [
+                    { "data": "UserName", orderable: false, "width": "10%" },
+                    { "data": "ID", orderable: false, "width": "10%" }                   
+            ],  
+                
+            });
+        }
+       
     function btnAddClick() {
         location.href = "UserEntry";
     }
@@ -132,7 +128,9 @@
             url = 'UserEntry?UserID=' + encodeURIComponent(b) + "_d";
 
         document.location.href = url;
-    }
+        }
+
+
 
     </script>
 
