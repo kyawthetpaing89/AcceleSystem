@@ -9,14 +9,27 @@
 
 }
 
-<table id="tbl1">
-    <thead>
-        <tr>
-            <td>UserID</td>
-            <td>UserName</td>
-        </tr>
-    </thead>
-</table>
+<div class="row">
+    <div class="col-md-2">
+        <button id="btnAdd" onclick="btnAddClick()" class="btn col-xl-10 text-center" tabindex="38" style="background-color:#1a8cff; color:azure;">
+            ユーザー追加
+        </button>
+    </div>
+    <div class="col-md-4">
+        <i class="fa fa-search"></i>
+        <input type="text" placeholder="Search" class="border border-white"><br />
+        <table id="tbl1">
+            <thead>
+                <tr>
+                    <td>UserID</td>
+                    <td>UserName</td>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+
 
 @section Scripts{
 
@@ -40,13 +53,27 @@
 
         function BindTable(response) {
             table = $('#tbl1').DataTable({
+
                 data: JSON.parse(response),
                 "bFilter": false,
+                "bLengthChange": false,
                 "columns": [
-                    { "data": "ID" },
-                    { "data": "UserName" },
-
-                ]
+                    {
+                        "data": null,
+                        render: function (data, type, row) {
+                            return '<b><label>' + data.ID + '</label></b><br/><label>' + data.UserName + '</label>';
+                        }
+                    },
+                    {
+                        "data": null,
+                        render: function (data, type, row) {
+                            return '<a style="color:blue">編集</a><br/><a style="color:red">削除</a>';
+                        }
+                    },
+                ],
+                "drawCallback": function (settings) {
+                    $("#tbl1 thead").remove();
+                }
             });
 
         }

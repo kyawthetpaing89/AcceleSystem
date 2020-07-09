@@ -17,15 +17,15 @@
                   </div>
                   <div class="pt-5 md-form">
                       @*<label for="lblUserName">User Name</label>*@
-                      <input type="text" id="UserName" name="name" class="text-line" placeholder="ユーザー名" required="required">
+                      <input type="text" class="text-line" id="UserName" name="name" maxlength="40"  required placeholder="ユーザー名">
                   </div>
                   <div class="pt-5 md-form">
                       @*<label for="lblUserID">UserID</label>*@
-                      <input type="text" id="UserID" name="id" class="text-line" placeholder="ID" required="required">
+                      <input type="text" class="text-line" id="UserID" name="id" maxlength="20" required placeholder="ID">
                   </div>
                   <div class="pt-5 md-form">
                       @*<label for="lblPassword">Password</label>*@
-                      <input type="password" id="Password" name="pass" class="text-line" placeholder="パスワード" required="required">
+                      <input type="password" class="text-line" id="Password" maxlength="10" name="pass"  required placeholder="パスワード" >
                   </div>
                   <div class="pt-5 md-form">
                       <div class="col-xl-12 text-center">
@@ -49,16 +49,13 @@
    });
 
    function btnSaveClick() {
-       //var uid = '@ViewBag.UserID';
-       var uid = "001_e";
-       alert(uid);
-
+       var uid = '@ViewBag.UserID';
+       //var uid = "001_e";
+       //alert(uid);
        var mode = uid.slice(-1);
-       alert(mode);
-
+       //alert(mode);
        var id = uid.split("_", 1);
-       alert(id);
-
+       //alert(id);
        var Umodel = {
            UserID: $("#UserID").val(),
            UserName: $("#UserName").val(),
