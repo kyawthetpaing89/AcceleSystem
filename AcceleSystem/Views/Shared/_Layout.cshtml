@@ -1,4 +1,37 @@
 ﻿<!DOCTYPE html>
+@{
+    /**/
+    var ControllerName = ViewContext.RouteData.Values["controller"].ToString();
+    var ViewPageName = ViewContext.RouteData.Values["action"].ToString();
+    var time = Session.Timeout;
+    string loginID = string.Empty;
+    string UserName = string.Empty;
+    string UserType = string.Empty;
+
+
+    if (System.Diagnostics.Debugger.IsAttached)
+    {
+
+        loginID = "admin";
+        UserName = "Admin";
+
+        Session["UserInfo"] = loginID + '_' + UserName;
+    }
+    else
+    {
+        if (Session["UserInfo"] != null)
+        {
+            loginID = Session["UserInfo"].ToString().Split('_')[0];
+            UserName = Session["UserInfo"].ToString().Split('_')[1];
+        }
+
+        else
+        {
+            Response.Redirect("");
+        }
+    }
+
+}
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -114,6 +147,7 @@
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-bell"></i>
                                 <span class="count bg-danger">3</span>
+                                
                             </button>
                             <div class="dropdown-menu" aria-labelledby="notification">
                                 <p class="red">You have 3 Notification</p>
@@ -130,6 +164,7 @@
                                     <p>Server #3 overloaded.</p>
                                 </a>
                             </div>
+                          
                         </div>
                         <div class="dropdown for-message">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="message" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -172,6 +207,7 @@
                                 </a>
                             </div>
                         </div>
+                        <b><label>@UserName</label></b>
                     </div>
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
