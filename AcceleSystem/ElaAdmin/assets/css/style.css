@@ -559,18 +559,19 @@ canvas {
 /* Global Styles */
 /* Main Styles */
 aside.left-panel {
-  background: #110f32;
-  height: 100vh;
-  padding: 0;
-  vertical-align: top;
-  width: 280px;
-  -webkit-box-shadow: 1px 0 20px rgba(0, 0, 0, 0.08);
-          box-shadow: 1px 0 20px rgba(0, 0, 0, 0.08);
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  top: 55px;
-  z-index: 999; }
+    background: #373743d1;
+    height: 100vh;
+    padding: 0;
+    vertical-align: top;
+    width: 280px;
+    -webkit-box-shadow: 1px 0 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 1px 0 20px rgba(0, 0, 0, 0.08);
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    top: 55px;
+    z-index: 999;
+}
   aside.left-panel:hover {
     overflow-x: scroll; }
 
@@ -581,7 +582,7 @@ aside.left-panel {
   margin-left: 83px; }
 
 .navbar {
-    background: #110f32;
+    background: #373743d1;
     border-radius: 0;
     border: none;
     display: inline-block;
@@ -594,7 +595,7 @@ aside.left-panel {
     padding: 0;
     padding-bottom: 50px; }
   .navbar .menu-title {
-    color: #41434d;
+    color: #ffff;
     clear: both;
     display: block;
     font-family: 'Open Sans';
@@ -610,18 +611,19 @@ aside.left-panel {
     .navbar .navbar-nav > li {
       padding-left: 30px;
       padding-right: 30px; }
-      .navbar .navbar-nav > li.active {
-        background: #110f32 }
+        /*.navbar .navbar-nav > li.active {
+            background: #373743d1;
+        }*/
     .navbar .navbar-nav li {
       width: 100%; }
-      .navbar .navbar-nav li.active .menu-icon, .navbar .navbar-nav li:hover .toggle_nav_button:before,
+      /*.navbar .navbar-nav li.active .menu-icon,*/ .navbar .navbar-nav li:hover .toggle_nav_button:before,
       .navbar .navbar-nav li .toggle_nav_button.nav-open:before {
         color: #03a9f3; }
       .navbar .navbar-nav li .dropdown-toggle:after {
         display: none; }
       .navbar .navbar-nav li > a {
         background: none !important;
-        color: #607d8b;
+        color: #ffffff;
         display: inline-block;
         font-size: 14px;
         line-height: 26px;
@@ -702,7 +704,7 @@ aside.left-panel {
           opacity: 1;
           position: static !important; }
 
-.navbar .navbar-nav > .active > a,
+/*.navbar .navbar-nav > .active > a,*/
 .navbar .navbar-nav > .active > a:focus,
 .navbar .navbar-nav > .active > a:hover {
   color: #03a9f3; }
