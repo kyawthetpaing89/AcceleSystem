@@ -13,36 +13,17 @@
     </ul>
 </div>
 <br />
-
-@*<div class="col-md-12" style="padding:0px">
-        <table class="table table-bordered table-striped nowrap" id="usertbl" style="width:100%">
-            <thead>
-                <tr>
-                    <td class="text-right" width="15%"> <button id="btnAdd">ユーザー名 </button></td>
-                    <td width="30%">
-                        <i class="fa fa-search"></i>
-                        <input type="text" placeholder="Search" class="border border-white">
-
-                    </td>
-                    <td></td>
-                </tr>
-            </thead>
-            <tfoot>
-            </tfoot>
-        </table>
-    </div>*@
-
 <div class="container">
     <div class="row">
-        <div class="col-sm-2">
-            <button id="btnAdd" onclick="btnAddClick()" class="btn col-xl-10 text-center" tabindex="38" style="background-color:#1a8cff; color:azure;">
+        <div class="col-md-3 col-lg-2">
+            <button id="btnAdd" onclick="btnAddClick()" class="btn btn-primary">
                 ユーザー追加
             </button>
         </div>
 
         <div class="col-sm-7">
             <i class="fa fa-search"></i>
-            <input type="text" id="myInput" placeholder="Search" class="border border-white"><br /><br />
+            <input type="text" id="myInput" style="padding:10px;" placeholder="Search" class="border border-white">
             <table id="tblUser" class="hrtable col-sm-12">
                 <thead>
                     <tr>
@@ -65,7 +46,7 @@
 </div>
 
 @section Scripts{
-    <script type="text/javascript">
+<script type="text/javascript">
         $(document).ready(function () {
 
             $("#myInput").on("keyup", function () {
@@ -75,10 +56,10 @@
                 });
             });
 
-        GetUser();        
+        GetUser();
     });
 
-       
+
 
     function GetUser() {
         $.ajax({
@@ -90,7 +71,7 @@
                     BindTable(response);
                 }
         });
-        $(".Previous.paginate_button, .Next.paginate_button").hide();
+        //$(".Previous.paginate_button, .Next.paginate_button").hide();
     }
 
         function BindTable(response) {
@@ -109,7 +90,7 @@
                     {
                         "data": null,
                         render: function (data, type, row) {
-                            return '<a style="color:blue">編集</a><br/><a style="color:red">削除</a>';
+                            return '<a href="#" onclick="btnEditClick('+data.ID+');" style="color:blue" >編集</a><br/><a style="color:red">削除</a>';
                         }
                     },
                 ],
@@ -119,17 +100,19 @@
             });
 
         }
-       
+
     function btnAddClick() {
-        location.href = "UserEntry";
+        location.href = '@Url.Action("UserEntry", "User")';
     }
 
-    function btnEditClick() {
-        var b = document.getElementById('ID').value,
-            //var b= 11,
-            url = 'UserEntry?UserID=' + encodeURIComponent(b) + "_e";
+    function btnEditClick(UserID) {
+        var param = UserID + '_' + 'Edit';
+        location.href = '@Url.Action("UserEntry", "User")';
+        //var b = document.getElementById('ID').value,
+        ////var b= 11,
+        //url = 'UserEntry?UserID=' + encodeURIComponent(b) + "_e";
 
-        document.location.href = url;
+        //document.location.href = url;
     }
 
     function btnDelClick() {
@@ -141,7 +124,7 @@
 
 
 
-    </script>
+</script>
 
     <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/datatables.min.js")"></script>
     <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/dataTables.bootstrap.min.js")"></script>

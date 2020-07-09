@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using Models;
 
 namespace AcceleSystem.Controllers
 {
@@ -19,7 +16,7 @@ namespace AcceleSystem.Controllers
             return View();            
         }
 
-        public ActionResult UserEntry()
+        public ActionResult UserEntry(string UserID)
         {
             return View();
         }
