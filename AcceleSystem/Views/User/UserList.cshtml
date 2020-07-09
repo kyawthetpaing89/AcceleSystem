@@ -42,19 +42,20 @@
 
         <div class="col-sm-7">
             <i class="fa fa-search"></i>
-            <input type="text" placeholder="Search" class="border border-white"><br />
+            <input type="text" placeholder="Search" class="border border-white"><br /><br />
             <table id="tblUser" class="hrtable col-sm-12">
                 <thead>
+                </thead>
+                <tbody>
                     <tr>
                         <td></td>
                         <td> <button id="btnEdit" onclick="btnEditClick()" class="border-0" style="background-color:white; color:#1a8cff;"> 編集 </button> </td>
                     </tr>
                     <tr>
                         <td></td>
-                        <td> <button id="btnDelete" onclick="btnDelClick()" class="border-0" style="background-color:white; color:red;"> 削除 </button> </td>
+                        <td><button id="btnDelete" onclick="btnDelClick()" class="border-0" style="background-color:white; color:red;"> 削除 </button> </td>
                     </tr>
-
-                </thead>
+                </tbody>
             </table>
         </div>
 
@@ -62,13 +63,7 @@
             <div class="table-responsive">
                 <table id="tbl">
                     <thead>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                    </tfoot>
+                    </thead>                     
                 </table>
             </div>
         </div>
@@ -79,31 +74,32 @@
     <script type="text/javascript">
     $(document).ready(function () {
         GetUser();
-        });
+    });
 
-        function GetUser() {
-            $.ajax({
-                type: "GET",
-                url:"@Url.Action("M_User_Select", "api/UserApi")",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (response) {
+       
+
+    function GetUser() {
+        $.ajax({
+            type: "GET",
+            url:"@Url.Action("M_User_Select", "api/UserApi")",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
                     BindTable(response);
                 }
-            });
-        }
+        });
+    }
 
-        function BindTable(response) {
-            table = $('#tblUser').DataTable({
+    function BindTable(response) {
+        table = $('#tblUser').DataTable({
                 data: JSON.parse(response),
                 "columns": [
                     { "data": "UserName", orderable: false, "width": "10%" },
-                    { "data": "ID", orderable: false, "width": "10%" },
-                ]
+                    { "data": "ID", orderable: false, "width": "10%" }                   
+            ],            
             });
-
         }
-
+       
     function btnAddClick() {
         location.href = "UserEntry";
     }
