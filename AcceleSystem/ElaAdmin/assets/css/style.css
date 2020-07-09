@@ -559,7 +559,7 @@ canvas {
 /* Global Styles */
 /* Main Styles */
 aside.left-panel {
-    background: #373743d1;
+    background: #393953 !important;
     height: 100vh;
     padding: 0;
     vertical-align: top;
@@ -582,7 +582,7 @@ aside.left-panel {
   margin-left: 83px; }
 
 .navbar {
-    background: #373743d1;
+   /* background: #373743d1 !important;*/
     border-radius: 0;
     border: none;
     display: inline-block;
