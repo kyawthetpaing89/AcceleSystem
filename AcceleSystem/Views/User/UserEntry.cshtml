@@ -7,70 +7,96 @@
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
 }
 
-  <div class="container-fluid">
-      <div class="content">
-          <div class="p-5 row shadow">
-              <div class="col-xs-6 col-md-4"></div>
-              <div class="col-xs-6 col-md-4">
-                  <div>
-                      <h2 class=" hr-text text-center">ユーザー登録</h2>
-                  </div>
-                  <div class="pt-5 md-form">
-                      @*<label for="lblUserName">User Name</label>*@
-                      <input type="text" class="text-line" id="UserName" name="name" maxlength="40"  required placeholder="ユーザー名">
-                  </div>
-                  <div class="pt-5 md-form">
-                      @*<label for="lblUserID">UserID</label>*@
-                      <input type="text" class="text-line" id="UserID" name="id" maxlength="20" required placeholder="ID">
-                  </div>
-                  <div class="pt-5 md-form">
-                      @*<label for="lblPassword">Password</label>*@
-                      <input type="password" class="text-line" id="Password" maxlength="10" name="pass"  required placeholder="パスワード" >
-                  </div>
-                  <div class="pt-5 md-form">
-                      <div class="col-xl-12 text-center">
-                          <div class="text-s text-custom1 text-uppercase mb-1">
-                              <button id="btnSave" onclick="btnSaveClick()" class="btn col-xl-5 text-center" tabindex="38" style="background-color:#212529; color:azure;">&nbsp; 登録</button>
-                              &nbsp;&nbsp;&nbsp;&nbsp;
-                              <button id="btnUserList" onclick="" class="btn col-xl-5 text-center" tabindex="38" style="background-color:#1a8cff; color:azure;">&nbsp; 戻る</button>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-xs-6 col-md-4"></div>
-          </div>
-      </div>
-  </div>
+    <div class="container-fluid">
+        <div class="content">
+            <div class="p-5 row shadow">
+                <div class="col-xs-6 col-md-4"></div>
+                <div class="col-xs-6 col-md-4">
+                    <div>
+                        <h2 class=" hr-text text-center">ユーザー登録</h2>
+                    </div>
+                    <div class="pt-5 md-form">
+                        @*<label for="lblUserName">User Name</label>*@
+                        <input type="text" class="text-line" id="UserName" name="name" maxlength="40" required placeholder="ユーザー名">
+                        @*<span id="errname" class="color-red"></span>*@
+                    </div>
+                    <div class="pt-5 md-form">
+                        @*<label for="lblUserID">UserID</label>*@
+                        <input type="text" class="text-line" id="UserID" name="id" maxlength="20" required placeholder="ID">
+                        @*<span id="errid" class="color-red"></span>*@
+                    </div>
+                    <div class="pt-5 md-form">
+                        @*<label for="lblPassword">Password</label>*@
+                        <input type="password" class="text-line" id="Password" maxlength="10" name="pass" required placeholder="パスワード">
+                        @*<span id="errpass" class="color-red"></span>*@
+                    </div>
+                    <div>
+                        <span id="errexist" class="color-red"></span>
+                    </div>
+                    <div class="pt-5 md-form">
+                        <div class="col-xl-12 text-center">
+                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                <button id="btnSave" onclick="btnSaveClick()" class="btn col-xl-5 text-center" tabindex="38" style="background-color:#212529; color:azure;">&nbsp; 登録</button>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <button id="btnUserList" onclick="" class="btn col-xl-5 text-center" tabindex="38" style="background-color:#1a8cff; color:azure;">&nbsp; 戻る</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-4"></div>
+            </div>
+        </div>
+    </div>
 
 
-   @section Scripts{
-       <script type="text/javascript">
-   $(document).ready(function () {
-   });
+ @section Scripts{
+<script type="text/javascript">
+    $(document).ready(function () {
 
-   function btnSaveClick() {
+    });
+
+    function btnSaveClick() {
+       
        var uid = '@ViewBag.UserID';
-       //var uid = "001_e";
        //alert(uid);
+
        var mode = uid.slice(-1);
        //alert(mode);
+
        var id = uid.split("_", 1);
        //alert(id);
+
        var Umodel = {
            UserID: $("#UserID").val(),
            UserName: $("#UserName").val(),
            Password: $("#Password").val()
        };
 
-       if (uid == null || uid == "") {
-           alert("aa");
-           $.ajax({
-               url: '@Url.Action("User_Insert", "api/UserApi")',
-               method: 'POST',
-               dataType: 'json',
-               contentType: 'application/json; charset=utf-8',
-               data: JSON.stringify(Umodel)
-           });
+        if (uid == null || uid == "") {
+            if (!($("#UserID").val() == "")) {
+                alert($("#UserID").val());
+               $.ajax({
+                   url: '@Url.Action("M_User_Select", "api/UserApi")',
+                   method: 'POST',
+                   dataType: 'json',
+                   contentType: 'application/json; charset=utf-8',
+                   data: JSON.stringify(Umodel)
+               });
+                var user_data = JSON.parse(data);
+                alert(user_data.length);
+               if (user_data.length > 0) {
+                   $("#errexist").html("Already Exist!");
+               }
+               else {
+                   $.ajax({
+                       url: '@Url.Action("User_Insert", "api/UserApi")',
+                       method: 'POST',
+                       dataType: 'json',
+                       contentType: 'application/json; charset=utf-8',
+                       data: JSON.stringify(Umodel)
+                   });
+               }
+           }
        }
        else if (mode == "e") {
            $("#UserID").attr('readonly', true);
