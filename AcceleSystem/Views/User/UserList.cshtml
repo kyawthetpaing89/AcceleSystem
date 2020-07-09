@@ -45,17 +45,11 @@
             <input type="text" id="myInput" placeholder="Search" class="border border-white"><br /><br />
             <table id="tblUser" class="hrtable col-sm-12">
                 <thead>
-                </thead>
-                <tbody>
                     <tr>
-                        <td></td>
-                        <td> <button id="btnEdit" onclick="btnEditClick()" class="border-0" style="background-color:white; color:#1a8cff;"> 編集 </button> </td>
+                        <td>UserID</td>
+                        <td>UserName</td>
                     </tr>
-                    <tr>
-                        <td></td>
-                        <td><button id="btnDelete" onclick="btnDelClick()" class="border-0" style="background-color:white; color:red;"> 削除 </button> </td>
-                    </tr>
-                </tbody>
+                </thead>               
             </table>
         </div>
 
@@ -99,16 +93,31 @@
         $(".Previous.paginate_button, .Next.paginate_button").hide();
     }
 
-    function BindTable(response) {
-        table = $('#tblUser').DataTable({
-            data: JSON.parse(response),
-            "bFilter": false,                     
+        function BindTable(response) {
+            table = $('#tblUser').DataTable({
+
+                data: JSON.parse(response),
+                "bFilter": false,
+                "bLengthChange": false,
                 "columns": [
-                    { "data": "UserName", orderable: false, "width": "10%" },
-                    { "data": "ID", orderable: false, "width": "10%" }                   
-            ],  
-                
+                    {
+                        "data": null,
+                        render: function (data, type, row) {
+                            return '<b><label>' + data.ID + '</label></b><br/><label>' + data.UserName + '</label>';
+                        }
+                    },
+                    {
+                        "data": null,
+                        render: function (data, type, row) {
+                            return '<a style="color:blue">編集</a><br/><a style="color:red">削除</a>';
+                        }
+                    },
+                ],
+                "drawCallback": function (settings) {
+                    $("#tblUser thead").remove();
+                }
             });
+
         }
        
     function btnAddClick() {
