@@ -49,16 +49,13 @@
    });
 
    function btnSaveClick() {
-       //var uid = '@ViewBag.UserID';
-       var uid = "001_e";
-       alert(uid);
-
+       var uid = '@ViewBag.UserID';
+       //var uid = "001_e";
+       //alert(uid);
        var mode = uid.slice(-1);
-       alert(mode);
-
+       //alert(mode);
        var id = uid.split("_", 1);
-       alert(id);
-
+       //alert(id);
        var Umodel = {
            UserID: $("#UserID").val(),
            UserName: $("#UserName").val(),
