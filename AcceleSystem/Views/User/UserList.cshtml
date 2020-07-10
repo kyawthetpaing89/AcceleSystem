@@ -13,25 +13,6 @@
     </ul>
 </div>
 <br />
-
-@*<div class="col-md-12" style="padding:0px">
-        <table class="table table-bordered table-striped nowrap" id="usertbl" style="width:100%">
-            <thead>
-                <tr>
-                    <td class="text-right" width="15%"> <button id="btnAdd">ユーザー名 </button></td>
-                    <td width="30%">
-                        <i class="fa fa-search"></i>
-                        <input type="text" placeholder="Search" class="border border-white">
-
-                    </td>
-                    <td></td>
-                </tr>
-            </thead>
-            <tfoot>
-            </tfoot>
-        </table>
-    </div>*@
-
 <div class="container">
     <div class="row">
         <div class="col-sm-2">
@@ -109,7 +90,7 @@
                     {
                         "data": null,
                         render: function (data, type, row) {
-                            return '<a href="#" onClick="btnEditClick('+data.ID+')" style="color:blue">編集</a><br/><a style="color:red">削除</a>';
+                            return '<a href="#" onClick="btnEditClick(' + data.ID + ')" style="color:blue">編集</a><br/><a href="#" onClick="btnDelClick(' + data.ID +')" style="color:red">削除</a>';
                         }
                     },
                 ],
@@ -128,15 +109,9 @@
         location.href = '@Url.Action("UserEntry", "User")?UserID='+UserID+'&Mode=Edit';
     }
 
-    function btnDelClick() {
-        var b = document.getElementById('ID').value,
-            url = 'UserEntry?UserID=' + encodeURIComponent(b) + "_d";
-
-        document.location.href = url;
+    function btnDelClick(UserID) {
+        location.href = '@Url.Action("UserEntry", "User")?UserID='+UserID+'&Mode=Delete';
         }
-
-
-
     </script>
 
     <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/datatables.min.js")"></script>

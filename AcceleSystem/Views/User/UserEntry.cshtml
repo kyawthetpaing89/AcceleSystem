@@ -1,4 +1,4 @@
-﻿
+﻿@model Models.UserModel
 @{
     ViewBag.Title = "UserEntry";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -38,7 +38,7 @@
                     <div class="pt-5 md-form">
                         <div class="col-xl-12 text-center">
                             <div class="text-s text-custom1 text-uppercase mb-1">
-                                <button id="btnSave" onclick="btnSaveClick()" class="btn col-xl-5 text-center" tabindex="38" style="background-color:#212529; color:azure;">&nbsp; 登録</button>
+                                <button id="btnSave" onclick="btnSaveClick()" class="btn col-xl-5 text-center" tabindex="38" style="background-color:#212529; color:azure;"></button>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                 <button id="btnCancel" onclick="btnCancelClick()" class="btn col-xl-5 text-center" tabindex="38" style="background-color:#1a8cff; color:azure;">&nbsp; 戻る</button>
                             </div>
@@ -54,19 +54,20 @@
  @section Scripts{
 <script type="text/javascript">
     $(document).ready(function () {
+        var Mode = '@Model.Mode';
+        if (Mode == 'New') {
+            $('#btnSave').html('登録');
+        }
+        else if (Mode == 'Edit') {
+            $('#btnSave').html('更新');
+        }
+        else {
+            $('#btnSave').html('削除');
+        }
 
     });
 
     function btnSaveClick() {
-       
-       var uid = '@ViewBag.UserID';
-       //alert(uid);
-
-       var mode = uid.slice(-1);
-       //alert(mode);
-
-       var id = uid.split("_", 1);
-       //alert(id);
 
        var Umodel = {
            UserID: $("#UserID").val(),

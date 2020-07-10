@@ -18,6 +18,8 @@ namespace AcceleSystem.Controllers
 
         public ActionResult UserEntry(UserModel Umodel)
         {
+            if (string.IsNullOrWhiteSpace(Umodel.Mode))
+                Umodel.Mode = "New";
             return View(Umodel);
         }
     }
