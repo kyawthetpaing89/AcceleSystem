@@ -26,10 +26,10 @@ namespace DL
         {
             IniFileReader ifd = new IniFileReader(filePath);
 
-            return "Data Source=" + ifd.IniReadValue("Database", "AcceleDB").Split(',')[0] +
-                    ";Initial Catalog=" + ifd.IniReadValue("Database", "AcceleDB").Split(',')[1] +
-                    ";Persist Security Info=True;User ID=" + ifd.IniReadValue("Database", "AcceleDB").Split(',')[2] +
-                    ";Password=" + ifd.IniReadValue("Database", "AcceleDB").Split(',')[3] +
+            return "Data Source=" + ifd.IniReadValue("Database", "Accele").Split(',')[0] +
+                    ";Initial Catalog=" + ifd.IniReadValue("Database", "Accele").Split(',')[1] +
+                    ";Persist Security Info=True;User ID=" + ifd.IniReadValue("Database", "Accele").Split(',')[2] +
+                    ";Password=" + ifd.IniReadValue("Database", "Accele").Split(',')[3] +
                     ";";
         }
     }
