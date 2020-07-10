@@ -18,7 +18,6 @@ namespace UserBL
         }
         public string M_User_Select(UserModel Umodel)
         {
-            
             BaseDL bdl = new BaseDL();
             SqlParameter[] prms = new SqlParameter[1];
             prms[0] = new SqlParameter("@UserName", SqlDbType.VarChar) { Value = Umodel.UserName };
