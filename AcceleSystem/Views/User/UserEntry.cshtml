@@ -40,7 +40,7 @@
                             <div class="text-s text-custom1 text-uppercase mb-1">
                                 <button id="btnSave" onclick="btnSaveClick()" class="btn col-xl-5 text-center" tabindex="38" style="background-color:#212529; color:azure;">&nbsp; 登録</button>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                <button id="btnUserList" onclick="" class="btn col-xl-5 text-center" tabindex="38" style="background-color:#1a8cff; color:azure;">&nbsp; 戻る</button>
+                                <button id="btnCancel" onclick="btnCancelClick()" class="btn col-xl-5 text-center" tabindex="38" style="background-color:#1a8cff; color:azure;">&nbsp; 戻る</button>
                             </div>
                         </div>
                     </div>
@@ -126,7 +126,10 @@
                data: JSON.stringify(Umodel)
            });
        }
-   }
+    }
+    function btnCancelClick() {
+        window.location.replace('@Url.Action("UserList", "User")');
+    }
        </script>
    }
 
