@@ -2,6 +2,7 @@
 using DL;
 using System.Data.SqlClient;
 using System.Data;
+using System;
 
 namespace UserBL
 {
@@ -10,29 +11,47 @@ namespace UserBL
         public string UserLogin_Select(UserModel Umodel)
         {
             BaseDL bdl = new BaseDL();
-            SqlParameter[] prms = new SqlParameter[2];
-            prms[0] = new SqlParameter("@UserID", SqlDbType.VarChar) { Value = Umodel.UserID };
-            prms[1] = new SqlParameter("@Password", SqlDbType.VarChar) { Value = Umodel.Password };
+            Umodel.Sqlprms = new SqlParameter[2];
+            Umodel.Sqlprms[0] = new SqlParameter("@UserID", SqlDbType.VarChar) { Value = Umodel.UserID };
+            Umodel.Sqlprms[1] = new SqlParameter("@Password", SqlDbType.VarChar) { Value = Umodel.Password };
 
-            return bdl.SelectJson("UserLogin_Select", prms);
+            return bdl.SelectJson("UserLogin_Select", Umodel.Sqlprms);
         }
         public string M_User_Select(UserModel Umodel)
         {
             BaseDL bdl = new BaseDL();
-            SqlParameter[] prms = new SqlParameter[1];
-            prms[0] = new SqlParameter("@UserName", SqlDbType.VarChar) { Value = Umodel.UserName };
-
-            return bdl.SelectJson("M_User_Select", prms);
+            Umodel.Sqlprms = new SqlParameter[2];
+            Umodel.Sqlprms[0] = new SqlParameter("@ID", SqlDbType.VarChar) { Value = (object)Umodel.UserID?? DBNull.Value };
+            Umodel.Sqlprms[1] = new SqlParameter("@UserName", SqlDbType.VarChar) { Value = (object)Umodel.UserName ?? DBNull.Value };
+            return bdl.SelectJson("M_User_Select", Umodel.Sqlprms);
         }
-        public string User_Insert(UserModel Umodel)
+        public string User_CUD(UserModel Umodel)
         {
             BaseDL bdl = new BaseDL();
-            SqlParameter[] prms = new SqlParameter[3];
-            prms[0] = new SqlParameter("@UserID", SqlDbType.VarChar) { Value = Umodel.UserID };
-            prms[1] = new SqlParameter("@UserName", SqlDbType.VarChar) { Value = Umodel.UserName };
-            prms[2] = new SqlParameter("@Password", SqlDbType.VarChar) { Value = Umodel.Password };
+            if (Umodel.Mode.Equals("New"))
+            {
+                Umodel.SPName = "M_User_Insert";
+                Umodel.Sqlprms = new SqlParameter[3];
+                Umodel.Sqlprms[0] = new SqlParameter("@ID", SqlDbType.VarChar) { Value = Umodel.UserID };
+                Umodel.Sqlprms[1] = new SqlParameter("@UserName", SqlDbType.VarChar) { Value = Umodel.UserName };
+                Umodel.Sqlprms[2] = new SqlParameter("@Password", SqlDbType.VarChar) { Value = Umodel.Password };
+            }
+            else if (Umodel.Mode.Equals("Edit"))
+            {
+                Umodel.SPName = "M_User_Update";
+                Umodel.Sqlprms = new SqlParameter[3];
+                Umodel.Sqlprms[0] = new SqlParameter("@ID", SqlDbType.VarChar) { Value = Umodel.UserID };
+                Umodel.Sqlprms[1] = new SqlParameter("@UserName", SqlDbType.VarChar) { Value = Umodel.UserName };
+                Umodel.Sqlprms[2] = new SqlParameter("@Password", SqlDbType.VarChar) { Value = Umodel.Password };
+            }                
+            else if (Umodel.Mode.Equals("Delete"))
+            {
+                Umodel.SPName = "M_User_Delete";
+                Umodel.Sqlprms = new SqlParameter[1];
+                Umodel.Sqlprms[0] = new SqlParameter("@ID", SqlDbType.VarChar) { Value = Umodel.UserID };
+            }
 
-            return bdl.InsertUpdateDeleteData("cc", prms);
+            return bdl.SelectJson(Umodel.SPName, Umodel.Sqlprms);
         }
     }
 }

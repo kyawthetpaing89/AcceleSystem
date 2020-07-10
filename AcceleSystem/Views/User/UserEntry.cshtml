@@ -7,8 +7,6 @@
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
 }
 
-
-
 <div class="container-fluid">
     <div class="content">
         <div class="p-5 row shadow">
@@ -53,82 +51,135 @@
 
 @section Scripts{
     <script type="text/javascript">
-    $(document).ready(function () {
-        var Mode = '@Model.Mode';
-        if (Mode == 'New') {
-            $('#btnSave').html('登録');
-        }
-        else if (Mode == 'Edit') {
-            $('#btnSave').html('更新');
-        }
-        else {
-            $('#btnSave').html('削除');
+        $(document).ready(function () {
+            var Mode = '@Model.Mode';
+            if (Mode == 'New') {
+                $('#btnSave').html('登録');
+            }
+            else if (Mode == 'Edit') {
+                $('#btnSave').html('更新');
+                $("#UserID").prop("readonly", true);
+                ShowData();
+            }
+            else {
+                $('#btnSave').html('削除');
+                $("#UserID").prop("readonly", true);
+                $("#UserName").prop("readonly", true);
+                $("#Password").prop("readonly", true);
+                ShowData();
+            }
+
+        });
+
+        function ShowData() {
+            var Umodel = {
+                UserID: '@Model.UserID',
+            };
+
+            $.ajax({
+                url: '@Url.Action("M_User_Select", "api/UserApi")',
+                method: 'Post',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(Umodel),
+                headers:
+                {
+                    Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
+                }, 
+                success: function (data) {
+                    var userdata = JSON.parse(data);
+                    $("#UserID").val(userdata[0].ID);
+                    $("#UserName").val(userdata[0].UserName);
+                    $("#Password").val(userdata[0].Password);
+                }
+            });
         }
 
-    });
+        function btnSaveClick() {
+            var Mode = '@Model.Mode';
+            
+            var Umodel = {
+                UserID: $("#UserID").val(),
+                UserName: $("#UserName").val(),
+                Password: $("#Password").val(),
+                Mode:Mode
+            };
 
-    function btnSaveClick() {
-        var Mode = '@Model.Mode';
-        
-       var Umodel = {
-           UserID: $("#UserID").val(),
-           UserName: $("#UserName").val(),
-           Password: $("#Password").val()
-       };
+             $.ajax({
+                url: '@Url.Action("User_CUD", "api/UserApi")',
+                method: 'POST',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(Umodel),
+                headers:
+                {
+                    Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
+                },  
+                success: function (msg) {
+                    var message = JSON.parse(msg);
+                    Swal.fire(
+                        message[0].MessageID,
+                        message[0].MessageText1,
+                        'success'
+                    ).then(function () {
+                        location.href = '@Url.Action("UserEntry", "User")';
+                    });
+                }
+            });
 
-        if (Mode == "New") {
-            if (!($("#UserID").val() == "")) {
-                alert($("#UserID").val());
-               $.ajax({
-                   url: '@Url.Action("M_User_Select", "api/UserApi")',
-                   method: 'POST',
-                   dataType: 'json',
-                   contentType: 'application/json; charset=utf-8',
-                   data: JSON.stringify(Umodel)
-               });
-                var user_data = JSON.parse(data);
-                alert(user_data.length);
-               if (user_data.length > 0) {
-                   $("#errexist").html("Already Exist!");
-               }
-               else {
+            @*if (Mode == "New") {
+                if (!($("#UserID").val() == "")) {
+                    alert($("#UserID").val());
                    $.ajax({
-                       url: '@Url.Action("User_Insert", "api/UserApi")',
+                       url: '@Url.Action("M_User_Select", "api/UserApi")',
                        method: 'POST',
                        dataType: 'json',
                        contentType: 'application/json; charset=utf-8',
                        data: JSON.stringify(Umodel)
                    });
+                    var user_data = JSON.parse(data);
+                    alert(user_data.length);
+                   if (user_data.length > 0) {
+                       $("#errexist").html("Already Exist!");
+                   }
+                   else {
+                       $.ajax({
+                           url: '@Url.Action("User_Insert", "api/UserApi")',
+                           method: 'POST',
+                           dataType: 'json',
+                           contentType: 'application/json; charset=utf-8',
+                           data: JSON.stringify(Umodel)
+                       });
+                   }
                }
            }
-       }
-       else if (mode == "e") {
-           $("#UserID").attr('readonly', true);
-           $("#btnSave").html("Update");
+           else if (mode == "e") {
+               $("#UserID").attr('readonly', true);
+               $("#btnSave").html("Update");
 
-           $.ajax({
-               url: '@Url.Action("User_Update", "api/UserApi")',
-               method: 'POST',
-               dataType: 'json',
-               contentType: 'application/json; charset=utf-8',
-               data: JSON.stringify(Umodel)
-           });
-       }
-       else {
-           $("#UserID").attr('readonly', true);
-           $("#UserName").attr('readonly', true);
-           $("#Password").attr('readonly', true);
-           $("#btnSave").html("Delete");
+               $.ajax({
+                   url: '@Url.Action("User_Update", "api/UserApi")',
+                   method: 'POST',
+                   dataType: 'json',
+                   contentType: 'application/json; charset=utf-8',
+                   data: JSON.stringify(Umodel)
+               });
+           }
+           else {
+               $("#UserID").attr('readonly', true);
+               $("#UserName").attr('readonly', true);
+               $("#Password").attr('readonly', true);
+               $("#btnSave").html("Delete");
 
-           $.ajax({
-               url: '@Url.Action("User_Delete", "api/UserApi")',
-               method: 'POST',
-               dataType: 'json',
-               contentType: 'application/json; charset=utf-8',
-               data: JSON.stringify(Umodel)
-           });
-       }
-    }
+               $.ajax({
+                   url: '@Url.Action("User_Delete", "api/UserApi")',
+                   method: 'POST',
+                   dataType: 'json',
+                   contentType: 'application/json; charset=utf-8',
+                   data: JSON.stringify(Umodel)
+               });
+           }*@
+        }
     function btnCancelClick() {
         window.location.replace('@Url.Action("UserList", "User")');
     }
