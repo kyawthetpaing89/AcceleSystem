@@ -109,7 +109,7 @@
                     {
                         "data": null,
                         render: function (data, type, row) {
-                            return '<a style="color:blue">編集</a><br/><a style="color:red">削除</a>';
+                            return '<a href="#" onClick="btnEditClick('+data.ID+')" style="color:blue">編集</a><br/><a style="color:red">削除</a>';
                         }
                     },
                 ],
@@ -121,17 +121,11 @@
         }
        
     function btnAddClick() {
-        location.href = "UserEntry";
+        location.href = '@Url.Action("UserEntry", "User")?Mode=New'
     }
 
     function btnEditClick(UserID) {
-        var param = UserID + '_' + 'Edit';
         location.href = '@Url.Action("UserEntry", "User")?UserID='+UserID+'&Mode=Edit';
-        //var b = document.getElementById('ID').value,
-        ////var b= 11,
-        //url = 'UserEntry?UserID=' + encodeURIComponent(b) + "_e";
-
-        //document.location.href = url;
     }
 
     function btnDelClick() {
