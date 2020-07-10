@@ -71,6 +71,7 @@
 
         });
 
+        //set data 
         function ShowData() {
             var Umodel = {
                 UserID: '@Model.UserID',
@@ -95,9 +96,8 @@
             });
         }
 
-        function btnSaveClick() {
-            var Mode = '@Model.Mode';
-            
+        //insert,update,delete
+        function DoProcess() {
             var Umodel = {
                 UserID: $("#UserID").val(),
                 UserName: $("#UserName").val(),
@@ -126,59 +126,31 @@
                     });
                 }
             });
+        }
 
-            @*if (Mode == "New") {
-                if (!($("#UserID").val() == "")) {
-                    alert($("#UserID").val());
-                   $.ajax({
-                       url: '@Url.Action("M_User_Select", "api/UserApi")',
-                       method: 'POST',
-                       dataType: 'json',
-                       contentType: 'application/json; charset=utf-8',
-                       data: JSON.stringify(Umodel)
-                   });
-                    var user_data = JSON.parse(data);
-                    alert(user_data.length);
-                   if (user_data.length > 0) {
-                       $("#errexist").html("Already Exist!");
-                   }
-                   else {
-                       $.ajax({
-                           url: '@Url.Action("User_Insert", "api/UserApi")',
-                           method: 'POST',
-                           dataType: 'json',
-                           contentType: 'application/json; charset=utf-8',
-                           data: JSON.stringify(Umodel)
-                       });
-                   }
-               }
-           }
-           else if (mode == "e") {
-               $("#UserID").attr('readonly', true);
-               $("#btnSave").html("Update");
-
-               $.ajax({
-                   url: '@Url.Action("User_Update", "api/UserApi")',
-                   method: 'POST',
-                   dataType: 'json',
-                   contentType: 'application/json; charset=utf-8',
-                   data: JSON.stringify(Umodel)
-               });
-           }
-           else {
-               $("#UserID").attr('readonly', true);
-               $("#UserName").attr('readonly', true);
-               $("#Password").attr('readonly', true);
-               $("#btnSave").html("Delete");
-
-               $.ajax({
-                   url: '@Url.Action("User_Delete", "api/UserApi")',
-                   method: 'POST',
-                   dataType: 'json',
-                   contentType: 'application/json; charset=utf-8',
-                   data: JSON.stringify(Umodel)
-               });
-           }*@
+        //save
+        function btnSaveClick() {
+            var Mode = '@Model.Mode';
+            //show confirm message
+            if (Mode == "Delete") {
+                Swal.fire({
+                    title: 'Q102',
+                    text: "削除します。よろしいですか？",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'はい。',
+                    cancelButtonText: 'いいえ。'
+                }).then((result) => {
+                    if (result.value) {
+                        DoProcess();
+                    }
+                })
+            }
+            else {
+                DoProcess();
+            }
         }
     function btnCancelClick() {
         window.location.replace('@Url.Action("UserList", "User")');
