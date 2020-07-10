@@ -4,10 +4,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Styles{
-    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />   
 }
 
-<div class="container-fluid">
+<div class="container-fluid" >
     <div class="content">
         <div class="p-5 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white;">
             <div class="col-xs-6 col-md-4"></div>
@@ -71,7 +71,7 @@
 
         });
 
-        //set data 
+        //set data
         function ShowData() {
             var Umodel = {
                 UserID: '@Model.UserID',
@@ -86,7 +86,7 @@
                 headers:
                 {
                     Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-                }, 
+                },
                 success: function (data) {
                     var userdata = JSON.parse(data);
                     $("#UserID").val(userdata[0].ID);
@@ -102,7 +102,7 @@
                 UserID: $("#UserID").val(),
                 UserName: $("#UserName").val(),
                 Password: $("#Password").val(),
-                Mode:'@Model.Mode'
+                Mode:Mode
             };
 
              $.ajax({
@@ -114,28 +114,16 @@
                 headers:
                 {
                     Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-                },  
-                success: function (msg) {                  
+                },
+                success: function (msg) {
                     var message = JSON.parse(msg);
-                    //already exists
-                    if (message[0].status = 1) {
-                        Swal.fire(
-                            message[0].MessageID,
-                            message[0].MessageText1,
-                            'error'
-                        ).then(function () {
-                            $("#UserID").select();
-                       });
-                    }
-                    else {
-                        Swal.fire(
+                    Swal.fire(
                         message[0].MessageID,
                         message[0].MessageText1,
                         'success'
-                       ).then(function () {
-                       location.href = '@Url.Action("UserEntry", "User")';
-                       });
-                    }                    
+                    ).then(function () {
+                        location.href = '@Url.Action("UserEntry", "User")';
+                    });
                 }
             });
         }

@@ -56,40 +56,40 @@
                 var Umodel = {
                 UserID: $('#UserID').val(),
                 Password: $('#Password').val()
-                };     
-
-                $.ajax({
-                    url: '@Url.Action("UserLogin_Select", "api/UserApi")',
-                    method: 'POST',
-                    dataType: 'json',
-                    contentType: 'application/json; charset=utf-8',
-                    data: JSON.stringify(Umodel),                
-                    headers:
+            };     
+            $.ajax({
+                url: '@Url.Action("UserLogin_Select", "api/UserApi")',
+                method: 'POST',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(Umodel),                
+                headers:
                 {
                     Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
                 },  
-                    success: function (data) {
-                        var userdata = JSON.parse(data);
-                        if (userdata.length > 0) {
-                            var userinfo = userdata[0].UserID + '_' + userdata[0].UserName
-                            $.post('/Home/CreateSession',
+                success: function (data) {
+                    var userdata = JSON.parse(data);
+                    if (userdata.length > 0) {
+                        var userinfo = userdata[0].UserID + '_' + userdata[0].UserName
+                        $.post('/Home/CreateSession',
                             { key: "UserInfo", value: userinfo }, function (data) {
-                                    window.location.replace('@Url.Action("Dashboard", "Home")');
-                                });
-                        }
-                        else {
-                            alert("Login Failed. Invalid UserName and Password.")
-                            $('#UserID').val("");
-                            $('#Password').val("");
-                        }
-                    },
-                    error: function (data)
-                    {
-                        alert("Object Request fail" + data);
+                                window.location.replace('@Url.Action("Dashboard", "Home")');
+                            });
                     }
-                    
-                });    
+                    else {
+                        alert("Login Failed. Invalid UserName and Password.")
+                        $('#UserID').val("");
+                        $('#Password').val("");
+                    }
+                },
+                error: function (data)
+                {
+                    alert("Object Request fail" + data);
+                }
+                
+            });    
             }
+
         }
     </script>
 }
