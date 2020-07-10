@@ -232,6 +232,7 @@
     <Content Include="ElaAdmin\assets\js\lib\gmap\gmaps.js" />
     <Content Include="ElaAdmin\assets\js\lib\gmap\gmaps.min.js" />
     <Content Include="ElaAdmin\assets\js\main.js" />
+    <Content Include="ElaAdmin\assets\js\SweetAlert2.js" />
     <Content Include="ElaAdmin\assets\js\vmap.sampledata.js" />
     <Content Include="ElaAdmin\assets\js\widgets.js" />
     <Content Include="ElaAdmin\assets\scss\style.css" />

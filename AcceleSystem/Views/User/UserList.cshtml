@@ -7,11 +7,6 @@
     <link rel="stylesheet" href="@Url.Content("~/ElaAdmin/assets/css/lib/datatable/dataTables.bootstrap.min.css")" />
 }
 
-<div class="row">
-    <ul class="breadcrumb">
-        <li><i class="fa fa-list" style="width:1580px;">&nbsp; <b>User List</b></i></li>
-    </ul>
-</div>
 <br />
 <div class="container" style="margin-left:0px;">
     <div class="row">
@@ -63,10 +58,14 @@
 
     function GetUser() {
         $.ajax({
-            type: "GET",
+            type: "Post",
             url:"@Url.Action("M_User_Select", "api/UserApi")",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
+            headers:
+            {
+                Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
+            },  
             success: function (response) {
                     BindTable(response);
                 }
@@ -89,7 +88,7 @@
                     {
                         "data": null,
                         render: function (data, type, row) {
-                            return '<a href="#" onClick="btnEditClick(' + data.ID + ')" style="color:blue">編集</a><br/><a href="#" onClick="btnDelClick(' + data.ID +')" style="color:red">削除</a>';
+                            return '<a href="#" onClick="btnEditClick(\'' + data.ID + '\')" style="color:blue">編集</a><br/><a href="#" onClick="btnDelClick(\'' + data.ID +'\')" style="color:red">削除</a>';
                         }
                     },
                 ],
