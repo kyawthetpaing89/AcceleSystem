@@ -19,7 +19,7 @@
         <div class="col-sm-7">
             <i class="fa fa-search"></i>
             <input type="text" id="myInput" placeholder="Search" class="border border-white"><br /><br />
-            <table id="tblUser" class="hrtable col-sm-12">
+            <table id="tblUser" class="tb1 col-sm-12" style="padding-left:0px;">
                 <thead>
                     <tr>
                         <td>UserID</td>
@@ -27,15 +27,6 @@
                     </tr>
                 </thead>               
             </table>
-        </div>
-
-        <div class="col-sm-2">
-            <div class="table-responsive">
-                <table id="tbl">
-                    <thead>
-                    </thead>                     
-                </table>
-            </div>
         </div>
     </div>
 </div>
@@ -81,12 +72,14 @@
                 "columns": [
                     {
                         "data": null,
+                        className:"Border1",
                         render: function (data, type, row) {
                             return '<b><label>' + data.ID + '</label></b><br/><label>' + data.UserName + '</label>';
                         }
                     },
                     {
                         "data": null,
+                        className: "Border2",
                         render: function (data, type, row) {
                             return '<a href="#" onClick="btnEditClick(\'' + data.ID + '\')" style="color:blue">編集</a><br/><a href="#" onClick="btnDelClick(\'' + data.ID +'\')" style="color:red">削除</a>';
                         }

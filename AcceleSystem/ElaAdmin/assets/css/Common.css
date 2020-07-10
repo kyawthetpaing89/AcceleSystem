@@ -1,0 +1,15 @@
+﻿.Border1 {
+    border-top: 1px solid #d3dcd3;
+    border-left: 1px solid #d3dcd3;
+    padding-left: 30px;
+    padding-top:5px;
+    vertical-align:middle;
+}
+
+.Border2 {
+    border-top: 1px solid #d3dcd3;
+    border-right: 1px solid #d3dcd3;
+    padding-right: 30px;
+    text-align: right;
+    padding-top:5px;
+}
