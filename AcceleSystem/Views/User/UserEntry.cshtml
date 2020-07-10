@@ -102,7 +102,7 @@
                 UserID: $("#UserID").val(),
                 UserName: $("#UserName").val(),
                 Password: $("#Password").val(),
-                Mode:Mode
+                Mode:'@Model.Mode'
             };
 
              $.ajax({
@@ -115,15 +115,27 @@
                 {
                     Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
                 },  
-                success: function (msg) {
+                success: function (msg) {                  
                     var message = JSON.parse(msg);
-                    Swal.fire(
-                        message[0].MessageID,
-                        message[0].MessageText1,
-                        'success'
-                    ).then(function () {
-                        location.href = '@Url.Action("UserEntry", "User")';
-                    });
+                    //already exists
+                    if (message[0].status = 1) {
+                        Swal.fire(
+                            message[0].MessageID,
+                            message[0].MessageText1,
+                            'error'
+                        ).then(function () {
+                            $("#UserID").select();
+                       });
+                    }
+                    else {
+                        Swal.fire(
+                       message[0].MessageID,
+                       message[0].MessageText1,
+                       'success'
+                       ).then(function () {
+                       location.href = '@Url.Action("UserEntry", "User")';
+                       });
+                    }                    
                 }
             });
         }
