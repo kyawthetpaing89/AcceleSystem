@@ -68,14 +68,15 @@
     });
 
     function btnSaveClick() {
-
+        var Mode = '@Model.Mode';
+        
        var Umodel = {
            UserID: $("#UserID").val(),
            UserName: $("#UserName").val(),
            Password: $("#Password").val()
        };
 
-        if (uid == null || uid == "") {
+        if (Mode == "New") {
             if (!($("#UserID").val() == "")) {
                 alert($("#UserID").val());
                $.ajax({
