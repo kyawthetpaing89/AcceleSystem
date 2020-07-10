@@ -832,8 +832,7 @@ aside.left-panel {
   .right-panel .top-rigth {
     float: left; }
   .right-panel .breadcrumbs {
-    float: left;
-    margin-top: 30px;
+    float: left;    
     padding: 0 1.875em;
     width: 100%; }
     .right-panel .breadcrumbs .breadcrumbs-inner {
