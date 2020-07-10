@@ -126,7 +126,7 @@
 
     function btnEditClick(UserID) {
         var param = UserID + '_' + 'Edit';
-        location.href = '@Url.Action("UserEntry", "User")';
+        location.href = '@Url.Action("UserEntry", "User")?UserID='+UserID+'&Mode=Edit';
         //var b = document.getElementById('ID').value,
         ////var b= 11,
         //url = 'UserEntry?UserID=' + encodeURIComponent(b) + "_e";
