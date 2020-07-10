@@ -16,9 +16,9 @@ namespace AcceleSystem.Controllers
             return View();            
         }
 
-        public ActionResult UserEntry(string UserID)
+        public ActionResult UserEntry(UserModel Umodel)
         {
-            return View();
+            return View(Umodel);
         }
     }
 }
