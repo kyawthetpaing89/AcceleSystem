@@ -32,7 +32,23 @@ namespace UserBL
             prms[1] = new SqlParameter("@UserName", SqlDbType.VarChar) { Value = Umodel.UserName };
             prms[2] = new SqlParameter("@Password", SqlDbType.VarChar) { Value = Umodel.Password };
 
-            return bdl.InsertUpdateDeleteData("cc", prms);
+            return bdl.InsertUpdateDeleteData("User_Insert", prms);
+        }
+        public string User_Update(UserModel Umodel)
+        {
+            BaseDL bdl = new BaseDL();
+            SqlParameter[] prms = new SqlParameter[2];
+            prms[0] = new SqlParameter("@UserName", SqlDbType.VarChar) { Value = Umodel.UserName };
+            prms[1] = new SqlParameter("@Password", SqlDbType.VarChar) { Value = Umodel.Password };
+
+            return bdl.InsertUpdateDeleteData("User_Update", prms);
+        }
+        public string User_Delete(UserModel Umodel)
+        {
+            BaseDL bdl = new BaseDL();
+            SqlParameter[] prms = new SqlParameter[1];
+            prms[0] = new SqlParameter("@UserID", SqlDbType.VarChar) { Value = Umodel.UserID };
+            return bdl.InsertUpdateDeleteData("User_Delete", prms);
         }
     }
 }

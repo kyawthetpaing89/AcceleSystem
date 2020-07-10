@@ -30,5 +30,19 @@ namespace AcceleSystem.Controllers
             User_BL Ubl = new User_BL();
             return Ubl.User_Insert(Umodel);
         }
+        [UserAuthentication]
+        [HttpPost]
+        public string User_Update([FromBody] UserModel Umodel)
+        {
+            User_BL Ubl = new User_BL();
+            return Ubl.User_Update(Umodel);
+        }
+        [UserAuthentication]
+        [HttpPost]
+        public string User_Delete([FromBody] UserModel Umodel)
+        {
+            User_BL Ubl = new User_BL();
+            return Ubl.User_Delete(Umodel);
+        }
     }
 }
