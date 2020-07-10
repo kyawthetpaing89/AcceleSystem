@@ -16,11 +16,13 @@ namespace AcceleSystem.Controllers
         }
         
         [HttpGet]
-        public string M_User_Select()
+        public string M_User_Select(UserModel Umodel)
         {
+            if(Umodel == null)
+            {
+                Umodel = new UserModel();
+            }
             User_BL Ubl = new User_BL();
-            UserModel Umodel = new UserModel();
-            Umodel.UserName = "";
             return Ubl.M_User_Select(Umodel);
         }
         [UserAuthentication]

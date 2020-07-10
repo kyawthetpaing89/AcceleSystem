@@ -9,50 +9,50 @@
 
 
 
-    <div class="container-fluid">
-        <div class="content">
-            <div class="p-5 row shadow">
-                <div class="col-xs-6 col-md-4"></div>
-                <div class="col-xs-6 col-md-4">
-                    <div>
-                        <h2 class=" hr-text text-center">ユーザー登録</h2>
-                    </div>
-                    <div class="pt-5 md-form">
-                        @*<label for="lblUserName">User Name</label>*@
-                        <input type="text" class="text-line" id="UserName" name="name" maxlength="40" required placeholder="ユーザー名">
-                        @*<span id="errname" class="color-red"></span>*@
-                    </div>
-                    <div class="pt-5 md-form">
-                        @*<label for="lblUserID">UserID</label>*@
-                        <input type="text" class="text-line" id="UserID" name="id" maxlength="20" required placeholder="ID">
-                        @*<span id="errid" class="color-red"></span>*@
-                    </div>
-                    <div class="pt-5 md-form">
-                        @*<label for="lblPassword">Password</label>*@
-                        <input type="password" class="text-line" id="Password" maxlength="10" name="pass" required placeholder="パスワード">
-                        @*<span id="errpass" class="color-red"></span>*@
-                    </div>
-                    <div>
-                        <span id="errexist" class="color-red"></span>
-                    </div>
-                    <div class="pt-5 md-form">
-                        <div class="col-xl-12 text-center">
-                            <div class="text-s text-custom1 text-uppercase mb-1">
-                                <button id="btnSave" onclick="btnSaveClick()" class="btn btn-dark col-xl-5 text-center"></button>
-                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                <button id="btnCancel" onclick="btnCancelClick()" class="btn btn-primary col-xl-5 text-center">戻る</button>
-                            </div>
+<div class="container-fluid">
+    <div class="content">
+        <div class="p-5 row shadow">
+            <div class="col-xs-6 col-md-4"></div>
+            <div class="col-xs-6 col-md-4">
+                <div>
+                    <h2 class=" hr-text text-center">ユーザー登録</h2>
+                </div>
+                <div class="pt-5 md-form">
+                    @*<label for="lblUserName">User Name</label>*@
+                    <input type="text" class="text-line" id="UserName" name="name" maxlength="40" required placeholder="ユーザー名">
+                    @*<span id="errname" class="color-red"></span>*@
+                </div>
+                <div class="pt-5 md-form">
+                    @*<label for="lblUserID">UserID</label>*@
+                    <input type="text" class="text-line" id="UserID" name="id" maxlength="20" required placeholder="ID">
+                    @*<span id="errid" class="color-red"></span>*@
+                </div>
+                <div class="pt-5 md-form">
+                    @*<label for="lblPassword">Password</label>*@
+                    <input type="password" class="text-line" id="Password" maxlength="10" name="pass" required placeholder="パスワード">
+                    @*<span id="errpass" class="color-red"></span>*@
+                </div>
+                <div>
+                    <span id="errexist" class="color-red"></span>
+                </div>
+                <div class="pt-5 md-form">
+                    <div class="col-xl-12 text-center">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <button id="btnSave" onclick="btnSaveClick()" class="btn btn-dark col-xl-5 text-center"></button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <button id="btnCancel" onclick="btnCancelClick()" class="btn btn-primary col-xl-5 text-center">戻る</button>
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-6 col-md-4"></div>
             </div>
+            <div class="col-xs-6 col-md-4"></div>
         </div>
     </div>
+</div>
 
 
- @section Scripts{
-<script type="text/javascript">
+@section Scripts{
+    <script type="text/javascript">
     $(document).ready(function () {
         var Mode = '@Model.Mode';
         if (Mode == 'New') {
@@ -131,6 +131,6 @@
     function btnCancelClick() {
         window.location.replace('@Url.Action("UserList", "User")');
     }
-       </script>
-   }
+    </script>
+}
 

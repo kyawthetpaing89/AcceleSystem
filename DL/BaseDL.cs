@@ -18,8 +18,10 @@ namespace DL
 
         public string SelectJson(string sSQL, params SqlParameter[] para)
         {
-            DataTable dt = new DataTable();
-            dt.TableName = "data";
+            DataTable dt = new DataTable
+            {
+                TableName = "data"
+            };
             var newCon = new SqlConnection(conStr);
             using (var adapt = new SqlDataAdapter(sSQL, newCon))
             {
