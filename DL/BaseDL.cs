@@ -91,9 +91,7 @@ namespace DL
 
         public string DataTableToJSONWithJSONNet(DataTable table)
         {
-            string JSONString = string.Empty;
-            JSONString = JsonConvert.SerializeObject(table);
-            return JSONString;
+            return JsonConvert.SerializeObject(table);
         }
     }
 }
