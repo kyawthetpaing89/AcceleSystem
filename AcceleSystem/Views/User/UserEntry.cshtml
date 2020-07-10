@@ -3,11 +3,13 @@
     ViewBag.Title = "UserEntry";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<h3>User Entry</h3>
 @section Styles{
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/borderbar.css")" />
 }
 
-<div class="container-fluid">
+<div class="container-fluid" >
     <div class="content">
         <div class="p-5 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white;">
             <div class="col-xs-6 col-md-4"></div>
@@ -71,7 +73,7 @@
 
         });
 
-        //set data 
+        //set data
         function ShowData() {
             var Umodel = {
                 UserID: '@Model.UserID',
@@ -86,7 +88,7 @@
                 headers:
                 {
                     Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-                }, 
+                },
                 success: function (data) {
                     var userdata = JSON.parse(data);
                     $("#UserID").val(userdata[0].ID);
@@ -114,7 +116,7 @@
                 headers:
                 {
                     Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-                },  
+                },
                 success: function (msg) {
                     var message = JSON.parse(msg);
                     Swal.fire(

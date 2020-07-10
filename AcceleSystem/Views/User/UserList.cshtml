@@ -1,44 +1,43 @@
 ﻿
 @{
     ViewBag.Title = "UserList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<h3>User List</h3>
 @section Styles{
-    <link rel="stylesheet" href="@Url.Content("~/ElaAdmin/assets/css/lib/datatable/dataTables.bootstrap.min.css")" />
-}
+    <link rel="stylesheet" href="@Url.Content("~/ElaAdmin/assets/css/lib/datatable/dataTables.bootstrap.min.css")" />  
+} 
+    <div class="container" style="margin-left:0px;background-color:#fff;">
+        <div class="row">
+            <div class="col-sm-2 mt-3">
+                <button id="btnAdd" onclick="btnAddClick()" class="btn col-xl-10 text-center" tabindex="38" style="background-color:#1a8cff; color:azure;">
+                    ユーザー追加
+                </button>
+            </div>
 
-<br />
-<div class="container" style="margin-left:0px;">
-    <div class="row">
-        <div class="col-sm-2">
-            <button id="btnAdd" onclick="btnAddClick()" class="btn col-xl-10 text-center" tabindex="38" style="background-color:#1a8cff; color:azure;">
-                ユーザー追加
-            </button>
-        </div>
-
-        <div class="col-sm-7">
-            <i class="fa fa-search"></i>
-            <input type="text" id="myInput" placeholder="Search" class="border border-white"><br /><br />
-            <table id="tblUser" class="hrtable col-sm-12">
-                <thead>
-                    <tr>
-                        <td>UserID</td>
-                        <td>UserName</td>
-                    </tr>
-                </thead>               
-            </table>
-        </div>
-
-        <div class="col-sm-2">
-            <div class="table-responsive">
-                <table id="tbl">
+            <div class="col-sm-7 mt-3">
+                <i class="fa fa-search"></i>
+                <input type="text" id="myInput" placeholder="Search" class="border border-white"><br /><br />
+                <table id="tblUser" class="hrtable col-sm-12">
                     <thead>
-                    </thead>                     
+                        <tr>
+                            <td>UserID</td>
+                            <td>UserName</td>
+                        </tr>
+                    </thead>
                 </table>
+            </div>
+
+            <div class="col-sm-2 mt-3">
+                <div class="table-responsive">
+                    <table id="tbl">
+                        <thead>
+                        </thead>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 @section Scripts{
     <script type="text/javascript">
@@ -51,10 +50,10 @@
             });
         });
 
-        GetUser();        
+        GetUser();
     });
 
-       
+
 
     function GetUser() {
         $.ajax({
@@ -65,7 +64,7 @@
             headers:
             {
                 Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-            },  
+            },
             success: function (response) {
                     BindTable(response);
                 }
@@ -98,7 +97,7 @@
             });
 
         }
-       
+
     function btnAddClick() {
         location.href = '@Url.Action("UserEntry", "User")?Mode=New'
     }
