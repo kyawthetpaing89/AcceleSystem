@@ -1,4 +1,4 @@
-﻿.Border1 {
+﻿/*.Border1 {
     border-top: 1px solid #d3dcd3;
     border-left: 1px solid #d3dcd3;
     padding-left: 30px;
@@ -11,5 +11,18 @@
     border-right: 1px solid #d3dcd3;
     padding-right: 30px;
     text-align: right;
-    padding-top:5px;
+    padding-top: 5px;
+    vertical-align: middle;
+}*/
+
+#tblUser {
+    border-bottom: 1px solid #d3dcd3;
+}
+
+#tblUser td{
+    border-top: 1px solid #d3dcd3;
+}
+
+.text-line{
+    color:black !important;
 }

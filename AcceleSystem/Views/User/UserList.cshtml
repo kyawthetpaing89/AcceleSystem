@@ -16,9 +16,9 @@
             </button>
         </div>
 
-        <div class="col-sm-7 col-md-8">
-            <i class="fa fa-search"></i>
-            <input type="text" id="myInput" placeholder="Search" class="border border-white"><br /><br />
+        <div class="col-sm-7 col-md-6">
+            <i class="fa fa-search" style="padding-left:15px;"></i>
+            <input type="text" id="myInput" placeholder="Search" class="border border-white" style="width:80%">
             <table id="tblUser" class="tb1 col-sm-12" style="padding-left:0px;">
                 <thead>
                     <tr>
@@ -69,6 +69,7 @@
                 data: JSON.parse(response),
                 "bFilter": false,
                 "bLengthChange": false,
+                "bInfo": false,
                 "columns": [
                     {
                         "data": null,
@@ -81,7 +82,7 @@
                         "data": null,
                         className: "Border2",
                         render: function (data, type, row) {
-                            return '<a href="#" onClick="btnEditClick(\'' + data.ID + '\')" style="color:blue">編集</a><br/><a href="#" onClick="btnDelClick(\'' + data.ID +'\')" style="color:red">削除</a>';
+                            return '<label><a href="#" onClick="btnEditClick(\'' + data.ID + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.ID +'\')" style="color:red">削除</a></label>';
                         }
                     },
                 ],
