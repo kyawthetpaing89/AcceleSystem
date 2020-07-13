@@ -122,7 +122,10 @@
                         message[0].MessageText1,
                         'success'
                     ).then(function () {
-                        location.href = '@Url.Action("UserEntry", "User")';
+                        if(Umodel.Mode == "New")
+                            location.href = '@Url.Action("UserEntry", "User")';
+                        else
+                            location.href = '@Url.Action("UserList", "User")';
                     });
                 }
             });
