@@ -157,9 +157,29 @@
             }
         }
         function btnCancelClick() {
-            ShowMessage();
-        location.href = '@Url.Action("UserList", "User")';
-    }
+            $.when(GetMessage("I102", '@Url.Action("M_Message_Select", "api/MessageApi")')).done(function (data) {
+                var msgdata = JSON.parse(data);
+                Swal.fire({
+                    icon: 'success',
+                    title: msgdata[0].MessageID,
+                    text: msgdata[0].MessageText1,
+                }).then(function () {
+                    return "a";
+                })
+            })
+
+            @*var data = ShowMessage("I102", '@Url.Action("M_Message_Select", "api/MessageApi")');
+            alert(data);
+            var msgdata = JSON.parse(data);
+            Swal.fire({
+                icon: 'success',
+                title: msgdata[0].MessageID,
+                text: msgdata[0].MessageText1,
+            }).then(function () {
+                location.href = '@Url.Action("UserList", "User")';
+            });*@
+        @*location.href = '@Url.Action("UserList", "User")';*@
+        }        
     </script>
 }
 
