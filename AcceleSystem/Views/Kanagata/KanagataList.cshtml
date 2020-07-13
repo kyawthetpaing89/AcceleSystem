@@ -4,8 +4,33 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>KanagataList</h2>
+@section Styles{
+    <link rel="stylesheet" href="@Url.Content("~/ElaAdmin/assets/css/lib/datatable/dataTables.bootstrap.min.css")" />
+}
 
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-2 col-md-3">
+                    <button id="btnAdd" onclick="btnAddClick()" class="btn col-xl-10 text-center" tabindex="38" style="background-color:#1a8cff; color:azure;">
+                        金型追加
+                    </button>
+                </div>
+                <div class="col-sm-7 col-md-6">
+                    <i class="fa fa-search" style="padding-left:15px;"></i>
+                    <input type="text" id="myInput" placeholder="Search" class="border border-white" style="width:80%;padding-bottom:10px">
+                    <table id="tblUser" class="tb1 col-sm-12" style="padding-left:0px;">
+                        <thead>
+                            <tr>
+                                <td>CastingCD</td>
+                                <td>CastingName</td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
