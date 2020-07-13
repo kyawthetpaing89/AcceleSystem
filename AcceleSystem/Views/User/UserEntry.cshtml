@@ -103,7 +103,7 @@
                 UserID: $("#UserID").val(),
                 UserName: $("#UserName").val(),
                 Password: $("#Password").val(),
-                Mode:Mode
+                Mode:'@Model.Mode'
             };
 
              $.ajax({
@@ -124,10 +124,10 @@
                          title: message[0].MessageID,
                          text: message[0].MessageText1,
                      }).then(function () {
-                         if (message[0].status == "error")
+                         @*if (message[0].status == "error")
                              location.href = '@Url.Action("UserEntry", "User")';
                          else
-                             location.href = '@Url.Action("UserList", "User")';
+                             location.href = '@Url.Action("UserList", "User")';*@
                      });
                  }
             });
@@ -157,8 +157,8 @@
                 DoProcess();
             }
         }
-    function btnCancelClick() {
-        window.location.replace('@Url.Action("UserList", "User")');
+        function btnCancelClick() {
+        location.href = '@Url.Action("UserList", "User")';
     }
     </script>
 }
