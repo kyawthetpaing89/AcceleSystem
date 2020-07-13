@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+﻿using System.Web.Http;
 using Models;
+using MessageBL;
 
 namespace AcceleSystem.Controllers
 {
@@ -12,14 +8,14 @@ namespace AcceleSystem.Controllers
     {
         [UserAuthentication]
         [HttpPost]
-        public string M_User_Select([FromBody] MessageModel Mmodel)
+        public string M_Message_Select([FromBody] MessageModel Mmodel)
         {
             if (Mmodel == null)
             {
-                Mmodel = new MserModel();
+                Mmodel = new MessageModel();
             }
-            User_BL Ubl = new User_BL();
-            return Ubl.M_User_Select(Umodel);
+            Message_BL Mbl = new Message_BL();
+            return Mbl.M_Message_Select(Mmodel);
         }
     }
 }

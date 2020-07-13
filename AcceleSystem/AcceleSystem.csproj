@@ -204,6 +204,7 @@
     <Content Include="ElaAdmin\assets\css\userlogin\vendor\tilt\tilt.jquery.min.js" />
     <Content Include="ElaAdmin\assets\fonts\icomoon\icomoon.svg" />
     <Content Include="ElaAdmin\assets\fonts\icomoon\index.html" />
+    <Content Include="ElaAdmin\assets\js\Common.js" />
     <Content Include="ElaAdmin\assets\js\dashboard.js" />
     <Content Include="ElaAdmin\assets\js\init\chartjs-init.js" />
     <Content Include="ElaAdmin\assets\js\init\datatables-init.js" />
@@ -523,6 +524,10 @@
     <ProjectReference Include="..\DL\DL.csproj">
       <Project>{86a23955-7ac1-4263-bc9a-96165936864c}</Project>
       <Name>DL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MessageBL\MessageBL.csproj">
+      <Project>{8c241484-f5d3-4ecf-bbc8-46ce34fd85ae}</Project>
+      <Name>MessageBL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{896a79e0-6565-4fc3-b927-50f8f80f5850}</Project>

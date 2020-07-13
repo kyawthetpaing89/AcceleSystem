@@ -137,13 +137,13 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="./"><img src="@Url.Content("~/SystemImages/blogoa.png")" alt="Logo"></a>
                     <a class="navbar-brand hidden" href="./"><img src="@Url.Content("~/ElaAdmin/images/logo2.png")" alt="Logo"></a>
-                    <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>  
+                    <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
             </div>
             <div class="top-right">
                 <div class="header-menu">
                     <div class="header-left">
-                        
+
                         <b><label>@UserName</label></b>
                     </div>
                     <div class="user-area dropdown float-right">
@@ -199,11 +199,12 @@
     <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.print.min.js")"></script>
     <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.colVis.min.js")"></script>
     <script src="@Url.Content("~/ElaAdmin/assets/js/init/datatables-init.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Common.js")"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
             $('#bootstrap-data-table-export').DataTable();
-    });
+        });
     </script>
 
     @RenderSection("scripts", required: false)
