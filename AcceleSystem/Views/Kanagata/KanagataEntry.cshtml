@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "KanagataEntry";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles{
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
+}
+
+    <div class="container-fluid">
+        <div class="content">
+            <div class="p-5 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white; border-radius:5px;">
+                <div class="col-xs-6 col-md-4"></div>
+                <div class="col-xs-6 col-md-4">
+                    <div>
+                        <h2 class=" hr-text text-center">金型登録</h2>
+                    </div>
+                    <div class="pt-5 md-form">
+                        <div class="col-xl-12 text-center">
+                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                <input type="text" class="text-line" id="MoldCode" name="code" required placeholder="金型コード">
+                                <input type="text" class="text-line" id="MoldName" name="name" required placeholder="金型名">
+                            </div>
+                        </div>
+                    </div>
+                 <div class="pt-5 md-form">
+                            @*<label for="lblPassword">Password</label>*@
+                            <input type="password" class="text-line" id="BrandName" maxlength="10" name="brandname" required placeholder="ブランド名">
+                            @*<span id="errpass" class="color-red"></span>*@
+                        </div>
+                    </div>
+                <div class="col-xs-6 col-md-4"></div>
+            </div>
+        </div>
+    </div>

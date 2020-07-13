@@ -140,6 +140,8 @@
     <Compile Include="Controllers\BrandController.cs" />
     <Compile Include="Controllers\HelloController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KanagataApiController.cs" />
+    <Compile Include="Controllers\KanagataController.cs" />
     <Compile Include="Controllers\MessageApiController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
     <Compile Include="Controllers\UserAuthentication.cs" />
@@ -502,6 +504,8 @@
     <Content Include="Views\Home\Dashboard.cshtml" />
     <Content Include="Views\User\UserEntry.cshtml" />
     <Content Include="Views\Brand\BrandList.cshtml" />
+    <Content Include="Views\Kanagata\KanagataEntry.cshtml" />
+    <Content Include="Views\Kanagata\KanagataList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
