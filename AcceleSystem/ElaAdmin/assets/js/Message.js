@@ -15,7 +15,3 @@
     });
 }
 
-function ShowMessage(data) {
-    
-}
-
