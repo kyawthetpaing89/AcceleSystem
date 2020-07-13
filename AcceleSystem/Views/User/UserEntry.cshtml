@@ -118,16 +118,15 @@
                 },
                  success: function (msg) {
                      var message = JSON.parse(msg);
-
                      Swal.fire({
                          icon: message[0].status,
                          title: message[0].MessageID,
                          text: message[0].MessageText1,
                      }).then(function () {
-                         @*if (message[0].status == "error")
-                             location.href = '@Url.Action("UserEntry", "User")';
-                         else
-                             location.href = '@Url.Action("UserList", "User")';*@
+                         if (message[0].status != "error")
+                             @*location.href = '@Url.Action("UserEntry", "User")';
+                         else*@
+                             location.href = '@Url.Action("UserList", "User")';
                      });
                  }
             });
