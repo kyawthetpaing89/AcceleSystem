@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "UserList";
 }
 
@@ -16,17 +15,17 @@
                 </button>
             </div>
 
-            <div class="col-sm-7 col-md-6">
-                <i class="fa fa-search" style="padding-left:15px;"></i>  
-                <input type="text" id="myInput" placeholder="ユーザー名入力....." class="border border-white" style="width:80%">
-                <table id="tblUser" class="tb1 col-sm-12" style="padding-left:0px;">
-                    <thead>
-                        <tr>
-                            <td>UserID</td>
-                            <td>UserName</td>
-                        </tr>
-                    </thead>
-                </table>
+            <div class="col-sm-7 col-md-6"" >
+                    <i class="fa fa-search" style="padding-left:15px;"></i>
+                    <input type="text" id="myInput" placeholder="Search" class="border border-white" style="width:80%;padding-bottom:10px">
+                    <table id="tblUser" class="tb1 col-sm-12" style="padding-left:0px;">
+                        <thead>
+                            <tr>
+                                <td>UserID</td>
+                                <td>UserName</td>
+                            </tr>
+                        </thead>
+                    </table>
             </div>
         </div>
     </div>
@@ -36,24 +35,30 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-        $("#myInput").on("keyup", function () {
-            var value = $(this).val().toLowerCase();
-            $("#tblUser tr").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
+        //$("#myInput").on("keyup", function () {
+        //    var value = $(this).val().toLowerCase();
+        //    $("#tblUser tr").filter(function () {
+        //        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        //    });
+        //});
+            
+
+            GetUser();        
         });
 
-        GetUser();        
-    });
+        $('#myInput').on("keypress", function (e) {            if (e.keyCode == 13) {                GetUser();                return false; // prevent the button click from happening            }        });
 
-       
+        function GetUser() {
+            var Umodel = {
+                UserName: $('#myInput').val(),
+            };     
 
-    function GetUser() {
         $.ajax({
             type: "Post",
             url:"@Url.Action("M_User_Select", "api/UserApi")",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
+            data: JSON.stringify(Umodel),
             headers:
             {
                 Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
@@ -71,6 +76,7 @@
                 "bFilter": false,
                 "bLengthChange": false,
                 "bInfo": false,
+                destroy:true,
                 "columns": [
                     {
                         "data": null,
@@ -116,5 +122,6 @@
     <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.html5.min.js")"></script>
     <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.print.min.js")"></script>
     <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.colVis.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/init/datatables-init.js")"></script>
+     <script src="@Url.Content("~/ElaAdmin/assets/js/init/datatables-init.js")"></script>
+
 }

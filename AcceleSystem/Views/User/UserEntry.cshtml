@@ -69,6 +69,7 @@
                 ShowData();
             }
 
+
         });
 
         //set data
@@ -115,16 +116,19 @@
                 {
                     Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
                 },
-                success: function (msg) {
-                    var message = JSON.parse(msg);
-                    Swal.fire(
-                        message[0].MessageID,
-                        message[0].MessageText1,
-                        'success'
-                    ).then(function () {
-                        location.href = '@Url.Action("UserEntry", "User")';
-                    });
-                }
+                 success: function (msg) {
+                     var message = JSON.parse(msg);
+                     Swal.fire({
+                         icon: message[0].status,
+                         title: message[0].MessageID,
+                         text: message[0].MessageText1,
+                     }).then(function () {
+                         if (message[0].status != "error")
+                             @*location.href = '@Url.Action("UserEntry", "User")';
+                         else*@
+                             location.href = '@Url.Action("UserList", "User")';
+                     });
+                 }
             });
         }
 
@@ -152,8 +156,8 @@
                 DoProcess();
             }
         }
-    function btnCancelClick() {
-        window.location.replace('@Url.Action("UserList", "User")');
+        function btnCancelClick() {
+        location.href = '@Url.Action("UserList", "User")';
     }
     </script>
 }
