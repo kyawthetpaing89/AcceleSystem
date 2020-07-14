@@ -4,10 +4,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Styles{
-    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />   
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
 }
 
-<div class="container-fluid" >
+<div class="container-fluid">
     <div class="content">
         <div class="p-5 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white; border-radius:5px;">
             <div class="col-xs-6 col-md-4"></div>
@@ -135,7 +135,7 @@
         }
 
         var focusControl;
-        function ErrorCheck() {            
+        function ErrorCheck() {
             if (!$("#UserName").val()) {
                 focusControl = $("#UserName");
                 return "I102";
@@ -189,9 +189,9 @@
                         title: msgdata[0].MessageID,
                         text: msgdata[0].MessageText1,
                     }).then(function () {
-                        
+
                      });
-                })      
+                })
                 $(focusControl).focus();
             }
         }

@@ -43,7 +43,6 @@
   <ItemGroup>
     <Compile Include="BaseModel.cs" />
     <Compile Include="BrandModel.cs" />
-    <Compile Include="KanagataModel.cs" />
     <Compile Include="MessageModel.cs" />
     <Compile Include="UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
