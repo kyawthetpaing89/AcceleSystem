@@ -70,8 +70,9 @@
                 success: function (data) {
                     var userdata = JSON.parse(data);
                     if (userdata.length > 0) {
+                        alert(userdata[0].ID);
                         var userinfo = userdata[0].ID + '_' + userdata[0].UserName;
-                        $.post('/Home/CreateSession',
+                        $.post('@Url.Action("CreateSession", "Home")',
                             { key: "UserInfo", value: userinfo }, function (data) {
                                 location.href = '@Url.Action("Dashboard", "Home")';
                             });

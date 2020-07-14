@@ -392,6 +392,7 @@
     <Content Include="ElaAdmin\assets\css\userlogin\fonts\poppins\Poppins-Thin.ttf" />
     <Content Include="ElaAdmin\assets\css\userlogin\fonts\poppins\Poppins-ThinItalic.ttf" />
     <Content Include="ElaAdmin\assets\css\userlogin\fonts\poppins\Poppins-Black.ttf" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
