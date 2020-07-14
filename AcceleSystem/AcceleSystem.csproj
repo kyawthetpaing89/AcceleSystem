@@ -140,8 +140,6 @@
     <Compile Include="Controllers\BrandController.cs" />
     <Compile Include="Controllers\HelloController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\KanagataApiController.cs" />
-    <Compile Include="Controllers\KanagataController.cs" />
     <Compile Include="Controllers\MessageApiController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
     <Compile Include="Controllers\UserAuthentication.cs" />
@@ -206,6 +204,7 @@
     <Content Include="ElaAdmin\assets\css\userlogin\vendor\tilt\tilt.jquery.min.js" />
     <Content Include="ElaAdmin\assets\fonts\icomoon\icomoon.svg" />
     <Content Include="ElaAdmin\assets\fonts\icomoon\index.html" />
+    <Content Include="ElaAdmin\assets\js\Message.js" />
     <Content Include="ElaAdmin\assets\js\dashboard.js" />
     <Content Include="ElaAdmin\assets\js\init\chartjs-init.js" />
     <Content Include="ElaAdmin\assets\js\init\datatables-init.js" />
@@ -504,8 +503,6 @@
     <Content Include="Views\Home\Dashboard.cshtml" />
     <Content Include="Views\User\UserEntry.cshtml" />
     <Content Include="Views\Brand\BrandList.cshtml" />
-    <Content Include="Views\Kanagata\KanagataEntry.cshtml" />
-    <Content Include="Views\Kanagata\KanagataList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -527,6 +524,10 @@
     <ProjectReference Include="..\DL\DL.csproj">
       <Project>{86a23955-7ac1-4263-bc9a-96165936864c}</Project>
       <Name>DL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MessageBL\MessageBL.csproj">
+      <Project>{8c241484-f5d3-4ecf-bbc8-46ce34fd85ae}</Project>
+      <Name>MessageBL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{896a79e0-6565-4fc3-b927-50f8f80f5850}</Project>

@@ -4,23 +4,25 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using MessageBL;
 using Models;
 
 namespace AcceleSystem.Controllers
 {
     public class MessageApiController : ApiController
     {
-        //[UserAuthentication]
-        //[HttpPost]
-        //public string M_User_Select([FromBody] MessageModel Mmodel)
-        //{
-        //    if (Mmodel == null)
-        //    {
-        //        Mmodel = new MserModel();
-        //    }
-        //    User_BL Ubl = new User_BL();
-        //    return Ubl.M_User_Select(Umodel);
-        //}
+        [UserAuthentication]
+        [HttpPost]
+        public string M_Message_Select([FromBody] MessageModel Mmodel)
+        {
+            if (Mmodel == null)
+            {
+                Mmodel = new MessageModel();
+            }
+
+            Message_BL msgBL = new Message_BL();
+            return msgBL.M_Message_Select(Mmodel);
+        }
 
     }
 }

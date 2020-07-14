@@ -137,9 +137,11 @@
             var Mode = '@Model.Mode';
             //show confirm message
             if (Mode == "Delete") {
+                $.when(GetMessage("Q102", '@Url.Action("M_Message_Select", "api/MessageApi")')).done(function (data) {
+                    var msgdata = JSON.parse(data);
                 Swal.fire({
-                    title: 'Q102',
-                    text: "削除します。よろしいですか？",
+                    title: msgdata[0].MessageID,
+                    text: msgdata[0].MessageText1,
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#d33',
@@ -151,14 +153,15 @@
                         DoProcess();
                     }
                 })
+            })
             }
             else {
                 DoProcess();
             }
         }
         function btnCancelClick() {
-        location.href = '@Url.Action("UserList", "User")';
-    }
+            location.href = '@Url.Action("UserList", "User")';
+        }
     </script>
 }
 
