@@ -14,7 +14,7 @@ namespace AcceleSystem.Controllers
         {
             if (string.IsNullOrWhiteSpace(kgmodel.Mode))
                 kgmodel.Mode = "New";
-            return View();
+            return View(kgmodel);
         }
 
         public ActionResult KanagataList()
