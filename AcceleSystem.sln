@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1145
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcceleSystem", "AcceleSystem\AcceleSystem.csproj", "{2327D286-9F62-49F9-BA2B-7CEC19CC051F}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserBL", "UserBL\UserBL.csproj", "{56023BBA-489A-45E5-B8F0-DBC21216383F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{896A79E0-6565-4FC3-B927-50F8F80F5850}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrandBL", "BrandBL\BrandBL.csproj", "{A256F918-3D19-49EB-91FF-D38D4B2E09F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{896A79E0-6565-4FC3-B927-50F8F80F5850}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{896A79E0-6565-4FC3-B927-50F8F80F5850}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{896A79E0-6565-4FC3-B927-50F8F80F5850}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A256F918-3D19-49EB-91FF-D38D4B2E09F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A256F918-3D19-49EB-91FF-D38D4B2E09F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A256F918-3D19-49EB-91FF-D38D4B2E09F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A256F918-3D19-49EB-91FF-D38D4B2E09F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
