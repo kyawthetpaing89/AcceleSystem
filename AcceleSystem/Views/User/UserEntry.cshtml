@@ -18,6 +18,7 @@
                 <div class="pt-5 md-form">
                     @*<label for="lblUserName">User Name</label>*@
                     <input type="text" class="text-line" id="UserName" name="name" maxlength="40" required placeholder="ユーザー名">
+                    <label id="lblUserNameErr" style="color:red;display:none"></label>
                     @*<span id="errname" class="color-red"></span>*@
                 </div>
                 <div class="pt-5 md-form">
@@ -52,6 +53,7 @@
 @section Scripts{
     <script type="text/javascript">
         $(document).ready(function () {
+            $("#UserName").focus();
             var Mode = '@Model.Mode';
             if (Mode == 'New') {
                 $('#btnSave').html('登録');
@@ -132,31 +134,65 @@
             });
         }
 
+        var focusControl;
+        function ErrorCheck() {            
+            if (!$("#UserName").val()) {
+                focusControl = $("#UserName");
+                return "I102";
+            }
+            else if (!$("#UserID").val()) {
+                focusControl = $("#UserID");
+                return "I102";
+            }
+            else if (!$("#Password").val()) {
+                focusControl = $("#Password");
+                return "I102";
+            }
+            return "0";
+        }
+
         //save
         function btnSaveClick() {
-            var Mode = '@Model.Mode';
-            //show confirm message
-            if (Mode == "Delete") {
-                $.when(GetMessage("Q102", '@Url.Action("M_Message_Select", "api/MessageApi")')).done(function (data) {
-                    var msgdata = JSON.parse(data);
-                Swal.fire({
-                    title: msgdata[0].MessageID,
-                    text: msgdata[0].MessageText1,
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'はい。',
-                    cancelButtonText: 'いいえ。'
-                }).then((result) => {
-                    if (result.value) {
-                        DoProcess();
-                    }
-                })
-            })
+            var msgID = ErrorCheck();
+            if (msgID == "0") {
+                var Mode = '@Model.Mode';
+                //show confirm message
+                if (Mode == "Delete") {
+                    $.when(GetMessage("Q102", '@Url.Action("M_Message_Select", "api/MessageApi")')).done(function (data) {
+                        var msgdata = JSON.parse(data);
+                        Swal.fire({
+                            title: msgdata[0].MessageID,
+                            text: msgdata[0].MessageText1,
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#d33',
+                            cancelButtonColor: '#3085d6',
+                            confirmButtonText: 'はい。',
+                            cancelButtonText: 'いいえ。'
+                        }).then((result) => {
+                            if (result.value) {
+                                DoProcess();
+                            }
+                        })
+                    })
+                }
+                else {
+                    DoProcess();
+                }
             }
             else {
-                DoProcess();
+                $.when(GetMessage("E102", '@Url.Action("M_Message_Select", "api/MessageApi")')).done(function (data) {
+                    var msgdata = JSON.parse(data);
+
+                    Swal.fire({
+                        icon: 'error',
+                        title: msgdata[0].MessageID,
+                        text: msgdata[0].MessageText1,
+                    }).then(function () {
+                        
+                     });
+                })      
+                $(focusControl).focus();
             }
         }
         function btnCancelClick() {
