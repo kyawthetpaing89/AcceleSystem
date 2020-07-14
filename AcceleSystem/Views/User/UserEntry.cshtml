@@ -9,7 +9,7 @@
 
 <div class="container-fluid" >
     <div class="content">
-        <div class="p-5 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white;">
+        <div class="p-5 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white; border-radius:5px;">
             <div class="col-xs-6 col-md-4"></div>
             <div class="col-xs-6 col-md-4">
                 <div>
@@ -118,16 +118,15 @@
                 },
                  success: function (msg) {
                      var message = JSON.parse(msg);
-
                      Swal.fire({
                          icon: message[0].status,
                          title: message[0].MessageID,
                          text: message[0].MessageText1,
                      }).then(function () {
-                         @*if (message[0].status == "error")
-                             location.href = '@Url.Action("UserEntry", "User")';
-                         else
-                             location.href = '@Url.Action("UserList", "User")';*@
+                         if (message[0].status != "error")
+                             @*location.href = '@Url.Action("UserEntry", "User")';
+                         else*@
+                             location.href = '@Url.Action("UserList", "User")';
                      });
                  }
             });
@@ -138,9 +137,11 @@
             var Mode = '@Model.Mode';
             //show confirm message
             if (Mode == "Delete") {
+                $.when(GetMessage("Q102", '@Url.Action("M_Message_Select", "api/MessageApi")')).done(function (data) {
+                    var msgdata = JSON.parse(data);
                 Swal.fire({
-                    title: 'Q102',
-                    text: "削除します。よろしいですか？",
+                    title: msgdata[0].MessageID,
+                    text: msgdata[0].MessageText1,
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#d33',
@@ -152,14 +153,15 @@
                         DoProcess();
                     }
                 })
+            })
             }
             else {
                 DoProcess();
             }
         }
         function btnCancelClick() {
-        location.href = '@Url.Action("UserList", "User")';
-    }
+            location.href = '@Url.Action("UserList", "User")';
+        }
     </script>
 }
 
