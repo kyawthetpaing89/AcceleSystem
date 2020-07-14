@@ -68,8 +68,7 @@
 
 @section Scripts{
     <script type="text/javascript">
-
-    $(document).ready(function () {
+        $(document).ready(function () {
              $("#MoldCode").focus();
             var Mode = '@Model.Mode';
             if (Mode == 'New') {
@@ -87,8 +86,8 @@
                 $("#BrandName").prop("readonly", true);
                 //ShowData();
             }
-        });
+        });      
     </script>
-
     <script src="@Url.Content("~/Scripts/calendar.js")"></script>
 }
+
