@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Models;
 
 namespace AcceleSystem.Controllers
 {
     public class KanagataController : Controller
     {
         // GET: Kanagata
-        public ActionResult KanagataEntry()
+        public ActionResult KanagataEntry(KanagataModel kgmodel)
         {
-            return View();
+            if (string.IsNullOrWhiteSpace(kgmodel.Mode))
+                kgmodel.Mode = "New";
+            return View(kgmodel);
         }
 
         public ActionResult KanagataList()

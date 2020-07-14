@@ -1,4 +1,4 @@
-﻿
+﻿@model Models.KanagataModel
 @{
     ViewBag.Title = "KanagataEntry";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -67,8 +67,8 @@
 </div>
 
 @section Scripts{
-    <script type="text/javascript">     
-    $(document).ready(function () {
+    <script type="text/javascript">
+        $(document).ready(function () {
              $("#MoldCode").focus();
             var Mode = '@Model.Mode';
             if (Mode == 'New') {
@@ -76,18 +76,18 @@
             }
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
-                $("#UserID").prop("readonly", true);
-                ShowData();
+                $("#MoldCode").prop("readonly", true);
+                //ShowData();
             }
             else {
                 $('#btnSave').html('削除');
-                $("#UserID").prop("readonly", true);
-                $("#UserName").prop("readonly", true);
-                $("#Password").prop("readonly", true);
-                ShowData();
+                $("#MoldCode").prop("readonly", true);
+                $("#MoldName").prop("readonly", true);
+                $("#BrandName").prop("readonly", true);
+                //ShowData();
             }
-        });
+        });      
     </script>
-
-       <script src="@Url.Content("~/Scripts/calendar.js")"></script>
+    <script src="@Url.Content("~/Scripts/calendar.js")"></script>
 }
+

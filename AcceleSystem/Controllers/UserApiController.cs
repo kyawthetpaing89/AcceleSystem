@@ -4,6 +4,7 @@ using UserBL;
 
 namespace AcceleSystem.Controllers
 {
+    [RoutePrefix("Accele/api/UserApi")]
     public class UserApiController : ApiController
     {
         [UserAuthentication]
@@ -13,6 +14,11 @@ namespace AcceleSystem.Controllers
             User_BL Ubl = new User_BL();
             return Ubl.UserLogin_Select(Umodel);
         }
+        //public IHttpActionResult UserLogin_Select([FromBody] UserModel Umodel)
+        //{
+        //    User_BL Ubl = new User_BL();
+        //    return Ok(Ubl.UserLogin_Select(Umodel));
+        //}
 
         [UserAuthentication]
         [HttpPost]
