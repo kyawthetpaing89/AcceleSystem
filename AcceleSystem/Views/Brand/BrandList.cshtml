@@ -108,15 +108,15 @@
         }
 
     function btnAddClick() {
-        location.href = '@Url.Action("BrandList", "Brand")?Mode=New'
+        location.href = '@Url.Action("BrandEntry", "Brand")?Mode=New'
     }
 
     function btnEditClick(BrandCD) {
-        location.href = '@Url.Action("BrandList", "Brand")?BrandCD='+BrandCD+'&Mode=Edit';
+        location.href = '@Url.Action("BrandEntry", "Brand")?BrandCD='+BrandCD+'&Mode=Edit';
     }
 
     function btnDelClick(BrandCD) {
-        location.href = '@Url.Action("BrandList", "Brand")?BrandCD='+BrandCD+'&Mode=Delete';
+        location.href = '@Url.Action("BrandEntry", "Brand")?BrandCD='+BrandCD+'&Mode=Delete';
         }
     </script>
 

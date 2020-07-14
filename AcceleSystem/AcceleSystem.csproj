@@ -510,6 +510,7 @@
     <Content Include="Views\Brand\BrandList.cshtml" />
     <Content Include="Views\Kanagata\KanagataEntry.cshtml" />
     <Content Include="Views\Kanagata\KanagataList.cshtml" />
+    <Content Include="Views\Brand\BrandEntry.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
