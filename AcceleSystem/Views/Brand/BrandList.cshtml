@@ -45,24 +45,24 @@
         //});
 
 
-            GetUser();
+            GetBrand();
         });
 
         $('#myInput').on("keypress", function (e) {
             if (e.keyCode == 13) {
-                GetUser();
+                GetBrand();
                 return false; // prevent the button click from happening
             }
         });
 
-        function GetUser() {
+        function GetBrand() {
             var Umodel = {
                 BrandName: $('#myInput').val(),
             };
 
         $.ajax({
             type: "Post",
-            url:"@Url.Action("M_User_Select", "api/UserApi")",
+            url:"@Url.Action("M_Brand_Select", "api/BrandApi")",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             data: JSON.stringify(Umodel),
@@ -108,15 +108,15 @@
         }
 
     function btnAddClick() {
-        location.href = '@Url.Action("UserEntry", "Brand")?Mode=New'
+        location.href = '@Url.Action("BrandList", "Brand")?Mode=New'
     }
 
     function btnEditClick(BrandCD) {
-        location.href = '@Url.Action("UserEntry", "Brand")?BrandCD='+BrandCD+'&Mode=Edit';
+        location.href = '@Url.Action("BrandList", "Brand")?BrandCD='+BrandCD+'&Mode=Edit';
     }
 
     function btnDelClick(BrandCD) {
-        location.href = '@Url.Action("UserEntry", "Brand")?BrandCD='+BrandCD+'&Mode=Delete';
+        location.href = '@Url.Action("BrandList", "Brand")?BrandCD='+BrandCD+'&Mode=Delete';
         }
     </script>
 

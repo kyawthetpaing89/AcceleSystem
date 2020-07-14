@@ -31,10 +31,49 @@
             }
         }
 
+        var a = new Date();
+        var aa = a.getDay();
+        //var dd = Date.toString();
+        if (aa == '1') {
+            aa = "月";          
+        }
+        else if (aa == '2') {
+            aa = "火";
+           
+        }
+        else if (aa == '3') {
+            aa = "水";
+        }
+        else if (aa == '4') {
+            aa = "木";
+        }
+        else if (aa == '5') {
+            aa = "金";
+        }
+        else if (aa == '6') {
+            aa = "土";
+        }
+        else if (aa == '7') {
+            aa = "日";
+        }
+
+        //var daysArray = [
+        //    "日",
+        //    "月",
+        //    "火",
+        //    "水",
+        //    "木",
+        //    "金",
+        //    "土"];
+        
+
         var color = "#444444";
-        calendar.calHeader.find("h2").text(passed_year + " " + i[passed_month] + " " + getDay);
+        calendar.calHeader.find("h2").text(passed_year + " " + i[passed_month] + " " + aa);
         calendar.weekline.find("div").css("color", color);
         calendar.datesBody.find(".today").css("color", "#1a2fd9");
+
+       
+        
 
         // find elements (dates) to be clicked on each time
         // the calendar is generated
@@ -157,6 +196,15 @@
         }
         return e;
     }
+
+    //function makeDayArray(pass_day, passed_month) {
+    //    var e = [];
+    //    for (var r = 1; r < getDay(passed_month) + 1; r++) {
+    //        e.push({
+    //            day: r,
+    //        }
+    //    }
+    //}
 
     function makeWeek(week) {
         week.empty();
