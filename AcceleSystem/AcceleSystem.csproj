@@ -140,6 +140,8 @@
     <Compile Include="Controllers\BrandController.cs" />
     <Compile Include="Controllers\HelloController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KanagataApiController.cs" />
+    <Compile Include="Controllers\KanagataController.cs" />
     <Compile Include="Controllers\MessageApiController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
     <Compile Include="Controllers\UserAuthentication.cs" />
@@ -159,6 +161,7 @@
     <Content Include="Content\bootstrap-textbox.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\calendar.css" />
     <Content Include="ElaAdmin\assets\css\bootstrap.min.css" />
     <Content Include="ElaAdmin\assets\css\Common.css" />
     <Content Include="ElaAdmin\assets\css\cs-skin-elastic.css" />
@@ -305,6 +308,7 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Scripts\calendar.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -503,11 +507,14 @@
     <Content Include="Views\Home\Dashboard.cshtml" />
     <Content Include="Views\User\UserEntry.cshtml" />
     <Content Include="Views\Brand\BrandList.cshtml" />
+    <Content Include="Views\Kanagata\KanagataEntry.cshtml" />
+    <Content Include="Views\Kanagata\KanagataList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="obj\Debug\" />
+    <Folder Include="Views\KanagataApi\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
