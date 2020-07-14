@@ -32,7 +32,7 @@
         }
 
         var color = "#444444";
-        calendar.calHeader.find("h2").text(passed_year + " " + i[passed_month]);
+        calendar.calHeader.find("h2").text(passed_year + " " + i[passed_month] + " " + getDay);
         calendar.weekline.find("div").css("color", color);
         calendar.datesBody.find(".today").css("color", "#1a2fd9");
 
