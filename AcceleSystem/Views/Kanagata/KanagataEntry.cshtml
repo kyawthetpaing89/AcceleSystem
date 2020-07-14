@@ -6,33 +6,88 @@
 
 @section Styles{
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/calendar.css")" />
 }
 
-    <div class="container-fluid">
-        <div class="content">
-            <div class="p-5 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white; border-radius:5px;">
-                <div class="col-xs-6 col-md-4"></div>
-                <div class="col-xs-6 col-md-4">
-                    <div>
-                        <h2 class=" hr-text text-center">金型登録</h2>
-                    </div>
-                    <div class="pt-5 md-form">
-                        <div class="col-xl-12 text-center">
-                            <div class="text-s text-custom1 text-uppercase mb-1">
-                                <input type="text" class="text-line col-xl-5 text-left" id="MoldCode" name="code" required placeholder="金型コード">
-                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                <input type="text" class="text-line col-xl-5 text-left" id="MoldName" name="name" required placeholder="金型名">                              
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pt-5 md-form">
-                        <div class="col-xl-12 text-center">
-                            <div class="text-s text-custom1 text-uppercase mb-1">
-                                <input type="password" class="text-line col-11" id="BrandName" name="brandname" required placeholder="ブランド名">
-                            </div>
-                        </div>
-                    </div>
-                <div class="col-xs-6 col-md-4"></div>
+
+<div class="container-fluid">
+    <div class="content">
+        <div class="p-5 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white; border-radius:5px;">
+            <div class="col-xs-6 col-md-4"></div>
+            <div class="col-xs-6 col-md-4">
+                <div>
+                    <h2 class=" hr-text text-center">金型登録</h2>
                 </div>
+                <div class="pt-3 md-form">
+                    <div class="col-xl-12 text-center">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <input type="text" class="text-line col-xl-5 text-left" id="MoldCode" name="code" required placeholder="金型コード">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" class="text-line col-xl-5 text-left" id="MoldName" name="name" required placeholder="金型名">
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form">
+                    <div class="col-xl-12 text-center">
+                        <input type="password" class="text-line col-11" id="BrandName" name="brandname" style="width:91%" required placeholder="ブランド名">
+                    </div>
+                </div>
+                <div class="pt-3 md-form">
+                    <div class="col-xl-12 text-center">
+                        <input type="text" class="text-line col-11" id="Date" name="date" style="width:91%" required placeholder="使用期限">
+                    </div>
+                    <div class="calendar calendar-first" id="calendar_first" style="border:ridge #C0C0C0 0.1px; padding:5px">
+                        <div class="calendar_header">
+                            <button class="switch-month switch-left"> <i class="fa fa-chevron-left"></i></button>
+                            <h2></h2>
+                            <button class="switch-month switch-right"> <i class="fa fa-chevron-right"></i></button>
+                        </div>
+                        <div class="calendar_weekdays"></div>
+                        <div class="calendar_content"></div>
+                    </div>
+                </div>
+                <div>
+                    <span id="errexist" class="color-red"></span>
+                </div>
+                <div class="pt-3 md-form">
+                    <div class="col-xl-12 text-center">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <button id="btnSave" onclick="btnSaveClick()" class="btn btn-dark col-xl-5 text-center"></button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <button id="btnCancel" onclick="btnCancelClick()" class="btn btn-primary col-xl-5 text-center">戻る</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-xs-6 col-md-4"></div>
+            </div>
         </div>
     </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">     
+    $(document).ready(function () {
+             $("#MoldCode").focus();
+            var Mode = '@Model.Mode';
+            if (Mode == 'New') {
+                $('#btnSave').html('登録');
+            }
+            else if (Mode == 'Edit') {
+                $('#btnSave').html('更新');
+                $("#UserID").prop("readonly", true);
+                ShowData();
+            }
+            else {
+                $('#btnSave').html('削除');
+                $("#UserID").prop("readonly", true);
+                $("#UserName").prop("readonly", true);
+                $("#Password").prop("readonly", true);
+                ShowData();
+            }
+        });
+    </script>
+
+       <script src="@Url.Content("~/Scripts/calendar.js")"></script>
+}
