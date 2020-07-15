@@ -109,8 +109,9 @@
                 success: function (data) {
                     var userdata = JSON.parse(data);
                     $("#CastingCD").val(userdata[0].CastingCD);
-                    $("#UserName").val(userdata[0].UserName);
-                    $("#Password").val(userdata[0].Password);
+                    $("#CastingName").val(userdata[0].CastingName);
+                    $("#BrandName").val(userdata[0].BrandName);
+                    $("#UseLimit").val(userdata[0].UseLimit);
                 }
             });
         }
