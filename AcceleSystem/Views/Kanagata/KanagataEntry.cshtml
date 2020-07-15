@@ -192,6 +192,70 @@
         }
 
 
+        var focusControl;
+        function ErrorCheck() {
+            if (!$("#CastingCD").val()) {
+                focusControl = $("#CastingCD");
+                return "I102";
+            }
+            else if (!$("#CastingName").val()) {
+                focusControl = $("#CastingName");
+                return "I102";
+            }           
+            return "0";
+        }
+
+
+        //save
+        function btnSaveClick() {
+            var msgID = ErrorCheck();
+            if (msgID == "0") {
+                var Mode = '@Model.Mode';
+                //show confirm message
+                if (Mode == "Delete") {
+                    $.when(GetMessage("Q102", '@Url.Action("M_Message_Select", "api/MessageApi")')).done(function (data) {
+                        var msgdata = JSON.parse(data);
+                        Swal.fire({
+                            title: msgdata[0].MessageID,
+                            text: msgdata[0].MessageText1,
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#d33',
+                            cancelButtonColor: '#3085d6',
+                            confirmButtonText: 'はい。',
+                            cancelButtonText: 'いいえ。'
+                        }).then((result) => {
+                            if (result.value) {
+                                DoProcess();
+                            }
+                        })
+                    })
+                }
+                else {
+                    DoProcess();
+                }
+            }
+            else {
+                $.when(GetMessage("E102", '@Url.Action("M_Message_Select", "api/MessageApi")')).done(function (data) {
+                    var msgdata = JSON.parse(data);
+
+                    Swal.fire({
+                        icon: 'error',
+                        title: msgdata[0].MessageID,
+                        text: msgdata[0].MessageText1,
+                    }).then(function () {
+
+                     });
+                })
+                $(focusControl).focus();
+            }
+        }
+
+        function btnCancelClick() {
+            location.href = '@Url.Action("KanagataList", "Kanagata")';
+        }
+
+
     </script>
     <script src="@Url.Content("~/Scripts/calendar.js")"></script>
 }
