@@ -21,9 +21,9 @@
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" class="text-line col-xl-5 text-left" id="MoldCode" name="code" required placeholder="金型コード">
+                            <input type="text" class="text-line col-xl-5 text-left" id="CastingCD" name="CD" required placeholder="金型コード">
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="text" class="text-line col-xl-5 text-left" id="MoldName" name="name" required placeholder="金型名">
+                            <input type="text" class="text-line col-xl-5 text-left" id="CastingName" name="Name" required placeholder="金型名">
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                 </div>
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
-                        <input type="text" class="text-line col-11" id="Date" name="date" style="width:91%" required placeholder="使用期限">
+                        <input type="text" class="text-line col-11" id="UseLimit" name="Limit" style="width:91%" required placeholder="使用期限">
                     </div>
                     <div class="calendar calendar-first" id="calendar_first" style="border:ridge #C0C0C0 0.1px; padding:5px">
                         <div class="calendar_header">
@@ -69,7 +69,7 @@
 @section Scripts{
     <script type="text/javascript">
         $(document).ready(function () {
-             $("#MoldCode").focus();
+            $("#CastingCD").focus();
             var Mode = '@Model.Mode';
             if (Mode == 'New') {
                 $('#btnSave').html('登録');
@@ -81,12 +81,43 @@
             }
             else {
                 $('#btnSave').html('削除');
-                $("#MoldCode").prop("readonly", true);
-                $("#MoldName").prop("readonly", true);
+                $("#CastingCD").prop("readonly", true);
+                $("#CastingName").prop("readonly", true);
                 $("#BrandName").prop("readonly", true);
-                //ShowData();
+                $("#UseLimit").prop("readonly", true);
+                ShowData();
             }
-        });      
+        });  
+
+        
+        //set data
+        function ShowData() {
+            var kgmodel = {
+                CastingCD: '@Model.CastingCD',
+            };
+
+            $.ajax({
+                url: '@Url.Action("M_Casting_Select", "api/KanagataApi")',
+                method: 'Post',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(Umodel),
+                headers:
+                {
+                    Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
+                },
+                success: function (data) {
+                    var userdata = JSON.parse(data);
+                    $("#CastingCD").val(userdata[0].CastingCD);
+                    $("#CastingName").val(userdata[0].CastingName);
+                    $("#BrandName").val(userdata[0].BrandName);
+                    $("#UseLimit").val(userdata[0].UseLimit);
+                }
+            });
+        }
+
+
+
     </script>
     <script src="@Url.Content("~/Scripts/calendar.js")"></script>
 }
