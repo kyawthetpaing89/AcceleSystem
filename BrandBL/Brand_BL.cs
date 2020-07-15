@@ -7,42 +7,42 @@ using System;
 namespace BrandBL
 {
     public class Brand_BL
-    {
-        public string M_Brand_Select(BrandModel Umodel)
+    { 
+        public string M_Brand_Select(BrandModel bmodel)
         {
             BaseDL bdl = new BaseDL();
-            Umodel.Sqlprms = new SqlParameter[2];
-            Umodel.Sqlprms[0] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = Umodel.BrandCD };
-            Umodel.Sqlprms[1] = new SqlParameter("@BrandName", SqlDbType.VarChar) { Value = Umodel.BrandName };
+            bmodel.Sqlprms = new SqlParameter[2];
+            bmodel.Sqlprms[0] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = bmodel.BrandCD };
+            bmodel.Sqlprms[1] = new SqlParameter("@BrandName", SqlDbType.VarChar) { Value = bmodel.BrandName };
 
-            return bdl.SelectJson("M_Brand_Select", Umodel.Sqlprms);
+            return bdl.SelectJson("M_Brand_Select", bmodel.Sqlprms);
         }
-        public string Brand_CUD(BrandModel Umodel)
+        public string Brand_CUD(BrandModel bmodel)
         {
             BaseDL bdl = new BaseDL();
-            if (Umodel.Mode.Equals("New"))
+            if (bmodel.Mode.Equals("New"))
             {
-                Umodel.SPName = "M_Brand_Insert";
-                Umodel.Sqlprms = new SqlParameter[2];
-                Umodel.Sqlprms[0] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = Umodel.BrandCD };
-                Umodel.Sqlprms[1] = new SqlParameter("@BrandName", SqlDbType.VarChar) { Value = Umodel.BrandName };
+                bmodel.SPName = "M_Brand_Insert";
+                bmodel.Sqlprms = new SqlParameter[2];
+                bmodel.Sqlprms[0] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = bmodel.BrandCD };
+                bmodel.Sqlprms[1] = new SqlParameter("@BrandName", SqlDbType.VarChar) { Value = bmodel.BrandName };
                 
             }
-            else if (Umodel.Mode.Equals("Edit"))
+            else if (bmodel.Mode.Equals("Edit"))
             {
-                Umodel.SPName = "M_Brand_Update";
-                Umodel.Sqlprms = new SqlParameter[2];
-                Umodel.Sqlprms[0] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = Umodel.BrandCD };
-                Umodel.Sqlprms[1] = new SqlParameter("@BrandName", SqlDbType.VarChar) { Value = Umodel.BrandName };
+                bmodel.SPName = "M_Brand_Update";
+                bmodel.Sqlprms = new SqlParameter[2];
+                bmodel.Sqlprms[0] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = bmodel.BrandCD };
+                bmodel.Sqlprms[1] = new SqlParameter("@BrandName", SqlDbType.VarChar) { Value = bmodel.BrandName };
                 
             }
-            else if (Umodel.Mode.Equals("Delete"))
+            else if (bmodel.Mode.Equals("Delete"))
             {
-                Umodel.SPName = "M_Brand_Delete";
-                Umodel.Sqlprms = new SqlParameter[1];
-                Umodel.Sqlprms[0] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = Umodel.BrandCD };
+                bmodel.SPName = "M_Brand_Delete";
+                bmodel.Sqlprms = new SqlParameter[1];
+                bmodel.Sqlprms[0] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = bmodel.BrandCD };
             }
-            return bdl.SelectJson(Umodel.SPName, Umodel.Sqlprms);
+            return bdl.SelectJson(bmodel.SPName, bmodel.Sqlprms);
         }
     }
 }

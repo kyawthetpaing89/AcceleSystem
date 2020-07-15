@@ -70,7 +70,7 @@
 
         //set data
         function ShowData() {
-            var Umodel = {
+            var bmodel = {
                 BrandCD: '@Model.BrandCD',
             };
 
@@ -79,7 +79,7 @@
                 method: 'Post',
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
-                data: JSON.stringify(Umodel),
+                data: JSON.stringify(bmodel),
                 headers:
                 {
                     Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
@@ -95,7 +95,7 @@
 
         //insert,update,delete
         function DoProcess() {
-            var Umodel = {
+            var bmodel = {
                 BrandCD: $("#BrandCD").val(),
                 BrandName: $("#BrandName").val(),
                 Mode:'@Model.Mode'
@@ -106,7 +106,7 @@
                 method: 'POST',
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
-                data: JSON.stringify(Umodel),
+                data: JSON.stringify(bmodel),
                 headers:
                 {
                     Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
