@@ -97,11 +97,11 @@
         location.href = '@Url.Action("KanagataEntry", "Kanagata")?Mode=New'
     }
 
-        function btnEditClick(UserID) {
+        function btnEditClick(CastingCD) {
             location.href = '@Url.Action("KanagataEntry", "Kanagata")?CastingCD=' + CastingCD + '&Mode=Edit';
     }
 
-        function btnDelClick(UserID) {
+        function btnDelClick(CastingCD) {
             location.href = '@Url.Action("KanagataEntry", "Kanagata")?CastingCD=' + CastingCD + '&Mode=Delete';
         }
     </script>
