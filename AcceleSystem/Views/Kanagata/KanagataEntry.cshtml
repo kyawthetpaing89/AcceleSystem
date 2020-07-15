@@ -1,4 +1,5 @@
 ﻿@model Models.KanagataModel
+
 @{
     ViewBag.Title = "KanagataEntry";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -77,6 +78,8 @@
             $("#CastingCD").focus();
             var Mode = '@Model.Mode';
             if (Mode == 'New') {
+
+
                 $('#btnSave').html('登録');
             }
             else if (Mode == 'Edit') {
@@ -92,20 +95,40 @@
                 $("#UseLimit").prop("readonly", true);
                 ShowData();
             }
-        });  
+        });
 
-        $('#CastingCD').on("keypress", function (e) {            if (e.keyCode == 13) {                $('#CastingName').focus();            }        });
+        $('#CastingCD').on("keypress", function (e) {
+            if (e.keyCode == 13) {
+                $('#CastingName').focus();
+            }
+        });
 
-        $('#CastingName').on("keypress", function (e) {            if (e.keyCode == 13) {                $('#BrandName').focus();            }        });
+        $('#CastingName').on("keypress", function (e) {
+            if (e.keyCode == 13) {
+                $('#BrandName').focus();
+            }
+        });
 
-        $('#BrandCD').on("keypress", function (e) {            if (e.keyCode == 13) {                $('#BrandName').focus();            }        });
+        $('#BrandCD').on("keypress", function (e) {
+            if (e.keyCode == 13) {
+                $('#BrandName').focus();
+            }
+        });
 
 
-        $('#BrandName').on("keypress", function (e) {            if (e.keyCode == 13) {                $('#UseLimit').focus();            }        });
+        $('#BrandName').on("keypress", function (e) {
+            if (e.keyCode == 13) {
+                $('#UseLimit').focus();
+            }
+        });
 
-        $('#UseLimit').on("keypress", function (e) {            if (e.keyCode == 13) {                $('#btnSave').focus();            }        });
+        $('#UseLimit').on("keypress", function (e) {
+            if (e.keyCode == 13) {
+                $('#btnSave').focus();
+            }
+        });
 
-        
+
         //set data
         function ShowData() {
             var kgmodel = {
@@ -117,7 +140,7 @@
                 method: 'Post',
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
-                data: JSON.stringify(Umodel),
+                data: JSON.stringify(kgmodel),
                 headers:
                 {
                     Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
@@ -133,6 +156,40 @@
             });
         }
 
+        function DoProcess() {
+             var kgmodel = {
+                 CastingCD: '@Model.CastingCD',
+                 CastingName: '@Model.CastingName',
+                 BrandCD: '@Model.BrandCD',
+                 BrandName: '@Model.BrandName'
+                 UseLimit: '@Model.UseLimit',
+            };
+
+             $.ajax({
+                url: '@Url.Action("Casting_CUD", "api/UserApi")',
+                method: 'POST',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                 data: JSON.stringify(kgmodel),
+                headers:
+                {
+                    Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
+                },
+                 success: function (msg) {
+                     var message = JSON.parse(msg);
+                     Swal.fire({
+                         icon: message[0].status,
+                         title: message[0].MessageID,
+                         text: message[0].MessageText1,
+                     }).then(function () {
+                         if (message[0].status != "error")
+                             @*location.href = '@Url.Action("UserEntry", "User")';
+                         else*@
+                             location.href = '@Url.Action("KanagataList", "Kanagata")';
+                     });
+                 }
+            });
+        }
 
 
     </script>

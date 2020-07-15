@@ -12,5 +12,7 @@ namespace Models
         public string CastingName { get; set; }
         public string BrandCD { get; set; }
         public string UseLimit { get; set; }
+        public string BrandName { get; set; }
+
     }
 }
