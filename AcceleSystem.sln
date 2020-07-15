@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrandBL", "BrandBL\BrandBL.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBL", "MessageBL\MessageBL.csproj", "{8C241484-F5D3-4ECF-BBC8-46CE34FD85AE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KanagataBL", "KanagataBL\KanagataBL.csproj", "{EC4DE58B-60F4-495A-AB3E-01D4C305FDCE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{8C241484-F5D3-4ECF-BBC8-46CE34FD85AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C241484-F5D3-4ECF-BBC8-46CE34FD85AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C241484-F5D3-4ECF-BBC8-46CE34FD85AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC4DE58B-60F4-495A-AB3E-01D4C305FDCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC4DE58B-60F4-495A-AB3E-01D4C305FDCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC4DE58B-60F4-495A-AB3E-01D4C305FDCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC4DE58B-60F4-495A-AB3E-01D4C305FDCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
