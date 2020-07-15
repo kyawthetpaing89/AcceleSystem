@@ -75,26 +75,24 @@
 @section Scripts{
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#CastingCD").focus();
+            $("#CastingName").focus();
             var Mode = '@Model.Mode';
-            if (Mode == 'New') {
-
-
+            if (Mode == 'New') {                
                 $('#btnSave').html('登録');
             }
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
                 $("#CastingCD").prop("readonly", true);
-                //ShowData();
-            }
-            else {
-                $('#btnSave').html('削除');
-                $("#CastingCD").prop("readonly", true);
-                $("#CastingName").prop("readonly", true);
-                $("#BrandName").prop("readonly", true);
-                $("#UseLimit").prop("readonly", true);
                 ShowData();
             }
+            else {
+                    $('#btnSave').html('削除');
+                    $("#CastingCD").prop("readonly", true);
+                    $("#CastingName").prop("readonly", true);
+                    $("#BrandName").prop("readonly", true);
+                    $("#UseLimit").prop("readonly", true);
+                    ShowData();
+                 }
         });
 
         $('#CastingCD').on("keypress", function (e) {
@@ -114,8 +112,7 @@
                 $('#BrandName').focus();
             }
         });
-
-
+        
         $('#BrandName').on("keypress", function (e) {
             if (e.keyCode == 13) {
                 $('#UseLimit').focus();
@@ -189,6 +186,70 @@
                      });
                  }
             });
+        }
+
+
+        var focusControl;
+        function ErrorCheck() {
+            if (!$("#CastingCD").val()) {
+                focusControl = $("#CastingCD");
+                return "I102";
+            }
+            else if (!$("#CastingName").val()) {
+                focusControl = $("#CastingName");
+                return "I102";
+            }           
+            return "0";
+        }
+
+
+        //save
+        function btnSaveClick() {
+            var msgID = ErrorCheck();
+            if (msgID == "0") {
+                var Mode = '@Model.Mode';
+                //show confirm message
+                if (Mode == "Delete") {
+                    $.when(GetMessage("Q102", '@Url.Action("M_Message_Select", "api/MessageApi")')).done(function (data) {
+                        var msgdata = JSON.parse(data);
+                        Swal.fire({
+                            title: msgdata[0].MessageID,
+                            text: msgdata[0].MessageText1,
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#d33',
+                            cancelButtonColor: '#3085d6',
+                            confirmButtonText: 'はい。',
+                            cancelButtonText: 'いいえ。'
+                        }).then((result) => {
+                            if (result.value) {
+                                DoProcess();
+                            }
+                        })
+                    })
+                }
+                else {
+                    DoProcess();
+                }
+            }
+            else {
+                $.when(GetMessage("E102", '@Url.Action("M_Message_Select", "api/MessageApi")')).done(function (data) {
+                    var msgdata = JSON.parse(data);
+
+                    Swal.fire({
+                        icon: 'error',
+                        title: msgdata[0].MessageID,
+                        text: msgdata[0].MessageText1,
+                    }).then(function () {
+
+                     });
+                })
+                $(focusControl).focus();
+            }
+        }
+
+        function btnCancelClick() {
+            location.href = '@Url.Action("KanagataList", "Kanagata")';
         }
 
 
