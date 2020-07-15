@@ -21,7 +21,7 @@
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" class="text-line col-xl-5 text-left" id="CastingCD" name="CD" required placeholder="金型コード">
+                            <input type="text" class="text-line col-xl-5 text-left" id="CastingCD" name="castingCD" required placeholder="金型コード">
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <input type="text" class="text-line col-xl-5 text-left" id="CastingName" name="Name" required placeholder="金型名">
                         </div>
@@ -29,7 +29,12 @@
                 </div>
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
-                        <input type="password" class="text-line col-11" id="BrandName" name="brandname" style="width:91%" required placeholder="ブランド名">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <input type="text" class="text-line col-xl-5 text-left" id="BrandCD" name="brandCD" required placeholder="ブランドコード">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" class="text-line col-xl-5 text-left" id="BrandName" name="brandname" required placeholder="ブランド名">
+                            @*<input type="text" class="text-line col-11" id="BrandName" name="brandname" style="width:91%" required placeholder="ブランド名">*@
+                        </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form">
@@ -76,7 +81,7 @@
             }
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
-                $("#MoldCode").prop("readonly", true);
+                $("#CastingCD").prop("readonly", true);
                 //ShowData();
             }
             else {
@@ -88,6 +93,17 @@
                 ShowData();
             }
         });  
+
+        $('#CastingCD').on("keypress", function (e) {            if (e.keyCode == 13) {                $('#CastingName').focus();            }        });
+
+        $('#CastingName').on("keypress", function (e) {            if (e.keyCode == 13) {                $('#BrandName').focus();            }        });
+
+        $('#BrandCD').on("keypress", function (e) {            if (e.keyCode == 13) {                $('#BrandName').focus();            }        });
+
+
+        $('#BrandName').on("keypress", function (e) {            if (e.keyCode == 13) {                $('#UseLimit').focus();            }        });
+
+        $('#UseLimit').on("keypress", function (e) {            if (e.keyCode == 13) {                $('#btnSave').focus();            }        });
 
         
         //set data
@@ -110,6 +126,7 @@
                     var userdata = JSON.parse(data);
                     $("#CastingCD").val(userdata[0].CastingCD);
                     $("#CastingName").val(userdata[0].CastingName);
+                    $("#BrandCD").val(userdata[0].BrandCD);
                     $("#BrandName").val(userdata[0].BrandName);
                     $("#UseLimit").val(userdata[0].UseLimit);
                 }
