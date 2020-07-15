@@ -75,26 +75,24 @@
 @section Scripts{
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#CastingCD").focus();
+            $("#CastingName").focus();
             var Mode = '@Model.Mode';
-            if (Mode == 'New') {
-
-
+            if (Mode == 'New') {                
                 $('#btnSave').html('登録');
             }
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
                 $("#CastingCD").prop("readonly", true);
-                //ShowData();
-            }
-            else {
-                $('#btnSave').html('削除');
-                $("#CastingCD").prop("readonly", true);
-                $("#CastingName").prop("readonly", true);
-                $("#BrandName").prop("readonly", true);
-                $("#UseLimit").prop("readonly", true);
                 ShowData();
             }
+            else {
+                    $('#btnSave').html('削除');
+                    $("#CastingCD").prop("readonly", true);
+                    $("#CastingName").prop("readonly", true);
+                    $("#BrandName").prop("readonly", true);
+                    $("#UseLimit").prop("readonly", true);
+                    ShowData();
+                 }
         });
 
         $('#CastingCD').on("keypress", function (e) {
@@ -114,8 +112,7 @@
                 $('#BrandName').focus();
             }
         });
-
-
+        
         $('#BrandName').on("keypress", function (e) {
             if (e.keyCode == 13) {
                 $('#UseLimit').focus();
