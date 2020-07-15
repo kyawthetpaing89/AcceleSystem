@@ -4,7 +4,7 @@ using KanagataBL;
 
 namespace AcceleSystem.Controllers
 {
-    [RoutePrefix("Accele/api/UserApi")]
+    [RoutePrefix("Accele/api/KanagataApi")]
     public class KanagataApiController : ApiController
     {
         // GET: KanagataApi
