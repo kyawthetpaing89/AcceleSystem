@@ -65,12 +65,12 @@
                     </div>
                 </div>
 
-
-                <div class="col-xs-6 col-md-4"></div>
             </div>
+            <div class="col-xs-6 col-md-4"></div>
         </div>
     </div>
 </div>
+
 
 @section Scripts{
     <script type="text/javascript">
@@ -83,7 +83,7 @@
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
                 $("#CastingCD").prop("readonly", true);
-                ShowData();
+                //ShowData();
             }
             else {
                     $('#btnSave').html('削除');
@@ -91,7 +91,7 @@
                     $("#CastingName").prop("readonly", true);
                     $("#BrandName").prop("readonly", true);
                     $("#UseLimit").prop("readonly", true);
-                    ShowData();
+                    //ShowData();
                  }
         });
 
@@ -153,7 +153,7 @@
             });
         }
 
-        function DoProcess() {
+        @*function DoProcess() {
              var kgmodel = {
                  CastingCD: '@Model.CastingCD',
                  CastingName: '@Model.CastingName',
@@ -182,11 +182,11 @@
                          if (message[0].status != "error")
                              @*location.href = '@Url.Action("UserEntry", "User")';
                          else*@
-                             location.href = '@Url.Action("KanagataList", "Kanagata")';
+                             @*location.href = '@Url.Action("KanagataList", "Kanagata")';
                      });
                  }
             });
-        }
+        }*@
 
 
         var focusControl;
