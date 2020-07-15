@@ -9,22 +9,22 @@ namespace AcceleSystem.Controllers
     {
         [UserAuthentication]
         [HttpPost]
-        public string M_Brand_Select([FromBody] BrandModel Umodel)
+        public string M_Brand_Select([FromBody] BrandModel bmodel)
         {
-            if (Umodel == null)
+            if (bmodel == null)
             {
-                Umodel = new BrandModel();
+                bmodel = new BrandModel();
             }
             Brand_BL Ubl = new Brand_BL();
-            return Ubl.M_Brand_Select(Umodel);
+            return Ubl.M_Brand_Select(bmodel);
         }
 
         [UserAuthentication]
         [HttpPost]
-        public string Brand_CUD([FromBody] BrandModel Umodel)
+        public string Brand_CUD([FromBody] BrandModel bmodel)
         {
             Brand_BL Ubl = new Brand_BL();
-            return Ubl.Brand_CUD(Umodel);
+            return Ubl.Brand_CUD(bmodel);
         }
     }
 }
