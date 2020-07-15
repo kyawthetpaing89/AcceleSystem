@@ -69,7 +69,7 @@
 @section Scripts{
     <script type="text/javascript">
         $(document).ready(function () {
-             $("#MoldCode").focus();
+            $("#CastingCD").focus();
             var Mode = '@Model.Mode';
             if (Mode == 'New') {
                 $('#btnSave').html('登録');
@@ -92,12 +92,12 @@
         
         //set data
         function ShowData() {
-            var Umodel = {
-                UserID: '@Model.',
+            var kgmodel = {
+                CastingCD: '@Model.CastingCD',
             };
 
             $.ajax({
-                url: '@Url.Action("M_Casting_Select", "api/UserApi")',
+                url: '@Url.Action("M_Casting_Select", "api/KanagataApi")',
                 method: 'Post',
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
@@ -108,7 +108,7 @@
                 },
                 success: function (data) {
                     var userdata = JSON.parse(data);
-                    $("#UserID").val(userdata[0].ID);
+                    $("#CastingCD").val(userdata[0].CastingCD);
                     $("#UserName").val(userdata[0].UserName);
                     $("#Password").val(userdata[0].Password);
                 }

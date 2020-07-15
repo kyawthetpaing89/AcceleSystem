@@ -1,17 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Http;
+using Models;
+using KanagataBL;
 
 namespace AcceleSystem.Controllers
 {
-    public class KanagataApiController : Controller
+    [RoutePrefix("Accele/api/UserApi")]
+    public class KanagataApiController : ApiController
     {
         // GET: KanagataApi
-        public ActionResult Index()
+        [UserAuthentication]
+        [HttpPost]
+        public string M_Casting_Select([FromBody] KanagataModel kgmodel)
         {
-            return View();
+            Kanagata_BL kgbl = new Kanagata_BL();
+            return kgbl.M_Casting_Select(kgmodel);
         }
     }
 }
