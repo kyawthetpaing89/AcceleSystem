@@ -65,36 +65,34 @@
                     </div>
                 </div>
 
-
-                <div class="col-xs-6 col-md-4"></div>
             </div>
+            <div class="col-xs-6 col-md-4"></div>
         </div>
     </div>
 </div>
 
+
 @section Scripts{
-    <script type="text/javascript">
+<script type="text/javascript">
         $(document).ready(function () {
-            $("#CastingCD").focus();
+            $("#CastingName").focus();
             var Mode = '@Model.Mode';
             if (Mode == 'New') {
-
-
                 $('#btnSave').html('登録');
             }
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
                 $("#CastingCD").prop("readonly", true);
-                //ShowData();
-            }
-            else {
-                $('#btnSave').html('削除');
-                $("#CastingCD").prop("readonly", true);
-                $("#CastingName").prop("readonly", true);
-                $("#BrandName").prop("readonly", true);
-                $("#UseLimit").prop("readonly", true);
                 ShowData();
             }
+            else {
+                    $('#btnSave').html('削除');
+                    $("#CastingCD").prop("readonly", true);
+                    $("#CastingName").prop("readonly", true);
+                    $("#BrandName").prop("readonly", true);
+                    $("#UseLimit").prop("readonly", true);
+                    ShowData();
+                 }
         });
 
         $('#CastingCD').on("keypress", function (e) {
@@ -105,7 +103,7 @@
 
         $('#CastingName').on("keypress", function (e) {
             if (e.keyCode == 13) {
-                $('#BrandName').focus();
+                $('#BrandCD').focus();
             }
         });
 
@@ -114,7 +112,6 @@
                 $('#BrandName').focus();
             }
         });
-
 
         $('#BrandName').on("keypress", function (e) {
             if (e.keyCode == 13) {
@@ -155,18 +152,19 @@
                 }
             });
         }
-
+        
         function DoProcess() {
              var kgmodel = {
-                 CastingCD: '@Model.CastingCD',
-                 CastingName: '@Model.CastingName',
-                 BrandCD: '@Model.BrandCD',
-                 BrandName: '@Model.BrandName'
-                 UseLimit: '@Model.UseLimit',
+                 CastingCD: $("#CastingCD").val(),
+                 CastingName: $("#CastingName").val(),
+                 BrandCD: $("#BrandCD").val(),
+                 BrandName: $("#BrandName").val(),
+                 UseLimit: $("#UseLimit").val(),
+                 Mode:'@Model.Mode'
             };
 
              $.ajax({
-                url: '@Url.Action("Casting_CUD", "api/UserApi")',
+                url: '@Url.Action("Casting_CUD", "api/KanagataApi")',
                 method: 'POST',
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
@@ -183,8 +181,8 @@
                          text: message[0].MessageText1,
                      }).then(function () {
                          if (message[0].status != "error")
-                             @*location.href = '@Url.Action("UserEntry", "User")';
-                         else*@
+                             //location.href = '@Url.Action("UserEntry", "User")';
+                         //else
                              location.href = '@Url.Action("KanagataList", "Kanagata")';
                      });
                  }
@@ -201,7 +199,7 @@
             else if (!$("#CastingName").val()) {
                 focusControl = $("#CastingName");
                 return "I102";
-            }           
+            }
             return "0";
         }
 
@@ -256,7 +254,7 @@
         }
 
 
-    </script>
+</script>
     <script src="@Url.Content("~/Scripts/calendar.js")"></script>
 }
 
