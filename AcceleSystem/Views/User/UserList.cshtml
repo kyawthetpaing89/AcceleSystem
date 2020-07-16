@@ -66,7 +66,8 @@
             success: function (response) {
                     BindTable(response);
                 }
-        });
+            });
+           
     }
 
         function BindTable(response) {
@@ -76,7 +77,10 @@
                 "bFilter": false,
                 "bLengthChange": false,
                 "bInfo": false,
-                destroy:true,
+                //"oLanguage": {
+                //    "sEmptyTable": "入力必須項目です。"
+                //},
+                "destroy":true,
                 "columns": [
                     {
                         "data": null,

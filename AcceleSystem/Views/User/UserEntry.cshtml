@@ -17,7 +17,7 @@
                 </div>
                 <div class="pt-5 md-form">
                     @*<label for="lblUserName">User Name</label>*@
-                    <input type="text" class="text-line" id="UserName" name="name" maxlength="40" required placeholder="ユーザー名">
+                    <input type="text" class="text-line" id="UserName" name="name" maxlength="40" required placeholder="ユーザー名" >
                     <label id="lblUserNameErr" style="color:red;display:none"></label>
                     @*<span id="errname" class="color-red"></span>*@
                 </div>
@@ -70,7 +70,15 @@
                 $("#Password").prop("readonly", true);
                 ShowData();
             }
+
+
         });
+
+        $('#UserName').on("keypress", function (e) {            if (e.keyCode == 13) {                $('#UserID').focus();            }        });
+
+        $('#UserID').on("keypress", function (e) {            if (e.keyCode == 13) {                $('#Password').focus();            }        });
+
+        $('#Password').on("keypress", function (e) {            if (e.keyCode == 13) {                $('#btnSave').focus();            }        });
 
         //set data
         function ShowData() {

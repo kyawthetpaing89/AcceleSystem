@@ -3,34 +3,119 @@
     ViewBag.Title = "KanagataList";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 @section Styles{
     <link rel="stylesheet" href="@Url.Content("~/ElaAdmin/assets/css/lib/datatable/dataTables.bootstrap.min.css")" />
 }
-
-    <div class="card">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-sm-2 col-md-3">
-                    <button id="btnAdd" onclick="btnAddClick()" class="btn col-xl-10 text-center" tabindex="38" style="background-color:#1a8cff; color:azure;">
-                        金型追加
-                    </button>
-                </div>
-                <div class="col-sm-7 col-md-6">
-                    <i class="fa fa-search" style="padding-left:15px;"></i>
-                    <input type="text" id="myInput" placeholder="Search" class="border border-white" style="width:80%;padding-bottom:10px">
-                    <table id="tblUser" class="tb1 col-sm-12" style="padding-left:0px;">
-                        <thead>
-                            <tr>
-                                <td>CastingCD</td>
-                                <td>CastingName</td>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-2 col-md-3">
+                <button id="btnAdd" onclick="btnAddClick()" class="btn col-xl-10 text-center" tabindex="38" style="background-color:#1a8cff; color:azure;">
+                    金型追加
+                </button>
+            </div>
+            <div class="col-sm-7 col-md-6">
+                <i class="fa fa-search" style="padding-left:15px;"></i>
+                <input type="text" id="myInput" placeholder="Search" class="border border-white" style="width:80%;padding-bottom:10px">
+                <table id="tblCasting" class="tb1 col-sm-12" style="padding-left:0px;">
+                    <thead>
+                        <tr>
+                            <td>CastingCD</td>
+                            <td>CastingName</td>
+                        </tr>
+                    </thead>
+                </table>
             </div>
         </div>
     </div>
+</div>
 
+@section Scripts{
+    <script type="text/javascript">
+    $(document).ready(function () {
+
+        GetCasting();
+    });
+        $('#myInput').on("keypress", function (e) {
+            if (e.keyCode == 13) {
+                GetCasting();
+                return false; // prevent the button click from happening
+            }
+    });
+        function GetCasting() {
+            var kgmodel = {
+                CastingName: $('#myInput').val(),
+            };
+            $.ajax({
+            type: "Post",
+            url:"@Url.Action("M_Casting_Select", "api/KanagataApi")",
+            contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify(kgmodel),
+            headers:
+            {
+                Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
+            },
+            success: function (response) {
+                    BindTable(response);
+                }
+            });
+    }
+        function BindTable(response) {
+            table = $('#tblCasting').DataTable({
+
+                data: JSON.parse(response),
+                "bFilter": false,
+                "bLengthChange": false,
+                "bInfo": false,
+                //"oLanguage": {
+                //    "sEmptyTable": "入力必須項目です。"
+                //},
+                "destroy": true,
+                "columns": [
+                    {
+                        "data": null,
+                        className: "Border1",
+                        render: function (data, type, row) {
+                            return '<b><label>' + data.CastingCD + '</label></b><br/><label>' + data.CastingName + '</label>';
+                        }
+                    },
+                    {
+                        "data": null,
+                        className: "Border2",
+                        render: function (data, type, row) {
+                            return '<label><a href="#" onClick="btnEditClick(\'' + data.CastingCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.CastingCD + '\')" style="color:red">削除</a></label>';
+                        }
+                    },
+                ],
+                "drawCallback": function (settings) {
+                    $("#tblCasting thead").remove();
+                }
+            });
+        }
+        function btnAddClick() {
+        location.href = '@Url.Action("KanagataEntry", "Kanagata")?Mode=New'
+    }
+
+        function btnEditClick(CastingCD) {
+            location.href = '@Url.Action("KanagataEntry", "Kanagata")?CastingCD=' + CastingCD + '&Mode=Edit';
+    }
+
+        function btnDelClick(CastingCD) {
+            location.href = '@Url.Action("KanagataEntry", "Kanagata")?CastingCD=' + CastingCD + '&Mode=Delete';
+        }
+    </script>
+
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/datatables.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/dataTables.bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/dataTables.buttons.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/jszip.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/vfs_fonts.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.html5.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.print.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.colVis.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/init/datatables-init.js")"></script>
+}
 
 

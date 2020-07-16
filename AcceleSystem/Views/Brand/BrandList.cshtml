@@ -17,7 +17,7 @@
                 </button>
             </div>
 
-            <div class="col-sm-7 col-md-6" " >
+            <div class="col-sm-7 col-md-6">
                 <i class="fa fa-search" style="padding-left:15px;"></i>
                 <input type="text" id="myInput" placeholder="Search" class="border border-white" style="width:80%;padding-bottom:10px">
                 <table id="tblBrand" class="tb1 col-sm-12" style="padding-left:0px;">
@@ -56,7 +56,7 @@
         });
 
         function GetBrand() {
-            var Umodel = {
+            var bmodel = {
                 BrandName: $('#myInput').val(),
             };
 
@@ -65,7 +65,7 @@
             url:"@Url.Action("M_Brand_Select", "api/BrandApi")",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-            data: JSON.stringify(Umodel),
+            data: JSON.stringify(bmodel),
             headers:
             {
                 Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
@@ -108,15 +108,15 @@
         }
 
     function btnAddClick() {
-        location.href = '@Url.Action("BrandList", "Brand")?Mode=New'
+        location.href = '@Url.Action("BrandEntry", "Brand")?Mode=New'
     }
 
     function btnEditClick(BrandCD) {
-        location.href = '@Url.Action("BrandList", "Brand")?BrandCD='+BrandCD+'&Mode=Edit';
+        location.href = '@Url.Action("BrandEntry", "Brand")?BrandCD='+BrandCD+'&Mode=Edit';
     }
 
     function btnDelClick(BrandCD) {
-        location.href = '@Url.Action("BrandList", "Brand")?BrandCD='+BrandCD+'&Mode=Delete';
+        location.href = '@Url.Action("BrandEntry", "Brand")?BrandCD='+BrandCD+'&Mode=Delete';
         }
     </script>
 

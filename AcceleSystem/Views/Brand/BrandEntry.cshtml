@@ -1,0 +1,194 @@
+﻿@model Models.BrandModel
+@{
+    ViewBag.Title = "BrandEntry";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles{
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
+}
+
+<div class="container-fluid">
+    <div class="content">
+        <div class="p-5 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white; border-radius:5px;">
+            <div class="col-xs-6 col-md-4"></div>
+            <div class="col-xs-6 col-md-4">
+                <div>
+                    <h2 class=" hr-text text-center">ユーザー登録</h2>
+                </div>
+                <div class="pt-5 md-form">
+                    @*<label for="lblUserID">UserID</label>*@
+                    <input type="text" class="text-line" id="BrandCD" name="id" maxlength="20" required placeholder="BrandCD">
+                    @*<span id="errid" class="color-red"></span>*@
+                </div>
+                <div class="pt-5 md-form">
+                    @*<label for="lblPassword">Password</label>*@
+                    <input type="text" class="text-line" id="BrandName" maxlength="10" name="name" required placeholder="BrandName">
+                    @*<span id="errpass" class="color-red"></span>*@
+                </div>
+                <div>
+                    <span id="errexist" class="color-red"></span>
+                </div>
+                <div class="pt-5 md-form">
+                    <div class="col-xl-12 text-center">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <button id="btnSave" onclick="btnSaveClick()" class="btn btn-dark col-xl-5 text-center"></button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <button id="btnCancel" onclick="btnCancelClick()" class="btn btn-primary col-xl-5 text-center">戻る</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-4"></div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#BrandName").focus();
+            var Mode = '@Model.Mode';
+            if (Mode == 'New') {
+                $('#btnSave').html('登録');
+            }
+            else if (Mode == 'Edit') {
+                $('#btnSave').html('更新');
+                $("#BrandCD").prop("readonly", true);
+                ShowData();
+            }
+            else {
+                $('#btnSave').html('削除');
+                $("#BrandCD").prop("readonly", true);
+                $("#BrandName").prop("readonly", true);
+                ShowData();
+                 }
+
+
+        });
+
+        //set data
+        function ShowData() {
+            var bmodel = {
+                BrandCD: '@Model.BrandCD',
+            };
+
+            $.ajax({
+                url: '@Url.Action("M_Brand_Select", "api/BrandApi")',
+                method: 'Post',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(bmodel),
+                headers:
+                {
+                    Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
+                },
+                success: function (data) {
+                    var userdata = JSON.parse(data);
+                    $("#BrandCD").val(userdata[0].BrandCD);
+                    $("#BrandName").val(userdata[0].BrandName);
+
+                }
+            });
+        }
+
+        //insert,update,delete
+        function DoProcess() {
+            var bmodel = {
+                BrandCD: $("#BrandCD").val(),
+                BrandName: $("#BrandName").val(),
+                Mode:'@Model.Mode'
+            };
+
+             $.ajax({
+                url: '@Url.Action("Brand_CUD", "api/BrandApi")',
+                method: 'POST',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(bmodel),
+                headers:
+                {
+                    Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
+                },
+                 success: function (msg) {
+                     var message = JSON.parse(msg);
+                     Swal.fire({
+                         icon: message[0].status,
+                         title: message[0].MessageID,
+                         text: message[0].MessageText1,
+                     }).then(function () {
+                         if (message[0].status != "error")
+                             @*location.href = '@Url.Action("BrandEntry", "Brand")';
+                         else*@
+                             location.href = '@Url.Action("BrandList", "Brand")';
+                     });
+                 }
+            });
+        }
+
+        var focusControl;
+        function ErrorCheck() {
+            if (!$("#BrandName").val()) {
+                focusControl = $("#BrandName");
+                return "I102";
+            }
+            else if (!$("#BrandCD").val()) {
+                focusControl = $("#BrandCD");
+                return "I102";
+            }
+
+            return "0";
+        }
+
+        //save
+        function btnSaveClick() {
+            var msgID = ErrorCheck();
+            if (msgID == "0") {
+                var Mode = '@Model.Mode';
+                //show confirm message
+                if (Mode == "Delete") {
+                    $.when(GetMessage("Q102", '@Url.Action("M_Message_Select", "api/MessageApi")')).done(function (data) {
+                        var msgdata = JSON.parse(data);
+                        Swal.fire({
+                            title: msgdata[0].MessageID,
+                            text: msgdata[0].MessageText1,
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#d33',
+                            cancelButtonColor: '#3085d6',
+                            confirmButtonText: 'はい。',
+                            cancelButtonText: 'いいえ。'
+                        }).then((result) => {
+                            if (result.value) {
+                                DoProcess();
+                            }
+                        })
+                    })
+                }
+                else {
+                    DoProcess();
+                }
+            }
+            else {
+                $.when(GetMessage("E102", '@Url.Action("M_Message_Select", "api/MessageApi")')).done(function (data) {
+                    var msgdata = JSON.parse(data);
+
+                    Swal.fire({
+                        icon: 'error',
+                        title: msgdata[0].MessageID,
+                        text: msgdata[0].MessageText1,
+                    }).then(function () {
+
+                     });
+                })
+                $(focusControl).focus();
+            }
+        }
+        function btnCancelClick() {
+            location.href = '@Url.Action("BrandList", "Brand")';
+        }
+    </script>
+}
+
+

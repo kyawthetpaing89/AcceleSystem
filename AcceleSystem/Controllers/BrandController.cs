@@ -10,5 +10,13 @@ namespace AcceleSystem.Controllers
         {
             return View();
         }
+        public ActionResult BrandEntry(BrandModel bmodel)
+        {
+            if(string.IsNullOrWhiteSpace(bmodel.Mode))
+                bmodel.Mode = "New";
+            return View(bmodel);
+        }
+
+
     }
 }

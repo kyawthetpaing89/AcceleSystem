@@ -510,12 +510,12 @@
     <Content Include="Views\Brand\BrandList.cshtml" />
     <Content Include="Views\Kanagata\KanagataEntry.cshtml" />
     <Content Include="Views\Kanagata\KanagataList.cshtml" />
+    <Content Include="Views\Brand\BrandEntry.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="obj\Debug\" />
-    <Folder Include="Views\KanagataApi\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -536,6 +536,10 @@
     <ProjectReference Include="..\DL\DL.csproj">
       <Project>{86a23955-7ac1-4263-bc9a-96165936864c}</Project>
       <Name>DL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KanagataBL\KanagataBL.csproj">
+      <Project>{ec4de58b-60f4-495a-ab3e-01d4c305fdce}</Project>
+      <Name>KanagataBL</Name>
     </ProjectReference>
     <ProjectReference Include="..\MessageBL\MessageBL.csproj">
       <Project>{8c241484-f5d3-4ecf-bbc8-46ce34fd85ae}</Project>

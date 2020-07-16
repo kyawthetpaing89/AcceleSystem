@@ -1,4 +1,5 @@
-﻿
+﻿@model Models.KanagataModel
+
 @{
     ViewBag.Title = "KanagataEntry";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -21,20 +22,25 @@
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" class="text-line col-xl-5 text-left" id="MoldCode" name="code" required placeholder="金型コード">
+                            <input type="text" class="text-line col-xl-5 text-left" id="CastingCD" name="castingCD" required placeholder="金型コード">
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="text" class="text-line col-xl-5 text-left" id="MoldName" name="name" required placeholder="金型名">
+                            <input type="text" class="text-line col-xl-5 text-left" id="CastingName" name="Name" required placeholder="金型名">
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
-                        <input type="password" class="text-line col-11" id="BrandName" name="brandname" style="width:91%" required placeholder="ブランド名">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <input type="text" class="text-line col-xl-5 text-left" id="BrandCD" name="brandCD" required placeholder="ブランドコード">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" class="text-line col-xl-5 text-left" id="BrandName" name="brandname" required placeholder="ブランド名">
+                            @*<input type="text" class="text-line col-11" id="BrandName" name="brandname" style="width:91%" required placeholder="ブランド名">*@
+                        </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
-                        <input type="text" class="text-line col-11" id="Date" name="date" style="width:91%" required placeholder="使用期限">
+                        <input type="text" class="text-line col-11" id="UseLimit" name="Limit" style="width:91%" required placeholder="使用期限">
                     </div>
                     <div class="calendar calendar-first" id="calendar_first" style="border:ridge #C0C0C0 0.1px; padding:5px">
                         <div class="calendar_header">
@@ -59,35 +65,196 @@
                     </div>
                 </div>
 
-
-                <div class="col-xs-6 col-md-4"></div>
             </div>
+            <div class="col-xs-6 col-md-4"></div>
         </div>
     </div>
 </div>
 
+
 @section Scripts{
-    <script type="text/javascript">     
-    $(document).ready(function () {
-             $("#MoldCode").focus();
+<script type="text/javascript">
+        $(document).ready(function () {
+            $("#CastingName").focus();
             var Mode = '@Model.Mode';
             if (Mode == 'New') {
                 $('#btnSave').html('登録');
             }
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
-                $("#UserID").prop("readonly", true);
+                $("#CastingCD").prop("readonly", true);
                 ShowData();
             }
             else {
-                $('#btnSave').html('削除');
-                $("#UserID").prop("readonly", true);
-                $("#UserName").prop("readonly", true);
-                $("#Password").prop("readonly", true);
-                ShowData();
+                    $('#btnSave').html('削除');
+                    $("#CastingCD").prop("readonly", true);
+                    $("#CastingName").prop("readonly", true);
+                    $("#BrandName").prop("readonly", true);
+                    $("#UseLimit").prop("readonly", true);
+                    ShowData();
+                 }
+        });
+
+        $('#CastingCD').on("keypress", function (e) {
+            if (e.keyCode == 13) {
+                $('#CastingName').focus();
             }
         });
-    </script>
 
-       <script src="@Url.Content("~/Scripts/calendar.js")"></script>
+        $('#CastingName').on("keypress", function (e) {
+            if (e.keyCode == 13) {
+                $('#BrandCD').focus();
+            }
+        });
+
+        $('#BrandCD').on("keypress", function (e) {
+            if (e.keyCode == 13) {
+                $('#BrandName').focus();
+            }
+        });
+
+        $('#BrandName').on("keypress", function (e) {
+            if (e.keyCode == 13) {
+                $('#UseLimit').focus();
+            }
+        });
+
+        $('#UseLimit').on("keypress", function (e) {
+            if (e.keyCode == 13) {
+                $('#btnSave').focus();
+            }
+        });
+
+
+        //set data
+        function ShowData() {
+            var kgmodel = {
+                CastingCD: '@Model.CastingCD',
+            };
+
+            $.ajax({
+                url: '@Url.Action("M_Casting_Select", "api/KanagataApi")',
+                method: 'Post',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(kgmodel),
+                headers:
+                {
+                    Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
+                },
+                success: function (data) {
+                    var userdata = JSON.parse(data);
+                    $("#CastingCD").val(userdata[0].CastingCD);
+                    $("#CastingName").val(userdata[0].CastingName);
+                    $("#BrandCD").val(userdata[0].BrandCD);
+                    $("#BrandName").val(userdata[0].BrandName);
+                    $("#UseLimit").val(userdata[0].UseLimit);
+                }
+            });
+        }
+        
+        function DoProcess() {
+             var kgmodel = {
+                 CastingCD: $("#CastingCD").val(),
+                 CastingName: $("#CastingName").val(),
+                 BrandCD: $("#BrandCD").val(),
+                 BrandName: $("#BrandName").val(),
+                 UseLimit: $("#UseLimit").val(),
+                 Mode:'@Model.Mode'
+            };
+
+             $.ajax({
+                url: '@Url.Action("Casting_CUD", "api/KanagataApi")',
+                method: 'POST',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                 data: JSON.stringify(kgmodel),
+                headers:
+                {
+                    Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
+                },
+                 success: function (msg) {
+                     var message = JSON.parse(msg);
+                     Swal.fire({
+                         icon: message[0].status,
+                         title: message[0].MessageID,
+                         text: message[0].MessageText1,
+                     }).then(function () {
+                         if (message[0].status != "error")
+                             //location.href = '@Url.Action("UserEntry", "User")';
+                         //else
+                             location.href = '@Url.Action("KanagataList", "Kanagata")';
+                     });
+                 }
+            });
+        }
+
+
+        var focusControl;
+        function ErrorCheck() {
+            if (!$("#CastingCD").val()) {
+                focusControl = $("#CastingCD");
+                return "I102";
+            }
+            else if (!$("#CastingName").val()) {
+                focusControl = $("#CastingName");
+                return "I102";
+            }
+            return "0";
+        }
+
+
+        //save
+        function btnSaveClick() {
+            var msgID = ErrorCheck();
+            if (msgID == "0") {
+                var Mode = '@Model.Mode';
+                //show confirm message
+                if (Mode == "Delete") {
+                    $.when(GetMessage("Q102", '@Url.Action("M_Message_Select", "api/MessageApi")')).done(function (data) {
+                        var msgdata = JSON.parse(data);
+                        Swal.fire({
+                            title: msgdata[0].MessageID,
+                            text: msgdata[0].MessageText1,
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#d33',
+                            cancelButtonColor: '#3085d6',
+                            confirmButtonText: 'はい。',
+                            cancelButtonText: 'いいえ。'
+                        }).then((result) => {
+                            if (result.value) {
+                                DoProcess();
+                            }
+                        })
+                    })
+                }
+                else {
+                    DoProcess();
+                }
+            }
+            else {
+                $.when(GetMessage("E102", '@Url.Action("M_Message_Select", "api/MessageApi")')).done(function (data) {
+                    var msgdata = JSON.parse(data);
+
+                    Swal.fire({
+                        icon: 'error',
+                        title: msgdata[0].MessageID,
+                        text: msgdata[0].MessageText1,
+                    }).then(function () {
+
+                     });
+                })
+                $(focusControl).focus();
+            }
+        }
+
+        function btnCancelClick() {
+            location.href = '@Url.Action("KanagataList", "Kanagata")';
+        }
+
+
+</script>
+    <script src="@Url.Content("~/Scripts/calendar.js")"></script>
 }
+
