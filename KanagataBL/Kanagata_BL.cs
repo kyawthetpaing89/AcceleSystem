@@ -58,5 +58,14 @@ namespace KanagataBL
             }
             return bdl.SelectJson(kgmodel.SPName, kgmodel.Sqlprms);
         }
+
+        public string M_BrandName_Select(KanagataModel kgmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            kgmodel.Sqlprms = new SqlParameter[1];
+            kgmodel.Sqlprms[0] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = (object)kgmodel.BrandCD ?? DBNull.Value };
+            return bdl.SelectJson("M_BrandName_Select", kgmodel.Sqlprms);
+        }
+
     }
 }
