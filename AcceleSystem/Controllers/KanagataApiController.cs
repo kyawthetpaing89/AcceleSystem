@@ -23,5 +23,12 @@ namespace AcceleSystem.Controllers
             Kanagata_BL kgbl = new Kanagata_BL();
             return kgbl.Casting_CUD(kgmodel);
         }
+        [UserAuthentication]
+        [HttpPost]
+        public string M_BrandName_Select([FromBody] KanagataModel kgmodel)
+        {
+            Kanagata_BL kgbl = new Kanagata_BL();
+            return kgbl.M_BrandName_Select(kgmodel);
+        }
     }
 }
