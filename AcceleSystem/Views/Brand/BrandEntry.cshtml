@@ -18,12 +18,12 @@
                 </div>
                 <div class="pt-5 md-form">
                     @*<label for="lblUserID">UserID</label>*@
-                    <input type="text" class="text-line" id="BrandCD" name="id" maxlength="20" required placeholder="BrandCD">
+                    <input type="text" class="text-line" id="BrandCD" name="id" maxlength="20" required placeholder="ブランドコード">
                     @*<span id="errid" class="color-red"></span>*@
                 </div>
                 <div class="pt-5 md-form">
                     @*<label for="lblPassword">Password</label>*@
-                    <input type="text" class="text-line" id="BrandName" maxlength="10" name="name" required placeholder="BrandName">
+                    <input type="text" class="text-line" id="BrandName" maxlength="10" name="name" required placeholder="ブランド名">
                     @*<span id="errpass" class="color-red"></span>*@
                 </div>
                 <div>
@@ -48,7 +48,7 @@
 @section Scripts{
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#formtitle").text("BrandEntry");
+            $("#formtitle").text("ブランド登録");
             var Mode = '@Model.Mode';
             if (Mode == 'New') {
                 $('#btnSave').html('登録');

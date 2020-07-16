@@ -1,6 +1,7 @@
 ﻿.dataTables_paginate {
     width: 100%;
     text-align: center;
+
 }
 
 #tblUser {
@@ -11,9 +12,18 @@
         border-top: 1px solid #d3dcd3;
     }
 
-    #tblBrand td{
-        border-top: 1px solid #d3dcd3;
+
+    #tblBrand tr {
+        border-left: 1px solid #d3dcd3;
+        border-right: 1px solid #d3dcd3;
+        border-bottom: 1px solid #d3dcd3;
+        
     }
+
+    #tblBrand tr td {
+        padding-left: 30px;
+    }
+
 
 .text-line{
     color:black !important;
