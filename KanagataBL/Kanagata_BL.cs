@@ -16,8 +16,9 @@ namespace KanagataBL
         public string M_Casting_Select(KanagataModel kgmodel)
         {
             BaseDL bdl = new BaseDL();
-            kgmodel.Sqlprms = new SqlParameter[1];
-            kgmodel.Sqlprms[0] = new SqlParameter("@CastingCD", SqlDbType.VarChar) { Value = (object)kgmodel.CastingCD ?? DBNull.Value };          
+            kgmodel.Sqlprms = new SqlParameter[2];
+            kgmodel.Sqlprms[0] = new SqlParameter("@CastingCD", SqlDbType.VarChar) { Value = (object)kgmodel.CastingCD ?? DBNull.Value };
+            kgmodel.Sqlprms[1] = new SqlParameter("@CastingName", SqlDbType.VarChar) { Value = (object)kgmodel.CastingName ?? DBNull.Value };
             return bdl.SelectJson("M_Casting_Select", kgmodel.Sqlprms);
         }
 
