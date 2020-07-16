@@ -16,7 +16,7 @@
             </div>
             <div class="col-sm-7 col-md-6">
                 <i class="fa fa-search" style="padding-left:15px;"></i>
-                <input type="text" id="myInput" placeholder="Search" class="border border-white" style="width:80%;padding-bottom:10px">
+                <input type="text" id="myInput" placeholder="金型名入力" class="border border-white" style="width:80%;padding-bottom:10px">
                 <table id="tblCasting" class="tb1 col-sm-12" style="padding-left:0px;">
                     <thead>
                         <tr>
@@ -46,6 +46,7 @@
             var kgmodel = {
                 CastingName: $('#myInput').val(),
             };
+            
             $.ajax({
             type: "Post",
             url:"@Url.Action("M_Casting_Select", "api/KanagataApi")",
@@ -63,7 +64,6 @@
     }
         function BindTable(response) {
             table = $('#tblCasting').DataTable({
-
                 data: JSON.parse(response),
                 "bFilter": false,
                 "bLengthChange": false,
