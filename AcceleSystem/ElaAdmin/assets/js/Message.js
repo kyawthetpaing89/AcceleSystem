@@ -1,6 +1,6 @@
-﻿function GetMessage(MessageID,url) {
+﻿function GetMessage(msgid, url) {
     var Mmodel = {
-        MessageID: MessageID,
+        MessageID: msgid,
     };
     return $.ajax({
         url: url,
@@ -12,6 +12,9 @@
         {
             Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
         },
+        success: function (msg) {
+            return msg;
+        }
     });
 }
 
