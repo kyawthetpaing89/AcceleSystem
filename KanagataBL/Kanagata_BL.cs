@@ -43,20 +43,29 @@ namespace KanagataBL
                 kgmodel.Sqlprms[1] = new SqlParameter("@CastingName", SqlDbType.VarChar) { Value = kgmodel.CastingName };
                 kgmodel.Sqlprms[2] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = kgmodel.BrandCD };
                 kgmodel.Sqlprms[3] = new SqlParameter("@BrandName", SqlDbType.VarChar) { Value = kgmodel.BrandName };
-                kgmodel.Sqlprms[4] = new SqlParameter("@UseLimit", SqlDbType.Date) { Value = kgmodel.UseLimit };
+                kgmodel.Sqlprms[4] = new SqlParameter("@UseLimit", SqlDbType.VarChar) { Value = kgmodel.UseLimit };
 
             }
             else if (kgmodel.Mode.Equals("Delete"))
             {
                 kgmodel.SPName = "M_Casting_Delete";
-                kgmodel.Sqlprms = new SqlParameter[5];
+                kgmodel.Sqlprms = new SqlParameter[1];
                 kgmodel.Sqlprms[0] = new SqlParameter("@CastingCD", SqlDbType.VarChar) { Value = kgmodel.CastingCD };
-                kgmodel.Sqlprms[1] = new SqlParameter("@CastingName", SqlDbType.VarChar) { Value = kgmodel.CastingName };
-                kgmodel.Sqlprms[2] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = kgmodel.BrandCD };
-                kgmodel.Sqlprms[3] = new SqlParameter("@BrandName", SqlDbType.VarChar) { Value = kgmodel.BrandName };
-                kgmodel.Sqlprms[4] = new SqlParameter("@UseLimit", SqlDbType.Date) { Value = kgmodel.UseLimit };
+                //kgmodel.Sqlprms[1] = new SqlParameter("@CastingName", SqlDbType.VarChar) { Value = kgmodel.CastingName };
+                //kgmodel.Sqlprms[2] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = kgmodel.BrandCD };
+                //kgmodel.Sqlprms[3] = new SqlParameter("@BrandName", SqlDbType.VarChar) { Value = kgmodel.BrandName };
+                //kgmodel.Sqlprms[4] = new SqlParameter("@UseLimit", SqlDbType.VarChar) { Value = kgmodel.UseLimit };
             }
             return bdl.SelectJson(kgmodel.SPName, kgmodel.Sqlprms);
         }
+
+        public string M_BrandName_Select(KanagataModel kgmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            kgmodel.Sqlprms = new SqlParameter[1];
+            kgmodel.Sqlprms[0] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = (object)kgmodel.BrandCD ?? DBNull.Value };
+            return bdl.SelectJson("M_BrandName_Select", kgmodel.Sqlprms);
+        }
+
     }
 }

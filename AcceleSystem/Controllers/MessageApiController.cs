@@ -19,7 +19,6 @@ namespace AcceleSystem.Controllers
             {
                 Mmodel = new MessageModel();
             }
-
             Message_BL msgBL = new Message_BL();
             return msgBL.M_Message_Select(Mmodel);
         }

@@ -109,6 +109,7 @@
 
         $('#BrandCD').on("keypress", function (e) {
             if (e.keyCode == 13) {
+                BrandName();
                 $('#BrandName').focus();
             }
         });
@@ -123,8 +124,28 @@
             if (e.keyCode == 13) {
                 $('#btnSave').focus();
             }
-        });
+    });
 
+    function BrandName() {
+         var kgmodel = {
+               BrandCD: $("#BrandCD").val(),
+                };
+                  $.ajax({
+                url: '@Url.Action("M_BrandName_Select", "api/KanagataApi")',
+                method: 'Post',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(kgmodel),
+                headers:
+                {
+                    Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
+                },
+                success: function (data) {
+                    var userdata = JSON.parse(data);                  
+                    $("#BrandName").val(userdata[0].BrandName);
+                }
+            });
+    }
 
         //set data
         function ShowData() {
