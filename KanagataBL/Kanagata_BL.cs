@@ -32,7 +32,7 @@ namespace KanagataBL
                 kgmodel.Sqlprms[1] = new SqlParameter("@CastingName", SqlDbType.VarChar) { Value = kgmodel.CastingName };
                 kgmodel.Sqlprms[2] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = kgmodel.BrandCD };
                 kgmodel.Sqlprms[3] = new SqlParameter("@BrandName", SqlDbType.VarChar) { Value = kgmodel.BrandName };
-                kgmodel.Sqlprms[4] = new SqlParameter("@UseLimit", SqlDbType.Date) { Value = kgmodel.UseLimit };
+                kgmodel.Sqlprms[4] = new SqlParameter("@UseLimit", SqlDbType.VarChar) { Value = kgmodel.UseLimit };
 
             }
             else if (kgmodel.Mode.Equals("Edit"))
