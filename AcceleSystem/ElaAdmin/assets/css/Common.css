@@ -15,6 +15,10 @@
         border-top: 1px solid #d3dcd3;
     }
 
+    #tblCasting td {
+        border-top: 1px solid #d3dcd3;
+    }
+
 .text-line{
     color:black !important;
 }
