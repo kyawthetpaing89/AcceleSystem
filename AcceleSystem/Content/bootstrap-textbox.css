@@ -17,3 +17,7 @@
 .hr-text {
     color: #C0C0C0;
 }
+
+.text-center:focus {
+    background: gray;
+}
