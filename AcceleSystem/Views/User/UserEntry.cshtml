@@ -17,18 +17,18 @@
                 </div>
                 <div class="pt-5 md-form">
                     @*<label for="lblUserName">User Name</label>*@
-                    <input type="text" tabindex="0" class="text-line" id="UserName" name="name" maxlength="40" onkeypress="EnterKeyPress(event)" required placeholder="ユーザー名" >
+                    <input type="text" tabindex="1" class="text-line" id="UserName" name="name" maxlength="40" onkeypress="EnterKeyPress(event,this,true)" required placeholder="ユーザー名" >
                     <label id="lblUserNameErr" style="color:red;display:none"></label>
                     @*<span id="errname" class="color-red"></span>*@
                 </div>
                 <div class="pt-5 md-form">
                     @*<label for="lblUserID">UserID</label>*@
-                    <input type="text" tabindex="1" class="text-line" id="UserID" name="id" maxlength="20" required placeholder="ユーザーID">
+                    <input type="text" tabindex="2" class="text-line" id="UserID" onkeypress="EnterKeyPress(event,this,true)" name="id" maxlength="20" required placeholder="ユーザーID">
                     @*<span id="errid" class="color-red"></span>*@
                 </div>
                 <div class="pt-5 md-form">
                     @*<label for="lblPassword">Password</label>*@
-                    <input type="password" tabindex="2" class="text-line" id="Password" maxlength="10" name="pass" required placeholder="パスワード">
+                    <input type="password" tabindex="3" class="text-line" id="Password" onkeypress="EnterKeyPress(event,this,true)" maxlength="10" name="pass" required placeholder="パスワード">
                     @*<span id="errpass" class="color-red"></span>*@
                 </div>
                 <div>
@@ -37,7 +37,7 @@
                 <div class="pt-5 md-form">
                     <div class="col-xl-12 text-center">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <button id="btnSave" onclick="btnSaveClick()" class="btn btn-dark col-xl-5 text-center"></button>
+                            <button id="btnSave" tabindex="4" onclick="btnSaveClick()" class="btn btn-dark col-xl-5 text-center"></button>
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <button id="btnCancel" onclick="btnCancelClick()" class="btn btn-primary col-xl-5 text-center">戻る</button>
                         </div>
@@ -74,18 +74,6 @@
 
 
         });
-
-        //$('#UserName').on("keypress", function (e) {        //    if (e.keyCode == 13) {        //        if (RequireCheck($('#UserName')) == "0")         //            $('#UserID').focus();        //    }        //});
-
-        //$('#UserID').on("keypress", function (e) {        //    if (e.keyCode == 13) {        //        $('#Password').focus();        //    }        //});
-
-        //$('#Password').on("keypress", function (e) {        //    if (e.keyCode == 13) {        //        $('#btnSave').focus();        //    }        //});
-
-        function EnterKeyPress(e) {
-            if (e.keyCode == 13) {
-                $(this).next(':input').focus();
-            }
-        }
 
         //set data
         function ShowData() {
@@ -164,14 +152,6 @@
             return "0";
         }
 
-        function RequireCheck(control) {
-            if (!$(control).val()) {
-                focusControl = $(control);
-                return "I102";
-            }
-            return "0";
-        }
-
         //save
         function btnSaveClick() {
             var msgID = ErrorCheck();
@@ -179,7 +159,7 @@
                 var Mode = '@Model.Mode';
                 //show confirm message
                 if (Mode == "Delete") {
-                    $.when(GetMessage("Q102", '@Url.Action("M_Message_Select", "api/MessageApi")')).done(function (data) {
+                    $.when(GetMessage("Q102")).done(function (data) {
                         var msgdata = JSON.parse(data);
                         Swal.fire({
                             title: msgdata[0].MessageID,
@@ -202,7 +182,7 @@
                 }
             }
             else {
-                $.when(GetMessage("E102", '@Url.Action("M_Message_Select", "api/MessageApi")')).done(function (data) {
+                $.when(GetMessage("E102")).done(function (data) {
                     var msgdata = JSON.parse(data);
 
                     Swal.fire({

@@ -82,7 +82,7 @@
                             <li><i class=""></i><a href="~/Brand/BrandList">ブランド検索</a></li>
                             <li><i class=""></i><a href="~/Brand/BrandEntry">ブランド登録</a></li>
                         </ul>
-                        
+
                     </li>
                     <li class="menu-item-has-children">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="menu-icon fa fa-comments"></i>金型管理</a>
@@ -199,6 +199,7 @@
 
         <div class="content bgGrey">
             <div style="padding:0 3em 0 3em">
+                <input type="hidden" id="MessageURL" value="@Url.Action("M_Message_Select", "api/MessageApi")" />
                 @RenderBody()
             </div>
 
@@ -210,6 +211,7 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
     <script src="@Url.Content("~/ElaAdmin/assets/js/SweetAlert2.js")"></script>
     <script src="@Url.Content("~/ElaAdmin/assets/js/Message.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Common.js")"></script>
     <script src="@Url.Content("~/ElaAdmin/assets/js/main.js")"></script>
 
     <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/datatables.min.js")"></script>
@@ -223,11 +225,6 @@
     <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.colVis.min.js")"></script>
     <script src="@Url.Content("~/ElaAdmin/assets/js/init/datatables-init.js")"></script>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#bootstrap-data-table-export').DataTable();
-        });
-    </script>
 
     @RenderSection("scripts", required: false)
     @RenderSection("styles", required: false)
