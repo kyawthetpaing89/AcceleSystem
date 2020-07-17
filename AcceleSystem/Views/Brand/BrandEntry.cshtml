@@ -8,24 +8,22 @@
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
 }
 
-
-
 <div class="container-fluid">
     <div class="content">
         <div class="p-5 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white; border-radius:5px;">
             <div class="col-xs-6 col-md-4"></div>
             <div class="col-xs-6 col-md-4">
                 <div>
-                    <h3 class=" hr-text text-center">ブランド登録</h3>
+                    <h2 class=" hr-text text-center">ユーザー登録</h2>
                 </div>
                 <div class="pt-5 md-form">
                     @*<label for="lblUserID">UserID</label>*@
-                    <input type="text" class="text-line" id="BrandCD" name="id" maxlength="20" required placeholder="ブランドコード">
+                    <input type="text" class="text-line" id="BrandCD" name="id" maxlength="20" required placeholder="BrandCD">
                     @*<span id="errid" class="color-red"></span>*@
                 </div>
                 <div class="pt-5 md-form">
                     @*<label for="lblPassword">Password</label>*@
-                    <input type="text" class="text-line" id="BrandName" maxlength="10" name="name" required placeholder="ブランド名">
+                    <input type="text" class="text-line" id="BrandName" maxlength="10" name="name" required placeholder="BrandName">
                     @*<span id="errpass" class="color-red"></span>*@
                 </div>
                 <div>
@@ -50,7 +48,7 @@
 @section Scripts{
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#formtitle").text("ブランド登録");
+            $("#formtitle").text("BrandEntry");
             var Mode = '@Model.Mode';
             if (Mode == 'New') {
                 $('#btnSave').html('登録');
@@ -69,6 +67,10 @@
 
 
         });
+        $('#BrandName').on("keypress", function (e) {            if (e.keyCode == 13) {                $('#BrandCD').focus();            }        });
+
+        $('#BrandCD').on("keypress", function (e) {            if (e.keyCode == 13) {                $('#btnSave').focus();            }        });
+
 
         //set data
         function ShowData() {
