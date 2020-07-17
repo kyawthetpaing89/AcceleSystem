@@ -14,17 +14,18 @@
             <div class="col-xs-6 col-md-4"></div>
             <div class="col-xs-6 col-md-4">
                 <div>
-                    <h2 class=" hr-text text-center">ユーザー登録</h2>
+                    <h3 class=" hr-text text-center">ブランド登録</h3>
                 </div>
                 <div class="pt-5 md-form">
-                    @*<label for="lblUserID">UserID</label>*@
-                    <input type="text" class="text-line" id="BrandCD" name="id" maxlength="20" required placeholder="BrandCD">
-                    @*<span id="errid" class="color-red"></span>*@
+                    
+                    <input type="text" class="text-line" id="BrandCD" name="brandCD" maxlength="20" required placeholder="ブランドコード">
+                    
                 </div>
                 <div class="pt-5 md-form">
-                    @*<label for="lblPassword">Password</label>*@
-                    <input type="text" class="text-line" id="BrandName" maxlength="10" name="name" required placeholder="BrandName">
-                    @*<span id="errpass" class="color-red"></span>*@
+
+                    <input type="text" class="text-line" id="BrandName" maxlength="10" name="brandName" required placeholder="ブランド名">
+                    <label id="lblBrandNameErr" style="color:red;display:none"></label>
+
                 </div>
                 <div>
                     <span id="errexist" class="color-red"></span>
@@ -48,7 +49,7 @@
 @section Scripts{
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#formtitle").text("BrandEntry");
+            $("#formtitle").text("ブランド登録");
             var Mode = '@Model.Mode';
             if (Mode == 'New') {
                 $('#btnSave').html('登録');
@@ -67,9 +68,9 @@
 
 
         });
-        $('#BrandName').on("keypress", function (e) {            if (e.keyCode == 13) {                $('#BrandCD').focus();            }        });
+        $('#BrandCD').on("keypress", function (e) {            if (e.keyCode == 13) {                $('#BrandName').focus();            }        });
 
-        $('#BrandCD').on("keypress", function (e) {            if (e.keyCode == 13) {                $('#btnSave').focus();            }        });
+        $('#BrandName').on("keypress", function (e) {            if (e.keyCode == 13) {                $('#btnSave').focus();            }        });
 
 
         //set data
