@@ -32,6 +32,19 @@ namespace AcceleSystem.Controllers
             return Ubl.M_User_Select(Umodel);
         }
 
+        
+        [UserAuthentication]
+        [HttpPost]
+        public string M_User_ExistsCheck([FromBody] UserModel Umodel)
+        {
+            if (Umodel == null)
+            {
+                Umodel = new UserModel();
+            }
+            User_BL Ubl = new User_BL();
+            return Ubl.M_User_ExistsCheck(Umodel);
+        }
+
         [UserAuthentication]
         [HttpPost]
         public string User_CUD([FromBody] UserModel Umodel)

@@ -25,6 +25,15 @@ namespace UserBL
             Umodel.Sqlprms[1] = new SqlParameter("@UserName", SqlDbType.VarChar) { Value = (object)Umodel.UserName ?? DBNull.Value };
             return bdl.SelectJson("M_User_Select", Umodel.Sqlprms);
         }
+
+        public string M_User_ExistsCheck(UserModel Umodel)
+        {
+            BaseDL bdl = new BaseDL();
+            Umodel.Sqlprms = new SqlParameter[1];
+            Umodel.Sqlprms[0] = new SqlParameter("@ID", SqlDbType.VarChar) { Value = (object)Umodel.UserID ?? DBNull.Value };
+            return bdl.SelectJson("M_User_ExistsCheck", Umodel.Sqlprms);
+        }
+
         public string User_CUD(UserModel Umodel)
         {
             BaseDL bdl = new BaseDL();
