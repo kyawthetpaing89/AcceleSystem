@@ -72,7 +72,7 @@
                 $("#Password").prop("readonly", true);
                 ShowData();
             }
-        });   
+        });
 
         //set data
         function ShowData() {
@@ -101,6 +101,7 @@
 
         //insert,update,delete
         function DoProcess() {
+            focusControl = $("#UserID");
             var Umodel = {
                 UserID: $("#UserID").val(),
                 UserName: $("#UserName").val(),
@@ -126,8 +127,6 @@
                          text: message[0].MessageText1,
                      }).then(function () {
                          if (message[0].status != "error")
-                             @*location.href = '@Url.Action("UserEntry", "User")';
-                         else*@
                              location.href = '@Url.Action("UserList", "User")';
                      });
                  }
@@ -148,51 +147,52 @@
                 focusControl = $("#Password");
                 return "I102";
             }
+
             return "0";
         }
 
         //save
         function btnSaveClick() {
-            var msgID = ErrorCheck();
-            if (msgID == "0") {
-                var Mode = '@Model.Mode';
-                //show confirm message
-                if (Mode == "Delete") {
-                    $.when(GetMessage("Q102")).done(function (data) {
-                        var msgdata = JSON.parse(data);
-                        Swal.fire({
-                            title: msgdata[0].MessageID,
-                            text: msgdata[0].MessageText1,
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#d33',
-                            cancelButtonColor: '#3085d6',
-                            confirmButtonText: 'はい。',
-                            cancelButtonText: 'いいえ。'
-                        }).then((result) => {
-                            if (result.value) {
-                                DoProcess();
-                            }
-                        })
-                    })
-                }
-                else {
-                    DoProcess();
-                }
-            }
-            else {
-                $.when(GetMessage("E102")).done(function (data) {
+             var Mode = '@Model.Mode';
+            //show confirm message
+            if (Mode == "Delete") {
+                $.when(GetMessage("Q102")).done(function (data) {
                     var msgdata = JSON.parse(data);
-
                     Swal.fire({
-                        icon: 'error',
                         title: msgdata[0].MessageID,
                         text: msgdata[0].MessageText1,
-                    }).then(function () {
-
-                     });
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'はい。',
+                        cancelButtonText: 'いいえ。'
+                    }).then((result) => {
+                        if (result.value) {
+                            DoProcess();
+                        }
+                    })
                 })
-                $(focusControl).focus();
+            }
+            else {
+                var msgID = ErrorCheck();
+                if (msgID == "0") {
+                    DoProcess();
+                    $(focusControl).focus();
+                }
+                else {
+                    $.when(GetMessage("E102")).done(function (data) {
+                        var msgdata = JSON.parse(data);
+
+                        Swal.fire({
+                            icon: 'error',
+                            title: msgdata[0].MessageID,
+                            text: msgdata[0].MessageText1,
+                            }).then(function () {
+                        });
+                    })
+                    $(focusControl).focus();
+                }
             }
         }
         function btnCancelClick() {
