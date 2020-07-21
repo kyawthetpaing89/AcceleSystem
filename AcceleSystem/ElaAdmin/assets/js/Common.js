@@ -44,68 +44,42 @@ function EnterKeyPress(e, ctrl,isRequired,AEFlag,type) {
             else {
                 if (AEFlag == 1) {
                     if (type == 1) {
-                        var Umodel = {
+                        var model = {
                             UserID: $(ctrl).val(),
                         };
-                        $.ajax({
-                            url: $("#UserAPIURL").val(),
-                            method: 'Post',
-                            dataType: 'json',
-                            contentType: 'application/json; charset=utf-8',
-                            data: JSON.stringify(Umodel),
-                            headers:
-                            {
-                                Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-                            },
-                            success: function (msg) {
-                                var msgdata = JSON.parse(msg);
-                                if (msgdata[0].MessageID != "0") {
-                                    Swal.fire({
-                                        icon: 'error',
-                                        title: msgdata[0].MessageID,
-                                        text: msgdata[0].MessageText1,
-                                    }).then(function () {
-                                        $(ctrl).focus();
-                                    });
-                                }
-                                else {
-                                    moveNext(ctrl);
-                                }
-                            }
-                        });
                     }
                     else if (type == 2) {
-                        var bmodel = {
+                        var model = {
                             BrandCD: $(ctrl).val()
                         };
-                        $.ajax({
-                            url: $("#BrandAPIURL").val(),
-                            method: 'Post',
-                            dataType: 'json',
-                            contentType: 'application/json; charset=utf-8',
-                            data: JSON.stringify(bmodel),
-                            headers:
-                            {
-                                Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-                            },
-                            success: function (msg) {
-                                var msgdata = JSON.parse(msg);
-                                if (msgdata[0].MessageID != "0") {
-                                    Swal.fire({
-                                        icon: 'error',
-                                        title: msgdata[0].MessageID,
-                                        text: msgdata[0].MessageText1,
-                                    }).then(function () {
-                                        $(ctrl).focus();
-                                    });
-                                }
-                                else {
-                                    moveNext(ctrl);
-                                }
-                            }
-                        });
                     }
-                    
+                    $.ajax({
+                        //url: $("#UserAPIURL").val(),
+                        url: $("#APIURL").val(),
+                        method: 'Post',
+                        dataType: 'json',
+                        contentType: 'application/json; charset=utf-8',
+                        data: JSON.stringify(model),
+                        headers:
+                        {
+                            Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
+                        },
+                        success: function (msg) {
+                            var msgdata = JSON.parse(msg);
+                            if (msgdata[0].MessageID != "0") {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: msgdata[0].MessageID,
+                                    text: msgdata[0].MessageText1,
+                                }).then(function () {
+                                    $(ctrl).focus();
+                                });
+                            }
+                            else {
+                                moveNext(ctrl);
+                            }
+                        }
+                    });
                 }
                 else
                     moveNext(ctrl);

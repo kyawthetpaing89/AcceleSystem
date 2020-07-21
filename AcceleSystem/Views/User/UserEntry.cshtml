@@ -23,12 +23,12 @@
                 </div>
                 <div class="pt-5 md-form">
                     @*<label for="lblUserID">UserID</label>*@
-                    <input type="text" tabindex="2" class="text-line" id="UserID" onkeypress="EnterKeyPress(event,this,true,1)" name="id" maxlength="20" required placeholder="ユーザーID">
+                    <input type="text" tabindex="2" class="text-line" id="UserID" onkeypress="EnterKeyPress(event,this,true,1,1)" name="id" maxlength="20" required placeholder="ユーザーID">
                     @*<span id="errid" class="color-red"></span>*@
                 </div>
                 <div class="pt-5 md-form">
                     @*<label for="lblPassword">Password</label>*@
-                    <input type="password" tabindex="3" class="text-line" id="Password" onkeypress="EnterKeyPress(event,this,true,0)" maxlength="10" name="pass" required placeholder="パスワード">
+                    <input type="password" tabindex="3" class="text-line" id="Password" onkeypress="EnterKeyPress(event,this,true,0,1)" maxlength="10" name="pass" required placeholder="パスワード">
                     @*<span id="errpass" class="color-red"></span>*@
                 </div>
                 <div>
@@ -43,7 +43,7 @@
                         </div>
                     </div>
                 </div>
-                <input type="hidden" id="UserAPIURL" value="@Url.Action("M_User_ExistsCheck", "api/UserApi")" />
+                <input type="hidden" id="APIURL" value="@Url.Action("M_User_ExistsCheck", "api/UserApi")" />
             </div>
             <div class="col-xs-6 col-md-4"></div>
         </div>
