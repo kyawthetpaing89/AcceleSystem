@@ -101,7 +101,7 @@
 
         //insert,update,delete
         function DoProcess() {
-            //focusControl = $("#UserID");
+            focusControl = $("#UserID");
             var Umodel = {
                 UserID: $("#UserID").val(),
                 UserName: $("#UserName").val(),
@@ -125,20 +125,20 @@
                              icon: message[0].status,
                              title: message[0].MessageID,
                              text: message[0].MessageText1,
-                     @*}).then(function () {
+                     }).then(function () {
                          if (message[0].status != "error")
                              location.href = '@Url.Action("UserList", "User")';
                          else 
                              focusControl = $("#UserID");
-                     });*@
-                         }).then((result) => {
+                     });
+                         @*}).then((result) => {
                              if (result) {
                                  if (message[0].status != "error")
                                      location.href = '@Url.Action("UserList", "User")';
                                  else
                                      focusControl = $("#UserID");
                              }
-                         });
+                         });*@
                      }
                  //}
             });
