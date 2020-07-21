@@ -17,6 +17,15 @@ namespace BrandBL
 
             return bdl.SelectJson("M_Brand_Select", bmodel.Sqlprms);
         }
+
+        public string M_Brand_ExistsCheck(BrandModel bmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            bmodel.Sqlprms = new SqlParameter[1];
+            bmodel.Sqlprms[0] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = (object)bmodel.BrandCD ?? DBNull.Value };
+            return bdl.SelectJson("M_Brand_ExistsCheck", bmodel.Sqlprms);
+        }
+
         public string Brand_CUD(BrandModel bmodel)
         {
             BaseDL bdl = new BaseDL();
