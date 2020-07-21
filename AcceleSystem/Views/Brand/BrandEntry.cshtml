@@ -18,12 +18,12 @@
                 </div>
                 <div class="pt-5 md-form">
 
-                    <input type="text" tabindex="1" class="text-line" id="BrandCD" name="brandCD" maxlength="20" onkeypress="EnterKeyPress(event,this,true,0)" required placeholder="ブランドコード">
+                    <input type="text" tabindex="1" class="text-line" id="BrandCD" name="brandCD" maxlength="20" onkeypress="EnterKeyPress(event,this,true,1,2)" required placeholder="ブランドコード">
 
                 </div>
                 <div class="pt-5 md-form">
 
-                    <input type="text" tabindex="2" class="text-line" id="BrandName" maxlength="10" name="brandName" onkeypress="EnterKeyPress(event,this,true,1)" required placeholder="ブランド名">
+                    <input type="text" tabindex="2" class="text-line" id="BrandName" maxlength="40" name="brandName" onkeypress="EnterKeyPress(event,this,true,0,2)" required placeholder="ブランド名">
                     <label id="lblBrandNameErr" style="color:red;display:none"></label>
 
                 </div>
@@ -48,7 +48,7 @@
 
 
 @section Scripts{
-    <script type="text/javascript">
+<script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("ブランド登録");
             $("#BrandCD").focus();
@@ -70,11 +70,6 @@
 
 
         });
-
-        //$('#BrandCD').on("keypress", function (e) {        //    if (e.keyCode == 13) {        //        $('#BrandName').focus();        //    }        //});
-
-        //$('#BrandName').on("keypress", function (e) {        //    if (e.keyCode == 13) {        //        $('#btnSave').focus();        //    }        //});
-
 
         //set data
         function ShowData() {
@@ -102,38 +97,40 @@
         }
 
         //insert,update,delete
-        function DoProcess() {
-            var bmodel = {
-                BrandCD: $("#BrandCD").val(),
-                BrandName: $("#BrandName").val(),
-                Mode:'@Model.Mode'
-            };
+    function DoProcess() {
+      focusControl = $("#BrandCD");
+      var bmodel = {
+          BrandCD: $("#BrandCD").val(),
+          BrandName: $("#BrandName").val(),
+          Mode:'@Model.Mode'
+      };
 
-             $.ajax({
-                url: '@Url.Action("Brand_CUD", "api/BrandApi")',
-                method: 'POST',
-                dataType: 'json',
-                contentType: 'application/json; charset=utf-8',
-                data: JSON.stringify(bmodel),
-                headers:
-                {
-                    Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-                },
-                 success: function (msg) {
-                     var message = JSON.parse(msg);
-                     Swal.fire({
-                         icon: message[0].status,
-                         title: message[0].MessageID,
-                         text: message[0].MessageText1,
-                     }).then(function () {
-                         if (message[0].status != "error")
-                             @*location.href = '@Url.Action("BrandEntry", "Brand")';
-                         else*@
-                             location.href = '@Url.Action("BrandList", "Brand")';
-                     });
-                 }
-            });
-        }
+       $.ajax({
+          url: '@Url.Action("Brand_CUD", "api/BrandApi")',
+          method: 'POST',
+          dataType: 'json',
+          contentType: 'application/json; charset=utf-8',
+          data: JSON.stringify(bmodel),
+          headers:
+          {
+              Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
+          },
+           success: function (msg) {
+               var message = JSON.parse(msg);
+               Swal.fire({
+                   icon: message[0].status,
+                   title: message[0].MessageID,
+                   text: message[0].MessageText1,
+
+               }).then(function () {
+                   if (message[0].status != "error")
+                       location.href = '@Url.Action("BrandList", "Brand")';
+                   else
+                      focusfocusControl = $("#BrandCD");
+               });
+           }
+      });
+    }
 
         var focusControl;
         function ErrorCheck() {
@@ -151,46 +148,46 @@
 
         //save
         function btnSaveClick() {
-            var msgID = ErrorCheck();
-            if (msgID == "0") {
-                var Mode = '@Model.Mode';
-                //show confirm message
-                if (Mode == "Delete") {
-                    $.when(GetMessage("Q102", '@Url.Action("M_Message_Select", "api/MessageApi")')).done(function (data) {
-                        var msgdata = JSON.parse(data);
-                        Swal.fire({
-                            title: msgdata[0].MessageID,
-                            text: msgdata[0].MessageText1,
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#d33',
-                            cancelButtonColor: '#3085d6',
-                            confirmButtonText: 'はい。',
-                            cancelButtonText: 'いいえ。'
-                        }).then((result) => {
-                            if (result.value) {
-                                DoProcess();
-                            }
-                        })
-                    })
-                }
-                else {
-                    DoProcess();
-                }
-            }
-            else {
-                $.when(GetMessage("E102", '@Url.Action("M_Message_Select", "api/MessageApi")')).done(function (data) {
+             var Mode = '@Model.Mode';
+            //show confirm message
+            if (Mode == "Delete") {
+                $.when(GetMessage("Q102")).done(function (data) {
                     var msgdata = JSON.parse(data);
-
                     Swal.fire({
-                        icon: 'error',
                         title: msgdata[0].MessageID,
                         text: msgdata[0].MessageText1,
-                    }).then(function () {
-
-                     });
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'はい。',
+                        cancelButtonText: 'いいえ。'
+                    }).then((result) => {
+                        if (result.value) {
+                            DoProcess();
+                        }
+                    })
                 })
-                $(focusControl).focus();
+            }
+            else {
+                var msgID = ErrorCheck();
+                if (msgID == "0") {
+                    DoProcess();
+                    $(focusControl).focus();
+                }
+                else {
+                    $.when(GetMessage("E102")).done(function (data) {
+                        var msgdata = JSON.parse(data);
+
+                        Swal.fire({
+                            icon: 'error',
+                            title: msgdata[0].MessageID,
+                            text: msgdata[0].MessageText1,
+                            }).then(function () {
+                        });
+                    })
+                    $(focusControl).focus();
+                }
             }
         }
         function btnCancelClick() {

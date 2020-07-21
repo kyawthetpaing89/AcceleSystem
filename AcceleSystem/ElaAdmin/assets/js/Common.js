@@ -23,7 +23,8 @@ function GetMessage(msgid) {
 //move to next control on enter(keypressevent,action control,Required,AlreadyExistsCheck)
 //AEFlag 0 = nothing,
 //1 = UserID
-function EnterKeyPress(e, ctrl,isRequired,AEFlag) {
+//2 = Brand
+function EnterKeyPress(e, ctrl,isRequired,AEFlag,type) {
     if (e.keyCode == 13) {
         e.preventDefault();
         if (isRequired) {
@@ -42,35 +43,69 @@ function EnterKeyPress(e, ctrl,isRequired,AEFlag) {
             }
             else {
                 if (AEFlag == 1) {
-                    var Umodel = {
-                        UserID: $(ctrl).val(),
-                    };
-                    $.ajax({
-                        url: $("#UserAPIURL").val(),
-                        method: 'Post',
-                        dataType: 'json',
-                        contentType: 'application/json; charset=utf-8',
-                        data: JSON.stringify(Umodel),
-                        headers:
-                        {
-                            Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-                        },
-                        success: function (msg) {
-                            var msgdata = JSON.parse(msg);
-                            if (msgdata[0].MessageID != "0") {
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: msgdata[0].MessageID,
-                                    text: msgdata[0].MessageText1,
-                                }).then(function () {
-                                    $(ctrl).focus();
-                                });
+                    if (type == 1) {
+                        var Umodel = {
+                            UserID: $(ctrl).val(),
+                        };
+                        $.ajax({
+                            url: $("#UserAPIURL").val(),
+                            method: 'Post',
+                            dataType: 'json',
+                            contentType: 'application/json; charset=utf-8',
+                            data: JSON.stringify(Umodel),
+                            headers:
+                            {
+                                Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
+                            },
+                            success: function (msg) {
+                                var msgdata = JSON.parse(msg);
+                                if (msgdata[0].MessageID != "0") {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: msgdata[0].MessageID,
+                                        text: msgdata[0].MessageText1,
+                                    }).then(function () {
+                                        $(ctrl).focus();
+                                    });
+                                }
+                                else {
+                                    moveNext(ctrl);
+                                }
                             }
-                            else {
-                                moveNext(ctrl);
+                        });
+                    }
+                    else if (type == 2) {
+                        var bmodel = {
+                            BrandCD: $(ctrl).val()
+                        };
+                        $.ajax({
+                            url: $("#BrandAPIURL").val(),
+                            method: 'Post',
+                            dataType: 'json',
+                            contentType: 'application/json; charset=utf-8',
+                            data: JSON.stringify(bmodel),
+                            headers:
+                            {
+                                Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
+                            },
+                            success: function (msg) {
+                                var msgdata = JSON.parse(msg);
+                                if (msgdata[0].MessageID != "0") {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: msgdata[0].MessageID,
+                                        text: msgdata[0].MessageText1,
+                                    }).then(function () {
+                                        $(ctrl).focus();
+                                    });
+                                }
+                                else {
+                                    moveNext(ctrl);
+                                }
                             }
-                        }
-                    });
+                        });
+                    }
+                    
                 }
                 else
                     moveNext(ctrl);
