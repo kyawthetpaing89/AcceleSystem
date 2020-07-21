@@ -17,13 +17,13 @@
                     <h3 class=" hr-text text-center">ブランド登録</h3>
                 </div>
                 <div class="pt-5 md-form">
-                    
-                    <input type="text" class="text-line" id="BrandCD" name="brandCD" maxlength="20" required placeholder="ブランドコード">
-                    
+
+                    <input type="text" tabindex="1" class="text-line" id="BrandCD" name="brandCD" maxlength="20" onkeypress="EnterKeyPress(event,this,true,0)" required placeholder="ブランドコード">
+
                 </div>
                 <div class="pt-5 md-form">
 
-                    <input type="text" class="text-line" id="BrandName" maxlength="10" name="brandName" required placeholder="ブランド名">
+                    <input type="text" tabindex="2" class="text-line" id="BrandName" maxlength="10" name="brandName" onkeypress="EnterKeyPress(event,this,true,1)" required placeholder="ブランド名">
                     <label id="lblBrandNameErr" style="color:red;display:none"></label>
 
                 </div>
@@ -33,12 +33,13 @@
                 <div class="pt-5 md-form">
                     <div class="col-xl-12 text-center">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <button id="btnSave" onclick="btnSaveClick()" class="btn btn-dark col-xl-5 text-center"></button>
+                            <button id="btnSave" tabindex="3" onclick="btnSaveClick()" class="btn btn-dark col-xl-5 text-center"></button>
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <button id="btnCancel" onclick="btnCancelClick()" class="btn btn-primary col-xl-5 text-center">戻る</button>
                         </div>
                     </div>
                 </div>
+                <input type="hidden" id="BrandAPIURL" value="@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")" />
             </div>
             <div class="col-xs-6 col-md-4"></div>
         </div>
@@ -50,6 +51,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("ブランド登録");
+            $("#BrandCD").focus();
             var Mode = '@Model.Mode';
             if (Mode == 'New') {
                 $('#btnSave').html('登録');
@@ -68,9 +70,10 @@
 
 
         });
-        $('#BrandCD').on("keypress", function (e) {            if (e.keyCode == 13) {                $('#BrandName').focus();            }        });
 
-        $('#BrandName').on("keypress", function (e) {            if (e.keyCode == 13) {                $('#btnSave').focus();            }        });
+        //$('#BrandCD').on("keypress", function (e) {        //    if (e.keyCode == 13) {        //        $('#BrandName').focus();        //    }        //});
+
+        //$('#BrandName').on("keypress", function (e) {        //    if (e.keyCode == 13) {        //        $('#btnSave').focus();        //    }        //});
 
 
         //set data
