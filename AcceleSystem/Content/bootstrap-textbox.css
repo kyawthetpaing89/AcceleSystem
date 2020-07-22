@@ -21,3 +21,7 @@
 .text-center:focus {
     background: gray;
 }
+
+input:focus {
+    background-color: #F2F4F4;
+}
