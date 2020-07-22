@@ -12,7 +12,7 @@
     switch (ViewPageName)
     {
         case "UserList": PageName = "ユーザー検索"; break;
-        default: PageName = "Dashboard";break;
+        default: PageName = "Dashboard"; break;
     }
 
     if (System.Diagnostics.Debugger.IsAttached)
@@ -37,7 +37,7 @@
         }
     }
 
-    }
+}
 <html lang="en" class="bgGrey">
 <head>
     <meta charset="utf-8">
@@ -202,8 +202,11 @@
                 <input type="hidden" id="MessageURL" value="@Url.Action("M_Message_Select", "api/MessageApi")" />
                 @RenderBody()
             </div>
-
         </div><!-- .content -->
+        <div>
+            <input type="hidden" id="ModeURL"  />
+            
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
