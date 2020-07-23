@@ -7,7 +7,7 @@
 
 @section Styles{
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
-    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/calendar.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/datepicker.css")" />
 }
 
 
@@ -40,17 +40,9 @@
                 </div>
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
-                        <input type="text" class="text-line col-11" id="UseLimit" name="Limit" style="width:91%" required placeholder="使用期限">
+                        <input type="text" class="text-line col-11 datepicker-here" id="UseLimit" name="Limit" style="width:91%" required placeholder="使用期限" data-language='ja'>
                     </div>
-                    <div class="calendar calendar-first" id="calendar_first" style="border:ridge #C0C0C0 0.1px; padding:5px">
-                        <div class="calendar_header">
-                            <button class="switch-month switch-left"> <i class="fa fa-chevron-left"></i></button>
-                            <h2></h2>
-                            <button class="switch-month switch-right"> <i class="fa fa-chevron-right"></i></button>
-                        </div>
-                        <div class="calendar_weekdays"></div>
-                        <div class="calendar_content"></div>
-                    </div>
+
                 </div>
                 <div>
                     <span id="errexist" class="color-red"></span>
@@ -73,7 +65,7 @@
 
 
 @section Scripts{
-<script type="text/javascript">
+    <script type="text/javascript">
         $(document).ready(function () {
             $("#CastingName").focus();
             var Mode = '@Model.Mode';
@@ -141,7 +133,7 @@
                     Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
                 },
                 success: function (data) {
-                    var userdata = JSON.parse(data);                  
+                    var userdata = JSON.parse(data);
                     $("#BrandName").val(userdata[0].BrandName);
                 }
             });
@@ -173,7 +165,7 @@
                 }
             });
         }
-        
+
         function DoProcess() {
              var kgmodel = {
                  CastingCD: $("#CastingCD").val(),
@@ -275,7 +267,9 @@
         }
 
 
-</script>
-    <script src="@Url.Content("~/Scripts/calendar.js")"></script>
+    </script>
+    <script src="@Url.Content("~/Scripts/datepicker.js")"></script>
+    <script src="@Url.Content("~/Scripts/datepicker.en.js")"></script>
+    <script src="@Url.Content("~/Scripts/datepicker-ja.js")"></script>
 }
 
