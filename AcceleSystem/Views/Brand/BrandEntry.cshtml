@@ -59,13 +59,18 @@
             }
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
-                $("#BrandCD").prop("readonly", true);
+                $("#BrandCD").attr('disabled', 'disabled');
+                $("#BrandName").focus();
+                //$("#BrandCD").prop("readonly", true);
                 ShowData();
             }
             else {
                 $('#btnSave').html('削除');
-                $("#BrandCD").prop("readonly", true);
-                $("#BrandName").prop("readonly", true);
+                $("#BrandCD").attr('disabled', 'disabled');
+                $("#BrandName").attr('disabled', 'disabled');
+                $("#btnSave").focus();
+                //$("#BrandCD").prop("readonly", true);
+                //$("#BrandName").prop("readonly", true);
                 ShowData();
                  }
 
