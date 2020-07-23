@@ -142,8 +142,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KanagataApiController.cs" />
     <Compile Include="Controllers\KanagataController.cs" />
+    <Compile Include="Controllers\KehiSetteiApiController.cs" />
     <Compile Include="Controllers\KeihiSetteiController.cs" />
-    <Compile Include="Controllers\MasterTouroku_KeihiSetteiController.cs" />
     <Compile Include="Controllers\MessageApiController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
     <Compile Include="Controllers\UserAuthentication.cs" />

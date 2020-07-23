@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MasterTourkouBL")]
+[assembly: AssemblyTitle("KeihiSetteiBL")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MasterTourkouBL")]
+[assembly: AssemblyProduct("KeihiSetteiBL")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("7e7c0920-0283-49d3-a8ac-4059e74cc991")]
+[assembly: Guid("5853da41-4e0b-448f-83eb-e65c44375703")]
 
 // Version information for an assembly consists of the following four values:
 //
