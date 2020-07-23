@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBL", "MessageBL\Mess
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KanagataBL", "KanagataBL\KanagataBL.csproj", "{EC4DE58B-60F4-495A-AB3E-01D4C305FDCE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterTouroku_KeiSetteiBL", "MasterTouroku_KeiSetteiBL\MasterTouroku_KeiSetteiBL.csproj", "{9E65D792-C880-4B3F-A776-7A13C670A3E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeiSetteiBL", "MasterTouroku_KeiSetteiBL\KeiSetteiBL.csproj", "{9E65D792-C880-4B3F-A776-7A13C670A3E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

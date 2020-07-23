@@ -44,7 +44,7 @@
     <Compile Include="BaseModel.cs" />
     <Compile Include="BrandModel.cs" />
     <Compile Include="KanagataModel.cs" />
-    <Compile Include="MasterTouroku_KeiSetteiModel.cs" />
+    <Compile Include="KeiSetteiModel.cs" />
     <Compile Include="MessageModel.cs" />
     <Compile Include="UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
