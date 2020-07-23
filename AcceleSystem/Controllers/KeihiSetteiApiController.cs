@@ -5,18 +5,18 @@ using KeihiSetteiBL;
 
 namespace AcceleSystem.Controllers
 {
-    public class KehiSetteiApiController : ApiController
+    public class KeihiSetteiApiController : ApiController
     {
         [UserAuthentication]
         [HttpPost]
-        public string M_Keihi_Select([FromBody] KeihiSetteiModel Kmodel)
+        public string M_Keihi_Select_List([FromBody] KeihiSetteiModel Kmodel)
         {
             if (Kmodel == null)
             {
                 Kmodel = new KeihiSetteiModel();
             }
             KeihiSettei_BL Ubl = new KeihiSettei_BL();
-            return Ubl.M_Keihi_Select(Kmodel);
+            return Ubl.M_Keihi_Select_List(Kmodel);
         }
 
 

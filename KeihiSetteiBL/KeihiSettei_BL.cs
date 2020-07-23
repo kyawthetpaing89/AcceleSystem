@@ -8,19 +8,19 @@ namespace KeihiSetteiBL
 {
     public class KeihiSettei_BL
     {
-        public string M_Keihi_Select(KeihiSetteiModel Kmodel)
+        public string M_Keihi_Select_List(KeihiSetteiModel Kmodel)
         {
             BaseDL bdl = new BaseDL();
-            Kmodel.Sqlprms = new SqlParameter[6];
+            Kmodel.Sqlprms = new SqlParameter[2];
             Kmodel.Sqlprms[0] = new SqlParameter("@CostCD", SqlDbType.VarChar) { Value = Kmodel.CostCD };
             Kmodel.Sqlprms[1] = new SqlParameter("@CostName", SqlDbType.VarChar) { Value = Kmodel.CostName };
-            Kmodel.Sqlprms[2] = new SqlParameter("@KanjoCD", SqlDbType.VarChar) { Value = Kmodel.KanjoCD };
-            Kmodel.Sqlprms[3] = new SqlParameter("@HojoCD", SqlDbType.VarChar) { Value = Kmodel.HojoCD };
-            Kmodel.Sqlprms[4] = new SqlParameter("@Accounting", SqlDbType.TinyInt) { Value = Kmodel.Accounting };
-            Kmodel.Sqlprms[5] = new SqlParameter("@Allocation", SqlDbType.TinyInt) { Value = Kmodel.Allocation };
+            //Kmodel.Sqlprms[2] = new SqlParameter("@KanjoCD", SqlDbType.VarChar) { Value = Kmodel.KanjoCD };
+            //Kmodel.Sqlprms[3] = new SqlParameter("@HojoCD", SqlDbType.VarChar) { Value = Kmodel.HojoCD };
+            //Kmodel.Sqlprms[4] = new SqlParameter("@Accounting", SqlDbType.TinyInt) { Value = Kmodel.Accounting };
+            //Kmodel.Sqlprms[5] = new SqlParameter("@Allocation", SqlDbType.TinyInt) { Value = Kmodel.Allocation };
 
 
-            return bdl.SelectJson("M_Keihi_Select", Kmodel.Sqlprms);
+            return bdl.SelectJson("M_Keihi_Select_List", Kmodel.Sqlprms);
         }
 
         public string Keihi_CUD(KeihiSetteiModel Kmodel)

@@ -19,6 +19,11 @@
         border-top: 1px solid #d3dcd3;
     }
 
+    td.Border2{
+        width: 180px;
+    }
+
+
 .text-line{
     color:black !important;
 }
