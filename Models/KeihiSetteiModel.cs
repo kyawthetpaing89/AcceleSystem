@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class KeiSetteiModel : BaseModel
+    public class KeihiSetteiModel : BaseModel
     {
         public string CostCD { get; set; }
         public string CostName { get; set; }
