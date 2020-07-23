@@ -42,11 +42,13 @@ function EnterKeyPress(e, ctrl,isRequired,AEFlag,type) {
                 })
             }
             else {
-                if (AEFlag == 1) {
+                if (AEFlag == 1 && !($("#ModeURL").val() == "Edit")) {
+                    alert($("#ModeURL").val());
                     if (type == 1) {
                         var model = {
                             UserID: $(ctrl).val(),
                         };
+
                     }
                     else if (type == 2) {
                         var model = {
