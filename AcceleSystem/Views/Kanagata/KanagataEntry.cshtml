@@ -22,25 +22,25 @@
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" class="text-line col-xl-5 text-left" id="CastingCD" name="castingCD" onkeypress="EnterKeyPress(event,this,true,1,3)" required placeholder="金型コード">
+                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" id="CastingCD" name="castingCD" onkeypress="EnterKeyPress(event,this,true,1,3)" required placeholder="金型コード">
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="text" class="text-line col-xl-5 text-left" id="CastingName" name="Name" onkeypress="EnterKeyPress(event,this,true,0,3)" required placeholder="金型名">
+                            <input type="text" tabindex="2" class="text-line col-xl-5 text-left" id="CastingName" name="Name" onkeypress="EnterKeyPress(event,this,true,0,3)" required placeholder="金型名">
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" class="text-line col-xl-5 text-left" id="BrandCD" name="brandCD" required placeholder="ブランドコード">
+                            <input type="text" tabindex="3" class="text-line col-xl-5 text-left" id="BrandCD" name="brandCD" required placeholder="ブランドコード">
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="text" class="text-line col-xl-5 text-left" id="BrandName" name="brandname" required placeholder="ブランド名">
+                            <input type="text" tabindex="4" class="text-line col-xl-5 text-left" id="BrandName" name="brandname" required placeholder="ブランド名">
                             @*<input type="text" class="text-line col-11" id="BrandName" name="brandname" style="width:91%" required placeholder="ブランド名">*@
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
-                        <input type="text" class="text-line col-11 datepicker-here" id="UseLimit" name="Limit" style="width:91%" required placeholder="使用期限" data-language='ja'>
+                        <input type="text" tabindex="5" class="text-line col-11 datepicker-here" id="UseLimit" name="Limit" style="width:91%" required placeholder="使用期限" data-language='ja'>
                     </div>
 
                 </div>
@@ -76,30 +76,33 @@
             }
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
-                $("#CastingCD").prop("readonly", true);
+                $("#CastingCD").attr('disabled', 'disabled');
+                $("#CastingName").focus();
                 ShowData();
             }
-            else {
-                    $('#btnSave').html('削除');
-                    $("#CastingCD").prop("readonly", true);
-                    $("#CastingName").prop("readonly", true);
-                    $("#BrandName").prop("readonly", true);
-                    $("#UseLimit").prop("readonly", true);
+            else  {
+                $('#btnSave').html('削除');
+                $("#CastingCD").attr('disabled', 'disabled');
+                $("#CastingName").attr('disabled', 'disabled');
+                $("#BrandCD").attr('disabled', 'disabled');
+                $("#BrandName").attr('disabled', 'disabled');
+                $("#UseLimit").attr('disabled', 'disabled');
+                $("#btnSave").focus();
                     ShowData();
-                 }
-        });
-
-        $('#CastingCD').on("keypress", function (e) {
-            if (e.keyCode == 13) {
-                $('#CastingName').focus();
             }
         });
 
-        $('#CastingName').on("keypress", function (e) {
-            if (e.keyCode == 13) {
-                $('#BrandCD').focus();
-            }
-        });
+        //$('#CastingCD').on("keypress", function (e) {
+        //    if (e.keyCode == 13) {
+        //        $('#CastingName').focus();
+        //    }
+        //});
+
+        //$('#CastingName').on("keypress", function (e) {
+        //    if (e.keyCode == 13) {
+        //        $('#BrandCD').focus();
+        //    }
+        //});
 
         $('#BrandCD').on("keypress", function (e) {
             if (e.keyCode == 13) {
@@ -108,17 +111,17 @@
             }
         });
 
-        $('#BrandName').on("keypress", function (e) {
-            if (e.keyCode == 13) {
-                $('#UseLimit').focus();
-            }
-        });
+        //$('#BrandName').on("keypress", function (e) {
+        //    if (e.keyCode == 13) {
+        //        $('#UseLimit').focus();
+        //    }
+        //});
 
-        $('#UseLimit').on("keypress", function (e) {
-            if (e.keyCode == 13) {
-                $('#btnSave').focus();
-            }
-    });
+        //$('#UseLimit').on("keypress", function (e) {
+        //    if (e.keyCode == 13) {
+        //        $('#btnSave').focus();
+        //    }
+ 
 
     function BrandName() {
          var kgmodel = {
@@ -169,6 +172,7 @@
         }
 
         function DoProcess() {
+            focusControl = $("#CastingCD");
              var kgmodel = {
                  CastingCD: $("#CastingCD").val(),
                  CastingName: $("#CastingName").val(),
