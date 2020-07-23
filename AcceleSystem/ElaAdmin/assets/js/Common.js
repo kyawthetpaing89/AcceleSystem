@@ -24,6 +24,7 @@ function GetMessage(msgid) {
 //AEFlag 0 = nothing,
 //1 = UserID
 //2 = Brand
+//3 = Kanagata
 function EnterKeyPress(e, ctrl,isRequired,AEFlag,type) {
     if (e.keyCode == 13) {
         e.preventDefault();
@@ -52,6 +53,11 @@ function EnterKeyPress(e, ctrl,isRequired,AEFlag,type) {
                     else if (type == 2) {
                         var model = {
                             BrandCD: $(ctrl).val()
+                        };
+                    }
+                    else if (type == 3) {
+                        var model = {
+                            CastingCD: $(ctrl).val()
                         };
                     }
                     $.ajax({
