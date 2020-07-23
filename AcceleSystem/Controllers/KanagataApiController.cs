@@ -30,5 +30,11 @@ namespace AcceleSystem.Controllers
             Kanagata_BL kgbl = new Kanagata_BL();
             return kgbl.M_BrandName_Select(kgmodel);
         }
+
+        public string M_Casting_ExistsCheck([FromBody] KanagataModel kgmodel)
+        {
+            Kanagata_BL kgbl = new Kanagata_BL();
+            return kgbl.M_Casting_ExistsCheck(kgmodel);
+        }
     }
 }
