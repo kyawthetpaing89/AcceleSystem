@@ -17,8 +17,8 @@
                 </div>
                 <div class="pt-5 md-form">
                     @*<label for="lblUserName">User Name</label>*@
-                    <input type="text" tabindex="1" class="text-line" id="UserName" name="name" maxlength="40" onkeypress="EnterKeyPress(event,this,true,0)" required placeholder="ユーザー名">
-                    <label id="lblUserNameErr" style="color:red;display:none"></label>
+                    <input type="text" tabindex="1" class="text-line" id="UserName" name="name" maxlength="40" onkeypress="EnterKeyPress(event,this,true,0,1)" required placeholder="ユーザー名">
+                    @*<label id="lblUserNameErr" style="color:red;display:none"></label>*@
                     @*<span id="errname" class="color-red"></span>*@
                 </div>
                 <div class="pt-5 md-form">
@@ -55,6 +55,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("ユーザー登録");
+            $("#ModeURL").val('@Model.Mode');
             $("#UserName").focus();
             var Mode = '@Model.Mode';
             if (Mode == 'New') {
@@ -62,14 +63,21 @@
             }
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
-                $("#UserID").prop("readonly", true);
+                $("#UserID").attr('disabled', 'disabled');
+                //$("#UserID").prop("disable", true);
+                $("#UserName").focus();
                 ShowData();
             }
             else {
                 $('#btnSave').html('削除');
-                $("#UserID").prop("readonly", true);
-                $("#UserName").prop("readonly", true);
-                $("#Password").prop("readonly", true);
+                $("#UserID").attr('disabled', 'disabled');
+                $("#UserName").attr('disabled', 'disabled');
+                $("#Password").attr('disabled', 'disabled');
+
+                $("#btnSave").focus();
+                //$("#UserID").prop("disable", true);
+                //$("#UserName").prop("disable", true);
+                //$("#Password").prop("disable", true);
                 ShowData();
             }
         });

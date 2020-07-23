@@ -42,11 +42,12 @@ function EnterKeyPress(e, ctrl,isRequired,AEFlag,type) {
                 })
             }
             else {
-                if (AEFlag == 1) {
+                if (AEFlag == 1 && !($("#ModeURL").val() == "Edit")) {
                     if (type == 1) {
                         var model = {
                             UserID: $(ctrl).val(),
                         };
+
                     }
                     else if (type == 2) {
                         var model = {
@@ -93,6 +94,8 @@ function EnterKeyPress(e, ctrl,isRequired,AEFlag,type) {
 
 function moveNext(ctrl) {
     var $next = $('[tabIndex=' + (+$(ctrl).attr("tabIndex") + 1) + ']');
+    if ($($next).is('[disabled=disabled]'))
+        $next = $('[tabIndex=' + (+$($next).attr("tabIndex") + 1) + ']');
     if (!$next.length) {
         $next = $('[tabIndex=1]');
     }
