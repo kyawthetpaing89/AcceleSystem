@@ -1,42 +1,31 @@
 ﻿using System.Web.Http;
 using System.Web.Http.Results;
 using Models;
-using KeiSetteiBL;
+using KeihiSetteiBL;
 
 namespace AcceleSystem.Controllers
 {
-    public class KeiSetteiApiController : ApiController
+    public class KehiSetteiApiController : ApiController
     {
         [UserAuthentication]
         [HttpPost]
-        public string M_Keihi_Select([FromBody] KeihiModel Kmodel)
+        public string M_Keihi_Select([FromBody] KeihiSetteiModel Kmodel)
         {
             if (Kmodel == null)
             {
-                Kmodel = new KeihiModel();
+                Kmodel = new KeihiSetteiModel();
             }
-            Brand_BL Ubl = new Brand_BL();
-            return Ubl.M_Brand_Select(bmodel);
+            KeihiSettei_BL Ubl = new KeihiSettei_BL();
+            return Ubl.M_Keihi_Select(Kmodel);
         }
+
 
         [UserAuthentication]
         [HttpPost]
-        public string M_Brand_ExistsCheck([FromBody] BrandModel bmodel)
+        public string Keihi_CUD([FromBody] KeihiSetteiModel Kmodel)
         {
-            if (bmodel == null)
-            {
-                bmodel = new BrandModel();
-            }
-            Brand_BL Ubl = new Brand_BL();
-            return Ubl.M_Brand_ExistsCheck(bmodel);
-        }
-
-        [UserAuthentication]
-        [HttpPost]
-        public string Brand_CUD([FromBody] BrandModel bmodel)
-        {
-            Brand_BL Ubl = new Brand_BL();
-            return Ubl.Brand_CUD(bmodel);
+            KeihiSettei_BL Ubl = new KeihiSettei_BL();
+            return Ubl.Keihi_CUD(Kmodel);
         }
     }
 }

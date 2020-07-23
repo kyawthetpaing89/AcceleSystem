@@ -551,6 +551,10 @@
       <Project>{ec4de58b-60f4-495a-ab3e-01d4c305fdce}</Project>
       <Name>KanagataBL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\KeihiSetteiBL\KeihiSetteiBL.csproj">
+      <Project>{5853da41-4e0b-448f-83eb-e65c44375703}</Project>
+      <Name>KeihiSetteiBL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MessageBL\MessageBL.csproj">
       <Project>{8c241484-f5d3-4ecf-bbc8-46ce34fd85ae}</Project>
       <Name>MessageBL</Name>

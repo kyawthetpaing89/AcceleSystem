@@ -44,5 +44,15 @@
     <Compile Include="KeihiSettei_BL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DL\DL.csproj">
+      <Project>{86a23955-7ac1-4263-bc9a-96165936864c}</Project>
+      <Name>DL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{896a79e0-6565-4fc3-b927-50f8f80f5850}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
