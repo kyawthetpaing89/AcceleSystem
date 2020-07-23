@@ -142,7 +142,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KanagataApiController.cs" />
     <Compile Include="Controllers\KanagataController.cs" />
-    <Compile Include="Controllers\KehiSetteiApiController.cs" />
+    <Compile Include="Controllers\KeihiSetteiController.cs" />
     <Compile Include="Controllers\MasterTouroku_KeihiSetteiController.cs" />
     <Compile Include="Controllers\MessageApiController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
@@ -515,12 +515,13 @@
     <Content Include="Views\Kanagata\KanagataList.cshtml" />
     <Content Include="Views\Brand\BrandEntry.cshtml" />
     <Content Include="Views\MasterTouroku_KeihiSettei\MasterTouroku_KeihiSetteiList.cshtml" />
+    <Content Include="Views\KeihiSettei\KeihiSetteiList.cshtml" />
+    <Content Include="Views\KeihiSettei\KeihiSetteiEntry.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="obj\Debug\" />
-    <Folder Include="Views\KehiSetteiApi\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
