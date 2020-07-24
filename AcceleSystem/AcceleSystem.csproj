@@ -518,7 +518,6 @@
     <Content Include="Views\Kanagata\KanagataEntry.cshtml" />
     <Content Include="Views\Kanagata\KanagataList.cshtml" />
     <Content Include="Views\Brand\BrandEntry.cshtml" />
-    <Content Include="Views\MasterTouroku_KeihiSettei\MasterTouroku_KeihiSetteiList.cshtml" />
     <Content Include="Views\KeihiSettei\KeihiSetteiList.cshtml" />
     <Content Include="Views\KeihiSettei\KeihiSetteiEntry.cshtml" />
   </ItemGroup>

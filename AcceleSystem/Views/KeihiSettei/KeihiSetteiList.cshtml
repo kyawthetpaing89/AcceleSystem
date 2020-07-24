@@ -120,15 +120,15 @@
         }
 
     function btnAddClick() {
-        location.href = '@Url.Action("KeihiEntry", "Keihi")?Mode=New'
+        location.href = '@Url.Action("KeihiSetteiEntry", "Keihi")?Mode=New'
     }
 
     function btnEditClick(CostCD) {
-        location.href = '@Url.Action("KeihiEntry", "Keihi")?CostCD='+CostCD+'&Mode=Edit';
+        location.href = '@Url.Action("KeihiSetteiEntry", "Keihi")?CostCD='+CostCD+'&Mode=Edit';
     }
 
     function btnDelClick(CostCD) {
-        location.href = '@Url.Action("KeihiEntry", "Keihi")?CostCD='+CostCD+'&Mode=Delete';
+        location.href = '@Url.Action("KeihiSetteiEntry", "Keihi")?CostCD='+CostCD+'&Mode=Delete';
         }
     </script>
 
