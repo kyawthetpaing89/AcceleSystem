@@ -4,6 +4,89 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>KeihiSetteiEntry</h2>
+@section Styles{
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
+}
 
-<div class=""
+
+<div class="container-fluid">
+    <div class="content">
+        <div class="p-5 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white; border-radius:5px;">
+            <div class="col-xs-12 col-md-3"></div>
+            <div class="col-xs-12 col-md-6">
+                <div>
+                    <h2 class=" hr-text text-center">KeihiSetteiEntry</h2>
+                </div>
+                <div class="pt-3 md-form">
+                    <div class="col-xl-12 text-center">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <input type="text" class="text-line col-xl-5 text-left" id="ExpenseCode" name="ExpenseCode" required placeholder="経費コード">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" class="text-line col-xl-5 text-left" id="ExpenseName" name="Name" required placeholder="経費名">
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style="padding-left:43px;">
+                    <div class="col-xs-12">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <input type="text" class="text-line col-xl-5 text-left" id="ExpenseCode" name="ExpenseCode" required placeholder="経費コード">
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style="padding-left:43px;">
+                    <div class="col-xs-12">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <input type="text" class="text-line col-xl-5 text-left" id="ExpenseCode" name="ExpenseCode" required placeholder="経費コード">
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style="padding-left:30px;">
+                    <div class="col-xl-12">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <label>計上単位</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="md-form">
+                    <div class="col-xl-12 text-center">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="defaultChecked" name="defaultExampleRadios">
+                                <label class="custom-control-label" for="defaultUnchecked" style="padding-right:90px;">Default checked</label>
+                                <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios">
+                                <label class="custom-control-label" for="defaultUnchecked">Default unchecked</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                  <div class="md-form pt-3" style="padding-left:33px;">
+                        <div class="col-xs-12">
+                          <div class="text-s text-custom1 text-uppercase mb-1">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="defaultChecked" name="defaultExampleRadios">
+                                <label class="custom-control-label" for="defaultUnchecked" style="padding-right:85px;">1234567</label>
+                                <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios">
+                                <label class="custom-control-label" for="defaultUnchecked" style="padding-right:85px;">1234567</label>
+                                <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios">
+                                <label class="custom-control-label" for="defaultUnchecked">1234567</label>
+                            </div>
+                          </div>
+                        </div>
+                  </div>
+                <div class="md-form pt-3" style="padding-left:33px;">
+                    <div class="col-xs-12">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" id="defaultChecked" name="defaultExampleRadios">
+                            <label class="custom-control-label" for="defaultUnchecked" style="padding-right:85px;">1234567</label>
+                            <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios">
+                            <label class="custom-control-label" for="defaultUnchecked" style="padding-right:85px;">1234567</label>
+                            <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios">
+                            <label class="custom-control-label" for="defaultUnchecked">1234567</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-3"></div>
+        </div>
+    </div>
+</div>
