@@ -12,7 +12,7 @@
 <div class="container-fluid">
     <div class="content">
         <div class="p-5 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white; border-radius:5px;">
-            <div class="col-xs-12 col-md-3"></div>
+            <div class="col-xs-12 col-md-2"></div>
             <div class="col-xs-12 col-md-8">
                 <div>
                     <h2 class=" hr-text text-center">経費設定登録</h2>
@@ -47,10 +47,11 @@
                         </div>
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <div class="custom-control custom-radio" style="padding-bottom:0.6rem!important;">
-                                <input type="radio" class="custom-control-input" id="defaultChecked" name="defaultExampleRadios">
-                                <label class="custom-control-label" for="defaultUnchecked" style="padding-right:140px;">品番直接費</label>
-                                <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios">
-                                <label class="custom-control-label" for="defaultUnchecked">ブランド+シーズン</label>
+                                <input type="radio" id="品番直接費" name="accounting" value="品番直接費" checked="checked">
+                                <label for="品番直接費" style="padding-right:140px;">品番直接費</label>
+                                <span class="checkmark"></span>
+                                <input type="radio" id="ブランド+シーズン" name="accounting" value="ブランド+シーズン">
+                                <label for="ブランド+シーズン">ブランド+シーズン</label>
                             </div>
                             <div class="custom-control custom-radio" style="padding-bottom:1rem!important;">
                                 <input type="radio" class="custom-control-input" id="defaultChecked" name="defaultExampleRadios">
@@ -67,7 +68,7 @@
                             <label class="text" style="padding-left:12px!important;">配賦基準</label>
                         </div>
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <div class="custom-control custom-radio" style="padding-bottom:3rem!important;">
+                            <div class="custom-control custom-radio" style="padding-bottom:4rem!important;">
                                 <input type="radio" class="custom-control-input" id="defaultChecked" name="defaultExampleRadios">
                                 <label class="custom-control-label" for="defaultUnchecked" style="padding-right:65px;">直接</label>
                                 <input type="radio" class="custom-control-input" id="defaultChecked" name="defaultExampleRadios">
@@ -83,9 +84,9 @@
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <button id="btnSave" onclick="btnSaveClick()" class="btn btn-dark col-xl-5 text-center">登録</button>
+                            <button id="btnSave" onclick="btnSaveClick()" class="btn btn-dark col-xl-4 text-center">登録</button>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <button id="btnCancel" onclick="btnCancelClick()" class="btn btn-primary col-xl-5 text-center">戻る</button>
+                            <button id="btnCancel" onclick="btnCancelClick()" class="btn btn-primary col-xl-4 text-center">戻る</button>
                         </div>
                     </div>
                 </div>
