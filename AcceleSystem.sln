@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBL", "MessageBL\Mess
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KanagataBL", "KanagataBL\KanagataBL.csproj", "{EC4DE58B-60F4-495A-AB3E-01D4C305FDCE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterTouroku_KeiSetteiBL", "MasterTouroku_KeiSetteiBL\MasterTouroku_KeiSetteiBL.csproj", "{9E65D792-C880-4B3F-A776-7A13C670A3E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeihiSetteiBL", "KeihiSetteiBL\KeihiSetteiBL.csproj", "{5853DA41-4E0B-448F-83EB-E65C44375703}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +53,10 @@ Global
 		{EC4DE58B-60F4-495A-AB3E-01D4C305FDCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC4DE58B-60F4-495A-AB3E-01D4C305FDCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC4DE58B-60F4-495A-AB3E-01D4C305FDCE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9E65D792-C880-4B3F-A776-7A13C670A3E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E65D792-C880-4B3F-A776-7A13C670A3E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9E65D792-C880-4B3F-A776-7A13C670A3E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9E65D792-C880-4B3F-A776-7A13C670A3E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5853DA41-4E0B-448F-83EB-E65C44375703}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5853DA41-4E0B-448F-83EB-E65C44375703}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5853DA41-4E0B-448F-83EB-E65C44375703}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5853DA41-4E0B-448F-83EB-E65C44375703}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

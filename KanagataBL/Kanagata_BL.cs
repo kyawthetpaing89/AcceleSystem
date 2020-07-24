@@ -68,5 +68,14 @@ namespace KanagataBL
             return bdl.SelectJson("M_BrandName_Select", kgmodel.Sqlprms);
         }
 
+        public string M_Casting_ExistsCheck(KanagataModel kgmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            kgmodel.Sqlprms = new SqlParameter[1];
+            kgmodel.Sqlprms[0] = new SqlParameter("@CastingCD", SqlDbType.VarChar) { Value = (object)kgmodel.CastingCD ?? DBNull.Value };          
+            return bdl.SelectJson("M_Casting_ExistsCheck", kgmodel.Sqlprms);
+
+        }
+
     }
 }

@@ -142,8 +142,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KanagataApiController.cs" />
     <Compile Include="Controllers\KanagataController.cs" />
+    <Compile Include="Controllers\KeihiSetteiApiController.cs" />
     <Compile Include="Controllers\KeihiSetteiController.cs" />
-    <Compile Include="Controllers\MasterTouroku_KeihiSetteiController.cs" />
     <Compile Include="Controllers\MessageApiController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
     <Compile Include="Controllers\UserAuthentication.cs" />
@@ -163,7 +163,8 @@
     <Content Include="Content\bootstrap-textbox.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\calendar.css" />
+    <Content Include="Content\datepicker.css" />
+    <Content Include="Content\datepicker.min.css" />
     <Content Include="ElaAdmin\assets\css\bootstrap.min.css" />
     <Content Include="ElaAdmin\assets\css\Common.css" />
     <Content Include="ElaAdmin\assets\css\cs-skin-elastic.css" />
@@ -311,7 +312,10 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
-    <Content Include="Scripts\calendar.js" />
+    <Content Include="Scripts\datepicker-ja.js" />
+    <Content Include="Scripts\datepicker.en.js" />
+    <Content Include="Scripts\datepicker.js" />
+    <Content Include="Scripts\datepicker.min.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -546,6 +550,10 @@
     <ProjectReference Include="..\KanagataBL\KanagataBL.csproj">
       <Project>{ec4de58b-60f4-495a-ab3e-01d4c305fdce}</Project>
       <Name>KanagataBL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KeihiSetteiBL\KeihiSetteiBL.csproj">
+      <Project>{5853da41-4e0b-448f-83eb-e65c44375703}</Project>
+      <Name>KeihiSetteiBL</Name>
     </ProjectReference>
     <ProjectReference Include="..\MessageBL\MessageBL.csproj">
       <Project>{8c241484-f5d3-4ecf-bbc8-46ce34fd85ae}</Project>
