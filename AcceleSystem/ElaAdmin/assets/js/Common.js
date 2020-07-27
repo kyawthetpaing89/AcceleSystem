@@ -21,11 +21,10 @@ function GetMessage(msgid) {
 }
 
 //move to next control on enter(keypressevent,action control,Required,AlreadyExistsCheck)
-//AEFlag 0 = nothing,
-//1 = UserID
-//2 = Brand
-//3 = Kanagata
-function EnterKeyPress(e, ctrl,isRequired,AEFlag,type) {
+//AEFlag 0 = nothing, 1 = isExist 
+//type 1 = UserID, 2 = Brand, 3 = Kanagata
+//checktype 1 = datecheck
+function EnterKeyPress(e, ctrl,isRequired,AEFlag,type,checktype) {
     if (e.keyCode == 13) {
         e.preventDefault();
         if (isRequired) {
@@ -43,7 +42,7 @@ function EnterKeyPress(e, ctrl,isRequired,AEFlag,type) {
                 })
             }
             else {
-                if (AEFlag == 1 && !($("#ModeURL").val() == "Edit")) {
+                if (AEFlag == 1) {
                     if (type == 1) {
                         var model = {
                             UserID: $(ctrl).val(),
@@ -92,9 +91,30 @@ function EnterKeyPress(e, ctrl,isRequired,AEFlag,type) {
                     moveNext(ctrl);
             }
         }
-        else {
-            moveNext(ctrl);
+        else if (checktype == "1") {
+            if (($(ctrl).val())) {
+                if (!(Date.parse($(ctrl).val()))) {
+                    $.when(GetMessage("E103", '@Url.Action("M_Message_Select", "api/MessageApi")')).done(function (data) {
+                        var msgdata = JSON.parse(data);
+                        Swal.fire({
+                            icon: 'error',
+                            title: msgdata[0].MessageID,
+                            text: msgdata[0].MessageText1,
+                        }).then(function () {
+                            $(ctrl).focus();
+                        });
+                    })
+                }
+                else
+                    moveNext(ctrl);
+            }
+            else {
+                moveNext(ctrl);
+            }       
         }
+        else {
+                    moveNext(ctrl);
+               }
     }
 }
 
