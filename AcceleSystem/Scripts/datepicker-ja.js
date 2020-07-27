@@ -30,7 +30,7 @@ datepicker = {
 	isRTL: false,
 	showMonthAfterYear: true,
 	yearSuffix: "年" };
-datepicker.setDefaults( datepicker );
+//datepicker.setDefaults( datepicker );
 
 return datepicker;
 
