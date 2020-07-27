@@ -22,25 +22,25 @@
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" id="CastingCD" name="castingCD" onkeypress="EnterKeyPress(event,this,true,1,3)" required placeholder="金型コード">
+                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" id="CastingCD" name="castingCD" maxlength="20" onkeypress="EnterKeyPress(event,this,true,1,3,0)" required placeholder="金型コード">
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="text" tabindex="2" class="text-line col-xl-5 text-left" id="CastingName" name="Name" onkeypress="EnterKeyPress(event,this,true,0,3)" required placeholder="金型名">
+                            <input type="text" tabindex="2" class="text-line col-xl-5 text-left" id="CastingName" name="Name" maxlength="40" onkeypress="EnterKeyPress(event,this,true,0,3,0)" required placeholder="金型名">
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="3" class="text-line col-xl-5 text-left" id="BrandCD" name="brandCD" required placeholder="ブランドコード">
+                            <input type="text" tabindex="3" class="text-line col-xl-5 text-left" id="BrandCD" name="brandCD" maxlength="20" required placeholder="ブランドコード">
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="text" tabindex="4" class="text-line col-xl-5 text-left" id="BrandName" name="brandname" required placeholder="ブランド名">
+                            <input type="text" tabindex="4" class="text-line col-xl-5 text-left" id="BrandName" name="brandname" maxlength="40" required placeholder="ブランド名">
                             @*<input type="text" class="text-line col-11" id="BrandName" name="brandname" style="width:91%" required placeholder="ブランド名">*@
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
-                        <input type="text" tabindex="5" class="text-line col-11 datepicker-here" id="UseLimit" name="Limit" style="width:91%" required placeholder="使用期限" data-language='ja'>
+                        <input type="text" tabindex="5" class="text-line col-11 datepicker-here" id="UseLimit" name="Limit" style="width:91%" onkeypress="EnterKeyPress(event,this,false,0,3,1)" required placeholder="使用期限">
                     </div>
 
                 </div>
@@ -50,7 +50,7 @@
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <button id="btnSave" onclick="btnSaveClick()" class="btn btn-dark col-xl-5 text-center"></button>
+                            <button id="btnSave" tabindex="6" onclick="btnSaveClick()" class="btn btn-dark col-xl-5 text-center"></button>
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <button id="btnCancel" onclick="btnCancelClick()" class="btn btn-primary col-xl-5 text-center">戻る</button>
                         </div>
@@ -73,11 +73,13 @@
             var Mode = '@Model.Mode';
             if (Mode == 'New') {
                 $('#btnSave').html('登録');
+                $("#BrandName").attr('disabled', 'disabled');
             }
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
                 $("#CastingCD").attr('disabled', 'disabled');
                 $("#CastingName").focus();
+                $("#BrandName").attr('disabled', 'disabled');
                 ShowData();
             }
             else  {
@@ -120,7 +122,7 @@
         //    if (e.keyCode == 13) {
         //        $('#btnSave').focus();
         //    }
- 
+
 
         function BrandName() {
             if (!($('#BrandCD').val() == '')) {
@@ -141,7 +143,7 @@
                         var userdata = JSON.parse(data);
                         if (userdata.length > 0) {
                             $("#BrandName").val(userdata[0].BrandName);
-                            $("#BrandName").focus();
+                            $("#UseLimit").focus();
                         }
                         else {
                             $.when(GetMessage("E101", '@Url.Action("M_Message_Select", "api/MessageApi")')).done(function (data) {
@@ -161,6 +163,7 @@
             }
             else {
                 $("#BrandName").val("");
+                $("#UseLimit").focus();
             }
         }
 
@@ -296,6 +299,6 @@
     </script>
     <script src="@Url.Content("~/Scripts/datepicker.js")"></script>
     <script src="@Url.Content("~/Scripts/datepicker.en.js")"></script>
-    <script src="@Url.Content("~/Scripts/datepicker-ja.js")"></script>
+    <script src="@Url.Content("~/Scripts/datepicker.ja.js")"></script>
 }
 

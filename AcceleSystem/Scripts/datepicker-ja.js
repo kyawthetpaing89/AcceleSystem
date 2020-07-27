@@ -12,7 +12,7 @@
 	}
 }( function( datepicker ) {
 
-datepicker.regional.ja = {
+datepicker = {
 	closeText: "閉じる",
 	prevText: "&#x3C;前",
 	nextText: "次&#x3E;",
@@ -30,8 +30,8 @@ datepicker.regional.ja = {
 	isRTL: false,
 	showMonthAfterYear: true,
 	yearSuffix: "年" };
-datepicker.setDefaults( datepicker.regional.ja );
+//datepicker.setDefaults( datepicker );
 
-return datepicker.regional.ja;
+return datepicker;
 
 } ) );
