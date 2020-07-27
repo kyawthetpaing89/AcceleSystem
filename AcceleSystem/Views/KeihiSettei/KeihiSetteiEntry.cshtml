@@ -47,18 +47,18 @@
                         </div>
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <div class="custom-control custom-radio" style="padding-bottom:0.6rem!important; padding-left:0px!important;">
-                                <input type="radio" id="品番直接費" name="radio" checked>
+                                <input type="radio" id="rdoDCost" name="radio" checked>
                                 <label style="padding-right:140px;">品番直接費</label>
-                                <input type="radio" id="ブランド+シーズン" name="radio">
+                                <input type="radio" id="rdoBrandSeason" name="radio">
                                 <label>ブランド+シーズン</label>
                                 
                             </div>
                             <div class="custom-control custom-radio" style="padding-bottom:1rem!important; padding-left:0px!important;">
-                                <input type="radio" id="プロジェクト" name="radio">
+                                <input type="radio" id="rdoProject" name="radio">
                                 <label style="padding-right:85px;">プロジェクト</label>
-                                <input type="radio" id="金型配賦" name="radio">
+                                <input type="radio" id="rdoMAllocation" name="radio">
                                 <label style="padding-right:85px;">金型配賦</label>
-                                <input type="radio" id="自由項目" name="radio" >
+                                <input type="radio" id="rdoFItems" name="radio" >
                                 <label>自由項目</label>
                             </div>
                         </div>
@@ -69,13 +69,13 @@
                         </div>
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <div class="custom-control custom-radio" style="padding-bottom:4rem!important; padding-left:0px!important;">
-                                <input type="radio" id="直接" name="radio1" checked>
+                                <input type="radio" id="rdoDirectly" name="radio1" checked>
                                 <label style="padding-right:55px!important;">直接</label>
-                                <input type="radio" id="総金額比" name="radio1">
+                                <input type="radio" id="rdoTMRatio" name="radio1">
                                 <label style="padding-right:55px!important;">総金額比</label>
-                                <input type="radio" id="生産数比" name="radio1">
+                                <input type="radio" id="rdoPNRatio" name="radio1">
                                 <label style="padding-right:55px!important;">生産数比</label>
-                                <input type="radio" id="固定値比" name="radio1">
+                                <input type="radio" id="rdoFVRatio" name="radio1">
                                 <label>固定値比</label>
                             </div>
                         </div>
@@ -138,8 +138,9 @@
                 var Kmodel = {
                     CostCD: '@Model.CostCD',
                 };
+                @*alert('@Model.CostCD');*@
                 $.ajax({
-                    url: '@Url.Action("M_Keihi_Select_List", "api/KeihiSetteiApi")',
+                    url: '@Url.Action("M_Keihi_Select_Entry", "api/KeihiSetteiApi")',
                     method: 'Post',
                     dataType: 'json',
                     contentType: 'application/json; charset=utf-8',
@@ -154,8 +155,25 @@
                         $("#CostName").val(userdata[0].CostName);
                         $("#KanjoCD").val(userdata[0].KanjoCD);
                         $("#HojoCD").val(userdata[0].HojoCD);
-                        $("#Allocation").val(userdata[0].Allocation);
-                        $("#Accounting").val(userdata[0].Accounting);
+                        if (userdata[0].Accounting == "1") 
+                            $("#rdoDCost").prop("checked", true);
+                        if (userdata[0].Accounting == "2")
+                            $("#rdoBrandSeason").prop("checked", true);
+                        if (userdata[0].Accounting == "3")
+                            $("#rdoProject").prop("checked", true);
+                        if (userdata[0].Accounting == "4")
+                            $("#rdoMAllocation").prop("checked", true);
+                        if (userdata[0].Accounting == "5")
+                            $("#rdoFItems").prop("checked", true);
+                        if (userdata[0].Allocation == "0")
+                            $("#rdoDirectly").prop("checked", true);
+                        if (userdata[0].Allocation == "1")
+                            $("#rdoTMRatio").prop("checked", true);
+                        if (userdata[0].Allocation == "2")
+                            $("#rdoPNRatio").prop("checked", true);
+                        if (userdata[0].Allocation == "3")
+                            $("#rdoFVRatio").prop("check", true);
+
                     }
                 });
             }

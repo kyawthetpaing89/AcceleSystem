@@ -18,6 +18,15 @@ namespace KeihiSetteiBL
             return bdl.SelectJson("M_Keihi_Select_List", Kmodel.Sqlprms);
         }
 
+        public string M_Keihi_Select_Entry(KeihiSetteiModel Kmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            Kmodel.Sqlprms = new SqlParameter[1];
+            Kmodel.Sqlprms[0] = new SqlParameter("@CostCD", SqlDbType.VarChar) { Value = Kmodel.CostCD };
+
+            return bdl.SelectJson("M_Keihi_Select_Entry", Kmodel.Sqlprms);
+        }
+
         public string Keihi_CUD(KeihiSetteiModel Kmodel)
         {
             BaseDL bdl = new BaseDL();
