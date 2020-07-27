@@ -60,7 +60,6 @@ function EnterKeyPress(e, ctrl,isRequired,AEFlag,type,checktype) {
                         };
                     }
                     $.ajax({
-                        //url: $("#UserAPIURL").val(),
                         url: $("#APIURL").val(),
                         method: 'Post',
                         dataType: 'json',
@@ -108,13 +107,11 @@ function EnterKeyPress(e, ctrl,isRequired,AEFlag,type,checktype) {
                 else
                     moveNext(ctrl);
             }
-            else {
+            else 
                 moveNext(ctrl);
-            }       
         }
-        else {
-                    moveNext(ctrl);
-               }
+        else 
+             moveNext(ctrl);
     }
 }
 
