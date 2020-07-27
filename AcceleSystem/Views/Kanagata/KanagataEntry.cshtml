@@ -68,8 +68,8 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("金型登録");
-             $("#ModeURL").val('@Model.Mode');
-            $("#CastingName").focus();
+            $("#BrandName").attr('disabled', 'disabled');
+            $("#CastingCD").focus();
             var Mode = '@Model.Mode';
             if (Mode == 'New') {
                 $('#btnSave').html('登録');
@@ -106,8 +106,7 @@
 
         $('#BrandCD').on("keypress", function (e) {
             if (e.keyCode == 13) {
-                BrandName();
-                $('#BrandName').focus();
+                  BrandName();
             }
         });
 
@@ -123,26 +122,47 @@
         //    }
  
 
-    function BrandName() {
-         var kgmodel = {
-               BrandCD: $("#BrandCD").val(),
+        function BrandName() {
+            if (!($('#BrandCD').val() == '')) {
+                var kgmodel = {
+                    BrandCD: $("#BrandCD").val(),
                 };
-                  $.ajax({
-                url: '@Url.Action("M_BrandName_Select", "api/KanagataApi")',
-                method: 'Post',
-                dataType: 'json',
-                contentType: 'application/json; charset=utf-8',
-                data: JSON.stringify(kgmodel),
-                headers:
-                {
-                    Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-                },
-                success: function (data) {
-                    var userdata = JSON.parse(data);
-                    $("#BrandName").val(userdata[0].BrandName);
-                }
-            });
-    }
+                $.ajax({
+                    url: '@Url.Action("M_BrandName_Select", "api/KanagataApi")',
+                    method: 'Post',
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify(kgmodel),
+                    headers:
+                    {
+                        Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
+                    },
+                    success: function (data) {
+                        var userdata = JSON.parse(data);
+                        if (userdata.length > 0) {
+                            $("#BrandName").val(userdata[0].BrandName);
+                            $("#BrandName").focus();
+                        }
+                        else {
+                            $.when(GetMessage("E101", '@Url.Action("M_Message_Select", "api/MessageApi")')).done(function (data) {
+                                var msgdata = JSON.parse(data);
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: msgdata[0].MessageID,
+                                    text: msgdata[0].MessageText1,
+                                }).then(function () {
+                                    $("#BrandName").val("");
+                                    $("#BrandCD").focus();
+                                });
+                            })
+                        }
+                    }
+                });
+            }
+            else {
+                $("#BrandName").val("");
+            }
+        }
 
         //set data
         function ShowData() {
