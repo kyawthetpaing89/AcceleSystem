@@ -1,9 +1,254 @@
-﻿
+﻿@model Models.KeihiSetteiModel
 @{
     ViewBag.Title = "KeihiSetteiEntry";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>KeihiSetteiEntry</h2>
+@section Styles{
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
+}
 
-<div class=""
+
+<div class="container-fluid">
+    <div class="content">
+        <div class="p-5 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white; border-radius:5px;">
+            <div class="col-xs-12 col-md-2"></div>
+            <div class="col-xs-12 col-md-8">
+                <div>
+                    <h2 class=" hr-text text-center">経費設定登録</h2>
+                </div>
+                <div class="pt-3 md-form" style="padding-top:2.5rem!important;">
+                    <div class="col-xl-12 text-center">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <input type="text" class="text-line col-xl-5 text-left" id="ExpenseCode" name="ExpenseCode" required placeholder="経費コード">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" class="text-line col-xl-5 text-left" id="ExpenseName" name="Name" required placeholder="経費名">
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style="padding-left:46px; padding-top:1.2rem!important;">
+                    <div class="col-xs-12">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <input type="text" class="text-line col-xl-5 text-left" id="ExpenseCode" name="ExpenseCode" required placeholder="勘定科目選択">
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style="padding-left:46px; padding-top:1.2rem!important;">
+                    <div class="col-xs-12">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <input type="text" class="text-line col-xl-5 text-left" id="ExpenseCode" name="ExpenseCode" required placeholder="補助科目選択">
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style="padding-left:30px; padding-top:1.2rem!important;">
+                    <div class="col-xl-12">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <label class="text" style="padding-left:12px!important">計上単位</label>
+                        </div>
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <div class="custom-control custom-radio" style="padding-bottom:0.6rem!important;">
+                                <input type="radio" id="品番直接費" name="accounting" value="品番直接費" checked="checked">
+                                <label for="品番直接費" style="padding-right:140px;">品番直接費</label>
+                                <span class="checkmark"></span>
+                                <input type="radio" id="ブランド+シーズン" name="accounting" value="ブランド+シーズン">
+                                <label for="ブランド+シーズン">ブランド+シーズン</label>
+                            </div>
+                            <div class="custom-control custom-radio" style="padding-bottom:1rem!important;">
+                                <input type="radio" class="custom-control-input" id="defaultChecked" name="defaultExampleRadios">
+                                <label class="custom-control-label" for="defaultUnchecked" style="padding-right:85px;">プロジェクト</label>
+                                <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios">
+                                <label class="custom-control-label" for="defaultUnchecked" style="padding-right:85px;">金型配賦</label>
+                                <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios">
+                                <label class="custom-control-label" for="defaultUnchecked">自由項目</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <label class="text" style="padding-left:12px!important;">配賦基準</label>
+                        </div>
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <div class="custom-control custom-radio" style="padding-bottom:4rem!important;">
+                                <input type="radio" class="custom-control-input" id="defaultChecked" name="defaultExampleRadios">
+                                <label class="custom-control-label" for="defaultUnchecked" style="padding-right:65px;">直接</label>
+                                <input type="radio" class="custom-control-input" id="defaultChecked" name="defaultExampleRadios">
+                                <label class="custom-control-label" for="defaultUnchecked" style="padding-right:65px;">総金額比</label>
+                                <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios">
+                                <label class="custom-control-label" for="defaultUnchecked" style="padding-right:65px;">生産数比</label>
+                                <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios">
+                                <label class="custom-control-label" for="defaultUnchecked">固定値比</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form">
+                    <div class="col-xl-12 text-center">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <button id="btnSave" onclick="btnSaveClick()" class="btn btn-dark col-xl-4 text-center">登録</button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <button id="btnCancel" onclick="btnCancelClick()" class="btn btn-primary col-xl-4 text-center">戻る</button>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" id="APIURL" value="@Url.Action("M_Casting_ExistsCheck", "api/KanagataApi")" />
+            </div>
+            <div class="col-xs-12 col-md-3"></div>
+        </div>
+    </div>
+</div>
+
+
+@*@section Scripts{
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#formtitle").text("経費設定検索");
+                $("#ModeURL").val('@Model.Mode');
+                $("#BrandCD").focus();
+                var Mode = '@Model.Mode';
+                if (Mode == 'New') {
+                    $('#btnSave').html('登録');
+                }
+                else if (Mode == 'Edit') {
+                    $('#btnSave').html('更新');
+                    $("#BrandCD").attr('disabled', 'disabled');
+                    $("#BrandName").focus();
+                    //$("#BrandCD").prop("readonly", true);
+                    ShowData();
+                }
+                else {
+                    $('#btnSave').html('削除');
+                    $("#BrandCD").attr('disabled', 'disabled');
+                    $("#BrandName").attr('disabled', 'disabled');
+                    $("#btnSave").focus();
+                    //$("#BrandCD").prop("readonly", true);
+                    //$("#BrandName").prop("readonly", true);
+                    ShowData();
+                     }
+
+
+            });
+
+            //set data
+            function ShowData() {
+                var bmodel = {
+                    BrandCD: '@Model.BrandCD',
+                };
+
+                $.ajax({
+                    url: '@Url.Action("M_Brand_Select", "api/BrandApi")',
+                    method: 'Post',
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify(bmodel),
+                    headers:
+                    {
+                        Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
+                    },
+                    success: function (data) {
+                        var userdata = JSON.parse(data);
+                        $("#BrandCD").val(userdata[0].BrandCD);
+                        $("#BrandName").val(userdata[0].BrandName);
+
+                    }
+                });
+            }
+
+            //insert,update,delete
+        function DoProcess() {
+          focusControl = $("#BrandCD");
+          var bmodel = {
+              BrandCD: $("#BrandCD").val(),
+              BrandName: $("#BrandName").val(),
+              Mode:'@Model.Mode'
+          };
+
+           $.ajax({
+              url: '@Url.Action("Brand_CUD", "api/BrandApi")',
+              method: 'POST',
+              dataType: 'json',
+              contentType: 'application/json; charset=utf-8',
+              data: JSON.stringify(bmodel),
+              headers:
+              {
+                  Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
+              },
+               success: function (msg) {
+                   var message = JSON.parse(msg);
+                   Swal.fire({
+                       icon: message[0].status,
+                       title: message[0].MessageID,
+                       text: message[0].MessageText1,
+
+                   }).then(function () {
+                       if (message[0].status != "error")
+                           location.href = '@Url.Action("BrandList", "Brand")';
+                       else
+                          focusfocusControl = $("#BrandCD");
+                   });
+               }
+          });
+        }
+
+            var focusControl;
+            function ErrorCheck() {
+                if (!$("#BrandName").val()) {
+                    focusControl = $("#BrandName");
+                    return "I102";
+                }
+                else if (!$("#BrandCD").val()) {
+                    focusControl = $("#BrandCD");
+                    return "I102";
+                }
+
+                return "0";
+            }
+
+            //save
+            function btnSaveClick() {
+                 var Mode = '@Model.Mode';
+                //show confirm message
+                if (Mode == "Delete") {
+                    $.when(GetMessage("Q102")).done(function (data) {
+                        var msgdata = JSON.parse(data);
+                        Swal.fire({
+                            title: msgdata[0].MessageID,
+                            text: msgdata[0].MessageText1,
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#d33',
+                            cancelButtonColor: '#3085d6',
+                            confirmButtonText: 'はい。',
+                            cancelButtonText: 'いいえ。'
+                        }).then((result) => {
+                            if (result.value) {
+                                DoProcess();
+                            }
+                        })
+                    })
+                }
+                else {
+                    var msgID = ErrorCheck();
+                    if (msgID == "0") {
+                        DoProcess();
+                        $(focusControl).focus();
+                    }
+                    else {
+                        $.when(GetMessage("E102")).done(function (data) {
+                            var msgdata = JSON.parse(data);
+
+                            Swal.fire({
+                                icon: 'error',
+                                title: msgdata[0].MessageID,
+                                text: msgdata[0].MessageText1,
+                                }).then(function () {
+                            });
+                        })
+                        $(focusControl).focus();
+                    }
+                }
+            }
+            function btnCancelClick() {
+                location.href = '@Url.Action("BrandList", "Brand")';
+            }
+        </script>
+    }*@
