@@ -49,7 +49,7 @@
             clearButton: false,
 
             showEvent: 'focus',
-            autoClose: false,
+            autoClose: true,
 
             // navigation
             monthsField: 'monthsShort',
@@ -97,7 +97,7 @@
             'altLeft': [18, 37],
             'altDown': [18, 40],
             'ctrlShiftUp': [16, 17, 38]
-        },
+        },      
         datepicker;
 
     var Datepicker  = function (el, options) {
@@ -599,6 +599,8 @@
             }
         },
 
+    
+
         /**
          * Updates datepicker options
          * @param {String|Object} param - parameter's name to update. If object then it will extend current options
@@ -817,7 +819,7 @@
 
             if (onShow) {
                 this._bindVisionEvents(onShow)
-            }
+            }          
         },
 
         hide: function () {
@@ -1471,7 +1473,6 @@
 
     $.fn.datepicker.Constructor = Datepicker;
     
-
     $.fn.datepicker.language = {
         ru: {
             days: ["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"],
@@ -1491,7 +1492,7 @@
 
     $(function () {
         $(autoInitSelector).datepicker();
-        autoClose: true;
+        
     })
 
 })();
@@ -2237,4 +2238,4 @@
         }
     };
 })();
- })(window, jQuery);
+})(window, jQuery);
