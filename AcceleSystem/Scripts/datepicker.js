@@ -1398,7 +1398,7 @@
             hours: date.getHours(),
             fullHours:  date.getHours() < 10 ? '0' + date.getHours() :  date.getHours() ,
             minutes: date.getMinutes(),
-            fullMinutes:  date.getMinutes() < 10 ? '0' + date.getMinutes() :  date.getMinutes()
+            fullMinutes: date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes(),
         }
     };
 
@@ -1491,6 +1491,7 @@
 
     $(function () {
         $(autoInitSelector).datepicker();
+        autoClose: true;
     })
 
 })();
