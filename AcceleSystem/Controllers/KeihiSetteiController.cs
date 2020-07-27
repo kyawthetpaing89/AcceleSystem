@@ -10,10 +10,12 @@ namespace AcceleSystem.Controllers
         {
             return View();
         }
-        
-        public ActionResult KeihiSetteiEntry()
+
+        public ActionResult KeihiSetteiEntry(KeihiSetteiModel Kmodel)
         {
-            return View();
+            if (string.IsNullOrWhiteSpace(Kmodel.Mode))
+                Kmodel.Mode = "New";
+            return View(Kmodel);
         }
     }
 }
