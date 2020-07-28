@@ -36,4 +36,8 @@
     background-color:white;
 }
 
+#tblKeihi td.Border1.sorting_1 {
+    width: 180px!important;
+}
+
 
