@@ -98,6 +98,7 @@ function EnterKeyPress(e, ctrl,isRequired,AEFlag,type,checktype) {
         else if (checktype == "1") {
             if (($(ctrl).val())) {
                 if (!(Date.parse($(ctrl).val()))) {
+                //if (!(validDateCheck(ctrl))) {
                     $.when(GetMessage("E103", '@Url.Action("M_Message_Select", "api/MessageApi")')).done(function (data) {
                         var msgdata = JSON.parse(data);
                         Swal.fire({
@@ -128,4 +129,79 @@ function moveNext(ctrl) {
         $next = $('[tabIndex=1]');
     }
     $next.focus();
+}
+
+function validDateCheck(ctrl) {    //CheckDate
+    var input = $(ctrl).val();
+    //var aa = parseInt(input.replace("/", "").replace("-", ""));
+    if (Number.isInteger(parseInt(input.replace("/", "").replace("-", "")))) {
+        var day;
+        var month;
+        var year;
+        var result;
+        var today = new Date();
+        if (input.includes("/")) {
+            var date = input.split("/");
+            day = date[2];
+            month = date[1];
+            year = date[0];
+            if (day == 0 || day == 00) {
+                return false;
+            }
+            else if (day.length == 1)
+                day = "0" + day;
+            if (month == 0 || month == 00) {
+                return false;
+            }
+            else if (month.length == 1)
+                month = "0" + month;
+
+            input = year + month + day;
+        }
+        else if (input.includes("-")) {
+            day = date[2];
+            month = date[1];
+            year = date[0];
+            if (day == 0 || day == 00) {
+                return false;
+            }
+            else if (day.length == 1)
+                day = "0" + day;
+            if (month == 0 || month == 00) {
+                return false;
+            }
+            else if (month.length = 1)
+                month == "0" + month;
+
+            input = year + month + day;
+        }
+        var q = ('0'.repeat(8) + input).slice(-8);
+        day = q.substring(q.length - 2);
+        month = q.substring(q.length - 4).substring(0, 2);
+        year = parseInt(q.substring(0, q.length - 4)).toString();
+
+        if (month == "00") {
+            month = "";
+        }
+        if (year == "0") {
+            year = "";
+        }
+
+        if (month == "") {
+            month = ('0'.repeat(2) + String(today.getMonth())).slice(-2);
+        }
+        if (year == "") {
+            year = String(today.getFullYear);
+        }
+        else {
+            if (year.length == 1)
+                year = "200" + year
+            else if (year.length == 2)
+                year = "20" + year;
+        }
+        
+        $(ctrl).attr.text = year + "/" + month + "/" + day;
+        return true;
+    }
+    else return false;
 }
