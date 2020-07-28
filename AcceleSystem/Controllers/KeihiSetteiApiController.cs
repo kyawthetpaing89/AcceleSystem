@@ -33,6 +33,18 @@ namespace AcceleSystem.Controllers
 
         [UserAuthentication]
         [HttpPost]
+        public string M_Keihi_ExistsCheck([FromBody] KeihiSetteiModel Kmodel)
+        {
+            if (Kmodel == null)
+            {
+                Kmodel = new KeihiSetteiModel();
+            }
+            KeihiSettei_BL Ubl = new KeihiSettei_BL();
+            return Ubl.M_Keihi_ExistsCheck(Kmodel);
+        }
+
+        [UserAuthentication]
+        [HttpPost]
         public string Keihi_CUD([FromBody] KeihiSetteiModel Kmodel)
         {
             KeihiSettei_BL Ubl = new KeihiSettei_BL();

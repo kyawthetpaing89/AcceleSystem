@@ -27,6 +27,14 @@ namespace KeihiSetteiBL
             return bdl.SelectJson("M_Keihi_Select_Entry", Kmodel.Sqlprms);
         }
 
+        public string M_Keihi_ExistsCheck(KeihiSetteiModel Kmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            Kmodel.Sqlprms = new SqlParameter[1];
+            Kmodel.Sqlprms[0] = new SqlParameter("@CostCD", SqlDbType.VarChar) { Value = (object)Kmodel.CostCD ?? DBNull.Value };
+            return bdl.SelectJson("M_Keihi_ExistsCheck", Kmodel.Sqlprms);
+        }
+
         public string Keihi_CUD(KeihiSetteiModel Kmodel)
         {
             BaseDL bdl = new BaseDL();
@@ -38,7 +46,7 @@ namespace KeihiSetteiBL
                 Kmodel.Sqlprms[1] = new SqlParameter("@CostName", SqlDbType.VarChar) { Value = Kmodel.CostName };
                 Kmodel.Sqlprms[2] = new SqlParameter("@KanjoCD", SqlDbType.VarChar) { Value = Kmodel.KanjoCD };
                 Kmodel.Sqlprms[3] = new SqlParameter("@HojoCD", SqlDbType.VarChar) { Value = Kmodel.HojoCD };
-                Kmodel.Sqlprms[4] = new SqlParameter("@Acoounting", SqlDbType.TinyInt) { Value = Kmodel.Accounting };
+                Kmodel.Sqlprms[4] = new SqlParameter("@Accounting", SqlDbType.TinyInt) { Value = Kmodel.Accounting };
                 Kmodel.Sqlprms[5] = new SqlParameter("@Allocation", SqlDbType.TinyInt) { Value = Kmodel.Allocation };
 
             }

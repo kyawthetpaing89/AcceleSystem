@@ -22,7 +22,7 @@ function GetMessage(msgid) {
 
 //move to next control on enter(keypressevent,action control,Required,AlreadyExistsCheck)
 //AEFlag 0 = nothing, 1 = isExist 
-//type 1 = UserID, 2 = Brand, 3 = Kanagata
+//type 1 = UserID, 2 = Brand, 3 = Kanagata, 4 = Keihi
 //checktype 1 = datecheck
 function EnterKeyPress(e, ctrl,isRequired,AEFlag,type,checktype) {
     if (e.keyCode == 13) {
@@ -57,6 +57,11 @@ function EnterKeyPress(e, ctrl,isRequired,AEFlag,type,checktype) {
                     else if (type == 3) {
                         var model = {
                             CastingCD: $(ctrl).val()
+                        };
+                    }
+                    else if (type == 4) {
+                        var model = {
+                            CostCD: $(ctrl).val()
                         };
                     }
                     $.ajax({
