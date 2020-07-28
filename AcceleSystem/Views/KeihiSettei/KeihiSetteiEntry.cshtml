@@ -20,23 +20,23 @@
                 <div class="pt-3 md-form" style="padding-top:2.5rem!important;">
                     <div class="col-xl-12 text-center">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" class="text-line col-xl-5 text-left" id="ExpenseCode" name="ExpenseCode" required placeholder="経費コード">
+                            <input type="text" class="text-line col-xl-5 text-left" id="CostCD" name="costCD" maxlength="6" required placeholder="経費コード">
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="text" class="text-line col-xl-5 text-left" id="ExpenseName" name="Name" required placeholder="経費名">
+                            <input type="text" class="text-line col-xl-5 text-left" id="CostName" name="costName" maxlength="40" required placeholder="経費名">
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form" style="padding-left:46px; padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" class="text-line col-xl-5 text-left" id="ExpenseCode" name="ExpenseCode" required placeholder="勘定科目選択">
+                            <input type="text" class="text-line col-xl-5 text-left" id="KanjoCD" name="kanjoCD" maxlength="6" required placeholder="勘定科目選択">
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form" style="padding-left:46px; padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" class="text-line col-xl-5 text-left" id="ExpenseCode" name="ExpenseCode" required placeholder="補助科目選択">
+                            <input type="text" class="text-line col-xl-5 text-left" id="HojoCD" name="hojoCD" maxlength="4" required placeholder="補助科目選択">
                         </div>
                     </div>
                 </div>
@@ -46,20 +46,20 @@
                             <label class="text" style="padding-left:12px!important">計上単位</label>
                         </div>
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <div class="custom-control custom-radio" style="padding-bottom:0.6rem!important;">
-                                <input type="radio" class="custom-control-input" id="btnRadio1" name="radio"autocomplete="off" checked>
-                                <label class="custom-control-label" for="btnRadio1" style="padding-right:140px;">品番直接費</label>
-                                <input type="radio" class="custom-control-input" id="btnRadio2" name="radio">
-                                <label class="custom-control-label" for="btnRadio2">ブランド+シーズン</label>
-
+                            <div class="custom-control custom-radio" style="padding-bottom:0.6rem!important; padding-left:0px!important;">
+                                <input type="radio" id="rdoDCost" name="radio" checked>
+                                <label style="padding-right:140px;">品番直接費</label>
+                                <input type="radio" id="rdoBrandSeason" name="radio">
+                                <label>ブランド+シーズン</label>
+                                
                             </div>
-                            <div class="custom-control custom-radio" style="padding-bottom:1rem!important;">
-                                <input type="radio" class="custom-control-input" id="defaultInline3" name="radio">
-                                <label class="custom-control-label" for="defaultInline3" style="padding-right:85px;">プロジェクト</label>
-                                <input type="radio" class="custom-control-input" id="defaultInline4" name="radio">
-                                <label class="custom-control-label" for="defaultGroupExample4" style="padding-right:85px;">金型配賦</label>
-                                <input type="radio" class="custom-control-input" id="defaultInline5" name="radio" >
-                                <label class="custom-control-label" for="defaultInline5">自由項目</label>
+                            <div class="custom-control custom-radio" style="padding-bottom:1rem!important; padding-left:0px!important;">
+                                <input type="radio" id="rdoProject" name="radio">
+                                <label style="padding-right:85px;">プロジェクト</label>
+                                <input type="radio" id="rdoMAllocation" name="radio">
+                                <label style="padding-right:85px;">金型配賦</label>
+                                <input type="radio" id="rdoFItems" name="radio" >
+                                <label>自由項目</label>
                             </div>
                         </div>
                     </div>
@@ -68,15 +68,15 @@
                             <label class="text" style="padding-left:12px!important;">配賦基準</label>
                         </div>
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <div class="custom-control custom-radio" style="padding-bottom:4rem!important;">
-                                <input type="radio" class="custom-control-input" id="defaultChecked" name="defaultExampleRadios">
-                                <label class="custom-control-label" for="defaultUnchecked" style="padding-right:65px;">直接</label>
-                                <input type="radio" class="custom-control-input" id="defaultChecked" name="defaultExampleRadios">
-                                <label class="custom-control-label" for="defaultUnchecked" style="padding-right:65px;">総金額比</label>
-                                <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios">
-                                <label class="custom-control-label" for="defaultUnchecked" style="padding-right:65px;">生産数比</label>
-                                <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios">
-                                <label class="custom-control-label" for="defaultUnchecked">固定値比</label>
+                            <div class="custom-control custom-radio" style="padding-bottom:4rem!important; padding-left:0px!important;">
+                                <input type="radio" id="rdoDirectly" name="radio1" checked>
+                                <label style="padding-right:55px!important;">直接</label>
+                                <input type="radio" id="rdoTMRatio" name="radio1">
+                                <label style="padding-right:55px!important;">総金額比</label>
+                                <input type="radio" id="rdoPNRatio" name="radio1">
+                                <label style="padding-right:55px!important;">生産数比</label>
+                                <input type="radio" id="rdoFVRatio" name="radio1">
+                                <label>固定値比</label>
                             </div>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                         </div>
                     </div>
                 </div>
-                <input type="hidden" id="APIURL" value="@Url.Action("M_Casting_ExistsCheck", "api/KanagataApi")" />
+                <input type="hidden" id="APIURL" value="@Url.Action("M_KeihiSettei_ExistsCheck", "api/KeihiSetteiApi")" />
             </div>
             <div class="col-xs-12 col-md-3"></div>
         </div>
@@ -98,27 +98,32 @@
 </div>
 
 
-@*@section Scripts{
+@section Scripts{
         <script type="text/javascript">
             $(document).ready(function () {
                 $("#formtitle").text("経費設定検索");
                 $("#ModeURL").val('@Model.Mode');
-                $("#BrandCD").focus();
+                $("#CostCD").focus();
                 var Mode = '@Model.Mode';
                 if (Mode == 'New') {
                     $('#btnSave').html('登録');
                 }
                 else if (Mode == 'Edit') {
                     $('#btnSave').html('更新');
-                    $("#BrandCD").attr('disabled', 'disabled');
-                    $("#BrandName").focus();
+                    $("#CostCD").attr('disabled', 'disabled');
+                    $("#CostName").focus();
+                    
                     //$("#BrandCD").prop("readonly", true);
                     ShowData();
                 }
                 else {
                     $('#btnSave').html('削除');
-                    $("#BrandCD").attr('disabled', 'disabled');
-                    $("#BrandName").attr('disabled', 'disabled');
+                    $("#CostCD").attr('disabled', 'disabled');
+                    $("#CostName").attr('disabled', 'disabled');
+                    $("#KanjoCD").attr('disabled', 'disabled');
+                    $("#HojoCD").attr('disabled', 'disabled');
+                    $("#Accounting").attr('disabled', 'disabled');
+                    $("Allocation").attr('disabled', 'disabled');
                     $("#btnSave").focus();
                     //$("#BrandCD").prop("readonly", true);
                     //$("#BrandName").prop("readonly", true);
@@ -130,24 +135,44 @@
 
             //set data
             function ShowData() {
-                var bmodel = {
-                    BrandCD: '@Model.BrandCD',
+                var Kmodel = {
+                    CostCD: '@Model.CostCD',
                 };
-
+                @*alert('@Model.CostCD');*@
                 $.ajax({
-                    url: '@Url.Action("M_Brand_Select", "api/BrandApi")',
+                    url: '@Url.Action("M_Keihi_Select_Entry", "api/KeihiSetteiApi")',
                     method: 'Post',
                     dataType: 'json',
                     contentType: 'application/json; charset=utf-8',
-                    data: JSON.stringify(bmodel),
+                    data: JSON.stringify(Kmodel),
                     headers:
                     {
                         Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
                     },
                     success: function (data) {
                         var userdata = JSON.parse(data);
-                        $("#BrandCD").val(userdata[0].BrandCD);
-                        $("#BrandName").val(userdata[0].BrandName);
+                        $("#CostCD").val(userdata[0].CostCD);
+                        $("#CostName").val(userdata[0].CostName);
+                        $("#KanjoCD").val(userdata[0].KanjoCD);
+                        $("#HojoCD").val(userdata[0].HojoCD);
+                        if (userdata[0].Accounting == "1") 
+                            $("#rdoDCost").prop("checked", true);
+                        if (userdata[0].Accounting == "2")
+                            $("#rdoBrandSeason").prop("checked", true);
+                        if (userdata[0].Accounting == "3")
+                            $("#rdoProject").prop("checked", true);
+                        if (userdata[0].Accounting == "4")
+                            $("#rdoMAllocation").prop("checked", true);
+                        if (userdata[0].Accounting == "5")
+                            $("#rdoFItems").prop("checked", true);
+                        if (userdata[0].Allocation == "0")
+                            $("#rdoDirectly").prop("checked", true);
+                        if (userdata[0].Allocation == "1")
+                            $("#rdoTMRatio").prop("checked", true);
+                        if (userdata[0].Allocation == "2")
+                            $("#rdoPNRatio").prop("checked", true);
+                        if (userdata[0].Allocation == "3")
+                            $("#rdoFVRatio").prop("check", true);
 
                     }
                 });
@@ -155,19 +180,23 @@
 
             //insert,update,delete
         function DoProcess() {
-          focusControl = $("#BrandCD");
-          var bmodel = {
-              BrandCD: $("#BrandCD").val(),
-              BrandName: $("#BrandName").val(),
+          focusControl = $("#CostCD");
+          var Kmodel = {
+              CostCD: $("#CostCD").val(),
+              CostName: $("#CostName").val(),
+              KanjoCD: $("#KanjoCD").val(),
+              HojoCD: $("#HojoCD").val(),
+              Accounting: $("#Accounting").val(),
+              Allocation: $("#Alloaction").val(),
               Mode:'@Model.Mode'
           };
 
            $.ajax({
-              url: '@Url.Action("Brand_CUD", "api/BrandApi")',
+              url: '@Url.Action("Keihi_CUD", "api/KeihiSetteiApi")',
               method: 'POST',
               dataType: 'json',
               contentType: 'application/json; charset=utf-8',
-              data: JSON.stringify(bmodel),
+              data: JSON.stringify(Kmodel),
               headers:
               {
                   Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
@@ -181,9 +210,9 @@
 
                    }).then(function () {
                        if (message[0].status != "error")
-                           location.href = '@Url.Action("BrandList", "Brand")';
+                           location.href = '@Url.Action("KeihiSetteiList", "KeihiSettei")';
                        else
-                          focusfocusControl = $("#BrandCD");
+                          focusfocusControl = $("#CostCD");
                    });
                }
           });
@@ -191,12 +220,12 @@
 
             var focusControl;
             function ErrorCheck() {
-                if (!$("#BrandName").val()) {
-                    focusControl = $("#BrandName");
+                if (!$("#CostName").val()) {
+                    focusControl = $("#CostName");
                     return "I102";
                 }
-                else if (!$("#BrandCD").val()) {
-                    focusControl = $("#BrandCD");
+                else if (!$("#CostCD").val()) {
+                    focusControl = $("#CostCD");
                     return "I102";
                 }
 
@@ -248,7 +277,7 @@
                 }
             }
             function btnCancelClick() {
-                location.href = '@Url.Action("BrandList", "Brand")';
+                location.href = '@Url.Action("KeihiSetteiList", "KeihiSettei")';
             }
         </script>
-    }*@
+    }

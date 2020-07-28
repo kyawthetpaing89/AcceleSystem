@@ -37,16 +37,3 @@
 }
 
 
-input:checked ~ .checkmark {
-    background-color: #2196F3;
-}
-
-/*.checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 25px;
-    width: 25px;
-    background-color: #eee;
-    border-radius: 50%;
-}*/

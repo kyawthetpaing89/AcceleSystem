@@ -19,6 +19,17 @@ namespace AcceleSystem.Controllers
             return Ubl.M_Keihi_Select_List(Kmodel);
         }
 
+        [UserAuthentication]
+        [HttpPost]
+        public string M_Keihi_Select_Entry([FromBody] KeihiSetteiModel Kmodel)
+        {
+            if (Kmodel == null)
+            {
+                Kmodel = new KeihiSetteiModel();
+            }
+            KeihiSettei_BL Ubl = new KeihiSettei_BL();
+            return Ubl.M_Keihi_Select_Entry(Kmodel);
+        }
 
         [UserAuthentication]
         [HttpPost]
