@@ -46,10 +46,10 @@
                         </div>
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <div class="custom-control custom-radio" style="padding-bottom:0.6rem!important; padding-left:0px!important;">
-                                <input type="radio" id="rdoDCost" name="radio" checked>
-                                <label style="padding-right:140px;">品番直接費</label>
+                                <input type="radio" tabindex="5" id="rdoDCost" name="radio" onkeypress="EnterKeyPress(event,this,true,0,0)" checked>
+                                <label for="rdoCost" style="padding-right:140px;">品番直接費</label>
                                 <input type="radio" id="rdoBrandSeason" name="radio">
-                                <label>ブランド+シーズン</label>
+                                <label for="rdoBrandSeason">ブランド+シーズン</label>
                                 
                             </div>
                             <div class="custom-control custom-radio" style="padding-bottom:1rem!important; padding-left:0px!important;">
@@ -68,7 +68,7 @@
                         </div>
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <div class="custom-control custom-radio" style="padding-bottom:4rem!important; padding-left:0px!important;">
-                                <input type="radio" id="rdoDirectly" name="radio1" checked>
+                                <input tabindex="6" type="radio" id="rdoDirectly" name="radio1" checked>
                                 <label style="padding-right:55px!important;">直接</label>
                                 <input type="radio" id="rdoTMRatio" name="radio1">
                                 <label style="padding-right:55px!important;">総金額比</label>
