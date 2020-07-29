@@ -24,7 +24,7 @@ function GetMessage(msgid) {
 //AEFlag 0 = nothing, 1 = isExist 
 //type 1 = UserID, 2 = Brand, 3 = Kanagata, 4 = Keihi
 //checktype 1 = datecheck
-function EnterKeyPress(e, ctrl,isRequired,AEFlag,type,checktype) {
+function EnterKeyPress(e, ctrl, isRequired, AEFlag, type, checktype) {
     if (e.keyCode == 13) {
         e.preventDefault();
         if (isRequired) {

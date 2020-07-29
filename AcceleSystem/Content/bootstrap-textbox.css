@@ -25,3 +25,7 @@
 input:focus {
     background-color: #F2F4F4;
 }
+
+input[type="radio"]:focus + label {
+    background-color: #F2F4F4;
+}
