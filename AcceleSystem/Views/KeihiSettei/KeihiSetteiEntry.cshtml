@@ -123,7 +123,7 @@
                     $("#KanjoCD").attr('disabled', 'disabled');
                     $("#HojoCD").attr('disabled', 'disabled');
                     $("#Accounting").attr('disabled', 'disabled');
-                    $("Allocation").attr('disabled', 'disabled');
+                    $("#Allocation").attr('disabled', 'disabled');
                     $("#btnSave").focus();
                     //$("#BrandCD").prop("readonly", true);
                     //$("#BrandName").prop("readonly", true);
@@ -138,7 +138,6 @@
                 var Kmodel = {
                     CostCD: '@Model.CostCD',
                 };
-                @*alert('@Model.CostCD');*@
                 $.ajax({
                     url: '@Url.Action("M_Keihi_Select_Entry", "api/KeihiSetteiApi")',
                     method: 'Post',
