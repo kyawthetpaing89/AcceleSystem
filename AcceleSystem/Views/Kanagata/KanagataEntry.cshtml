@@ -40,7 +40,7 @@
                 </div>
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
-                        <input type="text" tabindex="5" class="text-line col-11 datepicker-here" id="UseLimit" name="Limit" style="width:91%" onkeypress="EnterKeyPress(event,this,false,0,3,1)" required placeholder="使用期限">
+                        <input type="text" tabindex="5" class="text-line col-11 datepicker-here" id="UseLimit" name="Limit" style="width:91%"  required placeholder="使用期限">
                     </div>
 
                 </div>
@@ -112,6 +112,11 @@
             }
         });
 
+        $('#UseLimit').on("keypress", function (e) {
+            if (e.keyCode == 13) {
+                CheckDate();
+            }
+        });
         //$('#BrandName').on("keypress", function (e) {
         //    if (e.keyCode == 13) {
         //        $('#UseLimit').focus();
@@ -165,6 +170,51 @@
                 $("#BrandName").val("");
                 $("#UseLimit").focus();
             }
+        }
+
+        function CheckDate() {
+            alert("a");
+            if (!($('#UseLimit').val() == '')) {
+                var inputdate = $("#UseLimit").val();
+                alert("b");
+
+                $.ajax({
+                    url: '@Url.Action("Date_Checking", "api/CommonApi")',
+                    method: 'Post',
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify(inputdate),
+                    headers:
+                    {
+                        Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
+                    },
+                    success: function (data) {
+                        var dateData = JOSN.parse(data);
+                        if (dateData.length > 0) {
+                            if (dateData[0].result == "false") {
+                                $.when(GetMessage("E103", '@Url.Action("M_Message_Select", "api/MessageApi")')).done(function (data) {
+                                    var msgdata = JSON.parse(data);
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: msgdata[0].MessageID,
+                                        text: msgdata[0].MessageText1,
+                                    }).then(function () {
+                                        $("#UseLimit").focus();
+                                    });
+                                })
+                            }
+                        }
+                        else if (dateData[0].result == "true")
+                            $("#btnSave").focus();
+                        else {
+                            $("#UseLimit").val() = dateData[0].result;
+                            $("#btnSave").focus();
+                        }   
+                    }
+                });
+            }
+            else 
+                $("#btnSave").focus();
         }
 
         //set data

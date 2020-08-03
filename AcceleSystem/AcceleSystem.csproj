@@ -138,6 +138,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BrandApiController.cs" />
     <Compile Include="Controllers\BrandController.cs" />
+    <Compile Include="Controllers\CommonApiController.cs" />
     <Compile Include="Controllers\HelloController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KanagataApiController.cs" />
@@ -525,6 +526,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="obj\Debug\" />
+    <Folder Include="Views\CommonApi\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -541,6 +543,10 @@
     <ProjectReference Include="..\BrandBL\BrandBL.csproj">
       <Project>{a256f918-3d19-49eb-91ff-d38d4b2e09f1}</Project>
       <Name>BrandBL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonBL\CommonBL.csproj">
+      <Project>{20cb34c1-be05-421b-8fb8-4ad5ac09dec2}</Project>
+      <Name>CommonBL</Name>
     </ProjectReference>
     <ProjectReference Include="..\DL\DL.csproj">
       <Project>{86a23955-7ac1-4263-bc9a-96165936864c}</Project>
