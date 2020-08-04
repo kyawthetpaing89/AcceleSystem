@@ -43,7 +43,9 @@
   <ItemGroup>
     <Compile Include="BaseModel.cs" />
     <Compile Include="BrandModel.cs" />
+    <Compile Include="HojoModel.cs" />
     <Compile Include="KanagataModel.cs" />
+    <Compile Include="KanjoModel.cs" />
     <Compile Include="KeihiSetteiModel.cs" />
     <Compile Include="MessageModel.cs" />
     <Compile Include="UserModel.cs" />

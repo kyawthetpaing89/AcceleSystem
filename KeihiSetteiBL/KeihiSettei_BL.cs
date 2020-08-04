@@ -35,6 +35,14 @@ namespace KeihiSetteiBL
             return bdl.SelectJson("M_Keihi_ExistsCheck", Kmodel.Sqlprms);
         }
 
+        public string M_Kanjo_Name_Select(KanjoModel Kjmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            Kjmodel.Sqlprms = new SqlParameter[1];
+            Kjmodel.Sqlprms[0] = new SqlParameter("@KanjoCD", SqlDbType.VarChar) { Value = (object)Kjmodel.KanjoCD ?? DBNull.Value };
+            return bdl.SelectJson("M_Kanjo_Name_Select", Kjmodel.Sqlprms);
+        }
+
         public string Keihi_CUD(KeihiSetteiModel Kmodel)
         {
             BaseDL bdl = new BaseDL();

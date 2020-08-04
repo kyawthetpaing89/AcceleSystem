@@ -29,7 +29,10 @@
                 <div class="pt-3 md-form" style="padding-left:46px; padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="3" class="text-line col-xl-5 text-left" id="KanjoCD" name="kanjoCD" maxlength="6" onkeypress="EnterKeyPress(event,this,true,0,4,0)" required placeholder="勘定科目選択">
+                            <input type="text" tabindex="3" class="text-line col-xl-5 text-left" id="KanjoCD" name="kanjoCD" maxlength="6" required placeholder="勘定科目選択">
+                            <label id="KanjoName" style="padding-left:30px;">
+                                勘定科目表示
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -37,6 +40,9 @@
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <input type="text" tabindex="4" class="text-line col-xl-5 text-left" id="HojoCD" name="hojoCD" maxlength="4" onkeypress="EnterKeyPress(event,this,true,0,4,0)" required placeholder="補助科目選択">
+                            <label id="HojoName" style="padding-left:30px;">
+                                補助科目表示
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -107,6 +113,7 @@
                 var Mode = '@Model.Mode';
                 if (Mode == 'New') {
                     $('#btnSave').html('登録');
+                    $("#HojoCD").attr('disabled', 'disabled');
                 }
                 else if (Mode == 'Edit') {
                     $('#btnSave').html('更新');
@@ -129,8 +136,100 @@
                     //$("#BrandName").prop("readonly", true);
                     ShowData();
                      }
+            });
 
+            $('#KanjoCD').on("keypress", function (e) {
+                if (e.keyCode == 13) {
+                    if ($("#KanjoCD").val()) {
+                        var KjModel = {
+                            KanjoCD: $("#KanjoCD").val(),
+                        };
 
+                        $.ajax({
+                            url: '@Url.Action("M_Kanjo_Name_Select", "api/KeihiSetteiApi")',
+                            method: 'Post',
+                            dataType: 'json',
+                            contentType: 'application/json; charset=utf-8',
+                            data: JSON.stringify(KjModel),
+                            headers:
+                            {
+                                Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
+                            },
+                            success: function (data) {
+                                var kanjodata = JSON.parse(data);
+                                if (kanjodata.length > 0) {
+                                    $("#KanjoName").text(kanjodata[0].KanjoName);
+                                    if (kanjodata[0].HojoKBN == "1") {
+                                        $("#HojoCD").removeAttr('disabled');
+                                        $("#HojoCD").focus();
+                                    }
+                                }
+                                else {
+                                    $.when(GetMessage("E101", '@Url.Action("M_Message_Select", "api/MessageApi")')).done(function (data) {
+                                        var msgdata = JSON.parse(data);
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: msgdata[0].MessageID,
+                                            text: msgdata[0].MessageText1,
+                                        }).then(function () {
+                                            $("#KanjoCD").val("");
+                                            $("#KanjoName").text("");
+                                            $("#KanjoCD").focus();
+                                        });
+                                    })
+                                }
+                            }
+                        });
+                    }
+                    
+                }
+            });
+
+            $('#HojoCD').on("keypress", function (e) {
+                if (e.keyCode == 13) {
+                    if ($("#HojoCD").val()) {
+                        var HjModel = {
+                            KanjoCD: $("#HojoCD").val(),
+                        };
+
+                        $.ajax({
+                            url: '@Url.Action("M_Hojo_Name_Select", "api/KeihiSetteiApi")',
+                            method: 'Post',
+                            dataType: 'json',
+                            contentType: 'application/json; charset=utf-8',
+                            data: JSON.stringify(Model),
+                            headers:
+                            {
+                                Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
+                            },
+                            success: function (data) {
+                                var kanjodata = JSON.parse(data);
+                                if (kanjodata.length > 0) {
+                                    $("#KanjoName").text(kanjodata[0].KanjoName);
+                                    if (kanjodata[0].HojoKBN == "1") {
+                                        $("#HojoCD").removeAttr('disabled');
+                                        $("#HojoCD").focus();
+                                    }
+                                }
+                                else {
+                                    $.when(GetMessage("E101", '@Url.Action("M_Message_Select", "api/MessageApi")')).done(function (data) {
+                                        var msgdata = JSON.parse(data);
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: msgdata[0].MessageID,
+                                            text: msgdata[0].MessageText1,
+                                        }).then(function () {
+                                            $("#KanjoCD").val("");
+                                            $("#KanjoName").text("");
+                                            $("#KanjoCD").focus();
+                                        });
+                                    })
+                                }
+                            }
+                        });
+                    }
+                    
+                }
             });
 
             //set data
