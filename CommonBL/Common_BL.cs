@@ -12,7 +12,9 @@ namespace CommonBL
     {
         public string Date_Checking(string inputdate)
         {
-            string result = string.Empty;
+           // return "[{\"result\":\"true\"}]";
+
+            string result, strdate = string.Empty;
             if (!string.IsNullOrWhiteSpace(inputdate))
             {
                 if (IsInteger(inputdate.Replace("/", "").Replace("-", "")))
@@ -70,15 +72,15 @@ namespace CommonBL
                         else if (year.Length == 2)
                             year = "20" + year;
                     }
-                    string strdate = year + "/" + month + "/" + day;
+                    strdate = year + "/" + month + "/" + day;
                     if (CheckDate(strdate))
                     {
-                        result = @"{'resultdate' : '" + strdate + "'}";
+                        result = "[{\"resultdate\" : \"" + strdate + "\", \"flg\" : \"true\"}]";   //"[{"result":"2020/01/01"}]";
                         return result;
                     }
                     else
                     {
-                        result = @"{'resultdate' : 'false'}";
+                        result = "[{\"resultdate\" : \"" + strdate + "\", \"flg\" : \"false\"}]";
                         return result;
                         //mmodel = new MessageModel()
                         //{
@@ -90,7 +92,7 @@ namespace CommonBL
                 }
                 else
                 {
-                    result = @"{'resultdate' : 'false'}";
+                    result = "[{\"resultdate\" : \"" + strdate + "\", \"flg\" : \"false\"}]";
                     return result;
                     //mmodel = new MessageModel()
                     //{
@@ -101,7 +103,7 @@ namespace CommonBL
                 }
             }
             else {
-                result = @"{'resultdate' : 'true'}";
+                result = "[{\"resultdate\" : \"" + strdate + "\", \"flg\" : \"true\"}]";
                 return result;
             }
         }
