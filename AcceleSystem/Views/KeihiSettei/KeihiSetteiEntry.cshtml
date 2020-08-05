@@ -173,9 +173,9 @@
                                             text: msgdata[0].MessageText1,
                                         }).then(function () {
                                             $("#KanjoCD").val("");
-                                            $("#KanjoName").text("");
+                                            $("#KanjoName").text("勘定科目表示");
                                             $("#HojoCD").val("");
-                                            $("#HojoName").text("");
+                                            $("#HojoName").text("補助科目表示");
                                             $("#HojoCD").attr('disabled', 'disabled');
                                             $("#KanjoCD").focus();
                                            
@@ -187,9 +187,9 @@
                     }
                     else {
                         $("#KanjoCD").val("");
-                        $("#KanjoName").text("");
+                        $("#KanjoName").text("勘定科目表示");
                         $("#HojoCD").val("");
-                        $("#HojoName").text("");
+                        $("#HojoName").text("補助科目表示");
                         $("#HojoCD").attr('disabled', 'disabled');
                         $("#KanjoCD").focus();
                     }
@@ -228,7 +228,7 @@
                                             text: msgdata[0].MessageText1,
                                         }).then(function () {
                                             $("#HojoCD").val("");
-                                            $("#HojoName").text("");
+                                            $("#HojoName").text("補助科目表示");
                                             $("#HojoCD").focus();
                                         });
                                     })
@@ -238,7 +238,7 @@
                     }
                     else {
                         $("#HojoCD").val("");
-                        $("#HojoName").text("");
+                        $("#HojoName").text("補助科目表示");
                     }
                     
                 }
@@ -267,22 +267,23 @@
                         $("#HojoCD").val(userdata[0].HojoCD);
                         if (userdata[0].Accounting == "1") 
                             $("#rdoDCost").prop("checked", true);
-                        if (userdata[0].Accounting == "2")
+                        else if (userdata[0].Accounting == "2")
                             $("#rdoBrandSeason").prop("checked", true);
-                        if (userdata[0].Accounting == "3")
+                        else if (userdata[0].Accounting == "3")
                             $("#rdoProject").prop("checked", true);
-                        if (userdata[0].Accounting == "4")
+                        else if (userdata[0].Accounting == "4")
                             $("#rdoMAllocation").prop("checked", true);
-                        if (userdata[0].Accounting == "5")
+                        else
                             $("#rdoFItems").prop("checked", true);
+
                         if (userdata[0].Allocation == "0")
                             $("#rdoDirectly").prop("checked", true);
-                        if (userdata[0].Allocation == "1")
+                        else if (userdata[0].Allocation == "1")
                             $("#rdoTMRatio").prop("checked", true);
-                        if (userdata[0].Allocation == "2")
+                        else if (userdata[0].Allocation == "2")
                             $("#rdoPNRatio").prop("checked", true);
-                        if (userdata[0].Allocation == "3")
-                            $("#rdoFVRatio").prop("check", true);
+                        else
+                            $("#rdoFVRatio").prop("checked", true);
 
                     }
                 });
