@@ -12,6 +12,8 @@ namespace Models
         public string CostName { get; set; }
         public string KanjoCD { get; set; }
         public string HojoCD { get; set; }
+        public string KanjoName { get; set; }
+        public string HojoName { get; set; }
         public string Accounting { get; set; }
         public string Allocation { get; set; }
 
