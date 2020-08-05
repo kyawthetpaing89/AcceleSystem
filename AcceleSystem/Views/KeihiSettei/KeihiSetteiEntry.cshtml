@@ -17,37 +17,34 @@
                 <div>
                     <h2 class=" hr-text text-center">経費設定登録</h2>
                 </div>
-                <div class="pt-3 md-form" style="padding-top:2.5rem!important;padding-left:40px;" >
-                    <div class="col-xl-12">
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" id="CostCD" name="costCD" maxlength="6" style="width:365px;" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="経費コード">
-                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" id="CostCD" name="costCD" maxlength="6" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="経費コード">
+                        
                             <input type="text" tabindex="2" class="text-line col-xl-5 text-left" id="CostName" name="costName" maxlength="40" onkeypress="EnterKeyPress(event,this,true,0,4,0)" required placeholder="経費名">
                         </div>
                     </div>
                 </div>
-                <div class="pt-3 md-form" style="padding-left:46px; padding-top:1.2rem!important;">
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <input type="text" tabindex="3" class="text-line col-xl-5 text-left" id="KanjoCD" name="kanjoCD" maxlength="6" onkeypress="EnterKeyPress(event,this,true,0,4,0)" required placeholder="勘定科目選択">
-                            <label id="KanjoName" style="padding-left:30px;">
-                                勘定科目表示
-                            </label>
+                            <label id="KanjoName"><b>勘定科目表示</b></label>
                         </div>
                     </div>
                 </div>
-                <div class="pt-3 md-form" style="padding-left:46px; padding-top:1.2rem!important;">
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="4" class="text-line col-xl-5 text-left" id="HojoCD" name="hojoCD" maxlength="4" onkeypress="EnterKeyPress(event,this,true,0,4,0)" required placeholder="補助科目選択">
-                            <label id="HojoName" style="padding-left:30px;">
-                                補助科目表示
-                            </label>
+                            <input type="text" tabindex="4" class="text-line col-xl-5 text-left" id="HojoCD" name="hojoCD" maxlength="4" onkeypress="EnterKeyPress(event,this,true,0,4,0)" required placeholder="補助科目選択">                            
+                            <label id="HojoName"><b>補助科目表示</b></label>
+
                         </div>
                     </div>
                 </div>
-                <div class="pt-3 md-form" style="padding-left:30px; padding-top:1.2rem!important;">
-                    <div class="col-xl-12">
+                <div class="pt-3 md-form" style=" padding-top:1.2rem!important;">
+                    <div class="col-xl-12" style="padding-left: 0px">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label class="text" style="padding-left:12px!important">計上単位</label>
                         </div>
@@ -57,19 +54,19 @@
                                 <label for="rdoCost" style="padding-right:150px;">品番直接費</label>
                                 <input type="radio" id="rdoBrandSeason" name="radio">
                                 <label for="rdoBrandSeason">ブランド+シーズン</label>
-                                
+
                             </div>
                             <div class="custom-control custom-radio" style="padding-bottom:1rem!important; padding-left:0px!important;">
                                 <input type="radio" id="rdoProject" name="radio">
                                 <label style="padding-right:85px;">プロジェクト</label>
                                 <input type="radio" id="rdoMAllocation" name="radio">
                                 <label style="padding-right:85px;">金型配賦</label>
-                                <input type="radio" id="rdoFItems" name="radio" >
+                                <input type="radio" id="rdoFItems" name="radio">
                                 <label>自由項目</label>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-12">
+                    <div class="col-xl-12" style="padding-left: 0px">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label class="text" style="padding-left:12px!important;">配賦基準</label>
                         </div>
