@@ -156,6 +156,7 @@
                                 var kanjodata = JSON.parse(data);
                                 if (kanjodata.length > 0) {
                                     $("#KanjoName").text(kanjodata[0].KanjoName);
+                                    $('#KanjoName').css({ 'font-weight': 'bold' });
                                     if (kanjodata[0].HojoKBN == "1") {
                                         $("#HojoCD").removeAttr('disabled');
                                         $("#HojoCD").focus();
@@ -171,8 +172,10 @@
                                         }).then(function () {
                                             $("#KanjoCD").val("");
                                             $("#KanjoName").text("勘定科目表示");
+                                            $('#KanjoName').css({ 'font-weight': 'bold' });
                                             $("#HojoCD").val("");
                                             $("#HojoName").text("補助科目表示");
+                                            $('#HojoName').css({ 'font-weight': 'bold' });
                                             $("#HojoCD").attr('disabled', 'disabled');
                                             $("#KanjoCD").focus();
                                            
@@ -185,8 +188,10 @@
                     else {
                         $("#KanjoCD").val("");
                         $("#KanjoName").text("勘定科目表示");
+                        $('#KanjoName').css({ 'font-weight': 'bold' });
                         $("#HojoCD").val("");
                         $("#HojoName").text("補助科目表示");
+                        $('#HojoName').css({ 'font-weight': 'bold' });
                         $("#HojoCD").attr('disabled', 'disabled');
                         $("#KanjoCD").focus();
                     }
@@ -215,6 +220,7 @@
                                 var hojodata = JSON.parse(data);
                                 if (hojodata.length > 0) {
                                     $("#HojoName").text(hojodata[0].HojoName);
+                                    $('#HojoName').css({ 'font-weight': 'bold' });
                                 }
                                 else {
                                     $.when(GetMessage("E101", '@Url.Action("M_Message_Select", "api/MessageApi")')).done(function (data) {
@@ -226,6 +232,7 @@
                                         }).then(function () {
                                             $("#HojoCD").val("");
                                             $("#HojoName").text("補助科目表示");
+                                            $('#HojoName').css({ 'font-weight': 'bold' });
                                             $("#HojoCD").focus();
                                         });
                                     })
