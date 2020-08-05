@@ -29,7 +29,7 @@
                 <div class="pt-3 md-form" style="padding-left:46px; padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="3" class="text-line col-xl-5 text-left" id="KanjoCD" name="kanjoCD" maxlength="6" required placeholder="勘定科目選択">
+                            <input type="text" tabindex="3" class="text-line col-xl-5 text-left" id="KanjoCD" name="kanjoCD" maxlength="6" onkeypress="EnterKeyPress(event,this,true,0,4,0)" required placeholder="勘定科目選択">
                             <label id="KanjoName" style="padding-left:30px;">
                                 勘定科目表示
                             </label>
@@ -174,14 +174,25 @@
                                         }).then(function () {
                                             $("#KanjoCD").val("");
                                             $("#KanjoName").text("");
+                                            $("#HojoCD").val("");
+                                            $("#HojoName").text("");
+                                            $("#HojoCD").attr('disabled', 'disabled');
                                             $("#KanjoCD").focus();
+                                           
                                         });
                                     })
                                 }
                             }
                         });
                     }
-                    
+                    else {
+                        $("#KanjoCD").val("");
+                        $("#KanjoName").text("");
+                        $("#HojoCD").val("");
+                        $("#HojoName").text("");
+                        $("#HojoCD").attr('disabled', 'disabled');
+                        $("#KanjoCD").focus();
+                    }
                 }
             });
 
@@ -189,7 +200,8 @@
                 if (e.keyCode == 13) {
                     if ($("#HojoCD").val()) {
                         var HjModel = {
-                            KanjoCD: $("#HojoCD").val(),
+                            KanjoCD: $("#KanjoCD").val(),
+                            HojoCD: $("#HojoCD").val(),
                         };
 
                         $.ajax({
@@ -197,19 +209,15 @@
                             method: 'Post',
                             dataType: 'json',
                             contentType: 'application/json; charset=utf-8',
-                            data: JSON.stringify(Model),
+                            data: JSON.stringify(HjModel),
                             headers:
                             {
                                 Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
                             },
                             success: function (data) {
-                                var kanjodata = JSON.parse(data);
-                                if (kanjodata.length > 0) {
-                                    $("#KanjoName").text(kanjodata[0].KanjoName);
-                                    if (kanjodata[0].HojoKBN == "1") {
-                                        $("#HojoCD").removeAttr('disabled');
-                                        $("#HojoCD").focus();
-                                    }
+                                var hojodata = JSON.parse(data);
+                                if (hojodata.length > 0) {
+                                    $("#HojoName").text(hojodata[0].HojoName);
                                 }
                                 else {
                                     $.when(GetMessage("E101", '@Url.Action("M_Message_Select", "api/MessageApi")')).done(function (data) {
@@ -219,14 +227,18 @@
                                             title: msgdata[0].MessageID,
                                             text: msgdata[0].MessageText1,
                                         }).then(function () {
-                                            $("#KanjoCD").val("");
-                                            $("#KanjoName").text("");
-                                            $("#KanjoCD").focus();
+                                            $("#HojoCD").val("");
+                                            $("#HojoName").text("");
+                                            $("#HojoCD").focus();
                                         });
                                     })
                                 }
                             }
                         });
+                    }
+                    else {
+                        $("#HojoCD").val("");
+                        $("#HojoName").text("");
                     }
                     
                 }
