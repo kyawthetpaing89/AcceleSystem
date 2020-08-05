@@ -70,11 +70,13 @@ namespace KeihiSetteiBL
             else if (Kmodel.Mode.Equals("Edit"))
             {
                 Kmodel.SPName = "M_Keihi_Update";
-                Kmodel.Sqlprms = new SqlParameter[4];
+                Kmodel.Sqlprms = new SqlParameter[6];
                 Kmodel.Sqlprms[0] = new SqlParameter("@CostCD", SqlDbType.VarChar) { Value = Kmodel.CostCD };
                 Kmodel.Sqlprms[1] = new SqlParameter("@CostName", SqlDbType.VarChar) { Value = Kmodel.CostName };
-                Kmodel.Sqlprms[2] = new SqlParameter("@Accounting", SqlDbType.TinyInt) { Value = Kmodel.Accounting };
-                Kmodel.Sqlprms[3] = new SqlParameter("@Allocation", SqlDbType.TinyInt) { Value = Kmodel.Allocation };
+                Kmodel.Sqlprms[2] = new SqlParameter("@KanjoCD", SqlDbType.VarChar) { Value = Kmodel.KanjoCD };
+                Kmodel.Sqlprms[3] = new SqlParameter("@HojoCD", SqlDbType.VarChar) { Value = Kmodel.HojoCD };
+                Kmodel.Sqlprms[4] = new SqlParameter("@Accounting", SqlDbType.TinyInt) { Value = Kmodel.Accounting };
+                Kmodel.Sqlprms[5] = new SqlParameter("@Allocation", SqlDbType.TinyInt) { Value = Kmodel.Allocation };
 
             }
             else if (Kmodel.Mode.Equals("Delete"))

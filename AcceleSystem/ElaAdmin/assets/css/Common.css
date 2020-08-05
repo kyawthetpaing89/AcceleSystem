@@ -19,10 +19,14 @@
         border-top: 1px solid #d3dcd3;
     }
 
-    td.Border2{
-        width: 180px;
+    #tblKeihi td {
+        border-top: 1px solid #d3dcd3;
     }
 
+#tblKeihi td.Border2 {
+    width: 180px;
+    color: #aba6a6;
+}
 
 .text-line{
     color:black !important;
@@ -39,5 +43,14 @@
 #tblKeihi td.Border1.sorting_1 {
     width: 180px!important;
 }
+
+#tblKeihi{
+    width: 480px!important;
+}
+
+#tblKeihi td.Border3{
+    width: 48px!important;
+}
+
 
 
