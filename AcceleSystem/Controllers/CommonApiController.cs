@@ -11,10 +11,10 @@ namespace AcceleSystem.Controllers
         // GET: CommonApi
         [UserAuthentication]
         [HttpPost]
-        public string Date_Checking([FromBody] string inputdate)
+        public string Date_Checking([FromBody] BaseModel BModel)
         {
             Common_BL cmbl = new Common_BL();
-            return cmbl.Date_Checking(inputdate);
+            return cmbl.Date_Checking(BModel.inputdate);
 
         }
     }
