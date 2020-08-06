@@ -269,6 +269,10 @@
                         $("#CostName").val(userdata[0].CostName);
                         $("#KanjoCD").val(userdata[0].KanjoCD);
                         $("#HojoCD").val(userdata[0].HojoCD);
+                        $("#KanjoName").text(userdata[0].KanjoName);
+                        $('#KanjoName').css({ 'font-weight': 'bold' });
+                        $("#HojoName").text(userdata[0].HojoName);
+                        $('#HojoName').css({ 'font-weight': 'bold' });
                         if (userdata[0].Accounting == "1") 
                             $("#rdoDCost").prop("checked", true);
                         else if (userdata[0].Accounting == "2")
@@ -364,9 +368,11 @@
                     focusControl = $("#KanjoCD");
                     return "I102";
                 }
-                else if (!$("#HojoCD").val()) {
-                    focusControl = $("#HojoCD");
-                    return "I102";
+                else if (!($("#HojoCD").attr('disabled', 'disabled'))) {
+                    if (!$("#HojoCD").val()) {
+                        focusControl = $("#HojoCD");
+                        return "I102";
+                    }
                 }
 
                 return "0";
