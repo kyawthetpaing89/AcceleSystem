@@ -22,25 +22,25 @@
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" id="CastingCD" name="castingCD" maxlength="10" onkeypress="EnterKeyPress(event,this,true,1,3,0)" required placeholder="金型コード">
+                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CastingCD" name="castingCD" maxlength="10" required placeholder="金型コード">
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="text" tabindex="2" class="text-line col-xl-5 text-left" id="CastingName" name="Name" maxlength="20" onkeypress="EnterKeyPress(event,this,true,0,3,0)" required placeholder="金型名">
+                            <input type="text" tabindex="2" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CastingName" name="Name" maxlength="20" required placeholder="金型名">
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="3" class="text-line col-xl-5 text-left" id="BrandCD" name="brandCD" maxlength="20" required placeholder="ブランドコード">
+                            <input type="text" tabindex="3" class="text-line col-xl-5 text-left" id="BrandCD" onkeydown="KeyDown(event,this)" name="brandCD" maxlength="20" required placeholder="ブランドコード">
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="text" tabindex="4" class="text-line col-xl-5 text-left" id="BrandName" name="brandname" maxlength="40" required placeholder="ブランド名">
+                            <input type="text" class="text-line col-xl-5 text-left" id="BrandName" name="brandname" maxlength="40" required placeholder="ブランド名">
                             @*<input type="text" class="text-line col-11" id="BrandName" name="brandname" style="width:91%" required placeholder="ブランド名">*@
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
-                        <input type="text" tabindex="5" class="text-line col-11 datepicker-here" id="UseLimit" name="Limit" style="width:91%"  required placeholder="使用期限">
+                        <input type="text" tabindex="4" class="text-line col-11 datepicker-here" id="UseLimit" name="Limit" style="width:91%"  required placeholder="使用期限">
                     </div>
 
                 </div>
@@ -74,12 +74,25 @@
             if (Mode == 'New') {
                 $('#btnSave').html('登録');
                 $("#BrandName").attr('disabled', 'disabled');
+
+                RequiredCheck($("#CastingCD"));
+                RequiredCheck($("#CastingName"));
+                RequiredCheck($("#BrandCD"));
+                ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
+                AlreadyExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/KanagataApi")');
             }
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
                 $("#CastingCD").attr('disabled', 'disabled');
                 $("#CastingName").focus();
                 $("#BrandName").attr('disabled', 'disabled');
+                
+
+                RequiredCheck($("#CastingCD"));
+                RequiredCheck($("#CastingName"));
+                RequiredCheck($("#BrandCD")); 
+                ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
+
                 ShowData();
             }
             else  {
@@ -90,89 +103,13 @@
                 $("#BrandName").attr('disabled', 'disabled');
                 $("#UseLimit").attr('disabled', 'disabled');
                 $("#btnSave").focus();
-                    ShowData();
-            }
+                ShowData();
+            }            
         });
 
-        //$('#CastingCD').on("keypress", function (e) {
-        //    if (e.keyCode == 13) {
-        //        $('#CastingName').focus();
-        //    }
-        //});
+      
 
-        //$('#CastingName').on("keypress", function (e) {
-        //    if (e.keyCode == 13) {
-        //        $('#BrandCD').focus();
-        //    }
-        //});
-
-        $('#BrandCD').on("keypress", function (e) {
-            if (e.keyCode == 13) {
-                  BrandName();
-            }
-        });
-
-        $('#UseLimit').on("keypress", function (e) {
-            if (e.keyCode == 13) {
-                CheckDate();
-            }
-        });
-        //$('#BrandName').on("keypress", function (e) {
-        //    if (e.keyCode == 13) {
-        //        $('#UseLimit').focus();
-        //    }
-        //});
-
-        //$('#UseLimit').on("keypress", function (e) {
-        //    if (e.keyCode == 13) {
-        //        $('#btnSave').focus();
-        //    }
-
-
-        function BrandName() {
-            if (!($('#BrandCD').val() == '')) {
-                var kgmodel = {
-                    BrandCD: $("#BrandCD").val(),
-                };
-                $.ajax({
-                    url: '@Url.Action("M_BrandName_Select", "api/KanagataApi")',
-                    method: 'Post',
-                    dataType: 'json',
-                    contentType: 'application/json; charset=utf-8',
-                    data: JSON.stringify(kgmodel),
-                    headers:
-                    {
-                        Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-                    },
-                    success: function (data) {
-                        var userdata = JSON.parse(data);
-                        if (userdata.length > 0) {
-                            $("#BrandName").val(userdata[0].BrandName);
-                            $("#UseLimit").focus();
-                        }
-                        else {
-                            $.when(GetMessage("E101", '@Url.Action("M_Message_Select", "api/MessageApi")')).done(function (data) {
-                                var msgdata = JSON.parse(data);
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: msgdata[0].MessageID,
-                                    text: msgdata[0].MessageText1,
-                                }).then(function () {
-                                    $("#BrandName").val("");
-                                    $("#BrandCD").focus();
-                                });
-                            })
-                        }
-                    }
-                });
-            }
-            else {
-                $("#BrandName").val("");
-                $("#UseLimit").focus();
-            }
-        }
-
-        function CheckDate() {
+        @*function CheckDate() {
             if (!($('#UseLimit').val() == '')) {
                 var inputdate = $("#UseLimit").val();
 
@@ -211,7 +148,7 @@
             }
             else 
                 $("#btnSave").focus();
-        }
+        }*@
 
         //set data
         function ShowData() {
@@ -278,18 +215,18 @@
         }
 
 
-        var focusControl;
-        function ErrorCheck() {
-            if (!$("#CastingCD").val()) {
-                focusControl = $("#CastingCD");
-                return "I102";
-            }
-            else if (!$("#CastingName").val()) {
-                focusControl = $("#CastingName");
-                return "I102";
-            }
-            return "0";
-        }
+        //var focusControl;
+        //function ErrorCheck() {
+        //    if (!$("#CastingCD").val()) {
+        //        focusControl = $("#CastingCD");
+        //        return "I102";
+        //    }
+        //    else if (!$("#CastingName").val()) {
+        //        focusControl = $("#CastingName");
+        //        return "I102";
+        //    }
+        //    return "0";
+        //}
 
 
         //save
@@ -345,6 +282,6 @@
     </script>
     <script src="@Url.Content("~/Scripts/datepicker.js")"></script>
     <script src="@Url.Content("~/Scripts/datepicker.en.js")"></script>
-    <script src="@Url.Content("~/Scripts/datepicker.ja.js")"></script>
+    @*<script src="@Url.Content("~/Scripts/datepicker.ja.js")"></script>*@
 }
 
