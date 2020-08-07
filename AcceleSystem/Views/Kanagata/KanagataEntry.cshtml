@@ -11,7 +11,7 @@
 }
 
 
-<div class="container-fluid">
+<div id="divMain" class="container-fluid">
     <div class="content">
         <div class="p-5 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white; border-radius:5px;">
             <div class="col-xs-6 col-md-4"></div>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
-                        <input type="text" tabindex="4" onkeydown="KeyDown(event,this)" class="text-line col-11" id="UseLimit" name="Limit" style="width:91%"  required placeholder="使用期限">
+                        <input type="text" tabindex="4" onkeydown="KeyDown(event,this)" class="text-line col-11 datepicker-here" id="UseLimit" name="Limit" style="width:91%"  required placeholder="使用期限">
                     </div>
 
                 </div>
@@ -104,77 +104,21 @@
                 $("#UseLimit").attr('disabled', 'disabled');
                 $("#btnSave").focus();
                 ShowData();
-            }            
+            } 
         });
-
-      
-
-        @*function CheckDate() {
-            if (!($('#UseLimit').val() == '')) {
-                var inputdate = $("#UseLimit").val();
-
-                $.ajax({
-                    url: '@Url.Action("Date_Checking", "api/CommonApi")',
-                    method: 'Post',
-                    dataType: 'json',
-                    contentType: 'application/json; charset=utf-8',
-                    data: JSON.stringify(inputdate),
-                    headers:
-                    {
-                        Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-                    },
-                    success: function (data) {
-                        var dateData = JSON.parse(data);
-                        if (dateData.length > 0) {
-                            if (dateData[0].flg == "false") {
-                                $.when(GetMessage("E103", '@Url.Action("M_Message_Select", "api/MessageApi")')).done(function (data) {
-                                    var msgdata = JSON.parse(data);
-                                    Swal.fire({
-                                        icon: 'error',
-                                        title: msgdata[0].MessageID,
-                                        text: msgdata[0].MessageText1,
-                                    }).then(function () {
-                                        $("#UseLimit").focus();
-                                    });
-                                })
-                            }
-                            else if (dateData[0].flg == "true") {
-                                $("#UseLimit").val(dateData[0].resultdate);
-                                $("#btnSave").focus();
-                            }
-                        }
-                    }
-                });
-            }
-            else 
-                $("#btnSave").focus();
-        }*@
 
         //set data
         function ShowData() {
             var kgmodel = {
                 CastingCD: '@Model.CastingCD',
             };
-
-            $.ajax({
-                url: '@Url.Action("M_Casting_Select", "api/KanagataApi")',
-                method: 'Post',
-                dataType: 'json',
-                contentType: 'application/json; charset=utf-8',
-                data: JSON.stringify(kgmodel),
-                headers:
-                {
-                    Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-                },
-                success: function (data) {
-                    var userdata = JSON.parse(data);
-                    $("#CastingCD").val(userdata[0].CastingCD);
-                    $("#CastingName").val(userdata[0].CastingName);
-                    $("#BrandCD").val(userdata[0].BrandCD);
-                    $("#BrandName").val(userdata[0].BrandName);
-                    $("#UseLimit").val(userdata[0].UseLimit);
-                }
-            });
+            var data = CalltoApiController('@Url.Action("M_Casting_Select", "api/KanagataApi")', kgmodel);
+            var userdata = JSON.parse(data);
+            $("#CastingCD").val(userdata[0].CastingCD);
+            $("#CastingName").val(userdata[0].CastingName);
+            $("#BrandCD").val(userdata[0].BrandCD);
+            $("#BrandName").val(userdata[0].BrandName);
+            $("#UseLimit").val(userdata[0].UseLimit);
         }
 
         function DoProcess() {
@@ -188,90 +132,29 @@
                  Mode:'@Model.Mode'
             };
 
-             $.ajax({
-                url: '@Url.Action("Casting_CUD", "api/KanagataApi")',
-                method: 'POST',
-                dataType: 'json',
-                contentType: 'application/json; charset=utf-8',
-                 data: JSON.stringify(kgmodel),
-                headers:
-                {
-                    Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-                },
-                 success: function (msg) {
-                     var message = JSON.parse(msg);
-                     Swal.fire({
-                         icon: message[0].status,
-                         title: message[0].MessageID,
-                         text: message[0].MessageText1,
-                     }).then(function () {
-                         if (message[0].status != "error")
-                             //location.href = '@Url.Action("UserEntry", "User")';
-                         //else
-                             location.href = '@Url.Action("KanagataList", "Kanagata")';
-                     });
-                 }
-            });
+            var data = CalltoApiController('@Url.Action("Casting_CUD", "api/KanagataApi")', kgmodel);
+            ShowSuccessMessage(data,'@Url.Action("KanagataList", "Kanagata")');           
         }
 
-
-        //var focusControl;
-        //function ErrorCheck() {
-        //    if (!$("#CastingCD").val()) {
-        //        focusControl = $("#CastingCD");
-        //        return "I102";
-        //    }
-        //    else if (!$("#CastingName").val()) {
-        //        focusControl = $("#CastingName");
-        //        return "I102";
-        //    }
-        //    return "0";
-        //}
-
+        function DeleteConfrim() {
+            DoProcess();
+        }
 
         //save
         function btnSaveClick() {
-            var msgID = ErrorCheck();
-            if (msgID == "0") {
+            var res = ErrorCheckOnSave();
+            if (res == "0") {
                 var Mode = '@Model.Mode';
                 //show confirm message
                 if (Mode == "Delete") {
-                    $.when(GetMessage("Q102", '@Url.Action("M_Message_Select", "api/MessageApi")')).done(function (data) {
-                        var msgdata = JSON.parse(data);
-                        Swal.fire({
-                            title: msgdata[0].MessageID,
-                            text: msgdata[0].MessageText1,
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#d33',
-                            cancelButtonColor: '#3085d6',
-                            confirmButtonText: 'はい。',
-                            cancelButtonText: 'いいえ。'
-                        }).then((result) => {
-                            if (result.value) {
-                                DoProcess();
-                            }
-                        })
-                    })
+                    ShowConfirmMessage("Q102", "DeleteConfrim");
                 }
                 else {
                     DoProcess();
                 }
             }
-            else {
-                $.when(GetMessage("E102", '@Url.Action("M_Message_Select", "api/MessageApi")')).done(function (data) {
-                    var msgdata = JSON.parse(data);
-
-                    Swal.fire({
-                        icon: 'error',
-                        title: msgdata[0].MessageID,
-                        text: msgdata[0].MessageText1,
-                    }).then(function () {
-
-                     });
-                })
-                $(focusControl).focus();
-            }
+            else
+                ShowErrorMessage(res);
         }
 
         function btnCancelClick() {
