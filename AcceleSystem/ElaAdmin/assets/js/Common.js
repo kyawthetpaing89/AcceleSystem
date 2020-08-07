@@ -68,7 +68,7 @@ function ShowSuccessMessage(msgdata,url) {
         title: message[0].MessageID,
         text: message[0].MessageText1,
     }).then(function () {
-        if (message[0].status != "error")
+        if (message[0].status != "success")
             location.href = url;
     });
 }
