@@ -53,6 +53,11 @@ function AlreadyExistsCheck(ctrl, val, apiURL) {
     $(ctrl).attr("data-AlreadyExistsApiUrl", apiURL);
 }
 
+function DateCheck(ctrl,val) {
+    $(ctrl).attr("data-DateCheck", "1");
+    $(ctrl).attr("data-DateCheckApiUrl", val);
+}
+
 function KeyDown(e, ctrl) {
     if (e.which == 13) { 
         e.preventDefault();
@@ -118,6 +123,23 @@ function ErrChk(ctrl) {
         }
     }
 
+    var dateCheck = $(ctrl).attr("data-DateCheck");
+    if (dateCheck == "1") {
+        var ApiURL = $(ctrl).attr("data-DateCheckApiUrl");
+        var model = {
+            inputdate: $(ctrl).val(),
+        };
+        var data = CalltoApiController(ApiURL, model);
+        var dateData = JSON.parse(data);
+        if (dateData[0].flg == "false") {
+            return "E103";
+        }
+        else if (dateData[0].flg == "true") {
+            $(ctrl).val(dateData[0].resultdate);
+            return "0";
+        }
+    }
+
     return "0";
 }
 
@@ -130,4 +152,5 @@ function moveNext(ctrl) {
         }
     } while ($(ctrl).is('[disabled=disabled]'));
     $(ctrl).select();
+    $(ctrl).focus();
 }

@@ -9,5 +9,6 @@ namespace Models
         public string CreatedBy { get; set; }
         public string CreatedDate { get; set; }
         public SqlParameter[] Sqlprms { get; set; }
+        public string inputdate { get; set; }
     }
 }
