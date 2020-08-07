@@ -1,4 +1,6 @@
-﻿function CalltoApiController(url, model) {
+﻿
+
+function CalltoApiController(url, model) {
     var result;
     $.ajax({
         url: url.replace("%2F", "/"),
@@ -14,15 +16,36 @@
         success: function (data) {
             result = data;
         },
-        //error: function (data) {
-        //    ShowMessage('');
-        //    return null;
-        //}
     });
     return result;
 }
 
-function ShowMessage(msgid) {
+function ShowConfirmMessage(msgid,functionname) {
+    var Mmodel = {
+        MessageID: msgid,
+    };
+
+    var data = CalltoApiController($("#MessageURL").val(), Mmodel);
+    var msgdata = JSON.parse(data);
+
+    Swal.fire({
+        title: msgdata[0].MessageID,
+        text: msgdata[0].MessageText1,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'はい。',
+        cancelButtonText: 'いいえ。'
+    }).then((result) => {
+        if (result.value) {
+            var fn = window[functionname];
+            fn();
+        }
+    })    
+}
+
+function ShowErrorMessage(msgid) {
     var Mmodel = {
         MessageID: msgid,
     };
@@ -36,6 +59,18 @@ function ShowMessage(msgid) {
         title: msgdata[0].MessageID,
         text: msgdata[0].MessageText1,
     })
+}
+
+function ShowSuccessMessage(msgdata,url) {
+    var message = JSON.parse(msgdata);
+    Swal.fire({
+        icon: message[0].status,
+        title: message[0].MessageID,
+        text: message[0].MessageText1,
+    }).then(function () {
+        if (message[0].status != "error")
+            location.href = url;
+    });
 }
 
 function RequiredCheck(ctrl) {
@@ -53,6 +88,19 @@ function AlreadyExistsCheck(ctrl, val, apiURL) {
     $(ctrl).attr("data-AlreadyExistsApiUrl", apiURL);
 }
 
+function ErrorCheckOnSave() {
+    var r1 = "0";
+    $('#divMain *').filter(':input').each(function () {
+        var result = ErrChk(this);
+        if (result != "0") {
+            $(this).focus();
+            r1 = result;
+            return result;
+        }
+    });
+    return r1;
+}
+
 function DateCheck(ctrl,val) {
     $(ctrl).attr("data-DateCheck", "1");
     $(ctrl).attr("data-DateCheckApiUrl", val);
@@ -66,7 +114,7 @@ function KeyDown(e, ctrl) {
             moveNext(ctrl);
         }
         else {
-            ShowMessage(result);
+            ShowErrorMessage(result);
         }
     }
 }
