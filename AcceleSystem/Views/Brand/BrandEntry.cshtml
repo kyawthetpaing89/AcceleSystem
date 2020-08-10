@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
 }
 
-<div class="container-fluid">
+<div id="divMain" class="container-fluid">
     <div class="content">
         <div class="p-5 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white; border-radius:5px;">
             <div class="col-xs-6 col-md-4"></div>
@@ -18,12 +18,12 @@
                 </div>
                 <div class="pt-5 md-form">
 
-                    <input type="text" tabindex="1" class="text-line" id="BrandCD" name="brandCD" maxlength="20" onkeypress="EnterKeyPress(event,this,true,1,2)" required placeholder="ブランドコード">
+                    <input type="text" tabindex="1" id="BrandCD" name="brandCD"  onkeydown="KeyDown(event,this)" class="text-line" maxlength="20" required placeholder="ブランドコード">
 
                 </div>
                 <div class="pt-5 md-form">
 
-                    <input type="text" tabindex="2" class="text-line" id="BrandName" maxlength="40" name="brandName" onkeypress="EnterKeyPress(event,this,true,0,2)" required placeholder="ブランド名">
+                    <input type="text" tabindex="2"  id="BrandName"  name="brandName" onkeydown="KeyDown(event,this)" class="text-line" maxlength="40" required placeholder="ブランド名">
                     <label id="lblBrandNameErr" style="color:red;display:none"></label>
 
                 </div>
@@ -51,17 +51,21 @@
 <script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("ブランド登録");
-            $("#ModeURL").val('@Model.Mode');
             $("#BrandCD").focus();
             var Mode = '@Model.Mode';
             if (Mode == 'New') {
                 $('#btnSave').html('登録');
+
+                RequiredCheck($("#BrandCD"));
+                RequiredCheck($("#BrandName"));
+                AlreadyExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")');
             }
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
                 $("#BrandCD").attr('disabled', 'disabled');
                 $("#BrandName").focus();
-                //$("#BrandCD").prop("readonly", true);
+
+                RequiredCheck($("#BrandName"));
                 ShowData();
             }
             else {
@@ -69,8 +73,6 @@
                 $("#BrandCD").attr('disabled', 'disabled');
                 $("#BrandName").attr('disabled', 'disabled');
                 $("#btnSave").focus();
-                //$("#BrandCD").prop("readonly", true);
-                //$("#BrandName").prop("readonly", true);
                 ShowData();
                  }
 
@@ -83,119 +85,45 @@
                 BrandCD: '@Model.BrandCD',
             };
 
-            $.ajax({
-                url: '@Url.Action("M_Brand_Select", "api/BrandApi")',
-                method: 'Post',
-                dataType: 'json',
-                contentType: 'application/json; charset=utf-8',
-                data: JSON.stringify(bmodel),
-                headers:
-                {
-                    Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-                },
-                success: function (data) {
-                    var userdata = JSON.parse(data);
-                    $("#BrandCD").val(userdata[0].BrandCD);
-                    $("#BrandName").val(userdata[0].BrandName);
-
-                }
-            });
+            var data = CalltoApiController('@Url.Action("M_Brand_Select", "api/BrandApi")', bmodel);
+            var BrandData = JSON.parse(data);
+            $("#BrandCD").val(BrandData[0].BrandCD);
+            $("#BrandName").val(BrandData[0].BrandName);
         }
 
         //insert,update,delete
-    function DoProcess() {
-      focusControl = $("#BrandCD");
-      var bmodel = {
-          BrandCD: $("#BrandCD").val(),
-          BrandName: $("#BrandName").val(),
-          Mode:'@Model.Mode'
-      };
-
-       $.ajax({
-          url: '@Url.Action("Brand_CUD", "api/BrandApi")',
-          method: 'POST',
-          dataType: 'json',
-          contentType: 'application/json; charset=utf-8',
-          data: JSON.stringify(bmodel),
-          headers:
-          {
-              Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-          },
-           success: function (msg) {
-               var message = JSON.parse(msg);
-               Swal.fire({
-                   icon: message[0].status,
-                   title: message[0].MessageID,
-                   text: message[0].MessageText1,
-
-               }).then(function () {
-                   if (message[0].status != "error")
-                       location.href = '@Url.Action("BrandList", "Brand")';
-                   else
-                      focusfocusControl = $("#BrandCD");
-               });
-           }
-      });
-    }
-
-        var focusControl;
-        function ErrorCheck() {
-            if (!$("#BrandName").val()) {
-                focusControl = $("#BrandName");
-                return "I102";
-            }
-            else if (!$("#BrandCD").val()) {
-                focusControl = $("#BrandCD");
-                return "I102";
-            }
-
-            return "0";
+        function DoProcess() {
+          focusControl = $("#BrandCD");
+            var bmodel = {
+                BrandCD: $("#BrandCD").val(),
+                BrandName: $("#BrandName").val(),
+                Mode:'@Model.Mode'
+            };
+            var data = CalltoApiController('@Url.Action("Brand_CUD", "api/BrandApi")', bmodel);
+            ShowSuccessMessage(data,'@Url.Action("BrandList", "Brand")');
         }
 
+        function DeleteConfrim() {
+            DoProcess();
+        }
+        
         //save
-        function btnSaveClick() {
-             var Mode = '@Model.Mode';
-            //show confirm message
-            if (Mode == "Delete") {
-                $.when(GetMessage("Q102")).done(function (data) {
-                    var msgdata = JSON.parse(data);
-                    Swal.fire({
-                        title: msgdata[0].MessageID,
-                        text: msgdata[0].MessageText1,
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#d33',
-                        cancelButtonColor: '#3085d6',
-                        confirmButtonText: 'はい。',
-                        cancelButtonText: 'いいえ。'
-                    }).then((result) => {
-                        if (result.value) {
-                            DoProcess();
-                        }
-                    })
-                })
-            }
-            else {
-                var msgID = ErrorCheck();
-                if (msgID == "0") {
-                    DoProcess();
-                    $(focusControl).focus();
-                }
-                else {
-                    $.when(GetMessage("E102")).done(function (data) {
-                        var msgdata = JSON.parse(data);
-
-                        Swal.fire({
-                            icon: 'error',
-                            title: msgdata[0].MessageID,
-                            text: msgdata[0].MessageText1,
-                            }).then(function () {
-                        });
-                    })
-                    $(focusControl).focus();
-                }
-            }
-        }
+    function btnSaveClick() {
+             var res = ErrorCheckOnSave();
+             if (res == "0") {
+                 var Mode = '@Model.Mode';
+                 //show confirm message
+                 if (Mode == "Delete") {
+                     ShowConfirmMessage("Q102", "DeleteConfrim");
+                 }
+                 else {
+                     DoProcess();
+                 }
+             }
+             else
+                 ShowErrorMessage(res);
+         }
+        
         function btnCancelClick() {
             location.href = '@Url.Action("BrandList", "Brand")';
         }
