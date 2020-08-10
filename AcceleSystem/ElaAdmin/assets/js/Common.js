@@ -186,8 +186,8 @@ function ErrChk(ctrl) {
                     CastingCD: $(ctrl).val()
                 };
                 var data = CalltoApiController(ApiURL, model);
-                var BrandData = JSON.parse(data);
-                if (BrandData[0].MessageID != "E107") {
+                var CastingData = JSON.parse(data);
+                if (CastingData[0].MessageID != "E107") {
                     return "0";
                 }
                 else {
