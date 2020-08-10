@@ -172,6 +172,7 @@ function ErrChk(ctrl) {
                 var data = CalltoApiController(ApiURL, model);
                 var KanjoData = JSON.parse(data);
                 if (KanjoData[0].MessageID != "E101") {
+                    alert("a");
                     if ($(ctrl).attr("data-NameCtrl")) {
                         var ctrlName = $(ctrl).attr("data-NameCtrl");
                         $('#' + ctrlName).val(KanjoData[0].KanjoName);
