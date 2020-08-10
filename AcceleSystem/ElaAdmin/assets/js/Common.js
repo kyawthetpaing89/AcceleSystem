@@ -154,8 +154,7 @@ function ErrChk(ctrl) {
                 break;
             case "Keihi":
                 var model = {
-                    CostCD: $(ctrl).val(),
-                    KanjoCD: $(ctrl).val()
+                    CostCD: $(ctrl).val()
                 };
                 var data = CalltoApiController(ApiURL, model);
                 var KeihiData = JSON.parse(data);
@@ -163,6 +162,32 @@ function ErrChk(ctrl) {
                     if ($(ctrl).attr("data-NameCtrl")) {
                         var ctrlName = $(ctrl).attr("data-NameCtrl");
                         $('#' + ctrlName).val(KeihiData[0].CostName);
+                        return "0";
+                    }
+                }
+            case "Kanjo":
+                var model = {
+                    KanjoCD: $(ctrl).val()
+                };
+                var data = CalltoApiController(ApiURL, model);
+                var KanjoData = JSON.parse(data);
+                if (KanjoData[0].MessageID != "E101") {
+                    if ($(ctrl).attr("data-NameCtrl")) {
+                        var ctrlName = $(ctrl).attr("data-NameCtrl");
+                        $('#' + ctrlName).val(KanjoData[0].KanjoName);
+                        return "0";
+                    }
+                }
+            case "Hojo":
+                var model = {
+                    HojoCD: $(ctrl).val()
+                };
+                var data = CalltoApiController(ApiURL, model);
+                var HojoData = JSON.parse(data);
+                if (HojoData[0].MessageID != "E101") {
+                    if ($(ctrl).attr("data-NameCtrl")) {
+                        var ctrlName = $(ctrl).attr("data-NameCtrl");
+                        $('#' + ctrlName).val(HojoData[0].HojoName);
                         return "0";
                     }
                 }
@@ -231,6 +256,32 @@ function ErrChk(ctrl) {
                 }
                 else {
                     return KeihiData[0].MessageID;
+                }
+                break;
+            case "Kanjo":
+                var model = {
+                    KanjoCD: $(ctrl).val()
+                };
+                var data = CalltoApiController(ApiURL, model);
+                var KanjoData = JSON.parse(data);
+                if (KanjoData[0].MessageID != "E107") {
+                    return "0";
+                }
+                else {
+                    return KanjoData[0].MessageID;
+                }
+                break;
+            case "Hojo":
+                var model = {
+                    HojoCD: $(ctrl).val()
+                };
+                var data = CalltoApiController(ApiURL, model);
+                var HojoData = JSON.parse(data);
+                if (HojoData[0].MessageID != "E107") {
+                    return "0";
+                }
+                else {
+                    return HojoData[0].MessageID;
                 }
                 break;
         }
