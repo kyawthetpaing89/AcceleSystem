@@ -29,7 +29,7 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="3" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="KanjoCD" name="kanjoCD" maxlength="6" required placeholder="勘定科目選択">
+                            <input type="text" tabindex="3" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this,'KanjoCheck')" id="KanjoCD" name="kanjoCD" maxlength="6" required placeholder="勘定科目選択">
                             <label id="KanjoName"><b>勘定科目表示</b></label>
                         </div>
                     </div>
@@ -175,6 +175,17 @@
 
             var data = CalltoApiController('@Url.Action("Keihi_CUD", "api/KeihiSetteiApi")', Kmodel);
             ShowSuccessMessage(data,'@Url.Action("KeihiSetteiList", "Keihi")');
+        }
+
+        function KanjoCheck(result) {
+            if (result == 'OK') {
+                $("#HojoCD").prop("disabled", false);
+                $("#HojoCD").focus();
+            }
+            else {
+                $("#HojoCD").val('');
+                $("#HojoCD").prop("disabled", true);
+            }
         }
 
         function DeleteConfrim() {
