@@ -182,7 +182,7 @@ function ErrChk(ctrl) {
                 if (KanjoData[0].MessageID != "E101") {
                     if ($(ctrl).attr("data-NameCtrl")) {
                         var ctrlName = $(ctrl).attr("data-NameCtrl");
-                        $('#' + ctrlName).val(KanjoData[0].KanjoName);
+                        $('#' + ctrlName).text(KanjoData[0].KanjoName);
                         return "0";
                     }
                 }
