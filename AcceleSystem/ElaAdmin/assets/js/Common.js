@@ -205,14 +205,16 @@ function ErrChk(ctrl) {
                 break;
             case "Hojo":
                 var model = {
+                    //KanjoCD: $(ctrl.val(),
                     HojoCD: $(ctrl).val()
+
                 };
                 var data = CalltoApiController(ApiURL, model);
                 var HojoData = JSON.parse(data);
                 if (HojoData[0].MessageID != "E101") {
                     if ($(ctrl).attr("data-NameCtrl")) {
                         var ctrlName = $(ctrl).attr("data-NameCtrl");
-                        $('#' + ctrlName).val(HojoData[0].HojoName);
+                        $('#' + ctrlName).text(HojoData[0].HojoName);
                         return "0";
                     }
                 }
