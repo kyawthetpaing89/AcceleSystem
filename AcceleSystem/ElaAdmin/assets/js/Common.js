@@ -108,7 +108,6 @@ function DateCheck(ctrl,val) {
 
 function KeyDown(e, ctrl) {
     if (e.which == 13) { 
-        alert("a");
         e.preventDefault();
         var result = ErrChk(ctrl);
         if (result == "0") {
