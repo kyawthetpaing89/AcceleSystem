@@ -45,7 +45,7 @@ function ShowConfirmMessage(msgid,functionname) {
     })    
 }
 
-function ShowErrorMessage(msgid) {
+function ShowErrorMessage(msgid,functionname) {
     var Mmodel = {
         MessageID: msgid,
     };
@@ -58,6 +58,11 @@ function ShowErrorMessage(msgid) {
         icon: 'error',
         title: msgdata[0].MessageID,
         text: msgdata[0].MessageText1,
+    }).then(function () {
+        if (functionname) {
+            var fn = window[functionname];
+            fn('NG');
+        }        
     })
 }
 
@@ -106,15 +111,19 @@ function DateCheck(ctrl,val) {
     $(ctrl).attr("data-DateCheckApiUrl", val);
 }
 
-function KeyDown(e, ctrl) {
+function KeyDown(e, ctrl, functionname) {
     if (e.which == 13) { 
         e.preventDefault();
         var result = ErrChk(ctrl);
         if (result == "0") {
             moveNext(ctrl);
+            if (functionname) {
+                var fn = window[functionname];
+                fn('OK');
+            }   
         }
         else {
-            ShowErrorMessage(result);
+            ShowErrorMessage(result, functionname);
         }
     }
 }
