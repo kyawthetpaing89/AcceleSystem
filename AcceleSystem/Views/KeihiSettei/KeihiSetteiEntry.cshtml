@@ -117,7 +117,7 @@
                 RequiredCheck($("#KanjoCD"));
                 RequiredCheck($("#HojoCD"));
                 AlreadyExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/KeihiSetteiApi")');
-                ExistsCheck($("#KanjoCD"), "Kanjo", '@Url.Action("M_Kanjo_ExistsCheck", "api/KeihiSetteiApi")', "KanjoCD");
+                ExistsCheck($("#KanjoCD"), "Kanjo", '@Url.Action("M_Kanjo_ExistsCheck", "api/KeihiSetteiApi")', "KanjoName");
             }
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
