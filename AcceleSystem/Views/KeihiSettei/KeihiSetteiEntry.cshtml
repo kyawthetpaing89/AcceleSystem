@@ -9,7 +9,7 @@
 }
 
 
-<div class="container-fluid">
+<div id="divMain" class="container-fluid">
     <div class="content">
         <div class="p-5 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white; border-radius:5px;">
             <div class="col-xs-12 col-md-2"></div>
@@ -20,16 +20,16 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" id="CostCD" name="costCD" maxlength="6" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="経費コード">
-                        
-                            <input type="text" tabindex="2" class="text-line col-xl-5 text-left" id="CostName" name="costName" maxlength="40" onkeypress="EnterKeyPress(event,this,true,0,4,0)" required placeholder="経費名">
+                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostCD" name="costCD" maxlength="6" required placeholder="経費コード">
+
+                            <input type="text" tabindex="2" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostName" name="costName" maxlength="40" required placeholder="経費名">
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="3" class="text-line col-xl-5 text-left" id="KanjoCD" name="kanjoCD" maxlength="6" onkeypress="EnterKeyPress(event,this,true,0,4,0)" required placeholder="勘定科目選択">
+                            <input type="text" tabindex="3" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="KanjoCD" name="kanjoCD" maxlength="6" required placeholder="勘定科目選択">
                             <label id="KanjoName"><b>勘定科目表示</b></label>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="4" class="text-line col-xl-5 text-left" id="HojoCD" name="hojoCD" maxlength="4" onkeypress="EnterKeyPress(event,this,true,0,4,0)" required placeholder="補助科目選択">                            
+                            <input type="text" tabindex="4" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="HojoCD" name="hojoCD" maxlength="4" required placeholder="補助科目選択">
                             <label id="HojoName"><b>補助科目表示</b></label>
 
                         </div>
@@ -50,7 +50,7 @@
                         </div>
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <div class="custom-control custom-radio" style="padding-bottom:0.6rem!important; padding-left:0px!important;">
-                                <input type="radio" tabindex="5" id="rdoDCost" name="radio" onkeypress="EnterKeyPress(event,this,true,0,0)" checked>
+                                <input type="radio" tabindex="5" id="rdoDCost" name="radio" onkeydown="KeyDown(event,this)" checked>
                                 <label for="rdoCost" style="padding-right:150px;">品番直接費</label>
                                 <input type="radio" id="rdoBrandSeason" name="radio">
                                 <label for="rdoBrandSeason">ブランド+シーズン</label>
@@ -87,9 +87,9 @@
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <button id="btnSave" onclick="btnSaveClick()" class="btn btn-dark col-xl-4 text-center">登録</button>
+                            <button id="btnSave" tabindex="7" onclick="btnSaveClick()" class="btn btn-dark col-xl-4 text-center">登録</button>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <button id="btnCancel" onclick="btnCancelClick()" class="btn btn-primary col-xl-4 text-center">戻る</button>
+                            <button id="btnCancel" tabindex="8" onclick="btnCancelClick()" class="btn btn-primary col-xl-4 text-center">戻る</button>
                         </div>
                     </div>
                 </div>
@@ -102,328 +102,111 @@
 
 
 @section Scripts{
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $("#formtitle").text("経費設定検索");
-                $("#ModeURL").val('@Model.Mode');
-                $("#CostCD").focus();
-                var Mode = '@Model.Mode';
-                if (Mode == 'New') {
-                    $('#btnSave').html('登録');
-                    $("#HojoCD").attr('disabled', 'disabled');
-                }
-                else if (Mode == 'Edit') {
-                    $('#btnSave').html('更新');
-                    $("#CostCD").attr('disabled', 'disabled');
-                    $("#CostName").focus();
-                    
-                    //$("#BrandCD").prop("readonly", true);
-                    ShowData();
-                }
-                else {
-                    $('#btnSave').html('削除');
-                    $("#CostCD").attr('disabled', 'disabled');
-                    $("#CostName").attr('disabled', 'disabled');
-                    $("#KanjoCD").attr('disabled', 'disabled');
-                    $("#HojoCD").attr('disabled', 'disabled');
-                    $("#Accounting").attr('disabled', 'disabled');
-                    $("#Allocation").attr('disabled', 'disabled');
-                    $("#btnSave").focus();
-                    //$("#BrandCD").prop("readonly", true);
-                    //$("#BrandName").prop("readonly", true);
-                    ShowData();
-                     }
-            });
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#formtitle").text("経費設定検索");
+            $("#HojoCD").attr('disabled', 'disabled');
+            $("#CostCD").focus();
+            var Mode = '@Model.Mode';
+            if (Mode == 'New') {
+                $('#btnSave').html('登録');
+                $("#HojoCD").attr('disabled', 'disabled');
 
-            $('#KanjoCD').on("keypress", function (e) {
-                if (e.keyCode == 13) {
-                    if ($("#KanjoCD").val()) {
-                        var KjModel = {
-                            KanjoCD: $("#KanjoCD").val(),
-                        };
+                RequiredCheck($("#CostCD"));
+                RequiredCheck($("#CostName"));
+                RequiredCheck($("#KanjoCD"));
+                RequiredCheck($("#HojoCD"));
+                ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/KeihiSetteiApi")', "CostCD");
+                ExistsCheck($("#KanjoCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/KeihiSetteiApi")', "KanjoCD");
+                AlreadyExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/KeihiSetteiApi")');
+            }
+            else if (Mode == 'Edit') {
+                $('#btnSave').html('更新');
+                $("#CostCD").attr('disabled', 'disabled');
+                $("#CostName").focus();
+                $("#HojoCD").attr('disabled', 'disabled');
 
-                        $.ajax({
-                            url: '@Url.Action("M_Kanjo_Name_Select", "api/KeihiSetteiApi")',
-                            method: 'Post',
-                            dataType: 'json',
-                            contentType: 'application/json; charset=utf-8',
-                            data: JSON.stringify(KjModel),
-                            headers:
-                            {
-                                Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-                            },
-                            success: function (data) {
-                                var kanjodata = JSON.parse(data);
-                                if (kanjodata.length > 0) {
-                                    $("#KanjoName").text(kanjodata[0].KanjoName);
-                                    $('#KanjoName').css({ 'font-weight': 'bold' });
-                                    if (kanjodata[0].HojoKBN == "1") {
-                                        $("#HojoCD").removeAttr('disabled');
-                                        $("#HojoCD").focus();
-                                    }
-                                }
-                                else {
-                                    $.when(GetMessage("E101", '@Url.Action("M_Message_Select", "api/MessageApi")')).done(function (data) {
-                                        var msgdata = JSON.parse(data);
-                                        Swal.fire({
-                                            icon: 'error',
-                                            title: msgdata[0].MessageID,
-                                            text: msgdata[0].MessageText1,
-                                        }).then(function () {
-                                            $("#KanjoCD").val("");
-                                            $("#KanjoName").text("勘定科目表示");
-                                            $('#KanjoName').css({ 'font-weight': 'bold' });
-                                            $("#HojoCD").val("");
-                                            $("#HojoName").text("補助科目表示");
-                                            $('#HojoName').css({ 'font-weight': 'bold' });
-                                            $("#HojoCD").attr('disabled', 'disabled');
-                                            $("#KanjoCD").focus();
-                                           
-                                        });
-                                    })
-                                }
-                            }
-                        });
-                    }
-                    else {
-                        $("#KanjoCD").val("");
-                        $("#KanjoName").text("勘定科目表示");
-                        $('#KanjoName').css({ 'font-weight': 'bold' });
-                        $("#HojoCD").val("");
-                        $("#HojoName").text("補助科目表示");
-                        $('#HojoName').css({ 'font-weight': 'bold' });
-                        $("#HojoCD").attr('disabled', 'disabled');
-                        $("#KanjoCD").focus();
-                    }
-                }
-            });
 
-            $('#HojoCD').on("keypress", function (e) {
-                if (e.keyCode == 13) {
-                    if ($("#HojoCD").val()) {
-                        var HjModel = {
-                            KanjoCD: $("#KanjoCD").val(),
-                            HojoCD: $("#HojoCD").val(),
-                        };
-
-                        $.ajax({
-                            url: '@Url.Action("M_Hojo_Name_Select", "api/KeihiSetteiApi")',
-                            method: 'Post',
-                            dataType: 'json',
-                            contentType: 'application/json; charset=utf-8',
-                            data: JSON.stringify(HjModel),
-                            headers:
-                            {
-                                Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-                            },
-                            success: function (data) {
-                                var hojodata = JSON.parse(data);
-                                if (hojodata.length > 0) {
-                                    $("#HojoName").text(hojodata[0].HojoName);
-                                    $('#HojoName').css({ 'font-weight': 'bold' });
-                                }
-                                else {
-                                    $.when(GetMessage("E101", '@Url.Action("M_Message_Select", "api/MessageApi")')).done(function (data) {
-                                        var msgdata = JSON.parse(data);
-                                        Swal.fire({
-                                            icon: 'error',
-                                            title: msgdata[0].MessageID,
-                                            text: msgdata[0].MessageText1,
-                                        }).then(function () {
-                                            $("#HojoCD").val("");
-                                            $("#HojoName").text("補助科目表示");
-                                            $('#HojoName').css({ 'font-weight': 'bold' });
-                                            $("#HojoCD").focus();
-                                        });
-                                    })
-                                }
-                            }
-                        });
-                    }
-                    else {
-                        $("#HojoCD").val("");
-                        $("#HojoName").text("補助科目表示");
-                    }
-                    
-                }
-            });
+                RequiredCheck($("#CostCD"));
+                RequiredCheck($("#CostName"));
+                RequiredCheck($("#KanjoCD"));
+                RequiredCheck($("#HojoCD"));
+                ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/KeihiSetteiApi")', "CostCD");
+                ShowData();
+            }
+            else  {
+                $('#btnSave').html('削除');
+                $("#CostCD").attr('disabled', 'disabled');
+                $("#CostName").attr('disabled', 'disabled');
+                $("#KanjoCD").attr('disabled', 'disabled');
+                $("#HojoCD").attr('disabled', 'disabled');
+                $("#Accounting").attr('disabled', 'disabled');
+                $("#Allocation").attr('disabled', 'disabled');
+                $("#btnSave").focus();
+                ShowData();
+            }
+        });
 
             //set data
-            function ShowData() {
-                var Kmodel = {
-                    CostCD: '@Model.CostCD',
-                };
-                $.ajax({
-                    url: '@Url.Action("M_Keihi_Select_Entry", "api/KeihiSetteiApi")',
-                    method: 'Post',
-                    dataType: 'json',
-                    contentType: 'application/json; charset=utf-8',
-                    data: JSON.stringify(Kmodel),
-                    headers:
-                    {
-                        Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-                    },
-                    success: function (data) {
-                        var userdata = JSON.parse(data);
-                        $("#CostCD").val(userdata[0].CostCD);
-                        $("#CostName").val(userdata[0].CostName);
-                        $("#KanjoCD").val(userdata[0].KanjoCD);
-                        $("#HojoCD").val(userdata[0].HojoCD);
-                        $("#KanjoName").text(userdata[0].KanjoName);
-                        $('#KanjoName').css({ 'font-weight': 'bold' });
-                        $("#HojoName").text(userdata[0].HojoName);
-                        $('#HojoName').css({ 'font-weight': 'bold' });
-                        if (userdata[0].Accounting == "1") 
-                            $("#rdoDCost").prop("checked", true);
-                        else if (userdata[0].Accounting == "2")
-                            $("#rdoBrandSeason").prop("checked", true);
-                        else if (userdata[0].Accounting == "3")
-                            $("#rdoProject").prop("checked", true);
-                        else if (userdata[0].Accounting == "4")
-                            $("#rdoMAllocation").prop("checked", true);
-                        else
-                            $("#rdoFItems").prop("checked", true);
-
-                        if (userdata[0].Allocation == "0")
-                            $("#rdoDirectly").prop("checked", true);
-                        else if (userdata[0].Allocation == "1")
-                            $("#rdoTMRatio").prop("checked", true);
-                        else if (userdata[0].Allocation == "2")
-                            $("#rdoPNRatio").prop("checked", true);
-                        else
-                            $("#rdoFVRatio").prop("checked", true);
-
-                    }
-                });
-            }
-
-            //insert,update,delete
-        function DoProcess() {
-          focusControl = $("#CostCD");
-          var Kmodel = {
-              CostCD: $("#CostCD").val(),
-              CostName: $("#CostName").val(),
-              KanjoCD: $("#KanjoCD").val(),
-              HojoCD: $("#HojoCD").val(),
-              Mode:'@Model.Mode'
+        function ShowData() {
+            var Kmodel = {
+                CostCD: '@Model.CostCD',
             };
-            //For Accounting
-            if ($('#rdoDCost').is(':checked'))
-                Kmodel.Accounting = "1";
-            else if ($('#rdoBrandSeason').is(':checked'))
-                Kmodel.Accounting = "2";
-            else if ($('#rdoProject').is(':checked'))
-                Kmodel.Accounting = "3";
-            else if ($('#rdoMAllocation').is(':checked'))
-                Kmodel.Accounting = "4";
-            else Kmodel.Accounting = "5";
-
-            //For Allocation
-            if ($('#rdoDirectly').is(':checked'))
-                Kmodel.Allocation = "0";
-            else if ($('#rdoTMRatio').is(':checked'))
-                Kmodel.Allocation = "1";
-            else if ($('#rdoPNRatio').is(':checked'))
-                Kmodel.Allocation = "2";
-            else Kmodel.Allocation = "3";
-             
-           $.ajax({
-              url: '@Url.Action("Keihi_CUD", "api/KeihiSetteiApi")',
-              method: 'POST',
-              dataType: 'json',
-              contentType: 'application/json; charset=utf-8',
-              data: JSON.stringify(Kmodel),
-              headers:
-              {
-                  Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-              },
-               success: function (msg) {
-                   var message = JSON.parse(msg);
-                   Swal.fire({
-                       icon: message[0].status,
-                       title: message[0].MessageID,
-                       text: message[0].MessageText1,
-
-                   }).then(function () {
-                       if (message[0].status != "error")
-                           location.href = '@Url.Action("KeihiSetteiList", "KeihiSettei")';
-                       else
-                          focusfocusControl = $("#CostCD");
-                   });
-               }
-          });
+            var data = CalltoApiController('@Url.Action("M_Keihi_Select_Entry", "api/KeihiSetteiApi")', Kmodel);
+            var keihidata = JSON.parse(data);
+            $("#CostCD").val(keihidata[0].CostCD);
+            $("#CostName").val(keihidata[0].CostName);
+            $("#KanjoCD").val(keihidata[0].KanjoCD);
+            $("#HojoCD").val(keihidata[0].HojoCD);
+            $("#Accounting").val(keihidata[0].Accounting);
+            $("#Allocation").val(keihidata[0].Allocation);
         }
 
-            var focusControl;
-            function ErrorCheck() {
-                if (!$("#CostCD").val()) {
-                    focusControl = $("#CostCD");
-                    return "I102";
-                }
-                else if (!$("#CostName").val()) {
-                    focusControl = $("#CostName");
-                    return "I102";
-                }
-                else if (!$("#KanjoCD").val()) {
-                    focusControl = $("#KanjoCD");
-                    return "I102";
-                }
-                else if (!($("#HojoCD").attr('disabled', 'disabled'))) {
-                    if (!$("#HojoCD").val()) {
-                        focusControl = $("#HojoCD");
-                        return "I102";
-                    }
-                }
+        function DoProcess() {
+            focusControl = $("#CostCD");
+             var Kmodel = {
+                 CostCD: $("#CostCD").val(),
+                 CostName: $("#CostName").val(),
+                 KanjoCD: $("#KanjoCD").val(),
+                 HojoCD: $("#HojoCD").val(),
+                 Accounting: $("#Accounting").val(),
+                 Allocation: $("#Allocation").val(),
+                 Mode:'@Model.Mode'
+            };
 
-                return "0";
-            }
+            var data = CalltoApiController('@Url.Action("Keihi_CUD", "api/KeihiSetteiApi")', Kmodel);
+            ShowSuccessMessage(data,'@Url.Action("KeihiSetteiList", "Keihi")');
+        }
 
-            //save
-            function btnSaveClick() {
-                 var Mode = '@Model.Mode';
+        function DeleteConfrim() {
+            DoProcess();
+        }
+
+        //save
+        function btnSaveClick() {
+            var res = ErrorCheckOnSave();
+            if (res == "0") {
+                var Mode = '@Model.Mode';
                 //show confirm message
                 if (Mode == "Delete") {
-                    $.when(GetMessage("Q102")).done(function (data) {
-                        var msgdata = JSON.parse(data);
-                        Swal.fire({
-                            title: msgdata[0].MessageID,
-                            text: msgdata[0].MessageText1,
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#d33',
-                            cancelButtonColor: '#3085d6',
-                            confirmButtonText: 'はい。',
-                            cancelButtonText: 'いいえ。'
-                        }).then((result) => {
-                            if (result.value) {
-                                DoProcess();
-                            }
-                        })
-                    })
+                    ShowConfirmMessage("Q102", "DeleteConfrim");
                 }
                 else {
-                    var msgID = ErrorCheck();
-                    if (msgID == "0") {
-                        DoProcess();
-                        $(focusControl).focus();
-                    }
-                    else {
-                        $.when(GetMessage("E102")).done(function (data) {
-                            var msgdata = JSON.parse(data);
-
-                            Swal.fire({
-                                icon: 'error',
-                                title: msgdata[0].MessageID,
-                                text: msgdata[0].MessageText1,
-                                }).then(function () {
-                            });
-                        })
-                        $(focusControl).focus();
-                    }
+                    DoProcess();
                 }
             }
-            function btnCancelClick() {
-                location.href = '@Url.Action("KeihiSetteiList", "KeihiSettei")';
-            }
-        </script>
-    }
+            else
+                ShowErrorMessage(res);
+        }
+
+        function btnCancelClick() {
+            location.href = '@Url.Action("KeihiSetteiList", "Keihi")';
+        }
+
+
+    </script>
+    <script src="@Url.Content("~/Scripts/datepicker.js")"></script>
+    <script src="@Url.Content("~/Scripts/datepicker.en.js")"></script>
+    @*<script src="@Url.Content("~/Scripts/datepicker.ja.js")"></script>*@
+}
+

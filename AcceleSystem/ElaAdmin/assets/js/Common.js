@@ -68,7 +68,7 @@ function ShowSuccessMessage(msgdata,url) {
         title: message[0].MessageID,
         text: message[0].MessageText1,
     }).then(function () {
-        if (message[0].status != "success")
+        if (message[0].status != "error")
             location.href = url;
     });
 }
@@ -145,7 +145,33 @@ function ErrChk(ctrl) {
                     }
                 }
                 else {
-                    return BrandData[0].MessageID;
+                    if ($(ctrl).attr("data-NameCtrl")) {
+                        var ctrlName = $(ctrl).attr("data-NameCtrl");
+                        $('#' + ctrlName).val("");
+                        return BrandData[0].MessageID;
+                    }
+                }
+                break;
+            case "Keihi":
+                var model = {
+                    CostCD: $(ctrl).val(),
+                    KanjoCD: $(ctrl).val()
+                };
+                var data = CalltoApiController(ApiURL, model);
+                var KeihiData = JSON.parse(data);
+                if (KeihiData[0].MessageID != "E101") {
+                    if ($(ctrl).attr("data-NameCtrl")) {
+                        var ctrlName = $(ctrl).attr("data-NameCtrl");
+                        $('#' + ctrlName).val(KeihiData[0].CostName);
+                        return "0";
+                    }
+                }
+                else {
+                    if ($(ctrl).attr("data-NameCtrl")) {
+                        var ctrlName = $(ctrl).attr("data-NameCtrl");
+                        $('#' + ctrlName).val("");
+                        return KeihiData[0].MessageID;
+                    }
                 }
                 break;
         }
@@ -166,6 +192,45 @@ function ErrChk(ctrl) {
                 }
                 else {
                     return BrandData[0].MessageID;
+                }
+                break;
+            case "User":
+                var model = {
+                    UserID: $(ctrl).val()
+                };
+                var data = CalltoApiController(ApiURL, model);
+                var UserData = JSON.parse(data);
+                if (UserData[0].MessageID != "E107") {
+                    return "0";
+                }
+                else {
+                    return UserData[0].MessageID;
+                }
+                break;
+            case "Brand":
+                var model = {
+                    BrandCD: $(ctrl).val()
+                };
+                var data = CalltoApiController(ApiURL, model);
+                var BrandData = JSON.parse(data);
+                if (BrandData[0].MessageID != "E107") {
+                    return "0";
+                }
+                else {
+                    return BrandData[0].MessageID;
+                }
+                break;
+            case "Keihi":
+                var model = {
+                    CostCD: $(ctrl).val()
+                };
+                var data = CalltoApiController(ApiURL, model);
+                var KeihiData = JSON.parse(data);
+                if (KeihiData[0].MessageID != "E107") {
+                    return "0";
+                }
+                else {
+                    return KeihiData[0].MessageID;
                 }
                 break;
         }
