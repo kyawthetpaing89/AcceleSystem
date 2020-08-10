@@ -108,6 +108,7 @@ function DateCheck(ctrl,val) {
 
 function KeyDown(e, ctrl) {
     if (e.which == 13) { 
+        alert("a");
         e.preventDefault();
         var result = ErrChk(ctrl);
         if (result == "0") {
@@ -149,6 +150,28 @@ function ErrChk(ctrl) {
                         var ctrlName = $(ctrl).attr("data-NameCtrl");
                         $('#' + ctrlName).val("");
                         return BrandData[0].MessageID;
+                    }
+                }
+                break;
+            case "Keihi":
+                var model = {
+                    CostCD: $(ctrl).val(),
+                    KanjoCD: $(ctrl).val()
+                };
+                var data = CalltoApiController(ApiURL, model);
+                var KeihiData = JSON.parse(data);
+                if (KeihiData[0].MessageID != "E101") {
+                    if ($(ctrl).attr("data-NameCtrl")) {
+                        var ctrlName = $(ctrl).attr("data-NameCtrl");
+                        $('#' + ctrlName).val(KeihiData[0].CostName);
+                        return "0";
+                    }
+                }
+                else {
+                    if ($(ctrl).attr("data-NameCtrl")) {
+                        var ctrlName = $(ctrl).attr("data-NameCtrl");
+                        $('#' + ctrlName).val("");
+                        return KeihiData[0].MessageID;
                     }
                 }
                 break;
@@ -196,6 +219,19 @@ function ErrChk(ctrl) {
                 }
                 else {
                     return BrandData[0].MessageID;
+                }
+                break;
+            case "Keihi":
+                var model = {
+                    CostCD: $(ctrl).val()
+                };
+                var data = CalltoApiController(ApiURL, model);
+                var KeihiData = JSON.parse(data);
+                if (KeihiData[0].MessageID != "E107") {
+                    return "0";
+                }
+                else {
+                    return KeihiData[0].MessageID;
                 }
                 break;
         }

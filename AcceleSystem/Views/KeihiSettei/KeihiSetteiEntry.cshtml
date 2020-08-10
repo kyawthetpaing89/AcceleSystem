@@ -9,7 +9,7 @@
 }
 
 
-<div class="container-fluid">
+<div id="divMain" class="container-fluid">
     <div class="content">
         <div class="p-5 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white; border-radius:5px;">
             <div class="col-xs-12 col-md-2"></div>
@@ -20,16 +20,16 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" id="CostCD" name="costCD" maxlength="6" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="経費コード">
+                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostCD" name="costCD" maxlength="6" required placeholder="経費コード">
 
-                            <input type="text" tabindex="2" class="text-line col-xl-5 text-left" id="CostName" name="costName" maxlength="40" onkeypress="EnterKeyPress(event,this,true,0,4,0)" required placeholder="経費名">
+                            <input type="text" tabindex="2" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostName" name="costName" maxlength="40" required placeholder="経費名">
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="3" class="text-line col-xl-5 text-left" id="KanjoCD" name="kanjoCD" maxlength="6" onkeypress="EnterKeyPress(event,this,true,0,4,0)" required placeholder="勘定科目選択">
+                            <input type="text" tabindex="3" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="KanjoCD" name="kanjoCD" maxlength="6" required placeholder="勘定科目選択">
                             <label id="KanjoName"><b>勘定科目表示</b></label>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="4" class="text-line col-xl-5 text-left" id="HojoCD" name="hojoCD" maxlength="4" onkeypress="EnterKeyPress(event,this,true,0,4,0)" required placeholder="補助科目選択">
+                            <input type="text" tabindex="4" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="HojoCD" name="hojoCD" maxlength="4" required placeholder="補助科目選択">
                             <label id="HojoName"><b>補助科目表示</b></label>
 
                         </div>
@@ -50,7 +50,7 @@
                         </div>
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <div class="custom-control custom-radio" style="padding-bottom:0.6rem!important; padding-left:0px!important;">
-                                <input type="radio" tabindex="5" id="rdoDCost" name="radio" onkeypress="EnterKeyPress(event,this,true,0,0)" checked>
+                                <input type="radio" tabindex="5" id="rdoDCost" name="radio" onkeydown="KeyDown(event,this)" checked>
                                 <label for="rdoCost" style="padding-right:150px;">品番直接費</label>
                                 <input type="radio" id="rdoBrandSeason" name="radio">
                                 <label for="rdoBrandSeason">ブランド+シーズン</label>
@@ -87,9 +87,9 @@
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <button id="btnSave" onclick="btnSaveClick()" class="btn btn-dark col-xl-4 text-center">登録</button>
+                            <button id="btnSave" tabindex="7" onclick="btnSaveClick()" class="btn btn-dark col-xl-4 text-center">登録</button>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <button id="btnCancel" onclick="btnCancelClick()" class="btn btn-primary col-xl-4 text-center">戻る</button>
+                            <button id="btnCancel" tabindex="8" onclick="btnCancelClick()" class="btn btn-primary col-xl-4 text-center">戻る</button>
                         </div>
                     </div>
                 </div>
@@ -152,29 +152,30 @@
             var Kmodel = {
                 CostCD: '@Model.CostCD',
             };
-            var data = CalltoApiController('@Url.Action("M_Keihi_Select", "api/KeihiSetteiApi")', Kmodel);
-            var userdata = JSON.parse(data);
-            $("#CostCD").val(userdata[0].CostCD);
-            $("#CostName").val(userdata[0].CostName);
-            $("#KanjoCD").val(userdata[0].KanjoCD);
-            $("#HojoCD").val(userdata[0].HojoCD);
-            $("#Accounting").val(userdata[0].Accounting);
-            $("#Allocation").val(userdata[0].Allocation);
+            var data = CalltoApiController('@Url.Action("M_Keihi_Select_Entry", "api/KeihiSetteiApi")', Kmodel);
+            var keihidata = JSON.parse(data);
+            $("#CostCD").val(keihidata[0].CostCD);
+            $("#CostName").val(keihidata[0].CostName);
+            $("#KanjoCD").val(keihidata[0].KanjoCD);
+            $("#HojoCD").val(keihidata[0].HojoCD);
+            $("#Accounting").val(keihidata[0].Accounting);
+            $("#Allocation").val(keihidata[0].Allocation);
         }
 
         function DoProcess() {
             focusControl = $("#CostCD");
              var Kmodel = {
                  CostCD: $("#CostCD").val(),
-                 CastingName: $("#CastingName").val(),
-                 BrandCD: $("#BrandCD").val(),
-                 BrandName: $("#BrandName").val(),
-                 UseLimit: $("#UseLimit").val(),
+                 CostName: $("#CostName").val(),
+                 KanjoCD: $("#KanjoCD").val(),
+                 HojoCD: $("#HojoCD").val(),
+                 Accounting: $("#Accounting").val(),
+                 Allocation: $(#Allocation).val(),
                  Mode:'@Model.Mode'
             };
 
-            var data = CalltoApiController('@Url.Action("Casting_CUD", "api/KanagataApi")', kgmodel);
-            ShowSuccessMessage(data,'@Url.Action("KanagataList", "Kanagata")');
+            var data = CalltoApiController('@Url.Action("Keihi_CUD", "api/KeihiSetteiApi")', Kmodel);
+            ShowSuccessMessage(data,'@Url.Action("KeihiSetteiList", "Keihi")');
         }
 
         function DeleteConfrim() {
@@ -199,7 +200,7 @@
         }
 
         function btnCancelClick() {
-            location.href = '@Url.Action("KanagataList", "Kanagata")';
+            location.href = '@Url.Action("KeihiSetteiList", "Keihi")';
         }
 
 
