@@ -165,6 +165,14 @@ function ErrChk(ctrl) {
                         return "0";
                     }
                 }
+                else {
+                    if ($(ctrl).attr("data-NameCtrl")) {
+                        var ctrlName = $(ctrl).attr("data-NameCtrl");
+                        $('#' + ctrlName).val("");
+                        return KeihiData[0].MessageID;
+                    }
+                }
+                break;
             case "Kanjo":
                 var model = {
                     KanjoCD: $(ctrl).val()
@@ -172,13 +180,20 @@ function ErrChk(ctrl) {
                 var data = CalltoApiController(ApiURL, model);
                 var KanjoData = JSON.parse(data);
                 if (KanjoData[0].MessageID != "E101") {
-                    alert("a");
                     if ($(ctrl).attr("data-NameCtrl")) {
                         var ctrlName = $(ctrl).attr("data-NameCtrl");
                         $('#' + ctrlName).val(KanjoData[0].KanjoName);
                         return "0";
                     }
                 }
+                else {
+                    if ($(ctrl).attr("data-NameCtrl")) {
+                        var ctrlName = $(ctrl).attr("data-NameCtrl");
+                        $('#' + ctrlName).val("");
+                        return KanjoData[0].MessageID;
+                    }
+                }
+                break;
             case "Hojo":
                 var model = {
                     HojoCD: $(ctrl).val()
@@ -196,7 +211,7 @@ function ErrChk(ctrl) {
                     if ($(ctrl).attr("data-NameCtrl")) {
                         var ctrlName = $(ctrl).attr("data-NameCtrl");
                         $('#' + ctrlName).val("");
-                        return KeihiData[0].MessageID;
+                        return HojoData[0].MessageID;
                     }
                 }
                 break;
