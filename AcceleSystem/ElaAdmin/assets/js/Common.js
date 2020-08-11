@@ -206,7 +206,6 @@ function ErrChk(ctrl) {
                 break;
             case "Hojo":
                 var model = {
-                    //KanjoCD: $(ctrl.val(),
                     HojoCD: $(ctrl).val()
 
                 };
