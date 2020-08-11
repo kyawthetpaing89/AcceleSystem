@@ -131,7 +131,6 @@
                 RequiredCheck($("#CostName"));
                 RequiredCheck($("#KanjoCD"));
                 RequiredCheck($("#HojoCD"));
-                ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/KeihiSetteiApi")', "CostCD");
                 ShowData();
             }
             else  {
@@ -158,6 +157,8 @@
             $("#CostName").val(keihidata[0].CostName);
             $("#KanjoCD").val(keihidata[0].KanjoCD);
             $("#HojoCD").val(keihidata[0].HojoCD);
+            $("#KanjoName").text(keihidata[0].KanjoName);
+            $("#HojoName").text(keihidata[0].HojoName);
             //$('#Accounting').prop(keihidata[0].Accouting);
             //$("#Allocation").prop(keihidata[0].Allocation);
             if (keihidata[0].Accounting == "1")
