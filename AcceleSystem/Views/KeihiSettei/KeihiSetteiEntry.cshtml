@@ -127,10 +127,12 @@
                 $("#HojoCD").attr('disabled', 'disabled');
 
 
-                RequiredCheck($("#CostCD"));
+                //RequiredCheck($("#CostCD"));
                 RequiredCheck($("#CostName"));
                 RequiredCheck($("#KanjoCD"));
                 RequiredCheck($("#HojoCD"));
+                ExistsCheck($("#KanjoCD"), "Kanjo", '@Url.Action("M_Kanjo_ExistsCheck", "api/KeihiSetteiApi")', "KanjoName");
+                ExistsCheck($("#HojoCD"), "Hojo", '@Url.Action("M_Hojo_ExistsCheck", "api/KeihiSetteiApi")', "HojoName");
                 ShowData();
             }
             else  {
@@ -222,8 +224,15 @@
 
         function KanjoCheck(result) {
             if (result == 'OK') {
-                $("#HojoCD").prop("disabled", false);
-                $("#HojoCD").focus();
+                if ($("#TmpVal1").val() == "1") {
+                    $("#HojoCD").prop("disabled", false);
+                    $("#HojoCD").focus();
+                }
+                else {
+                    $("#HojoCD").prop("disabled", true);
+                    $("#HojoCD").val('');
+                    $("#HojoName").text('');
+                }
             }
             else {
                 $("#KanjoCD").focus();

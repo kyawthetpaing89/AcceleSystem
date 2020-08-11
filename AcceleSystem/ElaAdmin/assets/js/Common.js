@@ -192,6 +192,7 @@ function ErrChk(ctrl) {
                     if ($(ctrl).attr("data-NameCtrl")) {
                         var ctrlName = $(ctrl).attr("data-NameCtrl");
                         $('#' + ctrlName).text(KanjoData[0].KanjoName);
+                        $("#TmpVal1").val(KanjoData[0].HojoKBN);
                         return "0";
                     }
                 }
