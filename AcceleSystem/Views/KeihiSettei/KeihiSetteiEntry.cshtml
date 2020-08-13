@@ -37,7 +37,7 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="4" class="text-line col-xl-5 text-left"  id="HojoCD" name="hojoCD" maxlength="4" required placeholder="補助科目選択">
+                            <input type="text" tabindex="4" class="text-line col-xl-5 text-left"  onkeydown="KeyDown(event,this,'HanjoCheck')" id="HojoCD" name="hojoCD" maxlength="4" required placeholder="補助科目選択">
                             <label id="HojoName"><b>補助科目表示</b></label>
 
                         </div>
@@ -115,10 +115,8 @@
                 RequiredCheck($("#CostCD"));
                 RequiredCheck($("#CostName"));
                 RequiredCheck($("#KanjoCD"));
-               // RequiredCheck($("#HojoCD"));
                 AlreadyExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/KeihiSetteiApi")');
                 ExistsCheck($("#KanjoCD"), "Kanjo", '@Url.Action("M_Kanjo_ExistsCheck", "api/KeihiSetteiApi")', "KanjoName");
-                //ExistsCheck($("#HojoCD"), "Hojo", '@Url.Action("M_Hojo_ExistsCheck", "api/KeihiSetteiApi")', "HojoName");
             }
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
@@ -126,13 +124,9 @@
                 $("#CostName").focus();
                 $("#HojoCD").attr('disabled', 'disabled');
 
-
-             
                 RequiredCheck($("#CostName"));
                 RequiredCheck($("#KanjoCD"));
-                //RequiredCheck($("#HojoCD"));
                 ExistsCheck($("#KanjoCD"), "Kanjo", '@Url.Action("M_Kanjo_ExistsCheck", "api/KeihiSetteiApi")', "KanjoName");
-                //ExistsCheck($("#HojoCD"), "Hojo", '@Url.Action("M_Hojo_ExistsCheck", "api/KeihiSetteiApi")', "HojoName");
                 ShowData();
             }
             else  {
@@ -161,8 +155,6 @@
             $("#HojoCD").val(keihidata[0].HojoCD);
             $("#KanjoName").text(keihidata[0].KanjoName);
             $("#HojoName").text(keihidata[0].HojoName);
-            //$('#Accounting').prop(keihidata[0].Accouting);
-            //$("#Allocation").prop(keihidata[0].Allocation);
             if (keihidata[0].Accounting == "1")
                 $("#rdoDCost").prop("checked", true);
             else if (keihidata[0].Accounting == "2")
@@ -227,6 +219,8 @@
                 if ($("#TmpVal1").val() == "1") {
                     $("#HojoCD").prop("disabled", false);
                     $("#HojoCD").focus();
+                    RequiredCheck($("#HojoCD"));
+                    ExistsCheck($("#HojoCD"), "Hojo", '@Url.Action("M_Hojo_ExistsCheck", "api/KeihiSetteiApi")', "HojoName");
                 }
                 else {
                     $("#HojoCD").prop("disabled", true);
