@@ -153,8 +153,16 @@
             $("#CostName").val(keihidata[0].CostName);
             $("#KanjoCD").val(keihidata[0].KanjoCD);
             $("#HojoCD").val(keihidata[0].HojoCD);
-            $("#KanjoName").text(keihidata[0].KanjoName);
-            $("#HojoName").text(keihidata[0].HojoName);
+
+            if (!keihidata[0].KanjoName)
+                $("#KanjoName").text("勘定科目表示");
+            else $("#KanjoName").text(keihidata[0].KanjoName);
+
+            if (!keihidata[0].HojoName)
+                $("#HojoName").text("補助科目表示");
+            else $("#HojoName").text(keihidata[0].HojoName);
+
+            //Bind Accounting
             if (keihidata[0].Accounting == "1")
                 $("#rdoDCost").prop("checked", true);
             else if (keihidata[0].Accounting == "2")
@@ -166,6 +174,7 @@
             else
                 $("#rdoFItems").prop("checked", true);
 
+            //Bind Allocation
             if (keihidata[0].Allocation == "0")
                 $("#rdoDirectly").prop("checked", true);
             else if (keihidata[0].Allocation == "1")
@@ -175,7 +184,8 @@
             else
                 $("#rdoFVRatio").prop("checked", true);
 
-
+            $("#KanjoName").css("font-weight", "Bold");
+            $("#HojoName").css("font-weight", "Bold");
         }
 
         function DoProcess() {
