@@ -522,7 +522,7 @@
     <Content Include="Views\Brand\BrandEntry.cshtml" />
     <Content Include="Views\KeihiSettei\KeihiSetteiList.cshtml" />
     <Content Include="Views\KeihiSettei\KeihiSetteiEntry.cshtml" />
-    <Content Include="Views\Touroku\TourokuList.cshtml" />
+    <Content Include="Views\Touroku\TourokuProject_List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

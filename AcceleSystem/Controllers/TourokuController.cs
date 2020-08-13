@@ -9,7 +9,7 @@ namespace AcceleSystem.Controllers
     public class TourokuController : Controller
     {
         // GET: Touroku
-        public ActionResult TourokuList()
+        public ActionResult TourokuProject_List()
         {
             return View();
         }

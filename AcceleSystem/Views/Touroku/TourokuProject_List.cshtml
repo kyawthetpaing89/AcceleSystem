@@ -1,0 +1,136 @@
+﻿
+@{
+    ViewBag.Title = "TourokuList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles{
+    <link rel="stylesheet" href="@Url.Content("~/ElaAdmin/assets/css/lib/datatable/dataTables.bootstrap.min.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
+}
+<div class="card">
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="card-body card-block">
+                <div class="row form-group">
+                    <div class="col col-md-12">
+                        <button id="btnAdd" onclick="btnAddClick()" class="btn" tabindex="38" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px; margin-right: 20px;">
+                            プロジェクト追加
+                        </button>
+                        <button id="btnAdd" onclick="btnAddClick()" class="btn" tabindex="38" color:azure; style="background-color:white; color:#1a8cff; border-radius:3px; border: 1px solid transparent; border-color:#1a8cff; margin-right: 20px;">
+                            品番登録
+                        </button>
+
+                        <button id="btnAdd" onclick="btnAddClick()" class="btn" tabindex="38" color:azure; style="background-color:white; color:black; border-radius:3px; border: 1px solid transparent; border-color:black;">
+                            CSV
+                        </button>
+
+                    </div>
+                    <div id="registration" style="padding-top: 1.8rem!important;">
+                        <div>
+                            <h4 class=" hr-text text-center">経費設定登録</h4>
+
+                        </div>
+                        <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                            <div class="col-xs-12">
+                                <div class="text-s text-custom1 text-uppercase mb-1" style="padding-left: 15px;">
+                                    <label id="" style="padding-right:20px;">ブランド名</label>
+                                    <input type="text" tabindex="1" class="text-line col-xs-12 text-left" id="" name="" maxlength="6" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:165px; padding-left:10px;">
+
+                                    <input type="text" tabindex="2" class="text-line col-xs-12 text-left" id="" name="" maxlength="40" onkeypress="EnterKeyPress(event,this,true,0,4,0)" required placeholder="入力" style="width:165px;">
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-xl-12">
+                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                <div class="custom-control custom-radio" style="padding-bottom:0.4rem!important; padding-top:0.5rem; padding-left:0px;">
+                                    <label class="text" style="padding-right:30px;">シーズン</label>
+                                    <input type="checkbox" id="" name="check">
+                                    <label style="padding-right:85px;">度年</label>
+                                    <input type="checkbox" id="" name="check">
+                                    <label style="padding-right:85px;">SS</label>
+                                    <input type="checkbox" id="" name="check">
+                                    <label>FW</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-3 md-form" style="padding-top:0px!important;">
+                            <div class="col-xs-12">
+                                <div class="text-s text-custom1 text-uppercase mb-1" style="padding-left: 15px!important;">
+                                    <label id="" style="padding-right:0px;">プロジェクト</label>
+                                    <input type="text" tabindex="1" class="text-line col-xl-5 text-left" id="" name="" maxlength="6" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:165px; padding-left:10px;">
+
+                                    <input type="text" tabindex="2" class="text-line col-xl-5 text-left" id="" name="" maxlength="40" onkeypress="EnterKeyPress(event,this,true,0,4,0)" required placeholder="入力" style="width:165px;">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-3 md-form" style="padding-top:1rem!important;">
+                            <div class="col-xs-12">
+                                <div class="text-s text-custom1 text-uppercase mb-1" style="padding-left: 15px!important;">
+                                    <label id="" style="padding-right:32px;">予定期間</label>
+                                    <input type="text" tabindex="1" class="text-line col-xl-5 text-left" id="" name="" maxlength="6" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:165px; padding-left:10px;">
+
+                                    <input type="text" tabindex="2" class="text-line col-xl-5 text-left" id="" name="" maxlength="40" onkeypress="EnterKeyPress(event,this,true,0,4,0)" required placeholder="入力" style="width:165px;">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-3 md-form" style="padding-top:1rem!important;">
+                            <div class="col-xs-12">
+                                <div class="text-s text-custom1 text-uppercase mb-1" style="padding-left: 15px!important;">
+                                    <label id="" style="padding-right:47px;">責任者</label>
+                                    <input type="text" tabindex="1" class="text-line col-xl-5 text-left" id="" name="" maxlength="6" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:165px; padding-left:10px;">
+
+                                    <input type="text" tabindex="2" class="text-line col-xl-5 text-left" id="" name="" maxlength="40" onkeypress="EnterKeyPress(event,this,true,0,4,0)" required placeholder="入力" style="width:165px;">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-s text-custom1 text-uppercase mb-1" style="padding-top:2rem!important;">
+                            <button id="btnSave" tabindex="7" onclick="btnSaveClick()" class="btn btn-dark col-xl-4 text-center" style="float:right; width:100px;">登録</button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="card-body card-block">
+                <table id="tblTouroku" class="tb1 col-sm-12" style="padding-left:0px;">
+                    <thead>
+                        <tr>
+                            <td>経費コード</td>
+                            <td>経費名</td>
+                            <td>経費名</td>
+                            <td>計上単位</td>
+                            <td>配賦基準</td>
+                            <td>計上単位</td>
+                            <td>配賦基準</td>
+                            <td>配賦基準</td>
+                        </tr>
+
+                    </thead>
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
