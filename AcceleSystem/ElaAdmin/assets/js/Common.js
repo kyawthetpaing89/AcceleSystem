@@ -82,10 +82,11 @@ function RequiredCheck(ctrl) {
     $(ctrl).attr("data-Required", "1");
 }
 
-function ExistsCheck(ctrl,val,apiURL,ctrlName) {
+function ExistsCheck(ctrl,val,apiURL,ctrlName,param1) {
     $(ctrl).attr("data-ExistsCheck", val);
     $(ctrl).attr("data-ExistsApiUrl", apiURL);
     $(ctrl).attr("data-NameCtrl", ctrlName);
+    $(ctrl).attr("data-Param1", param1);
 }
 
 function AlreadyExistsCheck(ctrl, val, apiURL) {
@@ -139,6 +140,7 @@ function ErrChk(ctrl) {
     var dataExistsCheck = $(ctrl).attr("data-ExistsCheck");  
     if (dataExistsCheck) {
         var ApiURL = $(ctrl).attr("data-ExistsApiUrl");
+        var param1 = $(ctrl).attr("data-Param1");
         switch (dataExistsCheck) {
             case "Brand":
                 var model = {
@@ -206,8 +208,8 @@ function ErrChk(ctrl) {
                 break;
             case "Hojo":
                 var model = {
-                    HojoCD: $(ctrl).val()
-
+                    HojoCD: $(ctrl).val(),
+                    KanjoCD: param1
                 };
                 var data = CalltoApiController(ApiURL, model);
                 var HojoData = JSON.parse(data);

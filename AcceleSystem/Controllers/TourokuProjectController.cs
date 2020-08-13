@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace AcceleSystem.Controllers
 {
-    public class TourokuController : Controller
+    public class TourokuProjectController : Controller
     {
         // GET: Touroku
-        public ActionResult TourokuList()
+        public ActionResult TourokuProject_List()
         {
             return View();
         }
