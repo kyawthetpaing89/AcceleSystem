@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "TourokuList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles{
+    <link rel="stylesheet" href="@Url.Content("~/ElaAdmin/assets/css/lib/datatable/dataTables.bootstrap.min.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
+}
+<div class="card">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card-body card-block">
+                <div class="row form-group">
+                    <div class="col col-md-5" style="padding-right:0px;">
+                        <button id="btnAdd" onclick="btnAddClick()" class="btn col-xl-10 text-center" tabindex="38" style="background-color:#1a8cff; color:azure;">
+                            プロジェクト登録
+                        </button>
+                    </div>
+                    <div class="col col-md-4" style="padding:0px;">
+                        <button id="btnAdd" onclick="btnAddClick()" class="btn col-xl-10 text-center" tabindex="38" color:azure;">
+                            品番登録
+                        </button>
+                    </div>
+                    <div class="col col-md-2" style="padding:0px;">
+                        <button id="btnAdd" onclick="btnAddClick()" class="btn col-xl-10 text-center" tabindex="38" color:azure;">
+                            CSV
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <h4 class=" hr-text text-center">経費設定登録</h4>
+                </div>
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xs-12">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <label id="" style="padding-right:20px;">ブランド名</label>
+                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" id="" name="" maxlength="6" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:165px; padding-left:10px;">
+
+                            <input type="text" tabindex="2" class="text-line col-xl-5 text-left" id="" name="" maxlength="40" onkeypress="EnterKeyPress(event,this,true,0,4,0)" required placeholder="入力" style="width:165px;">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-12" style="padding-left: 0px">
+                    <div class="text-s text-custom1 text-uppercase mb-1">
+                        <div class="custom-control custom-radio" style="padding-bottom:1rem!important; padding-left:0px!important;">
+                            <label class="text" style="padding-left:12px!important">シーズン</label>
+                            <input type="radio" id="rdoProject" name="radio">
+                            <label style="padding-right:85px;">プロジェクト</label>
+                            <input type="radio" id="rdoMAllocation" name="radio">
+                            <label style="padding-right:85px;">金型配賦</label>
+                            <input type="radio" id="rdoFItems" name="radio">
+                            <label>自由項目</label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="col-lg-5">
+            <div class="card-body card-block">
+                <table id="tblTouroku" class="tb1 col-sm-12" style="padding-left:0px;">
+                    <thead>
+                        <tr>
+                            <td>経費コード</td>
+                            <td>経費名</td>
+                            <td>経費名</td>
+                            <td>計上単位</td>
+                            <td>配賦基準</td>
+                            <td>計上単位</td>
+                            <td>配賦基準</td>
+                            <td>配賦基準</td>
+                        </tr>
+
+                    </thead>
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+

@@ -131,6 +131,7 @@
                  UseLimit: $("#UseLimit").val(),
                  Mode:'@Model.Mode'
             };
+
             var data = CalltoApiController('@Url.Action("Casting_CUD", "api/KanagataApi")', kgmodel);
             ShowSuccessMessage(data,'@Url.Action("KanagataList", "Kanagata")');           
         }

@@ -29,7 +29,7 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="3" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this,'KanjoCheck')" id="KanjoCD" name="kanjoCD" maxlength="6" required placeholder="勘定科目選択">
+                            <input type="text" tabindex="3" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="KanjoCD" name="kanjoCD" maxlength="6" required placeholder="勘定科目選択">
                             <label id="KanjoName"><b>勘定科目表示</b></label>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="4" class="text-line col-xl-5 text-left"  onkeydown="KeyDown(event,this,'HojoCheck')" id="HojoCD" name="hojoCD" maxlength="4" required placeholder="補助科目選択">
+                            <input type="text" tabindex="4" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="HojoCD" name="hojoCD" maxlength="4" required placeholder="補助科目選択">
                             <label id="HojoName"><b>補助科目表示</b></label>
 
                         </div>
@@ -101,12 +101,10 @@
 </div>
 
 
-
-
 @section Scripts{
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#formtitle").text("経費設定登録");
+            $("#formtitle").text("経費設定検索");
             $("#HojoCD").attr('disabled', 'disabled');
             $("#CostCD").focus();
             var Mode = '@Model.Mode';
@@ -117,8 +115,10 @@
                 RequiredCheck($("#CostCD"));
                 RequiredCheck($("#CostName"));
                 RequiredCheck($("#KanjoCD"));
+                RequiredCheck($("#HojoCD"));
+                ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/KeihiSetteiApi")', "CostCD");
+                ExistsCheck($("#KanjoCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/KeihiSetteiApi")', "KanjoCD");
                 AlreadyExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/KeihiSetteiApi")');
-                ExistsCheck($("#KanjoCD"), "Kanjo", '@Url.Action("M_Kanjo_ExistsCheck", "api/KeihiSetteiApi")', "KanjoName");
             }
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
@@ -126,9 +126,12 @@
                 $("#CostName").focus();
                 $("#HojoCD").attr('disabled', 'disabled');
 
+
+                RequiredCheck($("#CostCD"));
                 RequiredCheck($("#CostName"));
                 RequiredCheck($("#KanjoCD"));
-                ExistsCheck($("#KanjoCD"), "Kanjo", '@Url.Action("M_Kanjo_ExistsCheck", "api/KeihiSetteiApi")', "KanjoName");
+                RequiredCheck($("#HojoCD"));
+                ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/KeihiSetteiApi")', "CostCD");
                 ShowData();
             }
             else  {
@@ -155,39 +158,8 @@
             $("#CostName").val(keihidata[0].CostName);
             $("#KanjoCD").val(keihidata[0].KanjoCD);
             $("#HojoCD").val(keihidata[0].HojoCD);
-
-            if (!keihidata[0].KanjoName)
-                $("#KanjoName").text("勘定科目表示");
-            else $("#KanjoName").text(keihidata[0].KanjoName);
-
-            if (!keihidata[0].HojoName)
-                $("#HojoName").text("補助科目表示");
-            else $("#HojoName").text(keihidata[0].HojoName);
-
-            //Bind Accounting
-            if (keihidata[0].Accounting == "1")
-                $("#rdoDCost").prop("checked", true);
-            else if (keihidata[0].Accounting == "2")
-                $("#rdoBrandSeason").prop("checked", true);
-            else if (keihidata[0].Accounting == "3")
-                $("#rdoProject").prop("checked", true);
-            else if (keihidata[0].Accounting == "4")
-                $("#rdoMAllocation").prop("checked", true);
-            else
-                $("#rdoFItems").prop("checked", true);
-
-            //Bind Allocation
-            if (keihidata[0].Allocation == "0")
-                $("#rdoDirectly").prop("checked", true);
-            else if (keihidata[0].Allocation == "1")
-                $("#rdoTMRatio").prop("checked", true);
-            else if (keihidata[0].Allocation == "2")
-                $("#rdoPNRatio").prop("checked", true);
-            else
-                $("#rdoFVRatio").prop("checked", true);
-
-            $("#KanjoName").css("font-weight", "Bold");
-            $("#HojoName").css("font-weight", "Bold");
+            $("#Accounting").val(keihidata[0].Accounting);
+            $("#Allocation").val(keihidata[0].Allocation);
         }
 
         function DoProcess() {
@@ -202,66 +174,9 @@
                  Mode:'@Model.Mode'
             };
 
-            //For Accounting
-            if ($('#rdoDCost').is(':checked'))
-                Kmodel.Accounting = "1";
-            else if ($('#rdoBrandSeason').is(':checked'))
-                Kmodel.Accounting = "2";
-            else if ($('#rdoProject').is(':checked'))
-                Kmodel.Accounting = "3";
-            else if ($('#rdoMAllocation').is(':checked'))
-                Kmodel.Accounting = "4";
-            else Kmodel.Accounting = "5";
-
-            //For Allocation
-            if ($('#rdoDirectly').is(':checked'))
-                Kmodel.Allocation = "0";
-            else if ($('#rdoTMRatio').is(':checked'))
-                Kmodel.Allocation = "1";
-            else if ($('#rdoPNRatio').is(':checked'))
-                Kmodel.Allocation = "2";
-            else Kmodel.Allocation = "3";
-
             var data = CalltoApiController('@Url.Action("Keihi_CUD", "api/KeihiSetteiApi")', Kmodel);
-            ShowSuccessMessage(data,'@Url.Action("KeihiSetteiList", "KeihiSettei")');
+            ShowSuccessMessage(data,'@Url.Action("KeihiSetteiList", "Keihi")');
         }
-
-        function KanjoCheck(result) {
-            if (result == 'OK') {
-                if ($("#TmpVal1").val() == "1") {
-                    $("#HojoCD").prop("disabled", false);
-                    $("#HojoCD").focus();
-                    RequiredCheck($("#HojoCD"));
-                    ExistsCheck($("#HojoCD"), "Hojo", '@Url.Action("M_Hojo_ExistsCheck", "api/KeihiSetteiApi")', "HojoName", $("#KanjoCD").val());
-                }
-                else {
-                    $("#HojoCD").prop("disabled", true);
-                    $("#HojoCD").val('');
-                    $("#HojoName").text('補助科目表示');
-                }
-            }
-            else {
-                $("#KanjoCD").focus();
-                $("#KanjoName").text('勘定科目表示');
-                $("#HojoCD").val('');
-                $("#HojoName").text('補助科目表示');
-                $("#HojoCD").prop("disabled", true);
-            }
-            $("#KanjoName").css("font-weight", "Bold");
-            $("#HojoName").css("font-weight", "Bold");
-        }
-
-        function HojoCheck(result) {
-            if (result == 'OK') {
-                $("#Accounting").focus(); 
-            }
-            else {
-                $("#HojoName").text('補助科目表示');
-                $("#HojoCD").focus(); 
-            }
-            $("#HojoName").css("font-weight", "Bold");
-        }
-
 
         function DeleteConfrim() {
             DoProcess();
@@ -285,8 +200,9 @@
         }
 
         function btnCancelClick() {
-            location.href = '@Url.Action("KeihiSetteiList", "KeihiSettei")';
+            location.href = '@Url.Action("KeihiSetteiList", "Keihi")';
         }
+
 
     </script>
     <script src="@Url.Content("~/Scripts/datepicker.js")"></script>

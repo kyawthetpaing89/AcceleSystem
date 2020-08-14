@@ -45,7 +45,7 @@ function ShowConfirmMessage(msgid,functionname) {
     })    
 }
 
-function ShowErrorMessage(msgid,functionname) {
+function ShowErrorMessage(msgid) {
     var Mmodel = {
         MessageID: msgid,
     };
@@ -58,11 +58,6 @@ function ShowErrorMessage(msgid,functionname) {
         icon: 'error',
         title: msgdata[0].MessageID,
         text: msgdata[0].MessageText1,
-    }).then(function () {
-        if (functionname) {
-            var fn = window[functionname];
-            fn('NG');
-        }        
     })
 }
 
@@ -82,11 +77,10 @@ function RequiredCheck(ctrl) {
     $(ctrl).attr("data-Required", "1");
 }
 
-function ExistsCheck(ctrl,val,apiURL,ctrlName,param1) {
+function ExistsCheck(ctrl,val,apiURL,ctrlName) {
     $(ctrl).attr("data-ExistsCheck", val);
     $(ctrl).attr("data-ExistsApiUrl", apiURL);
     $(ctrl).attr("data-NameCtrl", ctrlName);
-    $(ctrl).attr("data-Param1", param1);
 }
 
 function AlreadyExistsCheck(ctrl, val, apiURL) {
@@ -112,19 +106,15 @@ function DateCheck(ctrl,val) {
     $(ctrl).attr("data-DateCheckApiUrl", val);
 }
 
-function KeyDown(e, ctrl, functionname) {
+function KeyDown(e, ctrl) {
     if (e.which == 13) { 
         e.preventDefault();
         var result = ErrChk(ctrl);
         if (result == "0") {
             moveNext(ctrl);
-            if (functionname) {
-                var fn = window[functionname];
-                fn('OK');
-            }   
         }
         else {
-            ShowErrorMessage(result, functionname);
+            ShowErrorMessage(result);
         }
     }
 }
@@ -140,7 +130,6 @@ function ErrChk(ctrl) {
     var dataExistsCheck = $(ctrl).attr("data-ExistsCheck");  
     if (dataExistsCheck) {
         var ApiURL = $(ctrl).attr("data-ExistsApiUrl");
-        var param1 = $(ctrl).attr("data-Param1");
         switch (dataExistsCheck) {
             case "Brand":
                 var model = {
@@ -165,7 +154,8 @@ function ErrChk(ctrl) {
                 break;
             case "Keihi":
                 var model = {
-                    CostCD: $(ctrl).val()
+                    CostCD: $(ctrl).val(),
+                    KanjoCD: $(ctrl).val()
                 };
                 var data = CalltoApiController(ApiURL, model);
                 var KeihiData = JSON.parse(data);
@@ -181,50 +171,6 @@ function ErrChk(ctrl) {
                         var ctrlName = $(ctrl).attr("data-NameCtrl");
                         $('#' + ctrlName).val("");
                         return KeihiData[0].MessageID;
-                    }
-                }
-                break;
-            case "Kanjo":
-                var model = {
-                    KanjoCD: $(ctrl).val()
-                };
-                var data = CalltoApiController(ApiURL, model);
-                var KanjoData = JSON.parse(data);
-                if (KanjoData[0].MessageID != "E101") {
-                    if ($(ctrl).attr("data-NameCtrl")) {
-                        var ctrlName = $(ctrl).attr("data-NameCtrl");
-                        $('#' + ctrlName).text(KanjoData[0].KanjoName);
-                        $("#TmpVal1").val(KanjoData[0].HojoKBN);
-                        return "0";
-                    }
-                }
-                else {
-                    if ($(ctrl).attr("data-NameCtrl")) {
-                        var ctrlName = $(ctrl).attr("data-NameCtrl");
-                        $('#' + ctrlName).val("");
-                        return KanjoData[0].MessageID;
-                    }
-                }
-                break;
-            case "Hojo":
-                var model = {
-                    HojoCD: $(ctrl).val(),
-                    KanjoCD: param1
-                };
-                var data = CalltoApiController(ApiURL, model);
-                var HojoData = JSON.parse(data);
-                if (HojoData[0].MessageID != "E101") {
-                    if ($(ctrl).attr("data-NameCtrl")) {
-                        var ctrlName = $(ctrl).attr("data-NameCtrl");
-                        $('#' + ctrlName).text(HojoData[0].HojoName);
-                        return "0";
-                    }
-                }
-                else {
-                    if ($(ctrl).attr("data-NameCtrl")) {
-                        var ctrlName = $(ctrl).attr("data-NameCtrl");
-                        $('#' + ctrlName).val("");
-                        return HojoData[0].MessageID;
                     }
                 }
                 break;
@@ -285,32 +231,6 @@ function ErrChk(ctrl) {
                 }
                 else {
                     return KeihiData[0].MessageID;
-                }
-                break;
-            case "Kanjo":
-                var model = {
-                    KanjoCD: $(ctrl).val()
-                };
-                var data = CalltoApiController(ApiURL, model);
-                var KanjoData = JSON.parse(data);
-                if (KanjoData[0].MessageID != "E107") {
-                    return "0";
-                }
-                else {
-                    return KanjoData[0].MessageID;
-                }
-                break;
-            case "Hojo":
-                var model = {
-                    HojoCD: $(ctrl).val()
-                };
-                var data = CalltoApiController(ApiURL, model);
-                var HojoData = JSON.parse(data);
-                if (HojoData[0].MessageID != "E107") {
-                    return "0";
-                }
-                else {
-                    return HojoData[0].MessageID;
                 }
                 break;
         }

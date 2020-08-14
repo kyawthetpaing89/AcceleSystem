@@ -53,26 +53,26 @@ namespace AcceleSystem.Controllers
 
         [UserAuthentication]
         [HttpPost]
-        public string M_Kanjo_ExistsCheck([FromBody] KanjoModel Kjmodel)
+        public string M_Kanjo_Name_Select([FromBody] KanjoModel Kjmodel)
         {
             if (Kjmodel == null)
             {
                 Kjmodel = new KanjoModel();
             }
             KeihiSettei_BL Khbl = new KeihiSettei_BL();
-            return Khbl.M_Kanjo_ExistsCheck(Kjmodel);
+            return Khbl.M_Kanjo_Name_Select(Kjmodel);
         }
 
         [UserAuthentication]
         [HttpPost]
-        public string M_Hojo_ExistsCheck([FromBody] HojoModel Hjmodel)
+        public string M_Hojo_Name_Select([FromBody] HojoModel Hjmodel)
         {
             if (Hjmodel == null)
             {
                 Hjmodel = new HojoModel();
             }
             KeihiSettei_BL Hbl = new KeihiSettei_BL();
-            return Hbl.M_Hojo_ExistsCheck(Hjmodel);
+            return Hbl.M_Hojo_Name_Select(Hjmodel);
         }
     }
 }

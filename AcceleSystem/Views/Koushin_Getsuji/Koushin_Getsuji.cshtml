@@ -1,0 +1,42 @@
+﻿@model Models.Koushin_Getsuji
+@{
+    ViewBag.Title = "Koushin_Getsuji";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles{
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
+}
+
+<div id="divMain" class="container-fluid">
+    <div class="content">
+        <div class="p-5 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white; border-radius:5px;">
+            <div class="col-xs-6 col-md-4"></div>
+            <div class="col-xs-6 col-md-4">
+                <div>
+                    <h3 class=" hr-text text-center">月次確定情報入力</h3>
+                </div>
+                <div class="pt-5 md-form">
+                    <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="Pdate" name="Date" maxlength="7" required placeholder="処理年月">
+                </div>
+                <div class="pt-5 md-form">
+                    <button id="btnSave" tabindex="2" onclick="btnSaveClick()" class="btn btn-dark col-xl-5 text-center">登録 </button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <button id="btnCancel" onclick="btnCancelClick()" class="btn btn-primary col-xl-5 text-center">戻る</button>
+                </div>
+                <input type="hidden" id="APIURL" value="@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")" />
+            </div>
+            <div class="col-xs-6 col-md-4"></div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#formtitle").text("月次確定");
+            $("#Pdate").focus();
+        });
+    </script>
+}
