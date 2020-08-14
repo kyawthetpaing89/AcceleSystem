@@ -129,5 +129,69 @@ namespace CommonBL
                        DateTimeStyles.None,
                        out DateTime d);
         }
+
+        public bool YearMonth_Checking(string inputdate)
+        {
+            string res, strdate = string.Empty;
+            if (!string.IsNullOrWhiteSpace(inputdate))
+            {
+                if(IsInteger(inputdate.Replace("/","").Replace("-","")))
+                {
+                    string month = string.Empty, year = string.Empty;
+                    if(inputdate.Contains("/"))
+                    {
+                        string[] date = inputdate.Split('/');                   
+                        month = date[date.Length - 1].PadLeft(2, '0');
+
+                        if (date.Length > 1)
+                            year = date[date.Length - 2];
+
+                        inputdate = year + month;
+                    }
+                    else if(inputdate.Contains("-"))
+                    {
+                        string[] date = inputdate.Split('/');
+                        month = date[date.Length - 1].PadLeft(2, '0');
+
+                        if (date.Length > 1)
+                            year = date[date.Length - 2];
+
+                        inputdate = year + month;
+                    }
+
+                    string text = inputdate;
+                    text = text.PadLeft(6, '0');
+                    month = text.Substring(text.Length - 2).Substring(0, 2);
+                    year = Convert.ToInt32(text.Substring(0, text.Length - 2)).ToString();
+
+                    if (month == "00")
+                    {
+                        month = string.Empty;
+                    }
+                    if (year == "0")
+                    {
+                        year = string.Empty;
+                    }
+
+                    if (string.IsNullOrWhiteSpace(month))
+                        month = DateTime.Now.Month.ToString().PadLeft(2, '0');//if user doesn't input for month,set current month
+
+                    if (string.IsNullOrWhiteSpace(year))
+                    {
+                        year = DateTime.Now.Year.ToString();//if user doesn't input for year,set current year
+                    }
+                    else
+                    {
+                        if (year.Length == 1)
+                            year = "200" + year;
+                        else if (year.Length == 2)
+                            year = "20" + year;
+                    }
+                    strdate = year + "/" + month;
+                    
+                }
+            }
+            return true;
+        }
     }
 }
