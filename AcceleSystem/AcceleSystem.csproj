@@ -567,10 +567,6 @@
       <Project>{5853da41-4e0b-448f-83eb-e65c44375703}</Project>
       <Name>KeihiSetteiBL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Koushin_GetsujiBL\Koushin_GetsujiBL.csproj">
-      <Project>{2aa9d78d-9614-4ff7-a3f9-f8d6a79c0b23}</Project>
-      <Name>Koushin_GetsujiBL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MessageBL\MessageBL.csproj">
       <Project>{8c241484-f5d3-4ecf-bbc8-46ce34fd85ae}</Project>
       <Name>MessageBL</Name>
