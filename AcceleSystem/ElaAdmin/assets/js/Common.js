@@ -244,7 +244,7 @@ function ErrChk(ctrl) {
                 if (CastingData[0].MessageID != "E107") {
                     return "0";
                 }
-                else {
+                else {    
                     return BrandData[0].MessageID;
                 }
                 break;
