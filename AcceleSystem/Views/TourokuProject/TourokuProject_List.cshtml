@@ -1,12 +1,11 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "TourokuList";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @section Styles{
-    <link rel="stylesheet" href="@Url.Content("~/ElaAdmin/assets/css/lib/datatable/dataTables.bootstrap.min.css")" />
-    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
+<link rel="stylesheet" href="@Url.Content(" ~/ElaAdmin/assets/css/lib/datatable/dataTables.bootstrap.min.css")" />
+<link rel="stylesheet" type="text/css" href="@Url.Content(" ~/Content/bootstrap-textbox.css")" />
 }
 <div class="card">
     <div class="row">
@@ -97,7 +96,7 @@
                             &nbsp;&nbsp;&nbsp;&nbsp;
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -125,6 +124,105 @@
     </div>
 
 </div>
+
+@section Scripts{
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#formtitle").text("プロジェクト検索");
+        Touroku();
+    });
+
+    $('#myInput').on("keypress", function (e) {
+        if (e.keyCode == 13) {
+            Touroku();
+            return false; // prevent the button click from happening
+        }
+    });
+
+    function Touroku() {
+        var Tmodel = {
+            ProjectName: $('#myInput').val(),
+        };
+
+        $.ajax({
+            type: "Post",
+            url: "@Url.Action("M_Project_Select_List", "api/TourokuApi")",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify(Tmodel),
+            headers:
+            {
+                Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
+            },
+            success: function (response) {
+                BindTable(response);
+            }
+        });
+    }
+
+    function BindTable(response) {
+        table = $('#tblKeihi').DataTable({
+
+            data: JSON.parse(response),
+            "bFilter": false,
+            "bLengthChange": false,
+            "bInfo": false,
+            destroy: true,
+            "columns": [
+                {
+                    "data": null,
+                    className: "Border1",
+                    render: function (data, type, row) {
+                        return '<b><label>' + data.CostCD + '</label></b><br/><label>' + data.CostName + '</label>';
+                    }
+                },
+                {
+                    "data": null,
+                    className: "Border2",
+                    render: function (data, type, row) {
+                        return '<b><label>' + data.Accounting + '</label></b><br/><label>' + data.Allocation + '</label>';
+                    }
+                },
+                {
+                    "data": null,
+                    className: "Border3",
+                    render: function (data, type, row) {
+                        return '<label><a href="#" onClick="btnEditClick(\'' + data.CostCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.CostCD + '\')" style="color:red">削除</a></label>';
+                    }
+                },
+            ],
+            "drawCallback": function (settings) {
+                $("#tblKeihi thead").remove();
+            }
+        });
+
+    }
+
+    function btnAddClick() {
+        location.href = '@Url.Action("KeihiSetteiEntry", "KeihiSettei")?Mode=New'
+    }
+
+    function btnEditClick(CostCD) {
+        location.href = '@Url.Action("KeihiSetteiEntry", "KeihiSettei")?CostCD=' + CostCD + '&Mode=Edit';
+    }
+
+    function btnDelClick(CostCD) {
+        location.href = '@Url.Action("KeihiSetteiEntry", "KeihiSettei")?CostCD=' + CostCD + '&Mode=Delete';
+    }
+</script>
+
+<script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/datatables.min.js")"></script>
+<script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/dataTables.bootstrap.min.js")"></script>
+<script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/dataTables.buttons.min.js")"></script>
+<script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/buttons.bootstrap.min.js")"></script>
+<script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/jszip.min.js")"></script>
+<script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/vfs_fonts.js")"></script>
+<script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/buttons.html5.min.js")"></script>
+<script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/buttons.print.min.js")"></script>
+<script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/buttons.colVis.min.js")"></script>
+<script src="@Url.Content(" ~/ElaAdmin/assets/js/init/datatables-init.js")"></script>
+
+}
 
 
 
