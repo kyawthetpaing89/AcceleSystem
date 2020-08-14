@@ -13,5 +13,11 @@ namespace AcceleSystem.Controllers
             Koushin_Getsuji_BL kgbl = new Koushin_Getsuji_BL();
             return kgbl.M_Contrl_YearMonth_ExitCheck(kgmodel);
         }
+
+        public string M_Contrl_YearMonth_Insert([FromBody] Koushin_GetsujiModel kgmodel)
+        {
+            Koushin_Getsuji_BL kgbl = new Koushin_Getsuji_BL();
+            return kgbl.M_Contrl_YearMonth_Insert(kgmodel);
+        }
     }
 }

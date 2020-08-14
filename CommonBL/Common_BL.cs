@@ -10,12 +10,11 @@ namespace CommonBL
 {
     public class Common_BL
     {
-        string result;
         public string Date_Checking(string inputdate)
         {
-            // return "[{\"result\":\"true\"}]";
-            result = string.Empty;
-            string strdate = string.Empty;
+           // return "[{\"result\":\"true\"}]";
+
+            string result, strdate = string.Empty;
             if (!string.IsNullOrWhiteSpace(inputdate))
             {
                 if (IsInteger(inputdate.Replace("/", "").Replace("-", "")))
@@ -109,18 +108,6 @@ namespace CommonBL
             }
         }
 
-        //public string YearMonth_Checking(string inputym)
-        //{
-        //    result = string.Empty;
-        //    if (!string.IsNullOrWhiteSpace(inputym))
-        //    {
-        //        string yr = string.Empty, mth = string.Empty;
-        //        if (inputym.Contains("/"))
-        //        {
-        //        }
-        //    }
-        //}
-
         public bool IsInteger(string value)
         {
             value = value.Replace("-", "");
@@ -142,5 +129,36 @@ namespace CommonBL
                        DateTimeStyles.None,
                        out DateTime d);
         }
+
+        public string YearMonth_Checking(string inputdate)
+        {
+            string result = string.Empty, strdate = string.Empty;            
+            inputdate = inputdate.Replace("/", "");
+            if(inputdate.Length == 1)
+                    {
+                        strdate = DateTime.Now.Year.ToString() + "/" + inputdate.PadLeft(2, '0');
+                        
+                    }
+            else if (inputdate.Length == 2)
+                    {
+                        strdate = DateTime.Now.Year.ToString() + "/" + inputdate.PadLeft(2, '0');                      
+                    }
+            else if(inputdate.Length == 6 )
+                    {
+                        var yr = inputdate.Substring(0, 4).ToString();
+                        var mn = inputdate.Substring(inputdate.Length - 2, 2).ToString().PadLeft(2, '0').ToString();
+                        strdate = yr + "/" + mn;
+                    }
+            else if (inputdate.Length == 5)
+                    {
+                        var yr = inputdate.Substring(0, 4);
+                        var mn = inputdate.Substring(inputdate.Length - 1, 1).PadLeft(2, '0');
+                        strdate = yr + "/" + mn;
+                    }
+            result = "[{\"resultdate\" : \"" + strdate + "\", \"flg\" : \"false\"}]";
+            return result;
+             
+        }
+
     }
 }

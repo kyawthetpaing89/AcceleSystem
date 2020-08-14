@@ -17,5 +17,14 @@ namespace AcceleSystem.Controllers
             return cmbl.Date_Checking(BModel.inputdate);
 
         }
+
+        [UserAuthentication]
+        [HttpPost]
+        public string YearMonth_Checking([FromBody] BaseModel BModel)
+        {
+            Common_BL cmbl = new Common_BL();
+            return cmbl.YearMonth_Checking(BModel.inputdate);
+
+        }
     }
 }
