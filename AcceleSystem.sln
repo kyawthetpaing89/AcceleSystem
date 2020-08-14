@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeihiSetteiBL", "KeihiSette
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonBL", "CommonBL\CommonBL.csproj", "{20CB34C1-BE05-421B-8FB8-4AD5AC09DEC2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Koushin_GetsujiBL", "Koushin_GetsujiBL\Koushin_GetsujiBL.csproj", "{2AA9D78D-9614-4FF7-A3F9-F8D6A79C0B23}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{20CB34C1-BE05-421B-8FB8-4AD5AC09DEC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20CB34C1-BE05-421B-8FB8-4AD5AC09DEC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20CB34C1-BE05-421B-8FB8-4AD5AC09DEC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AA9D78D-9614-4FF7-A3F9-F8D6A79C0B23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AA9D78D-9614-4FF7-A3F9-F8D6A79C0B23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AA9D78D-9614-4FF7-A3F9-F8D6A79C0B23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AA9D78D-9614-4FF7-A3F9-F8D6A79C0B23}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

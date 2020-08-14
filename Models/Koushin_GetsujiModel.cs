@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class Koushin_Getsuji : BaseModel
+    public class Koushin_GetsujiModel : BaseModel
     {
         public string processing_date {get;set; }
    
