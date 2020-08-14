@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class TourokuModel : BaseModel
+    public class TourokuProjectModel : BaseModel
     {
         public string ProjectCD { get; set; }
         public string ProjectName { get; set; }

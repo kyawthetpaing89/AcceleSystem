@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "TourokuList";
+    ViewBag.Title = "TourokuProject_List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -102,7 +102,7 @@
         </div>
         <div class="col-lg-5">
             <div class="card-body card-block">
-                <table id="tblTouroku" class="tb1 col-sm-12" style="padding-left:0px;">
+                <table id="tblProject" class="tb1 col-sm-12" style="padding-left:0px;">
                     <thead>
                         <tr>
                             <td>経費コード</td>
@@ -129,17 +129,17 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $("#formtitle").text("プロジェクト検索");
-        Touroku();
+        GetProject();
     });
 
     $('#myInput').on("keypress", function (e) {
         if (e.keyCode == 13) {
-            Touroku();
+            Project();
             return false; // prevent the button click from happening
         }
     });
 
-    function Touroku() {
+    function Project() {
         var Tmodel = {
             ProjectName: $('#myInput').val(),
         };
@@ -161,7 +161,7 @@
     }
 
     function BindTable(response) {
-        table = $('#tblKeihi').DataTable({
+        table = $('#tblProject').DataTable({
 
             data: JSON.parse(response),
             "bFilter": false,

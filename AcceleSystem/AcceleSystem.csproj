@@ -575,6 +575,10 @@
       <Project>{896a79e0-6565-4fc3-b927-50f8f80f5850}</Project>
       <Name>Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TourokuProjectBL\TourokuProjectBL.csproj">
+      <Project>{02c677ae-d5b4-4cd3-9d20-04098bedbf81}</Project>
+      <Name>TourokuProjectBL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UserBL\UserBL.csproj">
       <Project>{56023bba-489a-45e5-b8f0-dbc21216383f}</Project>
       <Name>UserBL</Name>
