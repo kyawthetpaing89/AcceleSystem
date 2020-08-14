@@ -36,7 +36,29 @@
         $(document).ready(function () {
             $("#formtitle").text("月次確定");
             $("#Pdate").focus();
-            ExistsCheck($("#Pdate"), "FiscalYYYYMM", '@Url.Action("M_Contrl_YearMonth_ExitCheck", "api/Koushin_GetsujiApi")');
+            ExistsCheck($("#Pdate"),"FiscalYYYYMM", '@Url.Action("M_Contrl_YearMonth_ExitCheck", "api/Koushin_GetsujiApi")');
+            YearMonthCheck($("#Pdate"),'@Url.Action("YearMonth_Checking", "api/CommonApi")');
         });
+
+        //save
+        function btnSaveClick() {
+            var res = ErrorCheckOnSave();
+            if (res == "0") {  
+                    DoProcess();
+            }
+            else
+                ShowErrorMessage(res);
+        }
+
+         function DoProcess() {
+             focusControl = $("#Pdate");
+             var kgmodel = {
+                 processing_date: $("#Pdate").val(),                
+            };
+
+            var data = CalltoApiController('@Url.Action("M_Contrl_YearMonth_Insert", "api/Koushin_GetsujiApi")', kgmodel);
+            ShowSuccessMessage(data,'@Url.Action("Koushin_Getsuji", "Koushin_Getsuji")');           
+        }
+
     </script>
 }

@@ -106,6 +106,11 @@ function DateCheck(ctrl,val) {
     $(ctrl).attr("data-DateCheckApiUrl", val);
 }
 
+function YearMonthCheck(ctrl, val) {
+    $(ctrl).attr("yearmonth_check", "1");
+    $(ctrl).attr("yearmonth_DataCheckApiUrl", val);
+}
+
 function KeyDown(e, ctrl) {
     if (e.which == 13) { 
         e.preventDefault();
@@ -174,6 +179,20 @@ function ErrChk(ctrl) {
                     }
                 }
                 break;
+            case "FiscalYYYYMM":
+                var model = {
+                    processing_date: $(ctrl).val()
+                };
+                var data = CalltoApiController(ApiURL, model);
+                var Koushidata = JSON.parse(data);
+                if (KeihiData[0].MessageID != "E101") {
+                    if ($(ctrl).attr("data-NameCtrl")) {
+                        var ctrlName = $(ctrl).attr("data-NameCtrl");
+                        $('#' + ctrlName).val(KeihiData[0].CostName);
+                        return "0";
+                    }
+                }
+
         }
     }
 
@@ -248,6 +267,20 @@ function ErrChk(ctrl) {
             return "E103";
         }
         else if (dateData[0].flg == "true") {
+            $(ctrl).val(dateData[0].resultdate);
+            return "0";
+        }
+    }
+
+    var yearmonthcheck = $(ctrl).attr("yearmonth_check");
+    if (yearmonthcheck == "1") {
+        var ApiURL = $(ctrl).attr("yearmonth_DataCheckApiUrl");
+        var model = {
+            inputdata: $(ctrl).val(),
+        };
+        var data = CalltoApiController(ApiURL, model);
+        var dateData = JSON.parse(data);
+        if (dateData[0].flg == "true") {
             $(ctrl).val(dateData[0].resultdate);
             return "0";
         }

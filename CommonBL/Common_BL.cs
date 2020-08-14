@@ -130,6 +130,35 @@ namespace CommonBL
                        out DateTime d);
         }
 
-       
+        public string YearMonth_Checking(string inputdate)
+        {
+            string result = string.Empty, strdate = string.Empty;            
+            inputdate = inputdate.Replace("/", "");
+            if(inputdate.Length == 1)
+                    {
+                        strdate = DateTime.Now.Year.ToString() + "/" + inputdate.PadLeft(2, '0');
+                        
+                    }
+            else if (inputdate.Length == 2)
+                    {
+                        strdate = DateTime.Now.Year.ToString() + "/" + inputdate.PadLeft(2, '0');                      
+                    }
+            else if(inputdate.Length == 6 )
+                    {
+                        var yr = inputdate.Substring(0, 4).ToString();
+                        var mn = inputdate.Substring(inputdate.Length - 2, 2).ToString().PadLeft(2, '0').ToString();
+                        strdate = yr + "/" + mn;
+                    }
+            else if (inputdate.Length == 5)
+                    {
+                        var yr = inputdate.Substring(0, 4);
+                        var mn = inputdate.Substring(inputdate.Length - 1, 1).PadLeft(2, '0');
+                        strdate = yr + "/" + mn;
+                    }
+            result = "[{\"resultdate\" : \"" + strdate + "\", \"flg\" : \"false\"}]";
+            return result;
+             
+        }
+
     }
 }
