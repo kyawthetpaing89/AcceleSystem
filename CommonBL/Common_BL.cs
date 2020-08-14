@@ -10,11 +10,12 @@ namespace CommonBL
 {
     public class Common_BL
     {
+        string result;
         public string Date_Checking(string inputdate)
         {
-           // return "[{\"result\":\"true\"}]";
-
-            string result, strdate = string.Empty;
+            // return "[{\"result\":\"true\"}]";
+            result = string.Empty;
+            string strdate = string.Empty;
             if (!string.IsNullOrWhiteSpace(inputdate))
             {
                 if (IsInteger(inputdate.Replace("/", "").Replace("-", "")))
@@ -107,6 +108,18 @@ namespace CommonBL
                 return result;
             }
         }
+
+        //public string YearMonth_Checking(string inputym)
+        //{
+        //    result = string.Empty;
+        //    if (!string.IsNullOrWhiteSpace(inputym))
+        //    {
+        //        string yr = string.Empty, mth = string.Empty;
+        //        if (inputym.Contains("/"))
+        //        {
+        //        }
+        //    }
+        //}
 
         public bool IsInteger(string value)
         {
