@@ -145,6 +145,7 @@
     <Compile Include="Controllers\KanagataController.cs" />
     <Compile Include="Controllers\KeihiSetteiApiController.cs" />
     <Compile Include="Controllers\KeihiSetteiController.cs" />
+    <Compile Include="Controllers\Koushin_GetsujiController.cs" />
     <Compile Include="Controllers\MessageApiController.cs" />
     <Compile Include="Controllers\TourokuController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
@@ -523,6 +524,7 @@
     <Content Include="Views\KeihiSettei\KeihiSetteiList.cshtml" />
     <Content Include="Views\KeihiSettei\KeihiSetteiEntry.cshtml" />
     <Content Include="Views\Touroku\TourokuList.cshtml" />
+    <Content Include="Views\Koushin_Getsuji\Koushin_Getsuji.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -47,6 +47,7 @@
     <Compile Include="KanagataModel.cs" />
     <Compile Include="KanjoModel.cs" />
     <Compile Include="KeihiSetteiModel.cs" />
+    <Compile Include="Koushin_Getsuji.cs" />
     <Compile Include="MessageModel.cs" />
     <Compile Include="UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
