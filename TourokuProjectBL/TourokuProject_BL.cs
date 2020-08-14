@@ -17,7 +17,7 @@ namespace TourokuProjectBL
             Tmodel.Sqlprms[2] = new SqlParameter("@Season", SqlDbType.TinyInt) { Value = Tmodel.Season };
             Tmodel.Sqlprms[3] = new SqlParameter("@Year", SqlDbType.Int) { Value = Tmodel.Year };
             Tmodel.Sqlprms[4] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tmodel.ProjectCD };
-            Tmodel.Sqlprms[5] = new SqlParameter("@ProjecName", SqlDbType.VarChar) { Value = Tmodel.ProjecName };
+            Tmodel.Sqlprms[5] = new SqlParameter("@ProjecName", SqlDbType.VarChar) { Value = Tmodel.ProjectName };
             Tmodel.Sqlprms[6] = new SqlParameter("@PeriodStart", SqlDbType.Int) { Value = Tmodel.PeriodStart };
             Tmodel.Sqlprms[7] = new SqlParameter("@PeriodEnd", SqlDbType.Int) { Value = Tmodel.PeriodEnd };
             Tmodel.Sqlprms[8] = new SqlParameter("@ProjectManager", SqlDbType.VarChar) { Value = Tmodel.ProjectManager };

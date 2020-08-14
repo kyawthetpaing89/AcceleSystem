@@ -19,6 +19,9 @@ namespace Models
         public string PeriodEnd { get; set; }
         public string ProjectManager { get; set; }
         public string AllocationCount { get; set; }
+        public string BrandName { get; set; }
+        public string UserName { get; set; }
+
 
 
 
