@@ -132,8 +132,11 @@ namespace CommonBL
 
         public string YearMonth_Checking(string inputdate)
         {
-            string result = string.Empty, strdate = string.Empty;            
-            inputdate = inputdate.Replace("/", "");
+            string result = string.Empty, strdate = string.Empty;
+            if (inputdate.Contains("/"))
+            {
+                inputdate = inputdate.Replace("/", "");
+            }              
             if(inputdate.Length == 1)
                     {
                         strdate = DateTime.Now.Year.ToString() + "/" + inputdate.PadLeft(2, '0');
@@ -155,7 +158,7 @@ namespace CommonBL
                         var mn = inputdate.Substring(inputdate.Length - 1, 1).PadLeft(2, '0');
                         strdate = yr + "/" + mn;
                     }
-            result = "[{\"resultdate\" : \"" + strdate + "\", \"flg\" : \"false\"}]";
+            result = "[{\"resultdate\" : \"" + strdate ;
             return result;
              
         }
