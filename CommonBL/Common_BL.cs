@@ -142,7 +142,5 @@ namespace CommonBL
                        DateTimeStyles.None,
                        out DateTime d);
         }
-
-       
     }
 }

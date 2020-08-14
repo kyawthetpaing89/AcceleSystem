@@ -1,4 +1,4 @@
-﻿@model Models.Koushin_GetsujiModel
+﻿@model Models.Koushin_Getsuji
 @{
     ViewBag.Title = "Koushin_Getsuji";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -23,7 +23,8 @@
                     <button id="btnSave" tabindex="2" onclick="btnSaveClick()" class="btn btn-dark col-xl-5 text-center">登録 </button>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <button id="btnCancel" onclick="btnCancelClick()" class="btn btn-primary col-xl-5 text-center">戻る</button>
-                </div>             
+                </div>
+                <input type="hidden" id="APIURL" value="@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")" />
             </div>
             <div class="col-xs-6 col-md-4"></div>
         </div>
@@ -36,7 +37,6 @@
         $(document).ready(function () {
             $("#formtitle").text("月次確定");
             $("#Pdate").focus();
-            ExistsCheck($("#Pdate"), "FiscalYYYYMM", '@Url.Action("M_Contrl_YearMonth_ExitCheck", "api/Koushin_GetsujiApi")');
         });
     </script>
 }
