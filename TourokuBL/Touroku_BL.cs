@@ -23,7 +23,7 @@ namespace TourokuBL
             Tmodel.Sqlprms[8] = new SqlParameter("@ProjectManager", SqlDbType.VarChar) { Value = Tmodel.ProjectManager };
             Tmodel.Sqlprms[9] = new SqlParameter("@UserName", SqlDbType.VarChar) { Value = Tmodel.UserName };
 
-            return bdl.SelectJson("M_Project_Select_List", Tmodel.Sqlprms);
+            return bdl.SelectJson("M_Project_Select_List", Tmodel.Sqlprms);    
         }
     }
 
