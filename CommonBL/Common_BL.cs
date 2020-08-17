@@ -158,7 +158,8 @@ namespace CommonBL
                         var mn = inputdate.Substring(inputdate.Length - 1, 1).PadLeft(2, '0');
                         strdate = yr + "/" + mn;
                     }
-            result = "[{\"resultdate\" : \"" + strdate ;
+            //result = "[{\"resultdate\" : \"" + strdate;
+            result = "[{\"resultdate\" : \"" + strdate + "\", \"flg\" : \"true\"}]";
             return result;
              
         }
