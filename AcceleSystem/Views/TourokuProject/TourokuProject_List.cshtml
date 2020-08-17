@@ -4,8 +4,8 @@
 }
 
 @section Styles{
-<link rel="stylesheet" href="@Url.Content(" ~/ElaAdmin/assets/css/lib/datatable/dataTables.bootstrap.min.css")" />
-<link rel="stylesheet" type="text/css" href="@Url.Content(" ~/Content/bootstrap-textbox.css")" />
+@*<link rel="stylesheet" href="@Url.Content(" ~/ElaAdmin/assets/css/lib/datatable/dataTables.bootstrap.min.css")" />*@
+<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
 }
 <div class="card">
     <div class="row">
@@ -173,7 +173,7 @@
                     "data": null,
                     className: "Border1",
                     render: function (data, type, row) {
-                        return '<b><label>' + data.CostCD + '</label></b><br/><label>' + data.CostName + '</label>';
+                        return '<b><label>' + data.BrandCD + '</label></b><br/><label>' + data.BrandName + '</label>';
                     }
                 },
                 {
@@ -192,26 +192,26 @@
                 },
             ],
             "drawCallback": function (settings) {
-                $("#tblKeihi thead").remove();
+                $("#tblProject thead").remove();
             }
         });
 
     }
 
     function btnAddClick() {
-        location.href = '@Url.Action("KeihiSetteiEntry", "KeihiSettei")?Mode=New'
+        location.href = '@Url.Action("TourokuProject_Entry", "Project")?Mode=New'
     }
 
     function btnEditClick(CostCD) {
-        location.href = '@Url.Action("KeihiSetteiEntry", "KeihiSettei")?CostCD=' + CostCD + '&Mode=Edit';
+        location.href = '@Url.Action("TourokuProject_Entry", "Project")?CostCD=' + CostCD + '&Mode=Edit';
     }
 
     function btnDelClick(CostCD) {
-        location.href = '@Url.Action("KeihiSetteiEntry", "KeihiSettei")?CostCD=' + CostCD + '&Mode=Delete';
+        location.href = '@Url.Action("TourokuProject_Entry", "Project")?CostCD=' + CostCD + '&Mode=Delete';
     }
 </script>
 
-<script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/datatables.min.js")"></script>
+@*<script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/datatables.min.js")"></script>
 <script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/dataTables.bootstrap.min.js")"></script>
 <script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/dataTables.buttons.min.js")"></script>
 <script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/buttons.bootstrap.min.js")"></script>
@@ -220,7 +220,7 @@
 <script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/buttons.html5.min.js")"></script>
 <script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/buttons.print.min.js")"></script>
 <script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/buttons.colVis.min.js")"></script>
-<script src="@Url.Content(" ~/ElaAdmin/assets/js/init/datatables-init.js")"></script>
+<script src="@Url.Content(" ~/ElaAdmin/assets/js/init/datatables-init.js")"></script>*@
 
 }
 
