@@ -94,14 +94,11 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-12" style="padding-left:0px; padding-top:2rem;">
+                                <div class="text-s text-custom1 text-uppercase mb-1">
+                                    <button id="btnSave" tabindex="7" onclick="btnSaveClick()" class="btn btn-dark col-xl-4 text-center" style="float:right; width:100px;">登録</button>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
 
-                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                <div class="col-md-12" style="padding-left:0px;">
-                                    <div class="text-s text-custom1 text-uppercase mb-1">
-                                        <button id="btnSave" tabindex="7" onclick="btnSaveClick()" class="btn btn-dark col-xl-4 text-center" style="float:right; width:100px;">登録</button>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
-
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -114,13 +111,14 @@
                 <table id="tblProject" class="tb1 col-sm-12" style="padding-left:0px;">
                     <thead>
                         <tr>
-                            <td>経費コード</td>
-                            <td>経費名</td>
-                            <td>経費名</td>
-                            <td>計上単位</td>
-                            <td>配賦基準</td>
-                            <td>計上単位</td>
-                            <td>配賦基準</td>
+                            <td>BrandCD</td>
+                            <td>BrandName</td>
+                            <td>Year</td>
+                            <td>Season</td>
+                            <td>ProjectCD</td>
+                            <td>ProjectName</td>
+
+                            <td>年度</td>
                             <td>配賦基準</td>
                         </tr>
 
@@ -130,6 +128,7 @@
             </div>
 
         </div>
+        <div class="col-lg-2"></div>
     </div>
 
 </div>
@@ -182,19 +181,26 @@
                     "data": null,
                     className: "Border1",
                     render: function (data, type, row) {
-                        return '<b><label>' + data.BrandCD + '</label></b><br/><label>' + data.BrandName + '</label>';
+                        return '<b><label>' + data.BrandCD + '</label></b><br/><label>' + data.Season + '</label>';
                     }
                 },
                 {
                     "data": null,
                     className: "Border2",
                     render: function (data, type, row) {
-                        return '<b><label>' + data.Accounting + '</label></b><br/><label>' + data.Allocation + '</label>';
+                        return '<b><label>' + data.BrandName + '</label></b><br/><label>' + data.Year + '</label>';
                     }
                 },
                 {
                     "data": null,
                     className: "Border3",
+                    render: function (data, type, row) {
+                        return '<b><label>' + data.ProjectCD + '</label></b><br/><label>' + data.Year + '</label>';
+                    }
+                },
+                {
+                    "data": null,
+                    className: "Border4",
                     render: function (data, type, row) {
                         return '<label><a href="#" onClick="btnEditClick(\'' + data.CostCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.CostCD + '\')" style="color:red">削除</a></label>';
                     }
