@@ -19,12 +19,12 @@ namespace Koushin_GetsujiBL
             return bdl.SelectJson("M_Contrl_YearMonth_ExitCheck");
         }
 
-        public string M_Contrl_YearMonth_Insert(Koushin_GetsujiModel kgmodel)
+        public string M_Contrl_YearMonth_Update(Koushin_GetsujiModel kgmodel)
         {
             BaseDL bdl = new BaseDL();
             kgmodel.Sqlprms = new SqlParameter[1];
-            kgmodel.Sqlprms[0] = new SqlParameter("@Date", SqlDbType.Int) { Value = (object)kgmodel.processing_date ?? DBNull.Value };
-            return bdl.SelectJson("M_Contrl_YearMonth_Insert", kgmodel.Sqlprms);
+            kgmodel.Sqlprms[0] = new SqlParameter("@Date", SqlDbType.VarChar) { Value = (object)kgmodel.processing_date ?? DBNull.Value };
+            return bdl.SelectJson("M_Contrl_YearMonth_Update", kgmodel.Sqlprms);
         }
     }
 }

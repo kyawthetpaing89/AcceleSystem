@@ -243,6 +243,19 @@ function ErrChk(ctrl) {
                     }
                 }
                 break;
+            case "Koushiin":
+                var model = {
+                    processing_date: $(ctrl).val(),
+                };
+                var data = CalltoApiController(ApiURL, model);
+                var Koushiin = JSON.parse(data);
+                if (Koushiin[0].MessageID = "E101") {
+                    if ($(ctrl).attr("data-NameCtrl")) {
+                        var ctrlName = $(ctrl).attr("data-NameCtrl");
+                        $('#' + ctrlName).val("");
+                        return HojoData[0].MessageID;
+                    }
+                }
         }
     }
 
