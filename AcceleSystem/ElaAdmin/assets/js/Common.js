@@ -249,12 +249,8 @@ function ErrChk(ctrl) {
                 };
                 var data = CalltoApiController(ApiURL, model);
                 var Koushiin = JSON.parse(data);
-                if (Koushiin[0].MessageID = "E101") {
-                    if ($(ctrl).attr("data-NameCtrl")) {
-                        var ctrlName = $(ctrl).attr("data-NameCtrl");
-                        $('#' + ctrlName).val("");
-                        return HojoData[0].MessageID;
-                    }
+                if (Koushiin[0].MessageID == "E101") {
+                    return Koushiin[0].MessageID;                  
                 }
         }
     }
@@ -369,7 +365,10 @@ function ErrChk(ctrl) {
         };
         var data = CalltoApiController(ApiURL, model);
         var dateData = JSON.parse(data);
-        if (dateData[0].flg == "true") {
+        if (dateData[0].flg == "false") {
+            return "E103";
+        }
+        else if (dateData[0].flg == "true") {
             $(ctrl).val(dateData[0].resultdate);
             return "0";
         }

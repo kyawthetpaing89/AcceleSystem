@@ -132,7 +132,7 @@ namespace CommonBL
 
         public string YearMonth_Checking(string inputdate)
         {
-            string result = string.Empty, strdate = string.Empty;
+            string result = string.Empty, strdate = string.Empty, date = string.Empty;
             if (inputdate.Contains("/"))
             {
                 inputdate = inputdate.Replace("/", "");
@@ -164,9 +164,16 @@ namespace CommonBL
                 var mn = inputdate.Substring(inputdate.Length - 1, 1).PadLeft(2, '0');
                 strdate = yr + "/" + mn;
             }
-            //result = "[{\"resultdate\" : \"" + strdate;
-            result = "[{\"resultdate\" : \"" + strdate + "\", \"flg\" : \"true\"}]";
+
+            date = strdate + "/" + "01";
+            if (CheckDate(date))
+            {
+                result = "[{\"resultdate\" : \"" + strdate + "\", \"flg\" : \"true\"}]";   //"[{"result":"2020/01/01"}]";
+                return result;
+            }
             return result;
+            //result = "[{\"resultdate\" : \"" + strdate + "\", \"flg\" : \"true\"}]";
+            //return result;
              
         }
 
