@@ -4,5 +4,28 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Touroku_NouhinList</h2>
+@section Styles{
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
+}
+    <div class="card">
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="card-body card-block">
+                    <div class="row form-group">
+                        <div class="col col-md-12">
+                            <button id="btnAdd" onclick="btnNouhinEntry()" class="btn" tabindex="38" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px; margin-right: 20px;">
+                                プロジェクト追加
+                            </button>
+                            <button id="btnAdd" onclick="btnAddClick()" class="btn" tabindex="38" color:azure; style="background-color:white; color:#1a8cff; border-radius:3px; border: 1px solid transparent; border-color:#1a8cff; margin-right: 20px;">
+                                品番登録
+                            </button>
 
+                            <button id="btnAdd" onclick="btnAddClick()" class="btn" tabindex="38" color:azure; style="background-color:white; color:black; border-radius:3px; border: 1px solid transparent; border-color:black;">
+                                CSV
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
