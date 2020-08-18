@@ -19,9 +19,16 @@ namespace Models
         public string AllocationCount { get; set; }
         public string BrandName { get; set; }
         public string UserName { get; set; }
-
-
-
-
+        public string HinbanCD { get; set; }
+        public string HinbanName { get; set; }
+        public string Color { get; set; }
+        public string CastingCD { get; set; }
+        public string CastingName { get; set; }
+        public string Production { get; set; }
+        public string SalePrice { get; set; }
+        public string Complete { get; set; }
+        public string CompleteYM { get; set; }
+        public string FreeItem1 { get; set; }
+        public string FreeItem2 { get; set; }
     }
 }
