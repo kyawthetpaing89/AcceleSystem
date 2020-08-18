@@ -144,7 +144,9 @@ namespace CommonBL
             }
             else if (inputdate.Length == 2)
             {
-                strdate = DateTime.Now.Year.ToString() + "/" + inputdate.PadLeft(2, '0');                      
+              
+                strdate = DateTime.Now.Year.ToString() + "/" + inputdate.PadLeft(2, '0');
+                           
             }
             else if (inputdate.Length == 4)
             {
@@ -171,7 +173,11 @@ namespace CommonBL
                 result = "[{\"resultdate\" : \"" + strdate + "\", \"flg\" : \"true\"}]";   //"[{"result":"2020/01/01"}]";
                 return result;
             }
-            return result;
+            else
+            {
+                result = "[{\"resultdate\" : \"" + inputdate + "\", \"flg\" : \"false\"}]";
+                return result;
+            }
             //result = "[{\"resultdate\" : \"" + strdate + "\", \"flg\" : \"true\"}]";
             //return result;
              
