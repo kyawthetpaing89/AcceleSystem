@@ -532,6 +532,8 @@
     <Content Include="Views\TourokuProject\TourokuProject_Entry.cshtml" />
     <Content Include="Views\Touroku_Nouhin\Touroku_NouhinList.cshtml" />
     <Content Include="Views\Touroku_Nouhin\Touroku_NouhinEntry.cshtml" />
+    <Content Include="Views\TourokuProject\TourokuHinban_Entry.cshtml" />
+    <Content Include="Views\TourokuProject\TourokuHinban_List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
