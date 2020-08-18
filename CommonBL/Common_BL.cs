@@ -132,7 +132,7 @@ namespace CommonBL
 
         public string YearMonth_Checking(string inputdate)
         {
-            string result = string.Empty, strdate = string.Empty;
+            string result = string.Empty, strdate = string.Empty, date = string.Empty;
             if (inputdate.Contains("/"))
             {
                 inputdate = inputdate.Replace("/", "");
@@ -144,7 +144,9 @@ namespace CommonBL
             }
             else if (inputdate.Length == 2)
             {
-                strdate = DateTime.Now.Year.ToString() + "/" + inputdate.PadLeft(2, '0');                      
+              
+                strdate = DateTime.Now.Year.ToString() + "/" + inputdate.PadLeft(2, '0');
+                           
             }
             else if (inputdate.Length == 4)
             {
@@ -164,9 +166,20 @@ namespace CommonBL
                 var mn = inputdate.Substring(inputdate.Length - 1, 1).PadLeft(2, '0');
                 strdate = yr + "/" + mn;
             }
-            //result = "[{\"resultdate\" : \"" + strdate;
-            result = "[{\"resultdate\" : \"" + strdate + "\", \"flg\" : \"true\"}]";
-            return result;
+
+            date = strdate + "/" + "01";
+            if (CheckDate(date))
+            {
+                result = "[{\"resultdate\" : \"" + strdate + "\", \"flg\" : \"true\"}]";   //"[{"result":"2020/01/01"}]";
+                return result;
+            }
+            else
+            {
+                result = "[{\"resultdate\" : \"" + inputdate + "\", \"flg\" : \"false\"}]";
+                return result;
+            }
+            //result = "[{\"resultdate\" : \"" + strdate + "\", \"flg\" : \"true\"}]";
+            //return result;
              
         }
 

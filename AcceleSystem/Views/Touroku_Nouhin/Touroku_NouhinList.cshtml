@@ -9,23 +9,116 @@
 }
     <div class="card">
         <div class="row">
-            <div class="col-lg-5">
+            <div class="col-lg-4 col-sm-12">
                 <div class="card-body card-block">
                     <div class="row form-group">
                         <div class="col col-md-12">
-                            <button id="btnAdd" onclick="btnNouhinEntry()" class="btn" tabindex="38" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px; margin-right: 20px;">
-                                プロジェクト追加
+                            <button id="btnAdd" onclick="btnNouhinEntry_Click()" class="btn" tabindex="38" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px; margin-right: 20px;">
+                                納品追加
                             </button>
-                            <button id="btnAdd" onclick="btnAddClick()" class="btn" tabindex="38" color:azure; style="background-color:white; color:#1a8cff; border-radius:3px; border: 1px solid transparent; border-color:#1a8cff; margin-right: 20px;">
-                                品番登録
+                            <button id="btnAdd" onclick="btnB/SNouhin_Click()" class="btn" tabindex="38" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px; margin-right: 20px;">
+                                B/S一括納品
                             </button>
-
-                            <button id="btnAdd" onclick="btnAddClick()" class="btn" tabindex="38" color:azure; style="background-color:white; color:black; border-radius:3px; border: 1px solid transparent; border-color:black;">
-                                CSV
+                            <button id="btnAdd" onclick="btnDelete_Click()" class="btn" tabindex="38" style="background-color:white; color:#1a8cff; border-radius:3px; border: 1px solid transparent; border-color:#1a8cff; margin-right: 20px;">
+                                削除
                             </button>
+                            <div id="registration" style="padding-top: 1.8rem!important;">
+                                <div>
+                                    <h4 class=" hr-text text-center">経費設定登録</h4>
+                                </div>
+                                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                    <div class="col-md-12" style="padding-left:50px;">
+                                        <div class="text-s text-custom1 text-uppercase mb-1">
+                                            <label id="text" class="p-l-1">年度</label>
+                                            <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                    <div class="col-md-12" style="padding-left:0px;">
+                                        <div class="text-s text-custom1 text-uppercase mb-1">
+                                            <label id="text" class="p-l-1">ブランド名</label>
+                                            <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
+                                            <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                    <div class="col-md-12" style="padding-left:0px;">
+                                        <div class="text-s text-custom1 text-uppercase mb-1">
+                                            <label class="text" style="padding-right:20px;">シーズン</label>
+                                            <input type="checkbox" id="" name="check">
+                                            <label style="padding-right:50px;">度年</label>
+                                            <input type="checkbox" id="" name="check">
+                                            <label style="padding-right:50px;">SS</label>
+                                            <input type="checkbox" id="" name="check">
+                                            <label>FW</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                    <div class="col-md-12" style="padding-left:0px;">
+                                        <div class="text-s text-custom1 text-uppercase mb-1">
+                                            <label id="text" class="p-l-1">プロジェクト</label>
+                                            <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;"><br />
+                                            <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                    <div class="col-md-12" style="padding-left:0px;">
+                                        <div class="text-s text-custom1 text-uppercase mb-1">
+                                            <label id="text" class="p-l-1">品番</label>
+                                            <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
+                                            <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                    <div class="col-md-12" style="padding-left:0px;">
+                                        <div class="text-s text-custom1 text-uppercase mb-1">
+                                            <label id="text" class="p-l-1">納品目</label>
+                                            <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
+                                            &nbsp;~&nbsp;
+                                            <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                    <div class="col-md-12" style="padding-left:0px;">
+                                        <div class="text-s text-custom1 text-uppercase mb-1">
+                                            <label class="text" style="padding-right:20px;">納品状況</label>
+                                            <input type="checkbox" id="" name="check">
+                                            <label style="padding-right:50px;">度年</label>
+                                            <input type="checkbox" id="" name="check">
+                                            <label style="padding-right:50px;">度年</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="col-lg-4 col-sm-12">
+                <div class="card-body card-block">
+                    <table id="tblProject" class="tb1 col-sm-12" style="padding-left:0px;">
+                        <thead>
+                            <tr>
+                                <td>経費コード</td>
+                                <td>経費名</td>
+                                <td>経費名</td>
+                                <td>計上単位</td>
+                                <td>配賦基準</td>
+                                <td>計上単位</td>
+                                <td>配賦基準</td>
+                                <td>配賦基準</td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-12">
             </div>
         </div>
     </div>
