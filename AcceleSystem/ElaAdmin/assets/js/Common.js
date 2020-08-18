@@ -249,8 +249,8 @@ function ErrChk(ctrl) {
                 };
                 var data = CalltoApiController(ApiURL, model);
                 var Koushiin = JSON.parse(data);
-                if (Koushiin[0].MessageID == "E101") {
-                    return Koushiin[0].MessageID;                  
+                if (Koushiin[0].MessageID == "E101") {   
+                    return Koushiin[0].MessageID; 
                 }
         }
     }
