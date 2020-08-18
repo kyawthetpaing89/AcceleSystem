@@ -18,5 +18,6 @@ namespace AcceleSystem.Controllers
             TourokuProject_BL Ubl = new TourokuProject_BL();
             return Ubl.M_Project_Select_List(Tmodel);
         }
+      
     }
 }

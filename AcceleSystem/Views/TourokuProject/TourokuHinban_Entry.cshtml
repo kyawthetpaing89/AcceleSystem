@@ -1,4 +1,4 @@
-﻿
+﻿@model Models.TourokuProjectModel
 @{
     ViewBag.Title = "TourokuHinban_Entry";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -16,7 +16,7 @@
             <div class="col-xs-12 col-md-2"></div>
             <div class="col-xs-12 col-md-8">
                 <div>
-                    <h2 class=" hr-text text-center">品番情報入力</h2>
+                    <h2 class=" hr-text text-center">品番登録</h2>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
@@ -103,8 +103,8 @@
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label class="col-xl-2" style="padding:initial;">金型</label>
-                            <input type="text" tabindex="17" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this)" id="moldCD" name="moldCD" maxlength="20" required>
-                            <input type="text" tabindex="18" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this)" id="moldName" name="moldName" maxlength="40" required>
+                            <input type="text" tabindex="17" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this)" id="CastingCD" name="CastingCD" maxlength="20" required>
+                            <input type="text" tabindex="18" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this)" id="CastingName" name="CastingName" maxlength="40" required>
 
                         </div>
                     </div>
@@ -133,9 +133,21 @@
     </div>
 </div>
 
+
 @section Scripts{
     <script type="text/javascript">
         $(document).ready(function () {
+                var Mode = '@Model.Mode';
+                      if (Mode == 'New') {
+                          $('#btnSave').html('登録');
+                          RequiredCheck($("#HinbanCD"));
+                          RequiredCheck($("#HinbanName"));
+                          RequiredCheck($("#Production"));
+                          RequiredCheck($("#unitprice"));
+                          ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/TourokuProjectApi")', "CastingName");
+                
+                      }
+        });
 
 
     <script src="@Url.Content("~/Scripts/datepicker.js")"></script>
