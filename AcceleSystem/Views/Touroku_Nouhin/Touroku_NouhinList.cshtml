@@ -9,7 +9,7 @@
 }
 <div class="card">
     <div class="row">
-        <div class="col-lg-4 col-sm-12">
+        <div class="col-lg-4 col-md-6 col-sm-12">
             <div class="card-body card-block">
                 <div class="row form-group">
                     <div class="col col-md-12">
@@ -113,7 +113,7 @@
         </div>
         <div class="col-lg-4 col-sm-12">
             <div class="card-body card-block">
-                <table id="tblProject" class="tb1 col-sm-12" style="padding-left:0px;">
+                <table id="tblNouhin" class="tb1 col-sm-12" style="padding-left:0px;">
                     <thead>
                         <tr>
                             <th>納品日</th>
@@ -126,7 +126,24 @@
                         </tr>
                         <tr>
                             <th>品番</th>
-
+                            <th></th>
+                            <th>生産数</th>
+                            <th>納品数</th>
+                        </tr>
+                        <tr>
+                            <td>DeliveryDate</td>
+                            <td>Brand</td>
+                            <td>Season</td>
+                            <td>Year</td>
+                        </tr>
+                        <tr>
+                            <td>Project</td>
+                        </tr>
+                        <tr>
+                            <td>Hinban</td>
+                            <td></td>
+                            <td>Production</td>
+                            <td>DeliveryAmount</td>
                         </tr>
                     </thead>
                 </table>
@@ -145,26 +162,24 @@
         });
 
         function GetNouhin() {
-            
-
-        $.ajax({
-            type: "Post",
-            //url:"@Url.Action("M_Keihi_Select_List", "api/KeihiSetteiApi")",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            data: JSON.stringify(Kmodel),
-            headers:
-            {
-                Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-            },
-            success: function (response) {
-                    BindTable(response);
-                }
-        });
-    }
+            $.ajax({
+                type: "Post",
+                url:"@Url.Action("", "api/Api")",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify(),
+                headers:
+                {
+                    Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
+                },
+                success: function (response) {
+                        BindTable(response);
+                    }
+            });
+        }
 
         function BindTable(response) {
-            table = $('#tblKeihi').DataTable({
+            table = $('#tblNouhin').DataTable({
 
                 data: JSON.parse(response),
                 "bFilter": false,
@@ -176,14 +191,21 @@
                         "data": null,
                         className:"Border1",
                         render: function (data, type, row) {
-                            return '<b><label>' + data.CostCD + '</label></b><br/><label>' + data.CostName + '</label>';
+                            return '<label>' + data.DeliveryDate + '</label><label>' + data.BrandName + '</label><label>' + data.Season + '</label><label>' + data.Year + '</label>';
                         }
                     },
                     {
                         "data": null,
                         className: "Border2",
                         render: function (data, type, row) {
-                            return '<b><label>' + data.Accounting + '</label></b><br/><label>' + data.Allocation + '</label>';
+                            return '<label>' + data.ProjectCD + '</label><label>' + data.ProjectName +  '</label>';
+                        }
+                    },
+                    {
+                        "data": null,
+                        className: "Border2",
+                        render: function (data, type, row) {
+                            return '<label>' + data.HinbanCD + '</label><label>' + data.HinbanName + '</label><label></label><label>' + data.Production + '</label><label>' + data.DeliveryAmount + '</label>';
                         }
                     },
                     {
@@ -195,7 +217,7 @@
                     },
                 ],
                 "drawCallback": function (settings) {
-                    $("#tblKeihi thead").remove();
+                    $("#tblNouhin thead").remove();
                 }
             });
 
