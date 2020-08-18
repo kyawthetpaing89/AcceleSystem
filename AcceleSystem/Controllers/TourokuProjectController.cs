@@ -17,5 +17,14 @@ namespace AcceleSystem.Controllers
         {
             return View();
         }
+        public ActionResult TourokuHinban_Entry()
+        {
+            return View();
+        }
+
+        public ActionResult TourokuHinban_List()
+        {
+            return View();
+        }
     }
 }
