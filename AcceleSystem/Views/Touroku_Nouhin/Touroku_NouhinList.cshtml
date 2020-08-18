@@ -7,123 +7,225 @@
 @section Styles{
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
 }
-    <div class="card">
-        <div class="row">
-            <div class="col-lg-4 col-sm-12">
-                <div class="card-body card-block">
-                    <div class="row form-group">
-                        <div class="col col-md-12">
-                            <button id="btnAdd" onclick="btnNouhinEntry_Click()" class="btn" tabindex="38" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px; margin-right: 20px;">
-                                納品追加
-                            </button>
-                            <button id="btnAdd" onclick="btnB/SNouhin_Click()" class="btn" tabindex="38" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px; margin-right: 20px;">
-                                B/S一括納品
-                            </button>
-                            <button id="btnAdd" onclick="btnDelete_Click()" class="btn" tabindex="38" style="background-color:white; color:#1a8cff; border-radius:3px; border: 1px solid transparent; border-color:#1a8cff; margin-right: 20px;">
-                                削除
-                            </button>
-                            <div id="registration" style="padding-top: 1.8rem!important;">
-                                <div>
-                                    <h4 class=" hr-text text-center">経費設定登録</h4>
-                                </div>
-                                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                    <div class="col-md-12" style="padding-left:65px;">
-                                        <div class="text-s text-custom1 text-uppercase mb-1">
-                                            <label id="text" style="padding-right:10px;">年度</label>
-                                            <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
-                                        </div>
+<div class="card">
+    <div class="row">
+        <div class="col-lg-4 col-sm-12">
+            <div class="card-body card-block">
+                <div class="row form-group">
+                    <div class="col col-md-12">
+                        <button id="btnAdd" onclick="btnNouhinEntry_Click()" class="btn" tabindex="38" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px; margin-right: 20px;">
+                            納品追加
+                        </button>
+                        <button id="btnAdd" onclick="btnB/SNouhin_Click()" class="btn" tabindex="38" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px; margin-right: 20px;">
+                            B/S一括納品
+                        </button>
+                        <button id="btnAdd" onclick="btnDelete_Click()" class="btn" tabindex="38" style="background-color:white; color:#1a8cff; border-radius:3px; border: 1px solid transparent; border-color:#1a8cff; margin-right: 20px;">
+                            削除
+                        </button>
+                        <div id="registration" style="padding-top: 1.8rem!important;">
+                            <div>
+                                <h4 class=" hr-text text-center">検索条件入力</h4>
+                            </div>
+                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                <div class="col-md-12" style="padding-left:65px;">
+                                    <div class="text-s text-custom1 text-uppercase mb-1">
+                                        <label id="text" style="padding-right:10px;">年度</label>
+                                        <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
                                     </div>
                                 </div>
-                                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                    <div class="col-md-12" style="padding-left:17px;">
-                                        <div class="text-s text-custom1 text-uppercase mb-1">
-                                            <label id="text" style="padding-right:10px;">ブランド名</label>
-                                            <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
-                                            <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
-                                        </div>
+                            </div>
+                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                <div class="col-md-12" style="padding-left:17px;">
+                                    <div class="text-s text-custom1 text-uppercase mb-1">
+                                        <label id="text" style="padding-right:10px;">ブランド名</label>
+                                        <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
+                                        <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
                                     </div>
                                 </div>
-                                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                    <div class="col-md-12" style="padding-left:13px;">
-                                        <div class="text-s text-custom1 text-uppercase mb-1">
-                                            <label class="text" style="padding-right:30px;">シーズン</label>
-                                            <input type="checkbox" id="" name="check">
-                                            <label style="padding-right:50px;">度年</label>
-                                            <input type="checkbox" id="" name="check">
-                                            <label style="padding-right:50px;">SS</label>
-                                            <input type="checkbox" id="" name="check">
-                                            <label>FW</label>
-                                        </div>
+                            </div>
+                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                <div class="col-md-12" style="padding-left:30px;">
+                                    <div class="text-s text-custom1 text-uppercase mb-1">
+                                        <label class="text" style="padding-right:15px;">シーズン</label>
+                                        <input type="checkbox" id="" name="check">
+                                        <label style="padding-right:50px;">度年</label>
+                                        <input type="checkbox" id="" name="check">
+                                        <label style="padding-right:50px;">SS</label>
+                                        <input type="checkbox" id="" name="check">
+                                        <label>FW</label>
                                     </div>
                                 </div>
-                                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                    <div class="col-md-12" style="padding-left:1px;">
-                                        <div class="text-s text-custom1 text-uppercase mb-1">
-                                            <label id="text" style="padding-right:10px;">プロジェクト</label>
-                                            <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
-                                            
-                                        </div>
-                                    </div>
-                                     <div class="col-md-12" style="padding-left:101px;">
-                                         <div class="text-s text-custom1 text-uppercase mb-1">
-                                             <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
-                                         </div>
+                            </div>
+                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                <div class="col-md-12" style="padding-left:1px;">
+                                    <div class="text-s text-custom1 text-uppercase mb-1">
+                                        <label id="text" style="padding-right:9px;">プロジェクト</label>
+                                        <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
+
                                     </div>
                                 </div>
-                                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                    <div class="col-md-12" style="padding-left:65px;">
-                                        <div class="text-s text-custom1 text-uppercase mb-1">
-                                            <label id="text" style="padding-right:10px;">品番</label>
-                                            <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
-                                            <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
-                                        </div>
+                                <div class="col-md-12" style="padding-left:110px;">
+                                    <div class="text-s text-custom1 text-uppercase mb-1">
+                                        <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
                                     </div>
                                 </div>
-                                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                    <div class="col-md-12" style="padding-left:50px;">
-                                        <div class="text-s text-custom1 text-uppercase mb-1">
-                                            <label id="text" style="padding-right:10px;">納品目</label>
-                                            <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
-                                            &nbsp;~&nbsp;
-                                            <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
-                                        </div>
+                            </div>
+                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                <div class="col-md-12" style="padding-left:63px;">
+                                    <div class="text-s text-custom1 text-uppercase mb-1">
+                                        <label id="text" style="padding-right:10px;">品番</label>
+                                        <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
+                                        <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
                                     </div>
                                 </div>
-                                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                    <div class="col-md-12" style="padding-left:15px;">
-                                        <div class="text-s text-custom1 text-uppercase mb-1">
-                                            <label class="text" style="padding-right:30px;">納品状況</label>
-                                            <input type="checkbox" id="" name="check">
-                                            <label style="padding-right:50px;">度年</label>
-                                            <input type="checkbox" id="" name="check">
-                                            <label style="padding-right:50px;">度年</label>
-                                        </div>
+                            </div>
+                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                <div class="col-md-12" style="padding-left:50px;">
+                                    <div class="text-s text-custom1 text-uppercase mb-1">
+                                        <label id="text" style="padding-right:10px;">納品目</label>
+                                        <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
+                                        &nbsp;~&nbsp;
+                                        <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
                                     </div>
+                                </div>
+                            </div>
+                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                <div class="col-md-12" style="padding-left:30px;">
+                                    <div class="text-s text-custom1 text-uppercase mb-1">
+                                        <label class="text" style="padding-right:12px;">納品状況</label>
+                                        <input type="checkbox" id="" name="check">
+                                        <label style="padding-right:50px;">納品残あり</label>
+                                        <input type="checkbox" id="" name="check">
+                                        <label style="padding-right:50px;">完納</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="padding-left:0px; padding-top:2rem;">
+                                <div class="text-s text-custom1 text-uppercase mb-1">
+                                    <button id="btnSave" tabindex="7" onclick="btnSearchClick()" class="btn btn-dark col-xl-4 text-center" style="float:right; width:100px;">検索</button>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-sm-12">
-                <div class="card-body card-block">
-                    <table id="tblProject" class="tb1 col-sm-12" style="padding-left:0px;">
-                        <thead>
-                            <tr>
-                                <td>経費コード</td>
-                                <td>経費名</td>
-                                <td>経費名</td>
-                                <td>計上単位</td>
-                                <td>配賦基準</td>
-                                <td>計上単位</td>
-                                <td>配賦基準</td>
-                                <td>配賦基準</td>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-12">
+        </div>
+        <div class="col-lg-4 col-sm-12">
+            <div class="card-body card-block">
+                <table id="tblProject" class="tb1 col-sm-12" style="padding-left:0px;">
+                    <thead>
+                        <tr>
+                            <th>納品日</th>
+                            <th>ブランド</th>
+                            <th>シーズン</th>
+                            <th>年度</th>
+                            @*<td>DeliveryDate</td>
+                            <td>BrandName</td>
+                            <td>Season</td>
+                            <td>Year</td>
+                            <td>ProjectCD</td>
+                            <td>ProjectName</td>
+                            <td>HinbanCD</td>
+                            <td>HinbanName</td>
+                            <td>Production</td>
+                            <td>DeliveryAmount</td>*@
+                        </tr>
+                    </thead>
+                </table>
             </div>
         </div>
+        <div class="col-lg-4 col-sm-12">
+        </div>
     </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#formtitle").text("納品履歴検索");
+            GetNouhin();
+        });
+
+        function GetNouhin() {
+            
+
+        $.ajax({
+            type: "Post",
+            //url:"@Url.Action("M_Keihi_Select_List", "api/KeihiSetteiApi")",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify(Kmodel),
+            headers:
+            {
+                Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
+            },
+            success: function (response) {
+                    BindTable(response);
+                }
+        });
+    }
+
+        function BindTable(response) {
+            table = $('#tblKeihi').DataTable({
+
+                data: JSON.parse(response),
+                "bFilter": false,
+                "bLengthChange": false,
+                "bInfo": false,
+                destroy:true,
+                "columns": [
+                    {
+                        "data": null,
+                        className:"Border1",
+                        render: function (data, type, row) {
+                            return '<b><label>' + data.CostCD + '</label></b><br/><label>' + data.CostName + '</label>';
+                        }
+                    },
+                    {
+                        "data": null,
+                        className: "Border2",
+                        render: function (data, type, row) {
+                            return '<b><label>' + data.Accounting + '</label></b><br/><label>' + data.Allocation + '</label>';
+                        }
+                    },
+                    {
+                        "data": null,
+                        className: "Border3",
+                        render: function (data, type, row) {
+                            return '<label><a href="#" onClick="btnEditClick(\'' + data.CostCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.CostCD +'\')" style="color:red">削除</a></label>';
+                        }
+                    },
+                ],
+                "drawCallback": function (settings) {
+                    $("#tblKeihi thead").remove();
+                }
+            });
+
+        }
+
+    function btnAddClick() {
+        location.href = '@Url.Action("KeihiSetteiEntry", "KeihiSettei")?Mode=New'
+    }
+
+    function btnEditClick(CostCD) {
+        location.href = '@Url.Action("KeihiSetteiEntry", "KeihiSettei")?CostCD='+CostCD+'&Mode=Edit';
+    }
+
+    function btnDelClick(CostCD) {
+        location.href = '@Url.Action("KeihiSetteiEntry", "KeihiSettei")?CostCD='+CostCD+'&Mode=Delete';
+        }
+    </script>
+
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/datatables.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/dataTables.bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/dataTables.buttons.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/jszip.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/vfs_fonts.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.html5.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.print.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.colVis.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/init/datatables-init.js")"></script>
+
+}
