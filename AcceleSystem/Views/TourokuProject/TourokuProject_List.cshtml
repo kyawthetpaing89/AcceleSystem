@@ -42,11 +42,11 @@
                                 <div class="col-md-12" style="padding-left:0px;">
                                     <div class="text-s text-custom1 text-uppercase mb-1">
                                         <label class="text" style="padding-right:20px;">シーズン</label>
-                                        <input type="checkbox" id="Season" name="check">
+                                        <input type="checkbox" id="degreeyear" name="check">
                                         <label style="padding-right:50px;">度年</label>
-                                        <input type="checkbox" id="Season" name="">
+                                        <input type="checkbox" id="SS" name="">
                                         <label style="padding-right:50px;">SS</label>
-                                        <input type="checkbox" id="Season" name="">
+                                        <input type="checkbox" id="FW" name="">
                                         <label>FW</label>
 
                                     </div>
@@ -111,17 +111,35 @@
                 <table id="tblProject" class="tb1 col-sm-12" style="padding-left:0px;">
                     <thead>
                         <tr>
-                            <td>BrandCD</td>
-                            <td>BrandName</td>
-                            <td>Year</td>
-                            <td>Season</td>
-                            <td>ProjectCD</td>
-                            <td>ProjectName</td>
-
-                            <td>年度</td>
-                            <td>配賦基準</td>
+                            <th>納品日</th>
+                            <th>ブランド</th>
+                            <th>シーズン</th>
+                            <th>年度</th>
                         </tr>
-
+                        <tr>
+                            <th>プロジェクト</th>
+                        </tr>
+                        <tr>
+                            <th>品番</th>
+                            <th></th>
+                            <th>生産数</th>
+                            <th>納品数</th>
+                        </tr>
+                        <tr>
+                            <td>DeliveryDate</td>
+                            <td>Brand</td>
+                            <td>Season</td>
+                            <td>Year</td>
+                        </tr>
+                        <tr>
+                            <td>Project</td>
+                        </tr>
+                        <tr>
+                            <td>Hinban</td>
+                            <td></td>
+                            <td>Production</td>
+                            <td>DeliveryAmount</td>
+                        </tr>
                     </thead>
 
                 </table>
@@ -151,7 +169,6 @@
         var Tmodel = {
             BrandCD: $('#BrandCD').val(),
             BrandName: $('#BrandName').val(),
-            Season: $('#Season').val(),
             Year: $('#Year').val(),
             ProjectCD: $('#ProjectCD').val(),
             ProjectName: $('#ProjectName').val(),
@@ -160,6 +177,12 @@
             ProjectManager: $('#ProjectManager').val(),
             UserName: $('#UserName').val(),
         };
+
+        if ($('#degreeyear').is(':checked'))
+            Tmodel.Season = "1";
+        else if ($('#SS').is(':checked'))
+            Tmodel.Season = "2";
+        else Tmodel.Season = "3";
 
         $.ajax({
             type: "Post",

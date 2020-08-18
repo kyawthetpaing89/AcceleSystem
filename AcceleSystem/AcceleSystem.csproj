@@ -150,7 +150,6 @@
     <Compile Include="Controllers\MessageApiController.cs" />
     <Compile Include="Controllers\TourokuProjectApiController.cs" />
     <Compile Include="Controllers\TourokuProjectController.cs" />
-    <Compile Include="Controllers\Touroku_KeihiController.cs" />
     <Compile Include="Controllers\Touroku_NouhinApiController.cs" />
     <Compile Include="Controllers\Touroku_NouhinController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
@@ -533,8 +532,8 @@
     <Content Include="Views\TourokuProject\TourokuProject_Entry.cshtml" />
     <Content Include="Views\Touroku_Nouhin\Touroku_NouhinList.cshtml" />
     <Content Include="Views\Touroku_Nouhin\Touroku_NouhinEntry.cshtml" />
-    <Content Include="Views\Touroku_Keihi\Touroku_KeihiEntry.cshtml" />
-    <Content Include="Views\Touroku_Keihi\Touroku_KeihiList.cshtml" />
+    <Content Include="Views\TourokuProject\TourokuHinban_Entry.cshtml" />
+    <Content Include="Views\TourokuProject\TourokuHinban_List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
