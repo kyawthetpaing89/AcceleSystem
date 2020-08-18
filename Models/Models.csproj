@@ -50,6 +50,7 @@
     <Compile Include="KeihiSetteiModel.cs" />
     <Compile Include="Koushin_GetsujiModel.cs" />
     <Compile Include="MessageModel.cs" />
+    <Compile Include="TourokuNouhinModel.cs" />
     <Compile Include="TourokuProjectModel.cs" />
     <Compile Include="UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
