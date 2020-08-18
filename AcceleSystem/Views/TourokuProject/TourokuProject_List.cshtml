@@ -181,26 +181,35 @@
                     "data": null,
                     className: "Border1",
                     render: function (data, type, row) {
-                        return '<b><label>' + data.BrandCD + '</label></b><br/><label>' + data.Season + '</label>';
+                        return '<b><label>' + data.BrandCD + '</label></b><br/><label>' + data.BrandName + '</label></b><br/><label>'+ ProjectCD + '</label>';
                     }
                 },
                 {
                     "data": null,
                     className: "Border2",
                     render: function (data, type, row) {
-                        return '<b><label>' + data.BrandName + '</label></b><br/><label>' + data.Year + '</label>';
+                        return '<b><label>' + data.ProjectName + '</label></b><br/><label>' + data.Year + '</label></b><br/><label>'+Season+'</label>';
                     }
                 },
                 {
                     "data": null,
                     className: "Border3",
                     render: function (data, type, row) {
-                        return '<b><label>' + data.ProjectCD + '</label></b><br/><label>' + data.Year + '</label>';
+                        return '<b><label>' + data.PeriodStart + '</label></b><br/><label>' + data.PeriodEnd + '</label></b><br/><label>'+Production+'</label>';
                     }
                 },
+
                 {
                     "data": null,
                     className: "Border4",
+                    render: function (data, type, row) {
+                        return '<b><label>' + data.SalesPrice + '</label></b><br/><label>' + data.PeriodEnd + '</label>';
+                    }
+                },
+
+                {
+                    "data": null,
+                    className: "Border5",
                     render: function (data, type, row) {
                         return '<label><a href="#" onClick="btnEditClick(\'' + data.CostCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.CostCD + '\')" style="color:red">削除</a></label>';
                     }
@@ -218,11 +227,11 @@
     }
 
     function btnEditClick(CostCD) {
-        location.href = '@Url.Action("TourokuProject_Entry", "Project")?CostCD=' + CostCD + '&Mode=Edit';
+        location.href = '@Url.Action("TourokuProject_Entry", "Project")?BrandCD=' + BrandCD + '&Mode=Edit';
     }
 
     function btnDelClick(CostCD) {
-        location.href = '@Url.Action("TourokuProject_Entry", "Project")?CostCD=' + CostCD + '&Mode=Delete';
+        location.href = '@Url.Action("TourokuProject_Entry", "Project")?BrandCD=' + BrandCD + '&Mode=Delete';
     }
 </script>
 
