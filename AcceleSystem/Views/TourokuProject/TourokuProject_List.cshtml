@@ -42,11 +42,11 @@
                                 <div class="col-md-12" style="padding-left:0px;">
                                     <div class="text-s text-custom1 text-uppercase mb-1">
                                         <label class="text" style="padding-right:20px;">シーズン</label>
-                                        <input type="checkbox" id="Season" name="check">
+                                        <input type="checkbox" id="degreeyear" name="check">
                                         <label style="padding-right:50px;">度年</label>
-                                        <input type="checkbox" id="Season" name="">
+                                        <input type="checkbox" id="SS" name="">
                                         <label style="padding-right:50px;">SS</label>
-                                        <input type="checkbox" id="Season" name="">
+                                        <input type="checkbox" id="FW" name="">
                                         <label>FW</label>
 
                                     </div>
@@ -111,6 +111,8 @@
                 <table id="tblProject" class="tb1 col-sm-12" style="padding-left:0px;">
                     <thead>
                         <tr>
+                            <th></th>
+                            </tr>
                             <td>BrandCD</td>
                             <td>BrandName</td>
                             <td>Year</td>
@@ -152,7 +154,6 @@
             BrandCD: $('#BrandCD').val(),
             BrandName: $('#BrandName').val(),
             Season: $('#Season').val(),
-            Year: $('#Year').val(),
             ProjectCD: $('#ProjectCD').val(),
             ProjectName: $('#ProjectName').val(),
             PeriodStart: $('#PeriodStart').val(),
@@ -160,6 +161,12 @@
             ProjectManager: $('#ProjectManager').val(),
             UserName: $('#UserName').val(),
         };
+
+        if ($('#degreeyear').is(':checked'))
+            Tmodel.Year = "1";
+        else if ($('#SS').is(':checked'))
+            Tmodel.Year = "2";
+        else Tmodel.Year = "3";
 
         $.ajax({
             type: "Post",
