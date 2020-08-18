@@ -153,7 +153,7 @@
         var Tmodel = {
             BrandCD: $('#BrandCD').val(),
             BrandName: $('#BrandName').val(),
-            Season: $('#Season').val(),
+            Year: $('#Year').val(),
             ProjectCD: $('#ProjectCD').val(),
             ProjectName: $('#ProjectName').val(),
             PeriodStart: $('#PeriodStart').val(),
@@ -163,10 +163,10 @@
         };
 
         if ($('#degreeyear').is(':checked'))
-            Tmodel.Year = "1";
+            Tmodel.Season = "1";
         else if ($('#SS').is(':checked'))
-            Tmodel.Year = "2";
-        else Tmodel.Year = "3";
+            Tmodel.Season = "2";
+        else Tmodel.Season = "3";
 
         $.ajax({
             type: "Post",
