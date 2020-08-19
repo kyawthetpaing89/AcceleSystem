@@ -31,9 +31,9 @@
                     <div class="col-xl-12" style="padding-left:65px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="KeihiName">経費名</label>&nbsp;&nbsp;
-                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="KeihiCD" name="KeihiCD" maxlength="10" required placeholder="入力" style="width:100px;">
+                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostCD" name="CostCD" maxlength="10" required placeholder="入力" style="width:100px;">
                             &nbsp;
-                            <input type="text" tabindex="2" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="KeihiName" name="KeihiName" maxlength="20" required placeholder="入力" style="width:100px;">
+                            <input type="text" tabindex="2" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostName" name="CostName" maxlength="20" required placeholder="入力" style="width:100px;">
                         </div>
                     </div>
                 </div>
@@ -146,4 +146,101 @@
         </div>
     </div>
 </div>
+
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#formtitle").text("経費検索");
+            $("#CostCD").focus();
+            ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "CostName");
+
+            //GetNouhin();
+        });
+
+        function GetNouhin() {
+            $.ajax({
+                type: "Post",
+                url:"@Url.Action("", "api/Api")",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify(),
+                headers:
+                {
+                    Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
+                },
+                success: function (response) {
+                        BindTable(response);
+                    }
+            });
+        }
+
+        function BindTable(response) {
+            table = $('#tblNouhin').DataTable({
+
+                data: JSON.parse(response),
+                "bFilter": false,
+                "bLengthChange": false,
+                "bInfo": false,
+                destroy:true,
+                "columns": [
+                    {
+                        "data": null,
+                        className:"Border1",
+                        render: function (data, type, row) {
+                            return '<label>' + data.DeliveryDate + '</label><label>' + data.BrandName + '</label><label>' + data.Season + '</label><label>' + data.Year + '</label>';
+                        }
+                    },
+                    {
+                        "data": null,
+                        className: "Border2",
+                        render: function (data, type, row) {
+                            return '<label>' + data.ProjectCD + '</label><label>' + data.ProjectName +  '</label>';
+                        }
+                    },
+                    {
+                        "data": null,
+                        className: "Border2",
+                        render: function (data, type, row) {
+                            return '<label>' + data.HinbanCD + '</label><label>' + data.HinbanName + '</label><label></label><label>' + data.Production + '</label><label>' + data.DeliveryAmount + '</label>';
+                        }
+                    },
+                    {
+                        "data": null,
+                        className: "Border3",
+                        render: function (data, type, row) {
+                            return '<label><a href="#" onClick="btnEditClick(\'' + data.CostCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.CostCD +'\')" style="color:red">削除</a></label>';
+                        }
+                    },
+                ],
+                "drawCallback": function (settings) {
+                    $("#tblNouhin thead").remove();
+                }
+            });
+
+        }
+
+    function btnAddClick() {
+        location.href = '@Url.Action("KeihiSetteiEntry", "KeihiSettei")?Mode=New'
+    }
+
+    function btnEditClick(CostCD) {
+        location.href = '@Url.Action("KeihiSetteiEntry", "KeihiSettei")?CostCD='+CostCD+'&Mode=Edit';
+    }
+
+    function btnDelClick(CostCD) {
+        location.href = '@Url.Action("KeihiSetteiEntry", "KeihiSettei")?CostCD='+CostCD+'&Mode=Delete';
+        }
+    </script>
+
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/datatables.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/dataTables.bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/dataTables.buttons.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/jszip.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/vfs_fonts.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.html5.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.print.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.colVis.min.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/init/datatables-init.js")"></script>
 

@@ -4,15 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{896A79E0-6565-4FC3-B927-50F8F80F5850}</ProjectGuid>
+    <ProjectGuid>{CA66936F-F339-4BF9-B011-BFC8BAE178ED}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Models</RootNamespace>
-    <AssemblyName>Models</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <RootNamespace>Touroku_KeihiBL</RootNamespace>
+    <AssemblyName>Touroku_KeihiBL</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,20 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseModel.cs" />
-    <Compile Include="BrandModel.cs" />
-    <Compile Include="HojoModel.cs" />
-    <Compile Include="KanagataModel.cs" />
-    <Compile Include="KanjoModel.cs" />
-    <Compile Include="Touroku_KeihiModel.cs" />
-    <Compile Include="KeihiSetteiModel.cs" />
-    <Compile Include="Koushin_GenkaModel.cs" />
-    <Compile Include="Koushin_GetsujiModel.cs" />
-    <Compile Include="MessageModel.cs" />
-    <Compile Include="TourokuNouhinModel.cs" />
-    <Compile Include="TourokuProjectModel.cs" />
-    <Compile Include="UserModel.cs" />
+    <Compile Include="Touroku_Keihi_BL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DL\DL.csproj">
+      <Project>{86a23955-7ac1-4263-bc9a-96165936864c}</Project>
+      <Name>DL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{896a79e0-6565-4fc3-b927-50f8f80f5850}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

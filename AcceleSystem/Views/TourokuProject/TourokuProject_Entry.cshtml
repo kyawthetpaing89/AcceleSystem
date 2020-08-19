@@ -39,8 +39,8 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="4" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this,'HojoCheck')" id="HojoCD" name="hojoCD" maxlength="4" required placeholder="ブランド">
-                            <label id="HojoName"><b>ブランド表示</b></label>
+                            <input type="text" tabindex="4" class="text-line col-xl-5 text-left" style="width: 130px;" onkeydown="KeyDown(event,this,'HojoCheck')" id="HojoCD" name="hojoCD" maxlength="4" required placeholder="ブランド">
+                            <label id="HojoName" style="padding-left:80px;"><b>ブランド表示</b></label>
 
                         </div>
                     </div>
@@ -66,7 +66,33 @@
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostCD" name="costCD" maxlength="6" required placeholder="予定期間">
 
-                            <input type="text" tabindex="2" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostName" name="costName" maxlength="40" required placeholder="プロジェクト名">
+                            <input type="text" tabindex="2" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostName" name="costName" maxlength="40" required placeholder="予定期間">
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form">
+                    <div class="col-xs-12">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <label id="Production" style="padding-right:20px;">総生産数</label>
+                            <label id="Production" style="padding-right:30px;"><b>総生産数表示</b></label>
+                            <label id="SalesPrice" style="padding-right:20px;">総金額</label>
+                            <label id="SalesPrice"><b>総金額表示</b></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form">
+                    <div class="col-xs-12">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" style="width:130px;" onkeydown="KeyDown(event,this)" id="CostCD" name="costCD" maxlength="6" required placeholder="責任者">
+                            <label id="SalesPrice" style="padding-left:80px;"><b>責任者表示</b></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form">
+                    <div class="col-xs-12">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostCD" name="costCD" maxlength="6" required placeholder="配賦用固定値">
+                            
                         </div>
                     </div>
                 </div>
