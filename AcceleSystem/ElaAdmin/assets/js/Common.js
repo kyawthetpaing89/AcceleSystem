@@ -118,14 +118,23 @@ function ErrorCheckOnSave() {
     return r1;
 }
 
-function DateCheck(ctrl, val) {
-    $(ctrl).attr("data-DateCheck", "1");
+function DateCheck(ctrl, val, ctrlName, param1) {
+    //$(ctrl).attr("data-DateCheck", "1");
     $(ctrl).attr("data-DateCheckApiUrl", val);
+    $(ctrl).attr("data-NameCtrl", ctrlName);
+    $(ctrl).attr("data-Param1", param1);
+    $(ctrl).attr("data-DateCheck", "1");
 }
 
 function YearMonthCheck(ctrl, val) {
     $(ctrl).attr("data-yearmonth_check", "1");
     $(ctrl).attr("data-yearmonth_DataCheckApiUrl", val);
+}
+
+function DateComapre(ctrl, val) {
+    $(ctrl).attr("data-datecompare", "1");
+    $(ctrl).attr("data-datecompare_DataCheckApiUrl", val); 
+    $(ctr).attr("data-Param1", val2);
 }
 
 function KeyDown(e, ctrl, functionname) {
@@ -380,10 +389,17 @@ function ErrChk(ctrl) {
     }
 
     var dateCheck = $(ctrl).attr("data-DateCheck");
+    if ($(ctrl).attr("data-NameCtrl")) {
+        var param1 = $(ctrl).attr("data-NameCtrl");
+    }
+    var startdate = $(ctrl).attr("data-Param1");
     if (dateCheck == "1") {
         var ApiURL = $(ctrl).attr("data-DateCheckApiUrl");
         var model = {
             inputdate: $(ctrl).val(),
+            flg: param1,
+            startDate:startdate,
+
         };
         var data = CalltoApiController(ApiURL, model);
         var dateData = JSON.parse(data);
@@ -391,6 +407,23 @@ function ErrChk(ctrl) {
             return "E103";
         }
         else if (dateData[0].flg == "true") {
+            var dataresult = dateData[0].resultdate;
+            if (param1 == "1") {
+                var ApiURL = '@Url.Action("DateComapre", "api/CommonApi")';
+                var model = {
+                    endDate: dataresult,
+                    startDate: startdate,
+                };
+                var data = CalltoApiController(ApiURL, model);
+                var dateData = JSON.parse(data);
+                if (dateData[0].flg == "false") {
+                    return "E112";
+                }
+                else if (dateData[0].flg == "true") {
+                    $(ctrl).val(dateData[0].resultdate);
+                    return "0";
+                }
+            }
             $(ctrl).val(dateData[0].resultdate);
             return "0";
         }
@@ -406,6 +439,27 @@ function ErrChk(ctrl) {
         var dateData = JSON.parse(data);
         if (dateData[0].flg == "false") {
             return "E103";
+        }
+        else if (dateData[0].flg == "true") {
+            $(ctrl).val(dateData[0].resultdate);
+            return "0";
+        }
+    }
+
+    var datecompare = $(ctrl).attr("data-datecompare"); 
+    if ($(ctrl).attr("data-NameCtrl")) {
+        var ctrlName = $(ctrl).attr("data-NameCtrl");      
+    }
+    if (datecompare == "1") {
+        var ApiURL = $(ctrl).attr("data-datecompare_DataCheckApiUrl");
+        var model = {
+            endDate: $(ctrl).val(),
+            startDate: param1,
+        };
+        var data = CalltoApiController(ApiURL, model);
+        var dateData = JSON.parse(data);
+        if (dateData[0].flg == "false") {
+            return "E112";
         }
         else if (dateData[0].flg == "true") {
             $(ctrl).val(dateData[0].resultdate);
