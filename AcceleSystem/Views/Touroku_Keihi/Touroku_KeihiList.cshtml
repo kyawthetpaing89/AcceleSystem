@@ -31,9 +31,9 @@
                     <div class="col-xl-12" style="padding-left:65px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="KeihiName">経費名</label>&nbsp;&nbsp;
-                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostCD" name="CostCD" maxlength="10" required placeholder="入力" style="width:100px;">
+                            <input type="text" tabindex="3" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostCD" name="CostCD" maxlength="10" required placeholder="入力" style="width:100px;">
                             &nbsp;
-                            <input type="text" tabindex="2" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostName" name="CostName" maxlength="20" required placeholder="入力" style="width:100px;">
+                            <input type="text" tabindex="4" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostName" name="CostName" maxlength="20" required placeholder="入力" style="width:100px;">
                         </div>
                     </div>
                 </div>
@@ -42,9 +42,9 @@
 
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="Keijoubi">計上日</label>&nbsp;&nbsp;
-                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostDate1" name="CostDate1" maxlength="10" required placeholder="入力" style="width:100px;">
+                            <input type="text" tabindex="5" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this,'Keihi')" id="CostDate1" name="CostDate1" maxlength="10" required placeholder="入力" style="width:100px;">
                             &nbsp;
-                            <input type="text" tabindex="2" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostDate2" name="CostDate2" maxlength="20" required placeholder="入力" style="width:100px;">
+                            <input type="text" tabindex="6" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostDate2" name="CostDate2" maxlength="20" required placeholder="入力" style="width:100px;">
                         </div>
                     </div>
                 </div>
@@ -52,9 +52,9 @@
                     <div class="col-xl-12" style="padding-left:80px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="Keijoubi">年度</label>&nbsp;&nbsp;
-                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="year" name="year" maxlength="10" required placeholder="入力" style="width:100px;">
+                            <input type="text" tabindex="7" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="year" name="year" maxlength="10" required placeholder="入力" style="width:100px;">
                             &nbsp;
-                            <button id="btnMove" onclick="btnMoveClick()" class="btn col-xl-10 text-center" tabindex="3" style="background-color:#1a8cff; color:azure;width:60px;border-radius:5px;height:35px;">
+                            <button id="btnMove" onclick="btnMoveClick()" class="btn col-xl-10 text-center" tabindex="8" style="background-color:#1a8cff; color:azure;width:60px;border-radius:5px;height:35px;">
                                 移動
                             </button>
                         </div>
@@ -64,9 +64,9 @@
                     <div class="col-xl-12" style="padding-left:45px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="Keijoubi">ブランド</label>&nbsp;&nbsp;
-                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="brandCD" name="brandCD" maxlength="10" required placeholder="入力" style="width:100px;">
+                            <input type="text" tabindex="9" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="brandCD" name="brandCD" maxlength="10" required placeholder="入力" style="width:100px;">
                             &nbsp;
-                            <input type="text" tabindex="2" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="brandname" name="brandname" maxlength="20" required placeholder="入力" style="width:100px;">
+                            <input type="text" tabindex="10" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="brandname" name="brandname" maxlength="20" required placeholder="入力" style="width:100px;">
                         </div>
                     </div>
                 </div>
@@ -74,13 +74,13 @@
                     <div class="col-xl-12" style="padding-left:45px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="Keijoubi">シーズン</label>&nbsp;&nbsp;
-                            <input type="checkbox" tabindex="1" id="allyear" name="allyear">
+                            <input type="checkbox" tabindex="11" id="allyear" name="allyear">
                             <label style="padding-right:25px!important;">通年</label>
                             &nbsp;
-                            <input type="checkbox" tabindex="1" id="SS" name="SS">
+                            <input type="checkbox" tabindex="12" id="SS" name="SS">
                             <label style="padding-right:25px!important;">SS</label>
                             &nbsp;
-                            <input type="checkbox" tabindex="1" id="FW" name="FW">
+                            <input type="checkbox" tabindex="13" id="FW" name="FW">
                             <label style="padding-right:25px!important;">FW</label>
                         </div>
                     </div>
@@ -89,14 +89,14 @@
                     <div class="col-xl-12" style="padding-left:15px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="Keijoubi">プロジェクト</label>&nbsp;&nbsp;
-                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="projectCD" name="projectCD" maxlength="10" required placeholder="入力" style="width:100px;">
+                            <input type="text" tabindex="14" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="projectCD" name="projectCD" maxlength="10" required placeholder="入力" style="width:100px;">
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xl-12" style="padding-left:120px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="2" class="text-line text-left" onkeydown="KeyDown(event,this)" id="projectname" name="projectname" maxlength="20" required placeholder="入力" style="width:210px;">
+                            <input type="text" tabindex="15" class="text-line text-left" onkeydown="KeyDown(event,this)" id="projectname" name="projectname" maxlength="20" required placeholder="入力" style="width:210px;">
                         </div>
                     </div>
                 </div>
@@ -104,20 +104,20 @@
                     <div class="col-xl-12" style="padding-left:75px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="Keijoubi">品番</label>&nbsp;&nbsp;
-                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="PartCD" name="PartCD" maxlength="10" required placeholder="入力" style="width:100px;">
+                            <input type="text" tabindex="16" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="PartCD" name="PartCD" maxlength="10" required placeholder="入力" style="width:100px;">
                             &nbsp;
-                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="PartName" name="PartName" maxlength="10" required placeholder="入力" style="width:100px;">
+                            <input type="text" tabindex="17" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="PartName" name="PartName" maxlength="10" required placeholder="入力" style="width:100px;">
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xl-12" style="padding-left:150px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <button id="btnCSV" onclick="btnCSVClick()" class="btn col-xl-10 text-center" tabindex="3" style="background-color:#1a8cff; color:azure;width:60px; border:1px groove black; border-radius:5px;height:40px;">
+                            <button id="btnCSV" onclick="btnCSVClick()" class="btn col-xl-10 text-center" tabindex="18" style="background-color:#1a8cff; color:azure;width:60px; border:1px groove black; border-radius:5px;height:40px;">
                                 CSV
                             </button>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <button id="btnSearch" tabindex="6" onclick="btnSearchClick()" class="btn btn-primary col-xl-5 text-center" style="background-color:#413839; color:azure;width:80px; height:35px;">検索</button>
+                            <button id="btnSearch" tabindex="19" onclick="btnSearchClick()" class="btn btn-primary col-xl-5 text-center" style="background-color:#413839; color:azure;width:80px; height:35px;">検索</button>
                         </div>
                     </div>
                 </div>
@@ -154,93 +154,23 @@
             $("#formtitle").text("経費検索");
             $("#CostCD").focus();
             ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "CostName");
+            DateCheck($("#CostDate1"), '@Url.Action("Date_Checking", "api/CommonApi")');
+            DateCheck($("#CostDate2"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#CostDate1").val());
+            @*var data = $("#CostDate1").val;
+            DateComapre($("#CostDate2"), '@Url.Action("DateComapre", "api/CommonApi")',data);*@
+           
+        }); 
+        function Keihi(result) {
+            if (result == 'OK') {
+                alert(result);
+                alert($("#CostDate1").val());                
+                DateCheck($("#CostDate2"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#CostDate1").val());
 
-            //GetNouhin();
-        });
-
-        function GetNouhin() {
-            $.ajax({
-                type: "Post",
-                url:"@Url.Action("", "api/Api")",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                data: JSON.stringify(),
-                headers:
-                {
-                    Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-                },
-                success: function (response) {
-                        BindTable(response);
-                    }
-            });
+            }
         }
 
-        function BindTable(response) {
-            table = $('#tblNouhin').DataTable({
 
-                data: JSON.parse(response),
-                "bFilter": false,
-                "bLengthChange": false,
-                "bInfo": false,
-                destroy:true,
-                "columns": [
-                    {
-                        "data": null,
-                        className:"Border1",
-                        render: function (data, type, row) {
-                            return '<label>' + data.DeliveryDate + '</label><label>' + data.BrandName + '</label><label>' + data.Season + '</label><label>' + data.Year + '</label>';
-                        }
-                    },
-                    {
-                        "data": null,
-                        className: "Border2",
-                        render: function (data, type, row) {
-                            return '<label>' + data.ProjectCD + '</label><label>' + data.ProjectName +  '</label>';
-                        }
-                    },
-                    {
-                        "data": null,
-                        className: "Border2",
-                        render: function (data, type, row) {
-                            return '<label>' + data.HinbanCD + '</label><label>' + data.HinbanName + '</label><label></label><label>' + data.Production + '</label><label>' + data.DeliveryAmount + '</label>';
-                        }
-                    },
-                    {
-                        "data": null,
-                        className: "Border3",
-                        render: function (data, type, row) {
-                            return '<label><a href="#" onClick="btnEditClick(\'' + data.CostCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.CostCD +'\')" style="color:red">削除</a></label>';
-                        }
-                    },
-                ],
-                "drawCallback": function (settings) {
-                    $("#tblNouhin thead").remove();
-                }
-            });
-
-        }
-
-    function btnAddClick() {
-        location.href = '@Url.Action("KeihiSetteiEntry", "KeihiSettei")?Mode=New'
+</script>
     }
 
-    function btnEditClick(CostCD) {
-        location.href = '@Url.Action("KeihiSetteiEntry", "KeihiSettei")?CostCD='+CostCD+'&Mode=Edit';
-    }
-
-    function btnDelClick(CostCD) {
-        location.href = '@Url.Action("KeihiSetteiEntry", "KeihiSettei")?CostCD='+CostCD+'&Mode=Delete';
-        }
-    </script>
-
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/datatables.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/dataTables.bootstrap.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/dataTables.buttons.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.bootstrap.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/jszip.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/vfs_fonts.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.html5.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.print.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.colVis.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/init/datatables-init.js")"></script>
 

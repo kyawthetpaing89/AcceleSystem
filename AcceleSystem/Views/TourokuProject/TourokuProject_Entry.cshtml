@@ -50,7 +50,7 @@
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <div class="custom-control custom-radio" style="padding-left:0px!important;">
                                 <label class="text" style="padding-right:30px;">シーズン</label>
-                                <input type="radio" id="rdoProject" name="radio">
+                                <input type="radio" id="rdoProject" name="radio" checked>
                                 <label style="padding-right:40px;">通年</label>
                                 <input type="radio" id="rdoMAllocation" name="radio">
                                 <label style="padding-right:40px;">SS</label>
@@ -105,7 +105,7 @@
                         </div>
                     </div>
                 </div>
-                <input type="hidden" id="APIURL" value="@Url.Action("M_Keihi_ExistsCheck", "api/KeihiSetteiApi")" />
+                <input type="hidden" id="APIURL" value="@Url.Action("M_Keihi_ExistsCheck", "api/TourokuProjectApi")" />
             </div>
             <div class="col-xs-12 col-md-3"></div>
         </div>

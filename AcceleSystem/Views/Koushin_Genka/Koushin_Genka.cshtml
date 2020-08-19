@@ -29,3 +29,35 @@
         </div>
     </div>
 </div>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#formtitle").text("月次確定");
+            $("#Pdate").focus();
+            ExistsCheck($("#Pdate"),"Koushiin", '@Url.Action("M_Contrl_YearMonth_ExitCheck", "api/Koushin_GenkaiApi")');
+            YearMonthCheck($("#Pdate"),'@Url.Action("YearMonth_Checking", "api/CommonApi")');
+        });
+
+        //save
+        function btnSaveClick() {
+            var res = ErrorCheckOnSave();
+            if (res == "0") {
+                    DoProcess();
+            }
+            else
+                ShowErrorMessage(res);
+        }
+
+         function DoProcess() {
+             focusControl = $("#Pdate");
+             var kgmodel = {
+                 processing_date: $("#Pdate").val(),
+            };
+
+            var data = CalltoApiController('@Url.Action("M_Contrl_YearMonth_Genka_Update", "api/Koushin_GenkaApi")', kgmodel);
+            ShowSuccessMessage(data,'@Url.Action("Koushin_Genka", "Koushin_Genka")');
+        }
+
+    </script>
+}
