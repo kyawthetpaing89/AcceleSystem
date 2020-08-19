@@ -42,7 +42,7 @@
 
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="Keijoubi">計上日</label>&nbsp;&nbsp;
-                            <input type="text" tabindex="5" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostDate1" name="CostDate1" maxlength="10" required placeholder="入力" style="width:100px;">
+                            <input type="text" tabindex="5" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this,'Keihi')" id="CostDate1" name="CostDate1" maxlength="10" required placeholder="入力" style="width:100px;">
                             &nbsp;
                             <input type="text" tabindex="6" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostDate2" name="CostDate2" maxlength="20" required placeholder="入力" style="width:100px;">
                         </div>
@@ -155,12 +155,21 @@
             $("#CostCD").focus();
             ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "CostName");
             DateCheck($("#CostDate1"), '@Url.Action("Date_Checking", "api/CommonApi")');
-            var startdate = $("#CostDate1").val().toString();
             DateCheck($("#CostDate2"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#CostDate1").val());
             @*var data = $("#CostDate1").val;
             DateComapre($("#CostDate2"), '@Url.Action("DateComapre", "api/CommonApi")',data);*@
            
         }); 
+        function Keihi(result) {
+            if (result == 'OK') {
+                alert(result);
+                alert($("#CostDate1").val());                
+                DateCheck($("#CostDate2"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#CostDate1").val());
+
+            }
+        }
+
+
 </script>
     }
 

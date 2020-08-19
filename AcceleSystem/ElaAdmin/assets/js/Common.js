@@ -118,9 +118,9 @@ function ErrorCheckOnSave() {
     return r1;
 }
 
-function DateCheck(ctrl, val, ctrlName, param1) {
+function DateCheck(ctrl, ApiURL, ctrlName, param1) {
     //$(ctrl).attr("data-DateCheck", "1");
-    $(ctrl).attr("data-DateCheckApiUrl", val);
+    $(ctrl).attr("data-DateCheckApiUrl", ApiURL);
     $(ctrl).attr("data-NameCtrl", ctrlName);
     $(ctrl).attr("data-Param1", param1);
     $(ctrl).attr("data-DateCheck", "1");
@@ -389,9 +389,7 @@ function ErrChk(ctrl) {
     }
 
     var dateCheck = $(ctrl).attr("data-DateCheck");
-    if ($(ctrl).attr("data-NameCtrl")) {
-        var param1 = $(ctrl).attr("data-NameCtrl");
-    }
+    var param1 = $(ctrl).attr("data-NameCtrl");
     var startdate = $(ctrl).attr("data-Param1");
     if (dateCheck == "1") {
         var ApiURL = $(ctrl).attr("data-DateCheckApiUrl");
@@ -409,7 +407,7 @@ function ErrChk(ctrl) {
         else if (dateData[0].flg == "true") {
             var dataresult = dateData[0].resultdate;
             if (param1 == "1") {
-                var ApiURL = '@Url.Action("DateComapre", "api/CommonApi")';
+                var ApiURL = "/api/CommonApi/DateComapre";
                 var model = {
                     endDate: dataresult,
                     startDate: startdate,
