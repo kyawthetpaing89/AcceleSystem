@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class Touroku_Keihi:BaseModel
+    public class Touroku_KeihiModel:BaseModel
     {
         public string CostCD { get; set; }
         public string CostName { get; set; }
