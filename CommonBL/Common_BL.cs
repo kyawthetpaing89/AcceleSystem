@@ -189,12 +189,12 @@ namespace CommonBL
             int result = startdate.CompareTo(enddate);
             if(result >= 0)
             {
-                ans = "[{\"resultdate\" : \"" + result + "\", \"flg\" : \"false\"}]";
+                ans = "[{\"resultdate\" : \"" + enddate + "\", \"flg\" : \"false\"}]";
                 return ans;
             }
             else
             {
-                ans = "[{\"resultdate\" : \"" + result + "\", \"flg\" : \"true\"}]";
+                ans = "[{\"resultdate\" : \"" + enddate + "\", \"flg\" : \"true\"}]";
                 return ans;
             }
         }
