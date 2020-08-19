@@ -1,0 +1,142 @@
+﻿
+@{
+    ViewBag.Title = "Touroku_KeihiList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles{
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
+}
+
+<div id="divMain" class="container-fluid">
+    <div class="content">
+        <div class="p-5 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white; border-radius:5px;">
+            <div class="col-xs-6 col-md-4">
+                <div class="pt-3 md-form" >
+                    <button id="btnAdd" onclick="btnAddClick()" class="btn col-xl-10 text-center" tabindex="1" style="background-color:#1a8cff; color:azure;width:150px;border-radius:10px;height:40px;">
+                        経費追加
+                    </button>
+                    &nbsp;
+                    <button id="btnDel" onclick="btnDelClick()" class="btn col-xl-10 text-center" tabindex="2" style="background-color:white; color:#1a8cff;width:100px; border:1px groove #1a8cff; border-radius:10px;height:40px;">
+                        削除
+                    </button>
+                    &nbsp;
+                    <button id="btnCSV" onclick="btnCSVClick()" class="btn col-xl-10 text-center" tabindex="3" style="background-color:white; color:black;width:60px; border:1px groove black; border-radius:5px;height:40px;">
+                        CSV
+                    </button>
+                </div>
+
+                <div class="pt-3 md-form">
+                    <label class="col-xl-6 text-center">検索条件入力</label>
+                </div>
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xl-12" style="padding-left:65px;">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <label id="KeihiName">経費名</label>&nbsp;&nbsp;
+                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="KeihiCD" name="KeihiCD" maxlength="10" required placeholder="入力" style="width:100px;">
+                            &nbsp;
+                            <input type="text" tabindex="2" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="KeihiName" name="KeihiName" maxlength="20" required placeholder="入力" style="width:100px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xl-12" style="padding-left:65px;">
+
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <label id="Keijoubi">計上日</label>&nbsp;&nbsp;
+                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostDate1" name="CostDate1" maxlength="10" required placeholder="入力" style="width:100px;">
+                            &nbsp;
+                            <input type="text" tabindex="2" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostDate2" name="CostDate2" maxlength="20" required placeholder="入力" style="width:100px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xl-12" style="padding-left:80px;">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <label id="Keijoubi">年度</label>&nbsp;&nbsp;
+                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="year" name="year" maxlength="10" required placeholder="入力" style="width:100px;">
+                            &nbsp;
+                            <button id="btnMove" onclick="btnMoveClick()" class="btn col-xl-10 text-center" tabindex="3" style="background-color:#1a8cff; color:azure;width:60px;border-radius:5px;height:35px;">
+                                移動
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xl-12" style="padding-left:45px;">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <label id="Keijoubi">ブランド</label>&nbsp;&nbsp;
+                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="brandCD" name="brandCD" maxlength="10" required placeholder="入力" style="width:100px;">
+                            &nbsp;
+                            <input type="text" tabindex="2" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="brandname" name="brandname" maxlength="20" required placeholder="入力" style="width:100px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xl-12" style="padding-left:45px;">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <label id="Keijoubi">シーズン</label>&nbsp;&nbsp;
+                            <input type="checkbox" tabindex="1" id="allyear" name="allyear">
+                            <label style="padding-right:25px!important;">通年</label>
+                            &nbsp;
+                            <input type="checkbox" tabindex="1" id="SS" name="SS">
+                            <label style="padding-right:25px!important;">SS</label>
+                            &nbsp;
+                            <input type="checkbox" tabindex="1" id="FW" name="FW">
+                            <label style="padding-right:25px!important;">FW</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xl-12" style="padding-left:15px;">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <label id="Keijoubi">プロジェクト</label>&nbsp;&nbsp;
+                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="projectCD" name="projectCD" maxlength="10" required placeholder="入力" style="width:100px;">
+
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xl-12" style="padding-left:120px;">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <input type="text" tabindex="2" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="projectname" name="projectname" maxlength="20" required placeholder="入力" style="width:1850px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xl-12" style="padding-left:75px;">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <label id="Keijoubi">品番</label>&nbsp;&nbsp;
+                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="PartCD" name="PartCD" maxlength="10" required placeholder="入力" style="width:100px;">
+                            &nbsp;
+                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="PartName" name="PartName" maxlength="10" required placeholder="入力" style="width:100px;">
+                        </div>
+                    </div>
+                </div>
+            </div>   
+            <div class="col-xs-6 col-md-4">
+                <div class="card-body card-block">
+                    <table id="tblProject" class="tb1 col-sm-12" style="padding-left:0px;">
+                        <thead>
+                            <tr>
+                                <td>経費名 </td>
+                                <td>計上日</td>                                                             
+                            </tr>
+                            <tr>
+                                <td>年度</td>
+                                <td>ブランド</td>
+                                <td>シーズン</td>  
+                            </tr>
+                            <tr>
+                                <td>プロジェクト</td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-4"></div>
+        </div>
+    </div>
+</div>
+

@@ -1,4 +1,6 @@
-﻿@model Models.KeihiSetteiModel
+﻿
+
+@model Models.KeihiSetteiModel
 @{
     ViewBag.Title = "KeihiSetteiEntry";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -104,7 +106,7 @@
 @section Scripts{
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#formtitle").text("経費設定検索");
+            $("#formtitle").text("経費設定登録");
             $("#HojoCD").attr('disabled', 'disabled');
             $("#CostCD").focus();
             var Mode = '@Model.Mode';

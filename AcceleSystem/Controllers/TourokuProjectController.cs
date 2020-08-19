@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Models;
 using System.Web.Mvc;
 
 namespace AcceleSystem.Controllers
@@ -17,9 +18,11 @@ namespace AcceleSystem.Controllers
         {
             return View();
         }
-        public ActionResult TourokuHinban_Entry()
+        public ActionResult TourokuHinban_Entry(TourokuProjectModel Tmodel)
         {
-            return View();
+            if (string.IsNullOrWhiteSpace(Tmodel.Mode))
+                Tmodel.Mode = "New";
+            return View(Tmodel);
         }
 
         public ActionResult TourokuHinban_List()

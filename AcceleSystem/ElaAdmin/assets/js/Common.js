@@ -252,6 +252,27 @@ function ErrChk(ctrl) {
                 if (Koushiin[0].MessageID == "E101") {   
                     return Koushiin[0].MessageID; 
                 }
+            case "Casting":
+                var model = {
+                    CastingCD: $(ctrl).val()
+                };
+                var data = CalltoApiController(ApiURL, model);
+                var CastingData = JSON.parse(data);
+                if (CastingData[0].MessageID != "E101") {
+                    if ($(ctrl).attr("data-NameCtrl")) {
+                        var ctrlName = $(ctrl).attr("data-NameCtrl");
+                        $('#' + ctrlName).val(CastingData[0].BrandName);
+                        return "0";
+                    }
+                }
+                else {
+                    if ($(ctrl).attr("data-NameCtrl")) {
+                        var ctrlName = $(ctrl).attr("data-NameCtrl");
+                        $('#' + ctrlName).val("");
+                        return CastingData[0].MessageID;
+                    }
+                }
+                break;
         }
     }
 
