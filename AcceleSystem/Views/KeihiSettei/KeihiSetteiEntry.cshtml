@@ -234,7 +234,7 @@
                     RequiredCheck($("#HojoCD"));
                     ExistsCheck($("#HojoCD"), "Hojo", '@Url.Action("M_Hojo_ExistsCheck", "api/KeihiSetteiApi")', "HojoName", $("#KanjoCD").val());
                 }
-                else {
+                else { 
                     $("#HojoCD").prop("disabled", true);
                     RemoveRequired($("#HojoCD"));
                     RemoveExistCheck($("#HojoCD"));
