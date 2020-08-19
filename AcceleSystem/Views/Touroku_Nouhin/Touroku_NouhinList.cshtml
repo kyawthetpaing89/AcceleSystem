@@ -30,7 +30,7 @@
                                 <div class="col-md-12" style="padding-left:65px;">
                                     <div class="text-s text-custom1 text-uppercase mb-1">
                                         <label id="text" style="padding-right:10px;">年度</label>
-                                        <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
+                                        <input type="text" tabindex="1" class="text-line text-left" id="Year" name="txtYear" onkeypress="EnterKeyPress(event,this)" required placeholder="入力" style="width:110px;">
                                     </div>
                                 </div>
                             </div>
@@ -38,8 +38,8 @@
                                 <div class="col-md-12" style="padding-left:17px;">
                                     <div class="text-s text-custom1 text-uppercase mb-1">
                                         <label id="text" style="padding-right:10px;">ブランド名</label>
-                                        <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
-                                        <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
+                                        <input type="text" tabindex="2" class="text-line text-left" id="BrandCD" name="txtBrandCD" onkeypress="EnterKeyPress(event,this)" required placeholder="入力" style="width:110px;">
+                                        <input type="text" tabindex="3" class="text-line text-left" id="BrandName" name="txtBrandName" onkeypress="EnterKeyPress(event,this)" required placeholder="入力" style="width:110px;">
                                     </div>
                                 </div>
                             </div>
@@ -47,11 +47,11 @@
                                 <div class="col-md-12" style="padding-left:30px;">
                                     <div class="text-s text-custom1 text-uppercase mb-1">
                                         <label class="text" style="padding-right:15px;">シーズン</label>
-                                        <input type="checkbox" id="" name="check">
+                                        <input type="checkbox" tabindex="4"  id="Allyear" name="chkAllyear" checked>
                                         <label style="padding-right:50px;">度年</label>
-                                        <input type="checkbox" id="" name="check">
+                                        <input type="checkbox" id="SS" name="chkSS">
                                         <label style="padding-right:50px;">SS</label>
-                                        <input type="checkbox" id="" name="check">
+                                        <input type="checkbox" id="FW" name="chkFW">
                                         <label>FW</label>
                                     </div>
                                 </div>
@@ -60,13 +60,13 @@
                                 <div class="col-md-12" style="padding-left:1px;">
                                     <div class="text-s text-custom1 text-uppercase mb-1">
                                         <label id="text" style="padding-right:9px;">プロジェクト</label>
-                                        <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
+                                        <input type="text" tabindex="5" class="text-line text-left" id="ProjectCD" name="txtProjectCD" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
 
                                     </div>
                                 </div>
                                 <div class="col-md-12" style="padding-left:110px;">
                                     <div class="text-s text-custom1 text-uppercase mb-1">
-                                        <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
+                                        <input type="text" tabindex="6" class="text-line text-left" id="ProjectName" name="txtProjectName" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
                                     </div>
                                 </div>
                             </div>
@@ -74,8 +74,8 @@
                                 <div class="col-md-12" style="padding-left:63px;">
                                     <div class="text-s text-custom1 text-uppercase mb-1">
                                         <label id="text" style="padding-right:10px;">品番</label>
-                                        <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
-                                        <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
+                                        <input type="text" tabindex="7" class="text-line text-left" id="HinbanCD" name="txtHinbanCD" onkeypress="EnterKeyPress(event,this)" required placeholder="入力" style="width:110px;">
+                                        <input type="text" tabindex="8" class="text-line text-left" id="HinbanName" name="txtHinbanName" onkeypress="EnterKeyPress(event,this)" required placeholder="入力" style="width:110px;">
                                     </div>
                                 </div>
                             </div>
@@ -83,9 +83,9 @@
                                 <div class="col-md-12" style="padding-left:50px;">
                                     <div class="text-s text-custom1 text-uppercase mb-1">
                                         <label id="text" style="padding-right:10px;">納品目</label>
-                                        <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
+                                        <input type="text" tabindex="9" class="text-line text-left" id="StartDate" name="txtStartDate" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
                                         &nbsp;~&nbsp;
-                                        <input type="text" tabindex="1" class="text-line text-left" id="" name="" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
+                                        <input type="text" tabindex="10" class="text-line text-left" id="EndDate" name="txtEndDate" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
                                     </div>
                                 </div>
                             </div>
@@ -93,9 +93,9 @@
                                 <div class="col-md-12" style="padding-left:30px;">
                                     <div class="text-s text-custom1 text-uppercase mb-1">
                                         <label class="text" style="padding-right:12px;">納品状況</label>
-                                        <input type="checkbox" id="" name="check">
+                                        <input type="checkbox" id="Delleft" name="chkDelleft" checked>
                                         <label style="padding-right:50px;">納品残あり</label>
-                                        <input type="checkbox" id="" name="check">
+                                        <input type="checkbox" id="Delcomplete" name="chkDelcomplete">
                                         <label style="padding-right:50px;">完納</label>
                                     </div>
                                 </div>
@@ -111,7 +111,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 col-sm-12">
+        <div class="col-lg-5 col-sm-12">
             <div class="card-body card-block">
                 <table id="tblNouhin" class="tb1 col-sm-12" style="padding-left:0px;">
                     <thead>
@@ -149,7 +149,7 @@
                 </table>
             </div>
         </div>
-        <div class="col-lg-4 col-sm-12">
+        <div class="col-lg-3 col-sm-12">
         </div>
     </div>
 </div>
@@ -162,12 +162,33 @@
         });
 
         function GetNouhin() {
+            var TnModel = {
+                Year: $("#formtitle").val(),
+                BrandCD: $("#BrandCD").val(),
+                BrandName: $("#BrandName").val(),
+                ProjectCD: $("#ProjectCD").val(),
+                ProjectName: $("#ProjectName").val(),
+                HinbanCD: $("#HinbanCD").val(),
+                HinbanName: $("#HinbanName").val(),
+                DeliveryStartDate: $("#DeliveryStartDate").val(),
+                DeliveryEndDate: $("#DeliveryEndDate").val()
+            };
+            if ($('#Allyear').is(':checked'))
+                TnModel.Season = "1";
+            else if ($('#SS').is(':checked'))
+                TnModel.Season = "2";
+            else TnModel.Season = "3";
+
+            if ($('#Delleft').is(':checked'))
+                TnModel.DeliveryStatus = "1";
+            else TnModel.DeliveryStatus = "2";
+                
             $.ajax({
                 type: "Post",
-                url:"@Url.Action("", "api/Api")",
+                url:"@Url.Action("D_Delivery_Search", "api/Touroku_NouhinApi")",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                data: JSON.stringify(),
+                data: JSON.stringify(TnModel),
                 headers:
                 {
                     Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
