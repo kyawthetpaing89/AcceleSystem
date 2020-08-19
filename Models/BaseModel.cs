@@ -10,5 +10,8 @@ namespace Models
         public string CreatedDate { get; set; }
         public SqlParameter[] Sqlprms { get; set; }
         public string inputdate { get; set; }
+        public string startDate { get; set; }
+        public string endDate { get; set; }
+        public string flg { get; set; }
     }
 }
