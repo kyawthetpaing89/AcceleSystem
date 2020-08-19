@@ -125,7 +125,7 @@
                             <th>生産数</th>
                             <th>納品数</th>
                         </tr>
-                        <tr>
+                        @*<tr>
                             <td>DeliveryDate</td>
                             <td>Brand</td>
                             <td>Season</td>
@@ -139,7 +139,7 @@
                             <td></td>
                             <td>Production</td>
                             <td>DeliveryAmount</td>
-                        </tr>
+                        </tr>*@
                     </thead>
 
                 </table>
@@ -155,17 +155,10 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $("#formtitle").text("プロジェクト検索");
-        Project();
+        GetProject();
     });
 
-    //$('#myInput').on("keypress", function (e) {
-    //    if (e.keyCode == 13) {
-    //        Project();
-    //        return false; // prevent the button click from happening
-    //    }
-    //});
-
-    function Project() {
+    function GetProject() {
         var Tmodel = {
             BrandCD: $('#BrandCD').val(),
             BrandName: $('#BrandName').val(),
