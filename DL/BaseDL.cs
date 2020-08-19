@@ -43,7 +43,7 @@ namespace DL
         {
             foreach(var p in para)
             {
-                if (string.IsNullOrWhiteSpace(p.Value.ToString()))
+                if (p.Value == null || string.IsNullOrWhiteSpace(p.Value.ToString()))
                 {
                     p.Value = DBNull.Value;
                     p.SqlValue = DBNull.Value;

@@ -6,8 +6,8 @@
 
 @section Styles{
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
-    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
-    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/datepicker.css")" />
+
+    @*<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/datepicker.css")" />*@
 }
 
 <div id="divMain" class="container-fluid">
@@ -136,8 +136,8 @@
 
 @section Scripts{
     <script type="text/javascript">
-        $(document).ready(function () {
-                var Mode = '@Model.Mode';
+    $(document).ready(function () {
+             var Mode = '@Model.Mode';
                       if (Mode == 'New') {
                           $('#btnSave').html('登録');
                           RequiredCheck($("#HinbanCD"));
@@ -145,11 +145,11 @@
                           RequiredCheck($("#Production"));
                           RequiredCheck($("#unitprice"));
                           ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/TourokuProjectApi")', "CastingName");
-                
+
                       }
         });
 
-
-    <script src="@Url.Content("~/Scripts/datepicker.js")"></script>
-    <script src="@Url.Content("~/Scripts/datepicker.en.js")"></script>
+    </script>
+    @*<script src="@Url.Content("~/Scripts/datepicker.js")"></script>
+        <script src="@Url.Content("~/Scripts/datepicker.en.js")"></script>*@
 }
