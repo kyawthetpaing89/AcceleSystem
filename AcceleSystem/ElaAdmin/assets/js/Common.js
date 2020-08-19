@@ -99,9 +99,10 @@ function ExistsCheck(ctrl, val, apiURL, ctrlName, param1) {
     $(ctrl).attr("data-Param1", param1);
 }
 
-function AlreadyExistsCheck(ctrl, val, apiURL) {
+function AlreadyExistsCheck(ctrl, val, apiURL,param1) {
     $(ctrl).attr("data-AlreadyExistsCheck", val);
     $(ctrl).attr("data-AlreadyExistsApiUrl", apiURL);
+    $(ctrl).attr("data-Param1", param1);
 }
 
 function ErrorCheckOnSave() {
@@ -252,6 +253,7 @@ function ErrChk(ctrl) {
                 if (Koushiin[0].MessageID == "E101") {   
                     return Koushiin[0].MessageID; 
                 }
+                break;
             case "Casting":
                 var model = {
                     CastingCD: $(ctrl).val()
@@ -261,7 +263,7 @@ function ErrChk(ctrl) {
                 if (CastingData[0].MessageID != "E101") {
                     if ($(ctrl).attr("data-NameCtrl")) {
                         var ctrlName = $(ctrl).attr("data-NameCtrl");
-                        $('#' + ctrlName).val(CastingData[0].BrandName);
+                        $('#' + ctrlName).val(CastingData[0].CastingName);
                         return "0";
                     }
                 }
@@ -278,7 +280,9 @@ function ErrChk(ctrl) {
 
     var dataAlreadyExistsCheck = $(ctrl).attr("data-AlreadyExistsCheck");
     if (dataAlreadyExistsCheck) {
+        alert("ss");
         var ApiURL = $(ctrl).attr("data-AlreadyExistsApiUrl");
+        var param1 = $(ctrl).attr("data-Param1"); 
         switch (dataAlreadyExistsCheck) {
             case "Casting":
                 var model = {
@@ -356,6 +360,20 @@ function ErrChk(ctrl) {
                 }
                 else {
                     return HojoData[0].MessageID;
+                }
+                break;
+            case "Hinban":
+                var model = {
+                    HinbanCD: $(ctrl).val(),
+                    ProjectCD: param1
+                };
+                var data = CalltoApiController(ApiURL, model);
+                var HinbanData = JSON.parse(data);
+                if (HinbanData[0].MessageID != "E107") {
+                    return "0";
+                }
+                else {
+                    return HinbanData[0].MessageID;
                 }
                 break;
         }

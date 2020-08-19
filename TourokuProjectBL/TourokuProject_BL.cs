@@ -25,6 +25,24 @@ namespace TourokuProjectBL
 
             return bdl.SelectJson("M_Project_Select_List", Tmodel.Sqlprms);
         }
-     
+        public string M_Casting_ExistsCheck(TourokuProjectModel Tmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            Tmodel.Sqlprms = new SqlParameter[1];
+            Tmodel.Sqlprms[0] = new SqlParameter("@CastingCD", SqlDbType.VarChar) { Value = (object)Tmodel.CastingCD ?? DBNull.Value };
+            return bdl.SelectJson("M_Casting_ExistsCheck", Tmodel.Sqlprms);
+
+        }
+
+        public string M_Hinan_Select(TourokuProjectModel Tmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            Tmodel.Sqlprms = new SqlParameter[2];
+            Tmodel.Sqlprms[0] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = (object)Tmodel.ProjectCD  ?? DBNull.Value };
+            Tmodel.Sqlprms[1] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = (object)Tmodel.HinbanCD ?? DBNull.Value };
+            return bdl.SelectJson("M_Hinan_Select", Tmodel.Sqlprms);
+
+        }
+
     }
 }
