@@ -152,8 +152,6 @@
     <Compile Include="Controllers\MessageApiController.cs" />
     <Compile Include="Controllers\TourokuProjectApiController.cs" />
     <Compile Include="Controllers\TourokuProjectController.cs" />
-    <Compile Include="Controllers\Touroku_KeihiApiController.cs" />
-    <Compile Include="Controllers\Touroku_KeihiController.cs" />
     <Compile Include="Controllers\Touroku_NouhinApiController.cs" />
     <Compile Include="Controllers\Touroku_NouhinController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
