@@ -595,6 +595,10 @@
       <Project>{02c677ae-d5b4-4cd3-9d20-04098bedbf81}</Project>
       <Name>TourokuProjectBL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Touroku_NouhinBL\Touroku_NouhinBL.csproj">
+      <Project>{8910ca70-fc6d-4aee-b593-3415683bc27b}</Project>
+      <Name>Touroku_NouhinBL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UserBL\UserBL.csproj">
       <Project>{56023bba-489a-45e5-b8f0-dbc21216383f}</Project>
       <Name>UserBL</Name>
