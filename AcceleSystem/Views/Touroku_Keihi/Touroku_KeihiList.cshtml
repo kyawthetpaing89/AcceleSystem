@@ -156,6 +156,7 @@
             ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "CostName");
             DateCheck($("#CostDate1"), '@Url.Action("Date_Checking", "api/CommonApi")');
             DateCheck($("#CostDate2"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#CostDate1").val());
+            DateCheck($("#year"), '@Url.Action("Date_Checking", "api/CommonApi")');
             @*var data = $("#CostDate1").val;
             DateComapre($("#CostDate2"), '@Url.Action("DateComapre", "api/CommonApi")',data);*@
            
@@ -165,7 +166,6 @@
                 alert(result);
                 alert($("#CostDate1").val());                
                 DateCheck($("#CostDate2"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#CostDate1").val());
-
             }
         }
 
