@@ -9,7 +9,8 @@ namespace Models
      public class TourokuNouhinModel : BaseModel
      {
         public string SEQ { get; set; }
-        public string DeliveryDate { get; set; }
+        public string DeliveryStartDate { get; set; }
+        public string DeliveryEndDate { get; set; }
         public string BrandCD { get; set; }
         public string BrandName { get; set; }
         public string Season { get; set; }

@@ -25,7 +25,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Koushin_GetsujiBL", "Koushi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourokuProjectBL", "TourokuProjectBL\TourokuProjectBL.csproj", "{02C677AE-D5B4-4CD3-9D20-04098BEDBF81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Touroku_NouhinBL", "Touroku_NouhinBL\Touroku_NouhinBL.csproj", "{8910CA70-FC6D-4AEE-B593-3415683BC27B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourokuNouhinBL", "Touroku_NouhinBL\TourokuNouhinBL.csproj", "{8910CA70-FC6D-4AEE-B593-3415683BC27B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Koushin_GenkaBL", "Koushin_GenkaBL\Koushin_GenkaBL.csproj", "{4B048C9F-3B90-4435-97DE-01DF7D28E55E}"
 EndProject

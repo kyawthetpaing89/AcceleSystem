@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Http;
 using Models;
-using Touroku_NouhinBL;
+using TourokuNouhinBL;
 
 namespace AcceleSystem.Controllers
 {
-    public class Touroku_NouhinApiController : Controller
-    {
-        [UserAuthentication]
-        [HttpPost]
-        //public string M_Casting_Select([FromBody] KanagataModel kgmodel)
-        //{
-        //    Kanagata_BL kgbl = new Kanagata_BL();
-        //    return kgbl.M_Casting_Select(kgmodel);
-        //}
-    }
+    //public class Touroku_NouhinApiController : ApiController
+    //{
+    //    [UserAuthentication]
+    //    [HttpPost]
+    //    //public string D_Delivery_Search([FromBody] TourokuNouhinModel Tnmodel)
+    //    //{
+    //        //Touroku_Nouhin_BL tnbl = new Touroku_Nouhin_BL();
+    //        //return tnbl.M_Casting_Select(kgmodel);
+    //    //}
+    //}
 }
