@@ -30,5 +30,13 @@ namespace AcceleSystem.Controllers
             return Ubl.M_Hinan_Select(Tmodel);
         }
 
+        [UserAuthentication]
+        [HttpPost]
+        public string Casting_CUD([FromBody] TourokuProjectModel Tmodel)
+        {
+            TourokuProject_BL Ubl = new TourokuProject_BL();
+            return Ubl.Hinban_CUD(Tmodel);
+        }
+
     }
 }

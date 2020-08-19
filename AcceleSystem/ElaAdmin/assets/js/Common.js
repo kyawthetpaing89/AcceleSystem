@@ -99,7 +99,7 @@ function ExistsCheck(ctrl, val, apiURL, ctrlName, param1) {
     $(ctrl).attr("data-Param1", param1);
 }
 
-function AlreadyExistsCheck(ctrl, val, apiURL,param1) {
+function AlreadyExistsCheck(ctrl, val, apiURL, param1) {
     $(ctrl).attr("data-AlreadyExistsCheck", val);
     $(ctrl).attr("data-AlreadyExistsApiUrl", apiURL);
     $(ctrl).attr("data-Param1", param1);
@@ -153,7 +153,7 @@ function ErrChk(ctrl) {
         }
     }
 
-    var dataExistsCheck = $(ctrl).attr("data-ExistsCheck");
+    var dataExistsCheck = $(ctrl).attr("data-ExistsCheck"); 
     if (dataExistsCheck) {
         var ApiURL = $(ctrl).attr("data-ExistsApiUrl");
         var param1 = $(ctrl).attr("data-Param1");
@@ -278,9 +278,8 @@ function ErrChk(ctrl) {
         }
     }
 
-    var dataAlreadyExistsCheck = $(ctrl).attr("data-AlreadyExistsCheck");
+    var dataAlreadyExistsCheck = $(ctrl).attr("data-AlreadyExistsCheck"); 
     if (dataAlreadyExistsCheck) {
-        alert("ss");
         var ApiURL = $(ctrl).attr("data-AlreadyExistsApiUrl");
         var param1 = $(ctrl).attr("data-Param1"); 
         switch (dataAlreadyExistsCheck) {
