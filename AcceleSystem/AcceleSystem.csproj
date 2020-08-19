@@ -599,7 +599,7 @@
       <Project>{ca66936f-f339-4bf9-b011-bfc8bae178ed}</Project>
       <Name>Touroku_KeihiBL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Touroku_NouhinBL\Touroku_NouhinBL.csproj">
+    <ProjectReference Include="..\Touroku_NouhinBL\TourokuNouhinBL.csproj">
       <Project>{8910ca70-fc6d-4aee-b593-3415683bc27b}</Project>
       <Name>Touroku_NouhinBL</Name>
     </ProjectReference>
