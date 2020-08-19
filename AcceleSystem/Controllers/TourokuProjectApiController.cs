@@ -18,6 +18,17 @@ namespace AcceleSystem.Controllers
             TourokuProject_BL Ubl = new TourokuProject_BL();
             return Ubl.M_Project_Select_List(Tmodel);
         }
-      
+        public string M_Casting_ExistsCheck([FromBody] TourokuProjectModel Tmodel)
+        {
+            TourokuProject_BL Ubl = new TourokuProject_BL();
+            return Ubl.M_Casting_ExistsCheck(Tmodel);
+        }
+
+        public string M_Hinan_Select([FromBody] TourokuProjectModel Tmodel)
+        {
+            TourokuProject_BL Ubl = new TourokuProject_BL();
+            return Ubl.M_Hinan_Select(Tmodel);
+        }
+
     }
 }
