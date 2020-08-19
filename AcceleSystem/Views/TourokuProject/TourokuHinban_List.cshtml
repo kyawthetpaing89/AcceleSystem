@@ -3,5 +3,140 @@
     ViewBag.Title = "TourokuHinban_List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section Styles{
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
+}
 
 
+<div class="card">
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="card-body card-block">
+                <div class="row form-group">
+                    <div class="col col-md-12">
+                        <button id="btnAdd" onclick="btnAddClick()" class="btn" tabindex="38" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px; margin-right: 20px;">
+                            品番情報
+                        </button>
+                        <button id="btnAdd" onclick="btnAddClick()" class="btn" tabindex="38" style="background-color:white; color:#1a8cff; border-radius:3px; border: 1px solid transparent; border-color:#1a8cff; margin-right: 20px;">
+                            プロジェクト登録
+                        </button>
+
+                        <div id="registration" style="padding-top: 1.8rem!important;">
+                            <div class="">
+                                <h4 class=" hr-text text-center">経費設定登録</h4>
+                            </div>
+                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                <div class="col-xs-12">
+                                    <div class="text-s text-custom1 text-uppercase mb-1">
+                                        <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="proCode" name="proCode" maxlength="10" required placeholder="プロジェクトコード">
+
+                                        <input type="text" tabindex="2" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="proName" name="proName" maxlength="60" required placeholder="プロジェクト名">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                <div class="col-xs-12">
+                                    <div class="text-s text-custom1 text-uppercase mb-1">
+                                        <input type="text" tabindex="3" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="year" name="year" maxlength="4" required placeholder="年度">
+
+                                        <input type="text" tabindex="4" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="season" name="season" maxlength="40" required placeholder="シーズン">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                <div class="col-xs-12">
+                                    <div class="text-s text-custom1 text-uppercase mb-1">
+                                        <input type="text" tabindex="5" class="text-line col-xl-10 text-left" onkeydown="KeyDown(event,this)" id="brand" name="brand" maxlength="50" required placeholder="ブランド">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                <div class="col-xs-12">
+                                    <div class="text-s text-custom1 text-uppercase mb-1">
+                                        <label style="padding:initial;width: 80px;">予定期間</label>
+
+                                        <input type="text" tabindex="6" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'KanjoCheck')" id="KanjoCD" name="kanjoCD" maxlength="10" required>
+                                        <label class="col-xl-1">~</label>
+                                        <input type="text" tabindex="7" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'KanjoCheck')" id="KanjoCD" name="kanjoCD" maxlength="40" required>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                <div class="col-xs-12">
+                                    <div class="text-s text-custom1 text-uppercase mb-1">
+                                        <input type="text" tabindex="8" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="tpNo" name="tpNo" maxlength="10" required placeholder="総生産数">
+
+                                        <input type="text" tabindex="9" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="tAmount" name="tAmount" maxlength="40" required placeholder="総金額">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                <div class="col-xs-12">
+                                    <div class="text-s text-custom1 text-uppercase mb-1">
+                                        <label style="width: 80px;">品番名</label>
+
+                                        <input type="text" tabindex="6" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'KanjoCheck')" id="KanjoCD" name="kanjoCD" maxlength="10" required placeholder="">
+                                        
+                                        <input type="text" tabindex="7" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'KanjoCheck')" id="KanjoCD" name="kanjoCD" maxlength="40" required placeholder="入力">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                <div class="col-xs-12">
+                                    <div class="text-s text-custom1 text-uppercase mb-1">
+                                        <label style="padding:initial;width: 80px;">予定期間</label>
+
+                                        <input type="text" tabindex="6" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'KanjoCheck')" id="KanjoCD" name="kanjoCD" maxlength="10" required placeholder="0">
+                                        <label class="col-xl-1">~</label>
+                                        <input type="text" tabindex="7" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'KanjoCheck')" id="KanjoCD" name="kanjoCD" maxlength="40" required placeholder="5,000">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                <div class="col-xs-12">
+                                    <div class="text-s text-custom1 text-uppercase mb-1">
+                                        <label style="width: 80px;">金型</label>
+                                        <input type="text" tabindex="6" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'KanjoCheck')" id="KanjoCD" name="kanjoCD" maxlength="10" required placeholder="入力">
+                                        
+                                        <input type="text" tabindex="7" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'KanjoCheck')" id="KanjoCD" name="kanjoCD" maxlength="40" required placeholder="RX078">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                <div class="col-md-12" style="padding-left:0px;">
+                                    <div class="text-s text-custom1 text-uppercase mb-1">
+                                        <label class="text" style="padding-right:20px;">シーズン</label>
+                                        <input type="checkbox" id="degreeyear" name="check">
+                                        <label style="padding-right:50px;">度年</label>
+                                        <input type="checkbox" id="SS" name="">
+                                        <label style="padding-right:50px;">SS</label>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="padding-left:0px; padding-top:2rem;">
+                                <div class="text-s text-custom1 text-uppercase mb-1">
+                                    <button id="btnSave" tabindex="7" onclick="btnSaveClick()" class="btn btn-dark col-xl-4 text-center" style="float:right; width:100px;">登録</button>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="card-body card-block">
+               
+            </div>
+
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+
+</div>
