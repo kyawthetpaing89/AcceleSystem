@@ -4,15 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{896A79E0-6565-4FC3-B927-50F8F80F5850}</ProjectGuid>
+    <ProjectGuid>{4B048C9F-3B90-4435-97DE-01DF7D28E55E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Models</RootNamespace>
-    <AssemblyName>Models</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <RootNamespace>Koushin_GenkaBL</RootNamespace>
+    <AssemblyName>Koushin_GenkaBL</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,19 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseModel.cs" />
-    <Compile Include="BrandModel.cs" />
-    <Compile Include="HojoModel.cs" />
-    <Compile Include="KanagataModel.cs" />
-    <Compile Include="KanjoModel.cs" />
-    <Compile Include="Touroku_Keihi.cs" />
-    <Compile Include="KeihiSetteiModel.cs" />
-    <Compile Include="Koushin_GenkaModel.cs" />
-    <Compile Include="Koushin_GetsujiModel.cs" />
-    <Compile Include="MessageModel.cs" />
-    <Compile Include="TourokuNouhinModel.cs" />
-    <Compile Include="TourokuProjectModel.cs" />
-    <Compile Include="UserModel.cs" />
+    <Compile Include="Koushin_Genka_BL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
