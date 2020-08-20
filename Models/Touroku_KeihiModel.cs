@@ -10,6 +10,7 @@ namespace Models
     {
         public string CostCD { get; set; }
         public string CostName { get; set; }
+        public string CostDate { get; set; }
         public string CostDateFrom { get; set; }
         public string CostDateTo { get; set; }
         public string BrandCD { get; set; }
