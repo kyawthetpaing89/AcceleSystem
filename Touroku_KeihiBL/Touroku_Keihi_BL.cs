@@ -47,5 +47,13 @@ namespace Touroku_KeihiBL
             Kmodel.Sqlprms[0] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = Kmodel.BrandCD };
             return bdl.SelectJson("M_Brand_ExistsCheck", Kmodel.Sqlprms);
         }
+
+        public string M_Project_ExistsCheck(Touroku_KeihiModel Kmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            Kmodel.Sqlprms = new SqlParameter[1];
+            Kmodel.Sqlprms[0] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Kmodel.ProjectCD };
+            return bdl.SelectJson("M_Project_ExistsCheck", Kmodel.Sqlprms);
+        }
     }
 }
