@@ -8,20 +8,21 @@ namespace TourokuNouhinBL
 {
     public class Touroku_Nouhin_BL
     {
-        public string UserLogin_Select(TourokuNouhinModel Tnmodel)
+        public string D_Delivery_Search(TourokuNouhinModel Tnmodel)
         {
             BaseDL bdl = new BaseDL();
-            Tnmodel.Sqlprms = new SqlParameter[2];
-            Tnmodel.Sqlprms[0] = new SqlParameter("@Year", SqlDbType.VarChar) { Value = Tnmodel.Year };
+            Tnmodel.Sqlprms = new SqlParameter[11];
+            Tnmodel.Sqlprms[0] = new SqlParameter("@Year", SqlDbType.Int) { Value = Tnmodel.Year };
             Tnmodel.Sqlprms[1] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = Tnmodel.BrandCD };
-            Tnmodel.Sqlprms[0] = new SqlParameter("@BrandName", SqlDbType.VarChar) { Value = Tnmodel.BrandName };
-            Tnmodel.Sqlprms[1] = new SqlParameter("@Season", SqlDbType.VarChar) { Value = Tnmodel.Season };
-            Tnmodel.Sqlprms[0] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tnmodel.ProjectCD };
-            Tnmodel.Sqlprms[1] = new SqlParameter("@ProjectName", SqlDbType.VarChar) { Value = Tnmodel.ProjectName };
-            Tnmodel.Sqlprms[0] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = Tnmodel.HinbanCD };
-            Tnmodel.Sqlprms[0] = new SqlParameter("@HinbanName", SqlDbType.VarChar) { Value = Tnmodel.HinbanName };
-            Tnmodel.Sqlprms[1] = new SqlParameter("@DeliveryStartDate", SqlDbType.VarChar) { Value = Tnmodel.DeliveryStartDate };
-            Tnmodel.Sqlprms[1] = new SqlParameter("@DeliveryEndDate", SqlDbType.VarChar) { Value = Tnmodel.DeliveryEndDate };
+            Tnmodel.Sqlprms[2] = new SqlParameter("@BrandName", SqlDbType.VarChar) { Value = Tnmodel.BrandName };
+            Tnmodel.Sqlprms[3] = new SqlParameter("@Season", SqlDbType.TinyInt) { Value = Tnmodel.Season };
+            Tnmodel.Sqlprms[4] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tnmodel.ProjectCD };
+            Tnmodel.Sqlprms[5] = new SqlParameter("@ProjectName", SqlDbType.VarChar) { Value = Tnmodel.ProjectName };
+            Tnmodel.Sqlprms[6] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = Tnmodel.HinbanCD };
+            Tnmodel.Sqlprms[7] = new SqlParameter("@HinbanName", SqlDbType.VarChar) { Value = Tnmodel.HinbanName };
+            Tnmodel.Sqlprms[8] = new SqlParameter("@DeliveryStartDate", SqlDbType.Date) { Value = Tnmodel.DeliveryStartDate };
+            Tnmodel.Sqlprms[9] = new SqlParameter("@DeliveryEndDate", SqlDbType.Date) { Value = Tnmodel.DeliveryEndDate };
+            Tnmodel.Sqlprms[10] = new SqlParameter("@DeliveryStatus", SqlDbType.TinyInt) { Value = Tnmodel.DeliveryStatus };
 
             return bdl.SelectJson("D_Delivery_Search", Tnmodel.Sqlprms);
         }

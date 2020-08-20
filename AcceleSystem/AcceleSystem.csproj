@@ -152,6 +152,8 @@
     <Compile Include="Controllers\MessageApiController.cs" />
     <Compile Include="Controllers\TourokuProjectApiController.cs" />
     <Compile Include="Controllers\TourokuProjectController.cs" />
+    <Compile Include="Controllers\Touroku_KeihiApiController.cs" />
+    <Compile Include="Controllers\Touroku_KeihiController.cs" />
     <Compile Include="Controllers\Touroku_NouhinApiController.cs" />
     <Compile Include="Controllers\Touroku_NouhinController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
@@ -578,6 +580,10 @@
     <ProjectReference Include="..\KeihiSetteiBL\KeihiSetteiBL.csproj">
       <Project>{5853da41-4e0b-448f-83eb-e65c44375703}</Project>
       <Name>KeihiSetteiBL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Koushin_GenkaBL\Koushin_GenkaBL.csproj">
+      <Project>{4B048C9F-3B90-4435-97DE-01DF7D28E55E}</Project>
+      <Name>Koushin_GenkaBL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Koushin_GetsujiBL\Koushin_GetsujiBL.csproj">
       <Project>{409514f1-d353-4d2c-8781-439aaa727170}</Project>

@@ -34,6 +34,15 @@ namespace TourokuProjectBL
 
         }
 
+        public string M_Project_ExistsCheck(TourokuProjectModel Tmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            Tmodel.Sqlprms = new SqlParameter[1];
+            Tmodel.Sqlprms[0] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = (object)Tmodel.ProjectCD ?? DBNull.Value };
+            return bdl.SelectJson("M_Project_ExistsCheck", Tmodel.Sqlprms);
+
+        }
+
         public string M_Hinan_Select(TourokuProjectModel Tmodel)
         {
             BaseDL bdl = new BaseDL();
@@ -44,13 +53,44 @@ namespace TourokuProjectBL
 
         }
 
-        public string M_HinBan_Select_List(TourokuProjectModel Tmodel)
+        public string Hinban_CUD(TourokuProjectModel Tmodel)
         {
             BaseDL bdl = new BaseDL();
-            Tmodel.Sqlprms = new SqlParameter[0];
-            //Tmodel.Sqlprms[0] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = Tmodel.HinbanCD };
-            return bdl.SelectJson("M_HinBan_Select_List", Tmodel.Sqlprms);
+            if (Tmodel.Mode.Equals("New"))
+            {
+                Tmodel.SPName = "M_Hinban_Insert";
+                Tmodel.Sqlprms = new SqlParameter[9];
+                Tmodel.Sqlprms[0] = new SqlParameter("@CastingCD", SqlDbType.VarChar) { Value = Tmodel.CastingCD };
+                Tmodel.Sqlprms[1] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tmodel.ProjectCD };
+                Tmodel.Sqlprms[2] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = Tmodel.HinbanCD };
+                Tmodel.Sqlprms[3] = new SqlParameter("@HinbanName", SqlDbType.VarChar) { Value = Tmodel.HinbanName };
+                Tmodel.Sqlprms[4] = new SqlParameter("@Color", SqlDbType.VarChar) { Value = Tmodel.Color };
+                Tmodel.Sqlprms[5] = new SqlParameter("@Production", SqlDbType.VarChar) { Value = Tmodel.Production };
+                Tmodel.Sqlprms[6] = new SqlParameter("@freeitem1", SqlDbType.VarChar) { Value = Tmodel.FreeItem1 };
+                Tmodel.Sqlprms[7] = new SqlParameter("@freeitem2", SqlDbType.VarChar) { Value = Tmodel.FreeItem2  };
+                Tmodel.Sqlprms[8] = new SqlParameter("@saleprice", SqlDbType.VarChar) { Value = Tmodel.SalePrice };
 
+            }
+            //else if (kgmodel.Mode.Equals("Edit"))
+            //{
+            //    kgmodel.SPName = "M_Casting_Update";
+            //    kgmodel.Sqlprms = new SqlParameter[5];
+            //    kgmodel.Sqlprms[0] = new SqlParameter("@CastingCD", SqlDbType.VarChar) { Value = kgmodel.CastingCD };
+            //    kgmodel.Sqlprms[1] = new SqlParameter("@CastingName", SqlDbType.VarChar) { Value = kgmodel.CastingName };
+            //    kgmodel.Sqlprms[2] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = kgmodel.BrandCD };
+            //    kgmodel.Sqlprms[3] = new SqlParameter("@BrandName", SqlDbType.VarChar) { Value = kgmodel.BrandName };
+            //    kgmodel.Sqlprms[4] = new SqlParameter("@UseLimit", SqlDbType.VarChar) { Value = kgmodel.UseLimit };
+
+            //}
+            //else if (kgmodel.Mode.Equals("Delete"))
+            //{
+            //    kgmodel.SPName = "M_Casting_Delete";
+            //    kgmodel.Sqlprms = new SqlParameter[1];
+            //    kgmodel.Sqlprms[0] = new SqlParameter("@CastingCD", SqlDbType.VarChar) { Value = kgmodel.CastingCD };
+                
+            //}
+            return bdl.SelectJson(Tmodel.SPName, Tmodel.Sqlprms);
         }
+
     }
 }

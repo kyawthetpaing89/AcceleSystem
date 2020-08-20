@@ -44,5 +44,15 @@
     <Compile Include="Koushin_Genka_BL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DL\DL.csproj">
+      <Project>{86A23955-7AC1-4263-BC9A-96165936864C}</Project>
+      <Name>DL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{896A79E0-6565-4FC3-B927-50F8F80F5850}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

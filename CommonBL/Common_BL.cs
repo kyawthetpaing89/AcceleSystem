@@ -75,7 +75,7 @@ namespace CommonBL
                     strdate = year + "/" + month + "/" + day;
                     if (CheckDate(strdate))
                     {
-                        result = "[{\"resultdate\" : \"" + strdate + "\", \"flg\" : \"true\"}]";   //"[{"result":"2020/01/01"}]";
+                        result = "[{\"resultdate\" : \"" + strdate + "\", \"flg\" : \"true\"}]";   //"[{"result":"2020/01/01"}]";                      
                         return result;
                     }
                     else
@@ -181,6 +181,22 @@ namespace CommonBL
             //result = "[{\"resultdate\" : \"" + strdate + "\", \"flg\" : \"true\"}]";
             //return result;
              
+        }
+
+        public string DateComapre(string startdate, string enddate)
+        {
+            string ans = string.Empty;
+            int result = startdate.CompareTo(enddate);
+            if(result >= 0)
+            {
+                ans = "[{\"resultdate\" : \"" + enddate + "\", \"flg\" : \"false\"}]";
+                return ans;
+            }
+            else
+            {
+                ans = "[{\"resultdate\" : \"" + enddate + "\", \"flg\" : \"true\"}]";
+                return ans;
+            }
         }
 
     }

@@ -15,7 +15,6 @@ namespace AcceleSystem.Controllers
         {
             Common_BL cmbl = new Common_BL();
             return cmbl.Date_Checking(BModel.inputdate);
-
         }
 
         [UserAuthentication]
@@ -25,6 +24,12 @@ namespace AcceleSystem.Controllers
             Common_BL cmbl = new Common_BL();
             return cmbl.YearMonth_Checking(BModel.inputdate);
 
+        }
+
+        public string DateComapre([FromBody] BaseModel BModel)
+        {
+            Common_BL cmbl = new Common_BL();
+            return cmbl.DateComapre(BModel.startDate, BModel.endDate);
         }
     }
 }
