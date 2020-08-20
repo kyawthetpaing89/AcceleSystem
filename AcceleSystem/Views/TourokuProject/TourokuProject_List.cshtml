@@ -4,8 +4,8 @@
 }
 
 @section Styles{
-@*<link rel="stylesheet" href="@Url.Content(" ~/ElaAdmin/assets/css/lib/datatable/dataTables.bootstrap.min.css")" />*@
-<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
+    @*<link rel="stylesheet" href="@Url.Content(" ~/ElaAdmin/assets/css/lib/datatable/dataTables.bootstrap.min.css")" />*@
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
 }
 <div class="card">
     <div class="row">
@@ -125,20 +125,18 @@
                             <th>生産数</th>
                             <th>納品数</th>
                         </tr>*@
-                        <tr>
-                            <td>DeliveryDate</td>
-                            <td>Brand</td>
-                            <td>Season</td>
-                            <td>Year</td>
-                        </tr>
-                        <tr>
-                            <td>Project</td>
-                        </tr>
-                        <tr>
-                            <td>Hinban</td>
-                            <td></td>
-                            <td>Production</td>
-                            <td>DeliveryAmount</td>
+                         <tr>
+                            <td>ブランドコード</td>
+                            <td>ブランド名</td>
+                            <td>シーズン</td>
+                            <td>年度</td>
+                            <td>プロジェクトコード</td>
+                            <td>プロジェクト名</td>
+                            <td>予定期間</td>
+                            <td>予定期間</td>
+                            <td>総生産数</td>
+                            <td>総金額</td>
+
                         </tr>
                     </thead>
 
@@ -152,7 +150,7 @@
 </div>
 
 @section Scripts{
-<script type="text/javascript">
+    <script type="text/javascript">
     $(document).ready(function () {
         $("#formtitle").text("プロジェクト検索");
         $("#BrandCD").focus();
@@ -188,7 +186,7 @@
             {
                 Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
             },
-            success: function (response) {                
+            success: function (response) {
                 BindTable(response);
             }
         });
@@ -229,7 +227,7 @@
                     "data": null,
                     className: "Border4",
                     render: function (data, type, row) {
-                        return '<b><label>' + data.SalesPrice + '</label></b><br/><label>' + data.PeriodEnd + '</label>';
+                        return '<b><label>' + data.Year + '</label></b><br/><label>' + '' + '</label></b><br/><label>'+ data.SalesPrice + '</label>';
                     }
                 },
 
@@ -237,9 +235,7 @@
                     "data": null,
                     className: "Border5",
                     render: function (data, type, row) {
-                        return '<label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\')" style="color:blue">編集</a></label><br/>' +
-                            '< label > <a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\')" style="color:red">削除</a></label ><br/>' +
-                            '<label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\')" style="color:green">編集</a></label>';
+                        return '<label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\')" style="color:red">削除</a></label> <br/> <label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\')" style="color:green">編集</a></label><br/>';
                     }
                 },
             ],
@@ -261,26 +257,17 @@
     function btnDelClick(BrandCD) {
         location.href = '@Url.Action("TourokuProject_Entry", "Project")?BrandCD=' + BrandCD + '&Mode=Delete';
     }
-</script>
+    </script>
 
-@*<script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/datatables.min.js")"></script>
-<script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/dataTables.bootstrap.min.js")"></script>
-<script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/dataTables.buttons.min.js")"></script>
-<script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/buttons.bootstrap.min.js")"></script>
-<script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/jszip.min.js")"></script>
-<script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/vfs_fonts.js")"></script>
-<script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/buttons.html5.min.js")"></script>
-<script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/buttons.print.min.js")"></script>
-<script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/buttons.colVis.min.js")"></script>
-<script src="@Url.Content(" ~/ElaAdmin/assets/js/init/datatables-init.js")"></script>*@
+    @*<script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/datatables.min.js")"></script>
+        <script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/dataTables.bootstrap.min.js")"></script>
+        <script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/dataTables.buttons.min.js")"></script>
+        <script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/buttons.bootstrap.min.js")"></script>
+        <script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/jszip.min.js")"></script>
+        <script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/vfs_fonts.js")"></script>
+        <script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/buttons.html5.min.js")"></script>
+        <script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/buttons.print.min.js")"></script>
+        <script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/buttons.colVis.min.js")"></script>
+        <script src="@Url.Content(" ~/ElaAdmin/assets/js/init/datatables-init.js")"></script>*@
 
 }
-
-
-
-
-
-
-
-
-

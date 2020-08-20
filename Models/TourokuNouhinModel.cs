@@ -20,6 +20,6 @@ namespace Models
         public string HinbanCD { get; set; }
         public string HinbanName { get; set; }
         public string Production { get; set; }
-        public string DeliveryAmount { get; set; }
+        public string DeliveryStatus { get; set; }
     }
 }
