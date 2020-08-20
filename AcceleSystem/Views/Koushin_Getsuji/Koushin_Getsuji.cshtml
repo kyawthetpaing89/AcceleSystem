@@ -18,12 +18,12 @@
                 </div>
                 <div class="pt-5 md-form">
                     <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="Pdate" name="Date" maxlength="7" required placeholder="処理年月">
-                </div>
-                <div class="pt-5 md-form">
-                    <button id="btnSave" tabindex="2" onclick="btnSaveClick()" class="btn btn-dark col-xl-5 text-center">登録 </button>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <button id="btnCancel" onclick="btnCancelClick()" class="btn btn-primary col-xl-5 text-center">戻る</button>
-                </div>             
+                    <br /><br />
+                    処理年月を１ヶ月進めます。<br />
+                    処理実行後は、現在の処理年月以前の日付で経費登録、納品登録は入力できません。
+                    <br /><br />
+                    <button id="btnSave" tabindex="2" onclick="btnSaveClick()" class="btn btn-dark col-xl-5 text-center">処理実行 </button>
+                </div>                       
             </div>
             <div class="col-xs-6 col-md-4"></div>
         </div>

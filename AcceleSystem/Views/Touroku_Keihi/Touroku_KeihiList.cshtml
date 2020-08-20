@@ -157,10 +157,8 @@
             DateCheck($("#CostDate1"), '@Url.Action("Date_Checking", "api/CommonApi")');
             DateCheck($("#CostDate2"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#CostDate1").val());
             DateCheck($("#year"), '@Url.Action("Date_Checking", "api/CommonApi")');
-            ExistsCheck($("#brandCD"), "brand", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "brandname");
-            brandCD
+            ExistsCheck($("#brandCD"), "Brand", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "brandname");
             
-           
         }); 
         function Keihi(result) {
             if (result == 'OK') {
