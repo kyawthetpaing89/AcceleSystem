@@ -30,10 +30,10 @@ namespace AcceleSystem.Controllers
             return Ubl.M_Project_ExistsCheck(Tmodel);
         }
 
-        public string M_Hinan_Select([FromBody] TourokuProjectModel Tmodel)
+        public string M_Hibnan_ExistCheck([FromBody] TourokuProjectModel Tmodel)
         {
             TourokuProject_BL Ubl = new TourokuProject_BL();
-            return Ubl.M_Hinan_Select(Tmodel);
+            return Ubl.M_Hibnan_ExistCheck(Tmodel);
         }
 
         [UserAuthentication]
