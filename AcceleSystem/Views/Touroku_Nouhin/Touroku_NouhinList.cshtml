@@ -158,10 +158,13 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("納品履歴検索");
-            YearMonthCheck($("#Pdate"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
+           // YearMonthCheck($("#Year"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
             ExistsCheck($("#BrandCD"), '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
             ExistsCheck($("#ProjectCD"), '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "BrandName");
-            ExistsCheck($("#HinbanCD", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "HinbanName"));
+            ExistsCheck($("#HinbanCD", '@Url.Action("M_HinBan_ExistsCheck", "api/TourokuProjectApi")', "HinbanName"));
+            DateCheck($("#StartDate"), '@Url.Action("Date_Checking", "api/CommonApi")');
+            DateCheck($("#EndDate"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#StartDate").val());
+            
             GetNouhin();
         });
 
