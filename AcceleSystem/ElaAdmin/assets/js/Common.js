@@ -284,6 +284,27 @@ function ErrChk(ctrl) {
                     }
                 }
                 break;
+            case "Project":
+                var model = {
+                    ProjectCD: $(ctrl).val()
+                };
+                var data = CalltoApiController(ApiURL, model);
+                var ProjectData = JSON.parse(data);
+                if (ProjectData[0].MessageID != "E101") {
+                    if ($(ctrl).attr("data-NameCtrl")) {
+                        var ctrlName = $(ctrl).attr("data-NameCtrl");
+                        $('#' + ctrlName).val(ProjectData[0].ProjectName);
+                        return "0";
+                    }
+                }
+                else {
+                    if ($(ctrl).attr("data-NameCtrl")) {
+                        var ctrlName = $(ctrl).attr("data-NameCtrl");
+                        $('#' + ctrlName).val("");
+                        return ProjectData[0].MessageID;
+                    }
+                }
+                break;
         }
     }
 
