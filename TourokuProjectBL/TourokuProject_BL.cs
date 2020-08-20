@@ -43,13 +43,13 @@ namespace TourokuProjectBL
 
         }
 
-        public string M_Hinan_Select(TourokuProjectModel Tmodel)
+        public string M_Hibnan_ExistCheck(TourokuProjectModel Tmodel)
         {
             BaseDL bdl = new BaseDL();
             Tmodel.Sqlprms = new SqlParameter[2];
             Tmodel.Sqlprms[0] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = (object)Tmodel.ProjectCD  ?? DBNull.Value };
             Tmodel.Sqlprms[1] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = (object)Tmodel.HinbanCD ?? DBNull.Value };
-            return bdl.SelectJson("M_Hinan_Select", Tmodel.Sqlprms);
+            return bdl.SelectJson("M_Hibnan_ExistCheck", Tmodel.Sqlprms);
 
         }
 
