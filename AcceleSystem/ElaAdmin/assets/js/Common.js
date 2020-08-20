@@ -305,6 +305,27 @@ function ErrChk(ctrl) {
                     }
                 }
                 break;
+            case "Hinban":
+                var model = {
+                    HinbanCD: $(ctrl).val()
+                };
+                var data = CalltoApiController(ApiURL, model);
+                var HinbanData = JSON.parse(data);
+                if (HinbanData[0].MessageID != "E101") {
+                    if ($(ctrl).attr("data-NameCtrl")) {
+                        var ctrlName = $(ctrl).attr("data-NameCtrl");
+                        $('#' + ctrlName).val(HinbanData[0].HinbanName);
+                        return "0";
+                    }
+                }
+                else {
+                    if ($(ctrl).attr("data-NameCtrl")) {
+                        var ctrlName = $(ctrl).attr("data-NameCtrl");
+                        $('#' + ctrlName).val("");
+                        return HinbanData[0].MessageID;
+                    }
+                }
+                break;
         }
     }
 
