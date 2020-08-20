@@ -34,6 +34,15 @@ namespace TourokuProjectBL
 
         }
 
+        public string M_Project_ExistsCheck(TourokuProjectModel Tmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            Tmodel.Sqlprms = new SqlParameter[1];
+            Tmodel.Sqlprms[0] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = (object)Tmodel.ProjectCD ?? DBNull.Value };
+            return bdl.SelectJson("M_Project_ExistsCheck", Tmodel.Sqlprms);
+
+        }
+
         public string M_Hinan_Select(TourokuProjectModel Tmodel)
         {
             BaseDL bdl = new BaseDL();
@@ -44,13 +53,22 @@ namespace TourokuProjectBL
 
         }
 
+        public string M_HinBan_Select_List(TourokuProjectModel Tmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            Tmodel.Sqlprms = new SqlParameter[0];
+            //Tmodel.Sqlprms[0] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = Tmodel.HinbanCD };
+            return bdl.SelectJson("M_HinBan_Select_List", Tmodel.Sqlprms);
+
+        }
+
         public string Hinban_CUD(TourokuProjectModel Tmodel)
         {
             BaseDL bdl = new BaseDL();
             if (Tmodel.Mode.Equals("New"))
             {
                 Tmodel.SPName = "M_Hinban_Insert";
-                Tmodel.Sqlprms = new SqlParameter[5];
+                Tmodel.Sqlprms = new SqlParameter[9];
                 Tmodel.Sqlprms[0] = new SqlParameter("@CastingCD", SqlDbType.VarChar) { Value = Tmodel.CastingCD };
                 Tmodel.Sqlprms[1] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tmodel.ProjectCD };
                 Tmodel.Sqlprms[2] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = Tmodel.HinbanCD };

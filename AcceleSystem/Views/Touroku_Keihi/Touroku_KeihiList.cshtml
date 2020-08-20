@@ -1,4 +1,4 @@
-﻿
+﻿@model Models.Touroku_KeihiModel
 @{
     ViewBag.Title = "Touroku_KeihiList";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -73,7 +73,7 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xl-12" style="padding-left:45px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <label id="Keijoubi">シーズン</label>&nbsp;&nbsp;
+                            <label id="season">シーズン</label>&nbsp;&nbsp;
                             <input type="checkbox" tabindex="11" id="allyear" name="allyear">
                             <label style="padding-right:25px!important;">通年</label>
                             &nbsp;
@@ -157,21 +157,75 @@
             DateCheck($("#CostDate1"), '@Url.Action("Date_Checking", "api/CommonApi")');
             DateCheck($("#CostDate2"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#CostDate1").val());
             DateCheck($("#year"), '@Url.Action("Date_Checking", "api/CommonApi")');
-            ExistsCheck($("#brandCD"), "brand", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "brandname");
-            brandCD
-            
-           
-        }); 
+            ExistsCheck($("#brandCD"), "Brand", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "brandname");
+
+        });
         function Keihi(result) {
             if (result == 'OK') {
                 alert(result);
-                alert($("#CostDate1").val());                
+                alert($("#CostDate1").val());
                 DateCheck($("#CostDate2"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#CostDate1").val());
             }
         }
 
+        function GetData() {
+            var kmodel = {
+            CostCD: $('#CostCD').val(),
+            CostName: $('#CostName').val(),
+            CostDateFrom: $('#CostDate1').val(),
+            CostDateTo: $('#CostDate2').val(),
+            Year: $('#year').val(),
+            BrandCD: $('#brandCD').val(),
+            BrandName: $('#brandname').val(),
+            //Season: $('#season').val(),
+            ProjectCD: $('#projectCD').val(),
+            ProjectName: $('#projectname').val(),
+            HinbanCD: $('#PartCD').val(),
+            HinbanName: $('#PartName').val(),
+        };
 
-</script>
+            if ($('#degreeyear').is(':checked'))
+                kmodel.Season = "1";
+            else if ($('#SS').is(':checked'))
+                kmodel.Season = "2";
+            else kmodel.Season = "3";
+
+            $.ajax({
+                type: "Post",
+                url: "@Url.Action("M_Cost_Select_List", "api/Touroku_KeihiApi")",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify(Tmodel),
+                headers:
+            {
+                Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
+            },
+                success: function (response) {
+                BindTable(response);
+            }
+            });
     }
+
+        function btnSearchClick() {
+            var allyear = $("#allyear").is(":checked");
+            var ss = $("#SS").is(":checked");
+            var fw = $("#FW").is(":checked");
+            if (!allyear && !ss && !fw) {
+                var data = ShowErrorMessage("E111");
+                return data;
+            }
+            else {
+                if ($('#allyear').is(':checked'))
+                    Tmodel.Season = "1";
+                else if ($('#SS').is(':checked'))
+                    Tmodel.Season = "2";
+                else Tmodel.Season = "3";
+            }
+
+        }
+
+
+    </script>
+}
 
 

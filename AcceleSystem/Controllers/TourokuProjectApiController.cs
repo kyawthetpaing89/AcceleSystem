@@ -24,6 +24,12 @@ namespace AcceleSystem.Controllers
             return Ubl.M_Casting_ExistsCheck(Tmodel);
         }
 
+        public string M_Project_ExistsCheck([FromBody] TourokuProjectModel Tmodel)
+        {
+            TourokuProject_BL Ubl = new TourokuProject_BL();
+            return Ubl.M_Project_ExistsCheck(Tmodel);
+        }
+
         public string M_Hinan_Select([FromBody] TourokuProjectModel Tmodel)
         {
             TourokuProject_BL Ubl = new TourokuProject_BL();
@@ -32,10 +38,18 @@ namespace AcceleSystem.Controllers
 
         [UserAuthentication]
         [HttpPost]
-        public string Casting_CUD([FromBody] TourokuProjectModel Tmodel)
+        public string Hinban_CUD([FromBody] TourokuProjectModel Tmodel)
         {
             TourokuProject_BL Ubl = new TourokuProject_BL();
             return Ubl.Hinban_CUD(Tmodel);
+        }
+
+        [UserAuthentication]
+        [HttpPost]
+        public string M_HinBan_Select_List([FromBody] TourokuProjectModel Tmodel)
+        {
+            TourokuProject_BL Ubl = new TourokuProject_BL();
+            return Ubl.M_HinBan_Select_List(Tmodel);
         }
 
     }
