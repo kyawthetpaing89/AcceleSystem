@@ -44,5 +44,13 @@ namespace TourokuProjectBL
 
         }
 
+        public string M_HinBan_Select_List(TourokuProjectModel Tmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            Tmodel.Sqlprms = new SqlParameter[0];
+            //Tmodel.Sqlprms[0] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = Tmodel.HinbanCD };
+            return bdl.SelectJson("M_HinBan_Select_List", Tmodel.Sqlprms);
+
+        }
     }
 }

@@ -30,5 +30,12 @@ namespace AcceleSystem.Controllers
             return Ubl.M_Hinan_Select(Tmodel);
         }
 
+        [HttpPost]
+        public string M_HinBan_Select_List([FromBody] TourokuProjectModel Tmodel)
+        {
+            TourokuProject_BL Ubl = new TourokuProject_BL();
+            return Ubl.M_HinBan_Select_List(Tmodel);
+        }
+
     }
 }

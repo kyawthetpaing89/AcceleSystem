@@ -18,6 +18,8 @@ namespace Models
         public string ProjectManager { get; set; }
         public string AllocationCount { get; set; }
         public string BrandName { get; set; }
+        public string StartPrice { get; set; }
+        public string EndPrice { get; set; }
         public string UserName { get; set; }
         public string HinbanCD { get; set; }
         public string HinbanName { get; set; }
