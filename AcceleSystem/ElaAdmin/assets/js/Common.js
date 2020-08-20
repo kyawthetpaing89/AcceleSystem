@@ -167,6 +167,29 @@ function ErrChk(ctrl) {
         var ApiURL = $(ctrl).attr("data-ExistsApiUrl");
         var param1 = $(ctrl).attr("data-Param1");
         switch (dataExistsCheck) {
+            case "User":
+                var model = {
+                    ID: $(ctrl).val()
+                }
+                var data = CalltoApiController(ApiURL, model);
+                var UserData = JSON.parse(data);
+                if (UserData[0].MessageID != "E101") {
+                    if ($(ctrl).attr("data-NameCtrl")) {
+                        var ctrlName = $(ctrl).attr("data-NameCtrl");
+                        $('#' + ctrlName).val(UserData[0].UserName);
+                        return "0";
+                    }
+                }
+                else {
+                    if ($(ctrl).attr("data-NameCtrl")) {
+                        var ctrlName = $(ctrl).attr("data-NameCtrl");
+                        $('#' + ctrlName).val("");
+                        return UserData[0].MessageID;
+
+                    }
+                }
+                break;
+
             case "Brand":
                 var model = {
                     BrandCD: $(ctrl).val()

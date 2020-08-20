@@ -156,7 +156,7 @@
         function ProjectCheck(result) {
             if (result == 'OK') {
                 RequiredCheck($("#HinbanCD"));
-                AlreadyExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hibnan_ExistCheck", "api/TourokuProjectApi")', $("#ProjectCD").val());
+                AlreadyExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', $("#ProjectCD").val());
             }
         }
 
@@ -186,9 +186,27 @@
               var data = CalltoApiController('@Url.Action("M_Hinban_Select", "api/TourokuProjectApi")', Tmodel);
               var hinbandata = JSON.parse(data);
               $("#ProjectCD").val(hinbandata[0].ProjectCD);
+              $("#ProjectCD").val(hinbandata[0].ProjectName);
+              $("#Season").val(hinbandata[0].Season);
+              $("#Year").val(hinbandata[0].Year);
+              $("#BrandCD").val(hinbandata[0].BrandCD);
+              $("#BrandName").val(hinbandata[0].BrandName);
+              $("#StartDate").val(hinbandata[0].PeriodStart);
+              $("#EndDate").val(hinbandata[0].PeriodEnd);
+              $("#Production").val(hinbandata[0].Production);
+              $("#saleprice").val(hinbandata[0].SalesPrice);
+              $("#totalProNo").val(hinbandata[0].TotalProduction);
+              $("#totalamount").val(hinbandata[0].TotalSalesPrice);
+              $("#HinbanCD").val(hinbandata[0].HinbanCD);
+              $("#HinbanName").val(hinbandata[0].HinbanName);
+              $("#DeliverNo").val(hinbandata[0].DeliveryAmount);
+              $("#CastingCD").val(hinbandata[0].CastingCD);
+              $("#CastingName").val(hinbandata[0].CastingName);
+              $("#freeitem1").val(hinbandata[0].FreeItem1);
+              $("#freeitem2").val(hinbandata[0].FreeItem2);
         }
         
-
+        //insert,update
          function DoProcess() {
             focusControl = $("#ProjectCD");
              var Tmodel = {

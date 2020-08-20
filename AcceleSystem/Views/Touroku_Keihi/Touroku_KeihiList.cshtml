@@ -124,7 +124,7 @@
             </div>
             <div class="col-xs-6 col-md-4">
                 <div class="card-body card-block">
-                    <table id="tblProject" class="tb1 col-sm-12" style="padding-left:0px;">
+                    <table id="tblKeihi" class="tb1 col-sm-12" style="padding-left:0px;">
                         <thead>
                             <tr>
                                 <td>経費名 </td>
@@ -158,7 +158,9 @@
             DateCheck($("#CostDate2"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#CostDate1").val());
             DateCheck($("#year"), '@Url.Action("Date_Checking", "api/CommonApi")');
             ExistsCheck($("#brandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")', "brandname");
-
+            ExistsCheck($("#projectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")', "projectname");  
+            ExistsCheck($("#PartCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "PartName"); 
+            GetData();
         });
         function Keihi(result) {
             if (result == 'OK') {
@@ -204,7 +206,53 @@
                 BindTable(response);
             }
             });
-    }
+        }
+
+        function BindTable(response) {
+            table = $('#tblKeihi').DataTable({
+
+                data: JSON.parse(response),
+                "bFilter": false,
+                "bLengthChange": false,
+                "bInfo": false,
+                destroy: true,
+                "columns": [
+                    {
+                        "data": null,
+                        className: "Border1",
+                        render: function (data, type, row) {
+                            return '<b><label>' + data.CostCD + '</label></b><br/><label>' + data.CostName + '</label></b><br/><label>' + data.CostDate + '</label>';
+                        }
+                    },
+                    {
+                        "data": null,
+                        className: "Border2",
+                        render: function (data, type, row) {
+                            return '<b><label>' + data.Year + '</label></b><br/><label>' + data.BrandCD + '</label></b><br/><label>' + data.Season + '</label>';
+                        }
+                    },
+                    {
+                        "data": null,
+                        className: "Border3",
+                        render: function (data, type, row) {
+                            return '<b><label>' + data.ProjectCD + '</label></b><br/><label>' ;
+                        }
+                    },
+
+                    {
+                        "data": null,
+                        className: "Border5",
+                        render: function (data, type, row) {
+                            return '<label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\')" style="color:red">削除</a></label> <br/> <label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\')" style="color:green">編集</a></label><br/>';
+                        }
+                    },
+                ],
+                "drawCallback": function (settings) {
+                    $("#tblProject thead").remove();
+                }
+            });
+
+        }
 
         function btnSearchClick() {
             var allyear = $("#allyear").is(":checked");
