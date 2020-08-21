@@ -55,5 +55,13 @@ namespace Touroku_KeihiBL
             Kmodel.Sqlprms[0] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Kmodel.ProjectCD };
             return bdl.SelectJson("M_Project_ExistsCheck", Kmodel.Sqlprms);
         }
+
+        public string M_HinBan_ExistsCheck(Touroku_KeihiModel Kmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            Kmodel.Sqlprms = new SqlParameter[1];
+            Kmodel.Sqlprms[0] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = Kmodel.HinbanCD  };
+            return bdl.SelectJson("M_HinBan_ExistsCheck", Kmodel.Sqlprms);
+        }
     }
 }

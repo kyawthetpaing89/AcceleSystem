@@ -14,7 +14,7 @@
             <div class="card-body card-block">
                 <div class="row form-group">
                     <div class="col col-md-12">
-                        <button id="btnAdd" onclick="btnAddClick()" class="btn" tabindex="38" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px; margin-right: 20px;">
+                        <button id="btnAdd" onclick="btnnextClick()" class="btn" tabindex="38" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px; margin-right: 20px;">
                             品番情報
                         </button>
                         <button id="btnAdd" onclick="btnAddClick()" class="btn" tabindex="38" style="background-color:white; color:#1a8cff; border-radius:3px; border: 1px solid transparent; border-color:#1a8cff; margin-right: 20px;">
@@ -161,30 +161,35 @@
     <script type="text/javascript">
         $(document).ready(function () {
             HinBanTable();
+            //btnSearchClick();
+            
         });
 
         function HinBanTable() {
             var model = {
-                //HinbanCD: $('#PartNoCD').val(),
-                //ProjectName: $('#PartNoName').val(),
+
             };
-            
-             $.ajax({
-            type: "Post",
-            url: "@Url.Action("M_HinBan_Select_List", "api/TourokuProjectApi")",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            data: JSON.stringify(model),
-                 success: function (response) {
-                    
-                BindTable(response);
-            }
-        });
-               
+        
+            $.ajax({
+                type: "Post",
+                url: "@Url.Action("M_HinBan_Select_List", "api/TourokuProjectApi")",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify(model),
+                headers:
+                {
+                    Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
+                },
+                success: function (response) {
+
+                    BindTable(response);
+                }
+            });
+
         }
 
         function BindTable(response) {
-           
+            //alert(response);
             table = $('#tblHinban').DataTable({
 
                 data: JSON.parse(response),
@@ -196,8 +201,10 @@
                     {
                         "data": null,
                         render: function (data, type, row) {
-                            return '<table><tr><td class=" col-xl-12 text-right">' + '<input type="button" value="削除" />' + '</td></tr><tr><td>' + data.HinbanCD + '</td><th>' + data.HinbanName + '</th><th>' + '<input type="button" value="削除" />'
-                                + '</th></tr>' + '<br/><tr><td>' + data.Casting + '</td><td>' + data.Production + '</td><td>' + data.SalesPrice + '</td><td>' + "Total" + '</td><td>' + '<input type="button" value="削除" />'+ '</tr></table>';
+                            return '<table><tr><td class=" col-xl-12 text-right">' + '<input type="submit" style="color:blue" onclick="btnEditClick()" class=" text-right" value="削除" />' +
+                                '</td></tr><tr><td>' + data.HinbanCD + '</td><th>' + data.HinbanName + '</th><th>' + '<input type="submit" style="color:red" onclick="btnDelClick()" class=" text-right" value="削除" />'
+                                + '</th></tr>' + '<br/><tr><td>' + data.Casting + '</td><td>' + data.Production + '</td><td>' + data.SalesPrice + '</td><td>' + "Total" + '</td><td>'
+                                + '<input type="submit" style="color:green" onclick="btnDelClick()" class=" text-right" value="削除" />' + '</tr></table>';
 
                         }
                     },
@@ -211,21 +218,22 @@
         function btnSearchClick() {
             var Tmodel = {
                 ProjectCD: $('#proCD').val(),
-                ProjectName: $('#proName').val(),
-                Year: $('#year').val(),
-                Season: $('#season').val(),
-                BrandCD: $('#brand').val(),
-                PeriodStart: $('#StartDate').val(),
-                PeriodEnd: $('#EndDate').val(),
-                Production: $('#tpNo').val(),
-                //HinbanCD: $('#tAmount').val(),
-                HinbanCD: $('#PartNoCD').val(),
-                HinbanName: $('#PartNoName').val(),
-                //HinbanCD: $('#StartPrice').val(),
-                //HinbanCD: $('#EndPrice').val(),
-                //Casting: $('#moldCD').val(),
-                //HinbanCD: $('#moldName').val(),
+                PartNoCD: $('#PartNoCD').val(),
             };
+            
+            var data = CalltoApiController('@Url.Action("M_HinBan_Search_List", "api/TourokuProjectApi")', Tmodel);
+            alert(Tmodel);
+            BindTable(data);
         }
+
+        function btnnextClick() {
+            location.href = '@Url.Action("TourokuHinban_Entry", "TourokuProject")';
+        }
+
+        function btnEditClick() {
+            
+             
+        }
+        
     </script>
     }
