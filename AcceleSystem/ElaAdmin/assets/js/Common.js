@@ -135,9 +135,8 @@ function DateCheck(ctrl, ApiURL, ctrlName, param1) {
 
 function YearMonthCheck(ctrl, val) {
     $(ctrl).attr("data-yearmonth_check", "1");
-    $(ctrl).attr("data-", val);
-    $(ctrl).attr("data-yearmonth_DataCheckApiUrl", apiURL);
-    $(ctrl).attr("data-Param1", param1);
+    $(ctrl).attr("data-yearmonth_DataCheckApiUrl", val);
+   
 }
 
 function DateComapre(ctrl, val) {
@@ -524,7 +523,7 @@ function ErrChk(ctrl) {
     }
 
 
-    var dataLessthanCheck = $(ctrl).attr("data-LessthanCheck"); 
+    var dataLessthanCheck = $(ctrl).attr("data-LessthanCheck"); alert(dataLessthanCheck);
     if (dataLessthanCheck) {
         var ApiURL = $(ctrl).attr("data-LessthanCheck_ApiUrl");
         switch (dataLessthanCheck) {

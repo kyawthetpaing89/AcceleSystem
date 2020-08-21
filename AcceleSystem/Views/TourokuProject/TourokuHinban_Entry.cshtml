@@ -147,6 +147,7 @@
                 YearMonthCheck($("#StartDate"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
                 YearMonthCheck($("#EndDate"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
                 LessthanZeroCheck($("#Production"), "Production", '@Url.Action("LessthanZero_Checking", "api/TourokuProjectApi")');
+
             }
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
@@ -160,6 +161,8 @@
                 AlreadyExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', $("#ProjectCD").val());
             }
         }
+
+       
 
         function btnSaveClick() {
             var res = ErrorCheckOnSave();
