@@ -15,11 +15,11 @@ namespace TourokuProjectBL
             Tmodel.Sqlprms[0] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = Tmodel.BrandCD };
             Tmodel.Sqlprms[1] = new SqlParameter("@BrandName", SqlDbType.VarChar) { Value = Tmodel.BrandName };
             Tmodel.Sqlprms[2] = new SqlParameter("@Season", SqlDbType.TinyInt) { Value = Tmodel.Season };
-            Tmodel.Sqlprms[3] = new SqlParameter("@Year", SqlDbType.Int) { Value = (object)Tmodel.Year ?? DBNull.Value};
+            Tmodel.Sqlprms[3] = new SqlParameter("@Year", SqlDbType.Int) { Value = (object)Tmodel.Year ?? DBNull.Value };
             Tmodel.Sqlprms[4] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tmodel.ProjectCD };
             Tmodel.Sqlprms[5] = new SqlParameter("@ProjectName", SqlDbType.VarChar) { Value = Tmodel.ProjectName };
             Tmodel.Sqlprms[6] = new SqlParameter("@PeriodStart", SqlDbType.Int) { Value = (object)Tmodel.PeriodStart ?? DBNull.Value };
-            Tmodel.Sqlprms[7] = new SqlParameter("@PeriodEnd", SqlDbType.Int) { Value = (object)Tmodel.PeriodEnd ?? DBNull.Value};
+            Tmodel.Sqlprms[7] = new SqlParameter("@PeriodEnd", SqlDbType.Int) { Value = (object)Tmodel.PeriodEnd ?? DBNull.Value };
             Tmodel.Sqlprms[8] = new SqlParameter("@ProjectManager", SqlDbType.VarChar) { Value = Tmodel.ProjectManager };
             Tmodel.Sqlprms[9] = new SqlParameter("@UserName", SqlDbType.VarChar) { Value = Tmodel.UserName };
 
@@ -30,7 +30,7 @@ namespace TourokuProjectBL
             BaseDL bdl = new BaseDL();
             Tmodel.Sqlprms = new SqlParameter[1];
             Tmodel.Sqlprms[0] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tmodel.ProjectCD };
-      
+
             return bdl.SelectJson("M_Project_Select_Entry", Tmodel.Sqlprms);
         }
         public string Project_CUD(TourokuProjectModel Tmodel)
@@ -50,12 +50,12 @@ namespace TourokuProjectBL
                 Tmodel.Sqlprms[7] = new SqlParameter("@ProjectManager", SqlDbType.Int) { Value = Tmodel.ProjectManager };
                 Tmodel.Sqlprms[8] = new SqlParameter("@AllocationCount", SqlDbType.Int) { Value = Tmodel.AllocationCount };
 
-                
+
             }
             return bdl.SelectJson(Tmodel.SPName, Tmodel.Sqlprms);
         }
 
-            public string M_Casting_ExistsCheck(TourokuProjectModel Tmodel)
+        public string M_Casting_ExistsCheck(TourokuProjectModel Tmodel)
         {
             BaseDL bdl = new BaseDL();
             Tmodel.Sqlprms = new SqlParameter[1];
