@@ -170,7 +170,7 @@
             //btnSearchClick();
             
         });
-        $("#PartNoCD").focus();
+        $("#HinbanCD").focus();
         function HinBanTable() {
             var model = {
 
@@ -212,7 +212,6 @@
                         //        + '<br/><tr><td>' + data.Casting + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + '</td><td>' + data.Production + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + '</td><td>' + data.SalesPrice + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + '</td><td>' + (data.Production * data.SalesPrice) + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + '</td><td>'
                         //         + '</tr></table>';
 
-                        //}
                         "data": null,
                         render: function (data, type, row) {
                             return '<label>' + data.HinbanCD + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+ '</label><b><label>' + data.HinbanName + '</label></b><br/>' +
@@ -257,7 +256,11 @@
 
         function btnEditClick() {
             @*location.href = '@Url.Action("TourokuHinban_Entry", "TourokuProject")';*@
-             
+            var Emodel = {
+                ProjectCD: $('#proCD').val(),
+                HinbanCD: $('#HinbanCD').val(),
+            };
+            var data = CalltoApiController('@Url.Action("M_HinBan_Edit_List", "api/TourokuProjectApi")', Emodel);
         }
         
     </script>

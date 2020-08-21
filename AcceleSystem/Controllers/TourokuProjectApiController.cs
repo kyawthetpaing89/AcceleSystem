@@ -31,11 +31,11 @@ namespace AcceleSystem.Controllers
         }
         [UserAuthentication]
         [HttpPost]
-        public string Project_CUD([FromBody] TourokuProjectModel Tmodel)
-        {
-            TourokuProject_BL Tpbl = new TourokuProject_BL();
-            return Tpbl.Project_CUD(Tmodel);
-        }
+        //public string Project_CUD([FromBody] TourokuProjectModel Tmodel)
+        //{
+        //    TourokuProject_BL Tpbl = new TourokuProject_BL();
+        //    return Tpbl.Project_CUD(Tmodel);
+        //}
         public string M_Casting_ExistsCheck([FromBody] TourokuProjectModel Tmodel)
         {
             TourokuProject_BL Tpbl = new TourokuProject_BL();
