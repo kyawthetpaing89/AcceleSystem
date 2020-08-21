@@ -178,7 +178,7 @@ function ErrChk(ctrl) {
         switch (dataExistsCheck) {
             case "User":
                 var model = {
-                    ID: $(ctrl).val()
+                    UserID: $(ctrl).val()
                 }
                 var data = CalltoApiController(ApiURL, model);
                 var UserData = JSON.parse(data);
