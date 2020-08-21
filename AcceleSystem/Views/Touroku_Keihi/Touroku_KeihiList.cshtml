@@ -124,7 +124,7 @@
             </div>
             <div class="col-xs-6 col-md-4">
                 <div class="card-body card-block">
-                    <table class="col-md-12">
+                    <table class="col-md-12" >
                         <thead>
                             <tr>
                                 <th>経費名</th>
@@ -140,7 +140,7 @@
                             </tr>
                         </thead>
                     </table>
-                    <table id="tblKeihi" class="tb1 col-sm-12">
+                    <table id="tblKeihi" class=" tb1 col-sm-12" >
                         <thead>
                             <tr>
                                 <td>経費コード</td>
@@ -244,27 +244,27 @@
                         "data": null,
                         className: "Border1",
                         render: function (data, type, row) {
-                            return '<label>' + data.CostCD + '</label><br/><label>' + data.year + '</label></b><br/><label>' + data.ProjectCD + '</label>';
+                            return '<label>' + data.CostCD + '  ' + data.CostName + '</label><br/><label>' + data.Year + '</label><br/><label>' + data.ProjectCD + '</label>';
                         }
                     },
                     {
                         "data": null,
-                        className: "Border2",
+                        className: "Borde2",
                         render: function (data, type, row) {
-                            return '<label>' + data.CostDate + '</label><br/><label>' + data.BrandCD + '</label>';
+                            return '<label>' + data.CostDate + '</label><br/><label>' + data.BrandCD + '</label><br/><label>';
                         }
                     },
                     {
                         "data": null,
                         className: "Border3",
                         render: function (data, type, row) {
-                            return '<label>' + data.Season + '</label<br/><label>' ;
+                            return '<br/><label>' + data.Season + '</label><br/><label>' ;
                         }
                     },
 
                     {
                         "data": null,
-                        className: "Border5",
+                        className: "Border4",
                         render: function (data, type, row) {
                             return '<label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\')" style="color:red">削除</a></label> <br/> <label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\')" style="color:green">編集</a></label><br/>';
                         }
