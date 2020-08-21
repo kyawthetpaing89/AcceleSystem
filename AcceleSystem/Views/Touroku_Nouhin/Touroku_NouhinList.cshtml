@@ -1,4 +1,4 @@
-﻿
+﻿@model Models.TourokuNouhinModel
 @{
     ViewBag.Title = "Touroku_NouhinList";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -70,86 +70,86 @@
                         </div>
                     </div>
                 </div>
-                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                     <div class="col-xl-12" style="padding-left:63px;">
-                         <div class="text-s text-custom1 text-uppercase mb-1">
-                             <label id="text" style="padding-right:10px;">品番</label>
-                             <input type="text" tabindex="7" id="HinbanCD" name="txtHinbanCD" onkeydown="KeyDown(event,this)" class="text-line text-left" maxlength="10" required placeholder="入力" style="width:110px;">
-                             <input type="text" tabindex="8" id="HinbanName" name="txtHinbanName" onkeydown="KeyDown(event,this)" class="text-line text-left" maxlength="60" required placeholder="入力" style="width:110px;">
-                         </div>
-                     </div>
-                 </div>
-                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                     <div class="col-xl-12" style="padding-left:50px;">
-                         <div class="text-s text-custom1 text-uppercase mb-1">
-                             <label id="text" style="padding-right:10px;">納品目</label>
-                             <input type="text" tabindex="9" id="StartDate" name="txtStartDate" onkeydown="KeyDown(event,this)" class="text-line text-left" maxlength="10" required placeholder="入力" style="width:110px;">
-                             &nbsp;~&nbsp;
-                             <input type="text" tabindex="10" id="EndDate" name="txtEndDate" onkeydown="KeyDown(event,this,'CompareDate')" class="text-line text-left" maxlength="10" required placeholder="入力" style="width:110px;">
-                         </div>
-                     </div>
-                 </div>
-                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                     <div class="ccol-xl-12" style="padding-left:30px;">
-                         <div class="text-s text-custom1 text-uppercase mb-1">
-                             <label class="text" style="padding-right:12px;">納品状況</label>
-                             <input type="checkbox" tabindex="11" id="Delleft" name="chkDelleft" checked>
-                             <label style="padding-right:50px;">納品残あり</label>
-                             <input type="checkbox" id="Delcomplete" name="chkDelcomplete">
-                             <label style="padding-right:50px;">完納</label>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-xl-12" style="padding-left:0px; padding-top:2rem;">
-                     <div class="text-s text-custom1 text-uppercase mb-1">
-                         <button id="btnSearch" tabindex="12" onclick="btnSearchClick()" class="btn btn-dark col-xl-4 text-center" style="float:right; width:100px;">検索</button>
-                         &nbsp;&nbsp;&nbsp;&nbsp;
-                     </div>
-                 </div>
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xl-12" style="padding-left:63px;">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <label id="text" style="padding-right:10px;">品番</label>
+                            <input type="text" tabindex="7" id="HinbanCD" name="txtHinbanCD" onkeydown="KeyDown(event,this)" class="text-line text-left" maxlength="10" required placeholder="入力" style="width:110px;">
+                            <input type="text" tabindex="8" id="HinbanName" name="txtHinbanName" onkeydown="KeyDown(event,this)" class="text-line text-left" maxlength="60" required placeholder="入力" style="width:110px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xl-12" style="padding-left:50px;">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <label id="text" style="padding-right:10px;">納品目</label>
+                            <input type="text" tabindex="9" id="StartDate" name="txtStartDate" onkeydown="KeyDown(event,this)" class="text-line text-left" maxlength="10" required placeholder="入力" style="width:110px;">
+                            &nbsp;~&nbsp;
+                            <input type="text" tabindex="10" id="EndDate" name="txtEndDate" onkeydown="KeyDown(event,this,'CompareDate')" class="text-line text-left" maxlength="10" required placeholder="入力" style="width:110px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="ccol-xl-12" style="padding-left:30px;">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <label class="text" style="padding-right:12px;">納品状況</label>
+                            <input type="checkbox" tabindex="11" id="Delleft" name="chkDelleft" checked>
+                            <label style="padding-right:50px;">納品残あり</label>
+                            <input type="checkbox" id="Delcomplete" name="chkDelcomplete">
+                            <label style="padding-right:50px;">完納</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-12" style="padding-left:0px; padding-top:2rem;">
+                    <div class="text-s text-custom1 text-uppercase mb-1">
+                        <button id="btnSearch" tabindex="12" onclick="btnSearchClick()" class="btn btn-dark col-xl-4 text-center" style="float:right; width:100px;">検索</button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                </div>
             </div>
-        
-        <div class="col-lg-5 col-sm-12">
-        <div class="card-body card-block">
-            <table id="tblNouhin" class="tb1 col-sm-12" style="padding-left:0px;">
-                <thead>
-                    <tr>
-                        <th>納品日</th>
-                        <th>ブランド</th>
-                        <th>シーズン</th>
-                        <th>年度</th>
-                    </tr>
-                    <tr>
-                        <th>プロジェクト</th>
-                    </tr>
-                    <tr>
-                        <th>品番</th>
-                        <th></th>
-                        <th>生産数</th>
-                        <th>納品数</th>
-                    </tr>
-                    <tr>
-                        <td>DeliveryDate</td>
-                        <td>Brand</td>
-                        <td>Season</td>
-                        <td>Year</td>
-                    </tr>
-                    <tr>
-                        <td>Project</td>
-                    </tr>
-                    <tr>
-                        <td>Hinban</td>
-                        <td></td>
-                        <td>Production</td>
-                        <td>DeliveryAmount</td>
-                    </tr>
-                </thead>
-            </table>
-        </div>
-     </div>
-        <div class="col-lg-3 col-sm-12">
+
+            <div class="col-lg-5 col-sm-12">
+                <div class="card-body card-block">
+                    <table id="tblNouhin" class="tb1 col-sm-12" style="padding-left:0px;">
+                        <thead>
+                            <tr>
+                                <th>納品日</th>
+                                <th>ブランド</th>
+                                <th>シーズン</th>
+                                <th>年度</th>
+                            </tr>
+                            <tr>
+                                <th>プロジェクト</th>
+                            </tr>
+                            <tr>
+                                <th>品番</th>
+                                <th></th>
+                                <th>生産数</th>
+                                <th>納品数</th>
+                            </tr>
+                            <tr>
+                                <td>DeliveryDate</td>
+                                <td>Brand</td>
+                                <td>Season</td>
+                                <td>Year</td>
+                            </tr>
+                            <tr>
+                                <td>Project</td>
+                            </tr>
+                            <tr>
+                                <td>Hinban</td>
+                                <td></td>
+                                <td>Production</td>
+                                <td>DeliveryAmount</td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-12">
+            </div>
         </div>
     </div>
-   </div>
 </div>
 
 @section Scripts{
@@ -174,22 +174,21 @@
             }
         }
 
-        function btnSearchClick() {
-            //alert("a");
-            //var res = ErrorCheckOnSave();
-            //if (res == "0") {
-                alert("b");
-                GetNouhin();
-            //}
-            //else {
-            //    ShowErrorMessage(res);
-            //}
-        }
+        //function btnSearchClick() {
+        //    alert("a");
+        //    var res = ErrorCheckOnSave();
+        //    if (res == "0") {
+        //        alert("b");
+        //        GetNouhin();
+        //    }
+        //    else {
+        //        ShowErrorMessage(res);
+        //    }
+        //}
 
         function GetNouhin() {
-            alert("cccc");
             var TnModel = {
-                Year: $("#formtitle").val(),
+                Year: $("#Year").val(),
                 BrandCD: $("#BrandCD").val(),
                 BrandName: $("#BrandName").val(),
                 ProjectCD: $("#ProjectCD").val(),
@@ -208,9 +207,23 @@
             if ($('#Delleft').is(':checked'))
                 TnModel.DeliveryStatus = "1";
             else TnModel.DeliveryStatus = "2";
-
-            alert(TnModel.DeliveryStatus);
+            
             $.ajax({
+            type: "Post",
+            url:"@Url.Action("D_Delivery_Search", "api/Touroku_NouhinApi")",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify(TnModel),
+            headers:
+            {
+                Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
+            },
+            success: function (response) {
+                    BindTable(response);
+                }
+            });
+
+            @*$.ajax({
                 type: "Post",
                 url:"@Url.Action("D_Delivery_Search", "api/Touroku_NouhinApi")",
                 contentType: "application/json; charset=utf-8",
@@ -223,7 +236,7 @@
                 success: function (response) {
                         BindTable(response);
                     }
-            });
+            });*@
         }
 
         function BindTable(response) {
@@ -268,10 +281,9 @@
                     $("#tblNouhin thead").remove();
                 }
             });
-
         }
 
-    function btnAddClick() {
+    @*function btnAddClick() {
         location.href = '@Url.Action("KeihiSetteiEntry", "KeihiSettei")?Mode=New'
     }
 
@@ -281,7 +293,7 @@
 
     function btnDelClick(CostCD) {
         location.href = '@Url.Action("KeihiSetteiEntry", "KeihiSettei")?CostCD='+CostCD+'&Mode=Delete';
-        }
+        }*@
     </script>
 
     <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/datatables.min.js")"></script>
