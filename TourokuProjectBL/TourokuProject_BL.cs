@@ -39,17 +39,20 @@ namespace TourokuProjectBL
             if (Tmodel.Mode.Equals("New"))
             {
                 Tmodel.SPName = "M_Project_Insert";
-                Tmodel.Sqlprms = new SqlParameter[6];
+                Tmodel.Sqlprms = new SqlParameter[9];
                 Tmodel.Sqlprms[0] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tmodel.ProjectCD };
                 Tmodel.Sqlprms[1] = new SqlParameter("@ProjectName", SqlDbType.VarChar) { Value = Tmodel.ProjectName };
                 Tmodel.Sqlprms[2] = new SqlParameter("@Year", SqlDbType.Int) { Value = Tmodel.Year };
                 Tmodel.Sqlprms[3] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = Tmodel.BrandCD };
-
-
+                Tmodel.Sqlprms[4] = new SqlParameter("@Season", SqlDbType.TinyInt) { Value = Tmodel.Season };
+                Tmodel.Sqlprms[5] = new SqlParameter("@PeriodStart", SqlDbType.Int) { Value = Tmodel.PeriodStart };
+                Tmodel.Sqlprms[6] = new SqlParameter("@PeriodEnd", SqlDbType.Int) { Value = Tmodel.PeriodEnd };
+                Tmodel.Sqlprms[7] = new SqlParameter("@ProjectManager", SqlDbType.Int) { Value = Tmodel.ProjectManager };
+                Tmodel.Sqlprms[8] = new SqlParameter("@AllocationCount", SqlDbType.Int) { Value = Tmodel.AllocationCount };
 
                 
-
             }
+            return bdl.SelectJson(Tmodel.SPName, Tmodel.Sqlprms);
         }
 
             public string M_Casting_ExistsCheck(TourokuProjectModel Tmodel)
