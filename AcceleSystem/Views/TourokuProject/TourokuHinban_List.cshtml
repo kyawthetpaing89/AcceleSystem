@@ -266,7 +266,11 @@
 
         function btnEditClick() {
             @*location.href = '@Url.Action("TourokuHinban_Entry", "TourokuProject")';*@
-             
+            var Emodel = {
+                ProjectCD: $('#proCD').val(),
+                HinbanCD: $('#HinbanCD').val(),
+            };
+            var data = CalltoApiController('@Url.Action("M_HinBan_Edit_List", "api/TourokuProjectApi")', Emodel);
         }
         
     </script>
