@@ -124,21 +124,40 @@
             </div>
             <div class="col-xs-6 col-md-4">
                 <div class="card-body card-block">
-                    <table id="tblKeihi" class="tb1 col-sm-12" style="padding-left:0px;">
+                    <table class="col-md-12" >
                         <thead>
                             <tr>
-                                <td>経費名 </td>
-                                <td>計上日</td>
+                                <th>経費名</th>
+                                <th>計上日</th>                               
                             </tr>
                             <tr>
-                                <td>年度</td>
-                                <td>ブランド</td>
-                                <td>シーズン</td>
+                                <th>年度</th>
+                                <th>ブランド</th>
+                                <th>シーズン</th>
                             </tr>
                             <tr>
-                                <td>プロジェクト</td>
+                                <th>プロジェクト</th>
                             </tr>
                         </thead>
+                    </table>
+                    <table id="tblKeihi" class=" tb1 col-sm-12" >
+                        <thead>
+                            <tr>
+                                <td>経費コード</td>
+                                <td>経費名</td>
+                                <td>計上日</td>
+                                <td>計上日</td>
+                                <td>年度</td>
+                                <td>ブランドコード</td>
+                                <td>ブランド名</td>
+                                <td>シーズン</td>
+                                <td>プロジェクトコード</td>
+                                <td>プロジェクト名</td>
+                                <td>品番コード</td>
+                                <td>品番名</td>
+                            </tr>
+                        </thead>
+
                     </table>
                 </div>
             </div>
@@ -192,21 +211,20 @@
             else if ($('#SS').is(':checked'))
                 kmodel.Season = "2";
             else kmodel.Season = "3";
-            alert("aa");
             $.ajax({
                 type: "Post",
                 url: "@Url.Action("M_Cost_Select_List", "api/Touroku_KeihiApi")",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                data: JSON.stringify(kmodel),   
+                data: JSON.stringify(kmodel),
                 headers:
             {
                 Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
             },
                 success: function (response) { 
                     //alert(response);
-                    // BindTable(response);
-                    alert("bb");
+                     BindTable(response);
+                    //alert("bb");
                 },
                 error: function (response) {
                     alert("Object Request fail" );
@@ -226,38 +244,37 @@
                         "data": null,
                         className: "Border1",
                         render: function (data, type, row) {
-                            return '<b><label>' + data.CostCD + '</label></b><br/><label>' + data.CostName + '</label></b><br/><label>' + data.CostDate + '</label>';
+                            return '<label>' + data.CostCD + '  ' + data.CostName + '</label><br/><label>' + data.Year + '</label><br/><label>' + data.ProjectCD + '</label>';
                         }
                     },
                     {
                         "data": null,
-                        className: "Border2",
+                        className: "Borde2",
                         render: function (data, type, row) {
-                            return '<b><label>' + data.Year + '</label></b><br/><label>' + data.BrandCD + '</label></b><br/><label>' + data.Season + '</label>';
+                            return '<label>' + data.CostDate + '</label><br/><label>' + data.BrandCD + '</label><br/><label>';
                         }
                     },
                     {
                         "data": null,
                         className: "Border3",
                         render: function (data, type, row) {
-                            return '<b><label>' + data.ProjectCD + '</label></b><br/><label>' ;
+                            return '<br/><label>' + data.Season + '</label><br/><label>' ;
                         }
                     },
 
                     {
                         "data": null,
-                        className: "Border5",
+                        className: "Border4",
                         render: function (data, type, row) {
                             return '<label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\')" style="color:red">削除</a></label> <br/> <label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\')" style="color:green">編集</a></label><br/>';
                         }
                     },
                 ],
                 "drawCallback": function (settings) {
-                    $("#tblProject thead").remove();
+                    $("#tblKeihi thead").remove();
                 }
+               
             });
-
-           
         }
 
         function btnSearchClick() {

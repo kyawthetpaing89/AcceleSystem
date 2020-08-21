@@ -542,6 +542,20 @@ function ErrChk(ctrl) {
                     return "0";
                 }
                 break;
+            case "SalePrice":
+                var model = {
+                    SalePrice: $(ctrl).val(),
+                };
+                var data = CalltoApiController(ApiURL, model);
+                var SalePriceData = JSON.parse(data);
+                if (SalePriceData[0].flg == "false") {
+                    return "E109";
+                }
+                else {
+                    $(ctrl).val(SalePriceData[0].resultdata);
+                    return "0";
+                }
+                break;
         }
     }
 
