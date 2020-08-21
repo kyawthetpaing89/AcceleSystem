@@ -119,5 +119,21 @@ namespace TourokuProjectBL
             return bdl.SelectJson("M_HinBan_ExistsCheck", Tmodel.Sqlprms);
 
         }
+
+        public string LessthanZero_Checking(string input)
+        {
+            string result = string.Empty;
+            if(input.ToString().Length < 0)
+            {
+                result = "[{\"resultdata\" : \"" + input + "\", \"flg\" : \"false\"}]";
+                return result;
+            }
+            else
+            {
+                result = "[{\"resultdata\" : \"" + input + "\", \"flg\" : \"true\"}]";
+                return result;
+            }
+
+        }
     }
 }

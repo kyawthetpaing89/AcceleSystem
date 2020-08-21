@@ -85,7 +85,7 @@
                              <label id="text" style="padding-right:10px;">納品目</label>
                              <input type="text" tabindex="9" id="StartDate" name="txtStartDate" onkeydown="KeyDown(event,this)" class="text-line text-left" maxlength="10" required placeholder="入力" style="width:110px;">
                              &nbsp;~&nbsp;
-                             <input type="text" tabindex="10" id="EndDate" name="txtEndDate" onkeydown="KeyDown(event,this)" class="text-line text-left" maxlength="10" required placeholder="入力" style="width:110px;">
+                             <input type="text" tabindex="10" id="EndDate" name="txtEndDate" onkeydown="KeyDown(event,this,'CompareDate')" class="text-line text-left" maxlength="10" required placeholder="入力" style="width:110px;">
                          </div>
                      </div>
                  </div>
@@ -93,7 +93,7 @@
                      <div class="ccol-xl-12" style="padding-left:30px;">
                          <div class="text-s text-custom1 text-uppercase mb-1">
                              <label class="text" style="padding-right:12px;">納品状況</label>
-                             <input type="checkbox" id="Delleft" name="chkDelleft" checked>
+                             <input type="checkbox" tabindex="11" id="Delleft" name="chkDelleft" checked>
                              <label style="padding-right:50px;">納品残あり</label>
                              <input type="checkbox" id="Delcomplete" name="chkDelcomplete">
                              <label style="padding-right:50px;">完納</label>
@@ -102,7 +102,7 @@
                  </div>
                  <div class="col-xl-12" style="padding-left:0px; padding-top:2rem;">
                      <div class="text-s text-custom1 text-uppercase mb-1">
-                         <button id="btnSave" tabindex="7" onclick="btnSearchClick()" class="btn btn-dark col-xl-4 text-center" style="float:right; width:100px;">検索</button>
+                         <button id="btnSearch" tabindex="12" onclick="btnSearchClick()" class="btn btn-dark col-xl-4 text-center" style="float:right; width:100px;">検索</button>
                          &nbsp;&nbsp;&nbsp;&nbsp;
                      </div>
                  </div>
@@ -161,12 +161,33 @@
             ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "ProjectName");
             ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/TourokuProjectApi")', "HinbanName");
             DateCheck($("#StartDate"), '@Url.Action("Date_Checking", "api/CommonApi")');
-            DateCheck($("#EndDate"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#StartDate").val());
-
+            $("#BrandName").attr('disabled', 'disabled');
+            $("#ProjectName").attr('disabled', 'disabled');
+            $("#HinbanName").attr('disabled', 'disabled');
             GetNouhin();
+            $("#Year").focus();
         });
 
+        function CompareDate(result) {
+            if (result == 'OK') {
+                DateCheck($("#EndDate"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#StartDate").val());
+            }
+        }
+
+        function btnSearchClick() {
+            //alert("a");
+            //var res = ErrorCheckOnSave();
+            //if (res == "0") {
+                alert("b");
+                GetNouhin();
+            //}
+            //else {
+            //    ShowErrorMessage(res);
+            //}
+        }
+
         function GetNouhin() {
+            alert("cccc");
             var TnModel = {
                 Year: $("#formtitle").val(),
                 BrandCD: $("#BrandCD").val(),
@@ -188,6 +209,7 @@
                 TnModel.DeliveryStatus = "1";
             else TnModel.DeliveryStatus = "2";
 
+            alert(TnModel.DeliveryStatus);
             $.ajax({
                 type: "Post",
                 url:"@Url.Action("D_Delivery_Search", "api/Touroku_NouhinApi")",

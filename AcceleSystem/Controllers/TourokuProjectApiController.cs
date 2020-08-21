@@ -66,5 +66,14 @@ namespace AcceleSystem.Controllers
             TourokuProject_BL Tpbl = new TourokuProject_BL();
             return Tpbl.M_HinBan_ExistsCheck(Tmodel);
         }
+
+        [UserAuthentication]
+        [HttpPost]
+        public string LessthanZero_Checking([FromBody] TourokuProjectModel Tmodel)
+        {
+            TourokuProject_BL tbl = new TourokuProject_BL();
+            return tbl.LessthanZero_Checking(Tmodel.Production);
+
+        }
     }
 }
