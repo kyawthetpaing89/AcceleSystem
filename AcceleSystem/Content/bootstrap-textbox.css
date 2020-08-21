@@ -29,3 +29,7 @@ input:focus {
 input[type="radio"]:focus + label {
     background-color: #F2F4F4;
 }
+
+input[type="checkbox"]:focus + label {
+    background-color: #F2F4F4;
+}

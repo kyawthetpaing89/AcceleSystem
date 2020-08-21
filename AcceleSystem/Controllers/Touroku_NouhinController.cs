@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Models;
 using System.Web.Mvc;
 
 namespace AcceleSystem.Controllers
@@ -14,9 +11,11 @@ namespace AcceleSystem.Controllers
             return View();
         }
 
-        public ActionResult Touroku_NouhinEntry()
+        public ActionResult Touroku_NouhinEntry(TourokuNouhinModel TnModel)
         {
-            return View();
+            if(string.IsNullOrWhiteSpace(TnModel.Mode))
+                TnModel.Mode = "New";
+            return View(TnModel);
         }
     }
 }

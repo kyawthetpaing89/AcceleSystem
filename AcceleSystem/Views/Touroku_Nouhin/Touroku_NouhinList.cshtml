@@ -156,6 +156,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("納品履歴検索");
+            $("#Year").focus();
            // YearMonthCheck($("#Year"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
             ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
             ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "ProjectName");
@@ -165,8 +166,9 @@
             $("#ProjectName").attr('disabled', 'disabled');
             $("#HinbanName").attr('disabled', 'disabled');
             GetNouhin();
-            $("#Year").focus();
+            
         });
+        
 
         function CompareDate(result) {
             if (result == 'OK') {
@@ -174,17 +176,15 @@
             }
         }
 
-        //function btnSearchClick() {
-        //    alert("a");
-        //    var res = ErrorCheckOnSave();
-        //    if (res == "0") {
-        //        alert("b");
-        //        GetNouhin();
-        //    }
-        //    else {
-        //        ShowErrorMessage(res);
-        //    }
-        //}
+        function btnSearchClick() {
+            var res = ErrorCheckOnSave();
+            if (res == "0") {
+                GetNouhin();
+            }
+            else {
+                ShowErrorMessage(res);
+            }
+        }
 
         function GetNouhin() {
             var TnModel = {
@@ -207,25 +207,10 @@
             if ($('#Delleft').is(':checked'))
                 TnModel.DeliveryStatus = "1";
             else TnModel.DeliveryStatus = "2";
-            
-            $.ajax({
-            type: "Post",
-            url:"@Url.Action("D_Delivery_Search", "api/Touroku_NouhinApi")",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            data: JSON.stringify(TnModel),
-            headers:
-            {
-                Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-            },
-            success: function (response) {
-                    BindTable(response);
-                }
-            });
 
-            @*$.ajax({
+            $.ajax({
                 type: "Post",
-                url:"@Url.Action("D_Delivery_Search", "api/Touroku_NouhinApi")",
+                url: "@Url.Action("D_Delivery_Search", "api/Touroku_NouhinApi")",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 data: JSON.stringify(TnModel),
@@ -234,9 +219,9 @@
                     Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
                 },
                 success: function (response) {
-                        BindTable(response);
-                    }
-            });*@
+                    BindTable(response);
+                }
+            });
         }
 
         function BindTable(response) {
