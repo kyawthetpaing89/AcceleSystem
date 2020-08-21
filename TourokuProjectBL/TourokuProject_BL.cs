@@ -25,7 +25,34 @@ namespace TourokuProjectBL
 
             return bdl.SelectJson("M_Project_Select_List", Tmodel.Sqlprms);
         }
-        public string M_Casting_ExistsCheck(TourokuProjectModel Tmodel)
+        public string M_Project_Select_Entry(TourokuProjectModel Tmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            Tmodel.Sqlprms = new SqlParameter[1];
+            Tmodel.Sqlprms[0] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tmodel.ProjectCD };
+      
+            return bdl.SelectJson("M_Project_Select_Entry", Tmodel.Sqlprms);
+        }
+        public string Project_CUD(TourokuProjectModel Tmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            if (Tmodel.Mode.Equals("New"))
+            {
+                Tmodel.SPName = "M_Project_Insert";
+                Tmodel.Sqlprms = new SqlParameter[6];
+                Tmodel.Sqlprms[0] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tmodel.ProjectCD };
+                Tmodel.Sqlprms[1] = new SqlParameter("@ProjectName", SqlDbType.VarChar) { Value = Tmodel.ProjectName };
+                Tmodel.Sqlprms[2] = new SqlParameter("@Year", SqlDbType.Int) { Value = Tmodel.Year };
+                Tmodel.Sqlprms[3] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = Tmodel.BrandCD };
+
+
+
+                
+
+            }
+        }
+
+            public string M_Casting_ExistsCheck(TourokuProjectModel Tmodel)
         {
             BaseDL bdl = new BaseDL();
             Tmodel.Sqlprms = new SqlParameter[1];
@@ -117,6 +144,30 @@ namespace TourokuProjectBL
             Tmodel.Sqlprms = new SqlParameter[1];
             Tmodel.Sqlprms[0] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = (object)Tmodel.HinbanCD ?? DBNull.Value };
             return bdl.SelectJson("M_HinBan_ExistsCheck", Tmodel.Sqlprms);
+
+        }
+
+        public string LessthanZero_Checking(string input)
+        {
+            string result = string.Empty;
+            if (!String.IsNullOrWhiteSpace(input))
+            {
+                int data = int.Parse(input);
+                if (data <= 0)
+                {
+                    result = "[{\"resultdata\" : \"" + input + "\", \"flg\" : \"false\"}]";
+                    return result;
+                }
+                else
+                {
+                    result = "[{\"resultdata\" : \"" + input + "\", \"flg\" : \"true\"}]";
+                    return result;
+                }
+            }
+            else
+            {
+                return result;
+            }
 
         }
     }

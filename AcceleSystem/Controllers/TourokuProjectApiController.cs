@@ -18,6 +18,24 @@ namespace AcceleSystem.Controllers
             TourokuProject_BL Tpbl = new TourokuProject_BL();
             return Tpbl.M_Project_Select_List(Tmodel);
         }
+        [UserAuthentication]
+        [HttpPost]
+        public string M_Project_Select_Entry([FromBody] TourokuProjectModel Tmodel)
+        {
+            if (Tmodel == null)
+            {
+                Tmodel = new TourokuProjectModel();
+            }
+            TourokuProject_BL Tpbl = new TourokuProject_BL();
+            return Tpbl.M_Project_Select_Entry(Tmodel);
+        }
+        [UserAuthentication]
+        [HttpPost]
+        public string Project_CUD([FromBody] TourokuProjectModel Tmodel)
+        {
+            TourokuProject_BL Tpbl = new TourokuProject_BL();
+            return Tpbl.Project_CUD(Tmodel);
+        }
         public string M_Casting_ExistsCheck([FromBody] TourokuProjectModel Tmodel)
         {
             TourokuProject_BL Tpbl = new TourokuProject_BL();
@@ -65,6 +83,24 @@ namespace AcceleSystem.Controllers
         {
             TourokuProject_BL Tpbl = new TourokuProject_BL();
             return Tpbl.M_HinBan_ExistsCheck(Tmodel);
+        }
+
+        [UserAuthentication]
+        [HttpPost]
+        public string Production_LessthanCheck([FromBody] TourokuProjectModel Tmodel)
+        {
+            TourokuProject_BL tbl = new TourokuProject_BL();
+            return tbl.LessthanZero_Checking(Tmodel.Production);
+
+        }
+
+        [UserAuthentication]
+        [HttpPost]
+        public string SalePrice_LessthanCheck([FromBody] TourokuProjectModel Tmodel)
+        {
+            TourokuProject_BL tbl = new TourokuProject_BL();
+            return tbl.LessthanZero_Checking(Tmodel.SalePrice);
+
         }
     }
 }
