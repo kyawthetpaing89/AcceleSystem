@@ -31,11 +31,11 @@ namespace AcceleSystem.Controllers
         }
         [UserAuthentication]
         [HttpPost]
-        //public string Project_CUD([FromBody] TourokuProjectModel Tmodel)
-        //{
-        //    TourokuProject_BL Tpbl = new TourokuProject_BL();
-        //    return Tpbl.Project_CUD(Tmodel);
-        //}
+        public string Project_CUD([FromBody] TourokuProjectModel Tmodel)
+        {
+            TourokuProject_BL Tpbl = new TourokuProject_BL();
+            return Tpbl.Project_CUD(Tmodel);
+        }
         public string M_Casting_ExistsCheck([FromBody] TourokuProjectModel Tmodel)
         {
             TourokuProject_BL Tpbl = new TourokuProject_BL();
@@ -77,6 +77,15 @@ namespace AcceleSystem.Controllers
             TourokuProject_BL Tpbl = new TourokuProject_BL();
             return Tpbl.M_HinBan_Search_List(Tmodel);
         }
+
+        [UserAuthentication]
+        [HttpPost]
+        public string M_HinBan_Edit_List([FromBody] TourokuProjectModel Tmodel)
+        {
+            TourokuProject_BL Tpbl = new TourokuProject_BL();
+            return Tpbl.M_HinBan_Select_List(Tmodel);
+        }
+
         [UserAuthentication]
         [HttpPost]
         public string M_HinBan_ExistsCheck([FromBody] TourokuProjectModel Tmodel)
