@@ -85,7 +85,7 @@
                              <label id="text" style="padding-right:10px;">納品目</label>
                              <input type="text" tabindex="9" id="StartDate" name="txtStartDate" onkeydown="KeyDown(event,this)" class="text-line text-left" maxlength="10" required placeholder="入力" style="width:110px;">
                              &nbsp;~&nbsp;
-                             <input type="text" tabindex="10" id="EndDate" name="txtEndDate" onkeydown="KeyDown(event,this)" class="text-line text-left" maxlength="10" required placeholder="入力" style="width:110px;">
+                             <input type="text" tabindex="10" id="EndDate" name="txtEndDate" onkeydown="KeyDown(event,this,'CompareDate')" class="text-line text-left" maxlength="10" required placeholder="入力" style="width:110px;">
                          </div>
                      </div>
                  </div>
@@ -165,6 +165,9 @@
 
             GetNouhin();
         });
+
+        function CompareDate(result) {
+        }
 
         function GetNouhin() {
             var TnModel = {
