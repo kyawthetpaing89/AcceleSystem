@@ -105,6 +105,12 @@ function AlreadyExistsCheck(ctrl, val, apiURL, param1) {
     $(ctrl).attr("data-Param1", param1);
 }
 
+//function LessthanZeroCheck(ctrl, val, apiURL, ctrlName) {
+//    $(ctrl).attr("data-LessthanCheck", val);
+//    $(ctrl).attr("data-CheckApiUrl", apiURL);
+//    $(ctrl).attr("data-NameCtrl", ctrlName);
+//}
+
 function ErrorCheckOnSave() {
     var r1 = "0";
     $('#divMain *').filter(':input').each(function () {
@@ -514,6 +520,28 @@ function ErrChk(ctrl) {
         }
         
     }
+
+    //var dataLessthanCheck = $(ctrl).attr("data-LessthanCheck");
+    //if (dataLessthanCheck) {
+    //    var ApiURL = $(ctrl).attr("data-CheckApiUrl");
+    //    switch (dataLessthanCheck) {
+    //        case "Production":
+               
+    //            var model = {
+    //                ProductionData: $(ctrl).val()
+    //            };
+    //            var data = CalltoApiController(ApiURL, model);
+    //            var ProductionDatas = JSON.parse(data);
+    //            if (ProductionDatas[0].MessageID != "E109") {
+    //                return "0";
+    //            }
+    //            else {
+    //                return ProductionDatas[0].Production;
+    //            }
+    //            break;
+    //    }
+    //}
+
    
     return "0";
 }

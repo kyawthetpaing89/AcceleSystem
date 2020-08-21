@@ -155,7 +155,7 @@
             $("#CostCD").focus();
             ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "CostName");
             DateCheck($("#CostDate1"), '@Url.Action("Date_Checking", "api/CommonApi")');
-            DateCheck($("#CostDate2"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#CostDate1").val());
+            @*DateCheck($("#CostDate2"), '@Url.Action("Date_Checking", "api/CommonApi")');*@
             DateCheck($("#year"), '@Url.Action("Date_Checking", "api/CommonApi")');
             ExistsCheck($("#brandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")', "brandname");
             ExistsCheck($("#projectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")', "projectname");  
@@ -164,8 +164,8 @@
         });
         function Keihi(result) {
             if (result == 'OK') {
-                alert(result);
-                alert($("#CostDate1").val());
+                //alert(result);
+                //alert($("#CostDate1").val());
                 DateCheck($("#CostDate2"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#CostDate1").val());
             }
         }
