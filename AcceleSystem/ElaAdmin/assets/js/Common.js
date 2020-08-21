@@ -1,6 +1,7 @@
 ﻿
 
 function CalltoApiController(url, model) {
+  
     var result;
     $.ajax({
         url: url.replace("%2F", "/"),
@@ -523,21 +524,21 @@ function ErrChk(ctrl) {
     }
 
 
-    var dataLessthanCheck = $(ctrl).attr("data-LessthanCheck"); alert(dataLessthanCheck);
+    var dataLessthanCheck = $(ctrl).attr("data-LessthanCheck"); 
     if (dataLessthanCheck) {
         var ApiURL = $(ctrl).attr("data-LessthanCheck_ApiUrl");
         switch (dataLessthanCheck) {
             case "Production":
                 var model = {
-                    ProductionData: $(ctrl).val(),
+                    Production: $(ctrl).val(),
                 };
                 var data = CalltoApiController(ApiURL, model);
-                var ProductionDatas = JSON.parse(data);
-                if (ProductionDatas[0].flg == "false" ) {
+                var ProductionData = JSON.parse(data);
+                if (ProductionData[0].flg == "false" ) {
                     return "E109";
                 }
                 else {
-                    $(ctrl).val(ProductionDatas[0].resultdata);
+                    $(ctrl).val(ProductionData[0].resultdata);
                     return "0";
                 }
                 break;
