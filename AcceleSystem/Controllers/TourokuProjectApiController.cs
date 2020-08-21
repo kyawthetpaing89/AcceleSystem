@@ -87,10 +87,19 @@ namespace AcceleSystem.Controllers
 
         [UserAuthentication]
         [HttpPost]
-        public string LessthanZero_Checking([FromBody] TourokuProjectModel Tmodel)
+        public string Production_LessthanCheck([FromBody] TourokuProjectModel Tmodel)
         {
             TourokuProject_BL tbl = new TourokuProject_BL();
             return tbl.LessthanZero_Checking(Tmodel.Production);
+
+        }
+
+        [UserAuthentication]
+        [HttpPost]
+        public string SalePrice_LessthanCheck([FromBody] TourokuProjectModel Tmodel)
+        {
+            TourokuProject_BL tbl = new TourokuProject_BL();
+            return tbl.LessthanZero_Checking(Tmodel.SalePrice);
 
         }
     }
