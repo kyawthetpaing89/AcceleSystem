@@ -42,11 +42,11 @@
                                 <div class="col-md-12" style="padding-left:0px;">
                                     <div class="text-s text-custom1 text-uppercase mb-1">
                                         <label class="text" style="padding-right:20px;">シーズン</label>
-                                        <input type="checkbox" tabindex="3"  onkeydown="KeyDown(event,this)" id="degreeyear" name="check">
-                                        <label style="padding-right:50px;">度年</label>
-                                        <input type="checkbox" id="SS" name="">
+                                        <input type="checkbox" tabindex="3" id="degreeyear" name="checkbox" checked>
+                                        <label style="padding-right:50px;" >度年</label>
+                                        <input type="checkbox" id="SS" name="checkbox">
                                         <label style="padding-right:50px;">SS</label>
-                                        <input type="checkbox" id="FW" name="">
+                                        <input type="checkbox" id="FW" name="checkbox">
                                         <label>FW</label>
 
                                     </div>
@@ -162,7 +162,7 @@
          ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "ProjectName");
          DateCheck($("#PeriodStart"), '@Url.Action("Date_Checking", "api/CommonApi")');
          DateCheck($("#PeriodEnd"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#PeriodStart").val());
-         ExistsCheck($("#ProjectManager"), '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
+         ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
 
         GetProject();
     });
