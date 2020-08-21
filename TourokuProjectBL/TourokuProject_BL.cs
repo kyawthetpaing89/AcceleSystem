@@ -25,6 +25,14 @@ namespace TourokuProjectBL
 
             return bdl.SelectJson("M_Project_Select_List", Tmodel.Sqlprms);
         }
+        public string M_Project_Select_Entry(TourokuProjectModel Tmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            Tmodel.Sqlprms = new SqlParameter[1];
+            Tmodel.Sqlprms[0] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tmodel.ProjectCD };
+      
+            return bdl.SelectJson("M_Project_Select_Entry", Tmodel.Sqlprms);
+        }
         public string M_Casting_ExistsCheck(TourokuProjectModel Tmodel)
         {
             BaseDL bdl = new BaseDL();
