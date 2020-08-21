@@ -97,7 +97,7 @@ namespace TourokuProjectBL
             BaseDL bdl = new BaseDL();
             Tmodel.Sqlprms = new SqlParameter[2];
             Tmodel.Sqlprms[0] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tmodel.ProjectCD };
-            Tmodel.Sqlprms[1] = new SqlParameter("@PartNoCD", SqlDbType.VarChar) { Value = Tmodel.PartNoCD };
+            Tmodel.Sqlprms[1] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = Tmodel.HinbanCD };
             return bdl.SelectJson("M_HinBan_Search_List", Tmodel.Sqlprms);
 
         }
