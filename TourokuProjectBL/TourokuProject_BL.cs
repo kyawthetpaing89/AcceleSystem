@@ -25,6 +25,14 @@ namespace TourokuProjectBL
 
             return bdl.SelectJson("M_Project_Select_List", Tmodel.Sqlprms);
         }
+        public string M_Project_Select_Entry(TourokuProjectModel Tmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            Tmodel.Sqlprms = new SqlParameter[1];
+            Tmodel.Sqlprms[0] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tmodel.ProjectCD };
+      
+            return bdl.SelectJson("M_Project_Select_Entry", Tmodel.Sqlprms);
+        }
         public string M_Casting_ExistsCheck(TourokuProjectModel Tmodel)
         {
             BaseDL bdl = new BaseDL();
@@ -123,14 +131,22 @@ namespace TourokuProjectBL
         public string LessthanZero_Checking(string input)
         {
             string result = string.Empty;
-            if(input.ToString().Length < 0)
+            if (!String.IsNullOrWhiteSpace(input))
             {
-                result = "[{\"resultdata\" : \"" + input + "\", \"flg\" : \"false\"}]";
-                return result;
+                int data = int.Parse(input);
+                if (data <= 0)
+                {
+                    result = "[{\"resultdata\" : \"" + input + "\", \"flg\" : \"false\"}]";
+                    return result;
+                }
+                else
+                {
+                    result = "[{\"resultdata\" : \"" + input + "\", \"flg\" : \"true\"}]";
+                    return result;
+                }
             }
             else
             {
-                result = "[{\"resultdata\" : \"" + input + "\", \"flg\" : \"true\"}]";
                 return result;
             }
 
