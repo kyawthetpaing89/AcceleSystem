@@ -167,6 +167,29 @@ function ErrChk(ctrl) {
         var ApiURL = $(ctrl).attr("data-ExistsApiUrl");
         var param1 = $(ctrl).attr("data-Param1");
         switch (dataExistsCheck) {
+            case "User":
+                var model = {
+                    ID: $(ctrl).val()
+                }
+                var data = CalltoApiController(ApiURL, model);
+                var UserData = JSON.parse(data);
+                if (UserData[0].MessageID != "E101") {
+                    if ($(ctrl).attr("data-NameCtrl")) {
+                        var ctrlName = $(ctrl).attr("data-NameCtrl");
+                        $('#' + ctrlName).val(UserData[0].UserName);
+                        return "0";
+                    }
+                }
+                else {
+                    if ($(ctrl).attr("data-NameCtrl")) {
+                        var ctrlName = $(ctrl).attr("data-NameCtrl");
+                        $('#' + ctrlName).val("");
+                        return UserData[0].MessageID;
+
+                    }
+                }
+                break;
+
             case "Brand":
                 var model = {
                     BrandCD: $(ctrl).val()
@@ -302,6 +325,27 @@ function ErrChk(ctrl) {
                         var ctrlName = $(ctrl).attr("data-NameCtrl");
                         $('#' + ctrlName).val("");
                         return ProjectData[0].MessageID;
+                    }
+                }
+                break;
+            case "Hinban":
+                var model = {
+                    HinbanCD: $(ctrl).val()
+                };
+                var data = CalltoApiController(ApiURL, model);
+                var HinbanData = JSON.parse(data);
+                if (HinbanData[0].MessageID != "E101") {
+                    if ($(ctrl).attr("data-NameCtrl")) {
+                        var ctrlName = $(ctrl).attr("data-NameCtrl");
+                        $('#' + ctrlName).val(HinbanData[0].HinbanName);
+                        return "0";
+                    }
+                }
+                else {
+                    if ($(ctrl).attr("data-NameCtrl")) {
+                        var ctrlName = $(ctrl).attr("data-NameCtrl");
+                        $('#' + ctrlName).val("");
+                        return HinbanData[0].MessageID;
                     }
                 }
                 break;
@@ -448,42 +492,29 @@ function ErrChk(ctrl) {
     }
 
     var yearmonthcheck = $(ctrl).attr("data-yearmonth_check");
+    
     if (yearmonthcheck == "1") {
-        var ApiURL = $(ctrl).attr("data-yearmonth_DataCheckApiUrl");
-        var model = {
-            inputdate: $(ctrl).val(),
-        };
-        var data = CalltoApiController(ApiURL, model);
-        var dateData = JSON.parse(data);
-        if (dateData[0].flg == "false") {
-            return "E103";
+        if ($(ctrl).val()) {
+            var ApiURL = $(ctrl).attr("data-yearmonth_DataCheckApiUrl");
+            var model = {
+                inputdate: $(ctrl).val(),
+            };
+            var data = CalltoApiController(ApiURL, model);
+            var dateData = JSON.parse(data);
+            if (dateData[0].flg == "false") {
+                return "E103";
+            }
+            else if (dateData[0].flg == "true") {
+                $(ctrl).val(dateData[0].resultdate);
+                return "0";
+            }
         }
-        else if (dateData[0].flg == "true") {
-            $(ctrl).val(dateData[0].resultdate);
-            return "0";
+        else {
+            return "1";
         }
+        
     }
-
-    var datecompare = $(ctrl).attr("data-datecompare"); 
-    if ($(ctrl).attr("data-NameCtrl")) {
-        var ctrlName = $(ctrl).attr("data-NameCtrl");      
-    }
-    if (datecompare == "1") {
-        var ApiURL = $(ctrl).attr("data-datecompare_DataCheckApiUrl");
-        var model = {
-            endDate: $(ctrl).val(),
-            startDate: param1,
-        };
-        var data = CalltoApiController(ApiURL, model);
-        var dateData = JSON.parse(data);
-        if (dateData[0].flg == "false") {
-            return "E112";
-        }
-        else if (dateData[0].flg == "true") {
-            $(ctrl).val(dateData[0].resultdate);
-            return "0";
-        }
-    }
+   
     return "0";
 }
 

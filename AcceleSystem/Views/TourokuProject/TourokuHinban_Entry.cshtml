@@ -141,18 +141,22 @@
                 RequiredCheck($("#HinbanName"));
                 RequiredCheck($("#Production"));
                 RequiredCheck($("#unitprice"));
-                ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "ProjectName"); 
-                ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/TourokuProjectApi")', "CastingName"); 
+                ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "ProjectName");
+                ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/TourokuProjectApi")', "CastingName");
                 ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
-                YearMonthCheck($("#StartDate"),'@Url.Action("YearMonth_Checking", "api/CommonApi")');
-                YearMonthCheck($("#EndDate"),'@Url.Action("YearMonth_Checking", "api/CommonApi")');
+                YearMonthCheck($("#StartDate"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
+                YearMonthCheck($("#EndDate"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
+            }
+            else if (Mode == 'Edit') {
+                $('#btnSave').html('更新');
+                ShowData();
             }
         });
 
         function ProjectCheck(result) {
             if (result == 'OK') {
                 RequiredCheck($("#HinbanCD"));
-                AlreadyExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinan_Select", "api/TourokuProjectApi")', $("#ProjectCD").val());
+                AlreadyExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', $("#ProjectCD").val());
             }
         }
 
@@ -171,8 +175,38 @@
             else
                 ShowErrorMessage(res);
         }
-        
 
+          function ShowData() {
+            var Tmodel = {
+                HinbanCD: '@Model.HinbanCD',
+                ProjectCD: '@Model.ProjectCD'
+               
+            };
+
+              var data = CalltoApiController('@Url.Action("M_Hinban_Select", "api/TourokuProjectApi")', Tmodel);
+              var hinbandata = JSON.parse(data);
+              $("#ProjectCD").val(hinbandata[0].ProjectCD);
+              $("#ProjectCD").val(hinbandata[0].ProjectName);
+              $("#Season").val(hinbandata[0].Season);
+              $("#Year").val(hinbandata[0].Year);
+              $("#BrandCD").val(hinbandata[0].BrandCD);
+              $("#BrandName").val(hinbandata[0].BrandName);
+              $("#StartDate").val(hinbandata[0].PeriodStart);
+              $("#EndDate").val(hinbandata[0].PeriodEnd);
+              $("#Production").val(hinbandata[0].Production);
+              $("#saleprice").val(hinbandata[0].SalesPrice);
+              $("#totalProNo").val(hinbandata[0].TotalProduction);
+              $("#totalamount").val(hinbandata[0].TotalSalesPrice);
+              $("#HinbanCD").val(hinbandata[0].HinbanCD);
+              $("#HinbanName").val(hinbandata[0].HinbanName);
+              $("#DeliverNo").val(hinbandata[0].DeliveryAmount);
+              $("#CastingCD").val(hinbandata[0].CastingCD);
+              $("#CastingName").val(hinbandata[0].CastingName);
+              $("#freeitem1").val(hinbandata[0].FreeItem1);
+              $("#freeitem2").val(hinbandata[0].FreeItem2);
+        }
+        
+        //insert,update
          function DoProcess() {
             focusControl = $("#ProjectCD");
              var Tmodel = {
