@@ -39,7 +39,7 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="4" class="text-line col-xl-5 text-left" style="width: 130px;" onkeydown="KeyDown(event,this)" id="Brand" name="brand" maxlength="4" required placeholder="ブランド">
+                            <input type="text" tabindex="4" class="text-line col-xl-5 text-left" style="width: 130px;" onkeydown="KeyDown(event,this)" id="BrandCode" name="brandcode" maxlength="4" required placeholder="ブランド">
                             <label id="HojoName" style="padding-left:80px;"><b>ブランド表示</b></label>
 
                         </div>
@@ -118,20 +118,21 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("プロジェクト登録");
-            $("#HojoCD").attr('disabled', 'disabled');
-            $("#CostCD").focus();
+            $("#ProjectCD").focus();
             var Mode = '@Model.Mode';
             if (Mode == 'New') {
                 $('#btnSave').html('登録');
-                $("#HojoCD").attr('disabled', 'disabled');
-
-                RequiredCheck($("#CostCD"));
-                RequiredCheck($("#CostName"));
-                RequiredCheck($("#KanjoCD"));
-                AlreadyExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/KeihiSetteiApi")');
+             
+                RequiredCheck($("#ProjectCD"));
+                RequiredCheck($("#ProjectName"));
+                RequiredCheck($("#Year"));
+                RequiredCheck($("#BrandCD"));
+                RequiredCheck($("#PeriodStart"));
+                RequiredCheck($("#PeriodEnd"));
+                AlreadyExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")');
                 ExistsCheck($("#KanjoCD"), "Kanjo", '@Url.Action("M_Kanjo_ExistsCheck", "api/KeihiSetteiApi")', "KanjoName");
-            }
-            else if (Mode == 'Edit') {
+            }*@
+            @*else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
                 $("#CostCD").attr('disabled', 'disabled');
                 $("#CostName").focus();
@@ -295,15 +296,15 @@
             }
             else
                 ShowErrorMessage(res);
-        }
+        }*@
 
-        function btnCancelClick() {
-            location.href = '@Url.Action("KeihiSetteiList", "KeihiSettei")';
-        }
+        @*function btnCancelClick() {
+            location.href = '@Url.Action("TourokuProject_List", "TourokuProject")';
+        }*@
 
     </script>
     <script src="@Url.Content("~/Scripts/datepicker.js")"></script>
     <script src="@Url.Content("~/Scripts/datepicker.en.js")"></script>
    
-}*@
+}
 
