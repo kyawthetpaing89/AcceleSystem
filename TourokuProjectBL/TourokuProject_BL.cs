@@ -47,12 +47,12 @@ namespace TourokuProjectBL
 
 
 
-                
+
 
             }
         }
 
-            public string M_Casting_ExistsCheck(TourokuProjectModel Tmodel)
+        public string M_Casting_ExistsCheck(TourokuProjectModel Tmodel)
         {
             BaseDL bdl = new BaseDL();
             Tmodel.Sqlprms = new SqlParameter[1];
