@@ -33,7 +33,26 @@ namespace TourokuProjectBL
       
             return bdl.SelectJson("M_Project_Select_Entry", Tmodel.Sqlprms);
         }
-        public string M_Casting_ExistsCheck(TourokuProjectModel Tmodel)
+        public string Project_CUD(TourokuProjectModel Tmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            if (Tmodel.Mode.Equals("New"))
+            {
+                Tmodel.SPName = "M_Project_Insert";
+                Tmodel.Sqlprms = new SqlParameter[6];
+                Tmodel.Sqlprms[0] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tmodel.ProjectCD };
+                Tmodel.Sqlprms[1] = new SqlParameter("@ProjectName", SqlDbType.VarChar) { Value = Tmodel.ProjectName };
+                Tmodel.Sqlprms[2] = new SqlParameter("@Year", SqlDbType.Int) { Value = Tmodel.Year };
+                Tmodel.Sqlprms[3] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = Tmodel.BrandCD };
+
+
+
+                
+
+            }
+        }
+
+            public string M_Casting_ExistsCheck(TourokuProjectModel Tmodel)
         {
             BaseDL bdl = new BaseDL();
             Tmodel.Sqlprms = new SqlParameter[1];
