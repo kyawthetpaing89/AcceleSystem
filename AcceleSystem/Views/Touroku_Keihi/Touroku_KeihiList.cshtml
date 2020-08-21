@@ -171,6 +171,7 @@
         }
 
         function GetData() {
+           
             var kmodel = {
             CostCD: $('#CostCD').val(),
             CostName: $('#CostName').val(),
@@ -191,26 +192,30 @@
             else if ($('#SS').is(':checked'))
                 kmodel.Season = "2";
             else kmodel.Season = "3";
-
+            alert("aa");
             $.ajax({
                 type: "Post",
                 url: "@Url.Action("M_Cost_Select_List", "api/Touroku_KeihiApi")",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                data: JSON.stringify(Tmodel),
+                data: JSON.stringify(kmodel),   
                 headers:
             {
                 Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
             },
-                success: function (response) {
-                BindTable(response);
-            }
+                success: function (response) { 
+                    //alert(response);
+                    // BindTable(response);
+                    alert("bb");
+                },
+                error: function (response) {
+                    alert("Object Request fail" );
+                }
             });
         }
 
         function BindTable(response) {
             table = $('#tblKeihi').DataTable({
-
                 data: JSON.parse(response),
                 "bFilter": false,
                 "bLengthChange": false,
@@ -252,6 +257,7 @@
                 }
             });
 
+           
         }
 
         function btnSearchClick() {
