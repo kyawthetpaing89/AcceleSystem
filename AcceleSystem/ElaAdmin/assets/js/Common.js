@@ -1,6 +1,7 @@
 ﻿
 
 function CalltoApiController(url, model) {
+  
     var result;
     $.ajax({
         url: url.replace("%2F", "/"),
@@ -14,6 +15,7 @@ function CalltoApiController(url, model) {
             Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
         },
         success: function (data) {
+            //alert("cc");
             result = data;
         },
     });
@@ -105,11 +107,11 @@ function AlreadyExistsCheck(ctrl, val, apiURL, param1) {
     $(ctrl).attr("data-Param1", param1);
 }
 
-//function LessthanZeroCheck(ctrl, val, apiURL, ctrlName) {
-//    $(ctrl).attr("data-LessthanCheck", val);
-//    $(ctrl).attr("data-CheckApiUrl", apiURL);
-//    $(ctrl).attr("data-NameCtrl", ctrlName);
-//}
+function LessthanZeroCheck(ctrl, val, apiURL) {
+    $(ctrl).attr("data-LessthanCheck", val);
+    $(ctrl).attr("data-LessthanCheck_ApiUrl", apiURL);
+}
+
 
 function ErrorCheckOnSave() {
     var r1 = "0";
@@ -135,6 +137,7 @@ function DateCheck(ctrl, ApiURL, ctrlName, param1) {
 function YearMonthCheck(ctrl, val) {
     $(ctrl).attr("data-yearmonth_check", "1");
     $(ctrl).attr("data-yearmonth_DataCheckApiUrl", val);
+   
 }
 
 function DateComapre(ctrl, val) {
@@ -498,7 +501,6 @@ function ErrChk(ctrl) {
     }
 
     var yearmonthcheck = $(ctrl).attr("data-yearmonth_check");
-    
     if (yearmonthcheck == "1") {
         if ($(ctrl).val()) {
             var ApiURL = $(ctrl).attr("data-yearmonth_DataCheckApiUrl");
@@ -521,26 +523,27 @@ function ErrChk(ctrl) {
         
     }
 
-    //var dataLessthanCheck = $(ctrl).attr("data-LessthanCheck");
-    //if (dataLessthanCheck) {
-    //    var ApiURL = $(ctrl).attr("data-CheckApiUrl");
-    //    switch (dataLessthanCheck) {
-    //        case "Production":
-               
-    //            var model = {
-    //                ProductionData: $(ctrl).val()
-    //            };
-    //            var data = CalltoApiController(ApiURL, model);
-    //            var ProductionDatas = JSON.parse(data);
-    //            if (ProductionDatas[0].MessageID != "E109") {
-    //                return "0";
-    //            }
-    //            else {
-    //                return ProductionDatas[0].Production;
-    //            }
-    //            break;
-    //    }
-    //}
+
+    var dataLessthanCheck = $(ctrl).attr("data-LessthanCheck"); 
+    if (dataLessthanCheck) {
+        var ApiURL = $(ctrl).attr("data-LessthanCheck_ApiUrl");
+        switch (dataLessthanCheck) {
+            case "Production":
+                var model = {
+                    Production: $(ctrl).val(),
+                };
+                var data = CalltoApiController(ApiURL, model);
+                var ProductionData = JSON.parse(data);
+                if (ProductionData[0].flg == "false" ) {
+                    return "E109";
+                }
+                else {
+                    $(ctrl).val(ProductionData[0].resultdata);
+                    return "0";
+                }
+                break;
+        }
+    }
 
    
     return "0";

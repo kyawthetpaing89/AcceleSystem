@@ -96,7 +96,7 @@
                             </div>
                             <div class="col-md-12" style="padding-left:0px; padding-top:2rem;">
                                 <div class="text-s text-custom1 text-uppercase mb-1">
-                                    <button id="btnSearch" tabindex="19" onclick="btnSearchClick()" class="btn btn-primary col-xl-5 text-center" style="background-color:#413839; color:azure;width:80px; height:35px;">検索</button>
+                                    <button id="btnSearch" tabindex="11" onclick="btnSearchClick()" class="btn btn-primary col-xl-5 text-center" style="background-color:#413839; color:azure;width:80px; height:35px; float:right;">検索</button>
                                     &nbsp;&nbsp;&nbsp;&nbsp;
 
                                 </div>
@@ -268,7 +268,7 @@
                     "data": null,
                     className: "Border5",
                     render: function (data, type, row) {
-                        return '<label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\')" style="color:red">削除</a></label> <br/> <label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\')" style="color:green">編集</a></label><br/>';
+                        return '<label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\')" style="color:red">削除</a></label> <br/> <label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\')" style="color:green">複写</a></label><br/>';
                     }
                 },
             ],
