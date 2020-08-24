@@ -307,7 +307,7 @@
             };
              $.ajax({
                 type: "Post",
-                url: "@Url.Action("M_HinBan_Select_List", "api/TourokuProjectApi")",
+                url: "@Url.Action("M_HinBan_Check_List", "api/TourokuProjectApi")",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 data: JSON.stringify(model),
@@ -337,7 +337,7 @@
                         "data": null,
                         className: "Border1",
                         render: function (data, type, row) {
-                            return '<label>' + data.ProjectCD + '</label><label>' + data.ProjectName + '</label>';
+                            return '<label>' + data.ProjectCD + '</label><label>' + data.ProjectName + '</label><br/>';
                         }
                     },
 
@@ -345,49 +345,49 @@
                         "data": null,
                         className: "Border1",
                         render: function (data, type, row) {
-                            return '<label>' + data.BrandCD + '</label><label>' + data.BrandName + '</label>';
+                            return '<label>' + data.BrandCD + '</label><label>' + data.BrandName + '</label><br/>';
                         }
                     },
                     {
                         "data": null,
                         className: "Border1",
                         render: function (data, type, row) {
-                            return '<label>' + data.Year + '</label><label>' + data.Season + '</label>';
+                            return '<label>' + data.Year + '</label><label>' + data.Season + '</label><br/>';
                         }
                     },
                     {
                         "data": null,
                         className: "Border1",
                         render: function (data, type, row) {
-                            return '<label>' + data.PeriodStart + '</label><label>' + data.PeriodEnd + '</label>';
+                            return '<label>' + data.PeriodStart + '</label><label>' + data.PeriodEnd + '</label><br/>';
                         }
                     },
                     //{
                     //    "data": null,
                     //    className: "Border1",
                     //    render: function (data, type, row) {
-                    //        return '<label>' + data.Production + '</label><label>' + data.SalesPrice + '</label>';
+                    //        return '<label>' + data.Production + '</label><label>' + data.SalesPrice + '</label><br/>';
                     //    }
                     //},
                     //{
                     //    "data": null,
                     //    className: "Border1",
                     //    render: function (data, type, row) {
-                    //        return '<label>' + data.HinbanCD + '</label><label>' + data.HinbanName + '</label>';
+                    //        return '<label>' + data.HinbanCD + '</label><label>' + data.HinbanName + '</label><br/>';
                     //    }
                     //},
                     //{
                     //    "data": null,
                     //    className: "Border1",
                     //    render: function (data, type, row) {
-                    //        return '<label>' + data.BrandCode + '</label><label>' + data.BrandName + '</label>';
+                    //        return '<label>' + data.BrandCode + '</label><label>' + data.BrandName + '</label><br/>';
                     //    }
                     //},
                     //{
                     //    "data": null,
                     //    className: "Border1",
                     //    render: function (data, type, row) {
-                    //        return '<label>' + data.ProjectCD + '</label><label>' + data.ProjectName + '</label>';
+                    //        return '<label>' + data.ProjectCD + '</label><label>' + data.ProjectName + '</label><br/>';
                     //    }
                     //},
 
