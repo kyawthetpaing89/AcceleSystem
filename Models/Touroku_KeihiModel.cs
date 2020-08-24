@@ -8,6 +8,7 @@ namespace Models
 {
     public class Touroku_KeihiModel:BaseModel
     {
+        public string SEQ { get; set; }
         public string CostCD { get; set; }
         public string CostName { get; set; }
         public string CostDate { get; set; }

@@ -30,6 +30,7 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xl-12" style="padding-left:65px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
+                            <label id="SEQ" hidden>SEQ</label>
                             <label id="KeihiName">経費名</label>&nbsp;&nbsp;
                             <input type="text" tabindex="3" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostCD" name="CostCD" maxlength="10" required placeholder="入力" style="width:100px;">
                             &nbsp;
@@ -111,6 +112,7 @@
                     </div>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    
                     <div class="col-xl-12" style="padding-left:150px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <button id="btnCSV" onclick="btnCSVClick()" class="btn col-xl-10 text-center" tabindex="18" style="background-color:#1a8cff; color:azure;width:60px; border:1px groove black; border-radius:5px;height:40px;">
@@ -167,7 +169,7 @@
 
 
 @section Scripts{
-    <script type="text/javascript">
+<script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("経費検索");
             $("#CostCD").focus();
@@ -176,8 +178,8 @@
             @*DateCheck($("#CostDate2"), '@Url.Action("Date_Checking", "api/CommonApi")');*@
             DateCheck($("#year"), '@Url.Action("Date_Checking", "api/CommonApi")');
             ExistsCheck($("#brandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")', "brandname");
-            ExistsCheck($("#projectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")', "projectname");  
-            ExistsCheck($("#PartCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "PartName"); 
+            ExistsCheck($("#projectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")', "projectname");
+            ExistsCheck($("#PartCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "PartName");
             GetData();
         });
         function Keihi(result) {
@@ -188,7 +190,7 @@
             }
         }
 
-        function GetData() {         
+        function GetData() {
             var kmodel = {
             CostCD: $('#CostCD').val(),
             CostName: $('#CostName').val(),
@@ -209,7 +211,7 @@
             else if ($('#SS').is(':checked'))
                 kmodel.Season = "2";
             else kmodel.Season = "3";
-          
+
             $.ajax({
                 type: "Post",
                 url: "@Url.Action("M_Cost_Select_List", "api/Touroku_KeihiApi")",
@@ -229,10 +231,7 @@
                     else {
                         BindTable(response);
                     }
-                       
                 },
-
-               
             });
         }
 
@@ -270,22 +269,15 @@
                         "data": null,
                         className: "Border4",
                         render: function (data, type, row) {
-                            return '<label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\')" style="color:red">削除</a></label> <br/> <label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\')" style="color:green">編集</a></label><br/>';
+                            return '<label><a href="#" onClick="btnEditClick(\'' + data.SEQ + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.SEQ + '\')" style="color:red">削除</a></label> <br/> <label><a href="#" onClick="btnCopyClick(\'' + data.SEQ + '\')" style="color:green">編集</a></label><br/>';
                         }
                     },
                 ],
                 "drawCallback": function (settings) {
                     $("#tblKeihi thead").remove();
                 }
-               
-            });
-            var table1 = $('#tblKeihi').DataTable();
 
-            if (table1 === 0) {
-                var data = ShowErrorMessage("E104");
-                return data;
-            }
-           
+            });
         }
 
         function btnSearchClick(){
@@ -304,11 +296,26 @@
                 else
                     ShowErrorMessage(res);
             }
-            
+
         }
 
+        function btnEditClick(SEQ) {
+            location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Keihi")?SEQ=' + SEQ + ' & Mode=Edit';
+            @*var kmodel = {
+                SEQ: $('#SEQ').val(),
+            };
+            var data = CalltoApiController('@Url.Action("M_Cost_Edit_List", "api/Touroku_KeihiApi")', kmodel);*@
+        }
 
-    </script>
+        function btnDelClick(SEQ) {
+            location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Keihi")?SEQ=' + SEQ + ' & Mode=Delete';
+        }
+
+        function btnCopyClick(SEQ) {
+            location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Keihi")?SEQ=' + SEQ + ' & Mode=Copy';
+        }
+
+</script>
 }
 
 
