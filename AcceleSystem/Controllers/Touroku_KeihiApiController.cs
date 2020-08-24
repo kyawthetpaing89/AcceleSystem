@@ -36,5 +36,11 @@ namespace AcceleSystem.Controllers
             Touroku_Keihi_BL kgbl = new Touroku_Keihi_BL();
             return kgbl.M_HinBan_ExistsCheck(kgmodel);
         }
+
+        public string M_Cost_Edit_List([FromBody] Touroku_KeihiModel kgmodel)
+        {
+            Touroku_Keihi_BL kgbl = new Touroku_Keihi_BL();
+            return kgbl.M_Cost_Edit_List(kgmodel);
+        }
     }
 }

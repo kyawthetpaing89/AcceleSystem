@@ -60,8 +60,16 @@ namespace Touroku_KeihiBL
         {
             BaseDL bdl = new BaseDL();
             Kmodel.Sqlprms = new SqlParameter[1];
-            Kmodel.Sqlprms[0] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = Kmodel.HinbanCD  };
+            Kmodel.Sqlprms[0] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = Kmodel.HinbanCD };
             return bdl.SelectJson("M_HinBan_ExistsCheck", Kmodel.Sqlprms);
+        }
+
+        public string M_Cost_Edit_List(Touroku_KeihiModel kmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            kmodel.Sqlprms = new SqlParameter[1];
+            kmodel.Sqlprms[0] = new SqlParameter("@SEQ", SqlDbType.Int) { Value = kmodel.SEQ };
+            return bdl.SelectJson("M_Cost_Edit_List", kmodel.Sqlprms);
         }
     }
 }
