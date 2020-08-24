@@ -501,30 +501,6 @@ function ErrChk(ctrl) {
             }
         }
 
-        var yearmonthcheck = $(ctrl).attr("data-yearmonth_check");
-        if (yearmonthcheck == "1") {
-            if ($(ctrl).val()) {
-                var ApiURL = $(ctrl).attr("data-yearmonth_DataCheckApiUrl");
-                var model = {
-                    inputdate: $(ctrl).val(),
-                };
-                var data = CalltoApiController(ApiURL, model);
-                var dateData = JSON.parse(data);
-                if (dateData[0].flg == "false") {
-                    return "E103";
-                }
-                else if (dateData[0].flg == "true") {
-                    $(ctrl).val(dateData[0].resultdate);
-                    return "0";
-                }
-            }
-            else {
-                return "1";
-            }
-
-        }
-
-
         var dataLessthanCheck = $(ctrl).attr("data-LessthanCheck");
         if (dataLessthanCheck) {
             var ApiURL = $(ctrl).attr("data-LessthanCheck_ApiUrl");
@@ -560,6 +536,36 @@ function ErrChk(ctrl) {
             }
         }
     }
+    else {
+        if ($(ctrl).attr("data-NameCtrl")) {
+            var ctrlName = $(ctrl).attr("data-NameCtrl");
+            $('#' + ctrlName).val("");
+            return "0";
+        }
+    }
+
+    var yearmonthcheck = $(ctrl).attr("data-yearmonth_check");
+    if (yearmonthcheck == "1") {
+        if ($(ctrl).val()) {
+            var ApiURL = $(ctrl).attr("data-yearmonth_DataCheckApiUrl");
+            var model = {
+                inputdate: $(ctrl).val(),
+            };
+            var data = CalltoApiController(ApiURL, model);
+            var dateData = JSON.parse(data);
+            if (dateData[0].flg == "false") {
+                return "E103";
+            }
+            else if (dateData[0].flg == "true") {
+                $(ctrl).val(dateData[0].resultdate);
+                return "0";
+            }
+        }
+        else {
+            return "1";
+        }
+    }
+
     return "0";
 }
 
