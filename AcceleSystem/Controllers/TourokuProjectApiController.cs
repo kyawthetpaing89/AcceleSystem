@@ -72,18 +72,18 @@ namespace AcceleSystem.Controllers
 
         [UserAuthentication]
         [HttpPost]
-        public string M_HinBan_Search_List([FromBody] TourokuProjectModel Tmodel)
+        public string M_HinBan_Select_Edit([FromBody] TourokuProjectModel Tmodel)
         {
             TourokuProject_BL Tpbl = new TourokuProject_BL();
-            return Tpbl.M_HinBan_Search_List(Tmodel);
+            return Tpbl.M_HinBan_Select_Edit(Tmodel);
         }
 
         [UserAuthentication]
         [HttpPost]
-        public string M_HinBan_Edit_List([FromBody] TourokuProjectModel Tmodel)
+        public string M_HinBan_Search_List([FromBody] TourokuProjectModel Tmodel)
         {
             TourokuProject_BL Tpbl = new TourokuProject_BL();
-            return Tpbl.M_HinBan_Select_List(Tmodel);
+            return Tpbl.M_HinBan_Search_List(Tmodel);
         }
 
         [UserAuthentication]
