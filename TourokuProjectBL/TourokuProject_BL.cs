@@ -116,6 +116,16 @@ namespace TourokuProjectBL
 
         }
 
+        public string M_HinBan_Select_Edit(TourokuProjectModel Tmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            Tmodel.Sqlprms = new SqlParameter[2];
+            Tmodel.Sqlprms[0] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = Tmodel.HinbanCD };
+            Tmodel.Sqlprms[1] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tmodel.ProjectCD };
+            return bdl.SelectJson("M_Hinban_Select_Entry", Tmodel.Sqlprms);
+
+        }
+
         public string M_HinBan_Search_List(TourokuProjectModel Tmodel)
         {
             BaseDL bdl = new BaseDL();
@@ -127,7 +137,7 @@ namespace TourokuProjectBL
             Tmodel.Sqlprms[4] = new SqlParameter("@StartPrice", SqlDbType.VarChar) { Value = Tmodel.StartPrice };
             Tmodel.Sqlprms[5] = new SqlParameter("@EndPrice", SqlDbType.VarChar) { Value = Tmodel.EndPrice };
             Tmodel.Sqlprms[6] = new SqlParameter("@CompleteYM", SqlDbType.VarChar) { Value = Tmodel.CompleteYM };
-            return bdl.SelectJson("M_HinBanTT_Search_List", Tmodel.Sqlprms);
+            return bdl.SelectJson("M_HinBan_Search_List", Tmodel.Sqlprms);
 
         }
 
@@ -149,24 +159,23 @@ namespace TourokuProjectBL
                 Tmodel.Sqlprms[8] = new SqlParameter("@saleprice", SqlDbType.VarChar) { Value = Tmodel.SalePrice };
 
             }
-            //else if (kgmodel.Mode.Equals("Edit"))
-            //{
-            //    kgmodel.SPName = "M_Casting_Update";
-            //    kgmodel.Sqlprms = new SqlParameter[5];
-            //    kgmodel.Sqlprms[0] = new SqlParameter("@CastingCD", SqlDbType.VarChar) { Value = kgmodel.CastingCD };
-            //    kgmodel.Sqlprms[1] = new SqlParameter("@CastingName", SqlDbType.VarChar) { Value = kgmodel.CastingName };
-            //    kgmodel.Sqlprms[2] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = kgmodel.BrandCD };
-            //    kgmodel.Sqlprms[3] = new SqlParameter("@BrandName", SqlDbType.VarChar) { Value = kgmodel.BrandName };
-            //    kgmodel.Sqlprms[4] = new SqlParameter("@UseLimit", SqlDbType.VarChar) { Value = kgmodel.UseLimit };
-
-            //}
-            //else if (kgmodel.Mode.Equals("Delete"))
-            //{
-            //    kgmodel.SPName = "M_Casting_Delete";
-            //    kgmodel.Sqlprms = new SqlParameter[1];
-            //    kgmodel.Sqlprms[0] = new SqlParameter("@CastingCD", SqlDbType.VarChar) { Value = kgmodel.CastingCD };
-                
-            //}
+            else if (Tmodel.Mode.Equals("Edit"))
+            {
+                Tmodel.SPName = "M_Hinban_Update";
+                Tmodel.Sqlprms = new SqlParameter[8];
+                Tmodel.Sqlprms[0] = new SqlParameter("@CastingCD", SqlDbType.VarChar) { Value = Tmodel.CastingCD };
+                Tmodel.Sqlprms[1] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tmodel.ProjectCD };
+                Tmodel.Sqlprms[2] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = Tmodel.HinbanCD };
+                Tmodel.Sqlprms[3] = new SqlParameter("@Color", SqlDbType.VarChar) { Value = Tmodel.Color };
+                Tmodel.Sqlprms[4] = new SqlParameter("@Production", SqlDbType.VarChar) { Value = Tmodel.Production };
+                Tmodel.Sqlprms[5] = new SqlParameter("@freeitem1", SqlDbType.VarChar) { Value = Tmodel.FreeItem1 };
+                Tmodel.Sqlprms[6] = new SqlParameter("@freeitem2", SqlDbType.VarChar) { Value = Tmodel.FreeItem2 };
+                Tmodel.Sqlprms[7] = new SqlParameter("@saleprice", SqlDbType.VarChar) { Value = Tmodel.SalePrice };
+            }
+            else if (Tmodel.Mode.Equals("Delete"))
+            {
+             
+            }
             return bdl.SelectJson(Tmodel.SPName, Tmodel.Sqlprms);
         }
 

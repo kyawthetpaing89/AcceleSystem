@@ -166,7 +166,7 @@
          ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "ProjectName");
          DateCheck($("#PeriodStart"), '@Url.Action("Date_Checking", "api/CommonApi")');
          DateCheck($("#PeriodEnd"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#PeriodStart").val());
-        ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
+         ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
         $("#BrandName").attr('disabled', 'disabled');
         $("#ProjectName").attr('disabled', 'disabled');
         $("#UserName").attr('disabled', 'disabled');
