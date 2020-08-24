@@ -171,331 +171,375 @@ function ErrChk(ctrl) {
         }
     }
 
-    var dataExistsCheck = $(ctrl).attr("data-ExistsCheck"); 
-    if (dataExistsCheck) {
-        var ApiURL = $(ctrl).attr("data-ExistsApiUrl");
-        var param1 = $(ctrl).attr("data-Param1");
-        switch (dataExistsCheck) {
-            case "User":
-                var model = {
-                    ID: $(ctrl).val()
-                }
-                var data = CalltoApiController(ApiURL, model);
-                var UserData = JSON.parse(data);
-                if (UserData[0].MessageID != "E101") {
-                    if ($(ctrl).attr("data-NameCtrl")) {
-                        var ctrlName = $(ctrl).attr("data-NameCtrl");
-                        $('#' + ctrlName).val(UserData[0].UserName);
+    if ($(ctrl).val()) {
+        var dataExistsCheck = $(ctrl).attr("data-ExistsCheck");
+        if (dataExistsCheck) {
+            var ApiURL = $(ctrl).attr("data-ExistsApiUrl");
+            var param1 = $(ctrl).attr("data-Param1");
+            switch (dataExistsCheck) {
+                case "User":
+                    var model = {
+                        UserID: $(ctrl).val()
+                    }
+                    var data = CalltoApiController(ApiURL, model);
+                    var UserData = JSON.parse(data);
+                    if (UserData[0].MessageID != "E101") {
+                        if ($(ctrl).attr("data-NameCtrl")) {
+                            var ctrlName = $(ctrl).attr("data-NameCtrl");
+                            $('#' + ctrlName).val(UserData[0].UserName);
+                            return "0";
+                        }
+                    }
+                    else {
+                        if ($(ctrl).attr("data-NameCtrl")) {
+                            var ctrlName = $(ctrl).attr("data-NameCtrl");
+                            $('#' + ctrlName).val("");
+                            return UserData[0].MessageID;
+
+                        }
+                    }
+                    break;
+
+                case "Brand":
+                    var model = {
+                        BrandCD: $(ctrl).val()
+                    };
+                    var data = CalltoApiController(ApiURL, model);
+                    var BrandData = JSON.parse(data);
+                    if (BrandData[0].MessageID != "E101") {
+                        if ($(ctrl).attr("data-NameCtrl")) {
+                            var ctrlName = $(ctrl).attr("data-NameCtrl");
+                            $('#' + ctrlName).val(BrandData[0].BrandName);
+                            return "0";
+                        }
+                    }
+                    else {
+                        if ($(ctrl).attr("data-NameCtrl")) {
+                            var ctrlName = $(ctrl).attr("data-NameCtrl");
+                            $('#' + ctrlName).val("");
+                            return BrandData[0].MessageID;
+                        }
+                    }
+                    break;
+                case "Keihi":
+                    var model = {
+                        CostCD: $(ctrl).val()
+                    };
+                    var data = CalltoApiController(ApiURL, model);
+                    var KeihiData = JSON.parse(data);
+                    if (KeihiData[0].MessageID != "E101") {
+                        if ($(ctrl).attr("data-NameCtrl")) {
+                            var ctrlName = $(ctrl).attr("data-NameCtrl");
+                            $('#' + ctrlName).val(KeihiData[0].CostName);
+                            return "0";
+                        }
+                    }
+                    else {
+                        if ($(ctrl).attr("data-NameCtrl")) {
+                            var ctrlName = $(ctrl).attr("data-NameCtrl");
+                            $('#' + ctrlName).val("");
+                            return KeihiData[0].MessageID;
+                        }
+                    }
+                    break;
+                case "Kanjo":
+                    var model = {
+                        KanjoCD: $(ctrl).val()
+                    };
+                    var data = CalltoApiController(ApiURL, model);
+                    var KanjoData = JSON.parse(data);
+                    if (KanjoData[0].MessageID != "E101") {
+                        if ($(ctrl).attr("data-NameCtrl")) {
+                            var ctrlName = $(ctrl).attr("data-NameCtrl");
+                            $('#' + ctrlName).text(KanjoData[0].KanjoName);
+                            $("#TmpVal1").val(KanjoData[0].HojoKBN);
+                            return "0";
+                        }
+                    }
+                    else {
+                        if ($(ctrl).attr("data-NameCtrl")) {
+                            var ctrlName = $(ctrl).attr("data-NameCtrl");
+                            $('#' + ctrlName).val("");
+                            return KanjoData[0].MessageID;
+                        }
+                    }
+                    break;
+                case "Hojo":
+                    var model = {
+                        HojoCD: $(ctrl).val(),
+                        KanjoCD: param1
+                    };
+                    var data = CalltoApiController(ApiURL, model);
+                    var HojoData = JSON.parse(data);
+                    if (HojoData[0].MessageID != "E101") {
+                        if ($(ctrl).attr("data-NameCtrl")) {
+                            var ctrlName = $(ctrl).attr("data-NameCtrl");
+                            $('#' + ctrlName).text(HojoData[0].HojoName);
+                            return "0";
+                        }
+                    }
+                    else {
+                        if ($(ctrl).attr("data-NameCtrl")) {
+                            var ctrlName = $(ctrl).attr("data-NameCtrl");
+                            $('#' + ctrlName).val("");
+                            return HojoData[0].MessageID;
+                        }
+                    }
+                    break;
+                case "Koushiin":
+                    var model = {
+                        processing_date: $(ctrl).val(),
+                    };
+                    var data = CalltoApiController(ApiURL, model);
+                    var Koushiin = JSON.parse(data);
+                    if (Koushiin[0].MessageID == "E101") {
+                        return Koushiin[0].MessageID;
+                    }
+                    break;
+                case "Casting":
+                    var model = {
+                        CastingCD: $(ctrl).val()
+                    };
+                    var data = CalltoApiController(ApiURL, model);
+                    var CastingData = JSON.parse(data);
+                    if (CastingData[0].MessageID != "E101") {
+                        if ($(ctrl).attr("data-NameCtrl")) {
+                            var ctrlName = $(ctrl).attr("data-NameCtrl");
+                            $('#' + ctrlName).val(CastingData[0].CastingName);
+                            return "0";
+                        }
+                    }
+                    else {
+                        if ($(ctrl).attr("data-NameCtrl")) {
+                            var ctrlName = $(ctrl).attr("data-NameCtrl");
+                            $('#' + ctrlName).val("");
+                            return CastingData[0].MessageID;
+                        }
+                    }
+                    break;
+                case "Project":
+                    var model = {
+                        ProjectCD: $(ctrl).val()
+                    };
+                    var data = CalltoApiController(ApiURL, model);
+                    var ProjectData = JSON.parse(data);
+                    if (ProjectData[0].MessageID != "E101") {
+                        if ($(ctrl).attr("data-NameCtrl")) {
+                            var ctrlName = $(ctrl).attr("data-NameCtrl");
+                            $('#' + ctrlName).val(ProjectData[0].ProjectName);
+                            return "0";
+                        }
+                    }
+                    else {
+                        if ($(ctrl).attr("data-NameCtrl")) {
+                            var ctrlName = $(ctrl).attr("data-NameCtrl");
+                            $('#' + ctrlName).val("");
+                            return ProjectData[0].MessageID;
+                        }
+                    }
+                    break;
+                case "Hinban":
+                    var model = {
+                        HinbanCD: $(ctrl).val()
+                    };
+                    var data = CalltoApiController(ApiURL, model);
+                    var HinbanData = JSON.parse(data);
+                    if (HinbanData[0].MessageID != "E101") {
+                        if ($(ctrl).attr("data-NameCtrl")) {
+                            var ctrlName = $(ctrl).attr("data-NameCtrl");
+                            $('#' + ctrlName).val(HinbanData[0].HinbanName);
+                            return "0";
+                        }
+                    }
+                    else {
+                        if ($(ctrl).attr("data-NameCtrl")) {
+                            var ctrlName = $(ctrl).attr("data-NameCtrl");
+                            $('#' + ctrlName).val("");
+                            return HinbanData[0].MessageID;
+                        }
+                    }
+                    break;
+            }
+        }
+
+        var dataAlreadyExistsCheck = $(ctrl).attr("data-AlreadyExistsCheck");
+        if (dataAlreadyExistsCheck) {
+            var ApiURL = $(ctrl).attr("data-AlreadyExistsApiUrl");
+            var param1 = $(ctrl).attr("data-Param1");
+            switch (dataAlreadyExistsCheck) {
+                case "Casting":
+                    var model = {
+                        CastingCD: $(ctrl).val()
+                    };
+                    var data = CalltoApiController(ApiURL, model);
+                    var CastingData = JSON.parse(data);
+                    if (CastingData[0].MessageID != "E107") {
                         return "0";
                     }
-                }
-                else {
-                    if ($(ctrl).attr("data-NameCtrl")) {
-                        var ctrlName = $(ctrl).attr("data-NameCtrl");
-                        $('#' + ctrlName).val("");
-                        return UserData[0].MessageID;
-
-                    }
-                }
-                break;
-
-            case "Brand":
-                var model = {
-                    BrandCD: $(ctrl).val()
-                };
-                var data = CalltoApiController(ApiURL, model);
-                var BrandData = JSON.parse(data);
-                if (BrandData[0].MessageID != "E101") {
-                    if ($(ctrl).attr("data-NameCtrl")) {
-                        var ctrlName = $(ctrl).attr("data-NameCtrl");
-                        $('#' + ctrlName).val(BrandData[0].BrandName);
-                        return "0";
-                    }
-                }
-                else {
-                    if ($(ctrl).attr("data-NameCtrl")) {
-                        var ctrlName = $(ctrl).attr("data-NameCtrl");
-                        $('#' + ctrlName).val("");
+                    else {
                         return BrandData[0].MessageID;
                     }
-                }
-                break;
-            case "Keihi":
-                var model = {
-                    CostCD: $(ctrl).val()
-                };
-                var data = CalltoApiController(ApiURL, model);
-                var KeihiData = JSON.parse(data);
-                if (KeihiData[0].MessageID != "E101") {
-                    if ($(ctrl).attr("data-NameCtrl")) {
-                        var ctrlName = $(ctrl).attr("data-NameCtrl");
-                        $('#' + ctrlName).val(KeihiData[0].CostName);
+                    break;
+                case "User":
+                    var model = {
+                        UserID: $(ctrl).val()
+                    };
+                    var data = CalltoApiController(ApiURL, model);
+                    var UserData = JSON.parse(data);
+                    if (UserData[0].MessageID != "E107") {
                         return "0";
                     }
-                }
-                else {
-                    if ($(ctrl).attr("data-NameCtrl")) {
-                        var ctrlName = $(ctrl).attr("data-NameCtrl");
-                        $('#' + ctrlName).val("");
+                    else {
+                        return UserData[0].MessageID;
+                    }
+                    break;
+                case "Brand":
+                    var model = {
+                        BrandCD: $(ctrl).val()
+                    };
+                    var data = CalltoApiController(ApiURL, model);
+                    var BrandData = JSON.parse(data);
+                    if (BrandData[0].MessageID != "E107") {
+                        return "0";
+                    }
+                    else {
+                        return BrandData[0].MessageID;
+                    }
+                    break;
+                case "Keihi":
+                    var model = {
+                        CostCD: $(ctrl).val()
+                    };
+                    var data = CalltoApiController(ApiURL, model);
+                    var KeihiData = JSON.parse(data);
+                    if (KeihiData[0].MessageID != "E107") {
+                        return "0";
+                    }
+                    else {
                         return KeihiData[0].MessageID;
                     }
-                }
-                break;
-            case "Kanjo":
-                var model = {
-                    KanjoCD: $(ctrl).val()
-                };
-                var data = CalltoApiController(ApiURL, model);
-                var KanjoData = JSON.parse(data);
-                if (KanjoData[0].MessageID != "E101") {
-                    if ($(ctrl).attr("data-NameCtrl")) {
-                        var ctrlName = $(ctrl).attr("data-NameCtrl");
-                        $('#' + ctrlName).text(KanjoData[0].KanjoName);
-                        $("#TmpVal1").val(KanjoData[0].HojoKBN);
+                    break;
+                case "Kanjo":
+                    var model = {
+                        KanjoCD: $(ctrl).val()
+                    };
+                    var data = CalltoApiController(ApiURL, model);
+                    var KanjoData = JSON.parse(data);
+                    if (KanjoData[0].MessageID != "E107") {
                         return "0";
                     }
-                }
-                else {
-                    if ($(ctrl).attr("data-NameCtrl")) {
-                        var ctrlName = $(ctrl).attr("data-NameCtrl");
-                        $('#' + ctrlName).val("");
+                    else {
                         return KanjoData[0].MessageID;
                     }
-                }
-                break;
-            case "Hojo":
-                var model = {
-                    HojoCD: $(ctrl).val(),
-                    KanjoCD: param1
-                };
-                var data = CalltoApiController(ApiURL, model);
-                var HojoData = JSON.parse(data);
-                if (HojoData[0].MessageID != "E101") {
-                    if ($(ctrl).attr("data-NameCtrl")) {
-                        var ctrlName = $(ctrl).attr("data-NameCtrl");
-                        $('#' + ctrlName).text(HojoData[0].HojoName);
+                    break;
+                case "Hojo":
+                    var model = {
+                        HojoCD: $(ctrl).val()
+                    };
+                    var data = CalltoApiController(ApiURL, model);
+                    var HojoData = JSON.parse(data);
+                    if (HojoData[0].MessageID != "E107") {
                         return "0";
                     }
-                }
-                else {
-                    if ($(ctrl).attr("data-NameCtrl")) {
-                        var ctrlName = $(ctrl).attr("data-NameCtrl");
-                        $('#' + ctrlName).val("");
+                    else {
                         return HojoData[0].MessageID;
                     }
-                }
-                break;
-            case "Koushiin":
-                var model = {
-                    processing_date: $(ctrl).val(),
-                };
-                var data = CalltoApiController(ApiURL, model);
-                var Koushiin = JSON.parse(data);
-                if (Koushiin[0].MessageID == "E101") {   
-                    return Koushiin[0].MessageID; 
-                }
-                break;
-            case "Casting":
-                var model = {
-                    CastingCD: $(ctrl).val()
-                };
-                var data = CalltoApiController(ApiURL, model);
-                var CastingData = JSON.parse(data);
-                if (CastingData[0].MessageID != "E101") {
-                    if ($(ctrl).attr("data-NameCtrl")) {
-                        var ctrlName = $(ctrl).attr("data-NameCtrl");
-                        $('#' + ctrlName).val(CastingData[0].CastingName);
+                    break;
+                case "Hinban":
+                    var model = {
+                        HinbanCD: $(ctrl).val(),
+                        ProjectCD: param1
+                    };
+                    var data = CalltoApiController(ApiURL, model);
+                    var HinbanData = JSON.parse(data);
+                    if (HinbanData[0].MessageID != "E107") {
                         return "0";
                     }
-                }
-                else {
-                    if ($(ctrl).attr("data-NameCtrl")) {
-                        var ctrlName = $(ctrl).attr("data-NameCtrl");
-                        $('#' + ctrlName).val("");
-                        return CastingData[0].MessageID;
-                    }
-                }
-                break;
-            case "Project":
-                var model = {
-                    ProjectCD: $(ctrl).val()
-                };
-                var data = CalltoApiController(ApiURL, model);
-                var ProjectData = JSON.parse(data);
-                if (ProjectData[0].MessageID != "E101") {
-                    if ($(ctrl).attr("data-NameCtrl")) {
-                        var ctrlName = $(ctrl).attr("data-NameCtrl");
-                        $('#' + ctrlName).val(ProjectData[0].ProjectName);
-                        return "0";
-                    }
-                }
-                else {
-                    if ($(ctrl).attr("data-NameCtrl")) {
-                        var ctrlName = $(ctrl).attr("data-NameCtrl");
-                        $('#' + ctrlName).val("");
-                        return ProjectData[0].MessageID;
-                    }
-                }
-                break;
-            case "Hinban":
-                var model = {
-                    HinbanCD: $(ctrl).val()
-                };
-                var data = CalltoApiController(ApiURL, model);
-                var HinbanData = JSON.parse(data);
-                if (HinbanData[0].MessageID != "E101") {
-                    if ($(ctrl).attr("data-NameCtrl")) {
-                        var ctrlName = $(ctrl).attr("data-NameCtrl");
-                        $('#' + ctrlName).val(HinbanData[0].HinbanName);
-                        return "0";
-                    }
-                }
-                else {
-                    if ($(ctrl).attr("data-NameCtrl")) {
-                        var ctrlName = $(ctrl).attr("data-NameCtrl");
-                        $('#' + ctrlName).val("");
+                    else {
                         return HinbanData[0].MessageID;
                     }
-                }
-                break;
-        }
-    }
-
-    var dataAlreadyExistsCheck = $(ctrl).attr("data-AlreadyExistsCheck"); 
-    if (dataAlreadyExistsCheck) {
-        var ApiURL = $(ctrl).attr("data-AlreadyExistsApiUrl");
-        var param1 = $(ctrl).attr("data-Param1"); 
-        switch (dataAlreadyExistsCheck) {
-            case "Casting":
-                var model = {
-                    CastingCD: $(ctrl).val()
-                };
-                var data = CalltoApiController(ApiURL, model);
-                var CastingData = JSON.parse(data);
-                if (CastingData[0].MessageID != "E107") {
-                    return "0";
-                }
-                else {
-                    return BrandData[0].MessageID;
-                }
-                break;
-            case "User":
-                var model = {
-                    UserID: $(ctrl).val()
-                };
-                var data = CalltoApiController(ApiURL, model);
-                var UserData = JSON.parse(data);
-                if (UserData[0].MessageID != "E107") {
-                    return "0";
-                }
-                else {
-                    return UserData[0].MessageID;
-                }
-                break;
-            case "Brand":
-                var model = {
-                    BrandCD: $(ctrl).val()
-                };
-                var data = CalltoApiController(ApiURL, model);
-                var BrandData = JSON.parse(data);
-                if (BrandData[0].MessageID != "E107") {
-                    return "0";
-                }
-                else {
-                    return BrandData[0].MessageID;
-                }
-                break;
-            case "Keihi":
-                var model = {
-                    CostCD: $(ctrl).val()
-                };
-                var data = CalltoApiController(ApiURL, model);
-                var KeihiData = JSON.parse(data);
-                if (KeihiData[0].MessageID != "E107") {
-                    return "0";
-                }
-                else {
-                    return KeihiData[0].MessageID;
-                }
-                break;
-            case "Kanjo":
-                var model = {
-                    KanjoCD: $(ctrl).val()
-                };
-                var data = CalltoApiController(ApiURL, model);
-                var KanjoData = JSON.parse(data);
-                if (KanjoData[0].MessageID != "E107") {
-                    return "0";
-                }
-                else {
-                    return KanjoData[0].MessageID;
-                }
-                break;
-            case "Hojo":
-                var model = {
-                    HojoCD: $(ctrl).val()
-                };
-                var data = CalltoApiController(ApiURL, model);
-                var HojoData = JSON.parse(data);
-                if (HojoData[0].MessageID != "E107") {
-                    return "0";
-                }
-                else {
-                    return HojoData[0].MessageID;
-                }
-                break;
-            case "Hinban":
-                var model = {
-                    HinbanCD: $(ctrl).val(),
-                    ProjectCD: param1
-                };
-                var data = CalltoApiController(ApiURL, model);
-                var HinbanData = JSON.parse(data);
-                if (HinbanData[0].MessageID != "E107") {
-                    return "0";
-                }
-                else {
-                    return HinbanData[0].MessageID;
-                }
-                break;
-        }
-    }
-
-    var dateCheck = $(ctrl).attr("data-DateCheck");
-    var param1 = $(ctrl).attr("data-NameCtrl");
-    var startdate = $(ctrl).attr("data-Param1");
-    if (dateCheck == "1") {
-        var ApiURL = $(ctrl).attr("data-DateCheckApiUrl");
-        var model = {
-            inputdate: $(ctrl).val(),
-            flg: param1,
-            startDate:startdate,
-
-        };
-        var data = CalltoApiController(ApiURL, model);
-        var dateData = JSON.parse(data);
-        if (dateData[0].flg == "false") {
-            return "E103";
-        }
-        else if (dateData[0].flg == "true") {
-            var dataresult = dateData[0].resultdate;
-            if (param1 == "1") {
-                var ApiURL = "/api/CommonApi/DateComapre";
-                var model = {
-                    endDate: dataresult,
-                    startDate: startdate,
-                };
-                var data = CalltoApiController(ApiURL, model);
-                var dateData = JSON.parse(data);
-                if (dateData[0].flg == "false") {
-                    return "E112";
-                }
-                else if (dateData[0].flg == "true") {
-                    $(ctrl).val(dateData[0].resultdate);
-                    return "0";
-                }
+                    break;
             }
-            $(ctrl).val(dateData[0].resultdate);
+        }
+
+        var dateCheck = $(ctrl).attr("data-DateCheck");
+        var param1 = $(ctrl).attr("data-NameCtrl");
+        var startdate = $(ctrl).attr("data-Param1");
+        if (dateCheck == "1") {
+            var ApiURL = $(ctrl).attr("data-DateCheckApiUrl");
+            var model = {
+                inputdate: $(ctrl).val(),
+                flg: param1,
+                startDate: startdate,
+
+            };
+            var data = CalltoApiController(ApiURL, model);
+            var dateData = JSON.parse(data);
+            if (dateData[0].flg == "false") {
+                return "E103";
+            }
+            else if (dateData[0].flg == "true") {
+                var dataresult = dateData[0].resultdate;
+                if (param1 == "1") {
+                    var ApiURL = "/api/CommonApi/DateComapre";
+                    var model = {
+                        endDate: dataresult,
+                        startDate: startdate,
+                    };
+                    var data = CalltoApiController(ApiURL, model);
+                    var dateData = JSON.parse(data);
+                    if (dateData[0].flg == "false") {
+                        return "E112";
+                    }
+                    else if (dateData[0].flg == "true") {
+                        $(ctrl).val(dateData[0].resultdate);
+                        return "0";
+                    }
+                }
+                $(ctrl).val(dateData[0].resultdate);
+                return "0";
+            }
+        }
+
+        var dataLessthanCheck = $(ctrl).attr("data-LessthanCheck");
+        if (dataLessthanCheck) {
+            var ApiURL = $(ctrl).attr("data-LessthanCheck_ApiUrl");
+            switch (dataLessthanCheck) {
+                case "Production":
+                    var model = {
+                        Production: $(ctrl).val(),
+                    };
+                    var data = CalltoApiController(ApiURL, model);
+                    var ProductionData = JSON.parse(data);
+                    if (ProductionData[0].flg == "false") {
+                        return "E109";
+                    }
+                    else {
+                        $(ctrl).val(ProductionData[0].resultdata);
+                        return "0";
+                    }
+                    break;
+                case "SalePrice":
+                    var model = {
+                        SalePrice: $(ctrl).val(),
+                    };
+                    var data = CalltoApiController(ApiURL, model);
+                    var SalePriceData = JSON.parse(data);
+                    if (SalePriceData[0].flg == "false") {
+                        return "E109";
+                    }
+                    else {
+                        $(ctrl).val(SalePriceData[0].resultdata);
+                        return "0";
+                    }
+                    break;
+            }
+        }
+    }
+    else {
+        if ($(ctrl).attr("data-NameCtrl")) {
+            var ctrlName = $(ctrl).attr("data-NameCtrl");
+            $('#' + ctrlName).val("");
             return "0";
         }
     }
@@ -520,46 +564,8 @@ function ErrChk(ctrl) {
         else {
             return "1";
         }
-        
     }
 
-
-    var dataLessthanCheck = $(ctrl).attr("data-LessthanCheck"); 
-    if (dataLessthanCheck) {
-        var ApiURL = $(ctrl).attr("data-LessthanCheck_ApiUrl");
-        switch (dataLessthanCheck) {
-            case "Production":
-                var model = {
-                    Production: $(ctrl).val(),
-                };
-                var data = CalltoApiController(ApiURL, model);
-                var ProductionData = JSON.parse(data);
-                if (ProductionData[0].flg == "false" ) {
-                    return "E109";
-                }
-                else {
-                    $(ctrl).val(ProductionData[0].resultdata);
-                    return "0";
-                }
-                break;
-            case "SalePrice":
-                var model = {
-                    SalePrice: $(ctrl).val(),
-                };
-                var data = CalltoApiController(ApiURL, model);
-                var SalePriceData = JSON.parse(data);
-                if (SalePriceData[0].flg == "false") {
-                    return "E109";
-                }
-                else {
-                    $(ctrl).val(SalePriceData[0].resultdata);
-                    return "0";
-                }
-                break;
-        }
-    }
-
-   
     return "0";
 }
 
