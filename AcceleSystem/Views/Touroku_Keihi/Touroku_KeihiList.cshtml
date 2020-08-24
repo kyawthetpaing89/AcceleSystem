@@ -209,7 +209,7 @@
             else if ($('#SS').is(':checked'))
                 kmodel.Season = "2";
             else kmodel.Season = "3";
-            
+          
             $.ajax({
                 type: "Post",
                 url: "@Url.Action("M_Cost_Select_List", "api/Touroku_KeihiApi")",
@@ -220,10 +220,16 @@
             {
                 Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
             },
-                success: function (response) {     
-                    
+                success: function (response) {
+                    if (response == "[]") {
                         BindTable(response);
-                    //alert("bb");
+                        var data = ShowErrorMessage("E104");
+                        return data;
+                    }
+                    else {
+                        BindTable(response);
+                    }
+                       
                 },
 
                
@@ -273,6 +279,13 @@
                 }
                
             });
+            var table1 = $('#tblKeihi').DataTable();
+
+            if (table1 === 0) {
+                var data = ShowErrorMessage("E104");
+                return data;
+            }
+           
         }
 
         function btnSearchClick(){
