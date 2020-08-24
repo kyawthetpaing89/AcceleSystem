@@ -16,7 +16,7 @@
                         <button id="btnAdd" onclick="btnAddClick()" class="btn" tabindex="38" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px; margin-right: 20px;">
                             プロジェクト追加
                         </button>
-                        <button id="btnAdd" onclick="btnAddClick()" class="btn" tabindex="38" style="background-color:white; color:#1a8cff; border-radius:3px; border: 1px solid transparent; border-color:#1a8cff; margin-right: 20px;">
+                        <button id="btnnext" onclick="btnNextClick()" class="btn" tabindex="38" style="background-color:white; color:#1a8cff; border-radius:3px; border: 1px solid transparent; border-color:#1a8cff; margin-right: 20px;">
                             品番登録
                         </button>
 
@@ -108,26 +108,30 @@
         </div>
         <div class="col-lg-7">
             <div class="card-body card-block">
-                <table class="col-md-12">
+                <table class="tb1 col-sm-8" style="margin-left:10px;">
                     <thead>
                         <tr>
-                            <th>納品日</th>
+                            <td>納品日</td>
                             <th>ブランド</th>
                             <th>シーズン</th>
                             <th>年度</th>
                         </tr>
+
                         <tr>
-                            <th>プロジェクト</th>
+                            <td>コード</td>
+                            <td>プロジェクト</td>
+                            <td></td>
                         </tr>
                         <tr>
-                            <th>品番</th>
-                            <th></th>
-                            <th>生産数</th>
-                            <th>納品数</th>
+                            <td>予定期間</td>
+                            <td></td>
+                            <td>総生産数</td>
+                            <td>総金額</td>
                         </tr>
                     </thead>
+
                 </table>
-                    <table id="tblProject" class="tb1 col-sm-12">
+                    <table id="tblProject" class="tb1 col-sm-12" style="width: 525px;">
                         <thead>
                             <tr>
                                 <td>ブランドコード</td>
@@ -163,15 +167,28 @@
          DateCheck($("#PeriodStart"), '@Url.Action("Date_Checking", "api/CommonApi")');
          DateCheck($("#PeriodEnd"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#PeriodStart").val());
          ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
+        $("#BrandName").attr('disabled', 'disabled');
+        $("#ProjectName").attr('disabled', 'disabled');
+        $("#UserName").attr('disabled', 'disabled');
 
         GetProject();
     });
 
-        @*function Project(result) {
+         function CompareDate(result) {
             if (result == 'OK') {
                 DateCheck($("#PeriodEnd"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#PeriodStart").val());
             }
-        }*@
+        }
+
+        function btnSearchClick() {
+            var res = ErrorCheckOnSave();
+            if (res == "0") {
+                GetProject();
+            }
+            else {
+                ShowErrorMessage(res);
+            }
+        }
 
     function GetProject() {
         var Tmodel = {
@@ -207,23 +224,6 @@
             }
         });
     }
-
-        function btnSearchClick() {
-            var allyear = $("#allyear").is(":checked");
-            var ss = $("#SS").is(":checked");
-            var fw = $("#FW").is(":checked");
-            if (!allyear && !ss && !fw) {
-                var data = ShowErrorMessage("E111");
-                return data;
-            }
-            else {
-                if ($('#allyear').is(':checked'))
-                    Tmodel.Season = "1";
-                else if ($('#SS').is(':checked'))
-                    Tmodel.Season = "2";
-                else Tmodel.Season = "3";
-            }
-        }
 
     function BindTable(response) {
         table = $('#tblProject').DataTable({
@@ -280,15 +280,19 @@
     }
 
     function btnAddClick() {
-        location.href = '@Url.Action("TourokuProject_Entry", "Project")?Mode=New'
+        location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?Mode=New'
+    }
+
+     function btnNextClick() {
+        location.href = '@Url.Action("TourokuHinban_List", "TourokuProject")?Mode=New'
     }
 
     function btnEditClick(BrandCD) {
-        location.href = '@Url.Action("TourokuProject_Entry", "Project")?BrandCD=' + BrandCD + '&Mode=Edit';
+        location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?BrandCD=' + BrandCD + '&Mode=Edit';
     }
 
     function btnDelClick(BrandCD) {
-        location.href = '@Url.Action("TourokuProject_Entry", "Project")?BrandCD=' + BrandCD + '&Mode=Delete';
+        location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?BrandCD=' + BrandCD + '&Mode=Delete';
     }
     </script>
 
