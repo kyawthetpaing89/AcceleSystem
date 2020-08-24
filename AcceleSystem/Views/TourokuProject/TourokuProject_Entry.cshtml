@@ -22,16 +22,16 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostCD" name="costCD" maxlength="6" required placeholder="プロジェクトコード">
+                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="BrandCD" name="brandcd" maxlength="6" required placeholder="プロジェクトコード">
 
-                            <input type="text" tabindex="2" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostName" name="costName" maxlength="40" required placeholder="プロジェクト名">
+                            <input type="text" tabindex="2" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="BrandName" name="brandname" maxlength="40" required placeholder="プロジェクト名">
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="3" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this,'KanjoCheck')" id="KanjoCD" name="kanjoCD" maxlength="6" required placeholder="年度">
+                            <input type="text" tabindex="3" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="Year" name="year" required placeholder="年度">
                             @*<label id="KanjoName"><b>勘定科目表示</b></label>*@
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="4" class="text-line col-xl-5 text-left" style="width: 130px;" onkeydown="KeyDown(event,this,'HojoCheck')" id="HojoCD" name="hojoCD" maxlength="4" required placeholder="ブランド">
+                            <input type="text" tabindex="4" class="text-line col-xl-5 text-left" style="width: 130px;" onkeydown="KeyDown(event,this)" id="BrandCode" name="brandcode" maxlength="4" required placeholder="ブランド">
                             <label id="HojoName" style="padding-left:80px;"><b>ブランド表示</b></label>
 
                         </div>
@@ -50,23 +50,24 @@
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <div class="custom-control custom-radio" style="padding-left:0px!important;">
                                 <label class="text" style="padding-right:30px;">シーズン</label>
-                                <input type="radio" id="rdoProject" name="radio" checked>
+                                <input type="radio" id="rdoyear" name="radio" checked>
                                 <label style="padding-right:40px;">通年</label>
-                                <input type="radio" id="rdoMAllocation" name="radio">
+                                <input type="radio" id="rdoss" name="radio">
                                 <label style="padding-right:40px;">SS</label>
-                                <input type="radio" id="rdoFItems" name="radio">
+                                <input type="radio" id="rdofw" name="radio">
                                 <label>FW</label>
                             </div>
                         </div>
                     </div>
 
                 </div>
-                <div class="pt-3 md-form">
+                <div>
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostCD" name="costCD" maxlength="6" required placeholder="予定期間">
+                            <input type="text" tabindex="6" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this)" id="PeriodStart" name="periodstart" maxlength="7" required placeholder="予定期間">
+                            <label class="col-xl-1" style="font-size: 1.8rem;">~</label>
+                            <input type="text" tabindex="7" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="PeriodEnd" name="periodend" maxlength="7" required placeholder="予定期間">
 
-                            <input type="text" tabindex="2" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostName" name="costName" maxlength="40" required placeholder="予定期間">
                         </div>
                     </div>
                 </div>
@@ -83,7 +84,7 @@
                 <div class="pt-3 md-form">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" style="width:130px;" onkeydown="KeyDown(event,this)" id="CostCD" name="costCD" maxlength="6" required placeholder="責任者">
+                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" style="width:130px;" onkeydown="KeyDown(event,this)" id="UserName" name="username" maxlength="6" required placeholder="責任者">
                             <label id="SalesPrice" style="padding-left:80px;"><b>責任者表示</b></label>
                         </div>
                     </div>
@@ -91,8 +92,8 @@
                 <div class="pt-3 md-form">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostCD" name="costCD" maxlength="6" required placeholder="配賦用固定値">
-                            
+                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="AllocationCount" name="allocationcount" maxlength="6" required placeholder="配賦用固定値">
+
                         </div>
                     </div>
                 </div>
@@ -117,20 +118,21 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("プロジェクト登録");
-            $("#HojoCD").attr('disabled', 'disabled');
-            $("#CostCD").focus();
+            $("#ProjectCD").focus();
             var Mode = '@Model.Mode';
             if (Mode == 'New') {
                 $('#btnSave').html('登録');
-                $("#HojoCD").attr('disabled', 'disabled');
-
-                RequiredCheck($("#CostCD"));
-                RequiredCheck($("#CostName"));
-                RequiredCheck($("#KanjoCD"));
-                AlreadyExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/KeihiSetteiApi")');
+             
+                RequiredCheck($("#ProjectCD"));
+                RequiredCheck($("#ProjectName"));
+                RequiredCheck($("#Year"));
+                RequiredCheck($("#BrandCD"));
+                RequiredCheck($("#PeriodStart"));
+                RequiredCheck($("#PeriodEnd"));
+                AlreadyExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")');
                 ExistsCheck($("#KanjoCD"), "Kanjo", '@Url.Action("M_Kanjo_ExistsCheck", "api/KeihiSetteiApi")', "KanjoName");
-            }
-            else if (Mode == 'Edit') {
+            }*@
+            @*else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
                 $("#CostCD").attr('disabled', 'disabled');
                 $("#CostName").focus();
@@ -294,15 +296,15 @@
             }
             else
                 ShowErrorMessage(res);
-        }
+        }*@
 
-        function btnCancelClick() {
-            location.href = '@Url.Action("KeihiSetteiList", "KeihiSettei")';
-        }
+        @*function btnCancelClick() {
+            location.href = '@Url.Action("TourokuProject_List", "TourokuProject")';
+        }*@
 
     </script>
     <script src="@Url.Content("~/Scripts/datepicker.js")"></script>
     <script src="@Url.Content("~/Scripts/datepicker.en.js")"></script>
    
-}*@
+}
 

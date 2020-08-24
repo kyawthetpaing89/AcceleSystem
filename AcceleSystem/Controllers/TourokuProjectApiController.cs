@@ -15,20 +15,101 @@ namespace AcceleSystem.Controllers
             {
                 Tmodel = new TourokuProjectModel();
             }
-            TourokuProject_BL Ubl = new TourokuProject_BL();
-            return Ubl.M_Project_Select_List(Tmodel);
+            TourokuProject_BL Tpbl = new TourokuProject_BL();
+            return Tpbl.M_Project_Select_List(Tmodel);
+        }
+        [UserAuthentication]
+        [HttpPost]
+        public string M_Project_Select_Entry([FromBody] TourokuProjectModel Tmodel)
+        {
+            if (Tmodel == null)
+            {
+                Tmodel = new TourokuProjectModel();
+            }
+            TourokuProject_BL Tpbl = new TourokuProject_BL();
+            return Tpbl.M_Project_Select_Entry(Tmodel);
+        }
+        [UserAuthentication]
+        [HttpPost]
+        public string Project_CUD([FromBody] TourokuProjectModel Tmodel)
+        {
+            TourokuProject_BL Tpbl = new TourokuProject_BL();
+            return Tpbl.Project_CUD(Tmodel);
         }
         public string M_Casting_ExistsCheck([FromBody] TourokuProjectModel Tmodel)
         {
-            TourokuProject_BL Ubl = new TourokuProject_BL();
-            return Ubl.M_Casting_ExistsCheck(Tmodel);
+            TourokuProject_BL Tpbl = new TourokuProject_BL();
+            return Tpbl.M_Casting_ExistsCheck(Tmodel);
         }
 
-        public string M_Hinan_Select([FromBody] TourokuProjectModel Tmodel)
+        public string M_Project_ExistsCheck([FromBody] TourokuProjectModel Tmodel)
         {
-            TourokuProject_BL Ubl = new TourokuProject_BL();
-            return Ubl.M_Hinan_Select(Tmodel);
+            TourokuProject_BL Tpbl = new TourokuProject_BL();
+            return Tpbl.M_Project_ExistsCheck(Tmodel);
         }
 
+        public string M_Hinban_ProjectExistCheck([FromBody] TourokuProjectModel Tmodel)
+        {
+            TourokuProject_BL Tpbl = new TourokuProject_BL();
+            return Tpbl.M_Hinban_ProjectExistCheck(Tmodel);
+        }
+
+        [UserAuthentication]
+        [HttpPost]
+        public string Hinban_CUD([FromBody] TourokuProjectModel Tmodel)
+        {
+            TourokuProject_BL Tpbl = new TourokuProject_BL();
+            return Tpbl.Hinban_CUD(Tmodel);
+        }
+
+        [UserAuthentication]
+        [HttpPost]
+        public string M_HinBan_Select_List([FromBody] TourokuProjectModel Tmodel)
+        {
+            TourokuProject_BL Tpbl = new TourokuProject_BL();
+            return Tpbl.M_HinBan_Select_List(Tmodel);
+        }
+
+        [UserAuthentication]
+        [HttpPost]
+        public string M_HinBan_Search_List([FromBody] TourokuProjectModel Tmodel)
+        {
+            TourokuProject_BL Tpbl = new TourokuProject_BL();
+            return Tpbl.M_HinBan_Search_List(Tmodel);
+        }
+
+        [UserAuthentication]
+        [HttpPost]
+        public string M_HinBan_Edit_List([FromBody] TourokuProjectModel Tmodel)
+        {
+            TourokuProject_BL Tpbl = new TourokuProject_BL();
+            return Tpbl.M_HinBan_Select_List(Tmodel);
+        }
+
+        [UserAuthentication]
+        [HttpPost]
+        public string M_HinBan_ExistsCheck([FromBody] TourokuProjectModel Tmodel)
+        {
+            TourokuProject_BL Tpbl = new TourokuProject_BL();
+            return Tpbl.M_HinBan_ExistsCheck(Tmodel);
+        }
+
+        [UserAuthentication]
+        [HttpPost]
+        public string Production_LessthanCheck([FromBody] TourokuProjectModel Tmodel)
+        {
+            TourokuProject_BL tbl = new TourokuProject_BL();
+            return tbl.LessthanZero_Checking(Tmodel.Production);
+
+        }
+
+        [UserAuthentication]
+        [HttpPost]
+        public string SalePrice_LessthanCheck([FromBody] TourokuProjectModel Tmodel)
+        {
+            TourokuProject_BL tbl = new TourokuProject_BL();
+            return tbl.LessthanZero_Checking(Tmodel.SalePrice);
+
+        }
     }
 }

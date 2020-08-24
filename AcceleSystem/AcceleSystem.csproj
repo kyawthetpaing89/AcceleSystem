@@ -547,7 +547,6 @@
     <Folder Include="Models\" />
     <Folder Include="obj\Debug\" />
     <Folder Include="Views\CommonApi\" />
-    <Folder Include="Views\Touroku_KeihiApi\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -607,7 +606,7 @@
     </ProjectReference>
     <ProjectReference Include="..\Touroku_NouhinBL\TourokuNouhinBL.csproj">
       <Project>{8910ca70-fc6d-4aee-b593-3415683bc27b}</Project>
-      <Name>Touroku_NouhinBL</Name>
+      <Name>TourokuNouhinBL</Name>
     </ProjectReference>
     <ProjectReference Include="..\UserBL\UserBL.csproj">
       <Project>{56023bba-489a-45e5-b8f0-dbc21216383f}</Project>

@@ -4,8 +4,8 @@
 }
 
 @section Styles{
-@*<link rel="stylesheet" href="@Url.Content(" ~/ElaAdmin/assets/css/lib/datatable/dataTables.bootstrap.min.css")" />*@
-<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
+    @*<link rel="stylesheet" href="@Url.Content(" ~/ElaAdmin/assets/css/lib/datatable/dataTables.bootstrap.min.css")" />*@
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
 }
 <div class="card">
     <div class="row">
@@ -16,11 +16,11 @@
                         <button id="btnAdd" onclick="btnAddClick()" class="btn" tabindex="38" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px; margin-right: 20px;">
                             プロジェクト追加
                         </button>
-                        <button id="btnAdd" onclick="btnAddClick()" class="btn" tabindex="38" style="background-color:white; color:#1a8cff; border-radius:3px; border: 1px solid transparent; border-color:#1a8cff; margin-right: 20px;">
+                        <button id="btnnext" onclick="btnNextClick()" class="btn" tabindex="38" style="background-color:white; color:#1a8cff; border-radius:3px; border: 1px solid transparent; border-color:#1a8cff; margin-right: 20px;">
                             品番登録
                         </button>
 
-                        <button id="btnAdd" onclick="btnAddClick()" class="btn" tabindex="38" style="background-color:white; color:black; border-radius:3px; border: 1px solid transparent; border-color:black;">
+                        <button id="btnCSV" onclick="btnCSVClick()" class="btn" tabindex="38" style="background-color:white; color:black; border-radius:3px; border: 1px solid transparent; border-color:black;">
                             CSV
                         </button>
                         <div id="registration" style="padding-top: 1.8rem!important;">
@@ -31,8 +31,8 @@
                                 <div class="col-md-12" style="padding-left:0px;">
                                     <div class="text-s text-custom1 text-uppercase mb-1">
                                         <label id="text" style="padding-right: 24px;">ブランド名</label>
-                                        <input type="text" tabindex="1" class="text-line text-left" id="BrandCD" name="brandcd" maxlength="6" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
-                                        <input type="text" tabindex="2" class="text-line text-left" id="BrandName" name="brandname" maxlength="40" onkeypress="EnterKeyPress(event,this,true,0,4,0)" required placeholder="入力" style="width:110px;">
+                                        <input type="text" tabindex="1" class="text-line text-left" id="BrandCD" name="brandcd" maxlength="6" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:110px;">
+                                        <input type="text" tabindex="2" class="text-line text-left" id="BrandName" name="brandname" maxlength="40" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:110px;">
 
                                     </div>
                                 </div>
@@ -42,11 +42,11 @@
                                 <div class="col-md-12" style="padding-left:0px;">
                                     <div class="text-s text-custom1 text-uppercase mb-1">
                                         <label class="text" style="padding-right:20px;">シーズン</label>
-                                        <input type="checkbox" tabindex="3" id="degreeyear" name="check">
-                                        <label style="padding-right:50px;">度年</label>
-                                        <input type="checkbox" id="SS" name="">
+                                        <input type="checkbox" tabindex="3" id="degreeyear" name="checkbox" checked>
+                                        <label style="padding-right:50px;" >度年</label>
+                                        <input type="checkbox" id="SS" name="checkbox">
                                         <label style="padding-right:50px;">SS</label>
-                                        <input type="checkbox" id="FW" name="">
+                                        <input type="checkbox" id="FW" name="checkbox">
                                         <label>FW</label>
 
                                     </div>
@@ -57,7 +57,7 @@
                                 <div class="col-md-12" style="padding-left:0px;">
                                     <div class="text-s text-custom1 text-uppercase mb-1">
                                         <label id="text" style="padding-right: 73px;">年度</label>
-                                        <input type="text" tabindex="4" class="text-line text-left" id="Year" name="year" maxlength="6" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:220px;">
+                                        <input type="text" tabindex="4" class="text-line text-left" id="Year" name="year" maxlength="6" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:220px;">
                                     </div>
                                 </div>
                             </div>
@@ -66,8 +66,8 @@
                                 <div class="col-md-12" style="padding-left:0px;">
                                     <div class="text-s text-custom1 text-uppercase mb-1">
                                         <label id="text" style="padding-right: 12px;">プロジェクト</label>
-                                        <input type="text" tabindex="5" class="text-line text-left" id="ProjectCD" name="projectcd" maxlength="6" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:105px;">
-                                        <input type="text" tabindex="6" class="text-line text-left" id="ProjectName" name="projectname" maxlength="40" onkeypress="EnterKeyPress(event,this,true,0,4,0)" required placeholder="入力" style="width:105px;">
+                                        <input type="text" tabindex="5" class="text-line text-left" id="ProjectCD" name="projectcd" maxlength="6" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:105px;">
+                                        <input type="text" tabindex="6" class="text-line text-left" id="ProjectName" name="projectname" maxlength="40" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:105px;">
 
                                     </div>
                                 </div>
@@ -77,8 +77,8 @@
                                 <div class="col-md-12" style="padding-left:0px;">
                                     <div class="text-s text-custom1 text-uppercase mb-1">
                                         <label id="text" style="padding-right: 38px;">予定期間</label>
-                                        <input type="text" tabindex="7" class="text-line text-left" id="PeriodStart" name="periodstart" maxlength="6" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:110px;">
-                                        <input type="text" tabindex="8" class="text-line text-left" id="PeriodEnd" name="periodend" maxlength="40" onkeypress="EnterKeyPress(event,this,true,0,4,0)" required placeholder="入力" style="width:110px;">
+                                        <input type="text" tabindex="7" class="text-line text-left" id="PeriodStart" name="periodstart" maxlength="6" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:110px;">
+                                        <input type="text" tabindex="8" class="text-line text-left" id="PeriodEnd" name="periodend" maxlength="40" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:110px;">
 
                                     </div>
                                 </div>
@@ -88,15 +88,15 @@
                                 <div class="col-md-12" style="padding-left:0px;">
                                     <div class="text-s text-custom1 text-uppercase mb-1">
                                         <label id="text" style="padding-right: 50px;">責任者</label>
-                                        <input type="text" tabindex="9" class="text-line text-left" id="ProjectManager" name="projectmanager" maxlength="6" onkeypress="EnterKeyPress(event,this,true,1,4,0)" required placeholder="入力" style="width:113px;">
-                                        <input type="text" tabindex="10" class="text-line text-left" id="UserName" name="username" maxlength="40" onkeypress="EnterKeyPress(event,this,true,0,4,0)" required placeholder="入力" style="width:113px;">
+                                        <input type="text" tabindex="9" class="text-line text-left" id="ProjectManager" name="projectmanager" maxlength="6" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:113px;">
+                                        <input type="text" tabindex="10" class="text-line text-left" id="ProjectManagerName" name="projectmanagername" maxlength="40" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:113px;">
 
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12" style="padding-left:0px; padding-top:2rem;">
                                 <div class="text-s text-custom1 text-uppercase mb-1">
-                                    <button id="btnSave" tabindex="11" onclick="btnSaveClick()" class="btn btn-dark col-xl-4 text-center" style="float:right; width:100px;">登録</button>
+                                    <button id="btnSearch" tabindex="11" onclick="btnSearchClick()" class="btn btn-primary col-xl-5 text-center" style="background-color:#413839; color:azure;width:80px; height:35px; float:right;">検索</button>
                                     &nbsp;&nbsp;&nbsp;&nbsp;
 
                                 </div>
@@ -106,58 +106,89 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-5">
+        <div class="col-lg-7">
             <div class="card-body card-block">
-                <table id="tblProject" class="tb1 col-sm-12" style="padding-left:0px;">
+                <table class="tb1 col-sm-8" style="margin-left:10px;">
                     <thead>
-                        @*<tr>
-                            <th>納品日</th>
+                        <tr>
+                            <td>納品日</td>
                             <th>ブランド</th>
                             <th>シーズン</th>
                             <th>年度</th>
                         </tr>
+
                         <tr>
-                            <th>プロジェクト</th>
-                        </tr>
-                        <tr>
-                            <th>品番</th>
-                            <th></th>
-                            <th>生産数</th>
-                            <th>納品数</th>
-                        </tr>*@
-                        <tr>
-                            <td>DeliveryDate</td>
-                            <td>Brand</td>
-                            <td>Season</td>
-                            <td>Year</td>
-                        </tr>
-                        <tr>
-                            <td>Project</td>
-                        </tr>
-                        <tr>
-                            <td>Hinban</td>
+                            <td>コード</td>
+                            <td>プロジェクト</td>
                             <td></td>
-                            <td>Production</td>
-                            <td>DeliveryAmount</td>
+                        </tr>
+                        <tr>
+                            <td>予定期間</td>
+                            <td></td>
+                            <td>総生産数</td>
+                            <td>総金額</td>
                         </tr>
                     </thead>
 
                 </table>
-            </div>
+                    <table id="tblProject" class="tb1 col-sm-12" style="width: 525px;">
+                        <thead>
+                            <tr>
+                                <td>ブランドコード</td>
+                                <td>ブランド名</td>
+                                <td>シーズン</td>
+                                <td>年度</td>
+                                <td>プロジェクトコード</td>
+                                <td>プロジェクト名</td>
+                                <td>予定期間</td>
+                                <td>予定期間</td>
+                                <td>総生産数</td>
+                                <td>総金額</td>
+                            </tr>
+                        </thead>
 
-        </div>
-        <div class="col-lg-2"></div>
+                    </table>
+                </div>
+
+            </div>
+        <div class="col-lg-1"></div>
     </div>
 
 </div>
 
 @section Scripts{
-<script type="text/javascript">
+    <script type="text/javascript">
     $(document).ready(function () {
         $("#formtitle").text("プロジェクト検索");
         $("#BrandCD").focus();
+         ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
+         YearMonthCheck($("#Year"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
+         ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "ProjectName");
+         DateCheck($("#PeriodStart"), '@Url.Action("Date_Checking", "api/CommonApi")');
+         DateCheck($("#PeriodEnd"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#PeriodStart").val());
+        ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
+        $("#BrandName").attr('disabled', 'disabled');
+        $("#ProjectName").attr('disabled', 'disabled');
+        $("#UserName").attr('disabled', 'disabled');
+
         GetProject();
     });
+
+         function CompareDate(result) {
+            if (result == 'OK') {
+                DateCheck($("#PeriodEnd"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#PeriodStart").val());
+            }
+        }
+
+        function btnSearchClick() {
+            var res = ErrorCheckOnSave();
+            if (res == "0") {
+                GetProject();
+            }
+            else {
+                ShowErrorMessage(res);
+            }
+        }
 
     function GetProject() {
         var Tmodel = {
@@ -188,7 +219,7 @@
             {
                 Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
             },
-            success: function (response) {                
+            success: function (response) {
                 BindTable(response);
             }
         });
@@ -229,7 +260,7 @@
                     "data": null,
                     className: "Border4",
                     render: function (data, type, row) {
-                        return '<b><label>' + data.SalesPrice + '</label></b><br/><label>' + data.PeriodEnd + '</label>';
+                        return '<b><label>' + data.Year + '</label></b><br/><label>' + '' + '</label></b><br/><label>'+ data.SalesPrice + '</label>';
                     }
                 },
 
@@ -237,9 +268,7 @@
                     "data": null,
                     className: "Border5",
                     render: function (data, type, row) {
-                        return '<label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\')" style="color:blue">編集</a></label><br/>' +
-                            '< label > <a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\')" style="color:red">削除</a></label ><br/>' +
-                            '<label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\')" style="color:green">編集</a></label>';
+                        return '<label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\')" style="color:red">削除</a></label> <br/> <label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\')" style="color:green">複写</a></label><br/>';
                     }
                 },
             ],
@@ -251,36 +280,31 @@
     }
 
     function btnAddClick() {
-        location.href = '@Url.Action("TourokuProject_Entry", "Project")?Mode=New'
+        location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?Mode=New'
+    }
+
+     function btnNextClick() {
+        location.href = '@Url.Action("TourokuHinban_List", "TourokuProject")?Mode=New'
     }
 
     function btnEditClick(BrandCD) {
-        location.href = '@Url.Action("TourokuProject_Entry", "Project")?BrandCD=' + BrandCD + '&Mode=Edit';
+        location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?BrandCD=' + BrandCD + '&Mode=Edit';
     }
 
     function btnDelClick(BrandCD) {
-        location.href = '@Url.Action("TourokuProject_Entry", "Project")?BrandCD=' + BrandCD + '&Mode=Delete';
+        location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?BrandCD=' + BrandCD + '&Mode=Delete';
     }
-</script>
+    </script>
 
-@*<script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/datatables.min.js")"></script>
-<script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/dataTables.bootstrap.min.js")"></script>
-<script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/dataTables.buttons.min.js")"></script>
-<script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/buttons.bootstrap.min.js")"></script>
-<script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/jszip.min.js")"></script>
-<script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/vfs_fonts.js")"></script>
-<script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/buttons.html5.min.js")"></script>
-<script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/buttons.print.min.js")"></script>
-<script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/buttons.colVis.min.js")"></script>
-<script src="@Url.Content(" ~/ElaAdmin/assets/js/init/datatables-init.js")"></script>*@
+    @*<script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/datatables.min.js")"></script>
+        <script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/dataTables.bootstrap.min.js")"></script>
+        <script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/dataTables.buttons.min.js")"></script>
+        <script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/buttons.bootstrap.min.js")"></script>
+        <script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/jszip.min.js")"></script>
+        <script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/vfs_fonts.js")"></script>
+        <script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/buttons.html5.min.js")"></script>
+        <script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/buttons.print.min.js")"></script>
+        <script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/buttons.colVis.min.js")"></script>
+        <script src="@Url.Content(" ~/ElaAdmin/assets/js/init/datatables-init.js")"></script>*@
 
 }
-
-
-
-
-
-
-
-
-

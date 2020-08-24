@@ -22,6 +22,13 @@
     #tblKeihi td {
         border-top: 1px solid #d3dcd3;
     }
+    #tblProject td {
+        border-top: 1px solid #d3dcd3;
+    }
+
+/*.col-sm-12 {
+    padding-left: 0px;
+}*/
 
 #tblKeihi td.Border2 {
     width: 180px;

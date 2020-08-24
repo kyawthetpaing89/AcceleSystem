@@ -10,11 +10,16 @@ namespace Models
     {
         public string CostCD { get; set; }
         public string CostName { get; set; }
-        public string KanjoCD { get; set; }
-        public string HojoCD { get; set; }
-        public string KanjoName { get; set; }
-        public string HojoName { get; set; }
-        public string Accounting { get; set; }
-        public string Allocation { get; set; }
+        public string CostDate { get; set; }
+        public string CostDateFrom { get; set; }
+        public string CostDateTo { get; set; }
+        public string BrandCD { get; set; }
+        public string BrandName { get; set; }
+        public string Season { get; set; }
+        public string Year { get; set; }
+        public string ProjectCD { get; set; }
+        public string ProjectName { get; set; }
+        public string HinbanCD { get; set; }
+        public string HinbanName { get; set; }
     }
 }
