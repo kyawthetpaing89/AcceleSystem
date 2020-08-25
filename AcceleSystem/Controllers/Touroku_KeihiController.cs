@@ -14,7 +14,7 @@ namespace AcceleSystem.Controllers
         {
             if (string.IsNullOrWhiteSpace(kmodel.Mode))
                 kmodel.Mode = "New";
-            return View();
+            return View(kmodel);
         }
 
         public ActionResult Touroku_KeihiList()
