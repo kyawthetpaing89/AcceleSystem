@@ -64,6 +64,22 @@ namespace AcceleSystem.Controllers
 
         [UserAuthentication]
         [HttpPost]
+        public string M_Hinban_DCost_Check([FromBody] TourokuProjectModel Tmodel)
+        {
+            TourokuProject_BL Tpbl = new TourokuProject_BL();
+            return Tpbl.M_HinBan_DCost_Check(Tmodel);
+        }
+
+        [UserAuthentication]
+        [HttpPost]
+        public string M_Hinban_D_Delivery_Check([FromBody] TourokuProjectModel Tmodel)
+        {
+            TourokuProject_BL Tpbl = new TourokuProject_BL();
+            return Tpbl.M_HinBan_D_Delivery_Check(Tmodel);
+        }
+
+        [UserAuthentication]
+        [HttpPost]
         public string M_HinBan_Check_List([FromBody] TourokuProjectModel Tmodel)
         {
             TourokuProject_BL Tpbl = new TourokuProject_BL();

@@ -109,9 +109,9 @@
                                 <div class="col-md-12" style="padding-left:0px;">
                                     <div class="text-s text-custom1 text-uppercase mb-1">
                                         <label class="text" style="padding-right:20px;">納品状況</label>
-                                        <input type="checkbox" id="uncomplete" name="check">
+                                        <input type="checkbox" id="deliveryleft" name="check">
                                         <label style="padding-right:20px;">納品残あり</label>
-                                        <input type="checkbox" id="complete" name="">
+                                        <input type="checkbox" id="payment" name="">
                                         <label style="padding-right:20px;">完納</label>
 
                                     </div>
@@ -254,10 +254,10 @@
                 StartPrice: $('#StartPrice').val(),
                 EndPrice: $('#EndPrice').val(),
             };
-            if ($('#uncomplete').is(':checked'))
+            if ($('#deliveryleft').is(':checked'))
                 Tmodel.CompleteYM = "1";
-            else if ($('#complete').is(':checked'))
-                Tmodel.CompleteYM = "1";
+            else if ($('#payment').is(':checked'))
+                Tmodel.CompleteYM = "2";
             var data = CalltoApiController('@Url.Action("M_HinBan_Search_List", "api/TourokuProjectApi")', Tmodel);
             //alert(Tmodel);
             BindTable(data);
