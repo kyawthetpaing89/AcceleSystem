@@ -21,8 +21,8 @@
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="SEQ" hidden>SEQ</label>
                             <input type="text" tabindex="3" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostCD" name="CostCD" maxlength="10" required placeholder="経費コード" style="width:118px;">&nbsp;&nbsp;
-                            <label id="costname">経費名</label>
-                            <label id="accounting" hidden>Acc</label>
+                            <label id="costname"></label>
+                            <label id="accounting"></label>
                         </div>
                     </div>
                 </div>
@@ -150,7 +150,26 @@
             if (Mode == 'New') {
                 $('#btnSave').html('登録');
 
-                RequiredCheck($("#ProjectCD"));
+                ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "costname", "accounting");
+                if ($("#accounting").text == "1") {
+                    RequiredCheck($("#projectCD"));
+                    RequiredCheck($("#PartCD"));
+                }
+                else if ($("#accounting").text == "2") {
+                    RequiredCheck($("#year"));
+                    RequiredCheck($("#BrandCD"));
+                    RequiredCheck($("#season"));
+                }
+                else if ($("#accounting").text == "3") {
+                    RequiredCheck($("#projectCD"));
+                }
+                else if ($("#accounting").text == "4") {
+                    RequiredCheck($("#MoldCD"));
+                }
+                else if ($("#accounting").text == "5") {
+                    RequiredCheck($("#Item"));
+                }
+               
                 RequiredCheck($("#ProjectName"));
                 RequiredCheck($("#Year"));
                 RequiredCheck($("#BrandCD"));
