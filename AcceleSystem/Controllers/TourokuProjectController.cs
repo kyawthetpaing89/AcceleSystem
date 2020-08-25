@@ -14,9 +14,11 @@ namespace AcceleSystem.Controllers
         {
             return View();
         }
-        public ActionResult TourokuProject_Entry()
+        public ActionResult TourokuProject_Entry(TourokuProjectModel Tmodel)
         {
-            return View();
+            if (string.IsNullOrWhiteSpace(Tmodel.Mode))
+                Tmodel.Mode = "New";
+            return View(Tmodel);
         }
         public ActionResult TourokuHinban_Entry(TourokuProjectModel Tmodel)
         {

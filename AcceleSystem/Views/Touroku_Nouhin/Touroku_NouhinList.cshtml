@@ -13,13 +13,13 @@
         <div class="p-3 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white;">
             <div class="col-md-4">
                 <div class="pt-3 md-form">
-                    <button id="btnAdd" onclick="btnNouhinEntry_Click()" class="btn" tabindex="38" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px; margin-right: 20px;">
+                    <button id="btnAdd" onclick="btnAdd_Click()" class="btn" tabindex="38" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px; margin-right: 20px;">
                         納品追加
                     </button>
-                    <button id="btnAdd" onclick="btnB/SNouhin_Click()" class="btn" tabindex="38" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px; margin-right: 20px;">
+                    <button id="btnB/S" onclick="btnB/SNouhin_Click()" class="btn" tabindex="38" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px; margin-right: 20px;">
                         B/S一括納品
                     </button>
-                    <button id="btnAdd" onclick="btnDelete_Click()" class="btn" tabindex="38" style="background-color:white; color:#1a8cff; border-radius:3px; border: 1px solid transparent; border-color:#1a8cff; margin-right: 20px;">
+                    <button id="btnDelete" onclick="btnDelete_Click()" class="btn" tabindex="38" style="background-color:white; color:#1a8cff; border-radius:3px; border: 1px solid transparent; border-color:#1a8cff; margin-right: 20px;">
                         削除
                     </button>
                 </div>
@@ -273,7 +273,7 @@
             });
         }
 
-    @*function btnAddClick() {
+    function btnAddClick() {
         location.href = '@Url.Action("KeihiSetteiEntry", "KeihiSettei")?Mode=New'
     }
 
@@ -283,7 +283,7 @@
 
     function btnDelClick(CostCD) {
         location.href = '@Url.Action("KeihiSetteiEntry", "KeihiSettei")?CostCD='+CostCD+'&Mode=Delete';
-        }*@
+        }
     </script>
 
     <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/datatables.min.js")"></script>
