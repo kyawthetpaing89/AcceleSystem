@@ -155,29 +155,6 @@
 
                 </table>
 
-                <table id="tblprjcd" class="tb1 col-sm-12" style="padding-left:0px;">
-                    <thead>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </thead>
-
-                </table>
             </div>
 
         </div>
@@ -295,10 +272,11 @@
     }
 
     function btnDelClick(ProjectCD, HinbanCD) {
-        location.href = '@Url.Action("TourokuHinban_Entry", "TourokuProject")?HinbanCD=' + HinbanCD + '&ProjectCD=' + ProjectCD + ' &Mode=Edit';
+        location.href = '@Url.Action("TourokuHinban_Entry", "TourokuProject")?HinbanCD=' + HinbanCD + '&ProjectCD=' + ProjectCD + ' &Mode=Delete';
         }
 
     function ProjectCDCheck(result) {
+        
         if (result == 'OK') {
             Check();
         }
@@ -306,97 +284,24 @@
     function Check() {
         var Tmodel = {
             ProjectCD: $('#proCD').val(),
-            HinbanCD: $('#HinbanCD').val(),
+            //HinbanCD: $('#HinbanCD').val(),
         };
-        $.ajax({
-            type: "Post",
-            url: "@Url.Action("M_HinBan_Select_List", "api/TourokuProjectApi")",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            data: JSON.stringify(model),
-            headers:
-            {
-                Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-            },
-            success: function (response) {
+        var data = CalltoApiController('@Url.Action("M_Hinban_Check_List", "api/TourokuProjectApi")', Tmodel);
+        var hbdata = JSON.parse(data);
+        //alert(data);
+        $("#proCD").val(hbdata[0].ProjectCD);
+        $("#proName").val(hbdata[0].ProjectName);
+        $("#year").val(hbdata[0].Year);
+        $("#season").val(hbdata[0].Season);
+        $("#BrandCD").val(hbdata[0].BrandCD);
+        $("#BrandName").val(hbdata[0].BrandName);
+        $("#StartDate").val(hbdata[0].PeriodStart);
+        $("#EndDate").val(hbdata[0].PeriodEnd);
+        $("#tpNo").val(hbdata[0].TotalProduction);
+        $("#tAmount").val(hbdata[0].TotalAmount);
 
-                BindprjcdTable(response);
-            }
-        });
     }
 
-    function BindprjcdTable(response) {
-        table = $('#tblprjcd').DataTable({
-
-            data: JSON.parse(response),
-            "bFilter": false,
-            "bLengthChange": false,
-            "bInfo": false,
-            "ordering": false,
-            "paging": false,
-            destroy: true,
-            "columns": [
-                {
-                    "data": null,
-                    className: "Border1",
-                    render: function (data, type, row) {
-                        return '<label>' + data.ProjectCD + '</label><label>' + data.ProjectName + '</label>';
-                    }
-                },
-
-                {
-                    "data": null,
-                    className: "Border1",
-                    render: function (data, type, row) {
-                        return '<label>' + data.BrandCD + '</label><label>' + data.BrandName + '</label>';
-                    }
-                },
-                {
-                    "data": null,
-                    className: "Border1",
-                    render: function (data, type, row) {
-                        return '<label>' + data.Year + '</label><label>' + data.Season + '</label>';
-                    }
-                },
-                {
-                    "data": null,
-                    className: "Border1",
-                    render: function (data, type, row) {
-                        return '<label>' + data.PeriodStart + '</label><label>' + data.PeriodEnd + '</label>';
-                    }
-                },
-                //{
-                //    "data": null,
-                //    className: "Border1",
-                //    render: function (data, type, row) {
-                //        return '<label>' + data.Production + '</label><label>' + data.SalesPrice + '</label>';
-                //    }
-                //},
-                //{
-                //    "data": null,
-                //    className: "Border1",
-                //    render: function (data, type, row) {
-                //        return '<label>' + data.HinbanCD + '</label><label>' + data.HinbanName + '</label>';
-                //    }
-                //},
-                //{
-                //    "data": null,
-                //    className: "Border1",
-                //    render: function (data, type, row) {
-                //        return '<label>' + data.BrandCode + '</label><label>' + data.BrandName + '</label>';
-                //    }
-                //},
-                //{
-                //    "data": null,
-                //    className: "Border1",
-                //    render: function (data, type, row) {
-                //        return '<label>' + data.ProjectCD + '</label><label>' + data.ProjectName + '</label>';
-                //    }
-                //},
-
-            ],
-
-        });
-    }
+   
 </script>
 }
