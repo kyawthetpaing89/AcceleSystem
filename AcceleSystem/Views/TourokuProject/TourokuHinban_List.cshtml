@@ -167,6 +167,7 @@
 <script type="text/javascript">
         $(document).ready(function () {
             //alert("go");
+            $("#HinbanCD").focus();
             ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/TourokuProjectApi")', "CastingName");
             HinBanTable();
             //btnSearchClick();
@@ -180,7 +181,7 @@
 
 
 
-        $("#PartNoCD").focus();
+        
         function HinBanTable() {
             var model = {
 
@@ -219,8 +220,8 @@
                         "data": null,
                         render: function (data, type, row) {
                             return '<table ><tr><td >' +
-                                data.HinbanCD + '&nbsp;&nbsp;&nbsp'+'</td><th>' + data.HinbanName + '</th><tr>'
-                                + '<br/><tr><td>' + data.Casting + '&nbsp;&nbsp;&nbsp' + '</td><td>' + data.Production + '&nbsp;&nbsp;&nbsp' + '</td><td>' + data.SalesPrice + '&nbsp;&nbsp;&nbsp'+'</td><td>' + (data.Production * data.SalesPrice) +'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+ '</td><td>'
+                                data.HinbanCD + '&nbsp;&nbsp;&nbsp' + '</td><th>' + data.HinbanName + '</th><tr>'
+                                + '<br/><tr><td>' + data.Casting + '&nbsp;&nbsp;&nbsp' + '</td><td>' + data.Production + '&nbsp;&nbsp;&nbsp' + '</td><td>' + data.SalesPrice + '&nbsp;&nbsp;&nbsp' + '</td><td>' + data.TotalAmount + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + '</td><td>'
                                 + '</tr></table>';
 
                         }
