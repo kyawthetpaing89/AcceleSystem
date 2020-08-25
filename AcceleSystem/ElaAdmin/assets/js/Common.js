@@ -445,6 +445,19 @@ function ErrChk(ctrl) {
                         return HojoData[0].MessageID;
                     }
                     break;
+                case "Project":
+                    var model = {
+                        ProjectCD: $(ctrl).val()
+                    };
+                    var data = CalltoApiController(ApiURL, model);
+                    var ProjectData = JSON.parse(data);
+                    if (ProjectData[0].MessageID != "E107") {
+                        return "0";
+                    }
+                    else {
+                        return ProjectData[0].MessageID;
+                    }
+                    break;
                 case "Hinban":
                     var model = {
                         HinbanCD: $(ctrl).val(),

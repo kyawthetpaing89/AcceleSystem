@@ -84,7 +84,7 @@
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <input type="text" tabindex="1" class="text-line col-xl-5 text-left" style="width:130px;" onkeydown="KeyDown(event,this)" id="ProjectManager" name="projectmanager" maxlength="6" required placeholder="責任者">
-                            <label id="UserName" style="padding-left:80px;"><b>責任者表示</b></label>
+                            <label id="ProjectManagerName" style="padding-left:80px;"><b>責任者表示</b></label>
                         </div>
                     </div>
                 </div>
@@ -196,8 +196,8 @@
             else $("#BrandName").text(ProjectData[0].BrandName);
 
             if (!ProjectData[0].UserName)
-                $("#UserName").text("責任者表示");
-            else $("#UserName").text(ProjectData[0].UserName);
+                $("#ProjectManagerName").text("責任者表示");
+            else $("#ProjectManagerName").text(ProjectData[0].ProjectManagerName);
 
             if (!ProjectData[0].TotalProduction)
                 $("#TotalProduction").text("総生産数表示");
