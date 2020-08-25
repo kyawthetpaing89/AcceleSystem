@@ -231,6 +231,8 @@ function ErrChk(ctrl) {
                         if ($(ctrl).attr("data-NameCtrl")) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
                             $('#' + ctrlName).val(KeihiData[0].CostName);
+                            var ctname = $(ctrl).attr("data-Param1");
+                            $('#' + ctname).val(KeihiData[0].Accounting);
                             return "0";
                         }
                     }
