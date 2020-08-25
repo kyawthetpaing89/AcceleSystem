@@ -84,7 +84,7 @@
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <input type="text" tabindex="1" class="text-line col-xl-5 text-left" style="width:130px;" onkeydown="KeyDown(event,this)" id="ProjectManager" name="projectmanager" maxlength="6" required placeholder="責任者">
-                            <label id="UserName" style="padding-left:80px;"><b>責任者表示</b></label>
+                            <label id="ProjectManagerName" style="padding-left:80px;"><b>責任者表示</b></label>
                         </div>
                     </div>
                 </div>
@@ -148,9 +148,26 @@
                 YearMonthCheck($("#Year"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
                 DateCheck($("#PeriodStart"), '@Url.Action("Date_Checking", "api/CommonApi")');
                 DateCheck($("#PeriodEnd"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#PeriodStart").val());
-                //ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
-                
+                ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
+
                 ShowData();
+            }
+            else if (Mode == 'Copy') {
+                $('#btnSave').html('更新');
+                $("#ProjectCD").focus();
+
+                RequiredCheck($("#ProjectName"));
+                RequiredCheck($("#Year"));
+                RequiredCheck($("#BrandCD"));
+                RequiredCheck($("#PeriodStart"));
+                RequiredCheck($("#PeriodEnd"));
+                YearMonthCheck($("#Year"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
+                DateCheck($("#PeriodStart"), '@Url.Action("Date_Checking", "api/CommonApi")');
+                DateCheck($("#PeriodEnd"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#PeriodStart").val());
+                ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
+
+                ShowData();
+
             }
             else  {
                 $('#btnSave').html('削除');
@@ -189,16 +206,19 @@
             $("#Year").val(ProjectData[0].Year);
             $("#PeriodStart").val(ProjectData[0].PeriodStart);
             $("#PeriodEnd").val(ProjectData[0].PeriodEnd);
+            $("#Production").text(ProjectData[0].Production);
+            $("#SalesPrice").text(ProjectData[0].SalesPrice);
             $("#ProjectManager").val(ProjectData[0].ProjectManager);
             $("#AllocationCount").val(ProjectData[0].AllocationCount);
             if (!ProjectData[0].BrandName)
                 $("#BrandName").text("ブランド表示");
             else $("#BrandName").text(ProjectData[0].BrandName);
 
-            if (!ProjectData[0].UserName)
-                $("#UserName").text("責任者表示");
-            else $("#UserName").text(ProjectData[0].UserName);
-
+            
+            if (!ProjectData[0].ProjectManagerName)
+                $("#ProjectManagerName").text("責任者表示");
+            else $("#ProjectManagerName").text(ProjectData[0].ProjectManagerName);
+            
             if (!ProjectData[0].TotalProduction)
                 $("#TotalProduction").text("総生産数表示");
             else $("#TotalProduction").text(Projectdata[0].TotalProduction);

@@ -32,9 +32,9 @@
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="SEQ" hidden>SEQ</label>
                             <label id="KeihiName">経費名</label>&nbsp;&nbsp;
-                            <input type="text" tabindex="3" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostCD" name="CostCD" maxlength="10" required placeholder="入力" style="width:100px;">
+                            <input type="text" tabindex="3" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostCD" name="CostCD" maxlength="6" required placeholder="入力" style="width:100px;">
                             &nbsp;
-                            <input type="text" tabindex="4" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostName" name="CostName" maxlength="20" required placeholder="入力" style="width:100px;">
+                            <input type="text" tabindex="4" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostName" name="CostName" maxlength="40" required placeholder="入力" style="width:100px;">
                         </div>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                             <label id="Keijoubi">計上日</label>&nbsp;&nbsp;
                             <input type="text" tabindex="5" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this,'Keihi')" id="CostDate1" name="CostDate1" maxlength="10" required placeholder="入力" style="width:100px;">
                             &nbsp;
-                            <input type="text" tabindex="6" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostDate2" name="CostDate2" maxlength="20" required placeholder="入力" style="width:100px;">
+                            <input type="text" tabindex="6" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostDate2" name="CostDate2" maxlength="10" required placeholder="入力" style="width:100px;">
                         </div>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                     <div class="col-xl-12" style="padding-left:80px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="Keijoubi">年度</label>&nbsp;&nbsp;
-                            <input type="text" tabindex="7" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="year" name="year" maxlength="10" required placeholder="入力" style="width:100px;">
+                            <input type="text" tabindex="7" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="year" name="year" maxlength="4" required placeholder="入力" style="width:100px;">
                             &nbsp;
                             <button id="btnMove" onclick="btnMoveClick()" class="btn col-xl-10 text-center" tabindex="8" style="background-color:#1a8cff; color:azure;width:60px;border-radius:5px;height:35px;">
                                 移動
@@ -65,9 +65,9 @@
                     <div class="col-xl-12" style="padding-left:45px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="Keijoubi">ブランド</label>&nbsp;&nbsp;
-                            <input type="text" tabindex="9" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="brandCD" name="brandCD" maxlength="10" required placeholder="入力" style="width:100px;">
+                            <input type="text" tabindex="9" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="brandCD" name="brandCD" maxlength="20" required placeholder="入力" style="width:100px;">
                             &nbsp;
-                            <input type="text" tabindex="10" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="brandname" name="brandname" maxlength="20" required placeholder="入力" style="width:100px;">
+                            <input type="text" tabindex="10" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="brandname" name="brandname" maxlength="40" required placeholder="入力" style="width:100px;">
                         </div>
                     </div>
                 </div>
@@ -97,7 +97,7 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xl-12" style="padding-left:120px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="15" class="text-line text-left" onkeydown="KeyDown(event,this)" id="projectname" name="projectname" maxlength="20" required placeholder="入力" style="width:210px;">
+                            <input type="text" tabindex="15" class="text-line text-left" onkeydown="KeyDown(event,this)" id="projectname" name="projectname" maxlength="60" required placeholder="入力" style="width:210px;">
                         </div>
                     </div>
                 </div>
@@ -107,7 +107,7 @@
                             <label id="Keijoubi">品番</label>&nbsp;&nbsp;
                             <input type="text" tabindex="16" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="PartCD" name="PartCD" maxlength="10" required placeholder="入力" style="width:100px;">
                             &nbsp;
-                            <input type="text" tabindex="17" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="PartName" name="PartName" maxlength="10" required placeholder="入力" style="width:100px;">
+                            <input type="text" tabindex="17" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="PartName" name="PartName" maxlength="60" required placeholder="入力" style="width:100px;">
                         </div>
                     </div>
                 </div>

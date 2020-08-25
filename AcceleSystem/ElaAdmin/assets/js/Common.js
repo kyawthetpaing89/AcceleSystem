@@ -216,7 +216,7 @@ function ErrChk(ctrl) {
                     else {
                         if ($(ctrl).attr("data-NameCtrl")) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
-                            $('#' + ctrlName).val("");
+                            $('#' + ctrlName).va("");
                             return BrandData[0].MessageID;
                         }
                     }
@@ -231,6 +231,10 @@ function ErrChk(ctrl) {
                         if ($(ctrl).attr("data-NameCtrl")) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
                             $('#' + ctrlName).val(KeihiData[0].CostName);
+                            $('#' + ctrlName).text(KeihiData[0].CostName);
+                            var ctname = $(ctrl).attr("data-Param1");
+                            $('#' + ctname).val(KeihiData[0].Accounting);
+                            $('#' + ctname).text(KeihiData[0].Accounting);
                             return "0";
                         }
                     }
@@ -443,6 +447,19 @@ function ErrChk(ctrl) {
                     }
                     else {
                         return HojoData[0].MessageID;
+                    }
+                    break;
+                case "Project":
+                    var model = {
+                        ProjectCD: $(ctrl).val()
+                    };
+                    var data = CalltoApiController(ApiURL, model);
+                    var ProjectData = JSON.parse(data);
+                    if (ProjectData[0].MessageID != "E107") {
+                        return "0";
+                    }
+                    else {
+                        return ProjectData[0].MessageID;
                     }
                     break;
                 case "Hinban":

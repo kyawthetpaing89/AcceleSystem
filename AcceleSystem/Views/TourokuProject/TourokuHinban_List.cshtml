@@ -109,9 +109,9 @@
                                 <div class="col-md-12" style="padding-left:0px;">
                                     <div class="text-s text-custom1 text-uppercase mb-1">
                                         <label class="text" style="padding-right:20px;">納品状況</label>
-                                        <input type="checkbox" id="uncomplete" name="check">
+                                        <input type="checkbox" id="deliveryleft" name="check">
                                         <label style="padding-right:20px;">納品残あり</label>
-                                        <input type="checkbox" id="complete" name="">
+                                        <input type="checkbox" id="payment" name="">
                                         <label style="padding-right:20px;">完納</label>
 
                                     </div>
@@ -155,29 +155,6 @@
 
                 </table>
 
-                <table id="tblprjcd" class="tb1 col-sm-12" style="padding-left:0px;">
-                    <thead>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </thead>
-
-                </table>
             </div>
 
         </div>
@@ -190,6 +167,7 @@
 <script type="text/javascript">
         $(document).ready(function () {
             //alert("go");
+            $("#HinbanCD").focus();
             ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/TourokuProjectApi")', "CastingName");
             HinBanTable();
             //btnSearchClick();
@@ -203,7 +181,7 @@
 
 
 
-        $("#PartNoCD").focus();
+        
         function HinBanTable() {
             var model = {
 
@@ -242,8 +220,8 @@
                         "data": null,
                         render: function (data, type, row) {
                             return '<table ><tr><td >' +
-                                data.HinbanCD + '&nbsp;&nbsp;&nbsp'+'</td><th>' + data.HinbanName + '</th><tr>'
-                                + '<br/><tr><td>' + data.Casting + '&nbsp;&nbsp;&nbsp' + '</td><td>' + data.Production + '&nbsp;&nbsp;&nbsp' + '</td><td>' + data.SalesPrice + '&nbsp;&nbsp;&nbsp'+'</td><td>' + (data.Production * data.SalesPrice) +'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+ '</td><td>'
+                                data.HinbanCD + '&nbsp;&nbsp;&nbsp' + '</td><th>' + data.HinbanName + '</th><tr>'
+                                + '<br/><tr><td>' + data.Casting + '&nbsp;&nbsp;&nbsp' + '</td><td>' + data.Production + '&nbsp;&nbsp;&nbsp' + '</td><td>' + data.SalesPrice + '&nbsp;&nbsp;&nbsp' + '</td><td>' + data.TotalAmount + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + '</td><td>'
                                 + '</tr></table>';
 
                         }
@@ -258,7 +236,7 @@
                     {
                         "data": null,
                         render: function (data, type, row) {
-                            return '<label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:red">削除</a></label> <br/> <label><a href="#" onClick="btnCopyClick(\'' + data.HinbanCD + '\')" style="color:green">複写</a></label><br/>';
+                            return '<label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:red">削除</a></label> <br/> <label><a href="#" onClick="btnCopyClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:green">複写</a></label><br/>';
                         }
                     },
 
@@ -277,10 +255,10 @@
                 StartPrice: $('#StartPrice').val(),
                 EndPrice: $('#EndPrice').val(),
             };
-            if ($('#uncomplete').is(':checked'))
+            if ($('#deliveryleft').is(':checked'))
                 Tmodel.CompleteYM = "1";
-            else if ($('#complete').is(':checked'))
-                Tmodel.CompleteYM = "1";
+            else if ($('#payment').is(':checked'))
+                Tmodel.CompleteYM = "2";
             var data = CalltoApiController('@Url.Action("M_HinBan_Search_List", "api/TourokuProjectApi")', Tmodel);
             //alert(Tmodel);
             BindTable(data);
@@ -295,10 +273,15 @@
     }
 
     function btnDelClick(ProjectCD, HinbanCD) {
-        location.href = '@Url.Action("TourokuHinban_Entry", "TourokuProject")?HinbanCD=' + HinbanCD + '&ProjectCD=' + ProjectCD + ' &Mode=Edit';
+        location.href = '@Url.Action("TourokuHinban_Entry", "TourokuProject")?HinbanCD=' + HinbanCD + '&ProjectCD=' + ProjectCD + ' &Mode=Delete';
+        }
+
+    function btnCopyClick(ProjectCD, HinbanCD) {
+        location.href = '@Url.Action("TourokuHinban_Entry", "TourokuProject")?HinbanCD=' + HinbanCD + '&ProjectCD=' + ProjectCD + ' &Mode=Delete';
         }
 
     function ProjectCDCheck(result) {
+        
         if (result == 'OK') {
             Check();
         }
@@ -306,97 +289,24 @@
     function Check() {
         var Tmodel = {
             ProjectCD: $('#proCD').val(),
-            HinbanCD: $('#HinbanCD').val(),
+            //HinbanCD: $('#HinbanCD').val(),
         };
-        $.ajax({
-            type: "Post",
-            url: "@Url.Action("M_HinBan_Select_List", "api/TourokuProjectApi")",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            data: JSON.stringify(model),
-            headers:
-            {
-                Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-            },
-            success: function (response) {
+        var data = CalltoApiController('@Url.Action("M_Hinban_Check_List", "api/TourokuProjectApi")', Tmodel);
+        var hbdata = JSON.parse(data);
+        //alert(data);
+        $("#proCD").val(hbdata[0].ProjectCD);
+        $("#proName").val(hbdata[0].ProjectName);
+        $("#year").val(hbdata[0].Year);
+        $("#season").val(hbdata[0].Season);
+        $("#BrandCD").val(hbdata[0].BrandCD);
+        $("#BrandName").val(hbdata[0].BrandName);
+        $("#StartDate").val(hbdata[0].PeriodStart);
+        $("#EndDate").val(hbdata[0].PeriodEnd);
+        $("#tpNo").val(hbdata[0].TotalProduction);
+        $("#tAmount").val(hbdata[0].TotalAmount);
 
-                BindprjcdTable(response);
-            }
-        });
     }
 
-    function BindprjcdTable(response) {
-        table = $('#tblprjcd').DataTable({
-
-            data: JSON.parse(response),
-            "bFilter": false,
-            "bLengthChange": false,
-            "bInfo": false,
-            "ordering": false,
-            "paging": false,
-            destroy: true,
-            "columns": [
-                {
-                    "data": null,
-                    className: "Border1",
-                    render: function (data, type, row) {
-                        return '<label>' + data.ProjectCD + '</label><label>' + data.ProjectName + '</label>';
-                    }
-                },
-
-                {
-                    "data": null,
-                    className: "Border1",
-                    render: function (data, type, row) {
-                        return '<label>' + data.BrandCD + '</label><label>' + data.BrandName + '</label>';
-                    }
-                },
-                {
-                    "data": null,
-                    className: "Border1",
-                    render: function (data, type, row) {
-                        return '<label>' + data.Year + '</label><label>' + data.Season + '</label>';
-                    }
-                },
-                {
-                    "data": null,
-                    className: "Border1",
-                    render: function (data, type, row) {
-                        return '<label>' + data.PeriodStart + '</label><label>' + data.PeriodEnd + '</label>';
-                    }
-                },
-                //{
-                //    "data": null,
-                //    className: "Border1",
-                //    render: function (data, type, row) {
-                //        return '<label>' + data.Production + '</label><label>' + data.SalesPrice + '</label>';
-                //    }
-                //},
-                //{
-                //    "data": null,
-                //    className: "Border1",
-                //    render: function (data, type, row) {
-                //        return '<label>' + data.HinbanCD + '</label><label>' + data.HinbanName + '</label>';
-                //    }
-                //},
-                //{
-                //    "data": null,
-                //    className: "Border1",
-                //    render: function (data, type, row) {
-                //        return '<label>' + data.BrandCode + '</label><label>' + data.BrandName + '</label>';
-                //    }
-                //},
-                //{
-                //    "data": null,
-                //    className: "Border1",
-                //    render: function (data, type, row) {
-                //        return '<label>' + data.ProjectCD + '</label><label>' + data.ProjectName + '</label>';
-                //    }
-                //},
-
-            ],
-
-        });
-    }
+   
 </script>
 }

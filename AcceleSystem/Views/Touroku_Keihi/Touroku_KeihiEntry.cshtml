@@ -11,8 +11,7 @@
 <div id="divMain" class="container-fluid">
     <div class="content">
         <div class="p-5 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white; border-radius:5px;">
-            <div class="col-md-3">
-            </div>
+            <div class="col-md-3"></div>
             <div class="col-md-6">
                 <div class="pt-3 md-form">
                     <label class="col-xl-6 text-center">経費</label>
@@ -21,8 +20,9 @@
                     <div class="col-xl-12" style="padding-left:65px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="SEQ" hidden>SEQ</label>
-                            <input type="text" tabindex="3" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostCD" name="CostCD" maxlength="10" required placeholder="経費コード" style="width:100px;">&nbsp;&nbsp;
-                            <label id="costname">経費名</label>
+                            <input type="text" tabindex="3" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostCD" name="CostCD" maxlength="10" required placeholder="経費コード" style="width:118px;">&nbsp;&nbsp;
+                            <label id="costname"></label>
+                            <label id="accounting"></label>
                         </div>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xl-12" style="padding-left:65px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="7" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="BrandCD" name="BrandCD" maxlength="10" required placeholder="ブランド" style="width:100px;">&nbsp;&nbsp;
+                            <input type="text" tabindex="7" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="BrandCD" name="BrandCD" maxlength="10" required placeholder="ブランド" style="width:118px;">&nbsp;&nbsp;
                             <label id="brandname">ブランド名</label>
                         </div>
                     </div>
@@ -47,9 +47,9 @@
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="season">シーズン</label>&nbsp;
                             <input type="radio" tabindex="11" id="allyear" name="allyear" checked>
-                            <label style="padding-right:25px!important;">通年</label>                      
+                            <label style="padding-right:25px!important;">通年</label>
                             <input type="radio" tabindex="12" id="SS" name="SS">
-                            <label style="padding-right:25px!important;">SS</label>                         
+                            <label style="padding-right:25px!important;">SS</label>
                             <input type="radio" tabindex="13" id="FW" name="FW">
                             <label style="padding-right:25px!important;">FW</label>
                         </div>
@@ -66,7 +66,7 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xl-12" style="padding-left:65px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="14" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="projectCD" name="projectCD" maxlength="10" required placeholder="プロジェクト" style="width:100px;">&nbsp;&nbsp;
+                            <input type="text" tabindex="14" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="projectCD" name="projectCD" maxlength="10" required placeholder="プロジェクト" style="width:118px;">&nbsp;&nbsp;
                             <label id="projectName">プロジェクト名</label>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xl-12" style="padding-left:65px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="16" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="PartCD" name="PartCD" maxlength="10" required placeholder="品番" style="width:100px;">&nbsp;&nbsp;
+                            <input type="text" tabindex="16" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="PartCD" name="PartCD" maxlength="10" required placeholder="品番" style="width:118px;">&nbsp;&nbsp;
                             <label id="partName">品番名</label>
                         </div>
                     </div>
@@ -82,7 +82,7 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xl-12" style="padding-left:65px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="16" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="MoldCD" name="MoldCD" maxlength="10" required placeholder="金型" style="width:100px;">&nbsp;&nbsp;
+                            <input type="text" tabindex="16" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="MoldCD" name="MoldCD" maxlength="10" required placeholder="金型" style="width:118px;">&nbsp;&nbsp;
                             <label id="moldname">金型名</label>
                         </div>
                     </div>
@@ -99,7 +99,7 @@
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="taxinclude">税込区分</label>&nbsp;
                             <input type="radio" tabindex="11" id="tax" name="Tax" checked>
-                            <label style="padding-right:25px!important;">税別</label>                           
+                            <label style="padding-right:25px!important;">税別</label>
                             <input type="radio" tabindex="12" id="nottax" name="NotTax">
                             <label style="padding-right:25px!important;">税込</label>
                         </div>
@@ -108,12 +108,12 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xl-12" style="padding-left:65px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="5" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this,'Keihi')" id="AmountMoney" name="AmountMoney" maxlength="10" required placeholder="金額" style="width:100px;">
+                            <input type="text" tabindex="5" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this,'Keihi')" id="AmountMoney" name="AmountMoney" maxlength="10" required placeholder="金額" style="width:118px;">
                             &nbsp;
-                            <input type="text" tabindex="6" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="BodyAmount" name="BodyAmount" maxlength="20" required placeholder="本体金額" style="width:100px;">
+                            <input type="text" tabindex="6" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="BodyAmount" name="BodyAmount" maxlength="20" required placeholder="本体金額" style="width:118px;">
                         </div>
                     </div>
-                </div>                
+                </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xl-12" style="padding-left:65px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
@@ -136,5 +136,202 @@
             <div class="col-md-3"></div>
         </div>
     </div>
+
 </div>
 
+
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#formtitle").text("経費検索");
+            $("#CostCD").focus();
+             var Mode = '@Model.Mode';
+            if (Mode == 'New') {
+                $('#btnSave').html('登録');
+
+                ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "costname", "accounting");
+                if ($("#accounting").text == "1") {
+                    RequiredCheck($("#projectCD"));
+                    RequiredCheck($("#PartCD"));
+                }
+                else if ($("#accounting").text == "2") {
+                    RequiredCheck($("#year"));
+                    RequiredCheck($("#BrandCD"));
+                    RequiredCheck($("#season"));
+                }
+                else if ($("#accounting").text == "3") {
+                    RequiredCheck($("#projectCD"));
+                }
+                else if ($("#accounting").text == "4") {
+                    RequiredCheck($("#MoldCD"));
+                }
+                else if ($("#accounting").text == "5") {
+                    RequiredCheck($("#Item"));
+                }
+
+                RequiredCheck($("#CostDate"));
+                DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi")');
+                FuscalCheck();
+
+                RequiredCheck($("#Year"));
+                RequiredCheck($("#BrandCD"));
+                RequiredCheck($("#PeriodStart"));
+                RequiredCheck($("#PeriodEnd"));
+                AlreadyExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")');
+                YearMonthCheck($("#Year"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
+                ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
+                DateCheck($("#PeriodStart"), '@Url.Action("Date_Checking", "api/CommonApi")');
+                DateCheck($("#PeriodEnd"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#PeriodStart").val());
+                ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
+            }
+            else if (Mode == 'Edit') {
+                $('#btnSave').html('更新');
+                $("#costname").attr('disabled', 'disabled');
+                $("#brandname").attr('disabled', 'disabled');
+                $("#CostCD").focus();
+
+                RequiredCheck($("#CostCD"));
+                ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "costname","accounting");
+                RequiredCheck($("#Year"));
+                RequiredCheck($("#BrandCD"));
+                RequiredCheck($("#PeriodStart"));
+                RequiredCheck($("#PeriodEnd"));
+                YearMonthCheck($("#Year"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
+                DateCheck($("#PeriodStart"), '@Url.Action("Date_Checking", "api/CommonApi")');
+                DateCheck($("#PeriodEnd"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#PeriodStart").val());
+                //ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
+
+                ShowData();
+            }
+            else  {
+                $('#btnSave').html('削除');
+                $("#ProjectCD").attr('disabled', 'disabled');
+                $("#ProjectName").attr('disabled', 'disabled');
+                $("#Year").attr('disabled', 'disabled');
+                $("#BrandCD").attr('disabled', 'disabled');
+                $("#Season").attr('disabled', 'disabled');
+                $("#PeriodStart").attr('disabled', 'disabled');
+                $("#PeriodEnd").attr('disabled', 'disabled');
+                $("#ProjectManager").attr('disabled', 'disabled');
+                $("#AllocationCount").attr('disabled', 'disabled');
+                $("#btnSave").focus();
+
+                ShowData();
+            }
+        });
+
+               function CompareDate(result) {
+                       if (result == 'OK') {
+                           DateCheck($("#PeriodEnd"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#PeriodStart").val());
+                       }
+                    }
+
+        function FiscalCheck() {
+            var Kmodel = {
+                CostDate = '@Model.CostDate',
+            };
+            var data = CalltoApiController('@Url.Action("M_Control_FiscalCheck", "api/Touroku_KeihiApi")', Kmodel);
+            var ProjectData = JSON.parse(data);
+
+        }
+           //set data
+        function ShowData() {
+            var Tmodel = {
+                ProjectCD: '@Model.ProjectCD',
+            };
+            var data = CalltoApiController('@Url.Action("M_Project_Select_Entry", "api/TourokuProjectApi")', Tmodel);
+            var ProjectData = JSON.parse(data);
+            $("#ProjectCD").val(ProjectData[0].ProjectCD);
+            $("#ProjectName").val(ProjectData[0].ProjectName);
+            $("#BrandCD").val(ProjectData[0].BrandCD);
+            $("#Year").val(ProjectData[0].Year);
+            $("#PeriodStart").val(ProjectData[0].PeriodStart);
+            $("#PeriodEnd").val(ProjectData[0].PeriodEnd);
+            $("#ProjectManager").val(ProjectData[0].ProjectManager);
+            $("#AllocationCount").val(ProjectData[0].AllocationCount);
+            if (!ProjectData[0].BrandName)
+                $("#BrandName").text("ブランド表示");
+            else $("#BrandName").text(ProjectData[0].BrandName);
+
+            if (!ProjectData[0].UserName)
+                $("#UserName").text("責任者表示");
+            else $("#UserName").text(ProjectData[0].UserName);
+
+            if (!ProjectData[0].TotalProduction)
+                $("#TotalProduction").text("総生産数表示");
+            else $("#TotalProduction").text(Projectdata[0].TotalProduction);
+
+            if (!ProjectData[0].TotalSalesPrice)
+                $("#TotalSalesPrice").text("総金額表示");
+            else $("#TotalSalesPrice").text(ProjectData[0].TotalSalesPrice);
+
+            //Bind Season
+            if (ProjectData[0].Season == "1")
+                $("#rdoyear").prop("checked", true);
+            else if (ProjectData[0].Season == "2")
+                $("#rdoss").prop("checked", true);
+            else
+                $("#rdofw").prop("checked", true);
+
+        }
+
+        function DoProcess() {
+            focusControl = $("#ProjectCD");
+             var Tmodel = {
+                 ProjectCD: $("#ProjectCD").val(),
+                 ProjectName: $("#ProjectName").val(),
+                 BrandCD: $("#BrandCD").val(),
+                 Year: $("#Year").val(),
+                 PeriodStart: $("#PeriodStart").val(),
+                 PeriodEnd: $("#PeriodEnd").val(),
+                 ProjectManager: $("#ProjectManager").val(),
+                 SalesPrice: $("#SalesPrice").val(),
+                 Production: $("#Production").val(),
+                 AllocationCount: $("#AllocationCount").val(),
+                 Mode:'@Model.Mode'
+            };
+
+            //For Season
+            if ($('#rdoyear').is(':checked'))
+                Tmodel.Season = "1";
+            else if ($('#rdoss').is(':checked'))
+                Tmodel.Season = "2";
+            else Tmodel.Season = "3";
+
+            var data = CalltoApiController('@Url.Action("Project_CUD", "api/TourokuProjectApi")', Tmodel);
+            ShowSuccessMessage(data,'@Url.Action("TourokuProject_List", "TourokuProject")');
+        }
+
+
+        function DeleteConfrim() {
+            DoProcess();
+        }
+
+
+        //save
+        function btnSaveClick() {
+            var res = ErrorCheckOnSave();
+            if (res == "0") {
+                var Mode = '@Model.Mode';
+                //show confirm message
+                if (Mode == "Delete") {
+                    ShowConfirmMessage("Q102", "DeleteConfrim");
+                }
+                else {
+                    DoProcess();
+                }
+            }
+            else
+                ShowErrorMessage(res);
+        }
+
+        function btnCancelClick() {
+            location.href = '@Url.Action("TourokuProject_List", "TourokuProject")';
+        }
+
+    </script>
+    <script src="@Url.Content("~/Scripts/datepicker.js")"></script>
+    <script src="@Url.Content("~/Scripts/datepicker.en.js")"></script>
+
+}

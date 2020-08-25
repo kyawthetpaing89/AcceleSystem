@@ -42,7 +42,7 @@
                                 <div class="col-md-12" style="padding-left:0px;">
                                     <div class="text-s text-custom1 text-uppercase mb-1">
                                         <label class="text" style="padding-right:20px;">シーズン</label>
-                                        <input type="checkbox" tabindex="3" id="degreeyear" name="checkbox" checked>
+                                        <input type="checkbox" tabindex="3" id="Degreeyear" name="checkbox" checked>
                                         <label style="padding-right:50px;" >度年</label>
                                         <input type="checkbox" id="SS" name="checkbox">
                                         <label style="padding-right:50px;">SS</label>
@@ -169,7 +169,7 @@
          ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
         $("#BrandName").attr('disabled', 'disabled');
         $("#ProjectName").attr('disabled', 'disabled');
-        $("#UserName").attr('disabled', 'disabled');
+        $("#ProjectManagerName").attr('disabled', 'disabled');
 
         GetProject();
     });
@@ -181,13 +181,22 @@
         }
 
         function btnSearchClick() {
-            var res = ErrorCheckOnSave();
-            if (res == "0") {
-                GetProject();
+            var degreeyear = $("#Degreeyear").is(":checked");
+            var ss = $("#SS").is(":checked");
+            var fw = $("#FW").is(":checked");
+            if (!degreeyear && !ss && !fw) {
+                var data = ShowErrorMessage("E111");
+                return data;
             }
             else {
-                ShowErrorMessage(res);
+                var res = ErrorCheckOnSave();
+                if (res == "0") {
+                    GetProject()
+                }
+                else
+                    ShowErrorMessage(res);
             }
+
         }
 
     function GetProject() {
@@ -200,10 +209,10 @@
             PeriodStart: $('#PeriodStart').val(),
             PeriodEnd: $('#PeriodEnd').val(),
             ProjectManager: $('#ProjectManager').val(),
-            UserName: $('#UserName').val(),
+            ProjectManagerName: $('#ProjectManagerName').val(),
         };
 
-        if ($('#degreeyear').is(':checked'))
+        if ($('#Degreeyear').is(':checked'))
             Tmodel.Season = "1";
         else if ($('#SS').is(':checked'))
             Tmodel.Season = "2";
@@ -268,7 +277,7 @@
                     "data": null,
                     className: "Border5",
                     render: function (data, type, row) {
-                        return '<label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\')" style="color:red">削除</a></label> <br/> <label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\')" style="color:green">複写</a></label><br/>';
+                        return '<label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:red">削除</a></label> <br/> <label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:green">複写</a></label><br/>';
                     }
                 },
             ],
@@ -287,24 +296,18 @@
         location.href = '@Url.Action("TourokuHinban_List", "TourokuProject")?Mode=New'
     }
 
-    function btnEditClick(BrandCD) {
-        location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?BrandCD=' + BrandCD + '&Mode=Edit';
+    function btnEditClick(BrandCD, ProjectCD) {
+        location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?ProjectCD=' + ProjectCD + '&BrandCD=' + BrandCD + '&Mode=Edit';
     }
 
-    function btnDelClick(BrandCD) {
-        location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?BrandCD=' + BrandCD + '&Mode=Delete';
+        function btnCopyClick(BrandCD, ProjectCD) {
+            location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?ProjectCD=' + ProjectCD + '&BrandCD=' + BrandCD + '&Mode=Copy';
+
+        }
+    function btnDelClick(BrandCD, ProjectCD) {
+        location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?ProjectCD=' + ProjectCD + '&BrandCD=' + BrandCD + '&Mode=Delete';
     }
     </script>
 
-    @*<script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/datatables.min.js")"></script>
-        <script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/dataTables.bootstrap.min.js")"></script>
-        <script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/dataTables.buttons.min.js")"></script>
-        <script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/buttons.bootstrap.min.js")"></script>
-        <script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/jszip.min.js")"></script>
-        <script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/vfs_fonts.js")"></script>
-        <script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/buttons.html5.min.js")"></script>
-        <script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/buttons.print.min.js")"></script>
-        <script src="@Url.Content(" ~/ElaAdmin/assets/js/lib/data-table/buttons.colVis.min.js")"></script>
-        <script src="@Url.Content(" ~/ElaAdmin/assets/js/init/datatables-init.js")"></script>*@
 
 }
