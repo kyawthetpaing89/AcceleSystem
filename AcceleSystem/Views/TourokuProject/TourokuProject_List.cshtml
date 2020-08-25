@@ -169,7 +169,7 @@
          ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
         $("#BrandName").attr('disabled', 'disabled');
         $("#ProjectName").attr('disabled', 'disabled');
-        $("#UserName").attr('disabled', 'disabled');
+        $("#ProjectManagerName").attr('disabled', 'disabled');
 
         GetProject();
     });
@@ -200,7 +200,7 @@
             PeriodStart: $('#PeriodStart').val(),
             PeriodEnd: $('#PeriodEnd').val(),
             ProjectManager: $('#ProjectManager').val(),
-            UserName: $('#UserName').val(),
+            ProjectManagerName: $('#ProjectManagerName').val(),
         };
 
         if ($('#degreeyear').is(':checked'))
