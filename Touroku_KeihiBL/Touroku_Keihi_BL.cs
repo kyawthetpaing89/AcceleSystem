@@ -71,5 +71,13 @@ namespace Touroku_KeihiBL
             kmodel.Sqlprms[0] = new SqlParameter("@SEQ", SqlDbType.Int) { Value = kmodel.SEQ };
             return bdl.SelectJson("M_Cost_Edit_List", kmodel.Sqlprms);
         }
+
+        public string M_Cost_FiscalCheck(Touroku_KeihiModel Kmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            Kmodel.Sqlprms = new SqlParameter[1];
+            Kmodel.Sqlprms[0] = new SqlParameter("@CostDate", SqlDbType.Date) { Value = Kmodel.CostDate };
+            return bdl.SelectJson("M_Cost_FiscalCheck", Kmodel.Sqlprms);
+        }
     }
 }

@@ -169,8 +169,11 @@
                 else if ($("#accounting").text == "5") {
                     RequiredCheck($("#Item"));
                 }
-               
-                RequiredCheck($("#ProjectName"));
+
+                RequiredCheck($("#CostDate"));
+                DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi")');
+                FuscalCheck();
+
                 RequiredCheck($("#Year"));
                 RequiredCheck($("#BrandCD"));
                 RequiredCheck($("#PeriodStart"));
@@ -224,7 +227,14 @@
                        }
                     }
 
+        function FiscalCheck() {
+            var Kmodel = {
+                CostDate = '@Model.CostDate',
+            };
+            var data = CalltoApiController('@Url.Action("M_Cost_FiscalCheck", "api/Touroku_KeihiApi")', Kmodel);
+            var ProjectData = JSON.parse(data);
 
+        }
            //set data
         function ShowData() {
             var Tmodel = {
