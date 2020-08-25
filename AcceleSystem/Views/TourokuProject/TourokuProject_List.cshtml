@@ -169,7 +169,7 @@
          ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
         $("#BrandName").attr('disabled', 'disabled');
         $("#ProjectName").attr('disabled', 'disabled');
-        $("#UserName").attr('disabled', 'disabled');
+        $("#ProjectManagerName").attr('disabled', 'disabled');
 
         GetProject();
     });
@@ -181,13 +181,22 @@
         }
 
         function btnSearchClick() {
-            var res = ErrorCheckOnSave();
-            if (res == "0") {
-                GetProject();
+            var allyear = $("#allyear").is(":checked");
+            var ss = $("#SS").is(":checked");
+            var fw = $("#FW").is(":checked");
+            if (!allyear && !ss && !fw) {
+                var data = ShowErrorMessage("E111");
+                return data;
             }
             else {
-                ShowErrorMessage(res);
+                var res = ErrorCheckOnSave();
+                if (res == "0") {
+                    GetData()
+                }
+                else
+                    ShowErrorMessage(res);
             }
+
         }
 
     function GetProject() {
@@ -200,7 +209,7 @@
             PeriodStart: $('#PeriodStart').val(),
             PeriodEnd: $('#PeriodEnd').val(),
             ProjectManager: $('#ProjectManager').val(),
-            UserName: $('#UserName').val(),
+            ProjectManagerName: $('#ProjectManagerName').val(),
         };
 
         if ($('#degreeyear').is(':checked'))
@@ -268,7 +277,7 @@
                     "data": null,
                     className: "Border5",
                     render: function (data, type, row) {
-                        return '<label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\')" style="color:red">削除</a></label> <br/> <label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\')" style="color:green">複写</a></label><br/>';
+                        return '<label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:red">削除</a></label> <br/> <label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:green">複写</a></label><br/>';
                     }
                 },
             ],
@@ -284,15 +293,15 @@
     }
 
      function btnNextClick() {
-        location.href = '@Url.Action("TourokuHinban_List", "TourokuProject")?Mode=New'
+        location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?Mode=New'
     }
 
-    function btnEditClick(BrandCD) {
-        location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?BrandCD=' + BrandCD + '&Mode=Edit';
+    function btnEditClick(BrandCD, ProjectCD) {
+        location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?ProjectCD=' + ProjectCD + '&BrandCD=' + BrandCD + '&Mode=Edit';
     }
 
-    function btnDelClick(BrandCD) {
-        location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?BrandCD=' + BrandCD + '&Mode=Delete';
+    function btnDelClick(BrandCD, ProjectCD) {
+        location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?ProjectCD=' + ProjectCD + '&BrandCD=' + BrandCD + '&Mode=Delete';
     }
     </script>
 
