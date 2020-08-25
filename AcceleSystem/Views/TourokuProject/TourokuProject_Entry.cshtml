@@ -148,7 +148,7 @@
                 YearMonthCheck($("#Year"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
                 DateCheck($("#PeriodStart"), '@Url.Action("Date_Checking", "api/CommonApi")');
                 DateCheck($("#PeriodEnd"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#PeriodStart").val());
-                //ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
+                ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
                 
                 ShowData();
             }
@@ -195,7 +195,8 @@
                 $("#BrandName").text("ブランド表示");
             else $("#BrandName").text(ProjectData[0].BrandName);
 
-            if (!ProjectData[0].UserName)
+            alert(ProjectData[0].ProjectManagerName);
+            if (!ProjectData[0].ProjectManagerName)
                 $("#ProjectManagerName").text("責任者表示");
             else $("#ProjectManagerName").text(ProjectData[0].ProjectManagerName);
 
