@@ -54,7 +54,7 @@
                             <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                                 <div class="col-xs-12">
                                     <div class="text-s text-custom1 text-uppercase mb-1">
-                                        <label style="padding:initial;width: 80px;">予定期間</label>
+                                        <label style="padding:initial;width: 130px;">予定期間</label>
 
                                         <input type="text" tabindex="7" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="StartDate" name="StartDate" maxlength="7" required>
                                         <label class="col-xl-1">~</label>
@@ -85,7 +85,7 @@
                             <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                                 <div class="col-xs-12">
                                     <div class="text-s text-custom1 text-uppercase mb-1">
-                                        <label style="padding:initial;width: 80px;">予定単価</label>
+                                        <label style="padding:initial;width: 130px;">予定単価</label>
 
                                         <input type="text" tabindex="13" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="StartPrice" name="StartPrice" maxlength="7" required placeholder="0">
                                         <label class="col-xl-1">~</label>
@@ -97,7 +97,7 @@
                             <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                                 <div class="col-xs-12">
                                     <div class="text-s text-custom1 text-uppercase mb-1">
-                                        <label style="width: 80px;">金型</label>
+                                        <label style="width: 130px;">金型</label>
                                         <input type="text" tabindex="15" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="CastingCD" name="CastingCD" maxlength="20" required>
 
                                         <input type="text" tabindex="16" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="CastingName" name="CastingName" maxlength="40" required>
@@ -108,7 +108,7 @@
                             <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                                 <div class="col-md-12" style="padding-left:0px;">
                                     <div class="text-s text-custom1 text-uppercase mb-1">
-                                        <label class="text" style="padding-right:20px;">納品状況</label>
+                                        <label class="text" style="padding-right:55px;">納品状況</label>
                                         <input type="checkbox" id="uncomplete" name="check">
                                         <label style="padding-right:20px;">納品残あり</label>
                                         <input type="checkbox" id="complete" name="">
@@ -166,7 +166,7 @@
 @section Scripts{
 <script type="text/javascript">
         $(document).ready(function () {
-            //alert("go");
+            $("#HinbanCD").focus();
             ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/TourokuProjectApi")', "CastingName");
             HinBanTable();
             //btnSearchClick();
@@ -177,10 +177,8 @@
         function HinbanCheck(result) {
             ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', $("#proCD").val());
         }
-
-
-
-        $("#PartNoCD").focus();
+    
+        
         function HinBanTable() {
             var model = {
 
@@ -219,8 +217,8 @@
                         "data": null,
                         render: function (data, type, row) {
                             return '<table ><tr><td >' +
-                                data.HinbanCD + '&nbsp;&nbsp;&nbsp'+'</td><th>' + data.HinbanName + '</th><tr>'
-                                + '<br/><tr><td>' + data.Casting + '&nbsp;&nbsp;&nbsp' + '</td><td>' + data.Production + '&nbsp;&nbsp;&nbsp' + '</td><td>' + data.SalesPrice + '&nbsp;&nbsp;&nbsp'+'</td><td>' + (data.Production * data.SalesPrice) +'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+ '</td><td>'
+                                data.HinbanCD + '&nbsp;&nbsp;&nbsp' + '</td><th>' + data.HinbanName + '</th><tr>'
+                                + '<br/><tr><td>' + data.Casting + '&nbsp;&nbsp;&nbsp' + '</td><td>' + data.Production + '&nbsp;&nbsp;&nbsp' + '</td><td>' + data.SalesPrice + '&nbsp;&nbsp;&nbsp' + '</td><td>' + data.TotalAmount + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + '</td><td>'
                                 + '</tr></table>';
 
                         }
@@ -276,7 +274,7 @@
         }
 
     function btnCopyClick(ProjectCD, HinbanCD) {
-        location.href = '@Url.Action("TourokuHinban_Entry", "TourokuProject")?HinbanCD=' + HinbanCD + '&ProjectCD=' + ProjectCD + ' &Mode=Delete';
+        location.href = '@Url.Action("TourokuHinban_Entry", "TourokuProject")?HinbanCD=' + HinbanCD + '&ProjectCD=' + ProjectCD + ' &Mode=Copy';
         }
 
     function ProjectCDCheck(result) {
