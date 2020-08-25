@@ -179,7 +179,29 @@
                 LessthanZeroCheck($("#saleprice"), "SalePrice", '@Url.Action("SalePrice_LessthanCheck", "api/TourokuProjectApi")');
             }
             else if (Mode == 'Delete') {
-
+                $('#btnSave').html('削除');
+                $("#ProjectCD").attr('disabled', 'disabled');
+                $("#ProjectName").attr('disabled', 'disabled');
+                $("#Year").attr('disabled', 'disabled');
+                $("#Season").attr('disabled', 'disabled');
+                $("#BrandCD").attr('disabled', 'disabled');
+                $("#BrandName").attr('disabled', 'disabled');
+                $("#StartDate").attr('disabled', 'disabled');
+                $("#EndDate").attr('disabled', 'disabled');
+                $("#totalProNo").attr('disabled', 'disabled');
+                $("#totalamount").attr('disabled', 'disabled');
+                $("#HinbanCD").attr('disabled', 'disabled');
+                $("#HinbanName").attr('disabled', 'disabled');
+                $("#Color").attr('disabled', 'disabled');
+                $("#Production").attr('disabled', 'disabled');
+                $("#DeliverNo").attr('disabled', 'disabled');
+                $("#saleparice").attr('disabled', 'disabled');
+                $("#Amount").attr('disabled', 'disabled');
+                $("#CastingCD").attr('disabled', 'disabled');
+                $("#CastingName").attr('disabled', 'disabled');
+                $("#freeitem1").attr('disabled', 'disabled');
+                $("#freeitem2").attr('disabled', 'disabled');
+                $("#btnSave").focus();
             }
         });
 
@@ -255,6 +277,10 @@
 
              var data = CalltoApiController('@Url.Action("Hinban_CUD", "api/TourokuProjectApi")', Tmodel);
             ShowSuccessMessage(data,'@Url.Action("TourokuHinban_Entry", "TourokuProject")');           
+        }
+
+        function DeleteConfirm() {
+
         }
 
          function btnCancelClick() {

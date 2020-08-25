@@ -235,7 +235,7 @@
                     {
                         "data": null,
                         render: function (data, type, row) {
-                            return '<label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:red">削除</a></label> <br/> <label><a href="#" onClick="btnCopyClick(\'' + data.HinbanCD + '\')" style="color:green">複写</a></label><br/>';
+                            return '<label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:red">削除</a></label> <br/> <label><a href="#" onClick="btnCopyClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:green">複写</a></label><br/>';
                         }
                     },
 
@@ -272,6 +272,10 @@
     }
 
     function btnDelClick(ProjectCD, HinbanCD) {
+        location.href = '@Url.Action("TourokuHinban_Entry", "TourokuProject")?HinbanCD=' + HinbanCD + '&ProjectCD=' + ProjectCD + ' &Mode=Delete';
+        }
+
+    function btnCopyClick(ProjectCD, HinbanCD) {
         location.href = '@Url.Action("TourokuHinban_Entry", "TourokuProject")?HinbanCD=' + HinbanCD + '&ProjectCD=' + ProjectCD + ' &Mode=Delete';
         }
 
