@@ -72,12 +72,12 @@ namespace Touroku_KeihiBL
             return bdl.SelectJson("M_Cost_Edit_List", kmodel.Sqlprms);
         }
 
-        public string M_Cost_FiscalCheck(Touroku_KeihiModel Kmodel)
+        public string M_Control_FiscalCheck(Touroku_KeihiModel Kmodel)
         {
             BaseDL bdl = new BaseDL();
-            Kmodel.Sqlprms = new SqlParameter[1];
-            Kmodel.Sqlprms[0] = new SqlParameter("@CostDate", SqlDbType.Date) { Value = Kmodel.CostDate };
-            return bdl.SelectJson("M_Cost_FiscalCheck", Kmodel.Sqlprms);
+            Kmodel.Sqlprms = new SqlParameter[0];
+           
+            return bdl.SelectJson("M_Control_FiscalCheck", Kmodel.Sqlprms);
         }
     }
 }

@@ -231,7 +231,7 @@
             var Kmodel = {
                 CostDate = '@Model.CostDate',
             };
-            var data = CalltoApiController('@Url.Action("M_Cost_FiscalCheck", "api/Touroku_KeihiApi")', Kmodel);
+            var data = CalltoApiController('@Url.Action("M_Control_FiscalCheck", "api/Touroku_KeihiApi")', Kmodel);
             var ProjectData = JSON.parse(data);
 
         }
