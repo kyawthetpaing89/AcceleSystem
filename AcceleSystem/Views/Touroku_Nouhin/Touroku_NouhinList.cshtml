@@ -10,16 +10,16 @@
 
 <div id="divMain" class="container-fluid">
     <div class="content">
-        <div class="p-5 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white; border-radius:5px;">
-            <div class="col-lg-4">
+        <div class="p-3 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white;">
+            <div class="col-md-4">
                 <div class="pt-3 md-form">
-                    <button id="btnAdd" onclick="btnNouhinEntry_Click()" class="btn" tabindex="38" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px; margin-right: 20px;">
+                    <button id="btnAdd" onclick="btnAdd_Click()" class="btn" tabindex="38" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px; margin-right: 20px;">
                         納品追加
                     </button>
-                    <button id="btnAdd" onclick="btnB/SNouhin_Click()" class="btn" tabindex="38" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px; margin-right: 20px;">
+                    <button id="btnB/S" onclick="btnB/SNouhin_Click()" class="btn" tabindex="38" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px; margin-right: 20px;">
                         B/S一括納品
                     </button>
-                    <button id="btnAdd" onclick="btnDelete_Click()" class="btn" tabindex="38" style="background-color:white; color:#1a8cff; border-radius:3px; border: 1px solid transparent; border-color:#1a8cff; margin-right: 20px;">
+                    <button id="btnDelete" onclick="btnDelete_Click()" class="btn" tabindex="38" style="background-color:white; color:#1a8cff; border-radius:3px; border: 1px solid transparent; border-color:#1a8cff; margin-right: 20px;">
                         削除
                     </button>
                 </div>
@@ -107,9 +107,9 @@
                     </div>
                 </div>
             </div>
-
-            <div class="col-lg-7">
-                    <table >
+            <div class="col-md-6" style="padding-left:0">
+                <div class="card-body card-block" style="width:80%;">
+                    <table  style="width:85%;">
                         <thead>
                             <tr>
                                 <th>納品日</th>
@@ -128,24 +128,24 @@
                             </tr>
                         </thead>
                     </table>
-                    <table  id="tblNouhin">
-                        <thead>
-                            <tr>
-                                <td>DeliveryDate</td>
-                                <td>Brand</td>
-                                <td>Season</td>
-                                <td>Year</td>                           
-                                <td>Project</td>
-                                <td>Hinban</td>
-                                <td></td>
-                                <td>Production</td>
-                                <td>DeliveryAmount</td>
-                            </tr>
-                        </thead>
-                    </table>
+                        <table id="tblNouhin" style="width:100%;padding-left:0px">
+                            <thead>
+                                <tr>
+                                    <td>DeliveryDate</td>
+                                    <td>Brand</td>
+                                    <td>Season</td>
+                                    <td>Year</td>
+                                    <td>Project</td>
+                                    <td>Hinban</td>
+                                    <td></td>
+                                    <td>Production</td>
+                                    <td>DeliveryAmount</td>
+                                </tr>
+                            </thead>
+                        </table>
                 </div>
             </div>
-            <div class="col-lg-1">
+            <div class="col-md-2"></div>
             </div>
         </div>
 </div>
@@ -235,28 +235,28 @@
                         "data": null,
                         className:"Border1",
                         render: function (data, type, row) {
-                            return '<label>' + data.DeliveryDate + '</label><br/><label>' + data.ProjectCD + '</label><br/><label>' + data.HinbanName +  '</label>';
+                            return '<label><b>' + data.DeliveryDate + '</b></label><br/><label><b>' + data.ProjectCD + '</b></label><br/><label><b>' + data.HinbanCD +  '</b></label>';
                         }
                     },
                     {
                         "data": null,
                         className: "Border2",
                         render: function (data, type, row) {
-                            return '<label>' + data.BrandName + '</label><br/><label>' + data.ProjectName + '</label><br/><label>' + data.HinbanName + '</label>';
+                            return '<label><b>' + data.BrandName + '</b></label><br/><label><b>' + data.ProjectName + '</b></label><br/><label><b>' + data.HinbanName + '</b></label>';
                         }
                     },
                     {
                         "data": null,
                         className: "Border3",
                         render: function (data, type, row) {
-                            return '<label>' + data.Season + '</label><br/><label>' + '' + '</label><br/><label>' + data.Production + '</label>';
+                            return '<label><b>' + data.Season + '</b></label><br/><label>' + '' + '</label><br/><label><b>' + data.Production + '</b></label>';
                         }
                     },
                     {
                         "data": null,
                         className: "Border4",
                         render: function (data, type, row) {
-                            return '<label>' + data.Year + '</label><br/><label>' + '' + '</label><br/><label>' + data.DeliveryAmount  + '</label>';
+                            return '<label><b>' + data.Year + '</b></label><br/><label>' + '' + '</label><br/><label><b>' + data.DeliveryAmount  + '</b></label>';
                         }
                     },
                     {
@@ -273,7 +273,7 @@
             });
         }
 
-    @*function btnAddClick() {
+    function btnAddClick() {
         location.href = '@Url.Action("KeihiSetteiEntry", "KeihiSettei")?Mode=New'
     }
 
@@ -283,7 +283,7 @@
 
     function btnDelClick(CostCD) {
         location.href = '@Url.Action("KeihiSetteiEntry", "KeihiSettei")?CostCD='+CostCD+'&Mode=Delete';
-        }*@
+        }
     </script>
 
     <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/datatables.min.js")"></script>
