@@ -42,7 +42,7 @@ namespace TourokuProjectBL
                 Tmodel.Sqlprms = new SqlParameter[9];
                 Tmodel.Sqlprms[0] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tmodel.ProjectCD };
                 Tmodel.Sqlprms[1] = new SqlParameter("@ProjectName", SqlDbType.VarChar) { Value = Tmodel.ProjectName };
-                Tmodel.Sqlprms[2] = new SqlParameter("@Year", SqlDbType.Int) { Value = (object)Tmodel.Year ?? DBNull.Value };
+                Tmodel.Sqlprms[2] = new SqlParameter("@Year", SqlDbType.Int) { Value = Tmodel.Year };
                 Tmodel.Sqlprms[3] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = Tmodel.BrandCD };
                 Tmodel.Sqlprms[4] = new SqlParameter("@Season", SqlDbType.TinyInt) { Value = Tmodel.Season };
                 Tmodel.Sqlprms[5] = new SqlParameter("@PeriodStart", SqlDbType.Int) { Value = (object)Tmodel.PeriodStart ?? DBNull.Value };
@@ -58,7 +58,7 @@ namespace TourokuProjectBL
                 Tmodel.Sqlprms = new SqlParameter[9];
                 Tmodel.Sqlprms[0] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tmodel.ProjectCD };
                 Tmodel.Sqlprms[1] = new SqlParameter("@ProjectName", SqlDbType.VarChar) { Value = Tmodel.ProjectName };
-                Tmodel.Sqlprms[2] = new SqlParameter("@Year", SqlDbType.Int) { Value = (object)Tmodel.Year ?? DBNull.Value };
+                Tmodel.Sqlprms[2] = new SqlParameter("@Year", SqlDbType.Int) { Value = Tmodel.Year };
                 Tmodel.Sqlprms[3] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = Tmodel.BrandCD };
                 Tmodel.Sqlprms[4] = new SqlParameter("@Season", SqlDbType.TinyInt) { Value = Tmodel.Season };
                 Tmodel.Sqlprms[5] = new SqlParameter("@PeriodStart", SqlDbType.Int) { Value = (object)Tmodel.PeriodStart ?? DBNull.Value };
