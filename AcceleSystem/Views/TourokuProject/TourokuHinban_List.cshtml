@@ -170,15 +170,6 @@
             HinBanTable();
         });
 
-
-    function HinbanCheck(result) {
-        if (result == 'OK') {
-            ExistsCheck($("#HinbanCD"),"Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "HinbanName", $("#proCD").val());
-        }
-    }
-
-
-
         
     function HinBanTable() {
         var model = {
@@ -321,6 +312,7 @@
         
         if (result == 'OK') {
             Check();
+            ExistsCheck($("#HinbanCD"),"Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "HinbanName", $("#proCD").val());
         }
     }
     function Check() {
