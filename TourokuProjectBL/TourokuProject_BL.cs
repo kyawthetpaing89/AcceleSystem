@@ -184,7 +184,10 @@ namespace TourokuProjectBL
             }
             else if (Tmodel.Mode.Equals("Delete"))
             {
-             
+                Tmodel.SPName = "M_Hinban_Delete";
+                Tmodel.Sqlprms = new SqlParameter[2];
+                Tmodel.Sqlprms[0] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = Tmodel.HinbanCD };
+                Tmodel.Sqlprms[1] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tmodel.ProjectCD };
             }
             return bdl.SelectJson(Tmodel.SPName, Tmodel.Sqlprms);
         }
