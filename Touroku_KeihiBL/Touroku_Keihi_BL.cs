@@ -75,8 +75,8 @@ namespace Touroku_KeihiBL
         public string M_Control_FiscalCheck(Touroku_KeihiModel Kmodel)
         {
             BaseDL bdl = new BaseDL();
-            Kmodel.Sqlprms = new SqlParameter[0];
-           
+            Kmodel.Sqlprms = new SqlParameter[1];
+            Kmodel.Sqlprms[0] = new SqlParameter("@CastDate", SqlDbType.Date) { Value = Kmodel.CostDate };
             return bdl.SelectJson("M_Control_FiscalCheck", Kmodel.Sqlprms);
         }
     }
