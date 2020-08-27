@@ -49,10 +49,10 @@
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <div class="custom-control custom-radio" style="padding-left:0px!important;">
                                 <label class="text" id="Season" style="padding-right:30px;">シーズン</label>
-                                <input type="radio" id="rdoyear" name="radio" checked>
-                                <label style="padding-right:40px;">通年</label>
+                                <input type="radio" tabindex="5" onkeydown="KeyDown(event,this)" id="rdoyear" name="radio" checked>
+                                <label for="rdoyear" style="padding-right:40px;">通年</label>
                                 <input type="radio" id="rdoss" name="radio">
-                                <label style="padding-right:40px;">SS</label>
+                                <label for="rdoss" style="padding-right:40px;">SS</label>
                                 <input type="radio" id="rdofw" name="radio">
                                 <label>FW</label>
                             </div>
@@ -129,7 +129,6 @@
                 RequiredCheck($("#PeriodStart"));
                 RequiredCheck($("#PeriodEnd"));
                 AlreadyExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")');
-                YearMonthCheck($("#Year"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
                 ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
                 DateCheck($("#PeriodStart"), '@Url.Action("Date_Checking", "api/CommonApi")');
                 DateCheck($("#PeriodEnd"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#PeriodStart").val());
@@ -145,7 +144,6 @@
                 RequiredCheck($("#BrandCD"));
                 RequiredCheck($("#PeriodStart"));
                 RequiredCheck($("#PeriodEnd"));
-                YearMonthCheck($("#Year"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
                 DateCheck($("#PeriodStart"), '@Url.Action("Date_Checking", "api/CommonApi")');
                 DateCheck($("#PeriodEnd"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#PeriodStart").val());
                 ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
@@ -161,7 +159,6 @@
                 RequiredCheck($("#BrandCD"));
                 RequiredCheck($("#PeriodStart"));
                 RequiredCheck($("#PeriodEnd"));
-                YearMonthCheck($("#Year"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
                 DateCheck($("#PeriodStart"), '@Url.Action("Date_Checking", "api/CommonApi")');
                 DateCheck($("#PeriodEnd"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#PeriodStart").val());
                 ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
@@ -244,14 +241,16 @@
                  ProjectName: $("#ProjectName").val(),
                  BrandCD: $("#BrandCD").val(),
                  Year: $("#Year").val(),
-                 PeriodStart: $("#PeriodStart").val(),
-                 PeriodEnd: $("#PeriodEnd").val(),
                  ProjectManager: $("#ProjectManager").val(),
-                 SalesPrice: $("#SalesPrice").val(),
+                 //PeriodStart: $("#PeriodStart").val(),
+                 //PeriodEnd: $("#PeriodEnd").val(),
                  Production: $("#Production").val(),
+                 SalesPrice: $("#SalesPrice").val(),
                  AllocationCount: $("#AllocationCount").val(),
                  Mode:'@Model.Mode'
             };
+
+
 
             //For Season
             if ($('#rdoyear').is(':checked'))

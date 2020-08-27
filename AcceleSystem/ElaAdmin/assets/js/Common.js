@@ -172,7 +172,9 @@ function ErrChk(ctrl) {
     }
 
     if ($(ctrl).val()) {
+       
         var dataExistsCheck = $(ctrl).attr("data-ExistsCheck");
+      
         if (dataExistsCheck) {
             var ApiURL = $(ctrl).attr("data-ExistsApiUrl");
             var param1 = $(ctrl).attr("data-Param1");
@@ -344,7 +346,8 @@ function ErrChk(ctrl) {
                     break;
                 case "Hinban":
                     var model = {
-                        HinbanCD: $(ctrl).val()
+                        HinbanCD: $(ctrl).val(),
+                        ProjectCD: param1
                     };
                     var data = CalltoApiController(ApiURL, model);
                     var HinbanData = JSON.parse(data);

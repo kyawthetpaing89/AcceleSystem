@@ -1,8 +1,153 @@
-﻿
+﻿@model Models.TourokuNouhinModel
+
 @{
     ViewBag.Title = "Touroku_NouhinEntry";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Touroku_NouhinEntry</h2>
+@section Styles{
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
+}
 
+<div id="divMain" class="container-fluid">
+    <div class="content">
+        <div class="p-5 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white; border-radius:5px;">
+            <div class="col-xs-12 col-md-3"></div>
+            <div class="col-xs-12 col-md-6">
+                <div>
+                    <h2 class=" hr-text text-center">納品登録</h2>
+                </div>
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xs-12">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="ProjectCD" name="txtProjectCD" maxlength="10" required placeholder="プロジェクトコード">
+                            <label id="KanjoName"><b>プロジェクト表示</b></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xs-12">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <input type="text" tabindex="3" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this)" id="Year" name="txtYear" maxlength="4" required placeholder="年度">
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xs-12">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <input type="text" tabindex="4" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="BrandCD" name="txtBrandCD" maxlength="20" required placeholder="ブランドコード">
+                            <label id="HojoName"><b>ブランド表示</b></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style=" padding-top:1.2rem!important;">
+                    <div class="col-xl-12" style="padding-left: 0px">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <div class="custom-control custom-radio" style="padding-left:0px!important;">
+                                <label class="text" style="padding-right:20px!important">シーズン</label>
+                                <input type="radio" tabindex="5" id="rdoAllYear" name="radioA" onkeydown="KeyDown(event,this)" checked>
+                                <label for="rdoC" style="padding-right:8px!important">通年</label>
+                                <input type="radio" id="rdoSS" name="radioS">
+                                <label for="rdoS" style="padding-right:8px!important">SS</label>
+                                <input type="radio" id="rdoFW" name="radioF">
+                                <label for="rdoF" style="padding-right:8px!important">FW</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xs-12">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <input type="text" tabindex="6" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="DeliDate" name="txtDeliDate" maxlength="10" required placeholder="納品日">
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xs-12">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <input type="text" tabindex="7" class="text-line col-xl-9 text-left" onkeydown="KeyDown(event,this)" id="Remarks" name="txtRemarks" maxlength="40" required placeholder="備考">
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form">
+                    <div class="col-xl-12 text-center">
+                        <div class="text-s text-custom1 text-uppercase mb-1" style="padding-left:165px;">
+                            <button id="btnSave" tabindex="8" onclick="btnAllCheck()" class="btn col-xl-2 text-center" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px;">全選択</button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <button id="btnCancel" tabindex="9" onclick="btnAllUnCheck()" class="btn col-xl-2 text-center" style="background-color:white; color:#1a8cff; border-radius:3px; border: 1px solid transparent; border-color:#1a8cff;">全解除</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-3"></div>
+            <div class="p-5 col shadow">
+                <div class="container">
+                    <div class="row">
+                        <table class="tb1 col-sm-12">
+                            <thead>
+                                <tr>
+                                    <th style="padding-right:6px">対象</th>
+                                    <th style="padding-right:60px">品番名</th>
+                                    <th style="padding-right:34px">生産数</th>
+                                    <th style="padding-right:32px">累計納品数</th>
+                                    <th>今回納品数</th>
+                                    <th>今回納品数</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <table id="tblKeihi" class="tb1 col-sm-12">
+                            <thead>
+                                <tr>
+                                    <td style="padding-right:17px">chk</td>
+                                    <td style="padding-right:63px">HinBan</td>
+                                    <td style="padding-right:8px">Production</td>
+                                    <td style="padding-right:5px">DeliveryAmount</td>
+                                    <td style="padding-right:23px">NoOfDeli</td>
+                                    <td>NoOfunDeli</td>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-xl-12 text-center" style="padding-top:1.4rem!important;">
+                    <div class="text-s text-custom1 text-uppercase mb-1" style="padding-left:30px;">
+                        <button id="btnSave" tabindex="8" onclick="btnSaveClick()" class="btn btn-dark col-xl-2 text-center">登録</button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <button id="btnCancel" tabindex="9" onclick="btnCancelClick()" class="btn btn-primary col-xl-2 text-center">戻る</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#formtitle").text("納品登録");
+            var Mode = '@Model.Mode';
+            if (Mode == 'New') {
+                $('#btnSave').html('登録');
+
+                //For Error Check
+                RequiredCheck($("#ProjectCD"));
+                RequiredCheck($("#DeliDate"));
+                ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Kanjo_ExistsCheck", "api/Touroku_NouhinApi")', "KanjoName");
+            }
+            else if (Mode == 'Edit') {
+                $('#btnSave').html('更新');
+
+                RequiredCheck($("#DeliDate"));
+            }
+            else {
+                $('#btnSave').html('削除');
+                $("#ProjectCD").attr('disabled', 'disabled');
+                $("#Year").attr('disabled', 'disabled');
+                $("#BrandCD").attr('disabled', 'disabled');
+                $("#DeliDate").attr('disabled', 'disabled');
+                $("#Remarks").attr('disabled', 'disabled');
+                $("#btnSave").focus();
+            }
+    </script>
+}
