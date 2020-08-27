@@ -31,5 +31,6 @@ namespace AcceleSystem.Controllers
             Common_BL cmbl = new Common_BL();
             return cmbl.DateComapre(BModel.startDate, BModel.endDate);
         }
+
     }
 }
