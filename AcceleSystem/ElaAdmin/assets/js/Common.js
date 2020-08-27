@@ -516,21 +516,20 @@ function ErrChk(ctrl) {
                         return "0";
                     }
                 }
-                //else (param1 == "2") {
-                //    var ApiURL = "/api/Touroku_KeihiApi/M_Control_FiscalCheck";
-                //    var model = {
-                //        inputdate: $(ctrl).val(),
-                //    };
-                //    var data = CalltoApiController(ApiURL, model);
-                //    var dateData = JSON.parse(data);
-                //    if (dateData[0].flg == "false") {
-                //        return "E115";
-                //    }
-                //    else if (dateData[0].flg == "true") {
-                //        $(ctrl).val(dateData[0].resultdate);
-                //        return "0";
-                //    }
-                //}
+                else if(param1 == "2") {
+                    var ApiURL = "%2Fapi%2FTouroku_KeihiApi%2FM_Control_FiscalCheck";
+                    var model = {
+                        inputdate: dataresult,
+                    };
+                    var data = CalltoApiController(ApiURL, model);
+                    var dateData = JSON.parse(data);
+                    if (dateData[0].MessageID != "E115") {
+                        return "0";
+                    }
+                    else {
+                        return dateData[0].MessageID;
+                    }
+                }
             
                 $(ctrl).val(dateData[0].resultdate);
                 return "0";
