@@ -14,10 +14,10 @@
             <div class="card-body card-block">
                 <div class="row form-group">
                     <div class="col col-md-12">
-                        <button id="btnAdd" onclick="btnnextClick()" class="btn" tabindex="38" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px; margin-right: 20px;">
+                        <button id="btnAdd" onclick="btnnextClick()" class="btn" tabindex="40" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px; margin-left: 20px; margin-right: 20px;">
                             品番情報
                         </button>
-                        <button id="btnAdd" onclick="btnAddClick()" class="btn" tabindex="38" style="background-color:white; color:#1a8cff; border-radius:3px; border: 1px solid transparent; border-color:#1a8cff; margin-right: 20px;">
+                        <button id="btnAdd" onclick="btnAddClick()" class="btn" tabindex="40" style="background-color:white; color:#1a8cff; border-radius:3px; border: 1px solid transparent; border-color:#1a8cff; margin-right: 20px;">
                             プロジェクト検索
                         </button>
 
@@ -257,7 +257,7 @@
                         return '<label>' + '' + '</label><br/><label>' + data.TotalAmount + '</label></b><br/><label>' + '' + '</label>';
                     }
                 },
-
+               
                 {
                     "data": null,
                     className: "Border5",
@@ -328,9 +328,15 @@
     }
 
     function CheckPrice(result) {
+        //var Tmodel = {
+        //    var StartPrice = $('#StartPrice').val();
+        //    var EndPrice = $('#EndPrice').val();
+        //};
         if (result == 'OK') {
             var StartPrice= $('#StartPrice').val();
-            var EndPrice= $('#EndPrice').val();
+            var EndPrice = $('#EndPrice').val();
+            //var StartPrice = 100;
+            //var EndPrice = 50;
             if (StartPrice >= EndPrice) {
                 var data = ShowErrorMessage("E124");
                 return data;
