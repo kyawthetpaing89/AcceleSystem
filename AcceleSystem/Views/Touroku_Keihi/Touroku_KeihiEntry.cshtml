@@ -1,4 +1,4 @@
-﻿
+﻿@model Models.Touroku_KeihiModel
 @{
     ViewBag.Title = "Touroku_KeihiEntry";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -146,9 +146,12 @@
         $(document).ready(function () {
             $("#formtitle").text("経費検索");
             $("#CostCD").focus();
-             var Mode = '@Model.Mode';
-            if (Mode == 'New') {
+            var Mode = '@Model.Mode';
+            if (Mode == 'New') {  
                 $('#btnSave').html('登録');
+                @*DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi")');*@
+                DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi"), "2" ');
+                FiscalCheck();
 
                 ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "costname", "accounting");
                 if ($("#accounting").text == "1") {
@@ -170,11 +173,7 @@
                     RequiredCheck($("#Item"));
                 }
 
-                RequiredCheck($("#CostDate"));
-                DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi")');
-                FuscalCheck();
-
-                RequiredCheck($("#Year"));
+                @*RequiredCheck($("#Year"));
                 RequiredCheck($("#BrandCD"));
                 RequiredCheck($("#PeriodStart"));
                 RequiredCheck($("#PeriodEnd"));
@@ -183,7 +182,7 @@
                 ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
                 DateCheck($("#PeriodStart"), '@Url.Action("Date_Checking", "api/CommonApi")');
                 DateCheck($("#PeriodEnd"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#PeriodStart").val());
-                ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
+                ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");*@
             }
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
@@ -191,17 +190,7 @@
                 $("#brandname").attr('disabled', 'disabled');
                 $("#CostCD").focus();
 
-                RequiredCheck($("#CostCD"));
-                ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "costname","accounting");
-                RequiredCheck($("#Year"));
-                RequiredCheck($("#BrandCD"));
-                RequiredCheck($("#PeriodStart"));
-                RequiredCheck($("#PeriodEnd"));
-                YearMonthCheck($("#Year"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
-                DateCheck($("#PeriodStart"), '@Url.Action("Date_Checking", "api/CommonApi")');
-                DateCheck($("#PeriodEnd"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#PeriodStart").val());
-                //ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
-
+               
                 ShowData();
             }
             else  {
@@ -221,22 +210,21 @@
             }
         });
 
-               function CompareDate(result) {
-                       if (result == 'OK') {
-                           DateCheck($("#PeriodEnd"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#PeriodStart").val());
-                       }
-                    }
-
         function FiscalCheck() {
-            var Kmodel = {
-                CostDate = '@Model.CostDate',
+            var kmodel = {
+                CostCD: $('#CostCD').val(),
             };
-            var data = CalltoApiController('@Url.Action("M_Control_FiscalCheck", "api/Touroku_KeihiApi")', Kmodel);
+            alert("aa");
+            var data = CalltoApiController('@Url.Action("M_Control_FiscalCheck", "api/Touroku_KeihiApi")', kmodel);
             var ProjectData = JSON.parse(data);
+            if (ProjectData[0].val = "1") {
+                var data = ShowErrorMessage("E115");
+                return data;
+            }
 
         }
            //set data
-        function ShowData() {
+        @*function ShowData() {
             var Tmodel = {
                 ProjectCD: '@Model.ProjectCD',
             };
@@ -274,9 +262,9 @@
             else
                 $("#rdofw").prop("checked", true);
 
-        }
+        }*@
 
-        function DoProcess() {
+        @*function DoProcess() {
             focusControl = $("#ProjectCD");
              var Tmodel = {
                  ProjectCD: $("#ProjectCD").val(),
@@ -301,7 +289,7 @@
 
             var data = CalltoApiController('@Url.Action("Project_CUD", "api/TourokuProjectApi")', Tmodel);
             ShowSuccessMessage(data,'@Url.Action("TourokuProject_List", "TourokuProject")');
-        }
+        }*@
 
 
         function DeleteConfrim() {
