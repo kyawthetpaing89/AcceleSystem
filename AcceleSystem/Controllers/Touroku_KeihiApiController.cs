@@ -43,10 +43,10 @@ namespace AcceleSystem.Controllers
             return kgbl.M_Cost_Edit_List(kgmodel);
         }
 
-        public string M_Control_FiscalCheck([FromBody] Touroku_KeihiModel kgmodel)
+        public string M_Control_FiscalCheck([FromBody] BaseModel BModel)
         {
             Touroku_Keihi_BL kgbl = new Touroku_Keihi_BL();
-            return kgbl.M_Control_FiscalCheck(kgmodel);
+            return kgbl.M_Control_FiscalCheck(BModel);
         }
     }
 }

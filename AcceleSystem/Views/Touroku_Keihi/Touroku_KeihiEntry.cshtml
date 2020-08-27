@@ -149,11 +149,11 @@
             var Mode = '@Model.Mode';
             if (Mode == 'New') {  
                 $('#btnSave').html('登録');
-                @*DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi")');*@
-                DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi"), "2" ');
+                 ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "costname", "accounting");
+                DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi")', "2" );
                 FiscalCheck();
 
-                ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "costname", "accounting");
+                @*ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "costname", "accounting");
                 if ($("#accounting").text == "1") {
                     RequiredCheck($("#projectCD"));
                     RequiredCheck($("#PartCD"));
@@ -213,8 +213,7 @@
         function FiscalCheck() {
             var kmodel = {
                 CostCD: $('#CostCD').val(),
-            };
-            alert("aa");
+            };          
             var data = CalltoApiController('@Url.Action("M_Control_FiscalCheck", "api/Touroku_KeihiApi")', kmodel);
             var ProjectData = JSON.parse(data);
             if (ProjectData[0].val = "1") {
