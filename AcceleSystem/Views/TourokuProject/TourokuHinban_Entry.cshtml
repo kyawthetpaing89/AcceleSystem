@@ -133,7 +133,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            var Mode = '@Model.Mode'; alert(Mode);
+            var Mode = '@Model.Mode'; 
             if (Mode == 'New') {
                 $('#btnSave').html('登録');
              
@@ -194,7 +194,7 @@
                 $("#Color").attr('disabled', 'disabled');
                 $("#Production").attr('disabled', 'disabled');
                 $("#DeliverNo").attr('disabled', 'disabled');
-                $("#saleparice").attr('disabled', 'disabled');
+                $("#saleprice").attr('disabled', 'disabled');
                 $("#Amount").attr('disabled', 'disabled');
                 $("#CastingCD").attr('disabled', 'disabled');
                 $("#CastingName").attr('disabled', 'disabled');
@@ -229,7 +229,7 @@
         }
 
         function ShowData() {
-            alert("showdata");
+          
             var Tmodel = {
                 HinbanCD: '@Model.HinbanCD',
                 ProjectCD: '@Model.ProjectCD'
@@ -261,20 +261,25 @@
         
         //insert,update
         function DoProcess() {
-            var cost = DCost_Check(); alert(cost);
-            var delivery = D_Delivery_Check(); alert(delivery);
-            var Tmodel = {
-                HinbanCD: $("#HinbanCD").val(),
-                ProjectCD: $("#ProjectCD").val(),
-                Mode:'@Model.Mode'
-            };
-            if (cost == "E119" || delivery == "E126") {
-               
+            var cost = DCost_Check();
+            if (cost == "E119") {
+                ShowErrorMessage("E119");
             }
             else {
-                 var data = CalltoApiController('@Url.Action("Hinban_CUD", "api/TourokuProjectApi")', Tmodel);
-                ShowSuccessMessage(data, '@Url.Action("TourokuHinban_Entry", "TourokuProject")');
-            }     
+                var delivery = D_Delivery_Check();
+                if (delivery == "E126") {
+                    ShowErrorMessage("E126");
+                }
+                else {
+                    var Tmodel = {
+                        HinbanCD: $("#HinbanCD").val(),
+                        ProjectCD: $("#ProjectCD").val(),
+                        Mode: '@Model.Mode'
+                    };
+                    var data = CalltoApiController('@Url.Action("Hinban_CUD", "api/TourokuProjectApi")', Tmodel);
+                    ShowSuccessMessage(data, '@Url.Action("TourokuHinban_List", "TourokuProject")');
+                }
+            }
         }
 
         function DeleteConfrim() {
@@ -287,9 +292,8 @@
                  ProjectCD: $("#ProjectCD").val(),
             };
             var data = CalltoApiController('@Url.Action("M_Hinban_DCost_Check", "api/TourokuProjectApi")', Tmodel);
-            var checkdata = JSON.parse(data);
+            var checkdata = JSON.parse(data); 
             if (checkdata[0].MessageID == 'E119') {
-
                 return checkdata[0].MessageID;
             }
             else {
@@ -305,7 +309,6 @@
             var data = CalltoApiController('@Url.Action("M_Hinban_D_Delivery_Check", "api/TourokuProjectApi")', Tmodel);
             var checkdata = JSON.parse(data);
             if (checkdata[0].MessageID == 'E126') {
-
                 return checkdata[0].MessageID;
             }
             else {
