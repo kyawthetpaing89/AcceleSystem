@@ -207,13 +207,25 @@
 
         function ProjectCheck(result) {
             if (result == 'OK') {
-                @*RequiredCheck($("#HinbanCD"));
-                AlreadyExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', $("#ProjectCD").val());*@
-                
+                RequiredCheck($("#HinbanCD"));
+                AlreadyExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', $("#ProjectCD").val());
                 prjCheck();
             }
         }
 
+        function CheckProduction(result) {
+            if (result == 'OK') {
+                var pro = $('#Production').val();
+                var del = $('#DeliverNo').val();
+                var Production = parseInt(pro);
+                var DeliverNo = parseInt(del);
+                if (Production < DeliverNo) {
+                    var data = ShowErrorMessage("E125");
+                    return data;
+                }
+
+            }
+        }
         function btnSaveClick() {
             var res = ErrorCheckOnSave();
             if (res == "0") {
@@ -339,6 +351,7 @@
             $("#EndDate").val(hbdata[0].PeriodEnd);
             $("#totalProNo").val(hbdata[0].TotalProduction);
             $("#totalamount").val(hbdata[0].TotalAmount);
+            $("#DeliverNo").val(hbdata[0].DeliverNo);
 
         }
 
