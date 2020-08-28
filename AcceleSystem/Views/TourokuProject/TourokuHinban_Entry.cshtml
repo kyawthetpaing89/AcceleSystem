@@ -207,9 +207,8 @@
 
         function ProjectCheck(result) {
             if (result == 'OK') {
-                @*RequiredCheck($("#HinbanCD"));
-                AlreadyExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', $("#ProjectCD").val());*@
-               
+                RequiredCheck($("#HinbanCD"));
+                AlreadyExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', $("#ProjectCD").val());
                 prjCheck();
             }
         }
