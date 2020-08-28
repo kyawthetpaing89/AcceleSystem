@@ -246,8 +246,8 @@
                  BrandCD: $("#BrandCD").val(),
                  Year: $("#Year").val(),
                  ProjectManager: $("#ProjectManager").val(),
-                 //PeriodStart: $("#PeriodStart").val(),
-                 //PeriodEnd: $("#PeriodEnd").val(),
+                 PeriodStart: $("#PeriodStart").val(),
+                 PeriodEnd: $("#PeriodEnd").val(),
                  Production: $("#Production").val(),
                  SalesPrice: $("#SalesPrice").val(),
                  AllocationCount: $("#AllocationCount").val(),
@@ -255,11 +255,11 @@
             };
 
             //For PeriodStart
-            if ($("#PeriodStart").val($.format.date(new Date(), 'yyyy/mm/dd')));
+            //if ($("#PeriodStart").val($.format.date(new Date(), 'yyyy/mm/dd')));
 
-            //For PeriodEnd
+            ////For PeriodEnd
 
-            if ($("#PeriodEnd").val($.format.date(new Date(), 'yyyy/mm/dd')));
+            //if ($("#PeriodEnd").val($.format.date(new Date(), 'yyyy/mm/dd')));
 
             //For Season
             if ($('#rdoyear').is(':checked'))

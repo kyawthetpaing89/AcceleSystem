@@ -33,6 +33,14 @@ namespace AcceleSystem.Controllers
         [HttpPost]
         public string Project_CUD([FromBody] TourokuProjectModel Tmodel)
         {
+            if (!string.IsNullOrWhiteSpace(Tmodel.PeriodStart))
+            {
+                Tmodel.PeriodStart = Tmodel.PeriodStart.Replace("/", "");
+            }
+            if (!string.IsNullOrWhiteSpace(Tmodel.PeriodEnd))
+            {
+                Tmodel.PeriodEnd = Tmodel.PeriodEnd.Replace("/", "");
+            }
             TourokuProject_BL Tpbl = new TourokuProject_BL();
             return Tpbl.Project_CUD(Tmodel);
         }
