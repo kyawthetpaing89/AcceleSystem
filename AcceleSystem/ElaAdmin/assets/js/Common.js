@@ -189,6 +189,8 @@ function ErrChk(ctrl) {
                         if ($(ctrl).attr("data-NameCtrl")) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
                             $('#' + ctrlName).val(UserData[0].UserName);
+                            $('#' + ctrlName).text(UserData[0].UserName);
+                            
                             return "0";
                         }
                     }
@@ -209,7 +211,6 @@ function ErrChk(ctrl) {
                     var data = CalltoApiController(ApiURL, model);
                     var BrandData = JSON.parse(data);
                     if (BrandData[0].MessageID != "E101") {
-                        alert(BrandData[0].BrandName);
                         if ($(ctrl).attr("data-NameCtrl")) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
                             $('#' + ctrlName).val(BrandData[0].BrandName);
@@ -335,6 +336,8 @@ function ErrChk(ctrl) {
                         if ($(ctrl).attr("data-NameCtrl")) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
                             $('#' + ctrlName).val(ProjectData[0].ProjectName);
+                            
+                            
                             return "0";
                         }
                     }
