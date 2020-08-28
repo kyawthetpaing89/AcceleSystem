@@ -209,9 +209,11 @@ function ErrChk(ctrl) {
                     var data = CalltoApiController(ApiURL, model);
                     var BrandData = JSON.parse(data);
                     if (BrandData[0].MessageID != "E101") {
+                        alert(BrandData[0].BrandName);
                         if ($(ctrl).attr("data-NameCtrl")) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
                             $('#' + ctrlName).val(BrandData[0].BrandName);
+                            $('#' + ctrlName).text(BrandData[0].BrandName);
                             return "0";
                         }
                     }
