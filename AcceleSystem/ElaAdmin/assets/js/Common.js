@@ -218,7 +218,7 @@ function ErrChk(ctrl) {
                     else {
                         if ($(ctrl).attr("data-NameCtrl")) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
-                            $('#' + ctrlName).va("");
+                            $('#' + ctrlName).val("");
                             return BrandData[0].MessageID;
                         }
                     }
