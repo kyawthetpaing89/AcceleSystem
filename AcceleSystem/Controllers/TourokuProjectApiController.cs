@@ -135,5 +135,14 @@ namespace AcceleSystem.Controllers
             return tbl.LessthanZero_Checking(Tmodel.SalePrice);
 
         }
+
+        [UserAuthentication]
+        [HttpPost]
+        public string M_Hinban_Price_Check([FromBody] TourokuProjectModel Tmodel)
+        {
+            TourokuProject_BL tbl = new TourokuProject_BL();
+            return tbl.M_Hinban_Price_Check(Tmodel);
+
+        }
     }
 }
