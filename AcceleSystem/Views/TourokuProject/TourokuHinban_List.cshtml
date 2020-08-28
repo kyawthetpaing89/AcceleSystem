@@ -130,26 +130,22 @@
         </div>
         <div class="col-lg-5">
             <div class="card-body card-block">
-                <table id="tblHinban" class="tb1 col-sm-12" style="padding-left:0px;" >
-                    <thead >
+                <table class="tb1 col-sm-12" style="padding-left:0px;">
+                    <thead>
                         <tr>
                             <td>納品日</td>
                             <th>品番名</th>
-                            <td></td>
-                            <td></td>
-                            <td></td>
                         </tr>
                         <tr>
                             <td>品番</td>
                             <td>生産数</td>
                             <td>予定単価</td>
                             <td>総金額</td>
-                            <td></td>
                         </tr>
                     </thead>
-                    
+
                 </table>
-                @*<table id="tblHinban" class="tb1 col-sm-12" style="padding-left:0px;">
+                <table id="tblHinban" class="tb1 col-sm-12" style="padding-left:0px;">
                     <thead>
                         <tr>
                             <td></td>
@@ -162,7 +158,7 @@
                         </tr>
                     </thead>
 
-                </table>*@
+                </table>
 
             </div>
 
@@ -211,7 +207,6 @@
             "bFilter": false,
             "bLengthChange": false,
             "bInfo": false,
-            "ordering": false,
             "pagingType": "simple_numbers",
             destroy: true,
             "columns": [
@@ -219,8 +214,8 @@
                 //    "data": null,
                 //    render: function (data, type, row) {
                 //        return '<table ><tr><td >' +
-                //            data.HinbanCD + '&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp' + '</td><th>' + data.HinbanName + '</th><tr>'
-                //            + '<br/><tr><td>' + data.Casting + '&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp' + '</td><td>' + data.Production + '&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp' + '</td><td>' + data.SalesPrice + '&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp' + '</td><td>' + data.TotalAmount + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + '</td><td>'
+                //            data.HinbanCD + '&nbsp;&nbsp;&nbsp' + '</td><th>' + data.HinbanName + '</th><tr>'
+                //            + '<br/><tr><td>' + data.Casting + '&nbsp;&nbsp;&nbsp' + '</td><td>' + data.Production + '&nbsp;&nbsp;&nbsp' + '</td><td>' + data.SalesPrice + '&nbsp;&nbsp;&nbsp' + '</td><td>' + data.TotalAmount + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + '</td><td>'
                 //            + '</tr></table>';
 
                 //    }
@@ -267,14 +262,14 @@
                     "data": null,
                     className: "Border5",
                     render: function (data, type, row) {
-                        return '<label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:blue">編集</a></label><br/><label style="margin-top:0px;"><a href="#" onClick="btnDelClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:red">削除</a></label> <br/> <label ><a href="#" onClick="btnCopyClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:green">複写</a></label><br/>';
+                        return '<label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:red">削除</a></label> <br/> <label><a href="#" onClick="btnCopyClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:green">複写</a></label><br/>';
                     }
                 },
 
             ],
-            //"drawCallback": function (settings) {
-            //    $("#tblHinban thead").remove();
-            //}
+            "drawCallback": function (settings) {
+                $("#tblHinban thead").remove();
+            }
         });
 
     }
@@ -333,19 +328,26 @@
     }
 
     function CheckPrice(result) {
+
         if (result == 'OK') {
-            var sp= $('#StartPrice').val();
-            var ep = $('#EndPrice').val();
-            var StartPrice = parseInt(sp);
-            var EndPrice = parseInt(ep);
-            if (StartPrice >= EndPrice) {
+          
+            var Tmodel = {
+                StartPrice: $('#StartPrice').val(),
+                EndPrice:  $('#EndPrice').val(),
+            };
+             var data = CalltoApiController('@Url.Action("M_Hinban_Price_Check", "api/TourokuProjectApi")', Tmodel);
+            var SalePriceData = JSON.parse(data);
+            if (SalePriceData[0].flg == "false") {
                 var data = ShowErrorMessage("E124");
                 return data;
-                $("#StartPrice").focus();
             }
-
-        } 
+            else {
+                return "0";
+            }
+            
+        }
     }
+   
 
     function Check() {
         var Tmodel = {

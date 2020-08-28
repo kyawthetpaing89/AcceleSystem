@@ -244,5 +244,24 @@ namespace TourokuProjectBL
             }
 
         }
+
+        public string M_Hinban_Price_Check(TourokuProjectModel tmodel)
+        {
+            string result = string.Empty;
+            int startprice = int.Parse(tmodel.StartPrice);
+            int endprice = int.Parse(tmodel.EndPrice);
+
+            if(startprice >= endprice)
+            {
+                result = "[{\"resultdata\" : \"" + endprice + "\", \"flg\" : \"false\"}]";
+                return result;
+            }
+            else
+            {
+                result = "[{\"resultdata\" : \"" + endprice + "\", \"flg\" : \"true\"}]";
+                return result;
+            }
+
+        }
     }
 }

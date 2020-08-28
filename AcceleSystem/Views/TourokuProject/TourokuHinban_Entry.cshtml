@@ -320,6 +320,26 @@
             location.href = '@Url.Action("TourokuHinban_List", "TourokuProject")';
         }
 
+        function Check() {
+            var Tmodel = {
+                ProjectCD: $('#proCD').val(),
+                //HinbanCD: $('#HinbanCD').val(),
+            };
+            var data = CalltoApiController('@Url.Action("M_Hinban_Check_List", "api/TourokuProjectApi")', Tmodel);
+            var hbdata = JSON.parse(data);
+            $("#ProjectCD").val(hbdata[0].ProjectCD);
+            $("#ProjectName").val(hbdata[0].ProjectName);
+            $("#year").val(hbdata[0].Year);
+            $("#season").val(hbdata[0].Season);
+            $("#BrandCD").val(hbdata[0].BrandCD);
+            $("#BrandName").val(hbdata[0].BrandName);
+            $("#StartDate").val(hbdata[0].PeriodStart);
+            $("#EndDate").val(hbdata[0].PeriodEnd);
+            $("#tpNo").val(hbdata[0].TotalProduction);
+            $("#tAmount").val(hbdata[0].TotalAmount);
+
+        }
+
       
     </script>
    
