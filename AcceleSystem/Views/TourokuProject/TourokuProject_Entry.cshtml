@@ -83,7 +83,7 @@
                 <div class="pt-3 md-form">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" style="width:130px;" onkeydown="KeyDown(event,this,'ProjectManagerCheck')" id="ProjectManager" name="projectmanager" maxlength="6" required placeholder="責任者">
+                            <input type="text" tabindex="8" class="text-line col-xl-5 text-left" style="width:130px;" onkeydown="KeyDown(event,this,'ProjectManagerCheck')" id="ProjectManager" name="projectmanager" maxlength="6" required placeholder="責任者">
                             <label id="ProjectManagerName" style="padding-left:80px;"><b>責任者表示</b></label>
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                 <div class="pt-3 md-form">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="AllocationCount" name="allocationcount" maxlength="6" required placeholder="配賦用固定値">
+                            <input type="text" tabindex="9" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="AllocationCount" name="allocationcount" maxlength="6" required placeholder="配賦用固定値">
 
                         </div>
                     </div>
@@ -99,9 +99,9 @@
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <button id="btnSave" tabindex="7" onclick="btnSaveClick()" class="btn btn-dark col-xl-4 text-center">登録</button>
+                            <button id="btnSave" tabindex="10" onclick="btnSaveClick()" class="btn btn-dark col-xl-4 text-center">登録</button>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <button id="btnCancel" tabindex="8" onclick="btnCancelClick()" class="btn btn-primary col-xl-4 text-center">戻る</button>
+                            <button id="btnCancel" tabindex="11" onclick="btnCancelClick()" class="btn btn-primary col-xl-4 text-center">戻る</button>
                         </div>
                     </div>
                 </div>
@@ -254,9 +254,6 @@
                  Mode:'@Model.Mode'
             };
 
-
-
-
             //For Season
             if ($('#rdoyear').is(':checked'))
                 Tmodel.Season = "1";
@@ -268,21 +265,34 @@
             ShowSuccessMessage(data,'@Url.Action("TourokuProject_List", "TourokuProject")');
     }
 
-      
+    function BrandCheck(result) {
+        if (result == 'OK') {
+            RequiredCheck($("#BrandCD"));
+            ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
+            $("#BrandCD").focus();
+            //alert("#BrandName");
+            
+        }
+        else {
+            $("#BrandCD").val('');
+            $("#BrandName").text('ブランド表示');
+            $("#Season").focus();
+        }
+        $("#BrandName").css("font-weight", "Bold");
+    }
 
-        function BrandCheck(result) {
-            if (result == 'OK') {
-                RequiredCheck($("#BrandCD"));
-                ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
-            }
-            else {
-                $("#BrandCD").val('');
-                $("#BrandName").text('ブランド表示');
-                $("#Season").focus();
-            }
-            $("#BrandName").css("font-weight", "Bold");
-            }
+    function ProjectManagerCheck(result) {
+        if (result == 'OK') {
+            ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
+            $("#ProjectManager").foucs();
+        }
+        else {
+            $("#ProjectManager").val('');
+            $("#ProjectManagerName").text('責任者表示');
+            $("#AllocationCount").focus();
 
+        }
+    }
         function DeleteConfrim() {
             DoProcess();
         }
