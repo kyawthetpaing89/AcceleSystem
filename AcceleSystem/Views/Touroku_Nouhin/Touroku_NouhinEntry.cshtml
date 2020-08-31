@@ -157,7 +157,7 @@
                 var TnModel = {
                     ProjectCD : $("#ProjectCD").val()
                 };
-                var data = CalltoApiController('@Url.Action("M_Project_ShowData", "api/Touroku_NouhinApi")', TnModel);
+                var data = CalltoApiController('@Url.Action("M_Project_Nouhin_ShowData", "api/Touroku_NouhinApi")', TnModel);
                 var projData = JSON.parse(data);
                 $("#Year").val(projData[0].Year);
                 $("#BrandCD").val(projData[0].BrandCD);

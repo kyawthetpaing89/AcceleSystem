@@ -220,11 +220,11 @@
                 var Production = parseInt(pro);
                 var DeliverNo = parseInt(del);
                 if (Production < DeliverNo) {
-                    var data = ShowErrorMessage("E125");
-                    return data;
+                    ShowErrorMessage("E125");
                 }
             }
         }
+
         function btnSaveClick() {
             var res = ErrorCheckOnSave();
             if (res == "0") {
