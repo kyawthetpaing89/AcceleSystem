@@ -130,8 +130,8 @@
                 RequiredCheck($("#PeriodEnd"));
                 AlreadyExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")');
                 ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
-                DateCheck($("#PeriodStart"), '@Url.Action("Date_Checking", "api/CommonApi")');
-                DateCheck($("#PeriodEnd"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#PeriodStart").val());
+                YearMonthCheck($("#PeriodStart"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
+                YearMonthCheck($("#PeriodEnd"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
                 ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
 
             }
@@ -147,8 +147,8 @@
                 RequiredCheck($("#PeriodStart"));
                 RequiredCheck($("#PeriodEnd"));
                 ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
-                DateCheck($("#PeriodStart"), '@Url.Action("Date_Checking", "api/CommonApi")');
-                DateCheck($("#PeriodEnd"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#PeriodStart").val());
+                YearMonthCheck($("#PeriodStart"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
+                YearMonthCheck($("#PeriodEnd"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
                 ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
 
                 ShowData();
@@ -163,8 +163,8 @@
                 RequiredCheck($("#PeriodStart"));
                 RequiredCheck($("#PeriodEnd"));
                 ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
-                DateCheck($("#PeriodStart"), '@Url.Action("Date_Checking", "api/CommonApi")');
-                DateCheck($("#PeriodEnd"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#PeriodStart").val());
+                YearMonthCheck($("#PeriodStart"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
+                YearMonthCheck($("#PeriodEnd"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
                 ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
 
                 ShowData();
@@ -187,13 +187,6 @@
             }
         });
 
-               function CompareDate(result) {
-                       if (result == 'OK') {
-                           DateCheck($("#PeriodEnd"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#PeriodStart").val());
-                       }
-                    }
-        
-          
            //set data
         function ShowData() {
             var Tmodel = {
