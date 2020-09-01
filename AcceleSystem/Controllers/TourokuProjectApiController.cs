@@ -66,6 +66,14 @@ namespace AcceleSystem.Controllers
         [HttpPost]
         public string Hinban_CUD([FromBody] TourokuProjectModel Tmodel)
         {
+            if (!string.IsNullOrWhiteSpace(Tmodel.SalePrice))
+            {
+                Tmodel.SalePrice = Tmodel.SalePrice.Replace(",", "");
+            }
+            if (!string.IsNullOrWhiteSpace(Tmodel.Production))
+            {
+                Tmodel.Production = Tmodel.Production.Replace(",", "");
+            }
             TourokuProject_BL Tpbl = new TourokuProject_BL();
             return Tpbl.Hinban_CUD(Tmodel);
         }
@@ -109,7 +117,7 @@ namespace AcceleSystem.Controllers
             TourokuProject_BL Tpbl = new TourokuProject_BL();
             return Tpbl.M_HinBan_Select_Edit(Tmodel);
         }
-
+        
         [UserAuthentication]
         [HttpPost]
         public string M_HinBan_Search_List([FromBody] TourokuProjectModel Tmodel)
@@ -130,6 +138,10 @@ namespace AcceleSystem.Controllers
         [HttpPost]
         public string Production_LessthanCheck([FromBody] TourokuProjectModel Tmodel)
         {
+            if (!string.IsNullOrWhiteSpace(Tmodel.Production))
+            {
+                Tmodel.Production = Tmodel.Production.Replace(",", "");
+            }
             TourokuProject_BL tbl = new TourokuProject_BL();
             return tbl.LessthanZero_Checking(Tmodel.Production);
 
@@ -139,6 +151,10 @@ namespace AcceleSystem.Controllers
         [HttpPost]
         public string SalePrice_LessthanCheck([FromBody] TourokuProjectModel Tmodel)
         {
+            if (!string.IsNullOrWhiteSpace(Tmodel.SalePrice))
+            {
+                Tmodel.SalePrice = Tmodel.SalePrice.Replace(",", "");
+            }
             TourokuProject_BL tbl = new TourokuProject_BL();
             return tbl.LessthanZero_Checking(Tmodel.SalePrice);
 
@@ -148,6 +164,14 @@ namespace AcceleSystem.Controllers
         [HttpPost]
         public string M_Hinban_Price_Check([FromBody] TourokuProjectModel Tmodel)
         {
+            if (!string.IsNullOrWhiteSpace(Tmodel.StartPrice))
+            {
+                Tmodel.StartPrice = Tmodel.StartPrice.Replace(",", "");
+            }
+            if (!string.IsNullOrWhiteSpace(Tmodel.EndPrice))
+            {
+                Tmodel.EndPrice = Tmodel.EndPrice.Replace(",", "");
+            }
             TourokuProject_BL tbl = new TourokuProject_BL();
             return tbl.M_Hinban_Price_Check(Tmodel);
 

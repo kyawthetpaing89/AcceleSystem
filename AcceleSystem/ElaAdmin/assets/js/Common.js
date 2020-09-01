@@ -637,4 +637,32 @@ $(document).ready(function () {
         });
     }
 
+    if ($('.input-numeral3')[0]) {
+        var cleaveNumeral3 = new Cleave('.input-numeral3', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand'
+        });
+    }
+
+    if ($('.input-numeral4')[0]) {
+        var cleaveNumeral4 = new Cleave('.input-numeral4', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand'
+        });
+    }
+
+    if ($('.input-numeral5')[0]) {
+        var cleaveNumeral5 = new Cleave('.input-numeral5', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand'
+        });
+    }
+
+    if ($('.input-numeral6')[0]) {
+        var cleaveNumeral2 = new Cleave('.input-numeral6', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand'
+        });
+    }
+
 });

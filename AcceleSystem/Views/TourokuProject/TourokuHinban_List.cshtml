@@ -316,7 +316,7 @@
         }
 
     function btnCopyClick(ProjectCD, HinbanCD) {
-        location.href = '@Url.Action("TourokuHinban_Entry", "TourokuProject")?HinbanCD=' + HinbanCD + '&ProjectCD=' + ProjectCD + ' &Mode=Delete';
+        location.href = '@Url.Action("TourokuHinban_Entry", "TourokuProject")?HinbanCD=' + HinbanCD + '&ProjectCD=' + ProjectCD + ' &Mode=Copy';
         }
 
     function ProjectCDCheck(result) {
@@ -332,7 +332,7 @@
 
         if (result == 'OK') {
           
-            @*var Tmodel = {
+            var Tmodel = {
                 StartPrice: $('#StartPrice').val(),
                 EndPrice:  $('#EndPrice').val(),
             };
@@ -340,11 +340,14 @@
             var SalePriceData = JSON.parse(data);
             if (SalePriceData[0].flg == "false") {
                 var data = ShowErrorMessage("E124");
+                StartPrice: $('#StartPrice').val("");
+                EndPrice: $('#EndPrice').val("");
+                //$("#StartPrice").focus();
                 return data;
             }
-            else {
+            else { 0
                 return "0";
-            }*@
+            }
             
         }
     }

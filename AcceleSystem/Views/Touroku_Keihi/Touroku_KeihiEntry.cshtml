@@ -195,50 +195,39 @@
                 RequiredCheck($("#Item"));
 
                 RequiredCheck($("#AmountMoney"));
-                LessthanZeroCheck($("#AmountMoney"), "SalePrice", '@Url.Action("SalePrice_LessthanCheck", "api/TourokuProjectApi")');
-
-                @*RequiredCheck($("#year"));
-                RequiredCheck($("#CastingCD"));
-                RequiredCheck($("#PeriodStart"));
-                RequiredCheck($("#PeriodEnd"));
-                AlreadyExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")');
-                YearMonthCheck($("#Year"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
-                ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
-                DateCheck($("#PeriodStart"), '@Url.Action("Date_Checking", "api/CommonApi")');
-                DateCheck($("#PeriodEnd"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#PeriodStart").val());
-                ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
+                @*LessthanZeroCheck($("#AmountMoney"), "SalePrice", '@Url.Action("SalePrice_LessthanCheck", "api/TourokuProjectApi")');*@
             }
             else if (Mode == 'Edit') {
-                $('#btnSave').html('更新');
-                $("#costname").attr('disabled', 'disabled');
-                $("#brandname").attr('disabled', 'disabled');
-                $("#CostCD").focus();
+                  $('#btnSave').html('更新');
+                  $("#costname").attr('disabled', 'disabled');
+                  $("#brandname").attr('disabled', 'disabled');
+                  $("#CostCD").focus();
 
 
-                ShowData();
-            }
+                    ShowData();
+                 }   
             else  {
-                $('#btnSave').html('削除');
-                $("#ProjectCD").attr('disabled', 'disabled');
-                $("#ProjectName").attr('disabled', 'disabled');
-                $("#Year").attr('disabled', 'disabled');
-                $("#BrandCD").attr('disabled', 'disabled');
-                $("#Season").attr('disabled', 'disabled');
-                $("#PeriodStart").attr('disabled', 'disabled');
-                $("#PeriodEnd").attr('disabled', 'disabled');
-                $("#ProjectManager").attr('disabled', 'disabled');
-                $("#AllocationCount").attr('disabled', 'disabled');
-                $("#btnSave").focus();
+                  $('#btnSave').html('削除');
+                  $("#ProjectCD").attr('disabled', 'disabled');
+                  $("#ProjectName").attr('disabled', 'disabled');
+                  $("#Year").attr('disabled', 'disabled');
+                  $("#BrandCD").attr('disabled', 'disabled');
+                  $("#Season").attr('disabled', 'disabled');
+                  $("#PeriodStart").attr('disabled', 'disabled');
+                  $("#PeriodEnd").attr('disabled', 'disabled');
+                  $("#ProjectManager").attr('disabled', 'disabled');
+                  $("#AllocationCount").attr('disabled', 'disabled');
+                  $("#btnSave").focus();
 
-                ShowData();
-            }
+                  ShowData();
+                 }
         });
 
 
            //set data
-        @*function ShowData() {
-            var Tmodel = {
-                ProjectCD: '@Model.ProjectCD',
+        function ShowData() {
+            var Kmodel = {
+                SEQ: '@Model.SEQ',
             };
             var data = CalltoApiController('@Url.Action("M_Project_Select_Entry", "api/TourokuProjectApi")', Tmodel);
             var ProjectData = JSON.parse(data);
@@ -274,7 +263,7 @@
             else
                 $("#rdofw").prop("checked", true);
 
-        }*@
+        }
 
         @*function DoProcess() {
             focusControl = $("#ProjectCD");
