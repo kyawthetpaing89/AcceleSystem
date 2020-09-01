@@ -620,3 +620,21 @@ function moveNext(ctrl) {
     $(ctrl).select();
     $(ctrl).focus();
 }
+
+$(document).ready(function () {
+
+    if ($('.input-numeral1')[0]) {
+        var cleaveNumeral1 = new Cleave('.input-numeral1', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand'
+        });
+    }
+
+    if ($('.input-numeral2')[0]) {
+        var cleaveNumeral2 = new Cleave('.input-numeral2', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand'
+        });
+    }
+
+});
