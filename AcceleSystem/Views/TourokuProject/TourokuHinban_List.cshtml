@@ -339,6 +339,9 @@
             var SalePriceData = JSON.parse(data);
             if (SalePriceData[0].flg == "false") {
                 var data = ShowErrorMessage("E124");
+                StartPrice: $('#StartPrice').val("");
+                EndPrice: $('#EndPrice').val("");
+                //$("#StartPrice").focus();
                 return data;
             }
             else {

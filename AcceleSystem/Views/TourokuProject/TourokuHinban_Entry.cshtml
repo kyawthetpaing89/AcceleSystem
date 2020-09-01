@@ -221,11 +221,13 @@
                 var Production = parseInt(pro);
                 var DeliverNo = parseInt(del);
                 if (Production < DeliverNo) {
-                    var data = ShowErrorMessage("E125");
+                    var data = ShowErrorMessage("E125"); 
+                    var pro = $('#Production').val("");
                     return data;
                 }
 
             }
+            $('#Production').focus();
         }
         function btnSaveClick() {
             var res = ErrorCheckOnSave();
