@@ -175,12 +175,21 @@
         }
 
         function btnSearchClick() {
-            var res = ErrorCheckOnSave();
-            if (res == "0") {
-                GetNouhin();
+            var allyear = $("#Allyear").is(":checked");
+            var ss = $("#SS").is(":checked");
+            var fw = $("#FW").is(":checked");
+            if (!allyear && !ss && !fw) {
+                var data = ShowErrorMessage("E111");
+                return data;
             }
             else {
-                ShowErrorMessage(res);
+                var res = ErrorCheckOnSave();
+                if (res == "0") {
+                    GetNouhin();
+                }
+                else {
+                    ShowErrorMessage(res);
+                }
             }
         }
 
@@ -217,7 +226,14 @@
                     Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
                 },
                 success: function (response) {
+                    if(response == "[]") {
+                        BindTable(response);
+                        var data = ShowErrorMessage("E104");
+                        return data;
+                    }
+                    else {
                     BindTable(response);
+                }
                 }
             });
         }
@@ -273,17 +289,31 @@
             });
         }
 
-    function btnAddClick() {
-        location.href = '@Url.Action("KeihiSetteiEntry", "KeihiSettei")?Mode=New'
-    }
-
-    function btnEditClick(CostCD) {
-        location.href = '@Url.Action("KeihiSetteiEntry", "KeihiSettei")?CostCD='+CostCD+'&Mode=Edit';
-    }
-
-    function btnDelClick(CostCD) {
-        location.href = '@Url.Action("KeihiSetteiEntry", "KeihiSettei")?CostCD='+CostCD+'&Mode=Delete';
+        //ButtonClick from table
+        function btnAddClick() {
+            location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Nouhin")?Mode=New'
         }
+
+        function btnEditClick(CostCD) {
+            location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Nouhin")?ProjectCD='+CostCD+'&Mode=Edit';
+        }
+
+        function btnDelClick(CostCD) {
+            location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Nouhin")?ProjectCD='+CostCD+'&Mode=Delete';
+        }
+         //ButtonClick from table
+
+        //ButtonClick from Searching
+         function btnDelClick(CostCD) {
+            location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Nouhin")?ProjectCD='+CostCD+'&Mode=Delete';
+         }
+         function btnDelClick(CostCD) {
+            location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Nouhin")?ProjectCD='+CostCD+'&Mode=Delete';
+         }
+        function btnDelClick(CostCD) {
+            location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Nouhin")?ProjectCD='+CostCD+'&Mode=Delete';
+        }
+        //ButtonClick from Searching
     </script>
 
     <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/datatables.min.js")"></script>

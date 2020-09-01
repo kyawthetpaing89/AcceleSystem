@@ -72,9 +72,9 @@
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
                         <div class="text-s text-custom1 text-uppercase mb-1" style="padding-left:165px;">
-                            <button id="btnSave" tabindex="8" onclick="btnAllCheck()" class="btn" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px;">全選択</button>
+                            <button id="btnAllCheck" tabindex="8" onclick="AllCheck()" class="btn" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px;">全選択</button>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <button id="btnCancel" tabindex="9" onclick="btnAllUnCheck()" class="btn" style="background-color:white; color:#1a8cff; border-radius:3px; border: 1px solid transparent; border-color:#1a8cff;">全解除</button>
+                            <button id="btnAllUnCheck" tabindex="9" onclick="AllUnCheck()" class="btn" style="background-color:white; color:#1a8cff; border-radius:3px; border: 1px solid transparent; border-color:#1a8cff;">全解除</button>
                         </div>
                     </div>
                 </div>
@@ -126,11 +126,10 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("納品登録");
-
             var Mode = '@Model.Mode';
+
             if (Mode == 'New') {
                 $('#btnSave').html('登録');
-
                 //For Error Check
                 RequiredCheck($("#ProjectCD"));
                 ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Kanjo_ExistsCheck", "api/Touroku_NouhinApi")', "KanjoName");
@@ -171,8 +170,20 @@
 
             }
         }
+
         
-    
+        function AllCheck() {
+            $('#checkbox').prop('checked', true);
+        }
+
+        function AllUnCheck() {
+            $('#checkbox').prop('checked', false);
+        }
+
+        function btnCancelClick() {
+            location.href = '@Url.Action("Touroku_NouhinList", "Touroku_Nouhin")';
+        }
+
     </script>
     }
 }
