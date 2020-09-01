@@ -172,9 +172,7 @@ function ErrChk(ctrl) {
     }
 
     if ($(ctrl).val()) {
-       
         var dataExistsCheck = $(ctrl).attr("data-ExistsCheck");
-      
         if (dataExistsCheck) {
             var ApiURL = $(ctrl).attr("data-ExistsApiUrl");
             var param1 = $(ctrl).attr("data-Param1");
@@ -336,8 +334,7 @@ function ErrChk(ctrl) {
                         if ($(ctrl).attr("data-NameCtrl")) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
                             $('#' + ctrlName).val(ProjectData[0].ProjectName);
-                            
-                            
+                            $('#' + ctrlName).text(ProjectData[0].ProjectName);
                             return "0";
                         }
                     }
