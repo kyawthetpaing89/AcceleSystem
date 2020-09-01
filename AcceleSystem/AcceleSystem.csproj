@@ -221,6 +221,7 @@
     <Content Include="ElaAdmin\assets\css\userlogin\vendor\tilt\tilt.jquery.min.js" />
     <Content Include="ElaAdmin\assets\fonts\icomoon\icomoon.svg" />
     <Content Include="ElaAdmin\assets\fonts\icomoon\index.html" />
+    <Content Include="ElaAdmin\assets\js\Cleave.js" />
     <Content Include="ElaAdmin\assets\js\Common.js" />
     <Content Include="ElaAdmin\assets\js\Message.js" />
     <Content Include="ElaAdmin\assets\js\dashboard.js" />

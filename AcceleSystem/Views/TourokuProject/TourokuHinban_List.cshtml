@@ -86,9 +86,9 @@
                                     <div class="text-s text-custom1 text-uppercase mb-1">
                                         <label style="padding:initial;width: 80px;">予定単価</label>
 
-                                        <input type="text" tabindex="13" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="StartPrice" name="StartPrice" maxlength="7" required placeholder="0">
+                                        <input type="text" tabindex="13" class="text-line col-xl-3 text-left input-numeral1" onkeydown="KeyDown(event,this)" id="StartPrice" name="StartPrice" maxlength="7" required placeholder="0">
                                         <label class="col-xl-1">~</label>
-                                        <input type="text" tabindex="14" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'CheckPrice')" id="EndPrice" name="EndPrice" maxlength="7" required placeholder="5,000">
+                                        <input type="text" tabindex="14" class="text-line col-xl-3 text-left input-numeral2" onkeydown="KeyDown(event,this,'CheckPrice')" id="EndPrice" name="EndPrice" maxlength="7" required placeholder="5,000">
 
                                     </div>
                                 </div>
@@ -332,7 +332,7 @@
 
         if (result == 'OK') {
           
-            var Tmodel = {
+            @*var Tmodel = {
                 StartPrice: $('#StartPrice').val(),
                 EndPrice:  $('#EndPrice').val(),
             };
@@ -347,7 +347,7 @@
             }
             else {
                 return "0";
-            }
+            }*@
             
         }
     }
