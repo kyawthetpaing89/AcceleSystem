@@ -20,7 +20,7 @@ namespace Touroku_KeihiBL
             return bdl.SelectJson("M_Keihi_ExistsCheck", Kmodel.Sqlprms);
         }
 
-        public string M_Cost_Select_List(Touroku_KeihiModel Kmodel)
+        public string D_Cost_Select_List(Touroku_KeihiModel Kmodel)
         {
             BaseDL bdl = new BaseDL();
             Kmodel.Sqlprms = new SqlParameter[12];
@@ -37,7 +37,7 @@ namespace Touroku_KeihiBL
             Kmodel.Sqlprms[10] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = (object)Kmodel.HinbanCD ?? DBNull.Value };
             Kmodel.Sqlprms[11] = new SqlParameter("@HinbanName", SqlDbType.VarChar) { Value = (object)Kmodel.HinbanName ?? DBNull.Value };
 
-            return bdl.SelectJson("M_Cost_Select_List", Kmodel.Sqlprms);
+            return bdl.SelectJson("D_Cost_Select_List", Kmodel.Sqlprms);
         }
 
         public string M_Brand_ExistsCheck(Touroku_KeihiModel Kmodel)
@@ -64,12 +64,12 @@ namespace Touroku_KeihiBL
             return bdl.SelectJson("M_HinBan_ExistsCheck", Kmodel.Sqlprms);
         }
 
-        public string M_Cost_Edit_List(Touroku_KeihiModel kmodel)
+        public string D_Cost_Edit_List(Touroku_KeihiModel kmodel)
         {
             BaseDL bdl = new BaseDL();
             kmodel.Sqlprms = new SqlParameter[1];
             kmodel.Sqlprms[0] = new SqlParameter("@SEQ", SqlDbType.Int) { Value = kmodel.SEQ };
-            return bdl.SelectJson("M_Cost_Edit_List", kmodel.Sqlprms);
+            return bdl.SelectJson("D_Cost_Edit_List", kmodel.Sqlprms);
         }
 
         public string M_Control_FiscalCheck(BaseModel BModel)
