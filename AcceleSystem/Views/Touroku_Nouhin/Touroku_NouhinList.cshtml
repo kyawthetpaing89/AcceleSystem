@@ -16,7 +16,7 @@
                     <button id="btnAdd" onclick="btnAdd_Click()" class="btn" tabindex="38" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px; margin-right: 20px;">
                         納品追加
                     </button>
-                    <button id="btnB/S" onclick="btnB/SNouhin_Click()" class="btn" tabindex="38" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px; margin-right: 20px;">
+                    <button id="btnB/S" onclick="btnBSNouhin_Click()" class="btn" tabindex="38" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px; margin-right: 20px;">
                         B/S一括納品
                     </button>
                     <button id="btnDelete" onclick="btnDelete_Click()" class="btn" tabindex="38" style="background-color:white; color:#1a8cff; border-radius:3px; border: 1px solid transparent; border-color:#1a8cff; margin-right: 20px;">
@@ -279,7 +279,7 @@
                         "data": null,
                         className: "Border5",
                         render: function (data, type, row) {
-                            return '<label><a href="#" onClick="btnEditClick(\'' + data.CostCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.CostCD +'\')" style="color:red">削除</a></label>';
+                            return '<label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.CostCD +'\')" style="color:red">削除</a></label>';
                         }
                     },
                 ],
@@ -291,27 +291,27 @@
 
         //ButtonClick from table
         function btnAddClick() {
-            location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Nouhin")?Mode=New'
+            location.href = '@Url.Action("Touroku_NouhinEntry", "Touroku_Nouhin")?Mode=New'
         }
 
-        function btnEditClick(CostCD) {
-            location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Nouhin")?ProjectCD='+CostCD+'&Mode=Edit';
+        function btnEditClick(ProjectCD) {
+            location.href = '@Url.Action("Touroku_NouhinEntry", "Touroku_Nouhin")?ProjectCD=' + ProjectCD+'&Mode=Edit';
         }
 
-        function btnDelClick(CostCD) {
-            location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Nouhin")?ProjectCD='+CostCD+'&Mode=Delete';
+        function btnDelClick(ProjectCD) {
+            location.href = '@Url.Action("Touroku_NouhinEntry", "Touroku_Nouhin")?ProjectCD=' + ProjectCD+'&Mode=Delete';
         }
          //ButtonClick from table
 
         //ButtonClick from Searching
-         function btnDelClick(CostCD) {
-            location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Nouhin")?ProjectCD='+CostCD+'&Mode=Delete';
+        function btnAdd_Click() {
+            location.href = '@Url.Action("Touroku_NouhinEntry", "Touroku_Nouhin")?Mode=New';
          }
-         function btnDelClick(CostCD) {
-            location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Nouhin")?ProjectCD='+CostCD+'&Mode=Delete';
+        function btnBSNouhin_Click() {
+            location.href = '@Url.Action("Touroku_NouhinEntry", "Touroku_Nouhin")?Mode=New';
          }
-        function btnDelClick(CostCD) {
-            location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Nouhin")?ProjectCD='+CostCD+'&Mode=Delete';
+        function btnDelete_Click() {
+            location.href = '@Url.Action("Touroku_NouhinEntry", "Touroku_Nouhin")?ProjectCD=' + ProjectCD+'&Mode=Delete';
         }
         //ButtonClick from Searching
     </script>
