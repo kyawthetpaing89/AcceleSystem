@@ -207,9 +207,8 @@
 
         function ProjectCheck(result) {
             if (result == 'OK') {
-                @*RequiredCheck($("#HinbanCD"));
-                AlreadyExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', $("#ProjectCD").val());*@
-               
+                RequiredCheck($("#HinbanCD"));
+                AlreadyExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', $("#ProjectCD").val());
                 prjCheck();
             }
         }
@@ -221,14 +220,11 @@
                 var Production = parseInt(pro);
                 var DeliverNo = parseInt(del);
                 if (Production < DeliverNo) {
-                    var data = ShowErrorMessage("E125"); 
-                    var pro = $('#Production').val("");
-                    return data;
+                    ShowErrorMessage("E125");
                 }
-
             }
-            $('#Production').focus();
         }
+
         function btnSaveClick() {
             var res = ErrorCheckOnSave();
             if (res == "0") {
