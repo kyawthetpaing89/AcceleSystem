@@ -30,7 +30,7 @@ namespace TourokuNouhinBL
         public string M_Project_Nouhin_ShowData(TourokuNouhinModel Tnmodel)
         {
             BaseDL bdl = new BaseDL();
-            Tnmodel.Sqlprms = new SqlParameter[11];
+            Tnmodel.Sqlprms = new SqlParameter[1];
             Tnmodel.Sqlprms[0] = new SqlParameter("@ProjectCD", SqlDbType.Int) { Value = Tnmodel.ProjectCD };
 
             return bdl.SelectJson("M_Project_Nouhin_ShowData", Tnmodel.Sqlprms);
