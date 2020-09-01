@@ -135,6 +135,7 @@
                 RequiredCheck($("#ProjectCD"));
                 ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Kanjo_ExistsCheck", "api/Touroku_NouhinApi")', "KanjoName");
                 RequiredCheck($("#DeliDate"));
+                DateCheck($("#DeliDate"), '@Url.Action("Date_Checking", "api/CommonApi")');
             }
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');

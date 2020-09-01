@@ -82,8 +82,8 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xl-12" style="padding-left:65px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="16" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="MoldCD" name="MoldCD" maxlength="10" required placeholder="金型" style="width:118px;">&nbsp;&nbsp;
-                            <label id="moldname">金型名</label>
+                            <input type="text" tabindex="16" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CastingCD" name="MoldCD" maxlength="10" required placeholder="金型" style="width:118px;">&nbsp;&nbsp;
+                            <label id="CastingName">金型名</label>
                         </div>
                     </div>
                 </div>
@@ -142,18 +142,19 @@
 
 
 @section Scripts{
-    <script type="text/javascript">
+<script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("経費検索");
             $("#CostCD").focus();
             var Mode = '@Model.Mode';
-            if (Mode == 'New') {  
+            if (Mode == 'New') {
                 $('#btnSave').html('登録');
-                 ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "costname", "accounting");
+                 @*ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "costname", "accounting");
                 DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi")', "2" );
-                FiscalCheck();
+                FiscalCheck();*@
 
-                @*ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "costname", "accounting");
+                RequiredCheck($("#CostCD"));
+                ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "costname", "accounting");
                 if ($("#accounting").text == "1") {
                     RequiredCheck($("#projectCD"));
                     RequiredCheck($("#PartCD"));
@@ -173,8 +174,31 @@
                     RequiredCheck($("#Item"));
                 }
 
-                @*RequiredCheck($("#Year"));
+                RequiredCheck($("#CostDate"));
+                DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi")', "2");
+
+                RequiredCheck($("#year"));
+                DateCheck($("#year"), '@Url.Action("Date_Checking", "api/CommonApi")');
+
                 RequiredCheck($("#BrandCD"));
+                ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")', "brandname");
+
+                RequiredCheck($("#projectCD"));
+                ExistsCheck($("#projectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")', "projectName");
+
+                RequiredCheck($("#PartCD"));
+                ExistsCheck($("#PartCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "partName");
+
+                RequiredCheck($("#CastingCD"));
+                ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "CastingName");
+
+                RequiredCheck($("#Item"));
+
+                RequiredCheck($("#AmountMoney"));
+                LessthanZeroCheck($("#AmountMoney"), "SalePrice", '@Url.Action("SalePrice_LessthanCheck", "api/TourokuProjectApi")');
+
+                @*RequiredCheck($("#year"));
+                RequiredCheck($("#CastingCD"));
                 RequiredCheck($("#PeriodStart"));
                 RequiredCheck($("#PeriodEnd"));
                 AlreadyExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")');
@@ -182,7 +206,7 @@
                 ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
                 DateCheck($("#PeriodStart"), '@Url.Action("Date_Checking", "api/CommonApi")');
                 DateCheck($("#PeriodEnd"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#PeriodStart").val());
-                ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");*@
+                ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
             }
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
@@ -190,7 +214,7 @@
                 $("#brandname").attr('disabled', 'disabled');
                 $("#CostCD").focus();
 
-               
+
                 ShowData();
             }
             else  {
@@ -210,18 +234,7 @@
             }
         });
 
-        function FiscalCheck() {
-            var kmodel = {
-                CostCD: $('#CostCD').val(),
-            };          
-            var data = CalltoApiController('@Url.Action("M_Control_FiscalCheck", "api/Touroku_KeihiApi")', kmodel);
-            var ProjectData = JSON.parse(data);
-            if (ProjectData[0].val = "1") {
-                var data = ShowErrorMessage("E115");
-                return data;
-            }
 
-        }
            //set data
         @*function ShowData() {
             var Tmodel = {
@@ -317,7 +330,7 @@
             location.href = '@Url.Action("TourokuProject_List", "TourokuProject")';
         }
 
-    </script>
+</script>
     <script src="@Url.Content("~/Scripts/datepicker.js")"></script>
     <script src="@Url.Content("~/Scripts/datepicker.en.js")"></script>
 
