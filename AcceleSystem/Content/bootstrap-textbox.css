@@ -37,3 +37,7 @@ input[type="checkbox"]:focus + label {
 #tblProject td.Border1.sorting_1 {
     width: 80px!important;
 }
+
+#tblProject td.Border4 {
+    width: 85px;
+}
