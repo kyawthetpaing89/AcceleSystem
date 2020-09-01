@@ -135,6 +135,7 @@
                 RequiredCheck($("#ProjectCD"));
                 ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Kanjo_ExistsCheck", "api/Touroku_NouhinApi")', "KanjoName");
                 RequiredCheck($("#DeliDate"));
+                DateCheck($("#DeliDate"), '@Url.Action("Date_Checking", "api/CommonApi")');
             }
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
@@ -157,7 +158,7 @@
                 var TnModel = {
                     ProjectCD : $("#ProjectCD").val()
                 };
-                var data = CalltoApiController('@Url.Action("M_Project_ShowData", "api/Touroku_NouhinApi")', TnModel);
+                var data = CalltoApiController('@Url.Action("M_Project_Nouhin_ShowData", "api/Touroku_NouhinApi")', TnModel);
                 var projData = JSON.parse(data);
                 $("#Year").val(projData[0].Year);
                 $("#BrandCD").val(projData[0].BrandCD);
