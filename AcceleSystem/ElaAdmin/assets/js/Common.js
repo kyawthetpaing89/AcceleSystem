@@ -172,9 +172,7 @@ function ErrChk(ctrl) {
     }
 
     if ($(ctrl).val()) {
-       
         var dataExistsCheck = $(ctrl).attr("data-ExistsCheck");
-      
         if (dataExistsCheck) {
             var ApiURL = $(ctrl).attr("data-ExistsApiUrl");
             var param1 = $(ctrl).attr("data-Param1");
@@ -336,8 +334,7 @@ function ErrChk(ctrl) {
                         if ($(ctrl).attr("data-NameCtrl")) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
                             $('#' + ctrlName).val(ProjectData[0].ProjectName);
-                            
-                            
+                            $('#' + ctrlName).text(ProjectData[0].ProjectName);
                             return "0";
                         }
                     }
@@ -632,6 +629,34 @@ $(document).ready(function () {
 
     if ($('.input-numeral2')[0]) {
         var cleaveNumeral2 = new Cleave('.input-numeral2', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand'
+        });
+    }
+
+    if ($('.input-numeral3')[0]) {
+        var cleaveNumeral3 = new Cleave('.input-numeral3', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand'
+        });
+    }
+
+    if ($('.input-numeral4')[0]) {
+        var cleaveNumeral4 = new Cleave('.input-numeral4', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand'
+        });
+    }
+
+    if ($('.input-numeral5')[0]) {
+        var cleaveNumeral5 = new Cleave('.input-numeral5', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand'
+        });
+    }
+
+    if ($('.input-numeral6')[0]) {
+        var cleaveNumeral2 = new Cleave('.input-numeral6', {
             numeral: true,
             numeralThousandsGroupStyle: 'thousand'
         });

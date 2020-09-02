@@ -79,7 +79,7 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="14" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this,'CheckProduction')" id="Production" name="Production" maxlength="10" required placeholder="生産数">
+                            <input type="text" tabindex="14" class="text-line col-xl-5 text-left input-numeral3" onkeydown="KeyDown(event,this,'CheckProduction')" id="Production" name="Production" maxlength="10" required placeholder="生産数">
 
                             <input type="text" tabindex="15" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="DeliverNo" name="DeliverNo" maxlength="10" required placeholder="累計納品数">
                         </div>
@@ -88,7 +88,7 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="16" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="saleprice" name="saleparice" maxlength="7" required placeholder="予定単価">
+                            <input type="text" tabindex="16" class="text-line col-xl-5 text-left input-numeral4" onkeydown="KeyDown(event,this)" id="saleprice" name="saleparice" maxlength="7" required placeholder="予定単価">
 
                             <input type="text" tabindex="17" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="Amount" name="Amount" maxlength="10" required placeholder="総金額">
                         </div>
@@ -274,25 +274,46 @@
         
         //insert,update
         function DoProcess() {
-            var cost = DCost_Check();
-            if (cost == "E119") {
-                ShowErrorMessage("E119");
+            var Mode = '@Model.Mode';
+            if (Mode == 'New' || Mode == 'Edit') {
+                var Tmodel = {
+                    ProjectCD: $("#ProjectCD").val(),
+                    HinbanCD: $("#HinbanCD").val(),
+                    HinbanName: $("#HinbanName").val(),
+                    Color: $("#Color").val(),
+                    CastingCD: $("#CastingCD").val(),
+                    Production: $("#Production").val(),
+                    SalePrice: $("#saleprice").val(),
+                    FreeItem1: $("#freeitem1").val(),
+                    FreeItem2: $("#freeitem2").val(),
+                    
+                    Mode: '@Model.Mode'
+                };
+                        var data = CalltoApiController('@Url.Action("Hinban_CUD", "api/TourokuProjectApi")', Tmodel);
+                        ShowSuccessMessage(data, '@Url.Action("TourokuHinban_List", "TourokuProject")');
             }
-            else {
-                var delivery = D_Delivery_Check();
-                if (delivery == "E126") {
-                    ShowErrorMessage("E126");
+            else if (Mode == 'Delete') {
+                var cost = DCost_Check();
+                if (cost == "E119") {
+                    ShowErrorMessage("E119");
                 }
                 else {
-                    var Tmodel = {
-                        HinbanCD: $("#HinbanCD").val(),
-                        ProjectCD: $("#ProjectCD").val(),
-                        Mode: '@Model.Mode'
-                    };
-                    var data = CalltoApiController('@Url.Action("Hinban_CUD", "api/TourokuProjectApi")', Tmodel);
-                    ShowSuccessMessage(data, '@Url.Action("TourokuHinban_List", "TourokuProject")');
+                    var delivery = D_Delivery_Check();
+                    if (delivery == "E126") {
+                        ShowErrorMessage("E126");
+                    }
+                    else {
+                        var Tmodel = {
+                            HinbanCD: $("#HinbanCD").val(),
+                            ProjectCD: $("#ProjectCD").val(),
+                            Mode: '@Model.Mode'
+                        };
+                        var data = CalltoApiController('@Url.Action("Hinban_CUD", "api/TourokuProjectApi")', Tmodel);
+                        ShowSuccessMessage(data, '@Url.Action("TourokuHinban_List", "TourokuProject")');
+                    }
                 }
             }
+           
         }
 
         function DeleteConfrim() {
