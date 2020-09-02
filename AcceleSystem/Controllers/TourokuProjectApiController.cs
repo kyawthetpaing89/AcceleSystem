@@ -98,6 +98,14 @@ namespace AcceleSystem.Controllers
         [HttpPost]
         public string M_HinBan_Check_List([FromBody] TourokuProjectModel Tmodel)
         {
+            //if (!string.IsNullOrWhiteSpace(Tmodel.SalePrice))
+            //{
+            //    Tmodel.SalePrice = Tmodel.SalePrice.Replace(",", "");
+            //}
+            //if (!string.IsNullOrWhiteSpace(Tmodel.Production))
+            //{
+            //    Tmodel.Production = Tmodel.Production.Replace(",", "");
+            //}
             TourokuProject_BL Tpbl = new TourokuProject_BL();
             return Tpbl.M_Hinban_Check_List(Tmodel);
         }
