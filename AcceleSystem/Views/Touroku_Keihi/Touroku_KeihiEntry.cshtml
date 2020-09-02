@@ -21,7 +21,7 @@
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="SEQ" hidden>SEQ</label>
                             <input type="text" tabindex="3" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostCD" name="CostCD" maxlength="10" required placeholder="経費コード" style="width:118px;">&nbsp;&nbsp;
-                            <label id="costname"></label>
+                            <label id="costname">経費名</label>
                             <label id="accounting"></label>
                         </div>
                     </div>
@@ -143,16 +143,12 @@
 
 @section Scripts{
 <script type="text/javascript">
-        $(document).ready(function () {
+    $(document).ready(function () {     
             $("#formtitle").text("経費検索");
             $("#CostCD").focus();
             var Mode = '@Model.Mode';
             if (Mode == 'New') {
                 $('#btnSave').html('登録');
-                 @*ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "costname", "accounting");
-                DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi")', "2" );
-                FiscalCheck();*@
-
                 RequiredCheck($("#CostCD"));
                 ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "costname", "accounting");
                 if ($("#accounting").text == "1") {
@@ -199,12 +195,12 @@
             }
             else if (Mode == 'Edit') {
                   $('#btnSave').html('更新');
-                  $("#costname").attr('disabled', 'disabled');
-                  $("#brandname").attr('disabled', 'disabled');
+                  //$("#costname").attr('disabled', 'disabled');
+                  //$("#brandname").attr('disabled', 'disabled');
                   $("#CostCD").focus();
 
 
-                    ShowData();
+                  ShowData();
                  }   
             else  {
                   $('#btnSave').html('削除');
@@ -229,40 +225,60 @@
             var Kmodel = {
                 SEQ: '@Model.SEQ',
             };
-            var data = CalltoApiController('@Url.Action("M_Project_Select_Entry", "api/TourokuProjectApi")', Tmodel);
+            var data = CalltoApiController('@Url.Action("D_Cost_Edit_List", "api/Touroku_KeihiApi")', Kmodel);
             var ProjectData = JSON.parse(data);
-            $("#ProjectCD").val(ProjectData[0].ProjectCD);
-            $("#ProjectName").val(ProjectData[0].ProjectName);
-            $("#BrandCD").val(ProjectData[0].BrandCD);
+            $("#CostCD").val(ProjectData[0].CostCD);
+            //$("#costname").val(ProjectData[0].CostName);
+            $("#CostDate").val(ProjectData[0].CostDate);
             $("#Year").val(ProjectData[0].Year);
-            $("#PeriodStart").val(ProjectData[0].PeriodStart);
-            $("#PeriodEnd").val(ProjectData[0].PeriodEnd);
-            $("#ProjectManager").val(ProjectData[0].ProjectManager);
-            $("#AllocationCount").val(ProjectData[0].AllocationCount);
+            $("#BrandCD").val(ProjectData[0].BrandCD);
+            //$("#brandname").val(ProjectData[0].BrandName);
+            //$("#season").val(ProjectData[0].Season);
+            $("#projectCD").val(ProjectData[0].ProjectCD);
+            //$("#projectName").val(ProjectData[0].ProjectName);
+            $("#PartCD").val(ProjectData[0].HinbanCD);
+            //$("#partName").val(ProjectData[0].HinbanName);
+            $("#CastingCD").val(ProjectData[0].CastingCD);
+            //$("#CastingName").val(ProjectData[0].CastingName);
+            $("#Item").val(ProjectData[0].FreeItem1);
+            //$("#taxinclude").val(ProjectData[0].ZeikomiKBN);
+            $("#AmountMoney").val(ProjectData[0].CostAmount);
+            $("#BodyAmount").val(ProjectData[0].InputAmount);
+            $("#Remark").val(ProjectData[0].Remarks);
+
+            if (!ProjectData[0].CostName)
+                $("#costname").text("経費名表示");
+            else $("#costname").text(ProjectData[0].CostName);
+
             if (!ProjectData[0].BrandName)
-                $("#BrandName").text("ブランド表示");
-            else $("#BrandName").text(ProjectData[0].BrandName);
+                $("#brandname").text("ブランド表示");
+            else $("#brandname").text(ProjectData[0].BrandName);
 
             if (!ProjectData[0].UserName)
-                $("#UserName").text("責任者表示");
-            else $("#UserName").text(ProjectData[0].UserName);
+                $("#projectName").text("プロジェクト表示");
+            else $("#projectName").text(ProjectData[0].ProjectName);
 
             if (!ProjectData[0].TotalProduction)
-                $("#TotalProduction").text("総生産数表示");
-            else $("#TotalProduction").text(Projectdata[0].TotalProduction);
+                $("#partName").text("品番表示");
+            else $("#partName").text(Projectdata[0].HinbanName);
 
             if (!ProjectData[0].TotalSalesPrice)
-                $("#TotalSalesPrice").text("総金額表示");
-            else $("#TotalSalesPrice").text(ProjectData[0].TotalSalesPrice);
+                $("#CastingName").text("金型表示");
+            else $("#CastingName").text(ProjectData[0].CastingName);
 
             //Bind Season
             if (ProjectData[0].Season == "1")
-                $("#rdoyear").prop("checked", true);
+                $("#allyear").prop("checked", true);
             else if (ProjectData[0].Season == "2")
-                $("#rdoss").prop("checked", true);
+                $("#SS").prop("checked", true);
             else
-                $("#rdofw").prop("checked", true);
+                $("#FW").prop("checked", true);
 
+            if (ProjectData[0].ZeikomiKBN == "1")
+                $("#tax").prop("checked", true);
+            else 
+                $("#nottax").prop("checked", true);
+           
         }
 
         @*function DoProcess() {
