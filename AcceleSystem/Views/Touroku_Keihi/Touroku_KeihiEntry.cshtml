@@ -269,15 +269,22 @@
             //Bind Season
             if (ProjectData[0].Season == "1")
                 $("#allyear").prop("checked", true);
-            else if (ProjectData[0].Season == "2")
+            else if (ProjectData[0].Season == "2") {
+                $("#allyear").prop("checked", false);
                 $("#SS").prop("checked", true);
-            else
+            }
+            else {
+                $("#allyear").prop("checked", false);
                 $("#FW").prop("checked", true);
+            }
 
             if (ProjectData[0].ZeikomiKBN == "1")
                 $("#tax").prop("checked", true);
-            else 
+            else {
+                $("#tax").prop("checked", false);
                 $("#nottax").prop("checked", true);
+            }
+               
            
         }
 

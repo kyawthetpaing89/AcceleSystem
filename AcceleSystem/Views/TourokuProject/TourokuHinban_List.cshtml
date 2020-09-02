@@ -130,15 +130,9 @@
         </div>
         <div class="col-lg-5">
             <div class="card-body card-block">
-                <table id="tblHinban" class="tb1 col-sm-12" style="padding-left:0px;">
+                <table id="tblHinban" class="tb1 col-sm-12" style="padding-left:0px;" border="1">
                     <thead>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                        
                         <tr>
                             <td>納品日</td>
                             <th>品番名</th>
@@ -273,14 +267,14 @@
                     "data": null,
                     className: "Border2",
                     render: function (data, type, row) {
-                        return '<label>' + '' + '</label><br/>' +'<b><label>' + data.HinbanName + '</label></b><br/><br/><label>' + data.Production + '</label>';
+                        return '<label>' + '' + '</label><br/>' +'<b><label>' + data.HinbanName + '</label></b><br/><br/><label>' + data.Production + '</label><br/>';
                     }
                 },
                 {
                     "data": null,
                     className: "Border3",
                     render: function (data, type, row) {
-                        return '<label>' + '' + '</label><br/>' +'<label>' + '' + '</label><br/><br/><label>' + data.SalesPrice + '</label>';
+                        return '<label>' + '' + '</label><br/>' + '<label>' + '' + '</label><br/><br/><label>' + data.SalesPrice + '</label><br/>';
                     }
                 },
 
@@ -400,7 +394,7 @@
         $("#StartDate").val(hbdata[0].PeriodStart);
         $("#EndDate").val(hbdata[0].PeriodEnd);
         $("#tpNo").val(hbdata[0].TotalProduction);
-        $("#tAmount").val(hbdata[0].TotalAmount);
+        $("#tAmount").val(hbdata[0].TotalSalesPrice);
 
     }
 </script>
