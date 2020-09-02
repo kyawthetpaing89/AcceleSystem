@@ -176,6 +176,7 @@
                 YearMonthCheck($("#EndDate"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
                 LessthanZeroCheck($("#Production"), "Production", '@Url.Action("Production_LessthanCheck", "api/TourokuProjectApi")');
                 LessthanZeroCheck($("#saleprice"), "SalePrice", '@Url.Action("SalePrice_LessthanCheck", "api/TourokuProjectApi")');
+                 AlreadyExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', $("#ProjectCD").val());
             }
             else if (Mode == 'Delete') {
                 $('#btnSave').html('削除');
@@ -234,6 +235,7 @@
                     ShowConfirmMessage("Q102", "DeleteConfrim");
                 }
                 else {
+                    alert("cpy");
                     DoProcess();
                 }
             }
@@ -242,7 +244,7 @@
         }
 
         function ShowData() {
-          
+
             var Tmodel = {
                 HinbanCD: '@Model.HinbanCD',
                 ProjectCD: '@Model.ProjectCD'
@@ -267,15 +269,16 @@
             $("#DeliverNo").val(hinbandata[0].DeliveryAmount);
             $("#CastingCD").val(hinbandata[0].CastingCD);
             $("#CastingName").val(hinbandata[0].CastingName);
+            $("#Color").val(hinbandata[0].Color);
             $("#freeitem1").val(hinbandata[0].FreeItem1);
             $("#freeitem2").val(hinbandata[0].FreeItem2);
-           
+
         }
         
         //insert,update
         function DoProcess() {
             var Mode = '@Model.Mode';
-            if (Mode == 'New' || Mode == 'Edit') {
+            if (Mode == 'New' || Mode == 'Edit' || Mode == 'Copy') {
                 var Tmodel = {
                     ProjectCD: $("#ProjectCD").val(),
                     HinbanCD: $("#HinbanCD").val(),
