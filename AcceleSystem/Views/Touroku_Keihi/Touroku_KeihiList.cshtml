@@ -300,7 +300,8 @@
         }
 
         function btnEditClick(SEQ) {
-            location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Keihi")?SEQ=' + SEQ + ' & Mode=Edit';
+            location.href = '@Url.Action("Touroku_KeihiEntry","Touroku_Keihi")?SEQ='+SEQ+'&Mode=Edit';
+            
             @*var kmodel = {
                 SEQ: $('#SEQ').val(),
             };
@@ -308,11 +309,11 @@
         }
 
         function btnDelClick(SEQ) {
-            location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Keihi")?SEQ=' + SEQ + ' & Mode=Delete';
+            location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Keihi")?SEQ='+SEQ+'&Mode=Delete';
         }
 
         function btnCopyClick(SEQ) {
-            location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Keihi")?SEQ=' + SEQ + ' & Mode=Copy';
+            location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Keihi")?SEQ='+SEQ+'&Mode=Copy';
         }
 
 </script>

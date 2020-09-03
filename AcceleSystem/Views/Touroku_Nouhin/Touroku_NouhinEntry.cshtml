@@ -132,7 +132,7 @@
                 $('#btnSave').html('登録');
                 //For Error Check
                 RequiredCheck($("#ProjectCD"));
-                ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Kanjo_ExistsCheck", "api/Touroku_NouhinApi")', "KanjoName");
+                ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "ProjectName");
                 RequiredCheck($("#DeliDate"));
                 DateCheck($("#DeliDate"), '@Url.Action("Date_Checking", "api/CommonApi")');
             }
@@ -154,9 +154,11 @@
 
         function ShowProjectData(result) {  //Dispay Project Data
             if (result == 'OK') {
+                alert("a");
                 var TnModel = {
                     ProjectCD : $("#ProjectCD").val()
                 };
+                alert(TnModel.ProjectCD);
                 var data = CalltoApiController('@Url.Action("M_Project_Nouhin_ShowData", "api/Touroku_NouhinApi")', TnModel);
                 var projData = JSON.parse(data);
                 $("#Year").val(projData[0].Year);
