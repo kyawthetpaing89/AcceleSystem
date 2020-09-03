@@ -138,10 +138,10 @@
                 $('#btnSave').html('登録');
              
                 RequiredCheck($("#HinbanCD"));
-              
-                @*ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "ProjectName");*@
+                RequiredCheck($("#HinbanName"));
+                RequiredCheck($("#Production"));
+                RequiredCheck($("#saleprice"));
                 ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/TourokuProjectApi")', "CastingName");
-                ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
                 YearMonthCheck($("#StartDate"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
                 YearMonthCheck($("#EndDate"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
                 LessthanZeroCheck($("#Production"), "Production", '@Url.Action("Production_LessthanCheck", "api/TourokuProjectApi")');
@@ -151,14 +151,13 @@
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
                 ShowData();
-
                 ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/TourokuProjectApi")', "CastingName");
-                ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
                 YearMonthCheck($("#StartDate"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
                 YearMonthCheck($("#EndDate"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
                 LessthanZeroCheck($("#Production"), "Production", '@Url.Action("Production_LessthanCheck", "api/TourokuProjectApi")');
                 LessthanZeroCheck($("#saleprice"), "SalePrice", '@Url.Action("SalePrice_LessthanCheck", "api/TourokuProjectApi")');
-
+                RequiredCheck($("#Production"));
+                RequiredCheck($("#saleprice"));
                 $("#ProjectCD").attr('disabled', 'disabled');
                 $("#HinbanCD").attr('disabled', 'disabled');
                 $("#ProjectName").attr('disabled', 'disabled');
@@ -169,6 +168,9 @@
                 $('#btnSave').html('更新');
                 ShowData();
                 RequiredCheck($("#HinbanCD"));
+                RequiredCheck($("#HinbanName"));
+                RequiredCheck($("#Production"));
+                RequiredCheck($("#saleprice"));
                 ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "ProjectName");
                 ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/TourokuProjectApi")', "CastingName");
                 ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
@@ -235,7 +237,7 @@
                     ShowConfirmMessage("Q102", "DeleteConfrim");
                 }
                 else {
-                    alert("cpy");
+                 
                     DoProcess();
                 }
             }
@@ -373,8 +375,8 @@
             $("#StartDate").val(hbdata[0].PeriodStart);
             $("#EndDate").val(hbdata[0].PeriodEnd);
             $("#totalProNo").val(hbdata[0].TotalProduction);
-            $("#totalamount").val(hbdata[0].TotalAmount);
-            $("#DeliverNo").val(hbdata[0].DeliverNo);
+            $("#totalamount").val(hbdata[0].TotalSalesPrice);
+            $("#DeliverNo").val(hbdata[0].DeliveryAmount);
 
         }
 

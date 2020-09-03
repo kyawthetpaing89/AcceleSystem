@@ -130,15 +130,9 @@
         </div>
         <div class="col-lg-5">
             <div class="card-body card-block">
-                <table id="tblHinban" class="tb1 col-sm-12" style="padding-left:0px;">
+                <table class="tb1 col-sm-12" style="padding-left:0px;">
                     <thead>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                        
                         <tr>
                             <td>納品日</td>
                             <th>品番名</th>
@@ -157,7 +151,7 @@
                     </thead>
 
                 </table>
-                @*<table id="tblHinban" class="tb1 col-sm-12" style="padding-left:0px;">
+                <table id="tblProject" class="tb1 col-sm-12" style="padding-left:0px;width:420px;">
                     <thead>
                         <tr>
                             <td></td>
@@ -168,14 +162,15 @@
                             <td>予定単価</td>
                             <td>総金額</td>
                         </tr>
+
                     </thead>
 
-                </table>*@
+                </table>
 
             </div>
 
         </div>
-        <div class="col-lg-2"></div>
+        <div class="col-lg-1"></div>
     </div>
 
 </div>
@@ -213,7 +208,7 @@
 
     function BindTable(response) {
 
-        table = $('#tblHinban').DataTable({
+        table = $('#tblProject').DataTable({
 
             data: JSON.parse(response),
             "bFilter": false,
@@ -223,44 +218,6 @@
             "pagingType": "simple_numbers",
             destroy: true,
             "columns": [
-               
-                // {
-                //    "data": null,
-                //    className: "Border1",
-                //    render: function (data, type, row) {
-                //        return '<label>' + data.HinbanCD + '</label><br/><label>' + data.Casting + '</label></b><br/><label>' + '' + '</label>';
-                //    }
-                //},
-                //{
-                //    "data": null,
-                //    className: "Border2",
-                //    render: function (data, type, row) {
-                //        return '<b><label>' + data.HinbanName + '</label></b><br/><label>' + data.Production + '</label></b><br/><label>' + '' + '</label>';
-                //    }
-                //},
-                //{
-                //    "data": null,
-                //    className: "Border3",
-                //    render: function (data, type, row) {
-                //        return '<label>' + '' + '</label><br/><label>' + data.SalesPrice + '</label></b><br/><label>' + '' + '</label>';
-                //    }
-                //},
-
-                //{
-                //    "data": null,
-                //    className: "Border4",
-                //    render: function (data, type, row) {
-                //        return '<label>' + '' + '</label><br/><label>' + data.TotalAmount + '</label></b><br/><label>' + '' + '</label>';
-                //    }
-                //},
-               
-                //{
-                //    "data": null,
-                //    className: "Border5",
-                //    render: function (data, type, row) {
-                //        return '<label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:red">削除</a></label> <br/> <label><a href="#" onClick="btnCopyClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:green">複写</a></label><br/>';
-                //    }
-                //},
 
                 {
                     "data": null,
@@ -273,14 +230,14 @@
                     "data": null,
                     className: "Border2",
                     render: function (data, type, row) {
-                        return '<label>' + '' + '</label><br/>' +'<b><label>' + data.HinbanName + '</label></b><br/><br/><label>' + data.Production + '</label>';
+                        return '<label>' + '' + '</label><br/>' +'<b><label>' + data.HinbanName + '</label></b><br/><br/><label>' + data.Production + '</label><br/>';
                     }
                 },
                 {
                     "data": null,
                     className: "Border3",
                     render: function (data, type, row) {
-                        return '<label>' + '' + '</label><br/>' +'<label>' + '' + '</label><br/><br/><label>' + data.SalesPrice + '</label>';
+                        return '<label>' + '' + '</label><br/>' + '<label>' + '' + '</label><br/><br/><label>' + data.SalesPrice + '</label><br/>';
                     }
                 },
 
@@ -300,7 +257,9 @@
                     }
                 },
             ],
-           
+            "drawCallback": function (settings) {
+                $("#tblProject thead").remove();
+            }
         });
 
     }
@@ -335,7 +294,7 @@
     }
 
     function btnAddClick() {
-        @*location.href = '@Url.Action("TourokuProject_List", "TourokuProject")';*@
+        location.href = '@Url.Action("TourokuProject_List", "TourokuProject")';
     }
 
     function btnEditClick(ProjectCD, HinbanCD) {
@@ -400,7 +359,7 @@
         $("#StartDate").val(hbdata[0].PeriodStart);
         $("#EndDate").val(hbdata[0].PeriodEnd);
         $("#tpNo").val(hbdata[0].TotalProduction);
-        $("#tAmount").val(hbdata[0].TotalAmount);
+        $("#tAmount").val(hbdata[0].TotalSalesPrice);
 
     }
 </script>
