@@ -22,5 +22,11 @@ namespace Models
         public string ProjectName { get; set; }
         public string HinbanCD { get; set; }
         public string HinbanName { get; set; }
+        public string CastingCD { get; set; }
+        public string Item { get; set; }
+        public string CostAmount { get; set; }
+        public string InputAmount { get; set; }
+        public string Remarks { get; set; }
+        public string ZeikomiKBN { get; set; }
     }
 }
