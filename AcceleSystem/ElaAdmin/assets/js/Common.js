@@ -120,7 +120,7 @@ function ErrorCheckOnSave() {
         if (result != "0") {
             $(this).focus();
             r1 = result;
-            return result;
+            return false;
         }
     });
     return r1;
