@@ -34,10 +34,10 @@ input[type="checkbox"]:focus + label {
     background-color: #F2F4F4;
 }
 
-#tblProject td.Border1.sorting_1 {
+/*#tblProject td.Border1.sorting_1 {
     width: 80px!important;
 }
 
 #tblProject td.Border4 {
     width: 85px;
-}
+}*/
