@@ -526,13 +526,13 @@ function ErrChk(ctrl) {
                     var data = CalltoApiController(ApiURL, model);
                     var dateData = JSON.parse(data);
                     if (dateData[0].MessageID != "E115") {
+                        $(ctrl).val(dataresult);
                         return "0";
                     }
                     else {
                         return dateData[0].MessageID;
                     }
                 }
-            
                 $(ctrl).val(dateData[0].resultdate);
                 return "0";
             }

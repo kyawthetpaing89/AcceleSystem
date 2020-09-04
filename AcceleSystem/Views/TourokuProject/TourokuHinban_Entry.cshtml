@@ -220,8 +220,11 @@
             if (result == 'OK') {
                 var pro = $('#Production').val();
                 var del = $('#DeliverNo').val();
-                var Production = parseInt(pro);
-                var DeliverNo = parseInt(del);
+                var Production = pro.replace(",", "");
+                Production = parseInt(Production);
+                var DeliverNo = del.replace(",", "");
+                DeliverNo = parseInt(DeliverNo);
+              
                 if (Production < DeliverNo) {
                     ShowErrorMessage("E125");
                 }
@@ -377,7 +380,7 @@
             $("#totalProNo").val(hbdata[0].TotalProduction);
             $("#totalamount").val(hbdata[0].TotalSalesPrice);
             $("#DeliverNo").val(hbdata[0].DeliveryAmount);
-
+            $("#Amount").val(hbdata[0].TotalSalesPrice);
         }
 
       

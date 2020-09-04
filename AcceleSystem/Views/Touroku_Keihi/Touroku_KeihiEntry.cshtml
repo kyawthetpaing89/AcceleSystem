@@ -128,7 +128,7 @@
                                 登録
                             </button>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <button id="btnCancel" tabindex="19" onclick="btnSearchClick()" class="btn btn-primary col-xl-5 text-center" style="background-color:#1a8cff; color:azure; width:115px; height:40px;">戻る</button>
+                            <button id="btnCancel" tabindex="19" onclick="btnCancelClick()" class="btn btn-primary col-xl-5 text-center" style="background-color:#1a8cff; color:azure; width:115px; height:40px;">戻る</button>
                         </div>
                     </div>
                 </div>
@@ -171,7 +171,7 @@
                 }
 
                 RequiredCheck($("#CostDate"));
-                DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi")', "2");
+                DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi")',"2");
 
                 RequiredCheck($("#year"));
                 DateCheck($("#year"), '@Url.Action("Date_Checking", "api/CommonApi")');
@@ -195,10 +195,29 @@
             }
             else if (Mode == 'Edit') {
                   $('#btnSave').html('更新');
-                  //$("#costname").attr('disabled', 'disabled');
-                  //$("#brandname").attr('disabled', 'disabled');
                   $("#CostCD").focus();
 
+                  RequiredCheck($("#CostDate"));
+                  DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi")', "2");
+
+                  RequiredCheck($("#year"));
+                  DateCheck($("#year"), '@Url.Action("Date_Checking", "api/CommonApi")');
+
+                  RequiredCheck($("#BrandCD"));
+                  ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")', "brandname");
+
+                  RequiredCheck($("#projectCD"));
+                  ExistsCheck($("#projectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")', "projectName");
+
+                  RequiredCheck($("#PartCD"));
+                  ExistsCheck($("#PartCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "partName");
+
+                  RequiredCheck($("#CastingCD"));
+                  ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "CastingName");
+
+                  RequiredCheck($("#Item"));
+
+                  RequiredCheck($("#AmountMoney"));
 
                   ShowData();
                  }   
@@ -230,7 +249,7 @@
             $("#CostCD").val(ProjectData[0].CostCD);
             //$("#costname").val(ProjectData[0].CostName);
             $("#CostDate").val(ProjectData[0].CostDate);
-            $("#Year").val(ProjectData[0].Year);
+            $("#year").val(ProjectData[0].Year);
             $("#BrandCD").val(ProjectData[0].BrandCD);
             //$("#brandname").val(ProjectData[0].BrandName);
             //$("#season").val(ProjectData[0].Season);
@@ -288,37 +307,45 @@
            
         }
 
-        @*function DoProcess() {
-            focusControl = $("#ProjectCD");
-             var Tmodel = {
-                 ProjectCD: $("#ProjectCD").val(),
-                 ProjectName: $("#ProjectName").val(),
-                 BrandCD: $("#BrandCD").val(),
-                 Year: $("#Year").val(),
-                 PeriodStart: $("#PeriodStart").val(),
-                 PeriodEnd: $("#PeriodEnd").val(),
-                 ProjectManager: $("#ProjectManager").val(),
-                 SalesPrice: $("#SalesPrice").val(),
-                 Production: $("#Production").val(),
-                 AllocationCount: $("#AllocationCount").val(),
+        function DoProcess() {
+            focusControl = $("#CostCD");
+            var Kmodel = {
+                SEQ: $('#SEQ').val(),
+                 CostCD: $('#CostCD').val(),                 
+                 CostDate: $('#CostDate').val(),             
+                 Year: $('#Year').val(),
+                 BrandCD: $('#BrandCD').val(),               
+                 HinbanCD: $('#PartCD').val(),
+                 ProjectCD: $('#projectCD').val(), 
+                 CastingCD: $('#CastingCD').val(),
+                 Item: $('#Item').val(),
+                 CostAmount: $('#AmountMoney').val(),
+                 InputAmount: $('#InputAmount').val(),
+                 Remarks: $('#Remarks').val(),                
                  Mode:'@Model.Mode'
             };
 
             //For Season
-            if ($('#rdoyear').is(':checked'))
-                Tmodel.Season = "1";
-            else if ($('#rdoss').is(':checked'))
-                Tmodel.Season = "2";
-            else Tmodel.Season = "3";
+            if ($('#allyear').is(':checked'))
+                Kmodel.Season = "1";
+            else if ($('#SS').is(':checked'))
+                Kmodel.Season = "2";
+            else Kmodel.Season = "3";
 
-            var data = CalltoApiController('@Url.Action("Project_CUD", "api/TourokuProjectApi")', Tmodel);
-            ShowSuccessMessage(data,'@Url.Action("TourokuProject_List", "TourokuProject")');
-        }*@
+            if ($('#tax').is(':checked'))
+                Kmodel.ZeikomiKBN = "1";
+            else
+                Kmodel.ZeikomiKBN = "2";
 
 
-        function DeleteConfrim() {
-            DoProcess();
+            var data = CalltoApiController('@Url.Action("Project_CUD", "api/Touroku_KeihiApi")', Kmodel);
+            ShowSuccessMessage(data,'@Url.Action("Touroku_KeihiList", "Touroku_Keihi")');
         }
+
+
+        //function DeleteConfrim() {
+        //    DoProcess();
+        //}
 
 
         //save
@@ -339,7 +366,7 @@
         }
 
         function btnCancelClick() {
-            location.href = '@Url.Action("TourokuProject_List", "TourokuProject")';
+            location.href = '@Url.Action("Touroku_KeihiList", "Touroku_Keihi")';
         }
 
 </script>
