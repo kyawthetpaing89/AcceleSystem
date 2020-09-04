@@ -171,7 +171,7 @@
                 }
 
                 RequiredCheck($("#CostDate"));
-                DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi")', "2");
+                DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi")',"2");
 
                 RequiredCheck($("#year"));
                 DateCheck($("#year"), '@Url.Action("Date_Checking", "api/CommonApi")');
@@ -195,10 +195,29 @@
             }
             else if (Mode == 'Edit') {
                   $('#btnSave').html('更新');
-                  //$("#costname").attr('disabled', 'disabled');
-                  //$("#brandname").attr('disabled', 'disabled');
                   $("#CostCD").focus();
 
+                  RequiredCheck($("#CostDate"));
+                  DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi")', "2");
+
+                  RequiredCheck($("#year"));
+                  DateCheck($("#year"), '@Url.Action("Date_Checking", "api/CommonApi")');
+
+                  RequiredCheck($("#BrandCD"));
+                  ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")', "brandname");
+
+                  RequiredCheck($("#projectCD"));
+                  ExistsCheck($("#projectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")', "projectName");
+
+                  RequiredCheck($("#PartCD"));
+                  ExistsCheck($("#PartCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "partName");
+
+                  RequiredCheck($("#CastingCD"));
+                  ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "CastingName");
+
+                  RequiredCheck($("#Item"));
+
+                  RequiredCheck($("#AmountMoney"));
 
                   ShowData();
                  }   
@@ -230,7 +249,7 @@
             $("#CostCD").val(ProjectData[0].CostCD);
             //$("#costname").val(ProjectData[0].CostName);
             $("#CostDate").val(ProjectData[0].CostDate);
-            $("#Year").val(ProjectData[0].Year);
+            $("#year").val(ProjectData[0].Year);
             $("#BrandCD").val(ProjectData[0].BrandCD);
             //$("#brandname").val(ProjectData[0].BrandName);
             //$("#season").val(ProjectData[0].Season);
@@ -290,7 +309,8 @@
 
         function DoProcess() {
             focusControl = $("#CostCD");
-             var Kmodel = {
+            var Kmodel = {
+                SEQ: $('#SEQ').val(),
                  CostCD: $('#CostCD').val(),                 
                  CostDate: $('#CostDate').val(),             
                  Year: $('#Year').val(),
