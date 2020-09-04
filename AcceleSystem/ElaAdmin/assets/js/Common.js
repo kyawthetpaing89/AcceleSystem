@@ -533,7 +533,6 @@ function ErrChk(ctrl) {
                         return dateData[0].MessageID;
                     }
                 }
-            
                 $(ctrl).val(dateData[0].resultdate);
                 return "0";
             }
