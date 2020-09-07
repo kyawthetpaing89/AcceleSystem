@@ -228,6 +228,7 @@ function ErrChk(ctrl) {
                     var model = {
                         CostCD: $(ctrl).val()
                     };
+                    alert(CostCD);
                     var data = CalltoApiController(ApiURL, model);
                     var KeihiData = JSON.parse(data);
                     if (KeihiData[0].MessageID != "E101") {
@@ -242,6 +243,7 @@ function ErrChk(ctrl) {
                         }
                     }
                     else {
+                        alert("aa");
                         if ($(ctrl).attr("data-NameCtrl")) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
                             $('#' + ctrlName).val("");
