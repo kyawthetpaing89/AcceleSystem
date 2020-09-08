@@ -187,8 +187,7 @@ function ErrChk(ctrl) {
                         if ($(ctrl).attr("data-NameCtrl")) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
                             $('#' + ctrlName).val(UserData[0].UserName);
-                            $('#' + ctrlName).text(UserData[0].UserName);
-                            
+                            $('#' + ctrlName).text(UserData[0].UserName);   
                             return "0";
                         }
                     }
@@ -197,7 +196,6 @@ function ErrChk(ctrl) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
                             $('#' + ctrlName).val("");
                             return UserData[0].MessageID;
-
                         }
                     }
                     break;
@@ -260,6 +258,7 @@ function ErrChk(ctrl) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
                             $('#' + ctrlName).text(KanjoData[0].KanjoName);
                             $("#TmpVal1").val(KanjoData[0].HojoKBN);
+                            $("#TmpVal1").text(KanjoData[0].HojoKBN);
                             return "0";
                         }
                     }
@@ -282,6 +281,7 @@ function ErrChk(ctrl) {
                         if ($(ctrl).attr("data-NameCtrl")) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
                             $('#' + ctrlName).text(HojoData[0].HojoName);
+                            $('#' + ctrlName).val(HojoData[0].HojoName);
                             return "0";
                         }
                     }
@@ -313,6 +313,7 @@ function ErrChk(ctrl) {
                         if ($(ctrl).attr("data-NameCtrl")) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
                             $('#' + ctrlName).val(CastingData[0].CastingName);
+                            $('#' + ctrlName).text(CastingData[0].CastingName);
                             return "0";
                         }
                     }
@@ -357,6 +358,7 @@ function ErrChk(ctrl) {
                         if ($(ctrl).attr("data-NameCtrl")) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
                             $('#' + ctrlName).val(HinbanData[0].HinbanName);
+                            $('#' + ctrlName).text(HinbanData[0].HinbanName);
                             return "0";
                         }
                     }
