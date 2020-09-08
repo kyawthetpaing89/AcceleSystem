@@ -43,16 +43,16 @@
                     </div>
                 </div>
                 <div class="pt-3 md-form" style=" padding-top:1.2rem!important;">
-                    <div class="col-xl-12" style="padding-left: 0px">
+                    <div class="col-xl-12" style="padding-left: 65px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <div class="custom-control custom-radio" style="padding-left:0px!important;">
-                                <label class="text" id="Season" style="padding-right:30px;">シーズン</label>
-                                <input type="radio" tabindex="5" onkeydown="KeyDown(event,this)" id="rdoyear" name="radio" checked>
-                                <label for="rdoyear" style="padding-right:40px;">通年</label>
-                                <input type="radio" id="rdoss" name="radio">
-                                <label for="rdoss" style="padding-right:40px;">SS</label>
-                                <input type="radio" id="rdofw" name="radio">
-                                <label>FW</label>
+                                <label class="text" id="season" style="padding-right:30px;">シーズン</label>
+                                <input type="radio" tabindex="4" onkeydown="KeyDown(event,this)" id="allyear" name="radio" checked>
+                                <label for="allyear" style="padding-right:40px;">通年</label>
+                                <input type="radio" id="SS" name="radio">
+                                <label for="SS" style="padding-right:40px;">SS</label>
+                                <input type="radio" id="FW" name="radio">
+                                <label for="FW" style="padding-right:40px;">FW</label>
                             </div>
                         </div>
                     </div>
@@ -99,12 +99,12 @@
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xl-12" style="padding-left:65px;">
-                        <div class="text-s text-custom1 text-uppercase mb-1">
-                            <label id="taxinclude">税込区分</label>&nbsp;
-                            <input type="radio" tabindex="12" id="tax" name="Tax" checked>
-                            <label style="padding-right:25px!important;">税別</label>
-                            <input type="radio" tabindex="13" id="nottax" name="NotTax">
-                            <label style="padding-right:25px!important;">税込</label>
+                        <div class="custom-control custom-radio" style="padding-left:0px!important;">
+                            <label class="text" id="taxinclude" style="padding-right:30px;">税込区分</label>
+                            <input type="radio" tabindex="12" onkeydown="KeyDown(event,this)" id="tax" name="radios" checked>
+                            <label for="tax" style="padding-right:40px;">税別</label>
+                            <input type="radio" id="nottax" name="radios" >
+                            <label for="nottax" style="padding-right:40px;">税込</label>                           
                         </div>
                     </div>
                 </div>
