@@ -130,7 +130,7 @@
                         </tr>
 
                     </thead>
-                    @*<tbody>
+                    <tbody>
                         <tr>
                             <td>BrandCD</td>
                             <td>BrandName</td>
@@ -153,7 +153,7 @@
                             <td>TotalProduction</td>
                             <td>TotalSalesPrice</td>
                         </tr>
-                    </tbody>*@
+                    </tbody>
                 </table>
                 </div>
             </div>
@@ -284,10 +284,10 @@
                         return '<label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:red">削除</a></label> <br/> <label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:green">複写</a></label><br/>';
                     }
                 },
-            ]
-            //"drawCallback": function (settings) {
-            //    $("#tblProject thead").remove();
-            //}
+            ],
+            "drawCallback": function (settings) {
+                $("#tblProject thead").remove();
+            }
         });
 
     }
