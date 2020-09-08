@@ -32,5 +32,18 @@ namespace AcceleSystem.Controllers
             return cmbl.DateComapre(BModel.startDate, BModel.endDate);
         }
 
+        [UserAuthentication]
+        [HttpPost]
+        public string LessthanZero_Checking([FromBody] BaseModel BModel)
+        {
+            if (!string.IsNullOrWhiteSpace(BModel.value))
+            {
+                BModel.value = BModel.value.Replace(",", "");
+            }
+            Common_BL cmbl = new Common_BL();
+            return cmbl.LessthanZero_Checking(BModel.value);
+
+        }
+
     }
 }
