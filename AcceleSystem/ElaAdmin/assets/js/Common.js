@@ -556,36 +556,6 @@ function ErrChk(ctrl) {
                 $(ctrl).val(ProductionData[0].resultdata);
                 return "0";
             }
-            //switch (dataLessthanCheck) {
-            //    case "Production":
-            //        var model = {
-            //            Production: $(ctrl).val(),
-            //        };
-            //        var data = CalltoApiController(ApiURL, model);
-            //        var ProductionData = JSON.parse(data);
-            //        if (ProductionData[0].flg == "false") {
-            //            return "E109";
-            //        }
-            //        else {
-            //            $(ctrl).val(ProductionData[0].resultdata);
-            //            return "0";
-            //        }
-            //        break;
-            //    case "SalePrice":
-            //        var model = {
-            //            SalePrice: $(ctrl).val(),
-            //        };
-            //        var data = CalltoApiController(ApiURL, model);
-            //        var SalePriceData = JSON.parse(data);
-            //        if (SalePriceData[0].flg == "false") {
-            //            return "E109";
-            //        }
-            //        else {
-            //            $(ctrl).val(SalePriceData[0].resultdata);
-            //            return "0";
-            //        }
-            //        break;
-            //}
         }
     }
     else {
