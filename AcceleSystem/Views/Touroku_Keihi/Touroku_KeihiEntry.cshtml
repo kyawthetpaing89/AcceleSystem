@@ -189,12 +189,12 @@
                 ExistsCheck($("#PartCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "partName");
 
                 RequiredCheck($("#CastingCD"));
-                ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "CastingName");
+                ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/Touroku_KeihiApi")', "CastingName");
 
                 RequiredCheck($("#Item"));
 
                 RequiredCheck($("#AmountMoney"));
-                @*LessthanZeroCheck($("#AmountMoney"), "SalePrice", '@Url.Action("SalePrice_LessthanCheck", "api/TourokuProjectApi")');*@
+                LessthanZeroCheck($("#AmountMoney"),"SalePrice", '@Url.Action("SalePrice_LessthanCheck", "api/Touroku_KeihiApi")');
             }
             else if (Mode == 'Edit') {
                   $('#btnSave').html('更新');
