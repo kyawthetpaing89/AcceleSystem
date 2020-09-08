@@ -106,52 +106,58 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-5 col-lg-5 col-sm-12">
+        <div class="col-xl-6 col-lg-5 col-sm-12">
             <div class="card-body card-block">
-                <table class="tb1 col col-md-12" style="margin-left:10px;">
+                <table id="tblProject" class="tb1 col-sm-12" style="margin-left:10px;">
                     <thead>
                         <tr>
-                            <td>納品日</td>
-                            <th>ブランド</th>
+                            <th>ブランドコード</th>
+                            <th>ブランド名</th>
                             <th>シーズン</th>
                             <th>年度</th>
                         </tr>
+                        <tr>
+                            <th>プロジェクトコード</th>
+                            <th>プロジェクト名</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th>予定期間</th>
+                            <th>予定期間</th>
+                            <th>総生産数</th>
+                            <th>総金額</th>
+                        </tr>
 
-                        <tr>
-                            <td>コード</td>
-                            <td>プロジェクト</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>予定期間</td>
-                            <td></td>
-                            <td>総生産数</td>
-                            <td>総金額</td>
-                        </tr>
                     </thead>
-
+                    @*<tbody>
+                        <tr>
+                            <td>BrandCD</td>
+                            <td>BrandName</td>
+                            <td>Season</td>
+                            <td>Year</td>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <td>ProjectCD</td>
+                            <td>ProjectName</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <td>PeriodStart</td>
+                            <td>PeriodEnd</td>
+                            <td>TotalProduction</td>
+                            <td>TotalSalesPrice</td>
+                        </tr>
+                    </tbody>*@
                 </table>
-                    <table id="tblProject" class="tb1 col col-md-12">
-                        <thead>
-                            <tr>
-                                <td>ブランドコード</td>
-                                <td>ブランド名</td>
-                                <td>シーズン</td>
-                                <td>年度</td>
-                                <td>プロジェクトコード</td>
-                                <td>プロジェクト名</td>
-                                <td>予定期間</td>
-                                <td>予定期間</td>
-                                <td>総生産数</td>
-                                <td>総金額</td>
-                            </tr>
-                        </thead>
-
-                    </table>
                 </div>
-
             </div>
-        <div class=""></div>
+        <div class="col xl-1"></div>
     </div>
 
 </div>
@@ -237,8 +243,10 @@
             "bFilter": false,
             "bLengthChange": false,
             "bInfo": false,
+            //"bSort": false,
             destroy: true,
             "columns": [
+
                 {
                     "data": null,
                     className: "Border1",
@@ -257,7 +265,7 @@
                     "data": null,
                     className: "Border3",
                     render: function (data, type, row) {
-                        return '<b><label>' + data.Season + '</label></b><br/><label>' + '' + '</label></b><br/><label>' + data.Production + '</label>';
+                        return '<b><label>' + data.Season + '</label></b><br/><label>' + '' + '</label></b><br/><label>' + data.TotalProduction + '</label>';
                     } 
                 },
 
@@ -265,10 +273,10 @@
                     "data": null,
                     className: "Border4",
                     render: function (data, type, row) {
-                        return '<b><label>' + data.Year + '</label></b><br/><label>' + '' + '</label></b><br/><label>'+ data.SalesPrice + '</label>';
+                        return '<b><label>' + data.Year + '</label></b><br/><label>' + '' + '</label></b><br/><label>'+ data.TotalSalesPrice + '</label>';
                     }
                 },
-
+                
                 {
                     "data": null,
                     className: "Border5",
@@ -276,10 +284,10 @@
                         return '<label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:red">削除</a></label> <br/> <label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:green">複写</a></label><br/>';
                     }
                 },
-            ],
-            "drawCallback": function (settings) {
-                $("#tblProject thead").remove();
-            }
+            ]
+            //"drawCallback": function (settings) {
+            //    $("#tblProject thead").remove();
+            //}
         });
 
     }
