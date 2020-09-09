@@ -253,25 +253,27 @@
                 RequiredCheck($("#AmountMoney"));
                 LessthanZeroCheck($("#AmountMoney"), '@Url.Action("LessthanZero_Checking", "api/CommonApi")');
             }
-            else if (Mode == 'Delete'){
-                  $('#btnSave').html('削除');
-                  $("#ProjectCD").attr('disabled', 'disabled');
-                  $("#ProjectName").attr('disabled', 'disabled');
+            else if (Mode == 'Delete') {              
+                $('#btnSave').html('削除');
+                ShowData();
+                  $("##CostCD").attr('disabled', 'disabled');
+                  $("#CostDate").attr('disabled', 'disabled');
                   $("#year").attr('disabled', 'disabled');
                   $("#BrandCD").attr('disabled', 'disabled');
-                  $("#Season").attr('disabled', 'disabled');
-                  $("#PeriodStart").attr('disabled', 'disabled');
-                  $("#PeriodEnd").attr('disabled', 'disabled');
-                  $("#ProjectManager").attr('disabled', 'disabled');
-                  $("#AllocationCount").attr('disabled', 'disabled');
+                  $("#season").attr('disabled', 'disabled');
+                  $("#HinbanCD").attr('disabled', 'disabled');
+                  $("#CastingCD").attr('disabled', 'disabled');
+                  $("#Item").attr('disabled', 'disabled');
+                  $("#AmountMoney").attr('disabled', 'disabled');
+                  $("#BodyAmount").attr('disabled', 'disabled');
+                  $("#Remark").attr('disabled', 'disabled');
                   $("#btnSave").focus();
-                  ShowData();
-                 }
+            }
     });
 
 
            //set data
-        function ShowData() {
+    function ShowData() {
             var Kmodel = {
                 SEQ: '@Model.SEQ',
             };
@@ -281,7 +283,7 @@
             $("#CostCD").val(ProjectData[0].CostCD);
             if (!ProjectData[0].CostName)
                 $("#costname").text("経費名表示");
-            else $("#costname").text(ProjectData[0].CostName);
+            else $("#co#CostDatestname").text(ProjectData[0].CostName);
             $("#CostDate").val(ProjectData[0].CostDate);
             $("#year").val(ProjectData[0].Year);
             $("#BrandCD").val(ProjectData[0].BrandCD);
@@ -323,7 +325,7 @@
                 $("#tax").prop("checked", false);
                 $("#nottax").prop("checked", true);
             }
-               
+            alert("bb");
            
         }
 
