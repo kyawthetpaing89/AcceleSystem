@@ -193,8 +193,8 @@
 
                 RequiredCheck($("#Item"));
 
-                RequiredCheck($("#AmountMoney"));
-                LessthanZeroCheck($("#AmountMoney"),"SalePrice", '@Url.Action("SalePrice_LessthanCheck", "api/Touroku_KeihiApi")');
+                RequiredCheck($("#AmountMoney"));                
+                LessthanZeroCheck($("#AmountMoney"), '@Url.Action("LessthanZero_Checking", "api/CommonApi")');
             }
             else if (Mode == 'Edit') {
                   $('#btnSave').html('更新');
@@ -350,9 +350,9 @@
         //    DoProcess();
         //}
 
-
+   
         //save
-        function btnSaveClick() {
+    function btnSaveClick(){
             var res = ErrorCheckOnSave();
             if (res == "0") {
                 var Mode = '@Model.Mode';
@@ -361,6 +361,7 @@
                     ShowConfirmMessage("Q102", "DeleteConfrim");
                 }
                 else {
+                    alert("aa");
                     DoProcess();
                 }
             }
