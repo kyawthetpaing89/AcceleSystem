@@ -22,9 +22,9 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="BrandCD" name="brandcd" maxlength="6" required placeholder="プロジェクトコード">
+                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="ProjectCD" name="projectcd" maxlength="6" required placeholder="プロジェクトコード">
 
-                            <input type="text" tabindex="2" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="BrandName" name="brandname" maxlength="40" required placeholder="プロジェクト名">
+                            <input type="text" tabindex="2" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="ProjectName" name="projectname" maxlength="40" required placeholder="プロジェクト名">
                         </div>
                     </div>
                 </div>
@@ -32,15 +32,14 @@
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <input type="text" tabindex="3" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="Year" name="year" required placeholder="年度">
-                            @*<label id="KanjoName"><b>勘定科目表示</b></label>*@
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="4" class="text-line col-xl-5 text-left" style="width: 130px;" onkeydown="KeyDown(event,this)" id="BrandCode" name="brandcode" maxlength="4" required placeholder="ブランド">
-                            <label id="HojoName" style="padding-left:80px;"><b>ブランド表示</b></label>
+                            <input type="text" tabindex="4" class="text-line col-xl-5 text-left" style="width: 130px;" onkeydown="KeyDown(event,this,'BrandCheck')" id="BrandCD" name="brandcd" maxlength="4" required placeholder="ブランド">
+                            <label id="BrandName" style="padding-left:80px;"><b>ブランド表示</b></label>
 
                         </div>
                     </div>
@@ -49,11 +48,11 @@
                     <div class="col-xl-12" style="padding-left: 0px">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <div class="custom-control custom-radio" style="padding-left:0px!important;">
-                                <label class="text" style="padding-right:30px;">シーズン</label>
-                                <input type="radio" id="rdoyear" name="radio" checked>
-                                <label style="padding-right:40px;">通年</label>
+                                <label class="text" id="Season" style="padding-right:30px;">シーズン</label>
+                                <input type="radio" tabindex="5" onkeydown="KeyDown(event,this)" id="rdoyear" name="radio" checked>
+                                <label for="rdoyear" style="padding-right:40px;">通年</label>
                                 <input type="radio" id="rdoss" name="radio">
-                                <label style="padding-right:40px;">SS</label>
+                                <label for="rdoss" style="padding-right:40px;">SS</label>
                                 <input type="radio" id="rdofw" name="radio">
                                 <label>FW</label>
                             </div>
@@ -75,24 +74,24 @@
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="Production" style="padding-right:20px;">総生産数</label>
-                            <label id="Production" style="padding-right:30px;"><b>総生産数表示</b></label>
+                            <label id="TotalProduction" style="padding-right:30px;"><b>総生産数表示</b></label>
                             <label id="SalesPrice" style="padding-right:20px;">総金額</label>
-                            <label id="SalesPrice"><b>総金額表示</b></label>
+                            <label id="TotalSalesPrice"><b>総金額表示</b></label>
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" style="width:130px;" onkeydown="KeyDown(event,this)" id="UserName" name="username" maxlength="6" required placeholder="責任者">
-                            <label id="SalesPrice" style="padding-left:80px;"><b>責任者表示</b></label>
+                            <input type="text" tabindex="8" class="text-line col-xl-5 text-left" style="width:130px;" onkeydown="KeyDown(event,this,'ProjectManagerCheck')" id="ProjectManager" name="projectmanager" maxlength="6" required placeholder="責任者">
+                            <label id="ProjectManagerName" style="padding-left:80px;"><b>責任者表示</b></label>
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="AllocationCount" name="allocationcount" maxlength="6" required placeholder="配賦用固定値">
+                            <input type="text" tabindex="9" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="AllocationCount" name="allocationcount" maxlength="6" required placeholder="配賦用固定値">
 
                         </div>
                     </div>
@@ -100,13 +99,13 @@
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <button id="btnSave" tabindex="7" onclick="btnSaveClick()" class="btn btn-dark col-xl-4 text-center">登録</button>
+                            <button id="btnSave" tabindex="10" onclick="btnSaveClick()" class="btn btn-dark col-xl-4 text-center">登録</button>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <button id="btnCancel" tabindex="8" onclick="btnCancelClick()" class="btn btn-primary col-xl-4 text-center">戻る</button>
+                            <button id="btnCancel" tabindex="11" onclick="btnCancelClick()" class="btn btn-primary col-xl-4 text-center">戻る</button>
                         </div>
                     </div>
                 </div>
-                <input type="hidden" id="APIURL" value="@Url.Action("M_Keihi_ExistsCheck", "api/TourokuProjectApi")" />
+                <input type="hidden" id="APIURL" value="@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")" />
             </div>
             <div class="col-xs-12 col-md-3"></div>
         </div>
@@ -114,15 +113,15 @@
 </div>
 
 
-@*@section Scripts{
-    <script type="text/javascript">
+@section Scripts{
+<script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("プロジェクト登録");
             $("#ProjectCD").focus();
-            var Mode = '@Model.Mode';
+             var Mode = '@Model.Mode';
             if (Mode == 'New') {
                 $('#btnSave').html('登録');
-             
+
                 RequiredCheck($("#ProjectCD"));
                 RequiredCheck($("#ProjectName"));
                 RequiredCheck($("#Year"));
@@ -130,156 +129,174 @@
                 RequiredCheck($("#PeriodStart"));
                 RequiredCheck($("#PeriodEnd"));
                 AlreadyExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")');
-                ExistsCheck($("#KanjoCD"), "Kanjo", '@Url.Action("M_Kanjo_ExistsCheck", "api/KeihiSetteiApi")', "KanjoName");
-            }*@
-            @*else if (Mode == 'Edit') {
-                $('#btnSave').html('更新');
-                $("#CostCD").attr('disabled', 'disabled');
-                $("#CostName").focus();
-                $("#HojoCD").attr('disabled', 'disabled');
+                ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
+                YearMonthCheck($("#PeriodStart"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
+                YearMonthCheck($("#PeriodEnd"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
+                ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
 
-                RequiredCheck($("#CostName"));
-                RequiredCheck($("#KanjoCD"));
-                ExistsCheck($("#KanjoCD"), "Kanjo", '@Url.Action("M_Kanjo_ExistsCheck", "api/KeihiSetteiApi")', "KanjoName");
+            }
+
+            else if (Mode == 'Edit') {
+                $('#btnSave').html('更新');
+                $("#ProjectCD").attr('disabled', 'disabled');
+                $("#ProjectName").focus();
+
+                RequiredCheck($("#ProjectName"));
+                RequiredCheck($("#Year"));
+                RequiredCheck($("#BrandCD"));
+                RequiredCheck($("#PeriodStart"));
+                RequiredCheck($("#PeriodEnd"));
+                ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
+                YearMonthCheck($("#PeriodStart"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
+                YearMonthCheck($("#PeriodEnd"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
+                ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
+
                 ShowData();
+            }
+            else if (Mode == 'Copy') {
+                $('#btnSave').html('更新');
+                $("#ProjectCD").focus();
+
+                RequiredCheck($("#ProjectName"));
+                RequiredCheck($("#Year"));
+                RequiredCheck($("#BrandCD"));
+                RequiredCheck($("#PeriodStart"));
+                RequiredCheck($("#PeriodEnd"));
+                ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
+                YearMonthCheck($("#PeriodStart"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
+                YearMonthCheck($("#PeriodEnd"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
+                ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
+
+                ShowData();
+
+
             }
             else  {
                 $('#btnSave').html('削除');
-                $("#CostCD").attr('disabled', 'disabled');
-                $("#CostName").attr('disabled', 'disabled');
-                $("#KanjoCD").attr('disabled', 'disabled');
-                $("#HojoCD").attr('disabled', 'disabled');
-                $("#Accounting").attr('disabled', 'disabled');
-                $("#Allocation").attr('disabled', 'disabled');
+                $("#ProjectCD").attr('disabled', 'disabled');
+                $("#ProjectName").attr('disabled', 'disabled');
+                $("#Year").attr('disabled', 'disabled');
+                $("#BrandCD").attr('disabled', 'disabled');
+                $("#Season").attr('disabled', 'disabled');
+                $("#PeriodStart").attr('disabled', 'disabled');
+                $("#PeriodEnd").attr('disabled', 'disabled');
+                $("#ProjectManager").attr('disabled', 'disabled');
+                $("#AllocationCount").attr('disabled', 'disabled');
                 $("#btnSave").focus();
+
                 ShowData();
             }
         });
 
-            //set data
+           //set data
         function ShowData() {
-            var Kmodel = {
-                CostCD: '@Model.CostCD',
+            var Tmodel = {
+                ProjectCD: '@Model.ProjectCD',
             };
-            var data = CalltoApiController('@Url.Action("M_Keihi_Select_Entry", "api/KeihiSetteiApi")', Kmodel);
-            var keihidata = JSON.parse(data);
-            $("#CostCD").val(keihidata[0].CostCD);
-            $("#CostName").val(keihidata[0].CostName);
-            $("#KanjoCD").val(keihidata[0].KanjoCD);
-            $("#HojoCD").val(keihidata[0].HojoCD);
+            var data = CalltoApiController('@Url.Action("M_Project_Select_Entry", "api/TourokuProjectApi")', Tmodel);
+            var ProjectData = JSON.parse(data);
+            $("#ProjectCD").val(ProjectData[0].ProjectCD);
+            $("#ProjectName").val(ProjectData[0].ProjectName);
+            $("#BrandCD").val(ProjectData[0].BrandCD);
+            $("#Year").val(ProjectData[0].Year);
+            $("#PeriodStart").val(ProjectData[0].PeriodStart);
+            $("#PeriodEnd").val(ProjectData[0].PeriodEnd);
+            $("#Production").text(ProjectData[0].Production);
+            $("#SalesPrice").text(ProjectData[0].SalesPrice);
+            $("#ProjectManager").val(ProjectData[0].ProjectManager);
+            $("#AllocationCount").val(ProjectData[0].AllocationCount);
+            if (!ProjectData[0].BrandName)
+                $("#BrandName").text("ブランド表示");
+            else $("#BrandName").text(ProjectData[0].BrandName);
 
-            if (!keihidata[0].KanjoName)
-                $("#KanjoName").text("勘定科目表示");
-            else $("#KanjoName").text(keihidata[0].KanjoName);
+            
+            if (!ProjectData[0].ProjectManagerName)
+                $("#ProjectManagerName").text("責任者表示");
+            else $("#ProjectManagerName").text(ProjectData[0].ProjectManagerName);
+            
+            if (!ProjectData[0].TotalProduction)
+                $("#TotalProduction").text("総生産数表示");
+            else $("#TotalProduction").text(Projectdata[0].TotalProduction);
 
-            if (!keihidata[0].HojoName)
-                $("#HojoName").text("補助科目表示");
-            else $("#HojoName").text(keihidata[0].HojoName);
+            if (!ProjectData[0].TotalSalesPrice)
+                $("#TotalSalesPrice").text("総金額表示");
+            else $("#TotalSalesPrice").text(ProjectData[0].TotalSalesPrice);
 
-            //Bind Accounting
-            if (keihidata[0].Accounting == "1")
-                $("#rdoDCost").prop("checked", true);
-            else if (keihidata[0].Accounting == "2")
-                $("#rdoBrandSeason").prop("checked", true);
-            else if (keihidata[0].Accounting == "3")
-                $("#rdoProject").prop("checked", true);
-            else if (keihidata[0].Accounting == "4")
-                $("#rdoMAllocation").prop("checked", true);
+            //Bind Season
+            if (ProjectData[0].Season == "1")
+                $("#rdoyear").prop("checked", true);
+            else if (ProjectData[0].Season == "2")
+                $("#rdoss").prop("checked", true);
             else
-                $("#rdoFItems").prop("checked", true);
+                $("#rdofw").prop("checked", true);
 
-            //Bind Allocation
-            if (keihidata[0].Allocation == "0")
-                $("#rdoDirectly").prop("checked", true);
-            else if (keihidata[0].Allocation == "1")
-                $("#rdoTMRatio").prop("checked", true);
-            else if (keihidata[0].Allocation == "2")
-                $("#rdoPNRatio").prop("checked", true);
-            else
-                $("#rdoFVRatio").prop("checked", true);
-
-            $("#KanjoName").css("font-weight", "Bold");
-            $("#HojoName").css("font-weight", "Bold");
         }
 
         function DoProcess() {
-            focusControl = $("#CostCD");
-             var Kmodel = {
-                 CostCD: $("#CostCD").val(),
-                 CostName: $("#CostName").val(),
-                 KanjoCD: $("#KanjoCD").val(),
-                 HojoCD: $("#HojoCD").val(),
-                 Accounting: $("#Accounting").val(),
-                 Allocation: $("#Allocation").val(),
+            focusControl = $("#ProjectCD");
+             var Tmodel = {
+                 ProjectCD: $("#ProjectCD").val(),
+                 ProjectName: $("#ProjectName").val(),
+                 BrandCD: $("#BrandCD").val(),
+                 Year: $("#Year").val(),
+                 ProjectManager: $("#ProjectManager").val(),
+                 PeriodStart: $("#PeriodStart").val(),
+                 PeriodEnd: $("#PeriodEnd").val(),
+                 Production: $("#Production").val(),
+                 SalesPrice: $("#SalesPrice").val(),
+                 AllocationCount: $("#AllocationCount").val(),
                  Mode:'@Model.Mode'
             };
 
-            //For Accounting
-            if ($('#rdoDCost').is(':checked'))
-                Kmodel.Accounting = "1";
-            else if ($('#rdoBrandSeason').is(':checked'))
-                Kmodel.Accounting = "2";
-            else if ($('#rdoProject').is(':checked'))
-                Kmodel.Accounting = "3";
-            else if ($('#rdoMAllocation').is(':checked'))
-                Kmodel.Accounting = "4";
-            else Kmodel.Accounting = "5";
+            //For PeriodStart
+            //if ($("#PeriodStart").val($.format.date(new Date(), 'yyyy/mm/dd')));
 
-            //For Allocation
-            if ($('#rdoDirectly').is(':checked'))
-                Kmodel.Allocation = "0";
-            else if ($('#rdoTMRatio').is(':checked'))
-                Kmodel.Allocation = "1";
-            else if ($('#rdoPNRatio').is(':checked'))
-                Kmodel.Allocation = "2";
-            else Kmodel.Allocation = "3";
+            ////For PeriodEnd
 
-            var data = CalltoApiController('@Url.Action("Keihi_CUD", "api/KeihiSetteiApi")', Kmodel);
-            ShowSuccessMessage(data,'@Url.Action("KeihiSetteiList", "KeihiSettei")');
+            //if ($("#PeriodEnd").val($.format.date(new Date(), 'yyyy/mm/dd')));
+
+            //For Season
+            if ($('#rdoyear').is(':checked'))
+                Tmodel.Season = "1";
+            else if ($('#rdoss').is(':checked'))
+                Tmodel.Season = "2";
+            else Tmodel.Season = "3";
+
+            var data = CalltoApiController('@Url.Action("Project_CUD", "api/TourokuProjectApi")', Tmodel);
+            ShowSuccessMessage(data,'@Url.Action("TourokuProject_List", "TourokuProject")');
+    }
+
+    function BrandCheck(result) {
+        if (result == 'OK') {
+            RequiredCheck($("#BrandCD"));
+            ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
+            //$("#BrandCD").focus();
         }
-
-        function KanjoCheck(result) {
-            if (result == 'OK') {
-                if ($("#TmpVal1").val() == "1") {
-                    $("#HojoCD").prop("disabled", false);
-                    $("#HojoCD").focus();
-                    RequiredCheck($("#HojoCD"));
-                    ExistsCheck($("#HojoCD"), "Hojo", '@Url.Action("M_Hojo_ExistsCheck", "api/KeihiSetteiApi")', "HojoName", $("#KanjoCD").val());
-                }
-                else {
-                    $("#HojoCD").prop("disabled", true);
-                    RemoveRequired($("#HojoCD"));
-                    RemoveExistCheck($("#HojoCD"));
-                    $("#HojoCD").val('');
-                    $("#HojoName").text('補助科目表示');
-                }
-            }
-            else {
-                $("#KanjoCD").focus();
-                $("#KanjoName").text('勘定科目表示');
-                $("#HojoCD").val('');
-                $("#HojoName").text('補助科目表示');
-                $("#HojoCD").prop("disabled", true);
-            }
-            $("#KanjoName").css("font-weight", "Bold");
-            $("#HojoName").css("font-weight", "Bold");
+        else {
+            $("#BrandCD").val('');
+            $("#BrandName").text('ブランド表示');
+            $("#Season").focus();
         }
+        $("#BrandName").css("font-weight", "Bold");
+    }
 
-        function HojoCheck(result) {
-            if (result == 'OK') {
-                $("#Accounting").focus();
-            }
-            else {
-                $("#HojoName").text('補助科目表示');
-                $("#HojoCD").focus();
-            }
-            $("#HojoName").css("font-weight", "Bold");
+    function ProjectManagerCheck(result) {
+        if (result == 'OK') {
+            ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
+            $("#ProjectManager").foucs();
         }
+        else {
+            $("#ProjectManager").val('');
+            $("#ProjectManagerName").text('責任者表示');
+            $("#AllocationCount").focus();
 
-
+        }
+        $("#ProjectManagerName").css("font-weight", "Bold");
+    }
         function DeleteConfrim() {
             DoProcess();
         }
+
 
         //save
         function btnSaveClick() {
@@ -296,13 +313,13 @@
             }
             else
                 ShowErrorMessage(res);
-        }*@
+        }
 
-        @*function btnCancelClick() {
+        function btnCancelClick() {
             location.href = '@Url.Action("TourokuProject_List", "TourokuProject")';
-        }*@
+        }
 
-    </script>
+</script>
     <script src="@Url.Content("~/Scripts/datepicker.js")"></script>
     <script src="@Url.Content("~/Scripts/datepicker.en.js")"></script>
    

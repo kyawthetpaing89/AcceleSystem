@@ -21,10 +21,18 @@
                 <table id="tblBrand" class="tb1 col-sm-12" style="padding-left:0px;">
                     <thead>
                         <tr>
-                            <td>ブランドコード</td>
-                            <td>ブランド名</td>
+                            <th>ブランドコード</th>
+                            <th>ブランド名</th>
+                            <th></th>
                         </tr>
                     </thead>
+                    @*<tbody>
+                        <tr>
+                            <td>BrandCD</td>
+                            <td>BrandName</td>
+                            <td></td>
+                        </tr>
+                    </tbody>*@
                 </table>
             </div>
         </div>
@@ -35,15 +43,6 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("ブランド検索");
-
-        //$("#myInput").on("keyup", function () {
-        //    var value = $(this).val().toLowerCase();
-        //    $("#tblUser tr").filter(function () {
-        //        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        //    });
-        //});
-
-
             GetBrand();
         });
 
@@ -82,26 +81,35 @@
                 "bFilter": false,
                 "bLengthChange": false,
                 "bInfo": false,
+                "bSort": false,
                 destroy:true,
                 "columns": [
                     {
                         "data": null,
-                        className:"Border1",
+                        className: "Border1",
                         render: function (data, type, row) {
-                            return '<b><label>' + data.BrandCD + '</label></b><br/><label>' + data.BrandName + '</label>';
+                            return '<label>' + data.BrandCD + '</label>';
                         }
                     },
                     {
                         "data": null,
                         className: "Border2",
                         render: function (data, type, row) {
-                            return '<label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD +'\')" style="color:red">削除</a></label>';
+                            return '<label>' + data.BrandName + '</label>';
                         }
                     },
-                ],
-                "drawCallback": function (settings) {
-                    $("#tblBrand thead").remove();
-                }
+                    {
+                        "data": null,
+                        className: "Border3",
+                        render: function (data, type, row) {
+                            return '<label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\')" style="color:blue">編集</a></label>&nbsp;&nbsp;&nbsp;<label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\')" style="color:red">削除</a></label>';
+                        }
+                    }
+                ]
+
+            //    "drawCallback": function (settings) {
+            //        $("#tblBrand thead").remove();
+            //    }
             });
 
         }

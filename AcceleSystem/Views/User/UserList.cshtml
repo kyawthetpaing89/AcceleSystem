@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = "UserList";
-}  
+}
 
 @section Styles{
     <link rel="stylesheet" href="@Url.Content("~/ElaAdmin/assets/css/lib/datatable/dataTables.bootstrap.min.css")" />
@@ -14,18 +14,25 @@
                     ユーザー追加
                 </button>
             </div>
-
             <div class="col-sm-7 col-md-6">
-                    <i class="fa fa-search" style="padding-left:15px;"></i>
-                    <input type="text" id="myInput" placeholder="ユーザー名入力......" class="border border-white" style="width:80%;padding-bottom:10px">
-                    <table id="tblUser" class="tb1 col-sm-12" style="padding-left:0px;">
-                        <thead>
-                            <tr>
-                                <td>UserID</td>
-                                <td>UserName</td>
-                            </tr>
-                        </thead>
-                    </table>
+                <i class="fa fa-search" style="padding-left:15px;"></i>
+            <input type="text" id="myInput" placeholder="ユーザー名入力......" class="border border-white" style="width:80%;padding-bottom:10px">
+                <table id="tblUser" class="tb col-sm-12" style="padding-left:0px;">
+                    <thead>
+                        <tr>
+                            <th>ユーザーID</th>
+                            <th>ユーザー名</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    @*<tbody>
+                        <tr>
+                            <td>ID</td>
+                            <td>UserName</td>
+                            <td></td>
+                        </tr>
+                    </tbody>*@
+                </table>
             </div>
         </div>
     </div>
@@ -35,85 +42,85 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("ユーザー検索");
-        //$("#myInput").on("keyup", function () {
-        //    var value = $(this).val().toLowerCase();
-        //    $("#tblUser tr").filter(function () {
-        //        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        //    });
-        //});
-            
-
             GetUser();        
         });
 
-        $('#myInput').on("keypress", function (e) {            if (e.keyCode == 13) {                GetUser();                return false; // prevent the button click from happening            }        });
+        $('#myInput').on("keypress", function (e) {
+            if (e.keyCode == 13) {
+                GetUser();
+                return false; // prevent the button click from happening
+            }
+        });
 
         function GetUser() {
             var Umodel = {
                 UserName: $('#myInput').val(),
             };     
 
-        $.ajax({
+             $.ajax({
             type: "Post",
             url:"@Url.Action("M_User_Select", "api/UserApi")",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-            data: JSON.stringify(Umodel),
+            dataSrc: "",
+            data: JSON.stringify(Umodel),              
             headers:
-            {
-                Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-            },  
-            success: function (response) {
+             {
+                   Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
+             },  
+             success: function (response) {
                     BindTable(response);
-                }
+             }
             });
-           
-    }
+        }
 
         function BindTable(response) {
             table = $('#tblUser').DataTable({
-
                 data: JSON.parse(response),
                 "bFilter": false,
                 "bLengthChange": false,
                 "bInfo": false,
-                //"oLanguage": {
-                //    "sEmptyTable": "入力必須項目です。"
-                //},
-                "destroy":true,
+                "bSort": false,
+                destroy: true,
                 "columns": [
                     {
                         "data": null,
                         className:"Border1",
                         render: function (data, type, row) {
-                            return '<b><label>' + data.ID + '</label></b><br/><label>' + data.UserName + '</label>';
+                            return '<label>' + data.ID + '</label>';
                         }
                     },
                     {
                         "data": null,
                         className: "Border2",
                         render: function (data, type, row) {
-                            return '<label><a href="#" onClick="btnEditClick(\'' + data.ID + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.ID +'\')" style="color:red">削除</a></label>';
+                            return '<label>' + data.UserName + '</label>';
                         }
                     },
-                ],
-                "drawCallback": function (settings) {
-                    $("#tblUser thead").remove();
-                }
+                    {
+                        "data": null,
+                        className: "Border3",
+                        render: function (data, type, row) {
+                            return '<label><a href="#" onClick="btnEditClick(\'' + data.ID + '\')" style="color:blue">編集</a></label>&nbsp;&nbsp;&nbsp;<label><a href="#" onClick="btnDelClick(\'' + data.ID +'\')" style="color:red">削除</a></label>';
+                        }
+                    }
+                ]
+                //"drawCallback": function (settings) {
+                //    $("#tblUser thead").remove();
+                //}
             });
 
         }
-       
-    function btnAddClick() {
-        location.href = '@Url.Action("UserEntry", "User")?Mode=New'
-    }
+        function btnAddClick() {
+            location.href = '@Url.Action("UserEntry", "User")?Mode=New'
+        }
 
-    function btnEditClick(UserID) {
-        location.href = '@Url.Action("UserEntry", "User")?UserID='+UserID+'&Mode=Edit';
-    }
+        function btnEditClick(UserID) {
+            location.href = '@Url.Action("UserEntry", "User")?UserID='+UserID+'&Mode=Edit';
+        }
 
-    function btnDelClick(UserID) {
-        location.href = '@Url.Action("UserEntry", "User")?UserID='+UserID+'&Mode=Delete';
+        function btnDelClick(UserID) {
+            location.href = '@Url.Action("UserEntry", "User")?UserID='+UserID+'&Mode=Delete';
         }
     </script>
 
@@ -126,6 +133,5 @@
     <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.html5.min.js")"></script>
     <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.print.min.js")"></script>
     <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.colVis.min.js")"></script>
-     <script src="@Url.Content("~/ElaAdmin/assets/js/init/datatables-init.js")"></script>
-
+    <script src="@Url.Content("~/ElaAdmin/assets/js/init/datatables-init.js")"></script>
 }

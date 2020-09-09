@@ -33,6 +33,14 @@ namespace AcceleSystem.Controllers
         [HttpPost]
         public string Project_CUD([FromBody] TourokuProjectModel Tmodel)
         {
+            if (!string.IsNullOrWhiteSpace(Tmodel.PeriodStart))
+            {
+                Tmodel.PeriodStart = Tmodel.PeriodStart.Replace("/", "");
+            }
+            if (!string.IsNullOrWhiteSpace(Tmodel.PeriodEnd))
+            {
+                Tmodel.PeriodEnd = Tmodel.PeriodEnd.Replace("/", "");
+            }
             TourokuProject_BL Tpbl = new TourokuProject_BL();
             return Tpbl.Project_CUD(Tmodel);
         }
@@ -58,8 +66,48 @@ namespace AcceleSystem.Controllers
         [HttpPost]
         public string Hinban_CUD([FromBody] TourokuProjectModel Tmodel)
         {
+            if (!string.IsNullOrWhiteSpace(Tmodel.SalePrice))
+            {
+                Tmodel.SalePrice = Tmodel.SalePrice.Replace(",", "");
+            }
+            if (!string.IsNullOrWhiteSpace(Tmodel.Production))
+            {
+                Tmodel.Production = Tmodel.Production.Replace(",", "");
+            }
             TourokuProject_BL Tpbl = new TourokuProject_BL();
             return Tpbl.Hinban_CUD(Tmodel);
+        }
+
+        [UserAuthentication]
+        [HttpPost]
+        public string M_Hinban_DCost_Check([FromBody] TourokuProjectModel Tmodel)
+        {
+            TourokuProject_BL Tpbl = new TourokuProject_BL();
+            return Tpbl.M_HinBan_DCost_Check(Tmodel);
+        }
+
+        [UserAuthentication]
+        [HttpPost]
+        public string M_Hinban_D_Delivery_Check([FromBody] TourokuProjectModel Tmodel)
+        {
+            TourokuProject_BL Tpbl = new TourokuProject_BL();
+            return Tpbl.M_HinBan_D_Delivery_Check(Tmodel);
+        }
+
+        [UserAuthentication]
+        [HttpPost]
+        public string M_HinBan_Check_List([FromBody] TourokuProjectModel Tmodel)
+        {
+            //if (!string.IsNullOrWhiteSpace(Tmodel.SalePrice))
+            //{
+            //    Tmodel.SalePrice = Tmodel.SalePrice.Replace(",", "");
+            //}
+            //if (!string.IsNullOrWhiteSpace(Tmodel.Production))
+            //{
+            //    Tmodel.Production = Tmodel.Production.Replace(",", "");
+            //}
+            TourokuProject_BL Tpbl = new TourokuProject_BL();
+            return Tpbl.M_Hinban_Check_List(Tmodel);
         }
 
         [UserAuthentication]
@@ -72,18 +120,26 @@ namespace AcceleSystem.Controllers
 
         [UserAuthentication]
         [HttpPost]
-        public string M_HinBan_Search_List([FromBody] TourokuProjectModel Tmodel)
+        public string M_HinBan_Select_Edit([FromBody] TourokuProjectModel Tmodel)
         {
             TourokuProject_BL Tpbl = new TourokuProject_BL();
-            return Tpbl.M_HinBan_Search_List(Tmodel);
+            return Tpbl.M_HinBan_Select_Edit(Tmodel);
         }
-
+        
         [UserAuthentication]
         [HttpPost]
-        public string M_HinBan_Edit_List([FromBody] TourokuProjectModel Tmodel)
+        public string M_HinBan_Search_List([FromBody] TourokuProjectModel Tmodel)
         {
+            if (!string.IsNullOrWhiteSpace(Tmodel.StartPrice))
+            {
+                Tmodel.StartPrice = Tmodel.StartPrice.Replace(",", "");
+            }
+            if (!string.IsNullOrWhiteSpace(Tmodel.EndPrice))
+            {
+                Tmodel.EndPrice = Tmodel.EndPrice.Replace(",", "");
+            }
             TourokuProject_BL Tpbl = new TourokuProject_BL();
-            return Tpbl.M_HinBan_Select_List(Tmodel);
+            return Tpbl.M_HinBan_Search_List(Tmodel);
         }
 
         [UserAuthentication]
@@ -94,21 +150,46 @@ namespace AcceleSystem.Controllers
             return Tpbl.M_HinBan_ExistsCheck(Tmodel);
         }
 
+        //[UserAuthentication]
+        //[HttpPost]
+        //public string Production_LessthanCheck([FromBody] TourokuProjectModel Tmodel)
+        //{
+        //    if (!string.IsNullOrWhiteSpace(Tmodel.Production))
+        //    {
+        //        Tmodel.Production = Tmodel.Production.Replace(",", "");
+        //    }
+        //    TourokuProject_BL tbl = new TourokuProject_BL();
+        //    return tbl.LessthanZero_Checking(Tmodel.Production);
+
+        //}
+
+        //[UserAuthentication]
+        //[HttpPost]
+        //public string SalePrice_LessthanCheck([FromBody] TourokuProjectModel Tmodel)
+        //{
+        //    if (!string.IsNullOrWhiteSpace(Tmodel.SalePrice))
+        //    {
+        //        Tmodel.SalePrice = Tmodel.SalePrice.Replace(",", "");
+        //    }
+        //    TourokuProject_BL tbl = new TourokuProject_BL();
+        //    return tbl.LessthanZero_Checking(Tmodel.SalePrice);
+
+        //}
+
         [UserAuthentication]
         [HttpPost]
-        public string Production_LessthanCheck([FromBody] TourokuProjectModel Tmodel)
+        public string M_Hinban_Price_Check([FromBody] TourokuProjectModel Tmodel)
         {
+            if (!string.IsNullOrWhiteSpace(Tmodel.StartPrice))
+            {
+                Tmodel.StartPrice = Tmodel.StartPrice.Replace(",", "");
+            }
+            if (!string.IsNullOrWhiteSpace(Tmodel.EndPrice))
+            {
+                Tmodel.EndPrice = Tmodel.EndPrice.Replace(",", "");
+            }
             TourokuProject_BL tbl = new TourokuProject_BL();
-            return tbl.LessthanZero_Checking(Tmodel.Production);
-
-        }
-
-        [UserAuthentication]
-        [HttpPost]
-        public string SalePrice_LessthanCheck([FromBody] TourokuProjectModel Tmodel)
-        {
-            TourokuProject_BL tbl = new TourokuProject_BL();
-            return tbl.LessthanZero_Checking(Tmodel.SalePrice);
+            return tbl.M_Hinban_Price_Check(Tmodel);
 
         }
     }

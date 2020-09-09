@@ -1,8 +1,408 @@
-﻿
+﻿@model Models.Touroku_KeihiModel
 @{
     ViewBag.Title = "Touroku_KeihiEntry";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Touroku_KeihiEntry</h2>
+@section Styles{
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
+}
 
+<div id="divMain" class="container-fluid">
+    <div class="content">
+        <div class="p-5 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white; border-radius:5px;">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="pt-3 md-form">
+                    <label class="col-xl-6 text-center">経費</label>
+                </div>
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xl-12" style="padding-left:65px;">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <label id="SEQ" hidden>SEQ</label>
+                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostCD" name="CostCD" maxlength="10" required placeholder="経費コード" style="width:118px;">&nbsp;&nbsp;
+                            <label id="costname">経費名</label>
+                            <label id="accounting"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xl-12" style="padding-left:65px;">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <input type="text" tabindex="2" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this,'Keihi')" id="CostDate" name="CostDate" maxlength="10" required placeholder="計上日">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xl-12" style="padding-left:65px;">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <input type="text" tabindex="3" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="BrandCD" name="BrandCD" maxlength="10" required placeholder="ブランド" style="width:118px;">&nbsp;&nbsp;
+                            <label id="brandname">ブランド名</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style=" padding-top:1.2rem!important;">
+                    <div class="col-xl-12" style="padding-left: 65px;">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <div class="custom-control custom-radio" style="padding-left:0px!important;">
+                                <label class="text" id="season" style="padding-right:30px;">シーズン</label>
+                                <input type="radio" tabindex="4" onkeydown="KeyDown(event,this)" id="allyear" name="radio" checked>
+                                <label for="allyear" style="padding-right:40px;">通年</label>
+                                <input type="radio" id="SS" name="radio">
+                                <label for="SS" style="padding-right:40px;">SS</label>
+                                <input type="radio" id="FW" name="radio">
+                                <label for="FW" style="padding-right:40px;">FW</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xl-12" style="padding-left:65px;">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <input type="text" tabindex="7" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="year" name="year" maxlength="20" required placeholder="年度">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xl-12" style="padding-left:65px;">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <input type="text" tabindex="8" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="projectCD" name="projectCD" maxlength="10" required placeholder="プロジェクト" style="width:118px;">&nbsp;&nbsp;
+                            <label id="projectName">プロジェクト名</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xl-12" style="padding-left:65px;">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <input type="text" tabindex="9" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="PartCD" name="PartCD" maxlength="10" required placeholder="品番" style="width:118px;">&nbsp;&nbsp;
+                            <label id="partName">品番名</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xl-12" style="padding-left:65px;">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <input type="text" tabindex="10" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CastingCD" name="MoldCD" maxlength="10" required placeholder="金型" style="width:118px;">&nbsp;&nbsp;
+                            <label id="CastingName">金型名</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xl-12" style="padding-left:65px;">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <input type="text" tabindex="11" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="Item" name="Item" maxlength="10" required placeholder="自由配賦項目">
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xl-12" style="padding-left:65px;">
+                        <div class="custom-control custom-radio" style="padding-left:0px!important;">
+                            <label class="text" id="taxinclude" style="padding-right:30px;">税込区分</label>
+                            <input type="radio" tabindex="12" onkeydown="KeyDown(event,this)" id="tax" name="radios" checked>
+                            <label for="tax" style="padding-right:40px;">税別</label>
+                            <input type="radio" id="nottax" name="radios" >
+                            <label for="nottax" style="padding-right:40px;">税込</label>                           
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xl-12" style="padding-left:65px;">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <input type="text" tabindex="14" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this,'Keihi')" id="AmountMoney" name="AmountMoney" maxlength="10" required placeholder="金額" style="width:118px;">
+                            &nbsp;
+                            <input type="text" tabindex="15" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="BodyAmount" name="BodyAmount" maxlength="20" required placeholder="本体金額" style="width:118px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xl-12" style="padding-left:65px;">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <input type="text" tabindex="16" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="Remark" name="Remark" maxlength="20" required placeholder="備考">
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xl-12" style="padding-left:65px;">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <button id="btnSave" onclick="btnSaveClick()" class="btn btn-primary col-xl-5 text-center" tabindex="17" style="background-color:#413839; color:azure; width:115px; height:40px;">
+                                登録
+                            </button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <button id="btnCancel" tabindex="18" onclick="btnCancelClick()" class="btn btn-primary col-xl-5 text-center" style="background-color:#1a8cff; color:azure; width:115px; height:40px;">戻る</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+
+</div>
+
+
+
+@section Scripts{
+<script type="text/javascript">
+    $(document).ready(function () {     
+            $("#formtitle").text("経費検索");
+            $("#CostCD").focus();
+            var Mode = '@Model.Mode';
+            if (Mode == 'New') {
+                $('#btnSave').html('登録');
+                RequiredCheck($("#CostCD"));
+                ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "costname", "accounting");
+                if ($("#accounting").text == "1") {
+                    RequiredCheck($("#projectCD"));
+                    RequiredCheck($("#PartCD"));
+                }
+                else if ($("#accounting").text == "2") {
+                    RequiredCheck($("#year"));
+                    RequiredCheck($("#BrandCD"));
+                    RequiredCheck($("#season"));
+                }
+                else if ($("#accounting").text == "3") {
+                    RequiredCheck($("#projectCD"));
+                }
+                else if ($("#accounting").text == "4") {
+                    RequiredCheck($("#MoldCD"));
+                }
+                else if ($("#accounting").text == "5") {
+                    RequiredCheck($("#Item"));
+                }
+
+                RequiredCheck($("#CostDate"));
+                DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi")',"2");
+
+                RequiredCheck($("#year"));
+                @*DateCheck($("#year"), '@Url.Action("Date_Checking", "api/CommonApi")');*@
+
+                RequiredCheck($("#BrandCD"));
+                ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")', "brandname");
+
+                RequiredCheck($("#projectCD"));
+                ExistsCheck($("#projectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")', "projectName");
+
+                RequiredCheck($("#PartCD"));
+                ExistsCheck($("#PartCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "partName");
+
+                RequiredCheck($("#CastingCD"));
+                ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/Touroku_KeihiApi")', "CastingName");
+
+                RequiredCheck($("#Item"));
+
+                RequiredCheck($("#AmountMoney"));                
+                LessthanZeroCheck($("#AmountMoney"), '@Url.Action("LessthanZero_Checking", "api/CommonApi")');
+            }
+            else if (Mode == 'Edit') {
+                
+                $('#btnSave').html('更新');
+                ShowData();
+                $("#CostCD").focus();
+
+                RequiredCheck($("#CostDate"));
+                DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi")', "2");
+
+                RequiredCheck($("#year"));
+                @*DateCheck($("#year"), '@Url.Action("Date_Checking", "api/CommonApi")');*@
+
+                RequiredCheck($("#BrandCD"));
+                ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")', "brandname");
+
+                RequiredCheck($("#projectCD"));
+                ExistsCheck($("#projectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")', "projectName");
+
+                RequiredCheck($("#PartCD"));
+                ExistsCheck($("#PartCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "partName");
+
+                RequiredCheck($("#CastingCD"));
+                ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/Touroku_KeihiApi")', "CastingName");
+
+                RequiredCheck($("#Item"));
+
+                RequiredCheck($("#AmountMoney"));
+                LessthanZeroCheck($("#AmountMoney"), '@Url.Action("LessthanZero_Checking", "api/CommonApi")');
+            } 
+            else if (Mode == 'Copy') {
+                $('#btnSave').html('更新');
+                ShowData();
+                $("#CostCD").focus();
+
+                RequiredCheck($("#CostDate"));
+                DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi")', "2");
+
+                RequiredCheck($("#year"));
+                @*DateCheck($("#year"), '@Url.Action("Date_Checking", "api/CommonApi")');*@
+
+                RequiredCheck($("#BrandCD"));
+                ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")', "brandname");
+
+                RequiredCheck($("#projectCD"));
+                ExistsCheck($("#projectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")', "projectName");
+
+                RequiredCheck($("#PartCD"));
+                ExistsCheck($("#PartCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "partName");
+
+                RequiredCheck($("#CastingCD"));
+                ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/Touroku_KeihiApi")', "CastingName");
+
+                RequiredCheck($("#Item"));
+
+                RequiredCheck($("#AmountMoney"));
+                LessthanZeroCheck($("#AmountMoney"), '@Url.Action("LessthanZero_Checking", "api/CommonApi")');
+            }
+            else if (Mode == 'Delete'){
+                  $('#btnSave').html('削除');
+                  $("#ProjectCD").attr('disabled', 'disabled');
+                  $("#ProjectName").attr('disabled', 'disabled');
+                  $("#Year").attr('disabled', 'disabled');
+                  $("#BrandCD").attr('disabled', 'disabled');
+                  $("#Season").attr('disabled', 'disabled');
+                  $("#PeriodStart").attr('disabled', 'disabled');
+                  $("#PeriodEnd").attr('disabled', 'disabled');
+                  $("#ProjectManager").attr('disabled', 'disabled');
+                  $("#AllocationCount").attr('disabled', 'disabled');
+                  $("#btnSave").focus();
+                  ShowData();
+                 }
+    });
+
+
+           //set data
+        function ShowData() {
+            var Kmodel = {
+                SEQ: '@Model.SEQ',
+            };
+            var data = CalltoApiController('@Url.Action("D_Cost_Edit_List", "api/Touroku_KeihiApi")', Kmodel);
+            var ProjectData = JSON.parse(data);
+            $("#CostCD").val(ProjectData[0].CostCD);
+            //$("#costname").val(ProjectData[0].CostName);
+            $("#CostDate").val(ProjectData[0].CostDate);
+            $("#year").val(ProjectData[0].Year);
+            $("#BrandCD").val(ProjectData[0].BrandCD);
+            //$("#brandname").val(ProjectData[0].BrandName);
+            //$("#season").val(ProjectData[0].Season);
+            $("#projectCD").val(ProjectData[0].ProjectCD);
+            //$("#projectName").val(ProjectData[0].ProjectName);
+            $("#PartCD").val(ProjectData[0].HinbanCD);
+            //$("#partName").val(ProjectData[0].HinbanName);
+            $("#CastingCD").val(ProjectData[0].CastingCD);
+            //$("#CastingName").val(ProjectData[0].CastingName);
+            $("#Item").val(ProjectData[0].FreeItem1);
+            //$("#taxinclude").val(ProjectData[0].ZeikomiKBN);
+            $("#AmountMoney").val(ProjectData[0].CostAmount);
+            $("#BodyAmount").val(ProjectData[0].InputAmount);
+            $("#Remark").val(ProjectData[0].Remarks);
+
+            if (!ProjectData[0].CostName)
+                $("#costname").text("経費名表示");
+            else $("#costname").text(ProjectData[0].CostName);
+
+            if (!ProjectData[0].BrandName)
+                $("#brandname").text("ブランド表示");
+            else $("#brandname").text(ProjectData[0].BrandName);
+
+            if (!ProjectData[0].UserName)
+                $("#projectName").text("プロジェクト表示");
+            else $("#projectName").text(ProjectData[0].ProjectName);
+
+            if (!ProjectData[0].TotalProduction)
+                $("#partName").text("品番表示");
+            else $("#partName").text(Projectdata[0].HinbanName);
+
+            if (!ProjectData[0].TotalSalesPrice)
+                $("#CastingName").text("金型表示");
+            else $("#CastingName").text(ProjectData[0].CastingName);
+
+            //Bind Season
+            if (ProjectData[0].Season == "1")
+                $("#allyear").prop("checked", true);
+            else if (ProjectData[0].Season == "2") {
+                $("#allyear").prop("checked", false);
+                $("#SS").prop("checked", true);
+            }
+            else {
+                $("#allyear").prop("checked", false);
+                $("#FW").prop("checked", true);
+            }
+
+            if (ProjectData[0].ZeikomiKBN == "1")
+                $("#tax").prop("checked", true);
+            else {
+                $("#tax").prop("checked", false);
+                $("#nottax").prop("checked", true);
+            }
+               
+           
+        }
+
+        function DoProcess() {
+            focusControl = $("#CostCD");
+            var Kmodel = {
+                SEQ: $('#SEQ').val(),
+                 CostCD: $('#CostCD').val(),                 
+                 CostDate: $('#CostDate').val(),             
+                 Year: $('#Year').val(),
+                 BrandCD: $('#BrandCD').val(),               
+                 HinbanCD: $('#PartCD').val(),
+                 ProjectCD: $('#projectCD').val(), 
+                 CastingCD: $('#CastingCD').val(),
+                 Item: $('#Item').val(),
+                 CostAmount: $('#AmountMoney').val(),
+                 InputAmount: $('#InputAmount').val(),
+                 Remarks: $('#Remarks').val(),                
+                 Mode:'@Model.Mode'
+            };
+
+            //For Season
+            if ($('#allyear').is(':checked'))
+                Kmodel.Season = "1";
+            else if ($('#SS').is(':checked'))
+                Kmodel.Season = "2";
+            else Kmodel.Season = "3";
+
+            if ($('#tax').is(':checked'))
+                Kmodel.ZeikomiKBN = "1";
+            else
+                Kmodel.ZeikomiKBN = "2";
+
+
+            var data = CalltoApiController('@Url.Action("Project_CUD", "api/Touroku_KeihiApi")', Kmodel);
+            ShowSuccessMessage(data,'@Url.Action("Touroku_KeihiList", "Touroku_Keihi")');
+        }
+
+
+        //function DeleteConfrim() {
+        //    DoProcess();
+        //}
+
+   
+        //save
+    function btnSaveClick(){
+            var res = ErrorCheckOnSave();
+            if (res == "0") {
+                var Mode = '@Model.Mode';
+                //show confirm message
+                if (Mode == "Delete") {
+                    ShowConfirmMessage("Q102", "DeleteConfrim");
+                }
+                else {
+                    alert("aa");
+                    DoProcess();
+                }
+            }
+            else
+                ShowErrorMessage(res);
+        }
+
+        function btnCancelClick() {
+            location.href = '@Url.Action("Touroku_KeihiList", "Touroku_Keihi")';
+        }
+
+</script>
+    <script src="@Url.Content("~/Scripts/datepicker.js")"></script>
+    <script src="@Url.Content("~/Scripts/datepicker.en.js")"></script>
+
+}

@@ -13,5 +13,6 @@ namespace Models
         public string startDate { get; set; }
         public string endDate { get; set; }
         public string flg { get; set; }
+        public string value { get; set; }
     }
 }

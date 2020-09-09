@@ -199,5 +199,30 @@ namespace CommonBL
             }
         }
 
+        public string LessthanZero_Checking(string input)
+        {
+            string result = string.Empty;
+            if (!String.IsNullOrWhiteSpace(input))
+            {
+                int data = int.Parse(input);
+                if (data <= 0)
+                {
+                    result = "[{\"resultdata\" : \"" + input + "\", \"flg\" : \"false\"}]";
+                    return result;
+                }
+                else
+                {
+                    result = "[{\"resultdata\" : \"" + input + "\", \"flg\" : \"true\"}]";
+                    return result;
+                }
+            }
+            else
+            {
+                return result;
+            }
+
+        }
+
+
     }
 }

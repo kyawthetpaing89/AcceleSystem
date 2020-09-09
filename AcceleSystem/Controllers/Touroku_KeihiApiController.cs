@@ -16,7 +16,7 @@ namespace AcceleSystem.Controllers
         public string M_Cost_Select_List([FromBody] Touroku_KeihiModel kgmodel)
         {
             Touroku_Keihi_BL kgbl = new Touroku_Keihi_BL();
-            return kgbl.M_Cost_Select_List(kgmodel);
+            return kgbl.D_Cost_Select_List(kgmodel);
         }
 
         public string M_Brand_ExistsCheck([FromBody] Touroku_KeihiModel kgmodel)
@@ -35,6 +35,24 @@ namespace AcceleSystem.Controllers
         {
             Touroku_Keihi_BL kgbl = new Touroku_Keihi_BL();
             return kgbl.M_HinBan_ExistsCheck(kgmodel);
+        }
+
+        public string D_Cost_Edit_List([FromBody] Touroku_KeihiModel kgmodel)
+        {
+            Touroku_Keihi_BL kgbl = new Touroku_Keihi_BL();
+            return kgbl.D_Cost_Edit_List(kgmodel);
+        }
+
+        public string M_Casting_ExistsCheck([FromBody] Touroku_KeihiModel kgmodel)
+        {
+            Touroku_Keihi_BL kgbl = new Touroku_Keihi_BL();
+            return kgbl.M_Casting_ExistsCheck(kgmodel);
+        }
+
+        public string M_Control_FiscalCheck([FromBody] BaseModel BModel)
+        {
+            Touroku_Keihi_BL kgbl = new Touroku_Keihi_BL();
+            return kgbl.M_Control_FiscalCheck(BModel);
         }
     }
 }

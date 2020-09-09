@@ -107,8 +107,9 @@ function AlreadyExistsCheck(ctrl, val, apiURL, param1) {
     $(ctrl).attr("data-Param1", param1);
 }
 
-function LessthanZeroCheck(ctrl, val, apiURL) {
-    $(ctrl).attr("data-LessthanCheck", val);
+function LessthanZeroCheck(ctrl, apiURL) {
+    //$(ctrl).attr("data-LessthanCheck", val);
+    $(ctrl).attr("data-LessthanCheck", "1");
     $(ctrl).attr("data-LessthanCheck_ApiUrl", apiURL);
 }
 
@@ -120,7 +121,7 @@ function ErrorCheckOnSave() {
         if (result != "0") {
             $(this).focus();
             r1 = result;
-            return result;
+            return false;
         }
     });
     return r1;
@@ -187,6 +188,7 @@ function ErrChk(ctrl) {
                         if ($(ctrl).attr("data-NameCtrl")) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
                             $('#' + ctrlName).val(UserData[0].UserName);
+                            $('#' + ctrlName).text(UserData[0].UserName);   
                             return "0";
                         }
                     }
@@ -195,7 +197,6 @@ function ErrChk(ctrl) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
                             $('#' + ctrlName).val("");
                             return UserData[0].MessageID;
-
                         }
                     }
                     break;
@@ -210,6 +211,7 @@ function ErrChk(ctrl) {
                         if ($(ctrl).attr("data-NameCtrl")) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
                             $('#' + ctrlName).val(BrandData[0].BrandName);
+                            $('#' + ctrlName).text(BrandData[0].BrandName);
                             return "0";
                         }
                     }
@@ -231,6 +233,10 @@ function ErrChk(ctrl) {
                         if ($(ctrl).attr("data-NameCtrl")) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
                             $('#' + ctrlName).val(KeihiData[0].CostName);
+                            $('#' + ctrlName).text(KeihiData[0].CostName);
+                            var ctname = $(ctrl).attr("data-Param1");
+                            $('#' + ctname).val(KeihiData[0].Accounting);
+                            $('#' + ctname).text(KeihiData[0].Accounting);
                             return "0";
                         }
                     }
@@ -253,6 +259,7 @@ function ErrChk(ctrl) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
                             $('#' + ctrlName).text(KanjoData[0].KanjoName);
                             $("#TmpVal1").val(KanjoData[0].HojoKBN);
+                            $("#TmpVal1").text(KanjoData[0].HojoKBN);
                             return "0";
                         }
                     }
@@ -275,6 +282,7 @@ function ErrChk(ctrl) {
                         if ($(ctrl).attr("data-NameCtrl")) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
                             $('#' + ctrlName).text(HojoData[0].HojoName);
+                            $('#' + ctrlName).val(HojoData[0].HojoName);
                             return "0";
                         }
                     }
@@ -306,6 +314,7 @@ function ErrChk(ctrl) {
                         if ($(ctrl).attr("data-NameCtrl")) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
                             $('#' + ctrlName).val(CastingData[0].CastingName);
+                            $('#' + ctrlName).text(CastingData[0].CastingName);
                             return "0";
                         }
                     }
@@ -327,6 +336,7 @@ function ErrChk(ctrl) {
                         if ($(ctrl).attr("data-NameCtrl")) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
                             $('#' + ctrlName).val(ProjectData[0].ProjectName);
+                            $('#' + ctrlName).text(ProjectData[0].ProjectName);
                             return "0";
                         }
                     }
@@ -340,7 +350,8 @@ function ErrChk(ctrl) {
                     break;
                 case "Hinban":
                     var model = {
-                        HinbanCD: $(ctrl).val()
+                        HinbanCD: $(ctrl).val(),
+                        ProjectCD: param1
                     };
                     var data = CalltoApiController(ApiURL, model);
                     var HinbanData = JSON.parse(data);
@@ -348,6 +359,7 @@ function ErrChk(ctrl) {
                         if ($(ctrl).attr("data-NameCtrl")) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
                             $('#' + ctrlName).val(HinbanData[0].HinbanName);
+                            $('#' + ctrlName).text(HinbanData[0].HinbanName);
                             return "0";
                         }
                     }
@@ -445,6 +457,19 @@ function ErrChk(ctrl) {
                         return HojoData[0].MessageID;
                     }
                     break;
+                case "Project":
+                    var model = {
+                        ProjectCD: $(ctrl).val()
+                    };
+                    var data = CalltoApiController(ApiURL, model);
+                    var ProjectData = JSON.parse(data);
+                    if (ProjectData[0].MessageID != "E107") {
+                        return "0";
+                    }
+                    else {
+                        return ProjectData[0].MessageID;
+                    }
+                    break;
                 case "Hinban":
                     var model = {
                         HinbanCD: $(ctrl).val(),
@@ -496,6 +521,21 @@ function ErrChk(ctrl) {
                         return "0";
                     }
                 }
+                else if(param1 == "2") {
+                    var ApiURL = "%2Fapi%2FTouroku_KeihiApi%2FM_Control_FiscalCheck";
+                    var model = {
+                        inputdate: dataresult,
+                    };
+                    var data = CalltoApiController(ApiURL, model);
+                    var dateData = JSON.parse(data);
+                    if (dateData[0].MessageID != "E115") {
+                        $(ctrl).val(dataresult);
+                        return "0";
+                    }
+                    else {
+                        return dateData[0].MessageID;
+                    }
+                }
                 $(ctrl).val(dateData[0].resultdate);
                 return "0";
             }
@@ -504,36 +544,20 @@ function ErrChk(ctrl) {
         var dataLessthanCheck = $(ctrl).attr("data-LessthanCheck");
         if (dataLessthanCheck) {
             var ApiURL = $(ctrl).attr("data-LessthanCheck_ApiUrl");
-            switch (dataLessthanCheck) {
-                case "Production":
-                    var model = {
-                        Production: $(ctrl).val(),
-                    };
-                    var data = CalltoApiController(ApiURL, model);
-                    var ProductionData = JSON.parse(data);
-                    if (ProductionData[0].flg == "false") {
-                        return "E109";
-                    }
-                    else {
-                        $(ctrl).val(ProductionData[0].resultdata);
-                        return "0";
-                    }
-                    break;
-                case "SalePrice":
-                    var model = {
-                        SalePrice: $(ctrl).val(),
-                    };
-                    var data = CalltoApiController(ApiURL, model);
-                    var SalePriceData = JSON.parse(data);
-                    if (SalePriceData[0].flg == "false") {
-                        return "E109";
-                    }
-                    else {
-                        $(ctrl).val(SalePriceData[0].resultdata);
-                        return "0";
-                    }
-                    break;
+            var model = {
+                value: $(ctrl).val(),
+            };
+            var data = CalltoApiController(ApiURL, model);
+            var checkflg = JSON.parse(data);
+            if (checkflg[0].flg == "false") {
+                return "E109";
             }
+            else {
+                $(ctrl).val(checkflg[0].resultdata);
+                return "0";
+            }
+            $(ctrl).val(checkflg[0].resultdata);
+            return "0";
         }
     }
     else {
@@ -580,3 +604,49 @@ function moveNext(ctrl) {
     $(ctrl).select();
     $(ctrl).focus();
 }
+
+$(document).ready(function () {
+
+    if ($('.input-numeral1')[0]) {
+        var cleaveNumeral1 = new Cleave('.input-numeral1', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand'
+        });
+    }
+
+    if ($('.input-numeral2')[0]) {
+        var cleaveNumeral2 = new Cleave('.input-numeral2', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand'
+        });
+    }
+
+    if ($('.input-numeral3')[0]) {
+        var cleaveNumeral3 = new Cleave('.input-numeral3', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand'
+        });
+    }
+
+    if ($('.input-numeral4')[0]) {
+        var cleaveNumeral4 = new Cleave('.input-numeral4', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand'
+        });
+    }
+
+    if ($('.input-numeral5')[0]) {
+        var cleaveNumeral5 = new Cleave('.input-numeral5', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand'
+        });
+    }
+
+    if ($('.input-numeral6')[0]) {
+        var cleaveNumeral2 = new Cleave('.input-numeral6', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand'
+        });
+    }
+
+});
