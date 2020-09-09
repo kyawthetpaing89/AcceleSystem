@@ -553,9 +553,11 @@ function ErrChk(ctrl) {
                 return "E109";
             }
             else {
-                $(ctrl).val(ProductionData[0].resultdata);
+                $(ctrl).val(checkflg[0].resultdata);
                 return "0";
             }
+            $(ctrl).val(checkflg[0].resultdata);
+            return "0";
         }
     }
     else {
