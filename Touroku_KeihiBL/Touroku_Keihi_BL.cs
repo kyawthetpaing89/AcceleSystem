@@ -147,8 +147,7 @@ namespace Touroku_KeihiBL
                 Kmodel.Sqlprms[10] = new SqlParameter("@CostAmount", SqlDbType.Int) { Value = (object)Kmodel.CostAmount ?? DBNull.Value };
                 Kmodel.Sqlprms[11] = new SqlParameter("@InputAmount", SqlDbType.Int) { Value = (object)Kmodel.InputAmount ?? DBNull.Value };
                 Kmodel.Sqlprms[12] = new SqlParameter("@Remarks", SqlDbType.VarChar) { Value = (object)Kmodel.Remarks ?? DBNull.Value };
-                Kmodel.Sqlprms[13] = new SqlParameter("@SEQ", SqlDbType.Int) { Value = (object)Kmodel.SEQ ?? DBNull.Value };
-
+               
             }
             else if (Kmodel.Mode.Equals("Delete"))
             {
