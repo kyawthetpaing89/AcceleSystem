@@ -210,7 +210,8 @@
                 kmodel.Season = "1";
             else if ($('#SS').is(':checked'))
                 kmodel.Season = "2";
-            else kmodel.Season = "3";
+            else if ($('#FW').is(':checked'))
+                kmodel.Season = "3";
 
             $.ajax({
                 type: "Post",
