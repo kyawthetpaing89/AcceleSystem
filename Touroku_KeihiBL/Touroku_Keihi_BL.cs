@@ -35,7 +35,7 @@ namespace Touroku_KeihiBL
             Kmodel.Sqlprms[8] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = (object)Kmodel.ProjectCD ?? DBNull.Value };
             Kmodel.Sqlprms[9] = new SqlParameter("@ProjectName", SqlDbType.VarChar) { Value = (object)Kmodel.ProjectName ?? DBNull.Value };
             Kmodel.Sqlprms[10] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = (object)Kmodel.HinbanCD ?? DBNull.Value };
-            Kmodel.Sqlprms[11] = new SqlParameter("@HinbanName", SqlDbType.VarChar) { Value = (object)Kmodel.HinbanName ?? DBNull.Value };
+            Kmodel.Sqlprms[11] = new SqlParameter("@HinbanName", SqlDbType.VarChar) { Value = (object)Kmodel.HinbanName ?? DBNull.Value };           
 
             return bdl.SelectJson("D_Cost_Select_List", Kmodel.Sqlprms);
         }
@@ -103,16 +103,16 @@ namespace Touroku_KeihiBL
                 Kmodel.Sqlprms[5] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = (object)Kmodel.ProjectCD ?? DBNull.Value };
                 Kmodel.Sqlprms[6] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = (object)Kmodel.HinbanCD ?? DBNull.Value };
                 Kmodel.Sqlprms[7] = new SqlParameter("@CastingCD", SqlDbType.VarChar) { Value = (object)Kmodel.CastingCD ?? DBNull.Value };
-                Kmodel.Sqlprms[8] = new SqlParameter("@FreeItem1", SqlDbType.Int) { Value = (object)Kmodel.Year ?? DBNull.Value };
-                Kmodel.Sqlprms[9] = new SqlParameter("@ZeikomiKBN", SqlDbType.VarChar) { Value = (object)Kmodel.ProjectCD ?? DBNull.Value };
-                Kmodel.Sqlprms[10] = new SqlParameter("@CostAmount", SqlDbType.VarChar) { Value = (object)Kmodel.HinbanCD ?? DBNull.Value };
-                Kmodel.Sqlprms[11] = new SqlParameter("@InputAmount", SqlDbType.VarChar) { Value = (object)Kmodel.CastingCD ?? DBNull.Value };
-                Kmodel.Sqlprms[12] = new SqlParameter("@Remarks", SqlDbType.VarChar) { Value = (object)Kmodel.CastingCD ?? DBNull.Value };
+                Kmodel.Sqlprms[8] = new SqlParameter("@FreeItem1", SqlDbType.VarChar) { Value = (object)Kmodel.Item ?? DBNull.Value };
+                Kmodel.Sqlprms[9] = new SqlParameter("@ZeikomiKBN", SqlDbType.TinyInt) { Value = (object)Kmodel.ZeikomiKBN ?? DBNull.Value };
+                Kmodel.Sqlprms[10] = new SqlParameter("@CostAmount", SqlDbType.Int) { Value = (object)Kmodel.CostAmount ?? DBNull.Value };
+                Kmodel.Sqlprms[11] = new SqlParameter("@InputAmount", SqlDbType.Int) { Value = (object)Kmodel.InputAmount ?? DBNull.Value };
+                Kmodel.Sqlprms[12] = new SqlParameter("@Remarks", SqlDbType.VarChar) { Value = (object)Kmodel.Remarks ?? DBNull.Value };
                 
             }
             else if (Kmodel.Mode.Equals("Edit"))
             {
-                Kmodel.SPName = "D_Cost_Update";
+                Kmodel.SPName = "D_Cost_UPDATE";
                 Kmodel.Sqlprms = new SqlParameter[14];
                 Kmodel.Sqlprms[0] = new SqlParameter("@CostCD", SqlDbType.Int) { Value = (object)Kmodel.CostCD ?? DBNull.Value };
                 Kmodel.Sqlprms[1] = new SqlParameter("@CostDate", SqlDbType.Date) { Value = (object)Kmodel.CostDate ?? DBNull.Value };
@@ -122,11 +122,11 @@ namespace Touroku_KeihiBL
                 Kmodel.Sqlprms[5] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = (object)Kmodel.ProjectCD ?? DBNull.Value };
                 Kmodel.Sqlprms[6] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = (object)Kmodel.HinbanCD ?? DBNull.Value };
                 Kmodel.Sqlprms[7] = new SqlParameter("@CastingCD", SqlDbType.VarChar) { Value = (object)Kmodel.CastingCD ?? DBNull.Value };
-                Kmodel.Sqlprms[8] = new SqlParameter("@FreeItem1", SqlDbType.Int) { Value = (object)Kmodel.Year ?? DBNull.Value };
-                Kmodel.Sqlprms[9] = new SqlParameter("@ZeikomiKBN", SqlDbType.VarChar) { Value = (object)Kmodel.ProjectCD ?? DBNull.Value };
-                Kmodel.Sqlprms[10] = new SqlParameter("@CostAmount", SqlDbType.VarChar) { Value = (object)Kmodel.HinbanCD ?? DBNull.Value };
-                Kmodel.Sqlprms[11] = new SqlParameter("@InputAmount", SqlDbType.VarChar) { Value = (object)Kmodel.CastingCD ?? DBNull.Value };
-                Kmodel.Sqlprms[12] = new SqlParameter("@Remarks", SqlDbType.VarChar) { Value = (object)Kmodel.CastingCD ?? DBNull.Value };
+                Kmodel.Sqlprms[8] = new SqlParameter("@FreeItem1", SqlDbType.VarChar) { Value = (object)Kmodel.Item ?? DBNull.Value };
+                Kmodel.Sqlprms[9] = new SqlParameter("@ZeikomiKBN", SqlDbType.TinyInt) { Value = (object)Kmodel.ZeikomiKBN ?? DBNull.Value };
+                Kmodel.Sqlprms[10] = new SqlParameter("@CostAmount", SqlDbType.Int) { Value = (object)Kmodel.CostAmount ?? DBNull.Value };
+                Kmodel.Sqlprms[11] = new SqlParameter("@InputAmount", SqlDbType.Int) { Value = (object)Kmodel.InputAmount ?? DBNull.Value };
+                Kmodel.Sqlprms[12] = new SqlParameter("@Remarks", SqlDbType.VarChar) { Value = (object)Kmodel.Remarks ?? DBNull.Value };
                 Kmodel.Sqlprms[13] = new SqlParameter("@SEQ", SqlDbType.Int) { Value = (object)Kmodel.SEQ ?? DBNull.Value };
                
             }
@@ -142,12 +142,13 @@ namespace Touroku_KeihiBL
                 Kmodel.Sqlprms[5] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = (object)Kmodel.ProjectCD ?? DBNull.Value };
                 Kmodel.Sqlprms[6] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = (object)Kmodel.HinbanCD ?? DBNull.Value };
                 Kmodel.Sqlprms[7] = new SqlParameter("@CastingCD", SqlDbType.VarChar) { Value = (object)Kmodel.CastingCD ?? DBNull.Value };
-                Kmodel.Sqlprms[8] = new SqlParameter("@FreeItem1", SqlDbType.Int) { Value = (object)Kmodel.Year ?? DBNull.Value };
-                Kmodel.Sqlprms[9] = new SqlParameter("@ZeikomiKBN", SqlDbType.VarChar) { Value = (object)Kmodel.ProjectCD ?? DBNull.Value };
-                Kmodel.Sqlprms[10] = new SqlParameter("@CostAmount", SqlDbType.VarChar) { Value = (object)Kmodel.HinbanCD ?? DBNull.Value };
-                Kmodel.Sqlprms[11] = new SqlParameter("@InputAmount", SqlDbType.VarChar) { Value = (object)Kmodel.CastingCD ?? DBNull.Value };
-                Kmodel.Sqlprms[12] = new SqlParameter("@Remarks", SqlDbType.VarChar) { Value = (object)Kmodel.CastingCD ?? DBNull.Value };
-               
+                Kmodel.Sqlprms[8] = new SqlParameter("@FreeItem1", SqlDbType.VarChar) { Value = (object)Kmodel.Item ?? DBNull.Value };
+                Kmodel.Sqlprms[9] = new SqlParameter("@ZeikomiKBN", SqlDbType.TinyInt) { Value = (object)Kmodel.ZeikomiKBN ?? DBNull.Value };
+                Kmodel.Sqlprms[10] = new SqlParameter("@CostAmount", SqlDbType.Int) { Value = (object)Kmodel.CostAmount ?? DBNull.Value };
+                Kmodel.Sqlprms[11] = new SqlParameter("@InputAmount", SqlDbType.Int) { Value = (object)Kmodel.InputAmount ?? DBNull.Value };
+                Kmodel.Sqlprms[12] = new SqlParameter("@Remarks", SqlDbType.VarChar) { Value = (object)Kmodel.Remarks ?? DBNull.Value };
+                Kmodel.Sqlprms[13] = new SqlParameter("@SEQ", SqlDbType.Int) { Value = (object)Kmodel.SEQ ?? DBNull.Value };
+
             }
             else if (Kmodel.Mode.Equals("Delete"))
             {
