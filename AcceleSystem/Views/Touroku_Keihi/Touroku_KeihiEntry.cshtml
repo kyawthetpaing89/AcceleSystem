@@ -189,42 +189,71 @@
                 ExistsCheck($("#PartCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "partName");
 
                 RequiredCheck($("#CastingCD"));
-                ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "CastingName");
+                ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/Touroku_KeihiApi")', "CastingName");
+
+                RequiredCheck($("#Item"));
+
+                RequiredCheck($("#AmountMoney"));                
+                LessthanZeroCheck($("#AmountMoney"), '@Url.Action("LessthanZero_Checking", "api/CommonApi")');
+            }
+            else if (Mode == 'Edit') {
+                
+                $('#btnSave').html('更新');
+                ShowData();
+                $("#CostCD").focus();
+
+                RequiredCheck($("#CostDate"));
+                DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi")', "2");
+
+                RequiredCheck($("#year"));
+                @*DateCheck($("#year"), '@Url.Action("Date_Checking", "api/CommonApi")');*@
+
+                RequiredCheck($("#BrandCD"));
+                ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")', "brandname");
+
+                RequiredCheck($("#projectCD"));
+                ExistsCheck($("#projectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")', "projectName");
+
+                RequiredCheck($("#PartCD"));
+                ExistsCheck($("#PartCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "partName");
+
+                RequiredCheck($("#CastingCD"));
+                ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/Touroku_KeihiApi")', "CastingName");
 
                 RequiredCheck($("#Item"));
 
                 RequiredCheck($("#AmountMoney"));
-                @*LessthanZeroCheck($("#AmountMoney"), "SalePrice", '@Url.Action("SalePrice_LessthanCheck", "api/TourokuProjectApi")');*@
+                LessthanZeroCheck($("#AmountMoney"), '@Url.Action("LessthanZero_Checking", "api/CommonApi")');
+            } 
+            else if (Mode == 'Copy') {
+                $('#btnSave').html('更新');
+                ShowData();
+                $("#CostCD").focus();
+
+                RequiredCheck($("#CostDate"));
+                DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi")', "2");
+
+                RequiredCheck($("#year"));
+                @*DateCheck($("#year"), '@Url.Action("Date_Checking", "api/CommonApi")');*@
+
+                RequiredCheck($("#BrandCD"));
+                ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")', "brandname");
+
+                RequiredCheck($("#projectCD"));
+                ExistsCheck($("#projectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")', "projectName");
+
+                RequiredCheck($("#PartCD"));
+                ExistsCheck($("#PartCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "partName");
+
+                RequiredCheck($("#CastingCD"));
+                ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/Touroku_KeihiApi")', "CastingName");
+
+                RequiredCheck($("#Item"));
+
+                RequiredCheck($("#AmountMoney"));
+                LessthanZeroCheck($("#AmountMoney"), '@Url.Action("LessthanZero_Checking", "api/CommonApi")');
             }
-            else if (Mode == 'Edit') {
-                  $('#btnSave').html('更新');
-                  $("#CostCD").focus();
-
-                  RequiredCheck($("#CostDate"));
-                  DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi")', "2");
-
-                  RequiredCheck($("#year"));
-                  DateCheck($("#year"), '@Url.Action("Date_Checking", "api/CommonApi")');
-
-                  RequiredCheck($("#BrandCD"));
-                  ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")', "brandname");
-
-                  RequiredCheck($("#projectCD"));
-                  ExistsCheck($("#projectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")', "projectName");
-
-                  RequiredCheck($("#PartCD"));
-                  ExistsCheck($("#PartCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "partName");
-
-                  RequiredCheck($("#CastingCD"));
-                  ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "CastingName");
-
-                  RequiredCheck($("#Item"));
-
-                  RequiredCheck($("#AmountMoney"));
-
-                  ShowData();
-                 }   
-            else  {
+            else if (Mode == 'Delete'){
                   $('#btnSave').html('削除');
                   $("#ProjectCD").attr('disabled', 'disabled');
                   $("#ProjectName").attr('disabled', 'disabled');
@@ -236,10 +265,9 @@
                   $("#ProjectManager").attr('disabled', 'disabled');
                   $("#AllocationCount").attr('disabled', 'disabled');
                   $("#btnSave").focus();
-
                   ShowData();
                  }
-        });
+    });
 
 
            //set data
@@ -350,9 +378,9 @@
         //    DoProcess();
         //}
 
-
+   
         //save
-        function btnSaveClick() {
+    function btnSaveClick(){
             var res = ErrorCheckOnSave();
             if (res == "0") {
                 var Mode = '@Model.Mode';
@@ -361,6 +389,7 @@
                     ShowConfirmMessage("Q102", "DeleteConfrim");
                 }
                 else {
+                    alert("aa");
                     DoProcess();
                 }
             }

@@ -72,6 +72,14 @@ namespace Touroku_KeihiBL
             return bdl.SelectJson("D_Cost_Edit_List", kmodel.Sqlprms);
         }
 
+        public string M_Casting_ExistsCheck(Touroku_KeihiModel tkmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            tkmodel.Sqlprms = new SqlParameter[1];
+            tkmodel.Sqlprms[0] = new SqlParameter("@CastingCD", SqlDbType.VarChar) { Value = tkmodel.CastingCD };
+            return bdl.SelectJson("M_Casting_ExistsCheck", tkmodel.Sqlprms);
+        }
+
         public string M_Control_FiscalCheck(BaseModel BModel)
         {
             BaseDL bdl = new BaseDL();
