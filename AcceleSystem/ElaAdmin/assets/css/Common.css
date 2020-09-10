@@ -59,5 +59,11 @@
     width: 48px!important;
 }
 
+#tblProject {
+    width: 501px !important;
+}
 
+#tblProject td.Border5{
+    width: 40px !important;
+}
 
