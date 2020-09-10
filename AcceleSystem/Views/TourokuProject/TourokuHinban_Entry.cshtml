@@ -141,6 +141,7 @@
                 RequiredCheck($("#HinbanName"));
                 RequiredCheck($("#Production"));
                 RequiredCheck($("#saleprice"));
+                ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "ProjectName");
                 ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/TourokuProjectApi")', "CastingName");
                 YearMonthCheck($("#StartDate"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
                 YearMonthCheck($("#EndDate"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
@@ -150,7 +151,6 @@
             }
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
-                ShowData();
                 ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/TourokuProjectApi")', "CastingName");
                 YearMonthCheck($("#StartDate"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
                 YearMonthCheck($("#EndDate"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
@@ -162,11 +162,21 @@
                 $("#HinbanCD").attr('disabled', 'disabled');
                 $("#ProjectName").attr('disabled', 'disabled');
                 $("#HinbanName").attr('disabled', 'disabled');
+                $("#Year").attr('disabled', 'disabled');
+                $("#Season").attr('disabled', 'disabled');
+                $("#BrandCD").attr('disabled', 'disabled');
+                $("#BrandName").attr('disabled', 'disabled');
+                $("#StartDate").attr('disabled', 'disabled');
+                $("#EndDate").attr('disabled', 'disabled');
+                $("#totalProNo").attr('disabled', 'disabled');
+                $("#totalamount").attr('disabled', 'disabled');
+                $("#DeliverNo").attr('disabled', 'disabled');
+                $("#Amount").attr('disabled', 'disabled');
+                ShowData();
             }
 
             else if (Mode == 'Copy') {
                 $('#btnSave').html('更新');
-                ShowData();
                 RequiredCheck($("#HinbanCD"));
                 RequiredCheck($("#HinbanName"));
                 RequiredCheck($("#Production"));
@@ -179,6 +189,7 @@
                 LessthanZeroCheck($("#Production"), '@Url.Action("LessthanZero_Checking", "api/CommonApi")');
                 LessthanZeroCheck($("#saleprice"), '@Url.Action("LessthanZero_Checking", "api/CommonApi")');
                 AlreadyExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', $("#ProjectCD").val());
+                ShowData();
             }
             else if (Mode == 'Delete') {
                 $('#btnSave').html('削除');
@@ -272,6 +283,7 @@
             $("#HinbanCD").val(hinbandata[0].HinbanCD);
             $("#HinbanName").val(hinbandata[0].HinbanName);
             $("#DeliverNo").val(hinbandata[0].DeliveryAmount);
+            $("#Amount").val(hinbandata[0].TotalSalesPrice);
             $("#CastingCD").val(hinbandata[0].CastingCD);
             $("#CastingName").val(hinbandata[0].CastingName);
             $("#Color").val(hinbandata[0].Color);
