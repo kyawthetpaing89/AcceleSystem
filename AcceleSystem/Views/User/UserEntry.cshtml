@@ -53,7 +53,8 @@
                 RequiredCheck($("#UserName"));
                 RequiredCheck($("#UserID"));
                 RequiredCheck($("#Password"));
-                AlreadyExistsCheck($("#UserID"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")');
+                //AlreadyExistsCheck($("#UserID"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")');
+                DoubleByteCheck($("#UserID"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
             }
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
@@ -76,6 +77,13 @@
             }
         });
 
+        @*function ByteCheck(result) {
+            alert(result);
+            if (result == 'OK') {
+                DoubleByteCheck($("#UserID"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+            }
+        }*@
+          
         //set data
         function ShowData() {
             var Umodel = {
@@ -123,7 +131,7 @@
             else
                 ShowErrorMessage(res);
         }
-           
+
         function btnCancelClick() {
             location.href = '@Url.Action("UserList", "User")';
         }

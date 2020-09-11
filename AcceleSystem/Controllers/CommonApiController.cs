@@ -45,5 +45,11 @@ namespace AcceleSystem.Controllers
 
         }
 
+        public string DoubleByte_Checking([FromBody] BaseModel BModel)
+        {
+            Common_BL cmbl = new Common_BL();
+            return cmbl.DoubleByte_Checking(BModel.value);
+
+        }
     }
 }

@@ -67,30 +67,9 @@
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="~/Home/Dashboard"><i class="menu-icon fa fa-home"></i>ホーム </a>
+                        <a href="~/TourokuProject/TourokuProject_List"><i class="menu-icon fa fa-home"></i>ホーム </a>
                     </li>
-                    <li class="menu-item-has-children">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <i class="menu-icon fa fa-user"></i>ユーザー管理</a>
-                        <ul class="sub-menu dropdown-menu">
-                            <li><i class="fa fa-user"></i><a href="~/User/UserList">ユーザー検索</a></li>
-                            <li><i class="fa fa-user"></i><a href="~/User/UserEntry">ユーザー登録</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu-item-has-children">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="menu-icon fa fa-ge"></i>ブランド管理</a>
-                        <ul class="sub-menu dropdown-menu">
-                            <li><i class=""></i><a href="~/Brand/BrandList">ブランド検索</a></li>
-                            <li><i class=""></i><a href="~/Brand/BrandEntry">ブランド登録</a></li>
-                        </ul>
 
-                    </li>
-                    <li class="menu-item-has-children">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="menu-icon fa fa-comments"></i>金型管理</a>
-                        <ul class="sub-menu dropdown-menu">
-                            <li><i class=""></i><a href="~/Kanagata/KanagataList">金型検索</a></li>
-                            <li><i class=""></i><a href="~/Kanagata/KanagataEntry">金型登録</a></li>
-                        </ul>
-                    </li>
                     <li class="menu-item-has-children">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="menu-icon"></i>プロジェクト管理</a>
                         <ul class="sub-menu dropdown-menu">
@@ -99,10 +78,10 @@
                         </ul>
                     </li>
                     <li class="menu-item-has-children">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="menu-icon"></i>経費設定管理</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="menu-icon fa fa-comments"></i>金型管理</a>
                         <ul class="sub-menu dropdown-menu">
-                            <li><i class=""></i><a href="~/KeihiSettei/KeihiSetteiList">経費設定検索</a></li>
-                            <li><i class=""></i><a href="~/KeihiSettei/KeihiSetteiEntry">経費設定登録</a></li>
+                            <li><i class=""></i><a href="~/Kanagata/KanagataList">金型検索</a></li>
+                            <li><i class=""></i><a href="~/Kanagata/KanagataEntry">金型登録</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children">
@@ -136,6 +115,29 @@
                             <li><i class=""></i><a href="~/Koushin_Getsuji/Koushin_Getsuji">月次確定</a></li>
                         </ul>
                     </li>
+                    <li class="menu-item-has-children">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <i class="menu-icon fa fa-user"></i>ユーザー管理</a>
+                        <ul class="sub-menu dropdown-menu">
+                            <li><i class="fa fa-user"></i><a href="~/User/UserList">ユーザー検索</a></li>
+                            <li><i class="fa fa-user"></i><a href="~/User/UserEntry">ユーザー登録</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="menu-icon fa fa-ge"></i>ブランド管理</a>
+                        <ul class="sub-menu dropdown-menu">
+                            <li><i class=""></i><a href="~/Brand/BrandList">ブランド検索</a></li>
+                            <li><i class=""></i><a href="~/Brand/BrandEntry">ブランド登録</a></li>
+                        </ul>
+
+                    </li>
+
+                    <li class="menu-item-has-children">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="menu-icon"></i>経費設定管理</a>
+                        <ul class="sub-menu dropdown-menu">
+                            <li><i class=""></i><a href="~/KeihiSettei/KeihiSetteiList">経費設定検索</a></li>
+                            <li><i class=""></i><a href="~/KeihiSettei/KeihiSetteiEntry">経費設定登録</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
@@ -147,7 +149,7 @@
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="./"><img src="@Url.Content("~/SystemImages/blogoa.png")" alt="Logo"></a>
+                    <a class="navbar-brand" href="~/TourokuProject/TourokuProject_List"><img src="@Url.Content("~/SystemImages/blogoa.png")" alt="Logo"></a>
                     <a class="navbar-brand hidden" href="./"><img src="@Url.Content("~/ElaAdmin/images/logo2.png")" alt="Logo"></a>
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars" style="text-align:left; width:170px; color:black;"> 株式会社 アクセル</i></a>
 
@@ -179,9 +181,9 @@
                             <img class="user-avatar rounded-circle" src="@Url.Content("~/ElaAdmin/images/UserImage.png")" alt="User Avatar">
                         </a>
                         <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="#"><i class="fa fa-user"></i>My Profile</a>
+                            @*<a class="nav-link" href="#"><i class="fa fa-user"></i>My Profile</a>
                             <a class="nav-link" href="#"><i class="fa fa-bell-o"></i>Notifications <span class="count">13</span></a>
-                            <a class="nav-link" href="#"><i class="fa fa-cog"></i>Settings</a>
+                            <a class="nav-link" href="#"><i class="fa fa-cog"></i>Settings</a>*@
                             <a class="nav-link" href="~/User/UserLogin"><i class="fa fa-power-off"></i>Logout</a>
                         </div>
                     </div>
