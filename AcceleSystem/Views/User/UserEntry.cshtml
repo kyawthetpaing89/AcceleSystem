@@ -19,7 +19,7 @@
                     <input type="text" tabindex="1" name="name" id="UserName" onkeydown="KeyDown(event,this)"  class="text-line" maxlength="40"  required placeholder="ユーザー名">
                 </div>
                 <div class="pt-5 md-form">
-                    <input type="text" tabindex="2" name="id" id="UserID" onkeydown="KeyDown(event,this)"  class="text-line"  maxlength="20" required placeholder="ユーザーID">
+                    <input type="text" tabindex="2" name="id" id="UserID" onkeydown="KeyDown(event,this)" onkeyup="CheckChar(event,this)" class="text-line"  maxlength="20" required placeholder="ユーザーID">
                 </div>
                 <div class="pt-5 md-form">
                     <input type="password" tabindex="3" class="text-line" id="Password" onkeydown="KeyDown(event,this)" maxlength="10" name="pass" required placeholder="パスワード">
@@ -124,16 +124,28 @@
                 ShowErrorMessage(res);
         }
 
-        //function CheckChar(e, ctrl) {
-        //    alert("a");
-        //    var value = e.target.value;
-
-        //    value = value.replace(/[^A-Za-z]/ig, '')
-
-        //    this.setState({
-        //        value,
-        //    })
-        //}
+        function CheckChar(e, ctrl) {
+            alert("a");
+         
+            var englishAlphabetAndWhiteSpace = /[A-Za-z ]/g;
+            //var key = String.fromCharCode(e.which);
+            alert(e.which);
+            // keyCode == 8  is backspace
+            // keyCode == 37 is left arrow
+            // keyCode == 39 is right arrow
+            // englishAlphabetAndWhiteSpace.test(key) does the matching, that is, test the key just typed against the regex pattern
+            if (e.which == 8 || e.which == 37 || e.which == 39 || e.which == 13 || englishAlphabetAndWhiteSpace.test(String.fromCharCode(e.which))) {
+                //return true;
+                alert("true");
+            }
+            else {
+                alert("false");
+                $(ctrl).val("");
+            }
+            // If we got this far, just return false because a disallowed key was typed.
+            //return false;
+            
+        }
            
         function btnCancelClick() {
             location.href = '@Url.Action("UserList", "User")';
