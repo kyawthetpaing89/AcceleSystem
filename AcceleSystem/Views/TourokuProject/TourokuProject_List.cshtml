@@ -9,7 +9,7 @@
 }
 <div class="card">
     <div class="row">
-        <div class="col-xl-5 col-lg-5 col-sm-12">
+        <div class="col-xs-12 col-md-5">
             <div class="card-body card-block">
                 <div class="row form-group">
                     <div class="col col-md-12">
@@ -106,7 +106,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-6 col-lg-5 col-sm-12">
+        <div class="col-xs-12 col-md-6">
             <div class="card-body card-block">
                 <table id="tblProject" class="tb1 col-sm-12" style="margin-left:10px;">
                     <thead>
@@ -115,10 +115,12 @@
                             <th>ブランド名</th>
                             <th>シーズン</th>
                             <th>年度</th>
+                            <th></th>
                         </tr>
                         <tr>
                             <th>プロジェクトコード</th>
                             <th>プロジェクト名</th>
+                            <th></th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -127,10 +129,12 @@
                             <th>予定期間</th>
                             <th>総生産数</th>
                             <th>総金額</th>
+                            <th></th>
+
                         </tr>
 
                     </thead>
-                    <tbody>
+                    @*<tbody>
                         <tr>
                             <td>BrandCD</td>
                             <td>BrandName</td>
@@ -153,13 +157,12 @@
                             <td>TotalProduction</td>
                             <td>TotalSalesPrice</td>
                         </tr>
-                    </tbody>
+                    </tbody>*@
                 </table>
                 </div>
             </div>
-        <div class="col xl-1"></div>
+        <div class="col-xs-12 col-md-2"></div>
     </div>
-
 </div>
 
 @section Scripts{
@@ -243,7 +246,7 @@
             "bFilter": false,
             "bLengthChange": false,
             "bInfo": false,
-            //"bSort": false,
+            "bSort": false,
             destroy: true,
             "columns": [
 
@@ -284,10 +287,10 @@
                         return '<label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:red">削除</a></label> <br/> <label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:green">複写</a></label><br/>';
                     }
                 },
-            ],
-            "drawCallback": function (settings) {
-                $("#tblProject thead").remove();
-            }
+            ]
+            //"drawCallback": function (settings) {
+            //    $("#tblProject thead").remove();
+            //}
         });
 
     }

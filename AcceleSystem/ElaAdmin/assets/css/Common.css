@@ -52,12 +52,18 @@
 }
 
 #tblKeihi{
-    width: 480px!important;
+    width: 590px!important;
 }
 
 #tblKeihi td.Border3{
     width: 48px!important;
 }
 
+#tblProject {
+    width: 501px !important;
+}
 
+#tblProject td.Border5{
+    width: 40px !important;
+}
 
