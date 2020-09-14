@@ -223,6 +223,30 @@ namespace CommonBL
 
         }
 
+        public string DoubleByte_Checking(string input)
+        {
+            string result = string.Empty;
+            if (!String.IsNullOrWhiteSpace(input))
+            {
+                if (ContainsUnicodeCharacter(input))
+                {
+                    result = "[{\"resultdata\" : \"" + input + "\", \"flg\" : \"false\"}]";
+                    return result;
+                }
+                else
+                {
+                    result = "[{\"resultdata\" : \"" + input + "\", \"flg\" : \"true\"}]";
+                    return result;
+                }
+            }
+            return result;
+        }
 
+        public bool ContainsUnicodeCharacter(string input)
+        {
+            int MaxAnsiCode = 255;
+
+            return input.Any(c => c > MaxAnsiCode);
+        }
     }
 }

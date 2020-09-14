@@ -26,10 +26,10 @@ function ShowConfirmMessage(msgid, functionname) {
     var Mmodel = {
         MessageID: msgid,
     };
-
+    
     var data = CalltoApiController($("#MessageURL").val(), Mmodel);
     var msgdata = JSON.parse(data);
-
+    
     Swal.fire({
         title: msgdata[0].MessageID,
         text: msgdata[0].MessageText1,
@@ -48,23 +48,37 @@ function ShowConfirmMessage(msgid, functionname) {
 }
 
 function ShowErrorMessage(msgid, functionname) {
-    var Mmodel = {
-        MessageID: msgid,
-    };
-    var data = CalltoApiController($("#MessageURL").val(), Mmodel)
+    if (!(msgid == 'DBE255')) {
+        var Mmodel = {
+            MessageID: msgid,
+        };
+        var data = CalltoApiController($("#MessageURL").val(), Mmodel)
 
-    var msgdata = JSON.parse(data);
+        var msgdata = JSON.parse(data);
 
-    Swal.fire({
-        icon: 'error',
-        title: msgdata[0].MessageID,
-        text: msgdata[0].MessageText1,
-    }).then(function () {
-        if (functionname) {
-            var fn = window[functionname];
-            fn('NG');
-        }
-    })
+        Swal.fire({
+            icon: 'error',
+            title: msgdata[0].MessageID,
+            text: msgdata[0].MessageText1,
+        }).then(function () {
+            if (functionname) {
+                var fn = window[functionname];
+                fn('NG');
+            }
+                })
+    }
+    else if (msgid == 'DBE255') {
+        Swal.fire({
+            icon: 'error',
+            title: 'DoubleByte Error',
+            text: '入力が正しくありません。半角の値を入力してください。',
+        }).then(function () {
+            if (functionname) {
+                var fn = window[functionname];
+                fn('NG');
+            }
+        })
+    }
 }
 
 function ShowSuccessMessage(msgdata, url) {
@@ -113,20 +127,6 @@ function LessthanZeroCheck(ctrl, apiURL) {
     $(ctrl).attr("data-LessthanCheck_ApiUrl", apiURL);
 }
 
-
-function ErrorCheckOnSave() {
-    var r1 = "0";
-    $('#divMain *').filter(':input').each(function () {
-        var result = ErrChk(this);
-        if (result != "0") {
-            $(this).focus();
-            r1 = result;
-            return false;
-        }
-    });
-    return r1;
-}
-
 function DateCheck(ctrl, ApiURL, ctrlName, param1) {
     //$(ctrl).attr("data-DateCheck", "1");
     $(ctrl).attr("data-DateCheckApiUrl", ApiURL);
@@ -145,6 +145,24 @@ function DateComapre(ctrl, val) {
     $(ctrl).attr("data-datecompare", "1");
     $(ctrl).attr("data-datecompare_DataCheckApiUrl", val); 
     $(ctr).attr("data-Param1", val2);
+}
+
+function DoubleByteCheck(ctrl, apiURL) {
+    $(ctrl).attr("data-halfwidth", "1");
+    $(ctrl).attr("data-doublebyte_DataCheckApiUrl", apiURL); 
+}
+
+function ErrorCheckOnSave() {
+    var r1 = "0";
+    $('#divMain *').filter(':input').each(function () {
+        var result = ErrChk(this);
+        if (result != "0") {
+            $(this).focus();
+            r1 = result;
+            return false;
+        }
+    });
+    return r1;
 }
 
 function KeyDown(e, ctrl, functionname) {
@@ -557,6 +575,25 @@ function ErrChk(ctrl) {
                 return "0";
             }
             $(ctrl).val(checkflg[0].resultdata);
+            return "0";
+        }
+
+        var doublebytecheck = $(ctrl).attr("data-halfwidth");
+        if (doublebytecheck) {
+            var ApiURL = $(ctrl).attr("data-doublebyte_DataCheckApiUrl");
+            var model = {
+                value: $(ctrl).val(),
+            };
+            var data = CalltoApiController(ApiURL, model);
+            var byteresult = JSON.parse(data);
+            if (byteresult[0].flg == "false") {
+                return "DBE255";
+            }
+            else {
+                $(ctrl).val(byteresult[0].resultdata);
+                return "0";
+            }
+            $(ctrl).val(byteresult[0].resultdata);
             return "0";
         }
     }
