@@ -18,8 +18,8 @@
     if (System.Diagnostics.Debugger.IsAttached)
     {
 
-        loginID = "admin";
-        UserName = "Admin";
+        loginID = Session["UserInfo"].ToString().Split('_')[0];
+        UserName = Session["UserInfo"].ToString().Split('_')[1];
 
         Session["UserInfo"] = loginID + '_' + UserName;
     }
@@ -78,18 +78,18 @@
                         </ul>
                     </li>
                     <li class="menu-item-has-children">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="menu-icon fa fa-comments"></i>金型管理</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="menu-icon"></i>経費設定管理</a>
                         <ul class="sub-menu dropdown-menu">
-                            <li><i class=""></i><a href="~/Kanagata/KanagataList">金型検索</a></li>
-                            <li><i class=""></i><a href="~/Kanagata/KanagataEntry">金型登録</a></li>
+                            <li><i class=""></i><a href="~/KeihiSettei/KeihiSetteiList">経費設定検索</a></li>
+                            <li><i class=""></i><a href="~/KeihiSettei/KeihiSetteiEntry">経費設定登録</a></li>
                         </ul>
                     </li>
-                    <li class="menu-item-has-children">
+                    @*<li class="menu-item-has-children">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="menu-icon"></i>経費管理</a>
                         <ul class="sub-menu dropdown-menu">
                             <li><i class=""></i><a href="#"></a></li>
                         </ul>
-                    </li>
+                    </li>*@
                     <li class="menu-item-has-children">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="menu-icon fa fa-calendar"></i>納品管理</a>
                         <ul class="sub-menu dropdown-menu">
@@ -130,12 +130,11 @@
                         </ul>
 
                     </li>
-
                     <li class="menu-item-has-children">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="menu-icon"></i>経費設定管理</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="menu-icon fa fa-comments"></i>金型管理</a>
                         <ul class="sub-menu dropdown-menu">
-                            <li><i class=""></i><a href="~/KeihiSettei/KeihiSetteiList">経費設定検索</a></li>
-                            <li><i class=""></i><a href="~/KeihiSettei/KeihiSetteiEntry">経費設定登録</a></li>
+                            <li><i class=""></i><a href="~/Kanagata/KanagataList">金型検索</a></li>
+                            <li><i class=""></i><a href="~/Kanagata/KanagataEntry">金型登録</a></li>
                         </ul>
                     </li>
                 </ul>

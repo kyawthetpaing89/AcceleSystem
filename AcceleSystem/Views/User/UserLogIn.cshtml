@@ -73,7 +73,7 @@
                         var userinfo = userdata[0].ID + '_' + userdata[0].UserName;
                         $.post('@Url.Action("CreateSession", "Home")',
                             { key: "UserInfo", value: userinfo }, function (data) {
-                                location.href = '@Url.Action("Dashboard", "Home")';
+                                location.href = '@Url.Action("TourokuProject_List", "TourokuProject")';
                             });
                     }
                     else {
