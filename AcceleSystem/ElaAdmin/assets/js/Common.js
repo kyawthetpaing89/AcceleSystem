@@ -1,7 +1,6 @@
 ﻿
 
 function CalltoApiController(url, model) {
-  
     var result;
     $.ajax({
         url: url.replace("%2F", "/"),
@@ -207,7 +206,7 @@ function ErrChk(ctrl) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
                             $('#' + ctrlName).val(UserData[0].UserName);
                             $('#' + ctrlName).text(UserData[0].UserName);   
-                            return "0";
+                           // return "0";
                         }
                     }
                     else {
@@ -230,7 +229,7 @@ function ErrChk(ctrl) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
                             $('#' + ctrlName).val(BrandData[0].BrandName);
                             $('#' + ctrlName).text(BrandData[0].BrandName);
-                            return "0";
+                            //return "0";
                         }
                     }
                     else {
@@ -255,7 +254,7 @@ function ErrChk(ctrl) {
                             var ctname = $(ctrl).attr("data-Param1");
                             $('#' + ctname).val(KeihiData[0].Accounting);
                             $('#' + ctname).text(KeihiData[0].Accounting);
-                            return "0";
+                           // return "0";
                         }
                     }
                     else {
@@ -278,7 +277,7 @@ function ErrChk(ctrl) {
                             $('#' + ctrlName).text(KanjoData[0].KanjoName);
                             $("#TmpVal1").val(KanjoData[0].HojoKBN);
                             $("#TmpVal1").text(KanjoData[0].HojoKBN);
-                            return "0";
+                            //return "0";
                         }
                     }
                     else {
@@ -301,7 +300,7 @@ function ErrChk(ctrl) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
                             $('#' + ctrlName).text(HojoData[0].HojoName);
                             $('#' + ctrlName).val(HojoData[0].HojoName);
-                            return "0";
+                          //  return "0";
                         }
                     }
                     else {
@@ -333,7 +332,7 @@ function ErrChk(ctrl) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
                             $('#' + ctrlName).val(CastingData[0].CastingName);
                             $('#' + ctrlName).text(CastingData[0].CastingName);
-                            return "0";
+                            //return "0";
                         }
                     }
                     else {
@@ -355,7 +354,7 @@ function ErrChk(ctrl) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
                             $('#' + ctrlName).val(ProjectData[0].ProjectName);
                             $('#' + ctrlName).text(ProjectData[0].ProjectName);
-                            return "0";
+                          //  return "0";
                         }
                     }
                     else {
@@ -378,7 +377,7 @@ function ErrChk(ctrl) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
                             $('#' + ctrlName).val(HinbanData[0].HinbanName);
                             $('#' + ctrlName).text(HinbanData[0].HinbanName);
-                            return "0";
+                            //return "0";
                         }
                     }
                     else {
@@ -404,7 +403,7 @@ function ErrChk(ctrl) {
                     var data = CalltoApiController(ApiURL, model);
                     var CastingData = JSON.parse(data);
                     if (CastingData[0].MessageID != "E107") {
-                        return "0";
+                      //  return "0";
                     }
                     else {
                         return BrandData[0].MessageID;
@@ -417,7 +416,7 @@ function ErrChk(ctrl) {
                     var data = CalltoApiController(ApiURL, model);
                     var UserData = JSON.parse(data);
                     if (UserData[0].MessageID != "E107") {
-                        return "0";
+                       // return "0";
                     }
                     else {
                         return UserData[0].MessageID;
@@ -430,7 +429,7 @@ function ErrChk(ctrl) {
                     var data = CalltoApiController(ApiURL, model);
                     var BrandData = JSON.parse(data);
                     if (BrandData[0].MessageID != "E107") {
-                        return "0";
+                       // return "0";
                     }
                     else {
                         return BrandData[0].MessageID;
@@ -443,7 +442,7 @@ function ErrChk(ctrl) {
                     var data = CalltoApiController(ApiURL, model);
                     var KeihiData = JSON.parse(data);
                     if (KeihiData[0].MessageID != "E107") {
-                        return "0";
+                      //  return "0";
                     }
                     else {
                         return KeihiData[0].MessageID;
@@ -456,7 +455,7 @@ function ErrChk(ctrl) {
                     var data = CalltoApiController(ApiURL, model);
                     var KanjoData = JSON.parse(data);
                     if (KanjoData[0].MessageID != "E107") {
-                        return "0";
+                        //return "0";
                     }
                     else {
                         return KanjoData[0].MessageID;
@@ -469,7 +468,7 @@ function ErrChk(ctrl) {
                     var data = CalltoApiController(ApiURL, model);
                     var HojoData = JSON.parse(data);
                     if (HojoData[0].MessageID != "E107") {
-                        return "0";
+                       // return "0";
                     }
                     else {
                         return HojoData[0].MessageID;
@@ -482,7 +481,7 @@ function ErrChk(ctrl) {
                     var data = CalltoApiController(ApiURL, model);
                     var ProjectData = JSON.parse(data);
                     if (ProjectData[0].MessageID != "E107") {
-                        return "0";
+                       // return "0";
                     }
                     else {
                         return ProjectData[0].MessageID;
@@ -496,7 +495,7 @@ function ErrChk(ctrl) {
                     var data = CalltoApiController(ApiURL, model);
                     var HinbanData = JSON.parse(data);
                     if (HinbanData[0].MessageID != "E107") {
-                        return "0";
+                       // return "0";
                     }
                     else {
                         return HinbanData[0].MessageID;
@@ -572,7 +571,7 @@ function ErrChk(ctrl) {
             }
             else {
                 $(ctrl).val(checkflg[0].resultdata);
-                return "0";
+               // return "0";
             }
             $(ctrl).val(checkflg[0].resultdata);
             return "0";
@@ -591,7 +590,7 @@ function ErrChk(ctrl) {
             }
             else {
                 $(ctrl).val(byteresult[0].resultdata);
-                return "0";
+                //return "0";
             }
             $(ctrl).val(byteresult[0].resultdata);
             return "0";
@@ -619,7 +618,7 @@ function ErrChk(ctrl) {
             }
             else if (dateData[0].flg == "true") {
                 $(ctrl).val(dateData[0].resultdate);
-                return "0";
+                //return "0";
             }
         }
         else {
