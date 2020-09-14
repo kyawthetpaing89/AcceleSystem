@@ -47,37 +47,23 @@ function ShowConfirmMessage(msgid, functionname) {
 }
 
 function ShowErrorMessage(msgid, functionname) {
-    if (!(msgid == 'DBE255')) {
-        var Mmodel = {
-            MessageID: msgid,
-        };
-        var data = CalltoApiController($("#MessageURL").val(), Mmodel)
+   var Mmodel = {
+       MessageID: msgid,
+   };
+   var data = CalltoApiController($("#MessageURL").val(), Mmodel)
 
-        var msgdata = JSON.parse(data);
+   var msgdata = JSON.parse(data);
 
-        Swal.fire({
-            icon: 'error',
-            title: msgdata[0].MessageID,
-            text: msgdata[0].MessageText1,
-        }).then(function () {
-            if (functionname) {
-                var fn = window[functionname];
-                fn('NG');
-            }
-                })
-    }
-    else if (msgid == 'DBE255') {
-        Swal.fire({
-            icon: 'error',
-            title: 'DoubleByte Error',
-            text: '入力が正しくありません。半角の値を入力してください。',
-        }).then(function () {
-            if (functionname) {
-                var fn = window[functionname];
-                fn('NG');
-            }
-        })
-    }
+   Swal.fire({
+       icon: 'error',
+       title: msgdata[0].MessageID,
+       text: msgdata[0].MessageText1,
+   }).then(function () {
+       if (functionname) {
+           var fn = window[functionname];
+           fn('NG');
+       }
+   })
 }
 
 function ShowSuccessMessage(msgdata, url) {
@@ -586,7 +572,7 @@ function ErrChk(ctrl) {
             var data = CalltoApiController(ApiURL, model);
             var byteresult = JSON.parse(data);
             if (byteresult[0].flg == "false") {
-                return "DBE255";
+                return "E129";
             }
             else {
                 $(ctrl).val(byteresult[0].resultdata);
