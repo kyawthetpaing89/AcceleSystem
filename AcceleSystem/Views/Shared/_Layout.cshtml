@@ -17,11 +17,16 @@
 
     if (System.Diagnostics.Debugger.IsAttached)
     {
+        if (Session["UserInfo"] != null)
+        {
+            loginID = Session["UserInfo"].ToString().Split('_')[0];
+            UserName = Session["UserInfo"].ToString().Split('_')[1];
+        }
+        else
+        {
 
-        loginID = Session["UserInfo"].ToString().Split('_')[0];
-        UserName = Session["UserInfo"].ToString().Split('_')[1];
-
-        Session["UserInfo"] = loginID + '_' + UserName;
+        }
+        //Session["UserInfo"] = loginID + '_' + UserName;
     }
     else
     {
