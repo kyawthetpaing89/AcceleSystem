@@ -53,7 +53,7 @@
                 RequiredCheck($("#UserName"));
                 RequiredCheck($("#UserID"));
                 RequiredCheck($("#Password"));
-                //AlreadyExistsCheck($("#UserID"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")');
+                AlreadyExistsCheck($("#UserID"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")');
                 DoubleByteCheck($("#UserID"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
             }
             else if (Mode == 'Edit') {
