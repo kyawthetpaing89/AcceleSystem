@@ -54,13 +54,13 @@
                             <div class="custom-control custom-radio" style="padding-bottom:0.6rem!important; padding-left:0px!important;">
                                 <input type="radio" tabindex="5" id="rdoDCost" name="radio" onkeydown="KeyDown(event,this)" checked>
                                 <label for="rdoDCost" style="padding-right:25px;">品番直接費</label>
-                                <input type="radio" tabindex="6" id="rdoBrandSeason" name="radio" onkeydown="KeyDown(event,this)">
+                                <input type="radio" id="rdoBrandSeason" name="radio">
                                 <label for="rdoBrandSeason" style="padding-right:25px;">ブランド+シーズン</label>
-                                <input type="radio" tabindex="7" id="rdoProject" name="radio" onkeydown="KeyDown(event,this)">
+                                <input type="radio" id="rdoProject" name="radio">
                                 <label for="rdoProject" style="padding-right:40px;">プロジェクト</label>
-                                <input type="radio" tabindex="8" id="rdoMAllocation" name="radio" onkeydown="KeyDown(event,this)">
+                                <input type="radio" id="rdoMAllocation" name="radio">
                                 <label for="rdoMAllocation" style="padding-right:35px;">金型配賦</label>
-                                <input type="radio"  tabindex="9" id="rdoFItems" name="radio" onkeydown="KeyDown(event,this)">
+                                <input type="radio" id="rdoFItems" name="radio">
                                 <label for="rdoFItems">自由項目</label>
                             </div>
                         </div>
@@ -71,7 +71,7 @@
                         </div>
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <div class="custom-control custom-radio" style="padding-bottom:4rem!important; padding-left:0px!important;">
-                                <input tabindex="10" type="radio" id="rdoDirectly" name="radio1" checked>
+                                <input tabindex="6" type="radio" id="rdoDirectly" name="radio1" onkeydown="KeyDown(event,this)" checked>
                                 <label for="rdoDirectly" style="padding-right:42px!important;">直接</label>
                                 <input type="radio" id="rdoTMRatio" name="radio1">
                                 <label for="rdoTMRatio" style="padding-right:42px!important;">総金額比</label>
@@ -200,27 +200,15 @@
             };
 
             //For Accounting
-            if ($('#rdoDCost').is(':checked')) {
+            if ($('#rdoDCost').is(':checked')) 
                 Kmodel.Accounting = "1";
-                $("#rdoDCost").focus();
-            }
-            else if ($('#rdoBrandSeason').is(':checked')) {
+            else if ($('#rdoBrandSeason').is(':checked')) 
                 Kmodel.Accounting = "2";
-                $("#rdoBrandSeason").focus();
-            }
-
-            else if ($('#rdoProject').is(':checked')) {
+            else if ($('#rdoProject').is(':checked')) 
                 Kmodel.Accounting = "3";
-                $("#rdoProject").focus();
-            }
-
-            else if ($('#rdoMAllocation').is(':checked')) {
+            else if ($('#rdoMAllocation').is(':checked')) 
                 Kmodel.Accounting = "4";
-                $("#rdoMAllocation").focus();
-            }
-
             else Kmodel.Accounting = "5";
-            $("#rdoFItems").focus();
 
 
             //For Allocation
@@ -265,8 +253,19 @@
 
         function HojoCheck(result) {
             if (result == 'OK') {
-                $("#Accounting").focus();
+                $("#rdoDCost").is(':checked');
+                $("#rdoDCost").focus();
+                $("#rdoBrandSeason").is(':checked');
+                $("#rdoBrandSeason").focus();
+                $("#rdoProject").is(':checked');
+                $("#rdoProject").focus();
+                $("#rdoMAllocation").is(':checked');
+                $("#rdoMAllocation").focus();
+                $("#rdoFItems").is(':checked');
+                $("#rdoFItems").focus();
+
             }
+            
             else {
                 $("#HojoName").text('補助科目表示');
                 $("#HojoCD").focus();
