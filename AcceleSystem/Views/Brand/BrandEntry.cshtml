@@ -59,6 +59,7 @@
                 RequiredCheck($("#BrandCD"));
                 RequiredCheck($("#BrandName"));
                 AlreadyExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")');
+                DoubleByteCheck($("#BrandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
             }
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
