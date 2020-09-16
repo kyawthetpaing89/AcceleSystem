@@ -77,8 +77,11 @@
                 RequiredCheck($("#CastingCD"));
                 RequiredCheck($("#CastingName"));
                 RequiredCheck($("#BrandCD"));
-                ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
+
                 AlreadyExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/KanagataApi")');
+                DoubleByteCheck($("#CastingCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
+                DoubleByteCheck($("#BrandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 DateCheck($("#UseLimit"), '@Url.Action("Date_Checking", "api/CommonApi")');
             }
             else if (Mode == 'Edit') {
@@ -91,7 +94,10 @@
                 RequiredCheck($("#CastingCD"));
                 RequiredCheck($("#CastingName"));
                 RequiredCheck($("#BrandCD")); 
+
+               
                 ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
+                DoubleByteCheck($("#BrandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
 
                 ShowData();
             }
