@@ -36,6 +36,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("月次確定");
+            $("#Pdate").attr('disabled', 'disabled');
             $("#btnSave").focus();
             ShowData();
             @*ExistsCheck($("#Pdate"),"Koushiin", '@Url.Action("M_Contrl_YearMonth_ExitCheck", "api/Koushin_GetsujiApi")');
@@ -46,10 +47,10 @@
             var kgmodel = {
                 processing_date: $("#Pdate").val(),
             };
-            alert("a");
-            var data = CalltoApiController('@Url.Action("M_Contrl_YearMonth_ExitCheck", "api/Koushin_GetsujiApi")', Tmodel);
+
+            var data = CalltoApiController('@Url.Action("M_Contrl_YearMonth_ExitCheck", "api/Koushin_GetsujiApi")', kgmodel);
             var controldata = JSON.parse(data);
-            $("#Pdate").val(controldata[0].ID);
+            $("#Pdate").val(controldata[0].FYearMonth);
         }
 
         //save
