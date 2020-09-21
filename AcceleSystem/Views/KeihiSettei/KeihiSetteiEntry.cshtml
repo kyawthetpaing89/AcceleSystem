@@ -116,6 +116,9 @@
                 RequiredCheck($("#KanjoCD"));
                 AlreadyExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/KeihiSetteiApi")');
                 ExistsCheck($("#KanjoCD"), "Kanjo", '@Url.Action("M_Kanjo_ExistsCheck", "api/KeihiSetteiApi")', "KanjoName");
+                DoubleByteCheck($("#CostCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                DoubleByteCheck($("#KanjoCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                DoubleByteCheck($("#HojoCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
             }
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
