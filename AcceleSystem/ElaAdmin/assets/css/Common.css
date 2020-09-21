@@ -26,6 +26,18 @@
         border-top: 1px solid #d3dcd3;
     }
 
+    #tblUser th.sorting_disabled.Border1 {
+        width: 100px !important;
+    }
+
+    #tblUser th.sorting_disabled.Border2 {
+        width: 200px !important;
+    }
+
+    #tblUser th.sorting_disabled.Border3 {
+        width: 100px !important;
+    }
+
 /*.col-sm-12 {
     padding-left: 0px;
 }*/
