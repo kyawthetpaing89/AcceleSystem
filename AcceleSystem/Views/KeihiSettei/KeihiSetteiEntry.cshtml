@@ -52,16 +52,16 @@
                         </div>
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <div class="custom-control custom-radio" style="padding-bottom:0.6rem!important; padding-left:0px!important;">
-                                <input type="radio" tabindex="5" id="rdoDCost" name="radio" onkeydown="KeyDown(event,this)" checked>
-                                <label for="rdoDCost" style="padding-right:25px;">品番直接費</label>
-                                <input type="radio" id="rdoBrandSeason" name="radio">
-                                <label for="rdoBrandSeason" style="padding-right:25px;">ブランド+シーズン</label>
-                                <input type="radio" id="rdoProject" name="radio">
-                                <label for="rdoProject" style="padding-right:40px;">プロジェクト</label>
-                                <input type="radio" id="rdoMAllocation" name="radio">
-                                <label for="rdoMAllocation" style="padding-right:35px;">金型配賦</label>
-                                <input type="radio" id="rdoFItems" name="radio">
-                                <label for="rdoFItems">自由項目</label>
+                                <input type="radio" tabindex="5" id="rdoDCost" name="radio" onkeydown="KeyDown(event,this,'Focusfun')" checked>
+                                <label for="rdoDCost" style="padding-right:25px;" onkeydown="KeyDown(event,this,'Focusfun')">品番直接費</label>
+                                <input type="radio" id="rdoBrandSeason" name="radio" onkeydown="KeyDown(event,this,'Focusfun')">
+                                <label for="rdoBrandSeason" style="padding-right:25px;" onkeydown="KeyDown(event,this,'Focusfun')">ブランド+シーズン</label>
+                                <input type="radio" id="rdoProject" name="radio" onkeydown="KeyDown(event,this,'Focusfun')">
+                                <label for="rdoProject" style="padding-right:40px;" onkeydown="KeyDown(event,this,'Focusfun')">プロジェクト</label>
+                                <input type="radio" id="rdoMAllocation" name="radio" onkeydown="KeyDown(event,this,'Focusfun')">
+                                <label for="rdoMAllocation" style="padding-right:35px;" onkeydown="KeyDown(event,this,'Focusfun')">金型配賦</label>
+                                <input type="radio" id="rdoFItems" name="radio" onkeydown="KeyDown(event,this,'Focusfun')">
+                                <label for="rdoFItems" onkeydown="KeyDown(event,this,'Focusfun')">自由項目</label>
                             </div>
                         </div>
                     </div>
@@ -253,9 +253,25 @@
 
         function HojoCheck(result) {
             if (result == 'OK') {
-                $("#Accounting").focus();
+                var Mode = '@Model.Mode';
+                if (Mode == 'Edit') {
+                    if ($('#rdoDCost').is(':checked')) {
+                        $("#rdoDCost").focus();
+                    }
+                    else if ($('#rdoBrandSeason').is(':checked')) {
+                        $("#rdoBrandSeason").focus();
+                    }
+                    else if ($('#rdoProject').is(':checked')) {
+                        $("#rdoProject").focus();
+                    }
+                    else if ($('#rdoMAllocation').is(':checked')) {
+                        $("#rdoMAllocation").focus();
+                    }
+                    else $("#rdoFItems").focus();
+                }
+                else
+                    $("#Accounting").focus();
             }
-            
             else {
                 $("#HojoName").text('補助科目表示');
                 $("#HojoCD").focus();
@@ -263,6 +279,23 @@
             $("#HojoName").css("font-weight", "Bold");
         }
 
+        function Focusfun(result) {
+            if (result == 'OK') {
+                var Mode = '@Model.Mode';
+                if (Mode == 'Edit') {
+                    if ($('#rdoDirectly').is(':checked')) {
+                        $("#rdoDirectly").focus();
+                    }
+                    else if ($('#rdoTMRatio').is(':checked')) {
+                        $("#rdoTMRatio").focus();
+                    }
+                    else if ($('#rdoPNRatio').is(':checked')) {
+                        $("#rdoPNRatio").focus();
+                    }
+                    else $("#rdoFVRatio").focus();
+                }
+            }
+        }
 
         function DeleteConfrim() {
             DoProcess();
