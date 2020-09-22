@@ -129,6 +129,8 @@
                 RequiredCheck($("#CostName"));
                 RequiredCheck($("#KanjoCD"));
                 ExistsCheck($("#KanjoCD"), "Kanjo", '@Url.Action("M_Kanjo_ExistsCheck", "api/KeihiSetteiApi")', "KanjoName");
+                DoubleByteCheck($("#KanjoCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                DoubleByteCheck($("#HojoCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ShowData();
             }
             else  {
