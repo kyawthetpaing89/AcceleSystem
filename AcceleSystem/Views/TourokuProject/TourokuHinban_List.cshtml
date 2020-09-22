@@ -157,7 +157,7 @@
 @section Scripts{
         <script type="text/javascript">
         $(document).ready(function () {
-            $("#formtitle").text("プロジェクト検索");
+            $("#formtitle").text("品番検索");
             $("#proCD").focus();
             ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/TourokuProjectApi")', "CastingName");
             HinBanTable();
@@ -199,26 +199,25 @@
             "pagingType": "simple_numbers",
             destroy: true,
             "columns": [
-
                 {
                     "data": null,
                     className: "Border1",
                     render: function (data, type, row) {
-                        return '<label>' + '' + '</label><br/>'+'<label>' + data.HinbanCD + '</label><br/><br/><label>' + data.Casting + '</label>';
+                        return '<b><label>' + data.BrandCD + '</label></b><br/><label>' + data.ProjectCD + '</label></b><br/><label>' + data.PeriodStart + '</label>';
                     }
                 },
                 {
                     "data": null,
                     className: "Border2",
                     render: function (data, type, row) {
-                        return '<label>' + '' + '</label><br/>' +'<b><label>' + data.HinbanName + '</label></b><br/><br/><label>' + data.Production + '</label><br/>';
+                        return '<b><label>' + data.BrandName + '</label></b><br/><label>' + data.ProjectName + '</label></b><br/><label>' + data.PeriodEnd + '</label>';
                     }
                 },
                 {
                     "data": null,
                     className: "Border3",
                     render: function (data, type, row) {
-                        return '<label>' + '' + '</label><br/>' + '<label>' + '' + '</label><br/><br/><label>' + data.SalesPrice + '</label><br/>';
+                        return '<b><label>' + data.Season + '</label></b><br/><label>' + '' + '</label></b><br/><label>' + data.TotalProduction + '</label>';
                     }
                 },
 
@@ -226,7 +225,7 @@
                     "data": null,
                     className: "Border4",
                     render: function (data, type, row) {
-                        return '<label>' + '' + '</label><br/>' + '<label>' + '' + '</label><br/><br/><label>' + data.TotalSalesPrice + '</label>';
+                        return '<b><label>' + data.Year + '</label></b><br/><label>' + '' + '</label></b><br/><label>' + data.TotalSalesPrice + '</label>';
                     }
                 },
 
@@ -234,9 +233,10 @@
                     "data": null,
                     className: "Border5",
                     render: function (data, type, row) {
-                        return '<label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:red">削除</a></label> <br/> <label><a href="#" onClick="btnCopyClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:green">複写</a></label><br/>';
+                        return '<label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:red">削除</a></label> <br/> <label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:green">複写</a></label><br/>';
                     }
                 },
+
             ],
             "drawCallback": function (settings) {
                 $("#tblProject thead").remove();
