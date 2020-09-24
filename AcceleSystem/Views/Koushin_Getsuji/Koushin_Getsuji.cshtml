@@ -50,7 +50,11 @@
 
             var data = CalltoApiController('@Url.Action("M_Contrl_YearMonth_ExitCheck", "api/Koushin_GetsujiApi")', kgmodel);
             var controldata = JSON.parse(data);
-            $("#Pdate").val(controldata[0].FYearMonth);
+            if (controldata[0].FYearMonth) {
+                $("#Pdate").val(controldata[0].FYearMonth);
+            }
+            else
+                ShowErrorMessage("E101");
         }
 
         //save
