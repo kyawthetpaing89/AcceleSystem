@@ -128,13 +128,21 @@
                 </div>
             </div>
         </div>
-        <div class="col-xs-12 col-md-5">
+        <div class="col-xs-12 col-md-6">
             <div class="card-body card-block">
-                <table class="tb1 col-sm-12" style="margin-left:10px;">
+                <table id="tblProject" class="tb1 col-sm-12" style="margin-left:10px;">
                     <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
                         <tr>
                             <th>品番コード</th>
                             <th>品番名</th>
+                            <th></th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -143,6 +151,7 @@
                             <th>生産数</th>
                             <th>予定販売定価</th>
                             <th>総金額</th>
+                            <th></th>
                         </tr>
                     </thead>
                 </table>
@@ -203,21 +212,21 @@
                     "data": null,
                     className: "Border1",
                     render: function (data, type, row) {
-                        return '<b><label>' + data.BrandCD + '</label></b><br/><label>' + data.ProjectCD + '</label></b><br/><label>' + data.PeriodStart + '</label>';
+                        return '<label>' + '' + '</label><br/>' + '<label>' + data.HinbanCD + '</label><br/><br/><label>' + data.Casting + '</label>';
                     }
                 },
                 {
                     "data": null,
                     className: "Border2",
                     render: function (data, type, row) {
-                        return '<b><label>' + data.BrandName + '</label></b><br/><label>' + data.ProjectName + '</label></b><br/><label>' + data.PeriodEnd + '</label>';
+                        return '<label>' + '' + '</label><br/>' + '<b><label>' + data.HinbanName + '</label></b><br/><br/><label>' + data.Production + '</label><br/>';
                     }
                 },
                 {
                     "data": null,
                     className: "Border3",
                     render: function (data, type, row) {
-                        return '<b><label>' + data.Season + '</label></b><br/><label>' + '' + '</label></b><br/><label>' + data.TotalProduction + '</label>';
+                        return '<label>' + '' + '</label><br/>' + '<label>' + '' + '</label><br/><br/><label>' + data.SalesPrice + '</label><br/>';
                     }
                 },
 
@@ -225,7 +234,7 @@
                     "data": null,
                     className: "Border4",
                     render: function (data, type, row) {
-                        return '<b><label>' + data.Year + '</label></b><br/><label>' + '' + '</label></b><br/><label>' + data.TotalSalesPrice + '</label>';
+                        return '<label>' + '' + '</label><br/>' + '<label>' + '' + '</label><br/><br/><label>' + data.TotalSalesPrice + '</label>';
                     }
                 },
 
@@ -233,14 +242,13 @@
                     "data": null,
                     className: "Border5",
                     render: function (data, type, row) {
-                        return '<label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:red">削除</a></label> <br/> <label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:green">複写</a></label><br/>';
+                        return '<label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:red">削除</a></label> <br/> <label><a href="#" onClick="btnCopyClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:green">複写</a></label><br/>';
                     }
                 },
-
-            ],
-            "drawCallback": function (settings) {
-                $("#tblProject thead").remove();
-            }
+            ]
+            //"drawCallback": function (settings) {
+            //    $("#tblProject thead").remove();
+            //}
         });
 
     }
