@@ -45,11 +45,11 @@
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <div class="custom-control custom-radio" style="padding-left:0px!important;">
                                 <label class="text" style="padding-right:20px!important">シーズン</label>
-                                <input type="radio" tabindex="5" id="rdoAllYear" name="radioA" onkeydown="KeyDown(event,this)" checked>
+                                <input type="radio" tabindex="5" id="rdoAllYear" name="radio" onkeydown="KeyDown(event,this)" checked>
                                 <label for="rdoC" style="padding-right:8px!important">通年</label>
-                                <input type="radio" id="rdoSS" name="radioS">
+                                <input type="radio" id="rdoSS" name="radio">
                                 <label for="rdoS" style="padding-right:8px!important">SS</label>
-                                <input type="radio" id="rdoFW" name="radioF">
+                                <input type="radio" id="rdoFW" name="radio">
                                 <label for="rdoF" style="padding-right:8px!important">FW</label>
                             </div>
                         </div>
@@ -134,13 +134,15 @@
                 RequiredCheck($("#ProjectCD"));
                 ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "ProjectName");
                 RequiredCheck($("#DeliDate"));
-                DateCheck($("#DeliDate"), '@Url.Action("Date_Checking", "api/CommonApi")');
-                DateCheck($("#DeliDate"), '@Url.Action("Date_Checking", "api/CommonApi")', "2");
+                DateCheck($("#DeliDate"), '@Url.Action("Date_Checking", "api/CommonApi")'); //E103
+                DateCheck($("#DeliDate"), '@Url.Action("Date_Checking", "api/CommonApi")', "2");  //E115
+               // LessthanZeroCheck($("#AmountMoney"), '@Url.Action("LessthanZero_Checking", "api/CommonApi")'); //E109
+
             }
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
 
-                RequiredCheck($("#DeliDate"));
+                
             }
             else {
                 $('#btnSave').html('削除');
@@ -155,7 +157,6 @@
 
         function ShowProjectData(result) {  //Dispay Project Data
             if (result == 'OK') {
-                alert("a");
                 var TnModel = {
                     ProjectCD : $("#ProjectCD").val()
                 };
@@ -165,6 +166,7 @@
                 $("#Year").val(projData[0].Year);
                 $("#BrandCD").val(projData[0].BrandCD);
                 $("#BrandName").text(projData[0].BrandName);
+                alert(projData[0].Season);
                 if (projData[0].Season == "1")
                     $("#rdoAllYear").prop("checked", true);
                 else if (projData[0].Season == "2")
