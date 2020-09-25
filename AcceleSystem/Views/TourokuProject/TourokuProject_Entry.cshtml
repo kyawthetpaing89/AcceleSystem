@@ -22,9 +22,9 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="ProjectCD" name="projectcd" maxlength="6" required placeholder="プロジェクトコード">
+                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="ProjectCD" name="projectcd" maxlength="10" required placeholder="プロジェクトコード">
 
-                            <input type="text" tabindex="2" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="ProjectName" name="projectname" maxlength="40" required placeholder="プロジェクト名">
+                            <input type="text" tabindex="2" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="ProjectName" name="projectname" maxlength="60" required placeholder="プロジェクト名">
                         </div>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="4" class="text-line col-xl-5 text-left" style="width: 130px;" onkeydown="KeyDown(event,this,'BrandCheck')" id="BrandCD" name="brandcd" maxlength="4" required placeholder="ブランド">
+                            <input type="text" tabindex="4" class="text-line col-xl-5 text-left" style="width: 130px;" onkeydown="KeyDown(event,this,'BrandCheck')" id="BrandCD" name="brandcd" maxlength="6" required placeholder="ブランド">
                             <label id="BrandName" style="padding-left:80px;"><b>ブランド表示</b></label>
 
                         </div>
@@ -63,9 +63,9 @@
                 <div>
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="6" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this)" id="PeriodStart" name="periodstart" maxlength="7" required placeholder="予定期間">
+                            <input type="text" tabindex="6" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this)" id="PeriodStart" name="periodstart" required placeholder="予定期間">
                             <label class="col-xl-1" style="font-size: 1.8rem;">~</label>
-                            <input type="text" tabindex="7" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="PeriodEnd" name="periodend" maxlength="7" required placeholder="予定期間">
+                            <input type="text" tabindex="7" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="PeriodEnd" name="periodend" required placeholder="予定期間">
 
                         </div>
                     </div>
@@ -83,7 +83,7 @@
                 <div class="pt-3 md-form">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="8" class="text-line col-xl-5 text-left" style="width:130px;" onkeydown="KeyDown(event,this,'ProjectManagerCheck')" id="ProjectManager" name="projectmanager" maxlength="6" required placeholder="責任者">
+                            <input type="text" tabindex="8" class="text-line col-xl-5 text-left" style="width:130px;" onkeydown="KeyDown(event,this,'ProjectManagerCheck')" id="ProjectManager" name="projectmanager" maxlength="20" required placeholder="責任者">
                             <label id="ProjectManagerName" style="padding-left:80px;"><b>責任者表示</b></label>
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                 <div class="pt-3 md-form">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="9" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="AllocationCount" name="allocationcount" maxlength="6" required placeholder="配賦用固定値">
+                            <input type="text" tabindex="9" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="AllocationCount" name="allocationcount" required placeholder="配賦用固定値">
 
                         </div>
                     </div>
@@ -133,6 +133,11 @@
                 YearMonthCheck($("#PeriodStart"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
                 YearMonthCheck($("#PeriodEnd"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
                 ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
+                DoubleByteCheck($("#BrandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                DoubleByteCheck($("#Season"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                DoubleByteCheck($("#ProjectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                DoubleByteCheck($("#ProjectManager"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+
 
             }
 
@@ -150,6 +155,9 @@
                 YearMonthCheck($("#PeriodStart"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
                 YearMonthCheck($("#PeriodEnd"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
                 ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
+                DoubleByteCheck($("#BrandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                DoubleByteCheck($("#Season"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                DoubleByteCheck($("#ProjectManager"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
 
                 ShowData();
             }
@@ -166,6 +174,9 @@
                 YearMonthCheck($("#PeriodStart"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
                 YearMonthCheck($("#PeriodEnd"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
                 ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
+                DoubleByteCheck($("#BrandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                DoubleByteCheck($("#Season"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                DoubleByteCheck($("#ProjectManager"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
 
                 ShowData();
 

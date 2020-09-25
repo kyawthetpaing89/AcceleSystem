@@ -33,7 +33,6 @@
                                         <label id="text" style="padding-right: 24px;">ブランド名</label>
                                         <input type="text" tabindex="1" class="text-line text-left" id="BrandCD" name="brandcd" maxlength="6" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:110px;">
                                         <input type="text" tabindex="2" class="text-line text-left" id="BrandName" name="brandname" maxlength="40" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:110px;">
-
                                     </div>
                                 </div>
                             </div>
@@ -41,7 +40,7 @@
                             <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                                 <div class="col-md-12" style="padding-left:0px;">
                                     <div class="text-s text-custom1 text-uppercase mb-1">
-                                        <label class="text" style="padding-right:20px;">シーズン</label>
+                                        <label id="text" style="padding-right:20px;">シーズン</label>
                                         <input type="checkbox" tabindex="3" id="Degreeyear" name="checkbox" checked>
                                         <label style="padding-right:50px;" >度年</label>
                                         <input type="checkbox" id="SS" name="checkbox">
@@ -57,7 +56,7 @@
                                 <div class="col-md-12" style="padding-left:0px;">
                                     <div class="text-s text-custom1 text-uppercase mb-1">
                                         <label id="text" style="padding-right: 73px;">年度</label>
-                                        <input type="text" tabindex="4" class="text-line text-left" id="Year" name="year" maxlength="6" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:220px;">
+                                        <input type="text" tabindex="4" class="text-line text-left" id="Year" name="year" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:220px;">
                                     </div>
                                 </div>
                             </div>
@@ -66,8 +65,8 @@
                                 <div class="col-md-12" style="padding-left:0px;">
                                     <div class="text-s text-custom1 text-uppercase mb-1">
                                         <label id="text" style="padding-right: 12px;">プロジェクト</label>
-                                        <input type="text" tabindex="5" class="text-line text-left" id="ProjectCD" name="projectcd" maxlength="6" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:105px;">
-                                        <input type="text" tabindex="6" class="text-line text-left" id="ProjectName" name="projectname" maxlength="40" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:105px;">
+                                        <input type="text" tabindex="5" class="text-line text-left" id="ProjectCD" name="projectcd" maxlength="10" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:105px;">
+                                        <input type="text" tabindex="6" class="text-line text-left" id="ProjectName" name="projectname" maxlength="60" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:105px;">
 
                                     </div>
                                 </div>
@@ -77,8 +76,8 @@
                                 <div class="col-md-12" style="padding-left:0px;">
                                     <div class="text-s text-custom1 text-uppercase mb-1">
                                         <label id="text" style="padding-right: 38px;">予定期間</label>
-                                        <input type="text" tabindex="7" class="text-line text-left" id="PeriodStart" name="periodstart" maxlength="6" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:110px;">
-                                        <input type="text" tabindex="8" class="text-line text-left" id="PeriodEnd" name="periodend" maxlength="40" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:110px;">
+                                        <input type="text" tabindex="7" class="text-line text-left" id="PeriodStart" name="periodstart" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:110px;">
+                                        <input type="text" tabindex="8" class="text-line text-left" id="PeriodEnd" name="periodend" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:110px;">
 
                                     </div>
                                 </div>
@@ -88,8 +87,8 @@
                                 <div class="col-md-12" style="padding-left:0px;">
                                     <div class="text-s text-custom1 text-uppercase mb-1">
                                         <label id="text" style="padding-right: 50px;">責任者</label>
-                                        <input type="text" tabindex="9" class="text-line text-left" id="ProjectManager" name="projectmanager" maxlength="6" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:113px;">
-                                        <input type="text" tabindex="10" class="text-line text-left" id="ProjectManagerName" name="projectmanagername" maxlength="40" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:113px;">
+                                        <input type="text" tabindex="9" class="text-line text-left" id="ProjectManager" name="projectmanager" maxlength="20" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:113px;">
+                                        <input type="text" tabindex="10" class="text-line text-left" id="ProjectManagerName" name="projectmanagername" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:113px;">
 
                                     </div>
                                 </div>
@@ -152,6 +151,10 @@
          YearMonthCheck($("#PeriodStart"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
          YearMonthCheck($("#PeriodEnd"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
          ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
+         DoubleByteCheck($("#BrandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+         DoubleByteCheck($("#ProjectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+         DoubleByteCheck($("#ProjectManager"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+
         $("#BrandName").attr('disabled', 'disabled');
         $("#ProjectName").attr('disabled', 'disabled');
         $("#ProjectManagerName").attr('disabled', 'disabled');
