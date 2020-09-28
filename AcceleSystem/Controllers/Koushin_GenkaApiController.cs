@@ -11,16 +11,13 @@ namespace AcceleSystem.Controllers
 {
     public class Koushin_GenkaApiController : ApiController
     {
-        [UserAuthentication]
-        [HttpPost]
         public string M_Contrl_YearMonth_ExitCheck([FromBody] Koushin_GenkaModel kgmodel)
         {
             Koushin_Genka_BL kgbl = new Koushin_Genka_BL();
             return kgbl.M_Contrl_YearMonth_ExitCheck(kgmodel);
         }
-        [UserAuthentication]
-        [HttpPost]
-        public string M_Contrl_YearMonth_Update([FromBody] Koushin_GenkaModel kgmodel)
+
+        public string M_Contrl_YearMonth_Genka_Update([FromBody] Koushin_GenkaModel kgmodel)
         {
             Koushin_Genka_BL kgbl = new Koushin_Genka_BL();
 

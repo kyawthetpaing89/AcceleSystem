@@ -25,5 +25,6 @@ namespace Koushin_GenkaBL
             kgmodel.Sqlprms[0] = new SqlParameter("@Date", SqlDbType.VarChar) { Value = (object)kgmodel.processing_date ?? DBNull.Value };
             return bdl.SelectJson("M_Contrl_YearMonth_Genka_Update", kgmodel.Sqlprms);
         }
+
     }
 }
