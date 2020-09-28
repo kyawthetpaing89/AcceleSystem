@@ -33,15 +33,28 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("原価計算");
-            $("#Pdate").focus();
-            ExistsCheck($("#Pdate"),"Koushin", '@Url.Action("M_Contrl_YearMonth_ExitCheck", "api/Koushin_GenkaiApi")');
-            YearMonthCheck($("#Pdate"),'@Url.Action("YearMonth_Checking", "api/CommonApi")');
+            $("#Pdate").attr('disabled', 'disabled');
+            $("#btnSave").focus();
+            ShowData();            
         });
+
+        function ShowData() {
+            var kgmodel = {
+                processing_date: $("#Pdate").val(),
+            };
+
+            var data = CalltoApiController('@Url.Action("M_Contrl_YearMonth_ExitCheck", "api/Koushin_GenkaApi")', kgmodel);
+            var controldata = JSON.parse(data);
+            if (controldata[0].FYearMonth) 
+                $("#Pdate").val(controldata[0].FYearMonth);
+            else
+                ShowErrorMessage("E101");
+        }
 
         //save
         function btnSaveClick() {
             var res = ErrorCheckOnSave();
-            if (res == "0") {
+            if (res == "0") {  
                     DoProcess();
             }
             else
@@ -51,11 +64,11 @@
          function DoProcess() {
              focusControl = $("#Pdate");
              var kgmodel = {
-                 processing_date: $("#Pdate").val(),
+                 processing_date: $("#Pdate").val(),                
             };
 
             var data = CalltoApiController('@Url.Action("M_Contrl_YearMonth_Genka_Update", "api/Koushin_GenkaApi")', kgmodel);
-            ShowSuccessMessage(data,'@Url.Action("Koushin_Genka", "Koushin_Genka")');
+            ShowSuccessMessage(data,'@Url.Action("Koushin_Genka", "Koushin_Genka")');           
         }
 
     </script>
