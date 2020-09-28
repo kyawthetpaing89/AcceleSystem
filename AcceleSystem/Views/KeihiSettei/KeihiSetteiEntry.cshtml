@@ -54,13 +54,13 @@
                             <div class="custom-control custom-radio" style="padding-bottom:0.6rem!important; padding-left:0px!important;">
                                 <input type="radio" tabindex="5" id="rdoDCost" name="radio" onkeydown="KeyDown(event,this,'focusAllocation')" checked>
                                 <label for="rdoDCost" style="padding-right:25px;" >品番直接費</label>
-                                <input type="radio" id="rdoBrandSeason" name="radio" onkeydown="KeyDown(event,this,'focusAllocation')">
+                                <input type="radio" tabindex="6" id="rdoBrandSeason" name="radio" onkeydown="KeyDown(event,this,'focusAllocation')">
                                 <label for="rdoBrandSeason" style="padding-right:25px;">ブランド+シーズン</label>
-                                <input type="radio" id="rdoProject" name="radio" onkeydown="KeyDown(event,this,'focusAllocation')">
+                                <input type="radio" tabindex="7" id="rdoProject" name="radio" onkeydown="KeyDown(event,this,'focusAllocation')">
                                 <label for="rdoProject" style="padding-right:40px;" >プロジェクト</label>
-                                <input type="radio" id="rdoMAllocation" name="radio" onkeydown="KeyDown(event,this,'focusAllocation')">
+                                <input type="radio" tabindex="8" id="rdoMAllocation" name="radio" onkeydown="KeyDown(event,this,'focusAllocation')">
                                 <label for="rdoMAllocation" style="padding-right:35px;">金型配賦</label>
-                                <input type="radio" id="rdoFItems" name="radio" onkeydown="KeyDown(event,this,'focusAllocation')">
+                                <input type="radio" tabindex="9" id="rdoFItems" name="radio" onkeydown="KeyDown(event,this,'focusAllocation')">
                                 <label for="rdoFItems">自由項目</label>
                             </div>
                         </div>
@@ -71,13 +71,13 @@
                         </div>
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <div class="custom-control custom-radio" style="padding-bottom:4rem!important; padding-left:0px!important;">
-                                <input tabindex="6" type="radio" id="rdoDirectly" name="radio1" onkeydown="KeyDown(event,this,'focusSave')" checked>
+                                <input tabindex="10" type="radio" id="rdoDirectly" name="radio1" onkeydown="KeyDown(event,this,'focusSave')" checked>
                                 <label for="rdoDirectly" style="padding-right:42px!important;">直接</label>
-                                <input type="radio" id="rdoTMRatio" name="radio1" onkeydown="KeyDown(event,this,'focusSave')">
+                                <input tabindex="11" type="radio" id="rdoTMRatio" name="radio1" onkeydown="KeyDown(event,this,'focusSave')">
                                 <label for="rdoTMRatio" style="padding-right:42px!important;">総金額比</label>
-                                <input type="radio" id="rdoPNRatio" name="radio1" onkeydown="KeyDown(event,this,'focusSave')">
+                                <input tabindex="12" type="radio" id="rdoPNRatio" name="radio1" onkeydown="KeyDown(event,this,'focusSave')">
                                 <label for="rdoPNRatio" style="padding-right:42px!important;">生産数比</label>
-                                <input type="radio" id="rdoFVRatio" name="radio1" onkeydown="KeyDown(event,this,'focusSave')">
+                                <input tabindex="13" type="radio" id="rdoFVRatio" name="radio1" onkeydown="KeyDown(event,this,'focusSave')">
                                 <label for="rdoFVRatio">固定値比</label>
                             </div>
                         </div>
@@ -86,9 +86,9 @@
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <button id="btnSave" tabindex="7" onclick="btnSaveClick()" class="btn btn-dark col-xl-4 text-center">登録</button>
+                            <button id="btnSave" tabindex="14" onclick="btnSaveClick()" class="btn btn-dark col-xl-4 text-center">登録</button>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <button id="btnCancel" tabindex="8" onclick="btnCancelClick()" class="btn btn-primary col-xl-4 text-center">戻る</button>
+                            <button id="btnCancel" tabindex="15" onclick="btnCancelClick()" class="btn btn-primary col-xl-4 text-center">戻る</button>
                         </div>
                     </div>
                 </div>
@@ -274,8 +274,23 @@
                     }
                     else $("#rdoFItems").focus();
                 }
-                else
-                    $("#Accounting").focus();
+                else if (Mode == 'New') {
+                    if ($('#rdoDCost').is(':checked')) {
+                        $("#rdoDCost").focus();
+                    }
+                    else if ($('#rdoBrandSeason').is(':checked')) {
+                        $("#rdoBrandSeason").focus();
+                    }
+                    else if ($('#rdoProject').is(':checked')) {
+                        $("#rdoProject").focus();
+                    }
+                    else if ($('#rdoMAllocation').is(':checked')) {
+                        $("#rdoMAllocation").focus();
+                    }
+                    else $("#rdoFItems").focus();
+                }
+
+                else $("#Accounting").focus();
             }
             else {
                 $("#HojoName").text('補助科目表示');
@@ -288,6 +303,18 @@
             if (result == 'OK') {
                 var Mode = '@Model.Mode';
                 if (Mode == 'Edit') {
+                    if ($('#rdoDirectly').is(':checked')) {
+                        $("#rdoDirectly").focus();
+                    }
+                    else if ($('#rdoTMRatio').is(':checked')) {
+                        $("#rdoTMRatio").focus();
+                    }
+                    else if ($('#rdoPNRatio').is(':checked')) {
+                        $("#rdoPNRatio").focus();
+                    }
+                    else $("#rdoFVRatio").focus();
+                }
+                else if (Mode == 'New') {
                     if ($('#rdoDirectly').is(':checked')) {
                         $("#rdoDirectly").focus();
                     }
