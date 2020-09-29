@@ -131,7 +131,9 @@
                 ExistsCheck($("#KanjoCD"), "Kanjo", '@Url.Action("M_Kanjo_ExistsCheck", "api/KeihiSetteiApi")', "KanjoName");
                 DoubleByteCheck($("#KanjoCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 DoubleByteCheck($("#HojoCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                
                 ShowData();
+                ExistsCheck($("#HojoCD"), "Hojo", '@Url.Action("M_Hojo_ExistsCheck", "api/KeihiSetteiApi")', "HojoName", $("#KanjoCD").val());  
             }
             else  {
                 $('#btnSave').html('削除');

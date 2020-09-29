@@ -35,5 +35,14 @@ namespace TourokuNouhinBL
 
             return bdl.SelectJson("M_Project_Nouhin_ShowData", Tnmodel.Sqlprms);
         }
+
+        public string D_Delivery_Select_NouhinEntry(TourokuNouhinModel Tnmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            Tnmodel.Sqlprms = new SqlParameter[1];
+            Tnmodel.Sqlprms[0] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tnmodel.ProjectCD };
+
+            return bdl.SelectJson("D_Delivery_Select_NouhinEntry", Tnmodel.Sqlprms);
+        }
     }
 }
