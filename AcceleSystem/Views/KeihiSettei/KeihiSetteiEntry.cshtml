@@ -124,7 +124,7 @@
                 $('#btnSave').html('更新');
                 $("#CostCD").attr('disabled', 'disabled');
                 $("#CostName").focus();
-                $("#HojoCD").attr('disabled', 'disabled');
+                //$("#HojoCD").attr('disabled', 'disabled');
 
                 RequiredCheck($("#CostName"));
                 RequiredCheck($("#KanjoCD"));
@@ -274,21 +274,6 @@
                     }
                     else $("#rdoFItems").focus();
                 }
-                else if (Mode == 'New') {
-                    if ($('#rdoDCost').is(':checked')) {
-                        $("#rdoDCost").focus();
-                    }
-                    else if ($('#rdoBrandSeason').is(':checked')) {
-                        $("#rdoBrandSeason").focus();
-                    }
-                    else if ($('#rdoProject').is(':checked')) {
-                        $("#rdoProject").focus();
-                    }
-                    else if ($('#rdoMAllocation').is(':checked')) {
-                        $("#rdoMAllocation").focus();
-                    }
-                    else $("#rdoFItems").focus();
-                }
 
                 else $("#Accounting").focus();
             }
@@ -303,18 +288,6 @@
             if (result == 'OK') {
                 var Mode = '@Model.Mode';
                 if (Mode == 'Edit') {
-                    if ($('#rdoDirectly').is(':checked')) {
-                        $("#rdoDirectly").focus();
-                    }
-                    else if ($('#rdoTMRatio').is(':checked')) {
-                        $("#rdoTMRatio").focus();
-                    }
-                    else if ($('#rdoPNRatio').is(':checked')) {
-                        $("#rdoPNRatio").focus();
-                    }
-                    else $("#rdoFVRatio").focus();
-                }
-                else if (Mode == 'New') {
                     if ($('#rdoDirectly').is(':checked')) {
                         $("#rdoDirectly").focus();
                     }
