@@ -20,7 +20,7 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this,'ShowProjectData')" id="ProjectCD" name="txtProjectCD" maxlength="10" required placeholder="プロジェクトコード">
+                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this,'ShowNewmodeData')" id="ProjectCD" name="txtProjectCD" maxlength="10" required placeholder="プロジェクトコード">
                             <label id="ProjectName"><b>プロジェクト表示</b></label>
                         </div>
                     </div>
@@ -65,7 +65,7 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="7" class="text-line col-xl-9 text-left" onkeydown="KeyDown(event,this)" id="Remarks" name="txtRemarks" maxlength="40" required placeholder="備考">
+                            <input type="text" tabindex="7" class="text-line col-xl-9 text-left " onkeydown="KeyDown(event,this)" id="Remarks" name="txtRemarks" maxlength="40" required placeholder="備考">
                         </div>
                     </div>
                 </div>
@@ -83,30 +83,30 @@
             <div class="p-5 col shadow">
                 <div class="container">
                     <div class="row">
-                        <table class="tb1 col-sm-12">
-                            <thead>
-                                <tr>
-                                    <th style="padding-right:6px">対象</th>
-                                    <th style="padding-right:60px">品番名</th>
-                                    <th style="padding-right:34px">生産数</th>
-                                    <th style="padding-right:32px">累計納品数</th>
-                                    <th>今回納品数</th>
-                                    <th>今回納品数</th>
-                                </tr>
-                            </thead>
-                        </table>
-                        <table id="tblKeihi" class="tb1 col-sm-12">
-                            <thead>
-                                <tr>
-                                    <td style="padding-right:17px">chk</td>
-                                    <td style="padding-right:63px">HinBan</td>
-                                    <td style="padding-right:8px">Production</td>
-                                    <td style="padding-right:5px">DeliveryAmount</td>
-                                    <td style="padding-right:23px">NoOfDeli</td>
-                                    <td>NoOfunDeli</td>
-                                </tr>
-                            </thead>
-                        </table>
+                        <table id ="tblNouhinEntry" class="tb1 col-sm-12" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th style="width:5%;">対象</th>
+                                        <th style="width:27%">品番名</th>
+                                        <th style="width:17%; text-align:right">生産数</th>
+                                        <th style="width:17%; text-align:right">累計納品数</th>
+                                        <th style="width:17%; text-align:right">今回納品数</th>
+                                        <th style="width:17%; text-align:right">今回納品数</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                            @*<table id="tblKeihi" class="tb1 col-sm-12">
+                                <thead>
+                                    <tr>
+                                        <td style="padding-right:17px">chk</td>
+                                        <td style="padding-right:63px">HinBan</td>
+                                        <td style="padding-right:8px">Production</td>
+                                        <td style="padding-right:5px">DeliveryAmount</td>
+                                        <td style="padding-right:23px">NoOfDeli</td>
+                                        <td>NoOfunDeli</td>
+                                    </tr>
+                                </thead>
+                            </table>*@
                     </div>
                 </div>
                 <div class="col-xl-12 text-center" style="padding-top:1.4rem!important;">
@@ -127,10 +127,9 @@
         $(document).ready(function () {
             $("#formtitle").text("納品登録");
             var Mode = '@Model.Mode';
-
             if (Mode == 'New') {
                 $('#btnSave').html('登録');
-                //For Error Check
+                
                 RequiredCheck($("#ProjectCD"));
                 ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "ProjectName");
                 RequiredCheck($("#DeliDate"));
@@ -142,7 +141,10 @@
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
 
-                
+                RequiredCheck($("#DeliDate"));
+                DateCheck($("#DeliDate"), '@Url.Action("Date_Checking", "api/CommonApi")'); //E103
+                DateCheck($("#DeliDate"), '@Url.Action("Date_Checking", "api/CommonApi")', "2");  //E115
+                ShowData();
             }
             else {
                 $('#btnSave').html('削除');
@@ -152,37 +154,155 @@
                 $("#DeliDate").attr('disabled', 'disabled');
                 $("#Remarks").attr('disabled', 'disabled');
                 $("#btnSave").focus();
+
+                ShowData();
             }
         });
 
-        function ShowProjectData(result) {  //Dispay Project Data
+        function ShowNewmodeData(result) {  //Dispay Project Data
             if (result == 'OK') {
                 var TnModel = {
-                    ProjectCD : $("#ProjectCD").val()
+                    ProjectCD: $("#ProjectCD").val(),
+                     Mode:  '@Model.Mode'
                 };
-                alert(TnModel.ProjectCD);
-                var data = CalltoApiController('@Url.Action("M_Project_Nouhin_ShowData", "api/Touroku_NouhinApi")', TnModel);
-                var projData = JSON.parse(data);
-                $("#Year").val(projData[0].Year);
-                $("#BrandCD").val(projData[0].BrandCD);
-                $("#BrandName").text(projData[0].BrandName);
-                alert(projData[0].Season);
-                if (projData[0].Season == "1")
+                 var data = CalltoApiController('@Url.Action("M_Project_Select_NouhinEntry", "api/Touroku_NouhinApi")', TnModel);
+                var nouhindata = JSON.parse(data);
+
+                $("#Year").val(nouhindata[0].Year);
+                $("#BrandCD").val(nouhindata[0].BrandCD);
+                $("#BrandName").text(nouhindata[0].BrandName);
+                
+                if (nouhindata[0].Season == "1")
                     $("#rdoAllYear").prop("checked", true);
-                else if (projData[0].Season == "2")
+                else if (nouhindata[0].Season == "2")
                     $("#rdoSS").prop("checked", true);
                 else $("#rdoFW").prop("checked", true);
 
+                BindTable(nouhindata);
             }
         }
 
-        
-        function AllCheck() {
-            $('#checkbox').prop('checked', true);
+        function ShowData() {
+            
+            var TnModel = {
+                ProjectCD: '@Model.ProjectCD',
+                Mode: '@Model.Mode'
+            };
+            var data = CalltoApiController('@Url.Action("M_Project_Select_NouhinEntry", "api/Touroku_NouhinApi")', TnModel);
+            var nouhindata = JSON.parse(data);
+
+            $("#Year").val(nouhindata[0].Year);
+            $("#BrandCD").val(nouhindata[0].BrandCD);
+            $("#BrandName").text(projData[0].BrandName);
+            
+            if (projData[0].Season == "1")
+                $("#rdoAllYear").prop("checked", true);
+            else if (projData[0].Season == "2")
+                $("#rdoSS").prop("checked", true);
+            else $("#rdoFW").prop("checked", true);
+
+            BindTable(nouhindata);
         }
 
-        function AllUnCheck() {
-            $('#checkbox').prop('checked', false);
+        function BindTable(nouhindata) {
+            table = $('#tblNouhinEntry').DataTable({
+                data: nouhindata,
+                "bFilter": false,
+                "bLengthChange": false,
+                "bInfo": false,
+                "bSort": false,
+                destroy: true,
+                "paging": false,
+                "columns": [
+                    {
+                        "data": null,
+                        className: "select-checkbox",
+                        render: function (data, type, row) {
+                            return '<input type="checkbox"  id ="chk" />';
+                            //return  '<input type="checkbox" ' + (data ? ' checked' : '') + '/>';
+                        }
+                    },
+                    {
+                        "data": null,
+                        className: "Border2",
+                        render: function (data, type, row) {
+                            return '<label>' + data.HinbanCD + '  ' + data.HinbanName  + '</label>';
+                        }
+                    },
+                    {
+                        "data": null,
+                        className: "Border3",
+                        render: function (data, type, row) {
+                            return '<input type="text"  id ="Production" class="text-line text-right border-0" value = ' + data.Production + ' readonly>';
+                        }
+                    },
+                    {
+                        "data": null,
+                        className: "Border4",
+                        render: function (data, type, row) {
+                            return '<input type="text"  id ="SumDeliveryAmount" class="text-line text-right border-0" value = ' + data.SumDeliveryAmount + ' readonly>';
+                        }
+                    },
+                    {
+                        "data": null,
+                        className: "Border5",
+                        render: function (data, type, row) {
+                            return '<input type="text"  id ="DeliverAmount" class="text-line text-right border-0 " value = ' + data.DeliverAmount + '>';
+                        }
+                    },
+                    {
+                        "data": null,
+                        className: "Border6",
+                        render: function (data, type, row) {
+                            return '<input type="text"  id ="NofDeliverItems" class="text-line text-right border-0" value = ' + data.NofDeliverItems + ' readonly>';
+                        }
+                    }
+                ]
+            });
+        }
+
+        //Insert,Update,Delete
+         function DoProcess() {
+             TnModel = $("#UserID");
+             var TnModel = {
+                UserID: $("#UserID").val(),
+                UserName: $("#UserName").val(),
+                Password: $("#Password").val(),
+                Mode:'@Model.Mode'
+            };
+
+            var data = CalltoApiController('@Url.Action("User_CUD", "api/UserApi")', Umodel);
+            ShowSuccessMessage(data,'@Url.Action("UserList", "User")');
+        }
+
+        function DeleteConfrim() {
+            DoProcess();
+        }
+
+        //save
+        function btnSaveClick() {
+            var res = ErrorCheckOnSave();
+             if (res == "0") {
+                 var Mode = '@Model.Mode';
+
+                //show confirm message
+                if (Mode == "Delete") {
+                    ShowConfirmMessage("Q102", "DeleteConfrim");
+                }
+                else {
+                    DoProcess();
+                }
+            }
+            else
+                ShowErrorMessage(res);
+        }
+
+        function AllCheck() {  // 全選択
+            $('#tblNouhinEntry tbody input[type="checkbox"]').prop('checked', true);
+        }
+
+        function AllUnCheck() {  // 全解除
+            $('#tblNouhinEntry tbody input[type="checkbox"]').prop('checked', false);
         }
 
         function btnCancelClick() {
@@ -190,5 +310,5 @@
         }
 
     </script>
-    }
+    
 }

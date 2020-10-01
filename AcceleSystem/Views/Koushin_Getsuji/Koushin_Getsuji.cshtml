@@ -80,5 +80,11 @@
             ShowSuccessMessage(data,'@Url.Action("Koushin_Getsuji", "Koushin_Getsuji")');           
         }
 
+        $('#btnSave').keydown(function (e) {
+            var code = e.keyCode || e.which;
+            if (code == 9) {
+                e.preventDefault();
+            }
+        });
     </script>
 }
