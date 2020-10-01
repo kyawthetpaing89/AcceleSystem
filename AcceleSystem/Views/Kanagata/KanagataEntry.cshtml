@@ -22,7 +22,7 @@
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CastingCD" name="castingCD" maxlength="10" required placeholder="金型コード">
+                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left input-numeral7" onkeydown="KeyDown(event,this)" id="CastingCD" name="castingCD" maxlength="10" required placeholder="金型コード">
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <input type="text" tabindex="2" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CastingName" name="Name" maxlength="20" required placeholder="金型名">
                         </div>
@@ -33,14 +33,14 @@
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <input type="text" tabindex="3" class="text-line col-xl-5 text-left" id="BrandCD" onkeydown="KeyDown(event,this)" name="brandCD" maxlength="20" required placeholder="ブランドコード">
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="text" class="text-line col-xl-5 text-left" id="BrandName" name="brandname" maxlength="40" required placeholder="ブランド名">
+                            <input type="text" tabindex="4"  class="text-line col-xl-5 text-left" id="BrandName" name="brandname" maxlength="40" required placeholder="ブランド名">
                             @*<input type="text" class="text-line col-11" id="BrandName" name="brandname" style="width:91%" required placeholder="ブランド名">*@
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
-                        <input type="text" tabindex="4" onkeydown="KeyDown(event,this)" class="text-line col-11 datepicker-here" id="UseLimit" name="Limit" style="width:91%"  required placeholder="使用期限">
+                        <input type="text" tabindex="5" onkeydown="KeyDown(event,this)" class="text-line col-11 datepicker-here" id="UseLimit" name="Limit" style="width:91%"  required placeholder="使用期限">
                     </div>
 
                 </div>
@@ -50,9 +50,9 @@
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <button id="btnSave" tabindex="5" onclick="btnSaveClick()" class="btn btn-dark col-xl-5 text-center"></button>
+                            <button id="btnSave" tabindex="6" onclick="btnSaveClick()" class="btn btn-dark col-xl-5 text-center"></button>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <button id="btnCancel" tabindex="6" onclick="btnCancelClick()" class="btn btn-primary col-xl-5 text-center">戻る</button>
+                            <button id="btnCancel" tabindex="7" onclick="btnCancelClick()" class="btn btn-primary col-xl-5 text-center">戻る</button>
                         </div>
                     </div>
                 </div>
@@ -167,7 +167,13 @@
             location.href = '@Url.Action("KanagataList", "Kanagata")';
         }
 
-
+        $('#btnCancel').keydown(function (e) {
+                var code = e.keyCode || e.which;
+               if (code == 9) {
+                   e.preventDefault();
+                }
+           });
+       //});
     </script>
     <script src="@Url.Content("~/Scripts/datepicker.js")"></script>
     <script src="@Url.Content("~/Scripts/datepicker.en.js")"></script>
