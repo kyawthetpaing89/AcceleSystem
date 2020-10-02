@@ -672,4 +672,10 @@ $(document).ready(function () {
         });
     }
 
+    if ($('.input-numeral7')[0]) {
+        var cleaveNumeral7 = new Cleave('.input-numeral7', {
+            numeral: false,
+            numeralThousandsGroupStyle: 'thousand'
+        });
+    }
 });
