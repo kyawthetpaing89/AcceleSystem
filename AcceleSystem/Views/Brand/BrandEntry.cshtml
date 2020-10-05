@@ -110,27 +110,37 @@
         
         //save
     function btnSaveClick() {
-             var res = ErrorCheckOnSave();
-             if (res == "0") {
-                 var Mode = '@Model.Mode';
-                 //show confirm message
-                 if (Mode == "Delete") {
-                     ShowConfirmMessage("Q102", "DeleteConfrim");
-                 }
-                 else {
-                     DoProcess();
-                 }
-             }
-             else
-                 ShowErrorMessage(res);
-         }
+        var res = ErrorCheckOnSave();
+        if (res == "0") {
+            var Mode = '@Model.Mode';
+            //show confirm message
+            if (Mode == "Delete") {
+                ShowConfirmMessage("Q102", "DeleteConfrim");
+            }
+            else {
+                DoProcess();
+            }
+        }
+        else
+            ShowErrorMessage(res);
+    }
 
-            $('#btnCancel').keydown(function (e) {
-                var code = e.keyCode || e.which;
-                if (code == 9) {
+    $('#btnCancel').keydown(function (e) {
+        var code = e.keyCode || e.which;
+        if (code == 9) {
+            if (e.shiftKey) {
+                //Focus previous input
+                if (thisTab == startIndex) {
+                    $("." + tabLimitInID).find('[tabindex=' + lastIndex + ']').focus();
+                    return false;
+                }
+                else {
                     e.preventDefault();
                 }
-            });
+            }
+            e.preventDefault();
+        }
+    });
         
         function btnCancelClick() {
             location.href = '@Url.Action("BrandList", "Brand")';

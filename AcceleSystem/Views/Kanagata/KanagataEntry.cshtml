@@ -168,11 +168,21 @@
         }
 
         $('#btnCancel').keydown(function (e) {
-                var code = e.keyCode || e.which;
-               if (code == 9) {
-                   e.preventDefault();
+            var code = e.keyCode || e.which;
+            if (code == 9) {
+                if (e.shiftKey) {
+                    //Focus previous input
+                    if (thisTab == startIndex) {
+                        $("." + tabLimitInID).find('[tabindex=' + lastIndex + ']').focus();
+                        return false;
+                    }
+                    else {
+                        e.preventDefault();
+                    }
                 }
-           });
+                e.preventDefault();
+            }
+        });
        //});
     </script>
     <script src="@Url.Content("~/Scripts/datepicker.js")"></script>
