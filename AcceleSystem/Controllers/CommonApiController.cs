@@ -51,5 +51,11 @@ namespace AcceleSystem.Controllers
             return cmbl.DoubleByte_Checking(BModel.value);
 
         }
+
+        public bool ExportCSVfile([FromBody] BaseModel BModel)
+        {
+            Common_BL cmbl = new Common_BL();
+            return cmbl.ExportCSVfile(BModel.value);
+        }
     }
 }

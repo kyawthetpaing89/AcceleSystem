@@ -248,5 +248,12 @@ namespace CommonBL
 
             return input.Any(c => c > MaxAnsiCode);
         }
+
+        public bool ExportCSVfile(string data)
+        {
+            string input = data;
+            return true;
+        }
+
     }
 }
