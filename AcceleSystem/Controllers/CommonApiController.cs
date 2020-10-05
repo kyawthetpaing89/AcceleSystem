@@ -52,10 +52,10 @@ namespace AcceleSystem.Controllers
 
         }
 
-        public bool ExportCSVfile([FromBody] BaseModel BModel)
+        public string ExportCSVfile([FromBody] BaseModel BModel)
         {
             Common_BL cmbl = new Common_BL();
-            return cmbl.ExportCSVfile(BModel.value);
+            return cmbl.ExportCSVfile(BModel.value,BModel.value1);
         }
     }
 }

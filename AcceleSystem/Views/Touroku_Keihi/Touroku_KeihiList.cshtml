@@ -303,12 +303,14 @@
         else if ($('#FW').is(':checked'))
             kmodel.Season = "3";
 
-        var csvdata = CalltoApiController('@Url.Action("M_Cost_Select_List", "api/Touroku_KeihiApi")', kmodel);
-        alert("a");
+        var csvdata = CalltoApiController('@Url.Action("D_Cost_TKeihiCSV", "api/Touroku_KeihiApi")', kmodel);
         var kmodel = {
-            value: csvdata
+            value: csvdata,
+            value1: "経費登録"
         };
         var data = CalltoApiController('@Url.Action("ExportCSVfile", "api/CommonApi")', kmodel);
+
+     
     }
 
         function btnEditClick(SEQ) {

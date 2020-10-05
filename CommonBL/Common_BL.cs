@@ -4,7 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
+using System.Data;
+using System.IO;
+using ElencySolutions.CsvHelper;
+using System.Windows.Forms;
+using Newtonsoft.Json;
+using System.Diagnostics;
 using Models;
+using System.Threading;
 
 namespace CommonBL
 {
@@ -249,10 +256,60 @@ namespace CommonBL
             return input.Any(c => c > MaxAnsiCode);
         }
 
-        public bool ExportCSVfile(string data)
+        public string ExportCSVfile(string data, string filename)
         {
-            string input = data;
-            return true;
+            string result = string.Empty;
+            if (!string.IsNullOrWhiteSpace(data))
+            {
+                try
+                {
+                    DataTable dt = (DataTable)JsonConvert.DeserializeObject(data, (typeof(DataTable)));
+                    if (dt.Rows.Count > 0)
+                    {
+                        ////LoacalDirectory
+                        string folderPath = "C:\\Accele_Export\\";
+                        if (!Directory.Exists(folderPath))
+                        {
+                            Directory.CreateDirectory(folderPath);
+                        }
+                        Thread t = new Thread((ThreadStart)(() =>
+                        {
+                            SaveFileDialog savedialog = new SaveFileDialog();
+                            savedialog.Filter = "CSV|*.csv";
+                            savedialog.Title = "Save";
+                            savedialog.FileName = filename;
+                            savedialog.InitialDirectory = folderPath;
+                            savedialog.RestoreDirectory = true;
+                            if (savedialog.ShowDialog() == DialogResult.OK)
+                            {
+                                if (Path.GetExtension(savedialog.FileName).Contains("csv"))
+                                {
+                                    CsvWriter csvwriter = new CsvWriter();
+                                    csvwriter.WriteCsv(dt, savedialog.FileName, Encoding.GetEncoding(932));
+                                }
+                                Process.Start(Path.GetDirectoryName(savedialog.FileName));
+                                result = "[{\"flg\" : \"true\"}]";
+                            }
+                        }));
+
+                        // Run your code from a thread that joins the STA Thread
+                        t.SetApartmentState(ApartmentState.STA);
+                        t.Start();
+                        t.Join();
+                    }
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    result = "[{\"flg\" : \"false\"}]";
+                    return result;
+                }
+            }
+            else {
+                result = "[{\"flg\" : \"false\"}]";
+                return result;
+            }
         }
 
     }
