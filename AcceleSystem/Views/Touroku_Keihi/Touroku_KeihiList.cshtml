@@ -280,37 +280,58 @@
 
         }
 
-    function btnCSVClick(){
-        var kmodel = {
-            CostCD: $('#CostCD').val(),
-            CostName: $('#CostName').val(),
-            CostDateFrom: $('#CostDate1').val(),
-            CostDateTo: $('#CostDate2').val(),
-            Year: $('#year').val(),
-            BrandCD: $('#brandCD').val(),
-            BrandName: $('#brandname').val(),
-            //Season: $('#season').val(),
-            ProjectCD: $('#projectCD').val(),
-            ProjectName: $('#projectname').val(),
-            HinbanCD: $('#PartCD').val(),
-            HinbanName: $('#PartName').val(),
-        };
+    function btnCSVClick() {
+        var allyear = $("#allyear").is(":checked");
+        var ss = $("#SS").is(":checked");
+        var fw = $("#FW").is(":checked");
+        if (!allyear && !ss && !fw) {
+            var data = ShowErrorMessage("E111");
+            return data;
+        }
+        else {
+            var res = ErrorCheckOnSave();
+            if (res == "0") {
+                var kmodel = {
+                    CostCD: $('#CostCD').val(),
+                    CostName: $('#CostName').val(),
+                    CostDateFrom: $('#CostDate1').val(),
+                    CostDateTo: $('#CostDate2').val(),
+                    Year: $('#year').val(),
+                    BrandCD: $('#brandCD').val(),
+                    BrandName: $('#brandname').val(),
+                    //Season: $('#season').val(),
+                    ProjectCD: $('#projectCD').val(),
+                    ProjectName: $('#projectname').val(),
+                    HinbanCD: $('#PartCD').val(),
+                    HinbanName: $('#PartName').val(),
+                };
 
-        if ($('#degreeyear').is(':checked'))
-            kmodel.Season = "1";
-        else if ($('#SS').is(':checked'))
-            kmodel.Season = "2";
-        else if ($('#FW').is(':checked'))
-            kmodel.Season = "3";
+                if ($('#degreeyear').is(':checked'))
+                    kmodel.Season = "1";
+                else if ($('#SS').is(':checked'))
+                    kmodel.Season = "2";
+                else if ($('#FW').is(':checked'))
+                    kmodel.Season = "3";
 
-        var csvdata = CalltoApiController('@Url.Action("D_Cost_TKeihiCSV", "api/Touroku_KeihiApi")', kmodel);
-        var kmodel = {
-            value: csvdata,
-            value1: "経費登録"
-        };
-        var data = CalltoApiController('@Url.Action("ExportCSVfile", "api/CommonApi")', kmodel);
-
-     
+                var csvdata = CalltoApiController('@Url.Action("D_Cost_TKeihiCSV", "api/Touroku_KeihiApi")', kmodel);
+                var kmodel = {
+                    value: csvdata,
+                    value1: "経費登録"
+                };
+                var data = CalltoApiController('@Url.Action("ExportCSVfile", "api/CommonApi")', kmodel);
+                var csvdata = JSON.parse(data);
+                if (csvdata[0].flg == "false") {
+                    var data = ShowErrorMessage("E104");
+                    return data;
+                }
+                //else {
+                //    //var fileSelector = $('<input type="file">');
+                //    //fileSelector.click();
+                //}
+            }
+            else
+                ShowErrorMessage(res);
+        }
     }
 
         function btnEditClick(SEQ) {

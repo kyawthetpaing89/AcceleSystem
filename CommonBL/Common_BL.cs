@@ -259,7 +259,7 @@ namespace CommonBL
         public string ExportCSVfile(string data, string filename)
         {
             string result = string.Empty;
-            if (!string.IsNullOrWhiteSpace(data))
+            if (!data.Equals("[]"))
             {
                 try
                 {
@@ -272,14 +272,16 @@ namespace CommonBL
                         {
                             Directory.CreateDirectory(folderPath);
                         }
+
+                        SaveFileDialog savedialog = new SaveFileDialog();
+                        savedialog.Filter = "CSV|*.csv";
+                        savedialog.Title = "Save";
+                        savedialog.FileName = filename;
+                        savedialog.InitialDirectory = folderPath;
+                        savedialog.RestoreDirectory = true;
                         Thread t = new Thread((ThreadStart)(() =>
                         {
-                            SaveFileDialog savedialog = new SaveFileDialog();
-                            savedialog.Filter = "CSV|*.csv";
-                            savedialog.Title = "Save";
-                            savedialog.FileName = filename;
-                            savedialog.InitialDirectory = folderPath;
-                            savedialog.RestoreDirectory = true;
+                           
                             if (savedialog.ShowDialog() == DialogResult.OK)
                             {
                                 if (Path.GetExtension(savedialog.FileName).Contains("csv"))
@@ -296,8 +298,13 @@ namespace CommonBL
                         t.SetApartmentState(ApartmentState.STA);
                         t.Start();
                         t.Join();
+                        return result;
                     }
-                    return result;
+                    else
+                    {
+                        result = "[{\"flg\" : \"false\"}]";
+                        return result;
+                    }
                 }
                 catch (Exception ex)
                 {
