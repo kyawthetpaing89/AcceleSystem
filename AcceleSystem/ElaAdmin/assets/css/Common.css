@@ -22,7 +22,12 @@
     #tblKeihi td {
         border-top: 1px solid #d3dcd3;
     }
+
     #tblProject td {
+        border-top: 1px solid #d3dcd3;
+    }
+
+    #tblTouroku_Keihi td {
         border-top: 1px solid #d3dcd3;
     }
 
