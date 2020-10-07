@@ -123,7 +123,11 @@ function DateCheck(ctrl, ApiURL, ctrlName, param1) {
 function YearMonthCheck(ctrl, val) {
     $(ctrl).attr("data-yearmonth_check", "1");
     $(ctrl).attr("data-yearmonth_DataCheckApiUrl", val);
-   
+}
+
+function YearCheck(ctrl, ApiURL) {
+    $(ctrl).attr("data-year_check", "1");
+    $(ctrl).attr("data-year_DataCheckApiUrl", ApiURL);
 }
 
 function DateComapre(ctrl, val) {
@@ -582,6 +586,23 @@ function ErrChk(ctrl) {
             return "0";
         }
 
+        var yearcheck = $(ctrl).attr("data-year_check");
+        if (yearcheck) {
+            var ApiURL = $(ctrl).attr("data-year_DataCheckApiUrl");
+            var model = {
+                inputdate: $(ctrl).val(),
+            };
+            var data = CalltoApiController(ApiURL, model);
+            var dateData = JSON.parse(data);
+            if (dateData[0].flg == "false") {
+                return "E103";
+            }
+            else if (dateData[0].flg == "true") {
+                $(ctrl).val(dateData[0].resultdate);
+                //return "0";
+            }
+        }
+
     }
     else {
         if ($(ctrl).attr("data-NameCtrl")) {
@@ -612,7 +633,6 @@ function ErrChk(ctrl) {
             return "1";
         }
     }
-
     return "0";
 }
 

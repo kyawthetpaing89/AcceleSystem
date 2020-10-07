@@ -26,6 +26,13 @@ namespace AcceleSystem.Controllers
 
         }
 
+        public string Year_Checking([FromBody] BaseModel BModel)
+        {
+            Common_BL cmbl = new Common_BL();
+            return cmbl.Year_Checking(BModel.inputdate);
+
+        }
+
         public string DateComapre([FromBody] BaseModel BModel)
         {
             Common_BL cmbl = new Common_BL();

@@ -114,7 +114,7 @@ namespace CommonBL
                 return result;
             }
         }
-
+   
         public bool IsInteger(string value)
         {
             value = value.Replace("-", "");
@@ -188,6 +188,65 @@ namespace CommonBL
             //result = "[{\"resultdate\" : \"" + strdate + "\", \"flg\" : \"true\"}]";
             //return result;
              
+        }
+
+        public string Year_Checking(string inputdate)
+        {
+            string result = string.Empty, strdate = string.Empty, date = string.Empty;
+            if (inputdate.Contains("/"))
+            {
+                inputdate = inputdate.Replace("/", "");
+            }
+            //if (inputdate.Length == 1)
+            //{
+            //    strdate = DateTime.Now.Year.ToString() + "/" + inputdate.PadLeft(2, '0');
+
+            //}
+            //else if (inputdate.Length == 2)
+            //{
+
+            //    strdate = DateTime.Now.Year.ToString() + "/" + inputdate.PadLeft(2, '0');
+
+            //}
+            if (inputdate.Length == 4)
+            {
+                //var yr = inputdate.Substring(0, 4);
+                //var mn = DateTime.Now.Month.ToString().PadLeft(2, '0');
+                //strdate = yr + "/" + mn;
+
+                //else if (inputdate.Length == 6)
+                //{
+                //    var yr = inputdate.Substring(0, 4).ToString();
+                //    var mn = inputdate.Substring(inputdate.Length - 2, 2).ToString().PadLeft(2, '0').ToString();
+                //    strdate = yr + "/" + mn;
+                //}
+                //else if (inputdate.Length == 5)
+                //{
+                //    var yr = inputdate.Substring(0, 4);
+                //    var mn = inputdate.Substring(inputdate.Length - 1, 1).PadLeft(2, '0');
+                //    strdate = yr + "/" + mn;
+                //}
+
+                date = inputdate + "/01/01";
+                if (CheckDate(date))
+                {
+                    result = "[{\"resultdate\" : \"" + inputdate + "\", \"flg\" : \"true\"}]";   //"[{"result":"2020/01/01"}]";
+                    return result;
+                }
+                else
+                {
+                    result = "[{\"resultdate\" : \"" + inputdate + "\", \"flg\" : \"false\"}]";
+                    return result;
+                }
+            }
+            else
+            {
+                result = "[{\"resultdate\" : \"" + inputdate + "\", \"flg\" : \"false\"}]";
+                return result;
+            }
+            //result = "[{\"resultdate\" : \"" + strdate + "\", \"flg\" : \"true\"}]";
+            //return result;
+
         }
 
         public string DateComapre(string startdate, string enddate)
