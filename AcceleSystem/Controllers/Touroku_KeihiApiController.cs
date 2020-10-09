@@ -59,5 +59,11 @@ namespace AcceleSystem.Controllers
             Touroku_Keihi_BL kgbl = new Touroku_Keihi_BL();
             return kgbl.D_Cost_CUD(kgmodel);
         }
+
+        public string D_Cost_TKeihiCSV([FromBody] Touroku_KeihiModel kgmodel)
+        {
+            Touroku_Keihi_BL kgbl = new Touroku_Keihi_BL();
+            return kgbl.D_Cost_TKeihiCSV(kgmodel);
+        }
     }
 }

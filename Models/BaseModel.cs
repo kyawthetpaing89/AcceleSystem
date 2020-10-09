@@ -14,5 +14,6 @@ namespace Models
         public string endDate { get; set; }
         public string flg { get; set; }
         public string value { get; set; }
+        public string value1 { get; set; }
     }
 }

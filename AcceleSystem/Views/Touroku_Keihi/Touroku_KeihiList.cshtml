@@ -9,156 +9,168 @@
 }
 
 
-<div class="card">
-    <div class="row">
-        <div class="col-xs-12 col-md-5">
-            <div class="card-body card-block">
-                <div class="row form-group">
-                    <div class="col col-md-12">
-                        <button id="btnAdd" onclick="btnAddClick()" class="btn" style="background-color:#1a8cff; color:azure;width:150px;border-radius:10px;height:40px;">
-                            経費追加
-                        </button>
-                        &nbsp;
-                        <button id="btnDel" onclick="btnDelClick()" class="btn" style="background-color:white; color:#1a8cff;width:100px; border:1px groove #1a8cff; border-radius:10px;height:40px;">
-                            削除
-                        </button>
-                        <div id="registration" style="padding-top: 1.8rem!important;">
-                            <div>
-                                <h4 class=" hr-text text-center">検索条件入力</h4>
-                            </div>
-                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                <div class="col-md-12" style="padding-left:40px;">
-                                    <div class="text-s text-custom1 text-uppercase mb-1">
-                                        <label id="text" style="padding-right: 24px;">経費名</label>
-                                        <input type="text" tabindex="1" class="text-line text-left" id="CostCD" name="CostCD" maxlength="6" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:100px;">
-                                        <input type="text" tabindex="2" class="text-line text-left" id="CostName" name="CostName" maxlength="40" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:100px;">
+    <div id="divMain" class="container-fluid">
+        <div class="card">
+            <div class="row">
+                <div class="col-xs-12 col-md-5">
+                    <div class="card-body card-block">
+                        <div class="row form-group">
+                            <div class="col col-md-12">
+                                <button id="btnAdd" onclick="btnAddClick()" class="btn" style="background-color:#1a8cff; color:azure;  border-radius: 3px; margin-right: 20px; margin-top: 20px;">
+                                    経費追加
+                                </button>
+                                @*<button id="btnDel" onclick="btnDelClick()" class="btn" style="background-color:white; color:#1a8cff; border-radius:3px; border: 1px solid transparent; border-color:#1a8cff; margin-top: 20px;">
+                                    削除
+                                </button>*@
+                                <div id="registration" style="padding-top: 1.8rem!important;">
+                                    <div>
+                                        <h4 class=" hr-text text-center">検索条件入力</h4>
+                                    </div>
+                                    <div style="padding-left:20px;">
+                                        <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                            <div class="col-md-12" style="padding-left:49px;">
+                                                <div class="text-s text-custom1 text-uppercase mb-1">
+                                                    <label id="text" style="padding-right: 24px;">経費名</label>
+                                                    <input type="text" tabindex="1" class="text-line text-left" id="CostCD" name="CostCD" maxlength="6" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:70px;">
+                                                    <input type="text" tabindex="2" class="text-line text-left" id="CostName" name="CostName" maxlength="40" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:300px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                            <div class="col-md-12" style="padding-left:49px;">
+                                                <div class="text-s text-custom1 text-uppercase mb-1">
+                                                    <label id="text" style="padding-right: 24px;">計上日</label>
+                                                    <input type="text" tabindex="3" class="text-line text-left" onkeydown="KeyDown(event,this,'Keihi')" id="CostDate1" name="CostDate1" maxlength="10" required placeholder="入力" style="width:105px;">
+                                                    &nbsp;~&nbsp;
+                                                    <input type="text" tabindex="4" class="text-line text-left" onkeydown="KeyDown(event,this)" id="CostDate2" name="CostDate2" maxlength="10" required placeholder="入力" style="width:105px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                            <div class="col-md-12" style="padding-left:64px;">
+                                                <div class="text-s text-custom1 text-uppercase mb-1">
+                                                    <label id="text" style="padding-right: 25px;">年度</label>
+                                                    <input type="text" tabindex="5" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="year" name="year" maxlength="4" required placeholder="入力" style="width:110px;">
+                                                    @*&nbsp;&nbsp;
+                                                    <button id="btnMove" onclick="btnMoveClick()" class="btn col-xl-10 text-center" tabindex="6" style="background-color:#1a8cff; color:azure;width:90px;border-radius:5px;height:35px;">
+                                                        移動
+                                                    </button>*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                            <div class="col-md-12" style="padding-left:32px;">
+                                                <div class="text-s text-custom1 text-uppercase mb-1">
+                                                    <label id="text" style="padding-right: 24px;">ブランド</label>
+                                                    <input type="text" tabindex="6" class="text-line text-left" onkeydown="KeyDown(event,this)" id="brandCD" name="brandCD" maxlength="20" required placeholder="入力" style="width:150px;">
+                                                    <input type="text" tabindex="7" class="text-line text-left" onkeydown="KeyDown(event,this)" id="brandname" name="brandname" maxlength="40" required placeholder="入力" style="width:220px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                            <div class="col-md-12" style="padding-left:32px;">
+                                                <div class="text-s text-custom1 text-uppercase mb-1">
+                                                        <label id="text" style="padding-right:24px;" >シーズン</label>
+                                                        <input type="checkbox" tabindex="8" id="allyear" name="chk" onkeydown="KeyDown(event,this)">
+                                                        <label for="allyear" style="padding-right:25px!important;">通年</label>
+                                                        <input type="checkbox" tabindex="9" id="SS" name="chk" onkeydown="KeyDown(event,this)">
+                                                        <label for="SS" style="padding-right:25px!important;">SS</label>
+                                                        <input type="checkbox" tabindex="10" id="FW" name="chk" onkeydown="KeyDown(event,this)">
+                                                        <label for="FW" style="padding-right:25px!important;">FW</label>
+                                                </div>
+                                             </div>
+                                        </div>
+                                        <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                            <div class="col-md-12" style="padding-left:0px;">
+                                                <div class="text-s text-custom1 text-uppercase mb-1">
+                                                    <label id="text" style="padding-right: 13px;">プロジェクト</label>&nbsp;&nbsp;
+                                                    <input type="text" tabindex="11" class="text-line text-left" onkeydown="KeyDown(event,this)" id="projectCD" name="projectCD" maxlength="10" required placeholder="入力" style="width:110px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                            <div class="col-md-12" style="padding-left:121px;">
+                                                <div class="text-s text-custom1 text-uppercase mb-1">
+                                                    <input type="text" tabindex="12" class="text-line text-left" onkeydown="KeyDown(event,this)" id="projectname" name="projectname" maxlength="60" required placeholder="入力" style="width:370px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                            <div class="col-md-12" style="padding-left:62px;">
+                                                <div class="text-s text-custom1 text-uppercase mb-1">
+                                                    <label id="text" style="padding-right: 22px;">品番</label>
+                                                    <input type="text" tabindex="13" class="text-line text-left" onkeydown="KeyDown(event,this)" id="PartCD" name="PartCD" maxlength="6" required placeholder="入力" style="width:70px;">
+                                                    <input type="text" tabindex="14" class="text-line text-left" onkeydown="KeyDown(event,this)" id="PartName" name="PartName" maxlength="60" required placeholder="入力" style="width:300px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12" style="padding-left:180px; padding-top:2rem;">
+                                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                                <button id="btnCSV" onclick="btnCSVClick()" class="btn text-center" tabindex="15" style="background-color:white; color:black; border-radius:3px; border: 1px solid transparent; border-color:black;">
+                                                    CSV
+                                                </button>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                                <button id="btnSearch" tabindex="16" onclick="btnSearchClick()" class="btn text-center" style="background-color:#413839; color:azure;width:80px; height:37px;">検索</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                <div class="col-md-12" style="padding-left:40px;">
-                                    <div class="text-s text-custom1 text-uppercase mb-1">
-                                        <label id="text" style="padding-right: 24px;">計上日</label>
-                                        <input type="text" tabindex="3" class="text-line text-left" onkeydown="KeyDown(event,this,'Keihi')" id="CostDate1" name="CostDate1" maxlength="10" required placeholder="入力" style="width:100px;">
-                                        <input type="text" tabindex="4" class="text-line text-left" onkeydown="KeyDown(event,this)" id="CostDate2" name="CostDate2" maxlength="10" required placeholder="入力" style="width:100px;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                <div class="col-md-12" style="padding-left:60px;">
-                                    <div class="text-s text-custom1 text-uppercase mb-1">
-                                        <label id="text" style="padding-right: 24px;">年度</label>
-                                        <input type="text" tabindex="5" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="year" name="year" maxlength="4" required placeholder="入力" style="width:100px;">
-                                        <button id="btnMove" onclick="btnMoveClick()" class="btn col-xl-10 text-center" tabindex="6" style="background-color:#1a8cff; color:azure;width:60px;border-radius:5px;height:35px;">
-                                            移動
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                <div class="col-md-12" style="padding-left:30px;">
-                                    <div class="text-s text-custom1 text-uppercase mb-1">
-                                        <label id="text" style="padding-right: 24px;">ブランド</label>
-                                        <input type="text" tabindex="7" class="text-line text-left" onkeydown="KeyDown(event,this)" id="brandCD" name="brandCD" maxlength="20" required placeholder="入力" style="width:100px;">
-                                        <input type="text" tabindex="8" class="text-line text-left" onkeydown="KeyDown(event,this)" id="brandname" name="brandname" maxlength="40" required placeholder="入力" style="width:100px;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                <div class="col-md-12" style="padding-left:30px;">
-                                    <div class="text-s text-custom1 text-uppercase mb-1">
-                                        <label id="text" style="padding-right:20px;">シーズン</label>
-                                        <input type="checkbox" tabindex="9" id="allyear" name="allyear">
-                                        <label style="padding-right:25px!important;">通年</label>
-                                        <input type="checkbox" tabindex="10" id="SS" name="SS">
-                                        <label style="padding-right:25px!important;">SS</label>
-                                        <input type="checkbox" tabindex="11" id="FW" name="FW">
-                                        <label style="padding-right:25px!important;">FW</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                <div class="col-md-12" style="padding-left:15px;">
-                                    <div class="text-s text-custom1 text-uppercase mb-1">
-                                        <label id="text">プロジェクト</label>&nbsp;&nbsp;
-                                        <input type="text" tabindex="12" class="text-line text-left" onkeydown="KeyDown(event,this)" id="projectCD" name="projectCD" maxlength="10" required placeholder="入力" style="width:100px;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;"> 
-                                <div class="col-md-12" style="padding-left:120px;">
-                                    <div class="text-s text-custom1 text-uppercase mb-1">
-                                        <input type="text" tabindex="13" class="text-line text-left" onkeydown="KeyDown(event,this)" id="projectname" name="projectname" maxlength="60" required placeholder="入力" style="width:210px;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                <div class="col-md-12" style="padding-left:75px;">
-                                    <div class="text-s text-custom1 text-uppercase mb-1">
-                                        <label id="text">品番</label>
-                                        <input type="text" tabindex="14" class="text-line text-left" onkeydown="KeyDown(event,this)" id="PartCD" name="PartCD" maxlength="10" required placeholder="入力" style="width:100px;">
-                                        <input type="text" tabindex="15" class="text-line text-left" onkeydown="KeyDown(event,this)" id="PartName" name="PartName" maxlength="60" required placeholder="入力" style="width:100px;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12" style="padding-left:150px; padding-top:2rem;">
-                                    <div class="text-s text-custom1 text-uppercase mb-1">
-                                        <button id="btnCSV" onclick="btnCSVClick()" class="btn text-center" tabindex="16" style="background-color:#1a8cff; color:azure;width:60px; border:1px groove black; border-radius:5px;height:40px;">
-                                            CSV
-                                        </button>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <button id="btnSearch" tabindex="17" onclick="btnSearchClick()" class="btn btn-primary text-center" style="background-color:#413839; color:azure;width:80px; height:35px;">検索</button>
-                                    </div>
-                                </div>
-                              
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xs-12 col-md-6">
-                <div class="card-body card-block">
-                    <table id="tblTouroku_Keihi" class="tb1 col-sm-12" style="margin-left:10px;">
-                        <thead>
-                            <tr>
-                                <th>経費名</th>
-                                <th>計上日</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                            <tr>
-                                <th>年度</th>
-                                <th>ブランド</th>
-                                <th>シーズン</th>
-                                <th></th>
-                            </tr>
-                            <tr>
-                                <th>プロジェクト</th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                    </table>
+                <div class="col-xs-12 col-md-6">
+                    <div class="card-body card-block">
+                        <table id="tblTouroku_Keihi" class="tb1 col-sm-12" style="margin-left:10px;width:100%">
+                            <thead>
+                                <tr>
+                                    <th>経費名</th>
+                                    <th>計上日</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <th>年度</th>
+                                    <th>ブランド</th>
+                                    <th>シーズン</th>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <th>プロジェクト</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
                 </div>
+                <div class="col-xs-12 col-md-2"></div>
             </div>
-            <div class="col-xs-12 col-md-2"></div>
         </div>
     </div>
 
-
-@section Scripts{
-<script type="text/javascript">
+ @section Scripts{
+   <script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("経費検索");
             $("#CostCD").focus();
             ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "CostName");
+            DoubleByteCheck($("#CostCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+
             DateCheck($("#CostDate1"), '@Url.Action("Date_Checking", "api/CommonApi")');
             @*DateCheck($("#CostDate2"), '@Url.Action("Date_Checking", "api/CommonApi")');*@
-            DateCheck($("#year"), '@Url.Action("Date_Checking", "api/CommonApi")');
+            YearCheck($("#year"), '@Url.Action("Year_Checking", "api/CommonApi")');
+
             ExistsCheck($("#brandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")', "brandname");
+            DoubleByteCheck($("#brandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+
             ExistsCheck($("#projectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")', "projectname");
+            DoubleByteCheck($("#projectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+
             ExistsCheck($("#PartCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "PartName");
+            DoubleByteCheck($("#PartCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+
             GetData();
         });
         function Keihi(result) {
@@ -169,7 +181,7 @@
             }
         }
 
-        function GetData() {
+       function GetData() {
             var kmodel = {
             CostCD: $('#CostCD').val(),
             CostName: $('#CostName').val(),
@@ -183,9 +195,9 @@
             ProjectName: $('#projectname').val(),
             HinbanCD: $('#PartCD').val(),
             HinbanName: $('#PartName').val(),
-        };
+            };
 
-            if ($('#degreeyear').is(':checked'))
+           if ($('#allyear').is(':checked'))
                 kmodel.Season = "1";
             else if ($('#SS').is(':checked'))
                 kmodel.Season = "2";
@@ -215,7 +227,7 @@
             });
         }
 
-        function BindTable(response) {
+       function BindTable(response) {
             table = $('#tblTouroku_Keihi').DataTable({
                 data: JSON.parse(response),
                 "bFilter": false,
@@ -228,14 +240,14 @@
                         "data": null,
                         className: "Border1",
                         render: function (data, type, row) {
-                            return '<label>' + data.CostCD + '  ' + data.CostName + '</label><br/><label>' + data.Year + '</label><br/><label>' + data.ProjectCD + '</label>';
+                            return '<label>' + data.CostCD + '  ' + data.CostName + '</label><br/><label>' + data.Year + '</label><br/><label>' + data.ProjectCD + '  ' + data.ProjectName + '</label>';
                         }
                     },
                     {
                         "data": null,
                         className: "Borde2",
                         render: function (data, type, row) {
-                            return '<label>' + data.CostDate + '</label><br/><label>' + data.BrandCD + '</label><br/><label>';
+                            return '<label>' + data.CostDate + '</label><br/><label>' + data.BrandName + '</label><br/><label>';
                         }
                     },
                     {
@@ -280,40 +292,63 @@
 
         }
 
-    function btnCSVClick(){
-        var kmodel = {
-            CostCD: $('#CostCD').val(),
-            CostName: $('#CostName').val(),
-            CostDateFrom: $('#CostDate1').val(),
-            CostDateTo: $('#CostDate2').val(),
-            Year: $('#year').val(),
-            BrandCD: $('#brandCD').val(),
-            BrandName: $('#brandname').val(),
-            //Season: $('#season').val(),
-            ProjectCD: $('#projectCD').val(),
-            ProjectName: $('#projectname').val(),
-            HinbanCD: $('#PartCD').val(),
-            HinbanName: $('#PartName').val(),
-        };
+        function btnCSVClick() {
+        var allyear = $("#allyear").is(":checked");
+        var ss = $("#SS").is(":checked");
+        var fw = $("#FW").is(":checked");
+             if (!allyear && !ss && !fw) {
+                 var data = ShowErrorMessage("E111");
+                return data;
+            }
+        else {
+            var res = ErrorCheckOnSave();
+                if (res == "0") {
+                    var kmodel = {
+                        CostCD: $('#CostCD').val(),
+                        CostName: $('#CostName').val(),
+                        CostDateFrom: $('#CostDate1').val(),
+                        CostDateTo: $('#CostDate2').val(),
+                        Year: $('#year').val(),
+                        BrandCD: $('#brandCD').val(),
+                        BrandName: $('#brandname').val(),
+                        //Season: $('#season').val(),
+                        ProjectCD: $('#projectCD').val(),
+                        ProjectName: $('#projectname').val(),
+                        HinbanCD: $('#PartCD').val(),
+                        HinbanName: $('#PartName').val(),
+                    };
 
-        if ($('#degreeyear').is(':checked'))
-            kmodel.Season = "1";
-        else if ($('#SS').is(':checked'))
-            kmodel.Season = "2";
-        else if ($('#FW').is(':checked'))
-            kmodel.Season = "3";
+                if ($('#degreeyear').is(':checked'))
+                    kmodel.Season = "1";
+                else if ($('#SS').is(':checked'))
+                    kmodel.Season = "2";
+                else if ($('#FW').is(':checked'))
+                    kmodel.Season = "3";
 
-        var csvdata = CalltoApiController('@Url.Action("M_Cost_Select_List", "api/Touroku_KeihiApi")', kmodel);
-        alert("a");
-        var kmodel = {
-            value: csvdata
-        };
-        var data = CalltoApiController('@Url.Action("ExportCSVfile", "api/CommonApi")', kmodel);
-    }
+                    var csvdata = CalltoApiController('@Url.Action("D_Cost_TKeihiCSV", "api/Touroku_KeihiApi")', kmodel);
+                    var kmodel = {
+                        value: csvdata,
+                        value1: "経費登録"
+                    };
+                var data = CalltoApiController('@Url.Action("ExportCSVfile", "api/CommonApi")', kmodel);
+                var csvdata = JSON.parse(data);
+                if (csvdata[0].flg == "false") {
+                    var data = ShowErrorMessage("E104");
+                    return data;
+                }
+                //else {
+                //    //var fileSelector = $('<input type="file">');
+                //    //fileSelector.click();
+                //}
+            }
+            else
+                ShowErrorMessage(res);
+            }
+        }   
 
         function btnEditClick(SEQ) {
             location.href = '@Url.Action("Touroku_KeihiEntry","Touroku_Keihi")?SEQ='+SEQ+'&Mode=Edit';
-            
+
             @*var kmodel = {
                 SEQ: $('#SEQ').val(),
             };
@@ -328,11 +363,11 @@
             location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Keihi")?SEQ='+SEQ+'&Mode=Copy';
         }
 
-    function btnAddClick() {
-         location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Keihi")?Mode=New';
-    }
+        function btnAddClick() {
+            location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Keihi")?Mode=New';
+        }
 
-</script>
-}
+        </script>
+    }
 
 

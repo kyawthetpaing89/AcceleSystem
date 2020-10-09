@@ -26,6 +26,13 @@ namespace AcceleSystem.Controllers
 
         }
 
+        public string Year_Checking([FromBody] BaseModel BModel)
+        {
+            Common_BL cmbl = new Common_BL();
+            return cmbl.Year_Checking(BModel.inputdate);
+
+        }
+
         public string DateComapre([FromBody] BaseModel BModel)
         {
             Common_BL cmbl = new Common_BL();
@@ -52,10 +59,10 @@ namespace AcceleSystem.Controllers
 
         }
 
-        public bool ExportCSVfile([FromBody] BaseModel BModel)
+        public string ExportCSVfile([FromBody] BaseModel BModel)
         {
             Common_BL cmbl = new Common_BL();
-            return cmbl.ExportCSVfile(BModel.value);
+            return cmbl.ExportCSVfile(BModel.value,BModel.value1);
         }
     }
 }

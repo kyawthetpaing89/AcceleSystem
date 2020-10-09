@@ -11,132 +11,130 @@
 <div id="divMain" class="container-fluid">
     <div class="content">
         <div class="p-5 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white; border-radius:5px;">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
-                <div class="pt-3 md-form">
-                    <label class="col-xl-6 text-center">経費</label>
+            <div class="col-xs-12 col-md-4"></div>
+            <div class="col-xs-12 col-md-5">
+                <div>
+                    <h2 class=" hr-text text-center">経費</h2>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xl-12" style="padding-left:65px;">
+                    <div class="col-xs-12" style="padding-left:50px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="SEQ" hidden></label>
-                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CostCD" name="CostCD" maxlength="10" required placeholder="経費コード" style="width:118px;">&nbsp;&nbsp;
-                            <label id="costname">経費名</label>
-                            <label id="accounting"></label>
+                            <input type="text" tabindex="1" class="text-line col-xl-3 text-left input-numeral8" onkeydown="KeyDown(event,this,'Cost')" id="CostCD" name="CostCD" maxlength="6" required placeholder="経費コード" >&nbsp;&nbsp;
+                            <label id="costname"><b>経費表示</b></label>
+                            <label id="accounting"><b></b></label>
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xl-12" style="padding-left:65px;">
+                    <div class="col-xs-12" style="padding-left:50px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="2" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this,'Keihi')" id="CostDate" name="CostDate" maxlength="10" required placeholder="計上日">
-
+                            <input type="text" tabindex="2" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'Keihi')" id="CostDate" name="CostDate" maxlength="10" required placeholder="計上日">
+                            &nbsp;
+                            <input type="text" tabindex="3" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="year" name="year" maxlength="4" required placeholder="年度">
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xl-12" style="padding-left:65px;">
+                    <div class="col-xs-12" style="padding-left:50px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="3" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="BrandCD" name="BrandCD" maxlength="10" required placeholder="ブランド" style="width:118px;">&nbsp;&nbsp;
-                            <label id="brandname">ブランド名</label>
+                            <input type="text" tabindex="4" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this,'Brand')" id="BrandCD" name="BrandCD" maxlength="20" required placeholder="ブランド">&nbsp;&nbsp;
+                            <label id="brandname"><b>ブランド表示</b></label>
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form" style=" padding-top:1.2rem!important;">
-                    <div class="col-xl-12" style="padding-left: 65px;">
+                    <div class="col-xs-12" style="padding-left:50px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <div class="custom-control custom-radio" style="padding-left:0px!important;">
                                 <label class="text" id="season" style="padding-right:30px;">シーズン</label>
-                                <input type="radio" tabindex="4" onkeydown="KeyDown(event,this)" id="allyear" name="radio" checked>
+                                <input type="radio" tabindex="5" onkeydown="KeyDown(event,this)" id="allyear" name="radio" checked>
                                 <label for="allyear" style="padding-right:40px;">通年</label>
-                                <input type="radio" id="SS" name="radio">
+                                <input type="radio" tabindex="6" id="SS" onkeydown="KeyDown(event,this)" name="radio">
                                 <label for="SS" style="padding-right:40px;">SS</label>
-                                <input type="radio" id="FW" name="radio">
+                                <input type="radio" tabindex="7" id="FW"  onkeydown="KeyDown(event,this)" name="radio">
                                 <label for="FW" style="padding-right:40px;">FW</label>
                             </div>
                         </div>
                     </div>
+                </div>
+                @*<div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xl-12" style="padding-left:50px;">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <input type="text" tabindex="6" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="year" name="year" maxlength="20" required placeholder="年度">
+                        </div>
+                    </div>
+                </div>*@
 
-                </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xl-12" style="padding-left:65px;">
+                    <div class="col-xs-12" style="padding-left:50px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="7" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="year" name="year" maxlength="20" required placeholder="年度">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xl-12" style="padding-left:65px;">
-                        <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="8" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="projectCD" name="projectCD" maxlength="10" required placeholder="プロジェクト" style="width:118px;">&nbsp;&nbsp;
-                            <label id="projectName">プロジェクト名</label>
+                            <input type="text" tabindex="8" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'Project')" id="projectCD" name="projectCD" maxlength="10" required placeholder="プロジェクト" >&nbsp;&nbsp;
+                            <label id="projectName"><b>プロジェクト表示</b></label>
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xl-12" style="padding-left:65px;">
+                    <div class="col-xs-12" style="padding-left:50px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="9" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="HinbanCD" name="HinbanCD" maxlength="10" required placeholder="品番" style="width:118px;">&nbsp;&nbsp;
-                            <label id="HinbanName">品番名</label>
+                            <input type="text" tabindex="9" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'Hinban')" id="HinbanCD" name="HinbanCD" maxlength="10" required placeholder="品番" >&nbsp;&nbsp;
+                            <label id="HinbanName"><b>品番表示</b></label>
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xl-12" style="padding-left:65px;">
+                    <div class="col-xs-12" style="padding-left:50px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="10" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CastingCD" name="CastingCD" maxlength="10" required placeholder="金型" style="width:118px;">&nbsp;&nbsp;
-                            <label id="CastingName">金型名</label>
+                            <input type="text" tabindex="10" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'Casting')" id="CastingCD" name="CastingCD" maxlength="10" required placeholder="金型" >&nbsp;&nbsp;
+                            <label id="CastingName"><b>金型表示</b></label>
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xl-12" style="padding-left:65px;">
+                    <div class="col-xs-12" style="padding-left:50px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="11" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="Item" name="Item" maxlength="10" required placeholder="自由配賦項目">
+                            <input type="text" tabindex="11" class="text-line col-xl-6 text-left" onkeydown="KeyDown(event,this,'Item')" id="Item" name="Item" maxlength="10" required placeholder="自由配賦項目">
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xl-12" style="padding-left:65px;">
+                    <div class="col-xs-12" style="padding-left:50px;">
                         <div class="custom-control custom-radio" style="padding-left:0px!important;">
                             <label class="text" id="taxinclude" style="padding-right:30px;">税込区分</label>
-                            <input type="radio" tabindex="12" onkeydown="KeyDown(event,this)" id="tax" name="radios" checked>
+                            <input type="radio" tabindex="12" id="tax"  onkeydown="KeyDown(event,this)"  name="radios" checked>
                             <label for="tax" style="padding-right:40px;">税別</label>
-                            <input type="radio" id="nottax" name="radios" >
-                            <label for="nottax" style="padding-right:40px;">税込</label>                           
+                            <input type="radio" tabindex="13"  id="nottax" onkeydown="KeyDown(event,this)" name="radios">
+                            <label for="nottax" style="padding-right:40px;">税込</label>
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xl-12" style="padding-left:65px;">
+                    <div class="col-xs-12" style="padding-left:50px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="14" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this,'Keihi')" id="AmountMoney" name="AmountMoney" maxlength="10" required placeholder="金額" style="width:118px;">
+                            <input type="text" tabindex="14" class="text-line col-xl-3 text-left input-numeral10" onkeydown="KeyDown(event,this)" id="AmountMoney" name="AmountMoney" maxlength="10" required placeholder="金額" >
                             &nbsp;
-                            <input type="text" tabindex="15" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="BodyAmount" name="BodyAmount" maxlength="20" required placeholder="本体金額" style="width:118px;">
+                            <input type="text" tabindex="15" class="text-line col-xl-3 text-left input-numeral9" onkeydown="KeyDown(event,this)" id="BodyAmount" name="BodyAmount" maxlength="10" required placeholder="本体金額" >
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xl-12" style="padding-left:65px;">
+                    <div class="col-xs-12" style="padding-left:50px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="16" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="Remark" name="Remark" maxlength="20" required placeholder="備考">
+                            <input type="text" tabindex="16" class="text-line col-xl-6 text-left" onkeydown="KeyDown(event,this)" id="Remark" name="Remark" maxlength="20" required placeholder="備考">
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xl-12" style="padding-left:65px;">
+                    <div class="col-xs-12" style="padding-left:50px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <button id="btnSave" onclick="btnSaveClick()" class="btn btn-primary col-xl-5 text-center" tabindex="17" style="background-color:#413839; color:azure; width:115px; height:40px;">
-                                登録
-                            </button>
+                            <button id="btnSave" tabindex="17" onclick="btnSaveClick()" class="btn btn-dark col-xl-5 text-center"></button>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <button id="btnCancel" tabindex="18" onclick="btnCancelClick()" class="btn btn-primary col-xl-5 text-center" style="background-color:#1a8cff; color:azure; width:115px; height:40px;">戻る</button>
+                            <button id="btnCancel" tabindex="18" onclick="btnCancelClick()" class="btn btn-primary col-xl-5 text-center">戻る</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3"></div>
+            <div class="col-xs-12 col-md-3"></div>
         </div>
     </div>
 
@@ -147,12 +145,14 @@
 @section Scripts{
 <script type="text/javascript">
     $(document).ready(function () {     
-            $("#formtitle").text("経費検索");
+        $("#formtitle").text("経費登録");
             $("#CostCD").focus();
             var Mode = '@Model.Mode';
             if (Mode == 'New') {
                 $('#btnSave').html('登録');
+
                 RequiredCheck($("#CostCD"));
+                DoubleByteCheck($("#CostCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "costname", "accounting");
                 if ($("#accounting").text == "1") {
                     RequiredCheck($("#projectCD"));
@@ -180,15 +180,19 @@
                 @*DateCheck($("#year"), '@Url.Action("Date_Checking", "api/CommonApi")');*@
 
                 RequiredCheck($("#BrandCD"));
+                DoubleByteCheck($("#BrandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")', "brandname");
 
                 RequiredCheck($("#projectCD"));
+                DoubleByteCheck($("#projectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#projectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")', "projectName");
 
                 RequiredCheck($("#HinbanCD"));
+                DoubleByteCheck($("#HinbanCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "HinbanName");
 
                 RequiredCheck($("#CastingCD"));
+                DoubleByteCheck($("#CastingCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/Touroku_KeihiApi")', "CastingName");
 
                 RequiredCheck($("#Item"));
@@ -197,7 +201,6 @@
                 LessthanZeroCheck($("#AmountMoney"), '@Url.Action("LessthanZero_Checking", "api/CommonApi")');
             }
             else if (Mode == 'Edit') {
-                
                 $('#btnSave').html('更新');
                 ShowData();
                 $("#CostCD").focus();
@@ -206,18 +209,23 @@
                 DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi")', "2");
 
                 RequiredCheck($("#year"));
+                YearCheck($("#year"), '@Url.Action("Year_Checking", "api/CommonApi")');
                 @*DateCheck($("#year"), '@Url.Action("Date_Checking", "api/CommonApi")');*@
 
                 RequiredCheck($("#BrandCD"));
+                DoubleByteCheck($("#BrandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")', "brandname");
 
                 RequiredCheck($("#projectCD"));
+                DoubleByteCheck($("#projectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#projectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")', "projectName");
 
                 RequiredCheck($("#HinbanCD"));
+                DoubleByteCheck($("#HinbanCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "HinbanName");
 
                 RequiredCheck($("#CastingCD"));
+                DoubleByteCheck($("#CastingCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/Touroku_KeihiApi")', "CastingName");
 
                 RequiredCheck($("#Item"));
@@ -268,7 +276,6 @@
                 $("#Remark").attr('disabled', 'disabled');
                 $("#btnSave").focus();
                 ShowData();
-                 
             }
     });
 
@@ -325,8 +332,89 @@
             else {
                 $("#tax").prop("checked", false);
                 $("#nottax").prop("checked", true);
-            }           
+            }
+        $("#costname").css("font-weight", "Bold");
+        $("#accounting").css("font-weight", "Bold");
+        $("#brandname").css("font-weight", "Bold");
+        $("#projectName").css("font-weight", "Bold");
+        $("#HinbanName").css("font-weight", "Bold");
+        $("#CastingName").css("font-weight", "Bold");
+    }
+
+    function Cost(result) {
+        if (result == 'OK') {
+            $("#costname").css("font-weight", "Bold");
         }
+        else {
+            $("#costname").text('経費表示');
+        }
+    }
+
+    function Brand(result) {
+        if (result == 'OK') {
+            var Mode = '@Model.Mode';
+                if (Mode == 'Edit') {
+                    if ($('#allyear').is(':checked')) {
+                        $("#allyear").focus();
+                    }
+                    else if ($('#SS').is(':checked')) {
+                        $("#SS").focus();
+                    }
+                    else if ($('#FW').is(':checked')) {
+                        $("#FW").focus();
+                    }
+                }
+              //  else $("#allyear").focus();
+        }
+        else {
+            $("#brandname").text('ブランド表示');
+        }
+        $("#brandname").css("font-weight", "Bold");
+    }
+
+    function Project(result) {
+        if (result == 'OK') {
+            $("#projectName").css("font-weight", "Bold");
+        }
+        else {
+            $("#projectName").text('プロジェクト表示');
+        }
+    }
+
+    function Hinban(result) {
+        if (result == 'OK') {
+            $("#HinbanName").css("font-weight", "Bold");
+        }
+        else {
+            $("#HinbanName").text('品番表示');
+        }
+    }
+
+    function Casting(result) {
+        if (result == 'OK') {
+            $("#CastingName").css("font-weight", "Bold");
+        }
+        else {
+            $("#CastingName").text('金型表示');
+        }
+    }
+
+    function Item(result) {
+        if (result == 'OK') {
+             var Mode = '@Model.Mode';
+            if (Mode == 'Edit') {
+                if ($('#tax').is(':checked')) {
+                    $("#tax").focus();
+                }
+                else if ($('#nottax').is(':checked')) {
+                    $("#nottax").focus();
+                }
+            }
+            else {
+                $("#tax").focus();
+            }
+        }
+    }
 
         function DoProcess() {
             focusControl = $("#CostCD");
@@ -340,8 +428,8 @@
                  ProjectCD: $('#projectCD').val(), 
                  CastingCD: $('#CastingCD').val(),
                  Item: $('#Item').val(),
-                 CostAmount: $('#AmountMoney').val(),
-                InputAmount: $('#BodyAmount').val(),
+                 CostAmount: ($('#AmountMoney').val()).replace(",",""),
+                 InputAmount: ($('#BodyAmount').val()).replace(",",""),
                  Remarks: $('#Remark').val(),                
                  Mode:'@Model.Mode'
             };
@@ -366,25 +454,42 @@
 
         //save
         function btnSaveClick(){
-                var res = ErrorCheckOnSave();
-                if (res == "0") {
-                    var Mode = '@Model.Mode';
-                    //show confirm message
-                    if (Mode == "Delete") {
-                        ShowConfirmMessage("Q102", "DeleteConfrim");
-                        DoProcess();
-                    }
-                    else {                
-                        DoProcess();
-                    }
+            var res = ErrorCheckOnSave();
+            if (res == "0") {
+                var Mode = '@Model.Mode';
+                //show confirm message
+                if (Mode == "Delete") {
+                    ShowConfirmMessage("Q102", "DeleteConfrim");
+                    DoProcess();
                 }
-                else
-                    ShowErrorMessage(res);
-        }
+                else {                
+                    DoProcess();
+                }
+            }
+            else
+                ShowErrorMessage(res);
+         }
 
-        function btnCancelClick() {
-            location.href = '@Url.Action("Touroku_KeihiList", "Touroku_Keihi")';
+    $('#btnCancel').keydown(function (e) {
+        var code = e.keyCode || e.which;
+        if (code == 9) {
+            if (e.shiftKey) {
+                //Focus previous input
+                if (thisTab == startIndex) {
+                    $("." + tabLimitInID).find('[tabindex=' + lastIndex + ']').focus();
+                    return false;
+                }
+                else {
+                    e.preventDefault();
+                }
+            }
+            e.preventDefault();
         }
+    });
+
+    function btnCancelClick() {
+        location.href = '@Url.Action("Touroku_KeihiList", "Touroku_Keihi")';
+    }
 
 </script>
     <script src="@Url.Content("~/Scripts/datepicker.js")"></script>

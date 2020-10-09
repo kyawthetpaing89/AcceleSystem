@@ -4,7 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
+using System.Data;
+using System.IO;
+using ElencySolutions.CsvHelper;
+using System.Windows.Forms;
+using Newtonsoft.Json;
+using System.Diagnostics;
 using Models;
+using System.Threading;
 
 namespace CommonBL
 {
@@ -107,7 +114,7 @@ namespace CommonBL
                 return result;
             }
         }
-
+   
         public bool IsInteger(string value)
         {
             value = value.Replace("-", "");
@@ -183,6 +190,65 @@ namespace CommonBL
              
         }
 
+        public string Year_Checking(string inputdate)
+        {
+            string result = string.Empty, strdate = string.Empty, date = string.Empty;
+            if (inputdate.Contains("/"))
+            {
+                inputdate = inputdate.Replace("/", "");
+            }
+            //if (inputdate.Length == 1)
+            //{
+            //    strdate = DateTime.Now.Year.ToString() + "/" + inputdate.PadLeft(2, '0');
+
+            //}
+            //else if (inputdate.Length == 2)
+            //{
+
+            //    strdate = DateTime.Now.Year.ToString() + "/" + inputdate.PadLeft(2, '0');
+
+            //}
+            if (inputdate.Length == 4)
+            {
+                //var yr = inputdate.Substring(0, 4);
+                //var mn = DateTime.Now.Month.ToString().PadLeft(2, '0');
+                //strdate = yr + "/" + mn;
+
+                //else if (inputdate.Length == 6)
+                //{
+                //    var yr = inputdate.Substring(0, 4).ToString();
+                //    var mn = inputdate.Substring(inputdate.Length - 2, 2).ToString().PadLeft(2, '0').ToString();
+                //    strdate = yr + "/" + mn;
+                //}
+                //else if (inputdate.Length == 5)
+                //{
+                //    var yr = inputdate.Substring(0, 4);
+                //    var mn = inputdate.Substring(inputdate.Length - 1, 1).PadLeft(2, '0');
+                //    strdate = yr + "/" + mn;
+                //}
+
+                date = inputdate + "/01/01";
+                if (CheckDate(date))
+                {
+                    result = "[{\"resultdate\" : \"" + inputdate + "\", \"flg\" : \"true\"}]";   //"[{"result":"2020/01/01"}]";
+                    return result;
+                }
+                else
+                {
+                    result = "[{\"resultdate\" : \"" + inputdate + "\", \"flg\" : \"false\"}]";
+                    return result;
+                }
+            }
+            else
+            {
+                result = "[{\"resultdate\" : \"" + inputdate + "\", \"flg\" : \"false\"}]";
+                return result;
+            }
+            //result = "[{\"resultdate\" : \"" + strdate + "\", \"flg\" : \"true\"}]";
+            //return result;
+
+        }
+
         public string DateComapre(string startdate, string enddate)
         {
             string ans = string.Empty;
@@ -249,10 +315,67 @@ namespace CommonBL
             return input.Any(c => c > MaxAnsiCode);
         }
 
-        public bool ExportCSVfile(string data)
+        public string ExportCSVfile(string data, string filename)
         {
-            string input = data;
-            return true;
+            string result = string.Empty;
+            if (!data.Equals("[]"))
+            {
+                try
+                {
+                    DataTable dt = (DataTable)JsonConvert.DeserializeObject(data, (typeof(DataTable)));
+                    if (dt.Rows.Count > 0)
+                    {
+                        ////LoacalDirectory
+                        string folderPath = "C:\\Accele_Export\\";
+                        if (!Directory.Exists(folderPath))
+                        {
+                            Directory.CreateDirectory(folderPath);
+                        }
+
+                        SaveFileDialog savedialog = new SaveFileDialog();
+                        savedialog.Filter = "CSV|*.csv";
+                        savedialog.Title = "Save";
+                        savedialog.FileName = filename;
+                        savedialog.InitialDirectory = folderPath;
+                        savedialog.RestoreDirectory = true;
+                        Thread t = new Thread((ThreadStart)(() =>
+                        {
+                           
+                            if (savedialog.ShowDialog() == DialogResult.OK)
+                            {
+                                if (Path.GetExtension(savedialog.FileName).Contains("csv"))
+                                {
+                                    CsvWriter csvwriter = new CsvWriter();
+                                    csvwriter.WriteCsv(dt, savedialog.FileName, Encoding.GetEncoding(932));
+                                }
+                                Process.Start(Path.GetDirectoryName(savedialog.FileName));
+                                result = "[{\"flg\" : \"true\"}]";
+                            }
+                        }));
+
+                        // Run your code from a thread that joins the STA Thread
+                        t.SetApartmentState(ApartmentState.STA);
+                        t.Start();
+                        t.Join();
+                        return result;
+                    }
+                    else
+                    {
+                        result = "[{\"flg\" : \"false\"}]";
+                        return result;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    result = "[{\"flg\" : \"false\"}]";
+                    return result;
+                }
+            }
+            else {
+                result = "[{\"flg\" : \"false\"}]";
+                return result;
+            }
         }
 
     }
