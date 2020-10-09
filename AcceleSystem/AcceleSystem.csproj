@@ -266,7 +266,6 @@
     <Content Include="ElaAdmin\forms-advanced.html" />
     <Content Include="ElaAdmin\forms-basic.html" />
     <Content Include="ElaAdmin\images\.gitignore" />
-    <Content Include="ElaAdmin\images\admin.jpg" />
     <Content Include="ElaAdmin\images\avatar\1.jpg" />
     <Content Include="ElaAdmin\images\avatar\2.jpg" />
     <Content Include="ElaAdmin\images\avatar\3.jpg" />
@@ -281,7 +280,6 @@
     <Content Include="ElaAdmin\images\logo.png" />
     <Content Include="ElaAdmin\images\logo2.png" />
     <Content Include="ElaAdmin\images\profile.png" />
-    <Content Include="ElaAdmin\images\UserImage.png" />
     <Content Include="ElaAdmin\index.html" />
     <Content Include="ElaAdmin\maps-gmap.html" />
     <Content Include="ElaAdmin\maps-vector.html" />
