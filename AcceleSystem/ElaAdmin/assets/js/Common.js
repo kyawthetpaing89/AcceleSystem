@@ -579,10 +579,10 @@ function ErrChk(ctrl) {
                 return "E109";
             }
             else {
-                $(ctrl).val(checkflg[0].resultdata);
+                //$(ctrl).val(checkflg[0].resultdata);
                // return "0";
             }
-            $(ctrl).val(checkflg[0].resultdata);
+            //$(ctrl).val(checkflg[0].resultdata);
             return "0";
         }
 
@@ -686,7 +686,7 @@ $(document).ready(function () {
     }
 
     if ($('.input-numeral6')[0]) {
-        var cleaveNumeral2 = new Cleave('.input-numeral6', {
+        var cleaveNumeral6 = new Cleave('.input-numeral6', {
             numeral: true,
             numeralThousandsGroupStyle: 'thousand'
         });
@@ -694,7 +694,28 @@ $(document).ready(function () {
 
     if ($('.input-numeral7')[0]) {
         var cleaveNumeral7 = new Cleave('.input-numeral7', {
-            numeral: false,
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand'
+        });
+    }
+
+    if ($('.input-numeral8')[0]) {
+        var cleaveNumeral8 = new Cleave('.input-numeral8', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'none'
+        });
+    }
+
+    if ($('.input-numeral9')[0]) {
+        var cleaveNumeral9 = new Cleave('.input-numeral9', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand'
+        });
+    }
+
+    if ($('.input-numeral10')[0]) {
+        var cleaveNumeral10 = new Cleave('.input-numeral10', {
+            numeral: true,
             numeralThousandsGroupStyle: 'thousand'
         });
     }

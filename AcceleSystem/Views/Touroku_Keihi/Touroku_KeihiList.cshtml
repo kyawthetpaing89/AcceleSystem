@@ -62,20 +62,20 @@
                                             <div class="col-md-12" style="padding-left:32px;">
                                                 <div class="text-s text-custom1 text-uppercase mb-1">
                                                     <label id="text" style="padding-right: 24px;">ブランド</label>
-                                                    <input type="text" tabindex="7" class="text-line text-left" onkeydown="KeyDown(event,this)" id="brandCD" name="brandCD" maxlength="20" required placeholder="入力" style="width:150px;">
-                                                    <input type="text" tabindex="8" class="text-line text-left" onkeydown="KeyDown(event,this)" id="brandname" name="brandname" maxlength="40" required placeholder="入力" style="width:220px;">
+                                                    <input type="text" tabindex="6" class="text-line text-left" onkeydown="KeyDown(event,this)" id="brandCD" name="brandCD" maxlength="20" required placeholder="入力" style="width:150px;">
+                                                    <input type="text" tabindex="7" class="text-line text-left" onkeydown="KeyDown(event,this)" id="brandname" name="brandname" maxlength="40" required placeholder="入力" style="width:220px;">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                                             <div class="col-md-12" style="padding-left:32px;">
                                                 <div class="text-s text-custom1 text-uppercase mb-1">
-                                                        <label id="text" style="padding-right:24px;">シーズン</label>
-                                                        <input type="checkbox" tabindex="9" id="allyear" name="chk">
+                                                        <label id="text" style="padding-right:24px;" >シーズン</label>
+                                                        <input type="checkbox" tabindex="8" id="allyear" name="chk" onkeydown="KeyDown(event,this)">
                                                         <label for="allyear" style="padding-right:25px!important;">通年</label>
-                                                        <input type="checkbox" tabindex="10" id="SS" name="chk">
+                                                        <input type="checkbox" tabindex="9" id="SS" name="chk" onkeydown="KeyDown(event,this)">
                                                         <label for="SS" style="padding-right:25px!important;">SS</label>
-                                                        <input type="checkbox" tabindex="11" id="FW" name="chk">
+                                                        <input type="checkbox" tabindex="10" id="FW" name="chk" onkeydown="KeyDown(event,this)">
                                                         <label for="FW" style="padding-right:25px!important;">FW</label>
                                                 </div>
                                              </div>
@@ -84,14 +84,14 @@
                                             <div class="col-md-12" style="padding-left:0px;">
                                                 <div class="text-s text-custom1 text-uppercase mb-1">
                                                     <label id="text" style="padding-right: 13px;">プロジェクト</label>&nbsp;&nbsp;
-                                                    <input type="text" tabindex="12" class="text-line text-left" onkeydown="KeyDown(event,this)" id="projectCD" name="projectCD" maxlength="10" required placeholder="入力" style="width:110px;">
+                                                    <input type="text" tabindex="11" class="text-line text-left" onkeydown="KeyDown(event,this)" id="projectCD" name="projectCD" maxlength="10" required placeholder="入力" style="width:110px;">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                                             <div class="col-md-12" style="padding-left:121px;">
                                                 <div class="text-s text-custom1 text-uppercase mb-1">
-                                                    <input type="text" tabindex="13" class="text-line text-left" onkeydown="KeyDown(event,this)" id="projectname" name="projectname" maxlength="60" required placeholder="入力" style="width:370px;">
+                                                    <input type="text" tabindex="12" class="text-line text-left" onkeydown="KeyDown(event,this)" id="projectname" name="projectname" maxlength="60" required placeholder="入力" style="width:370px;">
                                                 </div>
                                             </div>
                                         </div>
@@ -99,18 +99,18 @@
                                             <div class="col-md-12" style="padding-left:62px;">
                                                 <div class="text-s text-custom1 text-uppercase mb-1">
                                                     <label id="text" style="padding-right: 22px;">品番</label>
-                                                    <input type="text" tabindex="14" class="text-line text-left" onkeydown="KeyDown(event,this)" id="PartCD" name="PartCD" maxlength="6" required placeholder="入力" style="width:70px;">
-                                                    <input type="text" tabindex="15" class="text-line text-left" onkeydown="KeyDown(event,this)" id="PartName" name="PartName" maxlength="60" required placeholder="入力" style="width:300px;">
+                                                    <input type="text" tabindex="13" class="text-line text-left" onkeydown="KeyDown(event,this)" id="PartCD" name="PartCD" maxlength="6" required placeholder="入力" style="width:70px;">
+                                                    <input type="text" tabindex="14" class="text-line text-left" onkeydown="KeyDown(event,this)" id="PartName" name="PartName" maxlength="60" required placeholder="入力" style="width:300px;">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-12" style="padding-left:180px; padding-top:2rem;">
                                             <div class="text-s text-custom1 text-uppercase mb-1">
-                                                <button id="btnCSV" onclick="btnCSVClick()" class="btn text-center" tabindex="16" style="background-color:white; color:black; border-radius:3px; border: 1px solid transparent; border-color:black;">
+                                                <button id="btnCSV" onclick="btnCSVClick()" class="btn text-center" tabindex="15" style="background-color:white; color:black; border-radius:3px; border: 1px solid transparent; border-color:black;">
                                                     CSV
                                                 </button>
                                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                                <button id="btnSearch" tabindex="17" onclick="btnSearchClick()" class="btn text-center" style="background-color:#413839; color:azure;width:80px; height:36px;">検索</button>
+                                                <button id="btnSearch" tabindex="16" onclick="btnSearchClick()" class="btn text-center" style="background-color:#413839; color:azure;width:80px; height:37px;">検索</button>
                                             </div>
                                         </div>
                                     </div>
@@ -156,12 +156,21 @@
             $("#formtitle").text("経費検索");
             $("#CostCD").focus();
             ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "CostName");
+            DoubleByteCheck($("#CostCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+
             DateCheck($("#CostDate1"), '@Url.Action("Date_Checking", "api/CommonApi")');
             @*DateCheck($("#CostDate2"), '@Url.Action("Date_Checking", "api/CommonApi")');*@
             YearCheck($("#year"), '@Url.Action("Year_Checking", "api/CommonApi")');
+
             ExistsCheck($("#brandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")', "brandname");
+            DoubleByteCheck($("#brandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+
             ExistsCheck($("#projectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")', "projectname");
+            DoubleByteCheck($("#projectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+
             ExistsCheck($("#PartCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "PartName");
+            DoubleByteCheck($("#PartCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+
             GetData();
         });
         function Keihi(result) {
@@ -188,7 +197,7 @@
             HinbanName: $('#PartName').val(),
             };
 
-            if ($('#degreeyear').is(':checked'))
+           if ($('#allyear').is(':checked'))
                 kmodel.Season = "1";
             else if ($('#SS').is(':checked'))
                 kmodel.Season = "2";
