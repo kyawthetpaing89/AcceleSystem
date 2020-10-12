@@ -582,7 +582,6 @@ function ErrChk(ctrl) {
                 //$(ctrl).val(checkflg[0].resultdata);
                // return "0";
             }
-            //$(ctrl).val(checkflg[0].resultdata);
             return "0";
         }
 
