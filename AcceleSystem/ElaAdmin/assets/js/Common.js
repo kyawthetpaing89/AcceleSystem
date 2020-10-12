@@ -120,9 +120,9 @@ function DateCheck(ctrl, ApiURL, ctrlName, param1) {
     $(ctrl).attr("data-DateCheck", "1");
 }
 
-function YearMonthCheck(ctrl, val) {
+function YearMonthCheck(ctrl, ApiURL) {
     $(ctrl).attr("data-yearmonth_check", "1");
-    $(ctrl).attr("data-yearmonth_DataCheckApiUrl", val);
+    $(ctrl).attr("data-yearmonth_DataCheckApiUrl", ApiURL);
 }
 
 function YearCheck(ctrl, ApiURL) {
@@ -547,8 +547,9 @@ function ErrChk(ctrl) {
                         return "0";
                     }
                 }
-                else if(param1 == "2") {
-                    var ApiURL = "%2Fapi%2FTouroku_KeihiApi%2FM_Control_FiscalCheck";
+                else if (param1 == "2") {
+                    var ApiURL = $(ctrl).attr("data - yearmonth_DataCheckApiUrl");
+                    
                     var model = {
                         inputdate: dataresult,
                     };
