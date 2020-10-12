@@ -286,6 +286,8 @@
     <Content Include="ElaAdmin\page-login.html" />
     <Content Include="ElaAdmin\page-register.html" />
     <Content Include="ElaAdmin\pages-forget.html" />
+    <Content Include="ElaAdmin\RequiredDLL\CsvHelper.dll" />
+    <Content Include="ElaAdmin\RequiredDLL\ElencySolutions.CsvHelper.dll" />
     <Content Include="ElaAdmin\tables-basic.html" />
     <Content Include="ElaAdmin\tables-data.html" />
     <Content Include="ElaAdmin\ui-alerts.html" />
@@ -545,7 +547,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ElaAdmin\RequiredDLL\" />
     <Folder Include="Models\" />
     <Folder Include="obj\Debug\" />
     <Folder Include="Views\CommonApi\" />
