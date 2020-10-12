@@ -14,112 +14,112 @@
             <div class="row">
                 <div class="col-xs-12 col-md-5">
                     <div class="card-body card-block">
-                        <div class="row form-group">
-                            <div class="col col-md-12">
-                                <button id="btnAdd" onclick="btnAddClick()" class="btn" style="background-color:#1a8cff; color:azure;  border-radius: 3px; margin-right: 20px; margin-top: 20px;">
-                                    経費追加
-                                </button>
-                                @*<button id="btnDel" onclick="btnDelClick()" class="btn" style="background-color:white; color:#1a8cff; border-radius:3px; border: 1px solid transparent; border-color:#1a8cff; margin-top: 20px;">
-                                    削除
-                                </button>*@
-                                <div id="registration" style="padding-top: 1.8rem!important;">
-                                    <div>
-                                        <h4 class=" hr-text text-center">検索条件入力</h4>
-                                    </div>
-                                    <div style="padding-left:20px;">
-                                        <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                            <div class="col-md-12" style="padding-left:49px;">
-                                                <div class="text-s text-custom1 text-uppercase mb-1">
-                                                    <label id="text" style="padding-right: 24px;">経費名</label>
-                                                    <input type="text" tabindex="1" class="text-line text-left" id="CostCD" name="CostCD" maxlength="6" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:70px;">
-                                                    <input type="text" tabindex="2" class="text-line text-left" id="CostName" name="CostName" maxlength="40" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:300px;">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                            <div class="col-md-12" style="padding-left:49px;">
-                                                <div class="text-s text-custom1 text-uppercase mb-1">
-                                                    <label id="text" style="padding-right: 24px;">計上日</label>
-                                                    <input type="text" tabindex="3" class="text-line text-left" onkeydown="KeyDown(event,this,'Keihi')" id="CostDate1" name="CostDate1" maxlength="10" required placeholder="入力" style="width:105px;">
-                                                    &nbsp;~&nbsp;
-                                                    <input type="text" tabindex="4" class="text-line text-left" onkeydown="KeyDown(event,this)" id="CostDate2" name="CostDate2" maxlength="10" required placeholder="入力" style="width:105px;">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                            <div class="col-md-12" style="padding-left:64px;">
-                                                <div class="text-s text-custom1 text-uppercase mb-1">
-                                                    <label id="text" style="padding-right: 25px;">年度</label>
-                                                    <input type="text" tabindex="5" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="year" name="year" maxlength="4" required placeholder="入力" style="width:110px;">
-                                                    @*&nbsp;&nbsp;
-                                                    <button id="btnMove" onclick="btnMoveClick()" class="btn col-xl-10 text-center" tabindex="6" style="background-color:#1a8cff; color:azure;width:90px;border-radius:5px;height:35px;">
-                                                        移動
-                                                    </button>*@
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                            <div class="col-md-12" style="padding-left:32px;">
-                                                <div class="text-s text-custom1 text-uppercase mb-1">
-                                                    <label id="text" style="padding-right: 24px;">ブランド</label>
-                                                    <input type="text" tabindex="6" class="text-line text-left" onkeydown="KeyDown(event,this)" id="brandCD" name="brandCD" maxlength="20" required placeholder="入力" style="width:150px;">
-                                                    <input type="text" tabindex="7" class="text-line text-left" onkeydown="KeyDown(event,this)" id="brandname" name="brandname" maxlength="40" required placeholder="入力" style="width:220px;">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                            <div class="col-md-12" style="padding-left:32px;">
-                                                <div class="text-s text-custom1 text-uppercase mb-1">
-                                                        <label id="text" style="padding-right:24px;" >シーズン</label>
-                                                        <input type="checkbox" tabindex="8" id="allyear" name="chk" onkeydown="KeyDown(event,this)">
-                                                        <label for="allyear" style="padding-right:25px!important;">通年</label>
-                                                        <input type="checkbox" tabindex="9" id="SS" name="chk" onkeydown="KeyDown(event,this)">
-                                                        <label for="SS" style="padding-right:25px!important;">SS</label>
-                                                        <input type="checkbox" tabindex="10" id="FW" name="chk" onkeydown="KeyDown(event,this)">
-                                                        <label for="FW" style="padding-right:25px!important;">FW</label>
-                                                </div>
-                                             </div>
-                                        </div>
-                                        <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                            <div class="col-md-12" style="padding-left:0px;">
-                                                <div class="text-s text-custom1 text-uppercase mb-1">
-                                                    <label id="text" style="padding-right: 13px;">プロジェクト</label>&nbsp;&nbsp;
-                                                    <input type="text" tabindex="11" class="text-line text-left" onkeydown="KeyDown(event,this)" id="projectCD" name="projectCD" maxlength="10" required placeholder="入力" style="width:110px;">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                            <div class="col-md-12" style="padding-left:121px;">
-                                                <div class="text-s text-custom1 text-uppercase mb-1">
-                                                    <input type="text" tabindex="12" class="text-line text-left" onkeydown="KeyDown(event,this)" id="projectname" name="projectname" maxlength="60" required placeholder="入力" style="width:370px;">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                            <div class="col-md-12" style="padding-left:62px;">
-                                                <div class="text-s text-custom1 text-uppercase mb-1">
-                                                    <label id="text" style="padding-right: 22px;">品番</label>
-                                                    <input type="text" tabindex="13" class="text-line text-left" onkeydown="KeyDown(event,this)" id="PartCD" name="PartCD" maxlength="6" required placeholder="入力" style="width:70px;">
-                                                    <input type="text" tabindex="14" class="text-line text-left" onkeydown="KeyDown(event,this)" id="PartName" name="PartName" maxlength="60" required placeholder="入力" style="width:300px;">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12" style="padding-left:180px; padding-top:2rem;">
+                    <div class="row form-group">
+                        <div class="col col-md-12">
+                            <button id="btnAdd" onclick="btnAddClick()" class="btn" style="background-color:#1a8cff; color:azure;  border-radius: 3px; margin-right: 20px; margin-top: 20px;">
+                                経費追加
+                            </button>
+                            @*<button id="btnDel" onclick="btnDelClick()" class="btn" style="background-color:white; color:#1a8cff; border-radius:3px; border: 1px solid transparent; border-color:#1a8cff; margin-top: 20px;">
+                        削除
+                    </button>*@
+                            <div id="registration" style="padding-top: 1.8rem!important;">
+                                <div>
+                                    <h4 class=" hr-text text-center">検索条件入力</h4>
+                                </div>
+                                <div style="padding-left:50px;">
+                                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                        <div class="col-md-12" style="padding-left:49px;">
                                             <div class="text-s text-custom1 text-uppercase mb-1">
-                                                <button id="btnCSV" onclick="btnCSVClick()" class="btn text-center" tabindex="15" style="background-color:white; color:black; border-radius:3px; border: 1px solid transparent; border-color:black;">
-                                                    CSV
-                                                </button>
-                                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                                <button id="btnSearch" tabindex="16" onclick="btnSearchClick()" class="btn text-center" style="background-color:#413839; color:azure;width:80px; height:37px;">検索</button>
+                                                <label id="text" style="padding-right: 24px;">経費名</label>
+                                                <input type="text" tabindex="1" class="text-line text-left" id="CostCD" name="CostCD" maxlength="6" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:70px;">
+                                                <input type="text" tabindex="2" class="text-line text-left" id="CostName" name="CostName" maxlength="40" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:150px;">
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                        <div class="col-md-12" style="padding-left:49px;">
+                                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                                <label id="text" style="padding-right: 24px;">計上日</label>
+                                                <input type="text" tabindex="3" class="text-line text-left" onkeydown="KeyDown(event,this,'Keihi')" id="CostDate1" name="CostDate1" maxlength="10" required placeholder="入力" style="width:100px;">
+                                                &nbsp;~&nbsp;
+                                                <input type="text" tabindex="4" class="text-line text-left" onkeydown="KeyDown(event,this)" id="CostDate2" name="CostDate2" maxlength="10" required placeholder="入力" style="width:100px;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                        <div class="col-md-12" style="padding-left:64px;">
+                                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                                <label id="text" style="padding-right: 25px;">年度</label>
+                                                <input type="text" tabindex="5" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="year" name="year" maxlength="4" required placeholder="入力" style="width:70px;">
+                                                @*&nbsp;&nbsp;
+                                        <button id="btnMove" onclick="btnMoveClick()" class="btn col-xl-10 text-center" tabindex="6" style="background-color:#1a8cff; color:azure;width:90px;border-radius:5px;height:35px;">
+                                            移動
+                                        </button>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                        <div class="col-md-12" style="padding-left:32px;">
+                                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                                <label id="text" style="padding-right: 24px;">ブランド</label>
+                                                <input type="text" tabindex="6" class="text-line text-left" onkeydown="KeyDown(event,this)" id="brandCD" name="brandCD" maxlength="20" required placeholder="入力" style="width:70px;">
+                                                <input type="text" tabindex="7" class="text-line text-left" onkeydown="KeyDown(event,this)" id="brandname" name="brandname" maxlength="40" required placeholder="入力" style="width:150px;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                        <div class="col-md-12" style="padding-left:32px;">
+                                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                                <label id="text" style="padding-right:24px;">シーズン</label>
+                                                <input type="checkbox" tabindex="8" id="allyear" name="chk" onkeydown="KeyDown(event,this)">
+                                                <label for="allyear" style="padding-right:25px!important;">通年</label>
+                                                <input type="checkbox" tabindex="9" id="SS" name="chk" onkeydown="KeyDown(event,this)">
+                                                <label for="SS" style="padding-right:25px!important;">SS</label>
+                                                <input type="checkbox" tabindex="10" id="FW" name="chk" onkeydown="KeyDown(event,this)">
+                                                <label for="FW" style="padding-right:25px!important;">FW</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                        <div class="col-md-12" style="padding-left:0px;">
+                                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                                <label id="text" style="padding-right: 13px;">プロジェクト</label>&nbsp;&nbsp;
+                                                <input type="text" tabindex="11" class="text-line text-left" onkeydown="KeyDown(event,this)" id="projectCD" name="projectCD" maxlength="10" required placeholder="入力" style="width:110px;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                        <div class="col-md-12" style="padding-left:121px;">
+                                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                                <input type="text" tabindex="12" class="text-line text-left" onkeydown="KeyDown(event,this)" id="projectname" name="projectname" maxlength="60" required placeholder="入力" style="width:220px;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                        <div class="col-md-12" style="padding-left:62px;">
+                                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                                <label id="text" style="padding-right: 22px;">品番</label>
+                                                <input type="text" tabindex="13" class="text-line text-left" onkeydown="KeyDown(event,this)" id="PartCD" name="PartCD" maxlength="6" required placeholder="入力" style="width:70px;">
+                                                <input type="text" tabindex="14" class="text-line text-left" onkeydown="KeyDown(event,this)" id="PartName" name="PartName" maxlength="60" required placeholder="入力" style="width:150px;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="padding-left:180px; padding-top:2rem;">
+                                        <div class="text-s text-custom1 text-uppercase mb-1">
+                                            <button id="btnCSV" onclick="btnCSVClick()" class="btn text-center" tabindex="15" style="background-color:white; color:black; border-radius:3px; border: 1px solid transparent; border-color:black;">
+                                                CSV
+                                            </button>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button id="btnSearch" tabindex="16" onclick="btnSearchClick()" class="btn text-center" style="background-color:#413839; color:azure;width:80px; height:37px;">検索</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    </div>
                 </div>
-                <div class="col-xs-12 col-md-6">
+                <div class="col-xs-12 col-md-7">
                     <div class="card-body card-block">
                         <table id="tblTouroku_Keihi" class="tb1 col-sm-12" style="margin-left:10px;width:100%">
                             <thead>
@@ -130,14 +130,14 @@
                                     <th></th>
                                 </tr>
                                 <tr>
-                                    <th>年度</th>
                                     <th>ブランド</th>
                                     <th>シーズン</th>
+                                    <th>年度</th>
                                     <th></th>
                                 </tr>
                                 <tr>
                                     <th>プロジェクト</th>
-                                    <th></th>
+                                    <th>品番</th>
                                     <th></th>
                                     <th></th>
                                 </tr>
@@ -145,7 +145,7 @@
                         </table>
                     </div>
                 </div>
-                <div class="col-xs-12 col-md-2"></div>
+                @*<div class="col-xs-12 col-md-1"></div>*@
             </div>
         </div>
     </div>
@@ -240,21 +240,21 @@
                         "data": null,
                         className: "Border1",
                         render: function (data, type, row) {
-                            return '<label>' + data.CostCD + '  ' + data.CostName + '</label><br/><label>' + data.Year + '</label><br/><label>' + data.ProjectCD + '  ' + data.ProjectName + '</label>';
+                            return '<label>' + data.CostCD + '  ' + data.CostName + '</label><br/><label>' + data.BrandName + '</label><br/><label>' + data.ProjectCD + '  ' + data.ProjectName + '</label>';
                         }
                     },
                     {
                         "data": null,
                         className: "Borde2",
                         render: function (data, type, row) {
-                            return '<label>' + data.CostDate + '</label><br/><label>' + data.BrandName + '</label><br/><label>';
+                            return '<label>' + data.CostDate + '</label><br/><label>' + data.Season + '</label><br/><label>' + data.HinbanCD + '  ' + data.HinbanName + '</label>';;
                         }
                     },
                     {
                         "data": null,
                         className: "Border3",
                         render: function (data, type, row) {
-                            return '<br/><label>' + data.Season + '</label><br/><label>' ;
+                            return '<br/><label>' + data.Year + '</label><br/><label>' ;
                         }
                     },
 

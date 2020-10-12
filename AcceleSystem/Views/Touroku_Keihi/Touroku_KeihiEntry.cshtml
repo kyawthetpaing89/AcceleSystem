@@ -16,120 +16,122 @@
                 <div>
                     <h2 class=" hr-text text-center">経費</h2>
                 </div>
-                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xs-12" style="padding-left:50px;">
-                        <div class="text-s text-custom1 text-uppercase mb-1">
-                            <label id="SEQ" hidden></label>
-                            <input type="text" tabindex="1" class="text-line col-xl-3 text-left input-numeral8" onkeydown="KeyDown(event,this,'Cost')" id="CostCD" name="CostCD" maxlength="6" required placeholder="経費コード" >&nbsp;&nbsp;
-                            <label id="costname"><b>経費表示</b></label>
-                            <label id="accounting"><b></b></label>
-                        </div>
-                    </div>
-                </div>
-                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xs-12" style="padding-left:50px;">
-                        <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="2" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'Keihi')" id="CostDate" name="CostDate" maxlength="10" required placeholder="計上日">
-                            &nbsp;
-                            <input type="text" tabindex="3" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="year" name="year" maxlength="4" required placeholder="年度">
-                        </div>
-                    </div>
-                </div>
-                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xs-12" style="padding-left:50px;">
-                        <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="4" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this,'Brand')" id="BrandCD" name="BrandCD" maxlength="20" required placeholder="ブランド">&nbsp;&nbsp;
-                            <label id="brandname"><b>ブランド表示</b></label>
-                        </div>
-                    </div>
-                </div>
-                <div class="pt-3 md-form" style=" padding-top:1.2rem!important;">
-                    <div class="col-xs-12" style="padding-left:50px;">
-                        <div class="text-s text-custom1 text-uppercase mb-1">
-                            <div class="custom-control custom-radio" style="padding-left:0px!important;">
-                                <label class="text" id="season" style="padding-right:30px;">シーズン</label>
-                                <input type="radio" tabindex="5" onkeydown="KeyDown(event,this)" id="allyear" name="radio" checked>
-                                <label for="allyear" style="padding-right:40px;">通年</label>
-                                <input type="radio" tabindex="6" id="SS" onkeydown="KeyDown(event,this)" name="radio">
-                                <label for="SS" style="padding-right:40px;">SS</label>
-                                <input type="radio" tabindex="7" id="FW"  onkeydown="KeyDown(event,this)" name="radio">
-                                <label for="FW" style="padding-right:40px;">FW</label>
+                <div>
+                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                        <div class="col-xs-12" style="padding-left:50px;">
+                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                <label id="SEQ" hidden></label>
+                                <input type="text" tabindex="1" class="text-line col-xl-3 text-left input-numeral8" onkeydown="KeyDown(event,this,'Cost')" id="CostCD" name="CostCD" maxlength="6" required placeholder="経費コード">&nbsp;&nbsp;
+                                <label id="costname"><b>経費表示</b></label>
+                                <label id="accounting"><b></b></label>
                             </div>
                         </div>
                     </div>
-                </div>
-                @*<div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xl-12" style="padding-left:50px;">
-                        <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="6" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="year" name="year" maxlength="20" required placeholder="年度">
+                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                        <div class="col-xs-12" style="padding-left:50px;">
+                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                <input type="text" tabindex="2" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'Keihi')" id="CostDate" name="CostDate" maxlength="10" required placeholder="計上日">
+                                @*&nbsp;
+                    <input type="text" tabindex="3" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="year" name="year" maxlength="4" required placeholder="年度">*@
+                            </div>
                         </div>
                     </div>
-                </div>*@
+                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                        <div class="col-xs-12" style="padding-left:50px;">
+                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                <input type="text" tabindex="3" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'Brand')" id="BrandCD" name="BrandCD" maxlength="20" required placeholder="ブランド">&nbsp;&nbsp;
+                                <label id="brandname"><b>ブランド表示</b></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-3 md-form" style=" padding-top:1.2rem!important;">
+                        <div class="col-xs-12" style="padding-left:50px;">
+                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                <div class="custom-control custom-radio" style="padding-left:0px!important;">
+                                    <label class="text" id="season" style="padding-right:20px;">シーズン</label>
+                                    <input type="radio" tabindex="4" onkeydown="KeyDown(event,this)" id="allyear" name="radio" checked>
+                                    <label for="allyear" style="padding-right:10px;">通年</label>
+                                    <input type="radio" tabindex="5" id="SS" onkeydown="KeyDown(event,this)" name="radio">
+                                    <label for="SS" style="padding-right:10px;">SS</label>
+                                    <input type="radio" tabindex="6" id="FW" onkeydown="KeyDown(event,this)" name="radio">
+                                    <label for="FW" style="padding-right:10px;">FW</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                        <div class="col-xl-12" style="padding-left:50px;">
+                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                <input type="text" tabindex="7" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="year" name="year" maxlength="4" required placeholder="年度">
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xs-12" style="padding-left:50px;">
-                        <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="8" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'Project')" id="projectCD" name="projectCD" maxlength="10" required placeholder="プロジェクト" >&nbsp;&nbsp;
-                            <label id="projectName"><b>プロジェクト表示</b></label>
+                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                        <div class="col-xs-12" style="padding-left:50px;">
+                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                <input type="text" tabindex="8" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'Project')" id="projectCD" name="projectCD" maxlength="10" required placeholder="プロジェクト">&nbsp;&nbsp;
+                                <label id="projectName"><b>プロジェクト表示</b></label>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xs-12" style="padding-left:50px;">
-                        <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="9" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'Hinban')" id="HinbanCD" name="HinbanCD" maxlength="10" required placeholder="品番" >&nbsp;&nbsp;
-                            <label id="HinbanName"><b>品番表示</b></label>
+                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                        <div class="col-xs-12" style="padding-left:50px;">
+                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                <input type="text" tabindex="9" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'Hinban')" id="HinbanCD" name="HinbanCD" maxlength="10" required placeholder="品番">&nbsp;&nbsp;
+                                <label id="HinbanName"><b>品番表示</b></label>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xs-12" style="padding-left:50px;">
-                        <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="10" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'Casting')" id="CastingCD" name="CastingCD" maxlength="10" required placeholder="金型" >&nbsp;&nbsp;
-                            <label id="CastingName"><b>金型表示</b></label>
+                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                        <div class="col-xs-12" style="padding-left:50px;">
+                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                <input type="text" tabindex="10" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'Casting')" id="CastingCD" name="CastingCD" maxlength="10" required placeholder="金型">&nbsp;&nbsp;
+                                <label id="CastingName"><b>金型表示</b></label>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xs-12" style="padding-left:50px;">
-                        <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="11" class="text-line col-xl-6 text-left" onkeydown="KeyDown(event,this,'Item')" id="Item" name="Item" maxlength="10" required placeholder="自由配賦項目">
+                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                        <div class="col-xs-12" style="padding-left:50px;">
+                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                <input type="text" tabindex="11" class="text-line col-xl-7 text-left" onkeydown="KeyDown(event,this,'Item')" id="Item" name="Item" maxlength="10" required placeholder="自由配賦項目">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xs-12" style="padding-left:50px;">
-                        <div class="custom-control custom-radio" style="padding-left:0px!important;">
-                            <label class="text" id="taxinclude" style="padding-right:30px;">税込区分</label>
-                            <input type="radio" tabindex="12" id="tax"  onkeydown="KeyDown(event,this)"  name="radios" checked>
-                            <label for="tax" style="padding-right:40px;">税別</label>
-                            <input type="radio" tabindex="13"  id="nottax" onkeydown="KeyDown(event,this)" name="radios">
-                            <label for="nottax" style="padding-right:40px;">税込</label>
+                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                        <div class="col-xs-12" style="padding-left:50px;">
+                            <div class="custom-control custom-radio" style="padding-left:0px!important;">
+                                <label class="text" id="taxinclude" style="padding-right:20px;">税込区分</label>
+                                <input type="radio" tabindex="12" id="tax" onkeydown="KeyDown(event,this)" name="radios" checked>
+                                <label for="tax" style="padding-right:10px;">税別</label>
+                                <input type="radio" tabindex="13" id="nottax" onkeydown="KeyDown(event,this)" name="radios">
+                                <label for="nottax" style="padding-right:10px;">税込</label>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xs-12" style="padding-left:50px;">
-                        <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="14" class="text-line col-xl-3 text-left input-numeral10" onkeydown="KeyDown(event,this)" id="AmountMoney" name="AmountMoney" maxlength="10" required placeholder="金額" >
-                            &nbsp;
-                            <input type="text" tabindex="15" class="text-line col-xl-3 text-left input-numeral9" onkeydown="KeyDown(event,this)" id="BodyAmount" name="BodyAmount" maxlength="10" required placeholder="本体金額" >
+                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                        <div class="col-xs-12" style="padding-left:50px;">
+                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                <input type="text" tabindex="14" class="text-line col-xl-3 text-left input-numeral10" onkeydown="KeyDown(event,this)" id="AmountMoney" name="AmountMoney" maxlength="10" required placeholder="金額">
+                                &nbsp;
+                                <input type="text" tabindex="15" class="text-line col-xl-3 text-left input-numeral9" onkeydown="KeyDown(event,this)" id="BodyAmount" name="BodyAmount" maxlength="10" required placeholder="本体金額">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xs-12" style="padding-left:50px;">
-                        <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="16" class="text-line col-xl-6 text-left" onkeydown="KeyDown(event,this)" id="Remark" name="Remark" maxlength="20" required placeholder="備考">
+                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                        <div class="col-xs-12" style="padding-left:50px;">
+                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                <input type="text" tabindex="16" class="text-line col-xl-7 text-left" onkeydown="KeyDown(event,this)" id="Remark" name="Remark" maxlength="20" required placeholder="備考">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xs-12" style="padding-left:50px;">
-                        <div class="text-s text-custom1 text-uppercase mb-1">
-                            <button id="btnSave" tabindex="17" onclick="btnSaveClick()" class="btn btn-dark col-xl-5 text-center"></button>
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                            <button id="btnCancel" tabindex="18" onclick="btnCancelClick()" class="btn btn-primary col-xl-5 text-center">戻る</button>
+                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                        <div class="col-xs-12" style="padding-left:50px;">
+                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                <button id="btnSave" tabindex="17" onclick="btnSaveClick()" class="btn btn-dark col-xl-5 text-center"></button>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <button id="btnCancel" tabindex="18" onclick="btnCancelClick()" class="btn btn-primary col-xl-5 text-center">戻る</button>
+                            </div>
                         </div>
                     </div>
                 </div>
