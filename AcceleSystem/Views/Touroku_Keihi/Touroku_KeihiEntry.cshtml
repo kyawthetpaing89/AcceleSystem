@@ -240,22 +240,30 @@
                 ShowData();
                 $("#CostCD").focus();
 
+                RequiredCheck($("#CostCD"));
+                DoubleByteCheck($("#CostCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+
                 RequiredCheck($("#CostDate"));
                 DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi")', "2");
 
                 RequiredCheck($("#year"));
+                YearCheck($("#year"), '@Url.Action("Year_Checking", "api/CommonApi")');
                 @*DateCheck($("#year"), '@Url.Action("Date_Checking", "api/CommonApi")');*@
 
                 RequiredCheck($("#BrandCD"));
+                DoubleByteCheck($("#BrandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")', "brandname");
 
                 RequiredCheck($("#projectCD"));
+                DoubleByteCheck($("#projectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#projectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")', "projectName");
 
                 RequiredCheck($("#HinbanCD"));
+                DoubleByteCheck($("#HinbanCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "HinbanName");
 
                 RequiredCheck($("#CastingCD"));
+                DoubleByteCheck($("#CastingCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/Touroku_KeihiApi")', "CastingName");
 
                 RequiredCheck($("#Item"));
