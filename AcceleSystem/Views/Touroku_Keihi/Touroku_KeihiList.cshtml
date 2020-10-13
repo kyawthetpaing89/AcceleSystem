@@ -62,7 +62,7 @@
                                         <div class="col-md-12" style="padding-left:32px;">
                                             <div class="text-s text-custom1 text-uppercase mb-1">
                                                 <label id="text" style="padding-right: 24px;">ブランド</label>
-                                                <input type="text" tabindex="6" class="text-line text-left" onkeydown="KeyDown(event,this)" id="brandCD" name="brandCD" maxlength="20" required placeholder="入力" style="width:70px;">
+                                                <input type="text" tabindex="6" class="text-line text-left" onkeydown="KeyDown(event,this)" id="brandCD" name="brandCD" maxlength="6" required placeholder="入力" style="width:70px;">
                                                 <input type="text" tabindex="7" class="text-line text-left" onkeydown="KeyDown(event,this)" id="brandname" name="brandname" maxlength="40" required placeholder="入力" style="width:150px;">
                                             </div>
                                         </div>
@@ -159,7 +159,8 @@
             DoubleByteCheck($("#CostCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
 
             DateCheck($("#CostDate1"), '@Url.Action("Date_Checking", "api/CommonApi")');
-            @*DateCheck($("#CostDate2"), '@Url.Action("Date_Checking", "api/CommonApi")');*@
+           // DateCheck($("#CostDate2"), '@Url.Action("Date_Checking", "api/CommonApi")');
+
             YearCheck($("#year"), '@Url.Action("Year_Checking", "api/CommonApi")');
 
             ExistsCheck($("#brandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")', "brandname");

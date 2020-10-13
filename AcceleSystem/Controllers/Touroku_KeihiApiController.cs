@@ -49,11 +49,12 @@ namespace AcceleSystem.Controllers
             return kgbl.M_Casting_ExistsCheck(kgmodel);
         }
 
-        public string M_Control_FiscalCheck([FromBody] BaseModel BModel)
-        {
-            Touroku_Keihi_BL kgbl = new Touroku_Keihi_BL();
-            return kgbl.M_Control_FiscalCheck(BModel);
-        }
+        //public string M_Control_FiscalCheck([FromBody] BaseModel BModel) //Move to CommonApi
+        //{
+        //    Touroku_Keihi_BL kgbl = new Touroku_Keihi_BL();
+        //    return kgbl.M_Control_FiscalCheck(BModel);
+        //}
+
         public string D_Cost_CUD([FromBody] Touroku_KeihiModel kgmodel)
         {
             Touroku_Keihi_BL kgbl = new Touroku_Keihi_BL();

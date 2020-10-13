@@ -64,5 +64,11 @@ namespace AcceleSystem.Controllers
             Common_BL cmbl = new Common_BL();
             return cmbl.ExportCSVfile(BModel.value,BModel.value1);
         }
+
+        public string M_Control_FiscalCheck([FromBody] BaseModel BModel)
+        {
+            Common_BL cmbl = new Common_BL();
+            return cmbl.M_Control_FiscalCheck(BModel);
+        }
     }
 }

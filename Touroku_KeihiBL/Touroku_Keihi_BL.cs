@@ -80,13 +80,13 @@ namespace Touroku_KeihiBL
             return bdl.SelectJson("M_Casting_ExistsCheck", tkmodel.Sqlprms);
         }
 
-        public string M_Control_FiscalCheck(BaseModel BModel)
-        {
-            BaseDL bdl = new BaseDL();
-            BModel.Sqlprms = new SqlParameter[1];
-            BModel.Sqlprms[0] = new SqlParameter("@CastDate", SqlDbType.Date) { Value = BModel.inputdate };
-            return bdl.SelectJson("M_Control_FiscalCheck", BModel.Sqlprms);
-        }
+        //public string M_Control_FiscalCheck(BaseModel BModel)  //Move to CommonBL
+        //{
+        //    BaseDL bdl = new BaseDL();
+        //    BModel.Sqlprms = new SqlParameter[1];
+        //    BModel.Sqlprms[0] = new SqlParameter("@CastDate", SqlDbType.Date) { Value = BModel.inputdate };
+        //    return bdl.SelectJson("M_Control_FiscalCheck", BModel.Sqlprms);
+        //}
 
         public string D_Cost_TKeihiCSV(Touroku_KeihiModel Kmodel)
         {

@@ -132,7 +132,7 @@ function YearCheck(ctrl, ApiURL) {
 
 function DateComapre(ctrl, val) {
     $(ctrl).attr("data-datecompare", "1");
-    $(ctrl).attr("data-datecompare_DataCheckApiUrl", val); 
+    $(ctrl).attr("data-datecompare_DataCheckApiUrl", val);
     $(ctr).attr("data-Param1", val2);
 }
 
@@ -539,16 +539,17 @@ function ErrChk(ctrl) {
                     };
                     var data = CalltoApiController(ApiURL, model);
                     var dateData = JSON.parse(data);
+                    $(ctrl).val(dateData[0].resultdate);
                     if (dateData[0].flg == "false") {
                         return "E112";
                     }
                     else if (dateData[0].flg == "true") {
                         $(ctrl).val(dateData[0].resultdate);
-                        return "0";
+                        //return "0";
                     }
                 }
                 else if (param1 == "2") {
-                    var ApiURL = $(ctrl).attr("data - yearmonth_DataCheckApiUrl");
+                    var ApiURL = "/api/CommonApi/M_Control_FiscalCheck";
                     
                     var model = {
                         inputdate: dataresult,
@@ -557,13 +558,13 @@ function ErrChk(ctrl) {
                     var dateData = JSON.parse(data);
                     if (dateData[0].MessageID != "E115") {
                         $(ctrl).val(dataresult);
-                        return "0";
+                       // return "0";
                     }
                     else {
                         return dateData[0].MessageID;
                     }
                 }
-                $(ctrl).val(dateData[0].resultdate);
+                $(ctrl).val(dataresult);
                 return "0";
             }
         }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
 using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using ElencySolutions.CsvHelper;
 using System.Windows.Forms;
@@ -12,6 +13,7 @@ using Newtonsoft.Json;
 using System.Diagnostics;
 using Models;
 using System.Threading;
+using DL;
 
 namespace CommonBL
 {
@@ -378,5 +380,12 @@ namespace CommonBL
             }
         }
 
+        public string M_Control_FiscalCheck(BaseModel BModel)
+        {
+            BaseDL bdl = new BaseDL();
+            BModel.Sqlprms = new SqlParameter[1];
+            BModel.Sqlprms[0] = new SqlParameter("@CastDate", SqlDbType.Date) { Value = BModel.inputdate };
+            return bdl.SelectJson("M_Control_FiscalCheck", BModel.Sqlprms);
+        }
     }
 }
