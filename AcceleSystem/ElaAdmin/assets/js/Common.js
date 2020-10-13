@@ -565,7 +565,7 @@ function ErrChk(ctrl) {
                     }
                 }
                 $(ctrl).val(dataresult);
-                return "0";
+               // return "0";
             }
         }
 

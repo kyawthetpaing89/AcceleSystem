@@ -30,7 +30,7 @@
                     <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                         <div class="col-xs-12" style="padding-left:50px;">
                             <div class="text-s text-custom1 text-uppercase mb-1">
-                                <input type="text" tabindex="2" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,)" id="CostDate" name="CostDate" maxlength="10" required placeholder="計上日">
+                                <input type="text" tabindex="2" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'FiscalDateCheck')" id="CostDate" name="CostDate" maxlength="10" required placeholder="計上日">
                                 @*&nbsp;
                     <input type="text" tabindex="3" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="year" name="year" maxlength="4" required placeholder="年度">*@
                             </div>
@@ -148,7 +148,8 @@
 <script type="text/javascript">
     $(document).ready(function () {     
         $("#formtitle").text("経費登録");
-            $("#CostCD").focus();
+        $("#CostCD").focus();
+        alert("a");
             var Mode = '@Model.Mode';
             if (Mode == 'New') {
                 $('#btnSave').html('登録');
@@ -176,7 +177,7 @@
                 }
 
                 RequiredCheck($("#CostDate"));
-                DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi")',"2");
+                DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi")');
 
                 RequiredCheck($("#year"));
                 YearCheck($("#year"), '@Url.Action("Year_Checking", "api/CommonApi")');
@@ -349,6 +350,22 @@
         $("#projectName").css("font-weight", "Bold");
         $("#HinbanName").css("font-weight", "Bold");
         $("#CastingName").css("font-weight", "Bold");
+    }
+
+    function FiscalDateCheck(result) {
+        if (result == 'OK') {
+            var model = {
+                inputdate: $("#CostDate").val(),
+            };
+            var data = CalltoApiController('@Url.Action("M_Control_FiscalCheck", "api/CommonApi")', model);
+            var dateData = JSON.parse(data);
+            if (dateData[0].MessageID != 'E115') {
+                $("#BrandCD").focus();
+            }
+            else {
+                ShowErrorMessage(dateData[0].MessageID);
+            }
+        }
     }
 
     function Cost(result) {
