@@ -182,35 +182,41 @@
 
        function DateCompareCheck(result) {
            if (result == 'OK') {
-                var model = {
-                    startDate: $("#CostDate1").val(),
-                    endDate: $("#CostDate2").val()
-                };
-                var data = CalltoApiController('@Url.Action("DateComapre", "api/CommonApi")', model);
-                var dateData = JSON.parse(data);
-                if (dateData[0].flg != 'false') {
-                    $("#year").focus();
-                }
-                else {
-                    $("#CostDate2").focus();
-                    ShowErrorMessage("E112") 
-                }
+               if (!($('#CostDate1').val().trim() == '' || $('#CostDate2').val().trim() == '')) {
+                   var model = {
+                       startDate: $("#CostDate1").val(),
+                       endDate: $("#CostDate2").val()
+                   };
+                   var data = CalltoApiController('@Url.Action("DateComapre", "api/CommonApi")', model);
+                   var dateData = JSON.parse(data);
+                   if (dateData[0].flg != 'false') {
+                       $("#year").focus();
+                   }
+                   else {
+                       $("#CostDate2").focus();
+                       ShowErrorMessage("E112");
+                   }
+               }
             }
        }
 
        function DateCompareCheckOnSave() {
-          var model = {
-              startDate: $("#CostDate1").val(),
-              endDate: $("#CostDate2").val()
-          };
-          var data = CalltoApiController('@Url.Action("DateComapre", "api/CommonApi")', model);
-          var dateData = JSON.parse(data);
-          if (dateData[0].flg != 'false') {
-              return "0";
-          }
-          else {
-              return "E112";
-          }
+           if (!($('#CostDate1').val().trim() == '' || $('#CostDate2').val().trim() == '')) {
+               alert("a");
+               var model = {
+                   startDate: $("#CostDate1").val(),
+                   endDate: $("#CostDate2").val()
+               };
+               var data = CalltoApiController('@Url.Action("DateComapre", "api/CommonApi")', model);
+               var dateData = JSON.parse(data);
+               if (dateData[0].flg != 'false') {
+                   return "0";
+               }
+               else {
+                   return "E112";
+               }
+           }
+           else return "0";
        }
 
        function GetData() {
