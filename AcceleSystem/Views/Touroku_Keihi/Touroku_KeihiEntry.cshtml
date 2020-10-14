@@ -22,8 +22,8 @@
                             <div class="text-s text-custom1 text-uppercase mb-1">
                                 <label id="SEQ" hidden></label>
                                 <input type="text" tabindex="1" class="text-line col-xl-4 text-left input-numeral8" onkeydown="KeyDown(event,this,'Cost')" id="CostCD" name="CostCD" maxlength="6" required placeholder="経費コード">&nbsp;&nbsp;
-                                <label id="costname"><b>経費表示</b></label>
-                                <label id="accounting"><b></b></label>
+                                <label id="costname"><b>経費名表示</b></label>
+                                <label id="accounting" hidden><b></b></label>
                             </div>
                         </div>
                     </div>
@@ -388,7 +388,7 @@
             $("#costname").css("font-weight", "Bold");
         }
         else {
-            $("#costname").text('経費表示');
+            $("#costname").text('経費名表示');
         }
     }
 
