@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 using System.Globalization;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web.Mvc;
 using System.IO;
-using ElencySolutions.CsvHelper;
-using System.Windows.Forms;
 using Newtonsoft.Json;
-using System.Diagnostics;
 using Models;
-using System.Threading;
 using DL;
+using System.Xml;
 
 namespace CommonBL
 {
@@ -320,65 +318,113 @@ namespace CommonBL
         public string ExportCSVfile(string data, string filename)
         {
             string result = string.Empty;
+
+            var response = System.Web.HttpContext.Current.Response;
             if (!data.Equals("[]"))
             {
-                try
-                {
+                //try
+                //{
                     DataTable dt = (DataTable)JsonConvert.DeserializeObject(data, (typeof(DataTable)));
                     if (dt.Rows.Count > 0)
                     {
-                        ////LoacalDirectory
-                        string folderPath = "C:\\Accele_Export\\";
-                        if (!Directory.Exists(folderPath))
+                        string csv = string.Empty;
+                        foreach (DataColumn column in dt.Columns)
                         {
-                            Directory.CreateDirectory(folderPath);
+                            //Add the Header row for CSV file.
+                            csv += column.ColumnName + ',';
                         }
 
-                        SaveFileDialog savedialog = new SaveFileDialog();
-                        savedialog.Filter = "CSV|*.csv";
-                        savedialog.Title = "Save";
-                        savedialog.FileName = filename;
-                        savedialog.InitialDirectory = folderPath;
-                        savedialog.RestoreDirectory = true;
-                        Thread t = new Thread((ThreadStart)(() =>
-                        {
-                           
-                            if (savedialog.ShowDialog() == DialogResult.OK)
-                            {
-                                if (Path.GetExtension(savedialog.FileName).Contains("csv"))
-                                {
-                                    CsvWriter csvwriter = new CsvWriter();
-                                    csvwriter.WriteCsv(dt, savedialog.FileName, Encoding.GetEncoding(932));
-                                }
-                                Process.Start(Path.GetDirectoryName(savedialog.FileName));
-                                result = "[{\"flg\" : \"true\"}]";
-                            }
-                        }));
+                        //Add new line.
+                        csv += "\r\n";
 
-                        // Run your code from a thread that joins the STA Thread
-                        t.SetApartmentState(ApartmentState.STA);
-                        t.Start();
-                        t.Join();
-                        return result;
-                    }
-                    else
-                    {
-                        result = "[{\"flg\" : \"false\"}]";
-                        return result;
-                    }
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            foreach (DataColumn column in dt.Columns)
+                            {
+                                //Add the Data rows.
+                                csv += row[column.ColumnName].ToString().Replace(",", ";") + ',';
+                            }
+
+                            //Add new line.
+                            csv += "\r\n";
+                        }
+
+                    response.Clear();
+                    response.Buffer = true;
+                    response.AddHeader("content-disposition", "attachment;filename=" + filename + ".csv");
+                    response.Charset = "utf-8";
+                    response.ContentType = "text/csv";
+                    response.Output.Write(csv);
+                    response.Flush();
+                    response.End();
+
+                    //response.BufferOutput = true;
+                    //response.Clear();
+                    //response.ClearHeaders();
+                    //response.ContentEncoding = Encoding.Unicode;
+                    //response.RedirectLocation = "C:\\Accele_Export\\";
+                    //response.AddHeader("content-disposition", "attachment;filename=" + filename + ".csv");
+                    //response.ContentType = "text/plain";
+                    //response.Output.Write(csv);
+                    //response.End();
+
+                    ////LoacalDirectory 
+                    //string folderPath = "C:\\Accele_Export\\";
+                    //if (!Directory.Exists(folderPath))
+                    //{
+                    //    Directory.CreateDirectory(folderPath);
+                    //}
+
+                    //SaveFileDialog savedialog = new SaveFileDialog();
+                    //savedialog.Filter = "CSV|*.csv";
+                    //savedialog.Title = "Save";
+                    //savedialog.FileName = filename;
+                    //savedialog.InitialDirectory = folderPath;
+                    //savedialog.RestoreDirectory = true;
+                    //Thread t = new Thread((ThreadStart)(() =>
+                    //{
+
+                    //    if (savedialog.ShowDialog() == DialogResult.OK)
+                    //    {
+                    //        if (Path.GetExtension(savedialog.FileName).Contains("csv"))
+                    //        {
+                    //            CsvWriter csvwriter = new CsvWriter();
+                    //            csvwriter.WriteCsv(dt, savedialog.FileName, Encoding.GetEncoding(932));
+                    //        }
+                    //        Process.Start(Path.GetDirectoryName(savedialog.FileName));
+                    //        result = "[{\"flg\" : \"true\"}]";
+                    //    }
+                    //}));
+
+                    //// Run your code from a thread that joins the STA Thread
+                    //t.SetApartmentState(ApartmentState.STA);
+                    //t.Start();
+                    //t.Join();
+                    result = "[{\"flg\" : \"true\"}]";
+                    return result;
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.Message);
                     result = "[{\"flg\" : \"false\"}]";
                     return result;
                 }
+            
             }
             else {
-                result = "[{\"flg\" : \"false\"}]";
-                return result;
+                    result = "[{\"flg\" : \"false\"}]";
+                    return result;
             }
         }
+
+        //public FileContentResult DownloadCSV()
+        //{
+        //    string csv = string.Concat(from employee in db.Employees
+        //                               select employee.EmployeeCode + ","
+        //                               + employee.EmployeeName + ","
+        //                               + employee.Department + ","
+        //                               + employee.Supervisor + "\n");
+        //    return File(new System.Text.UTF8Encoding().GetBytes(csv), "text/csv", "Report.csv");
+        //}
 
         public string M_Control_FiscalCheck(BaseModel BModel)
         {

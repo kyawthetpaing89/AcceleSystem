@@ -1,7 +1,12 @@
 ﻿using System.Web.Http;
 using System.Web.Http.Results;
+using System.Data;
+using Newtonsoft.Json;
 using Models;
 using CommonBL;
+using System.Collections.Generic;
+using System.Text;
+using System.Linq;
 
 namespace AcceleSystem.Controllers
 {
@@ -59,10 +64,44 @@ namespace AcceleSystem.Controllers
 
         }
 
+        //public void ExportCSVfile([FromBody] BaseModel BModel)
+        //{
+        //    string data = BModel.value;
+        //    var response = System.Web.HttpContext.Current.Response;
+        //    if (!data.Equals("[]"))
+        //    {
+        //        DataTable dt = (DataTable)JsonConvert.DeserializeObject(data, (typeof(DataTable)));
+        //        if (dt.Rows.Count > 0)
+        //        {
+        //            StringBuilder sb = new StringBuilder();
+
+        //            IEnumerable<string> columnNames = dt.Columns.Cast<DataColumn>().
+        //                                              Select(column => column.ColumnName);
+        //            sb.AppendLine(string.Join(",", columnNames));
+
+        //            foreach (DataRow row in dt.Rows)
+        //            {
+        //                IEnumerable<string> fields = row.ItemArray.Select(field =>
+        //                  string.Concat("\"", field.ToString().Replace("\"", "\"\""), "\""));
+        //                sb.AppendLine(string.Join(",", fields));
+        //            }
+        //            response.Clear();
+        //            response.Buffer = true;
+        //            response.AddHeader("content-disposition", "attachment;filename=ProductDetails.csv");
+        //            response.Charset = "";
+        //            response.ContentType = "application/text";
+        //            response.Output.Write(sb);
+        //            response.Flush();
+        //            response.End();
+
+
+        //        }
+        //    }
+        //}
         public string ExportCSVfile([FromBody] BaseModel BModel)
         {
             Common_BL cmbl = new Common_BL();
-            return cmbl.ExportCSVfile(BModel.value,BModel.value1);
+            return cmbl.ExportCSVfile(BModel.value, BModel.value1);
         }
 
         public string M_Control_FiscalCheck([FromBody] BaseModel BModel)
