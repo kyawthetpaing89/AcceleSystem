@@ -336,7 +336,7 @@
 
         }
 
-        function btnCSVClick() {
+       function btnCSVClick() {
         var allyear = $("#allyear").is(":checked");
         var ss = $("#SS").is(":checked");
         var fw = $("#FW").is(":checked");
@@ -371,20 +371,20 @@
                          else if ($('#FW').is(':checked'))
                              kmodel.Season = "3";
 
-                         var csvdata = CalltoApiController('@Url.Action("D_Cost_TKeihiCSV", "api/Touroku_KeihiApi")', kmodel);
-                         var kmodel = {
-                             value: csvdata,
-                             value1: "経費登録"
-                         };
-                         var data = CalltoApiController('@Url.Action("ExportCSVfile", "api/CommonApi")', kmodel);
-                         var csvdata = JSON.parse(data);
-                         if (csvdata[0].flg == "false") {
-                             var data = ShowErrorMessage("E104");
-                             return data;
-                         }
-                         else {
-                             alert("Success");
-                         }
+                         var data = CalltoApiController('@Url.Action("D_Cost_TKeihiCSV", "api/Touroku_KeihiApi")', kmodel);
+                       
+                         var csv = JSON2CSV(data);
+                         var downloadLink = document.createElement("a");
+                         var blob = new Blob(["\ufeff", csv]);
+                         var url = URL.createObjectURL(blob);
+                         downloadLink.href = url;
+                         downloadLink.download = "経費登録.csv";
+
+                         document.body.appendChild(downloadLink);
+                         downloadLink.click();
+                         document.body.removeChild(downloadLink);
+
+                     
                      }
                      else {
                          $("#CostDate2").focus();
@@ -394,7 +394,35 @@
                 else
                     ShowErrorMessage(res);
             }
-        }   
+       }   
+
+       function JSON2CSV(objArray) {
+           var array = typeof JSONString != 'object' ? JSON.parse(objArray) : JSONString;
+           var fields = Object.keys(array[0])
+           var replacer = function (key, value) { return value === null ? null : value }
+           var csv = array.map(function (row) {
+               return fields.map(function (fieldName) {
+                   return JSON.stringify(row[fieldName], replacer)
+               }).join(',')
+           })
+           csv.unshift(fields.join(',')) // add header column
+           csv = csv.join('\r\n');
+           return csv;
+
+           //var str = '';
+           //for (var i = 0; i < array.length; i++) {
+           //    for (var index in array[i]) {
+           //        if (line != '') line += ','
+
+           //        line += array[i][index];
+           //    }
+
+           //    str += line + '\r\n';
+           //}
+
+           //return str;
+
+       }
 
         function btnEditClick(SEQ) {
             location.href = '@Url.Action("Touroku_KeihiEntry","Touroku_Keihi")?SEQ='+SEQ+'&Mode=Edit';
