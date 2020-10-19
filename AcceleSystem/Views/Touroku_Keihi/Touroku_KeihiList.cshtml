@@ -396,6 +396,7 @@
             }
        }   
 
+       //Convert Jsonstring to csv
        function JSON2CSV(objArray) {
            var array = typeof JSONString != 'object' ? JSON.parse(objArray) : JSONString;
            var fields = Object.keys(array[0])
@@ -408,20 +409,6 @@
            csv.unshift(fields.join(',')) // add header column
            csv = csv.join('\r\n');
            return csv;
-
-           //var str = '';
-           //for (var i = 0; i < array.length; i++) {
-           //    for (var index in array[i]) {
-           //        if (line != '') line += ','
-
-           //        line += array[i][index];
-           //    }
-
-           //    str += line + '\r\n';
-           //}
-
-           //return str;
-
        }
 
         function btnEditClick(SEQ) {
