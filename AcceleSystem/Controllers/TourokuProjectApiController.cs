@@ -192,5 +192,13 @@ namespace AcceleSystem.Controllers
             return tbl.M_Hinban_Price_Check(Tmodel);
 
         }
+
+        [UserAuthentication]
+        [HttpPost]
+        public string M_Project_CSV([FromBody] TourokuProjectModel Tmodel)
+        {
+            TourokuProject_BL Tpbl = new TourokuProject_BL();
+            return Tpbl.M_Project_CSV(Tmodel);
+        }
     }
 }
