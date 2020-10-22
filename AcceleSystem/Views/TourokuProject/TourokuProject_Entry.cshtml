@@ -232,10 +232,11 @@
             $("#Year").val(ProjectData[0].Year);
             $("#PeriodStart").val(ProjectData[0].PeriodStart);
             $("#PeriodEnd").val(ProjectData[0].PeriodEnd);
-            $("#Production").text(ProjectData[0].Production);
-            $("#SalesPrice").text(ProjectData[0].SalesPrice);
+          //  $("#TotalProduction").text(ProjectData[0].Production);
+         //   $("#TotalSalesPrice").text(ProjectData[0].SalesPrice);
             $("#ProjectManager").val(ProjectData[0].ProjectManager);
             $("#AllocationCount").val(ProjectData[0].AllocationCount);
+
             if (!ProjectData[0].BrandName)
                 $("#BrandName").text("ブランド表示");
             else $("#BrandName").text(ProjectData[0].BrandName);
@@ -244,14 +245,14 @@
             if (!ProjectData[0].ProjectManagerName)
                 $("#ProjectManagerName").text("責任者表示");
             else $("#ProjectManagerName").text(ProjectData[0].ProjectManagerName);
-            
-            if (!ProjectData[0].TotalProduction)
-                $("#TotalProduction").text("総生産数表示");
-            else $("#TotalProduction").text(Projectdata[0].TotalProduction);
 
-            if (!ProjectData[0].TotalSalesPrice)
+            if (!ProjectData[0].Production)
+                $("#TotalProduction").text("総生産数表示");
+            else $("#TotalProduction").text(ProjectData[0].Production);
+
+            if (!ProjectData[0].SalesPrice)
                 $("#TotalSalesPrice").text("総金額表示");
-            else $("#TotalSalesPrice").text(ProjectData[0].TotalSalesPrice);
+            else $("#TotalSalesPrice").text(ProjectData[0].SalesPrice);
 
             //Bind Season
             if (ProjectData[0].Season == "1")
