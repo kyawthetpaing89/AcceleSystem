@@ -34,3 +34,39 @@ input[type="checkbox"]:focus + label {
     background-color: #F2F4F4;
 }
 
+.btn-next {
+    color: #1a8cff;
+    background-color: white;
+    border-color: #1a8cff;
+    border-radius: 3px;
+}
+
+    .btn-next:hover {
+        color: #1a8cff;
+        background-color: #e8f3fd;
+        border-color: #1a8cff
+    }
+
+    .btn-next.focus, .btn-next:focus {
+        box-shadow: 0 0 0 .2rem #e8f3fd;
+    }
+
+
+.btn-csv {
+    color: #0a0a0a;
+    background-color: white;
+    border-color: #0a0a0a;
+    border-radius: 3px;
+}
+
+    .btn-csv:hover {
+        color: #0a0a0a;
+        background-color: #f5f5f5;
+        border-color: #0a0a0a
+    }
+
+    .btn-csv.focus, .btn-csv:focus {
+        box-shadow: 0 0 0 .2rem #e8f3fd;
+    }
+
+
