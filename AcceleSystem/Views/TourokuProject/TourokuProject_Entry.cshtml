@@ -174,7 +174,7 @@
                 ShowData();
             }
             else if (Mode == 'Copy') {
-                $('#btnSave').html('更新');
+                $('#btnSave').html('登録');
                 $("#ProjectCD").focus();
 
                 RequiredCheck($("#ProjectCD"));
@@ -261,6 +261,9 @@
             else
                 $("#rdofw").prop("checked", true);
 
+            $("#BrandName").css("font-weight", "Bold");
+            $("#TotalProduction").css("font-weight", "Bold");
+            $("#TotalSalesPrice").css("font-weight", "Bold");
         }
 
         function DoProcess() {
@@ -345,8 +348,8 @@
 
     function ProjectManagerCheck(result) {
         if (result == 'OK') {
-            ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
-            $("#ProjectManager").foucs();
+            @*ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
+            $("#ProjectManager").foucs();*@
         }
         else {
             $("#ProjectManager").val('');

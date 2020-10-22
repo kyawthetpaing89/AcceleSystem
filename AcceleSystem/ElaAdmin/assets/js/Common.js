@@ -724,7 +724,7 @@ $(document).ready(function () {
     if ($('.input-numeral11')[0]) {   //projectEntry
         var cleaveNumeral11 = new Cleave('.input-numeral11', {
             numeral: true,
-            numeralThousandsGroupStyle: 'thousand'
+            numeralThousandsGroupStyle: 'none''
         });
     }
 });
