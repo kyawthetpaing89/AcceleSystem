@@ -88,7 +88,7 @@ namespace TourokuProjectBL
             {
                 Tmodel.SPName = "M_Project_Delete";
                 Tmodel.Sqlprms = new SqlParameter[1];
-                Tmodel.Sqlprms[0] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = Tmodel.BrandCD };
+                Tmodel.Sqlprms[0] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tmodel.ProjectCD };
 
             }
 
@@ -242,13 +242,22 @@ namespace TourokuProjectBL
 
         }
 
-        public string M_HinBan_D_Delivery_Check(TourokuProjectModel Tmodel)
+        public string D_Devliery_ExistsDeleteCheck(TourokuProjectModel Tmodel)
         {
             BaseDL bdl = new BaseDL();
             Tmodel.Sqlprms = new SqlParameter[2];
             Tmodel.Sqlprms[0] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = (object)Tmodel.HinbanCD ?? DBNull.Value };
             Tmodel.Sqlprms[1] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = (object)Tmodel.ProjectCD ?? DBNull.Value };
-            return bdl.SelectJson("M_Hinban_DDelivery_Check", Tmodel.Sqlprms);
+            return bdl.SelectJson("D_Devliery_ExistsDeleteCheck", Tmodel.Sqlprms);
+
+        }
+
+        public string D_Cost_ExistsDeleteCheck(TourokuProjectModel Tmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            Tmodel.Sqlprms = new SqlParameter[1];
+            Tmodel.Sqlprms[0] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = (object)Tmodel.ProjectCD ?? DBNull.Value };
+            return bdl.SelectJson("D_Cost_ExistsDeleteCheck", Tmodel.Sqlprms);
 
         }
 

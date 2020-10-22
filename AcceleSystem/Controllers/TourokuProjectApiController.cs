@@ -86,13 +86,7 @@ namespace AcceleSystem.Controllers
             return Tpbl.M_HinBan_DCost_Check(Tmodel);
         }
 
-        [UserAuthentication]
-        [HttpPost]
-        public string M_Hinban_D_Delivery_Check([FromBody] TourokuProjectModel Tmodel)
-        {
-            TourokuProject_BL Tpbl = new TourokuProject_BL();
-            return Tpbl.M_HinBan_D_Delivery_Check(Tmodel);
-        }
+   
 
         [UserAuthentication]
         [HttpPost]
@@ -191,6 +185,22 @@ namespace AcceleSystem.Controllers
             TourokuProject_BL tbl = new TourokuProject_BL();
             return tbl.M_Hinban_Price_Check(Tmodel);
 
+        }
+
+        [UserAuthentication]
+        [HttpPost]
+        public string D_Devliery_ExistsDeleteCheck([FromBody] TourokuProjectModel Tmodel)
+        {
+            TourokuProject_BL Tpbl = new TourokuProject_BL();
+            return Tpbl.D_Devliery_ExistsDeleteCheck(Tmodel);
+        }
+
+        [UserAuthentication]
+        [HttpPost]
+        public string D_Cost_ExistsDeleteCheck([FromBody] TourokuProjectModel Tmodel)
+        {
+            TourokuProject_BL Tpbl = new TourokuProject_BL();
+            return Tpbl.D_Cost_ExistsDeleteCheck(Tmodel);
         }
 
         [UserAuthentication]

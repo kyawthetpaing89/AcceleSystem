@@ -145,7 +145,6 @@
                 
                 DoubleByteCheck($("#Season"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
             }
-
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
                 $("#ProjectCD").attr('disabled', 'disabled');
@@ -174,132 +173,50 @@
                 ShowData();
             }
             else if (Mode == 'Copy') {
-                $('#btnSave').html('登録');
-                $("#ProjectCD").focus();
+                        $('#btnSave').html('登録');
+                        $("#ProjectCD").focus();
 
-                RequiredCheck($("#ProjectCD"));
-                DoubleByteCheck($("#ProjectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-                AlreadyExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")');
-                RequiredCheck($("#ProjectName"));
+                     RequiredCheck($("#ProjectCD"));
+                     DoubleByteCheck($("#ProjectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                     AlreadyExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")');
+                     RequiredCheck($("#ProjectName"));
 
-                RequiredCheck($("#Year"));
-                DoubleByteCheck($("#Year"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-                YearCheck($("#Year"), '@Url.Action("Year_Checking", "api/CommonApi")');
+                     RequiredCheck($("#Year"));
+                     DoubleByteCheck($("#Year"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                     YearCheck($("#Year"), '@Url.Action("Year_Checking", "api/CommonApi")');
 
-                RequiredCheck($("#BrandCD"));
-                DoubleByteCheck($("#BrandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-                ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
+                     RequiredCheck($("#BrandCD"));
+                     DoubleByteCheck($("#BrandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                     ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
 
-                RequiredCheck($("#PeriodStart"));
-                YearMonthCheck($("#PeriodStart"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
-                RequiredCheck($("#PeriodEnd"));
-                YearMonthCheck($("#PeriodEnd"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
+                     RequiredCheck($("#PeriodStart"));
+                     YearMonthCheck($("#PeriodStart"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
+                     RequiredCheck($("#PeriodEnd"));
+                     YearMonthCheck($("#PeriodEnd"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
 
-                DoubleByteCheck($("#ProjectManager"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-                ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
-                
-                DoubleByteCheck($("#Season"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                     DoubleByteCheck($("#ProjectManager"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                     ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
+                     
+                     DoubleByteCheck($("#Season"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
 
-                ShowData();
+                     ShowData();
             }
-            else  {
-                $('#btnSave').html('削除');
-                $("#ProjectCD").attr('disabled', 'disabled');
-                $("#ProjectName").attr('disabled', 'disabled');
-                $("#Year").attr('disabled', 'disabled');
-                $("#BrandCD").attr('disabled', 'disabled');
-                $("#Season").attr('disabled', 'disabled');
-                $("#PeriodStart").attr('disabled', 'disabled');
-                $("#PeriodEnd").attr('disabled', 'disabled');
-                $("#ProjectManager").attr('disabled', 'disabled');
-                $("#AllocationCount").attr('disabled', 'disabled');
-                $("#btnSave").focus();
-
-                ShowData();
-            }
-        });
-
-           //set data
-        function ShowData() {
-            var Tmodel = {
-                ProjectCD: '@Model.ProjectCD',
-            };
-            var data = CalltoApiController('@Url.Action("M_Project_Select_Entry", "api/TourokuProjectApi")', Tmodel);
-            var ProjectData = JSON.parse(data);
-            $("#ProjectCD").val(ProjectData[0].ProjectCD);
-            $("#ProjectName").val(ProjectData[0].ProjectName);
-            $("#BrandCD").val(ProjectData[0].BrandCD);
-            $("#Year").val(ProjectData[0].Year);
-            $("#PeriodStart").val(ProjectData[0].PeriodStart);
-            $("#PeriodEnd").val(ProjectData[0].PeriodEnd);
-          //  $("#TotalProduction").text(ProjectData[0].Production);
-         //   $("#TotalSalesPrice").text(ProjectData[0].SalesPrice);
-            $("#ProjectManager").val(ProjectData[0].ProjectManager);
-            $("#AllocationCount").val(ProjectData[0].AllocationCount);
-
-            if (!ProjectData[0].BrandName)
-                $("#BrandName").text("ブランド表示");
-            else $("#BrandName").text(ProjectData[0].BrandName);
-
+            else{
+                        $('#btnSave').html('削除');
+                        $("#ProjectCD").attr('disabled', 'disabled');
+                        $("#ProjectName").attr('disabled', 'disabled');
+                        $("#Year").attr('disabled', 'disabled');
+                        $("#BrandCD").attr('disabled', 'disabled');
+                        $("#Season").attr('disabled', 'disabled');
+                        $("#PeriodStart").attr('disabled', 'disabled');
+                        $("#PeriodEnd").attr('disabled', 'disabled');
+                        $("#ProjectManager").attr('disabled', 'disabled');
+                        $("#AllocationCount").attr('disabled', 'disabled');
+                        $("#btnSave").focus();
             
-            if (!ProjectData[0].ProjectManagerName)
-                $("#ProjectManagerName").text("責任者表示");
-            else $("#ProjectManagerName").text(ProjectData[0].ProjectManagerName);
-
-            if (!ProjectData[0].Production)
-                $("#TotalProduction").text("総生産数表示");
-            else $("#TotalProduction").text(ProjectData[0].Production);
-
-            if (!ProjectData[0].SalesPrice)
-                $("#TotalSalesPrice").text("総金額表示");
-            else $("#TotalSalesPrice").text(ProjectData[0].SalesPrice);
-
-            //Bind Season
-            if (ProjectData[0].Season == "1")
-                $("#rdoyear").prop("checked", true);
-            else if (ProjectData[0].Season == "2")
-                $("#rdoss").prop("checked", true);
-            else
-                $("#rdofw").prop("checked", true);
-
-            $("#BrandName").css("font-weight", "Bold");
-            $("#TotalProduction").css("font-weight", "Bold");
-            $("#TotalSalesPrice").css("font-weight", "Bold");
-        }
-
-        function DoProcess() {
-            focusControl = $("#ProjectCD");
-             var Tmodel = {
-                 ProjectCD: $("#ProjectCD").val(),
-                 ProjectName: $("#ProjectName").val(),
-                 BrandCD: $("#BrandCD").val(),
-                 Year: $("#Year").val(),
-                 ProjectManager: $("#ProjectManager").val(),
-                 PeriodStart: $("#PeriodStart").val(),
-                 PeriodEnd: $("#PeriodEnd").val(),
-                 Production: $("#Production").val(),
-                 SalesPrice: $("#SalesPrice").val(),
-                 AllocationCount: ($('#AllocationCount').val()).replace(",", ""),
-                 Mode:'@Model.Mode'
-            };
-
-            //For PeriodStart
-            //if ($("#PeriodStart").val($.format.date(new Date(), 'yyyy/mm/dd')));
-
-            ////For PeriodEnd
-
-            //if ($("#PeriodEnd").val($.format.date(new Date(), 'yyyy/mm/dd')));
-
-            //For Season
-            if ($('#rdoyear').is(':checked'))
-                Tmodel.Season = "1";
-            else if ($('#rdoss').is(':checked'))
-                Tmodel.Season = "2";
-            else Tmodel.Season = "3";
-
-            var data = CalltoApiController('@Url.Action("Project_CUD", "api/TourokuProjectApi")', Tmodel);
-            ShowSuccessMessage(data,'@Url.Action("TourokuProject_List", "TourokuProject")');
-        }
+                        ShowData();
+                   }
+    });
 
     function BrandCheck(result) {
         if (result == 'OK') {
@@ -329,24 +246,6 @@
         $("#BrandName").css("font-weight", "Bold");
     }
 
-    @*function BrandCheck(result) {
-        if (result == 'OK') {
-            var Mode = '@Model.Mode';
-            if (Mode == 'Edit') {
-                if ($('#rdoyear').is(':checked')) {
-                    $("#rdoyear").focus();
-                }
-                else if ($('#rdoss').is(':checked')) {
-                    $("#rdoss").focus();
-                }
-                else if ($("#rdofw").is(':checked')){
-                    $("#rdofw").focus();
-            }
-                else $("#PeriodStart").focus();
-            }
-        }
-    }*@
-
     function ProjectManagerCheck(result) {
         if (result == 'OK') {
             @*ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
@@ -361,6 +260,55 @@
         $("#ProjectManagerName").css("font-weight", "Bold");
     }
 
+      //Bind data
+     function ShowData() {
+         var Tmodel = {
+             ProjectCD: '@Model.ProjectCD',
+         };
+         var data = CalltoApiController('@Url.Action("M_Project_Select_Entry", "api/TourokuProjectApi")', Tmodel);
+         var ProjectData = JSON.parse(data);
+         $("#ProjectCD").val(ProjectData[0].ProjectCD);
+         $("#ProjectName").val(ProjectData[0].ProjectName);
+         $("#BrandCD").val(ProjectData[0].BrandCD);
+         $("#Year").val(ProjectData[0].Year);
+         $("#PeriodStart").val(ProjectData[0].PeriodStart);
+         $("#PeriodEnd").val(ProjectData[0].PeriodEnd);
+       //  $("#TotalProduction").text(ProjectData[0].Production);
+      //   $("#TotalSalesPrice").text(ProjectData[0].SalesPrice);
+         $("#ProjectManager").val(ProjectData[0].ProjectManager);
+         $("#AllocationCount").val(ProjectData[0].AllocationCount);
+
+         if (!ProjectData[0].BrandName)
+             $("#BrandName").text("ブランド表示");
+         else $("#BrandName").text(ProjectData[0].BrandName);
+
+         
+         if (!ProjectData[0].ProjectManagerName)
+             $("#ProjectManagerName").text("責任者表示");
+         else $("#ProjectManagerName").text(ProjectData[0].ProjectManagerName);
+
+         if (!ProjectData[0].Production)
+             $("#TotalProduction").text("総生産数表示");
+         else $("#TotalProduction").text(ProjectData[0].Production);
+
+         if (!ProjectData[0].SalesPrice)
+             $("#TotalSalesPrice").text("総金額表示");
+         else $("#TotalSalesPrice").text(ProjectData[0].SalesPrice);
+
+         //Bind Season
+         if (ProjectData[0].Season == "1")
+             $("#rdoyear").prop("checked", true);
+         else if (ProjectData[0].Season == "2")
+             $("#rdoss").prop("checked", true);
+         else
+             $("#rdofw").prop("checked", true);
+
+         $("#BrandName").css("font-weight", "Bold");
+         $("#TotalProduction").css("font-weight", "Bold");
+         $("#TotalSalesPrice").css("font-weight", "Bold");
+    }
+
+    //Date Error check at Enter click
     function DateCompare(result) {
          if (result == 'OK') {
              if (!($('#PeriodStart').val().trim() == '' || $('#PeriodEnd').val().trim() == '')) {
@@ -381,6 +329,7 @@
          }
      }
 
+    //Date Error check before insert/update
     function DateCompareOnSave() {
         if (!($('#PeriodStart').val().trim() == '' || $('#PeriodEnd').val().trim() == '')) {
              var model = {
@@ -399,20 +348,77 @@
          else return "0";
     }
 
+    function ErrorCheckBreforeDelete() {
+        var Tmodel = {
+            ProjectCD: $("#ProjectCD").val()
+        };
+        var data = CalltoApiController('@Url.Action("D_Cost_ExistsDeleteCheck", "api/TourokuProjectApi")', Tmodel);
+        var costcheck = JSON.parse(data);
+         if (costcheck[0].MessageID == "E119") {
+             return "E119";
+         }
+         else {
+                var data = CalltoApiController('@Url.Action("D_Devliery_ExistsDeleteCheck", "api/TourokuProjectApi")', Tmodel);
+                var deliverycheck = JSON.parse(data);
+                 if (deliverycheck[0].MessageID == "E126") {
+                     return "E126";
+                 }
+                else {
+                        return "0";
+                 }
+        }
+        return "0";
+    }
+
+    // Insert/Update/Delete
+     function DoProcess() {
+         focusControl = $("#ProjectCD");
+          var Tmodel = {
+              ProjectCD: $("#ProjectCD").val(),
+              ProjectName: $("#ProjectName").val(),
+              BrandCD: $("#BrandCD").val(),
+              Year: $("#Year").val(),
+              ProjectManager: $("#ProjectManager").val(),
+              PeriodStart: $("#PeriodStart").val(),
+              PeriodEnd: $("#PeriodEnd").val(),
+              Production: $("#Production").val(),
+              SalesPrice: $("#SalesPrice").val(),
+              AllocationCount: ($('#AllocationCount').val()).replace(",", ""),
+              Mode:'@Model.Mode'
+         };
+
+         //For Season
+         if ($('#rdoyear').is(':checked'))
+             Tmodel.Season = "1";
+         else if ($('#rdoss').is(':checked'))
+             Tmodel.Season = "2";
+         else Tmodel.Season = "3";
+
+         var data = CalltoApiController('@Url.Action("Project_CUD", "api/TourokuProjectApi")', Tmodel);
+         ShowSuccessMessage(data,'@Url.Action("TourokuProject_List", "TourokuProject")');
+    }
+
     function DeleteConfrim() {
         DoProcess();
     }
 
-        //save
+     //save
     function btnSaveClick() {
         var res = ErrorCheckOnSave();
         if (res == "0") {
             var Mode = '@Model.Mode';
-            //show confirm message
-            if (Mode == "Delete") {
-                ShowConfirmMessage("Q102", "DeleteConfrim");
+
+            if (Mode == "Delete") {   //Delete
+                var res1 = ErrorCheckBreforeDelete();
+                if (res1 == "0") {
+                    ShowConfirmMessage("Q102", "DeleteConfrim");
+                    DoProcess();
+                }
+                else {
+                    ShowErrorMessage(res1);
+                }
             }
-            else {
+            else {     // Insert/Update
                 var res1 = DateCompareOnSave();
                 if (res1 == "0") {
                     DoProcess();
