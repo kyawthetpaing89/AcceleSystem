@@ -14,12 +14,8 @@
             <div class="card-body card-block">
                 <div class="row form-group">
                     <div class="col col-md-12">
-                        <button id="btnAdd" onclick="btnnextClick()" class="btn" tabindex="40" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px; margin-left: 20px; margin-right: 20px;">
-                            品番追加
-                        </button>
-                        <button id="btnAdd" onclick="btnAddClick()" class="btn" tabindex="40" style="background-color:white; color:#1a8cff; border-radius:3px; border: 1px solid transparent; border-color:#1a8cff; margin-right: 20px;">
-                            プロジェクト検索
-                        </button>
+                        <button id="btnAdd" onclick="btnAddClick()" class="btn btn-primary col-xl-3 text-center" tabindex="40">品番追加</button>&nbsp;
+                        <button id="btnnext" onclick="btnnextClick()" class="btn btn-next col-xl-4 text-center" tabindex="40">プロジェクト検索</button>
 
                         <div id="registration" style="padding-top: 1.8rem!important;">
                             <div>
@@ -116,11 +112,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12" style="padding-left:0px; padding-top:2rem;">
-                                <div class="text-s text-custom1 text-uppercase mb-1">
-                                    <button id="btnSearch" tabindex="17" onclick="btnSearchClick()" class="btn btn-dark col-xl-4 text-center" style="float:right; width:100px;">検索</button>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                            <div class="pt-3 md-form" style="padding-left:0px; padding-top:2rem;">
+                                <div class="col-xl-12">
+                                    <div class="col-xl-9">
+                                        <button id="btnSearch" tabindex="17" onclick="btnSearchClick()" class="btn btn-dark col-xl-3 text-center float-lg-right">検索</button>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
 
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -164,14 +162,25 @@
 </div>
 
 @section Scripts{
-        <script type="text/javascript">
+<script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("品番検索");
             $("#proCD").focus();
+
+            $("#proName").attr('disabled', 'disabled');
+            $("#year").attr('disabled', 'disabled');
+            $("#season").attr('disabled', 'disabled');
+            $("#BrandCD").attr('disabled', 'disabled');
+            $("#BrandName").attr('disabled', 'disabled');
+            $("#StartDate").attr('disabled', 'disabled');
+            $("#EndDate").attr('disabled', 'disabled');
+            $("#tpNo").attr('disabled', 'disabled');
+            $("#tAmount").attr('disabled', 'disabled');
+
             ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/TourokuProjectApi")', "CastingName");
             HinBanTable();
 
-         });
+        });
 
         
     function HinBanTable() {
@@ -219,7 +228,7 @@
                     "data": null,
                     className: "Border2",
                     render: function (data, type, row) {
-                        return '<label>' + '' + '</label><br/>' + '<b><label>' + data.HinbanName + '</label></b><br/><br/><label>' + data.Production + '</label><br/>';
+                        return '<label>' + '' + '</label><br/>' + '<label>' + data.HinbanName + '</label><br/><br/><label>' + data.Production + '</label><br/>';
                     }
                 },
                 {
@@ -256,12 +265,12 @@
     function btnSearchClick() {
         var deliveryleft = $('#deliveryleft').is(':checked');
         var payment = $('#payment').is(':checked')
-        if (!deliveryleft && !payment) {
+            if (!deliveryleft && !payment) {
             var data = ShowErrorMessage("E111");
-            return data;
-        }
-        else {
-            var Tmodel = {
+                return data;
+            }
+            else {
+                var Tmodel = {
                 ProjectCD: $('#proCD').val(),
                 HinbanCD: $('#HinbanCD').val(),
                 HinbanName: $('#HinbanName').val(),
@@ -279,11 +288,11 @@
     }
 
     function btnnextClick() {
-        location.href = '@Url.Action("TourokuHinban_Entry", "TourokuProject")';
+        location.href = '@Url.Action("TourokuProject_List", "TourokuProject")';
     }
 
     function btnAddClick() {
-        location.href = '@Url.Action("TourokuProject_List", "TourokuProject")';
+        location.href = '@Url.Action("TourokuHinban_Entry", "TourokuProject")';
     }
 
     function btnEditClick(ProjectCD, HinbanCD) {
@@ -324,7 +333,7 @@
                 //$("#StartPrice").focus();
                 return data;
             }
-            else { 0
+            else { 
                 return "0";
             }
             
