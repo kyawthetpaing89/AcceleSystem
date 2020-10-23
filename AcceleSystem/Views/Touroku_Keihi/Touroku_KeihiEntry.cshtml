@@ -501,21 +501,21 @@
         function btnSaveClick(){
             var res = ErrorCheckOnSave();
             if (res == "0") {
-                var res1 = FiscalDateCheckOnSave();
-                if (res1 == "0") {
-                    var Mode = '@Model.Mode';
-                    //show confirm message
-                    if (Mode == "Delete") {
-                        ShowConfirmMessage("Q102", "DeleteConfrim");
+                var Mode = '@Model.Mode';
+               
+                if (Mode == "Delete") {   //Delete
+                    ShowConfirmMessage("Q102", "DeleteConfrim");
+                    DoProcess();
+                }
+                else {     // Insert/Update
+                    var res1 = FiscalDateCheckOnSave();
+                    if (res1 == "0") {
                         DoProcess();
                     }
                     else {
-                        DoProcess();
+                        $("#CostDate").focus();
+                        ShowErrorMessage(res1);
                     }
-                }
-                else {
-                    $("#CostDate").focus();
-                    ShowErrorMessage(res1);
                 }
             }
             else
