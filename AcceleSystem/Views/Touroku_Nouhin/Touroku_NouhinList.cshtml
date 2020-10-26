@@ -49,13 +49,13 @@
                                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                                     <div class="col-md-12" style="padding-left:16px;">
                                         <div class="text-s text-custom1 text-uppercase mb-1">
-                                            <label class="text" style="padding-right:35px;">シーズン</label>
-                                            <input type="checkbox" tabindex="4" id="Allyear" name="chkAllyear" checked>
-                                            <label style="padding-right:40px;">度年</label>
-                                            <input type="checkbox" id="SS" name="chkSS">
-                                            <label style="padding-right:40px;">SS</label>
-                                            <input type="checkbox" id="FW" name="chkFW">
-                                            <label>FW</label>
+                                            <label id="text" style="padding-right:35px;">シーズン</label>
+                                            <input type="checkbox" tabindex="4" id="Allyear" name="chk" onkeydown="KeyDown(event,this)" checked>
+                                            <label for="Allyear" style="padding-right:40px;">度年</label>
+                                            <input type="checkbox" id="SS" name="chk" onkeydown="KeyDown(event,this)">
+                                            <label for="SS" style="padding-right:40px;">SS</label>
+                                            <input type="checkbox" id="FW" name="chk" onkeydown="KeyDown(event,this)">
+                                            <label for="FW">FW</label>
                                         </div>
                                     </div>
                                 </div>
@@ -106,7 +106,7 @@
                                 </div>
                                 <div class="col-md-12" style="padding-left:0px; padding-top:2rem;">
                                     <div class="text-s text-custom1 text-uppercase mb-1">
-                                        <button id="btnSearch" tabindex="12" onclick="btnSearchClick()" class="btn btn-dark col-xl-4 text-center" style="float:right; width:100px;">検索</button>
+                                        <button id="btnSearch" tabindex="12" onclick="btnSearchClick()" class="btn btn-dark col-xl-3 text-center float-lg-right">検索</button>
                                         &nbsp;&nbsp;&nbsp;&nbsp;
                                     </div>
                                 </div>
