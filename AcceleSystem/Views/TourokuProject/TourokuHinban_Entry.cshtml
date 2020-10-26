@@ -70,7 +70,7 @@
 
                             <input type="text" tabindex="11" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="HinbanCD" name="HinbanCD" maxlength="10" required placeholder="品番コード">
                             <input type="text" tabindex="12" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="HinbanName" name="HinbanName" maxlength="60" required placeholder="品番名">
-                            <input type="text" tabindex="13" class="text-line col-xl-2 text-left" onkeydown="KeyDown(event,this)" id="Color" name="Color" maxlength="5" required placeholder="色数">
+                            <input type="text" tabindex="13" class="text-line col-xl-2 input-numeral14 text-left" onkeydown="KeyDown(event,this)" id="Color" name="Color" maxlength="5" required placeholder="色数">
                         </div>
 
                     </div>
@@ -98,7 +98,7 @@
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label class="col-xl-2" style="padding:initial;">金型</label>
-                            <input type="text" tabindex="18" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this)" id="CastingCD" name="CastingCD" maxlength="20" required>
+                            <input type="text" tabindex="18" class="text-line col-xl-4 input-numeral12 text-left" onkeydown="KeyDown(event,this)" id="CastingCD" name="CastingCD" maxlength="10" required>
                             <input type="text" tabindex="19" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this)" id="CastingName" name="CastingName" maxlength="40" required>
 
                         </div>
@@ -109,7 +109,7 @@
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <input type="text" tabindex="20" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="freeitem1" name="freeitem1" maxlength="10" required placeholder="自由配賦項目">
 
-                            <input type="text" tabindex="21" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="freeitem2" name="freeitem2" maxlength="4" required placeholder="配賦用固定値">
+                            <input type="text" tabindex="21" class="text-line col-xl-5 input-numeral13 text-left" onkeydown="KeyDown(event,this)" id="freeitem2" name="freeitem2" maxlength="4" required placeholder="配賦用固定値">
                         </div>
                     </div>
                 </div>
@@ -130,79 +130,98 @@
 
 
 @section Scripts{
-    <script type="text/javascript">
+<script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("品番登録");
+
+            $("#ProjectName").attr('disabled', 'disabled');
+            $("#Year").attr('disabled', 'disabled');
+            $("#Season").attr('disabled', 'disabled');
+            $("#BrandCD").attr('disabled', 'disabled');
+            $("#BrandName").attr('disabled', 'disabled');
+            $("#StartDate").attr('disabled', 'disabled');
+            $("#EndDate").attr('disabled', 'disabled');
+            $("#totalProNo").attr('disabled', 'disabled');
+            $("#totalamount").attr('disabled', 'disabled');
+            $("#DeliverNo").attr('disabled', 'disabled');
+            $("#Amount").attr('disabled', 'disabled');
+            $("#CastingName").attr('disabled', 'disabled');
+
             var Mode = '@Model.Mode'; 
             if (Mode == 'New') {
                 $('#btnSave').html('登録');
-             
-                RequiredCheck($("#HinbanCD"));
-                RequiredCheck($("#HinbanName"));
-                RequiredCheck($("#Production"));
-                RequiredCheck($("#saleprice"));
+
+                $("#ProjectCD").focus();
+
+                DoubleByteCheck($("#ProjectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "ProjectName");
-                ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/TourokuProjectApi")', "CastingName");
-                YearMonthCheck($("#StartDate"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
-                YearMonthCheck($("#EndDate"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
+                
+                RequiredCheck($("#HinbanCD"));
+                DoubleByteCheck($("#HinbanCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                RequiredCheck($("#HinbanName"));
+
+                RequiredCheck($("#Production"));
                 LessthanZeroCheck($("#Production"), '@Url.Action("LessthanZero_Checking", "api/CommonApi")');
+
+                RequiredCheck($("#saleprice"));
                 LessthanZeroCheck($("#saleprice"), '@Url.Action("LessthanZero_Checking", "api/CommonApi")');
 
+                DoubleByteCheck($("#CastingCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/TourokuProjectApi")', "CastingName");
+                
             }
             else if (Mode == 'Edit') {
+                ShowData();
                 $('#btnSave').html('更新');
-                ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/TourokuProjectApi")', "CastingName");
-                YearMonthCheck($("#StartDate"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
-                YearMonthCheck($("#EndDate"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
-                LessthanZeroCheck($("#Production"), '@Url.Action("LessthanZero_Checking", "api/CommonApi")');
-                LessthanZeroCheck($("#saleprice"), '@Url.Action("LessthanZero_Checking", "api/CommonApi")');
-                RequiredCheck($("#Production"));
-                RequiredCheck($("#saleprice"));
+                $("#HinbanName").focus();
+
                 $("#ProjectCD").attr('disabled', 'disabled');
                 $("#HinbanCD").attr('disabled', 'disabled');
-                $("#ProjectName").attr('disabled', 'disabled');
-                $("#HinbanName").attr('disabled', 'disabled');
-                $("#Year").attr('disabled', 'disabled');
-                $("#Season").attr('disabled', 'disabled');
-                $("#BrandCD").attr('disabled', 'disabled');
-                $("#BrandName").attr('disabled', 'disabled');
-                $("#StartDate").attr('disabled', 'disabled');
-                $("#EndDate").attr('disabled', 'disabled');
-                $("#totalProNo").attr('disabled', 'disabled');
-                $("#totalamount").attr('disabled', 'disabled');
-                $("#DeliverNo").attr('disabled', 'disabled');
-                $("#Amount").attr('disabled', 'disabled');
-                ShowData();
+
+                DoubleByteCheck($("#ProjectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "ProjectName");
+
+                RequiredCheck($("#HinbanName"));
+
+                RequiredCheck($("#Production"));
+                LessthanZeroCheck($("#Production"), '@Url.Action("LessthanZero_Checking", "api/CommonApi")');
+
+                RequiredCheck($("#saleprice"));
+                LessthanZeroCheck($("#saleprice"), '@Url.Action("LessthanZero_Checking", "api/CommonApi")');
+
+                DoubleByteCheck($("#CastingCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/TourokuProjectApi")', "CastingName");
+                
             }
 
             else if (Mode == 'Copy') {
-                $('#btnSave').html('更新');
-                RequiredCheck($("#HinbanCD"));
-                RequiredCheck($("#HinbanName"));
-                RequiredCheck($("#Production"));
-                RequiredCheck($("#saleprice"));
-                ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "ProjectName");
-                ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/TourokuProjectApi")', "CastingName");
-                ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
-                YearMonthCheck($("#StartDate"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
-                YearMonthCheck($("#EndDate"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
-                LessthanZeroCheck($("#Production"), '@Url.Action("LessthanZero_Checking", "api/CommonApi")');
-                LessthanZeroCheck($("#saleprice"), '@Url.Action("LessthanZero_Checking", "api/CommonApi")');
-                AlreadyExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', $("#ProjectCD").val());
                 ShowData();
+                $('#btnSave').html('登録');
+                $("#ProjectCD").focus();
+
+                DoubleByteCheck($("#ProjectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "ProjectName");
+                
+                RequiredCheck($("#HinbanCD"));
+                DoubleByteCheck($("#HinbanCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                AlreadyExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', $("#ProjectCD").val());
+                
+                RequiredCheck($("#HinbanName"));
+
+                RequiredCheck($("#Production"));
+                LessthanZeroCheck($("#Production"), '@Url.Action("LessthanZero_Checking", "api/CommonApi")');
+
+                RequiredCheck($("#saleprice"));
+                LessthanZeroCheck($("#saleprice"), '@Url.Action("LessthanZero_Checking", "api/CommonApi")');
+
+                DoubleByteCheck($("#CastingCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/TourokuProjectApi")', "CastingName");
+                
             }
             else if (Mode == 'Delete') {
                 $('#btnSave').html('削除');
+
                 $("#ProjectCD").attr('disabled', 'disabled');
-                $("#ProjectName").attr('disabled', 'disabled');
-                $("#Year").attr('disabled', 'disabled');
-                $("#Season").attr('disabled', 'disabled');
-                $("#BrandCD").attr('disabled', 'disabled');
-                $("#BrandName").attr('disabled', 'disabled');
-                $("#StartDate").attr('disabled', 'disabled');
-                $("#EndDate").attr('disabled', 'disabled');
-                $("#totalProNo").attr('disabled', 'disabled');
-                $("#totalamount").attr('disabled', 'disabled');
                 $("#HinbanCD").attr('disabled', 'disabled');
                 $("#HinbanName").attr('disabled', 'disabled');
                 $("#Color").attr('disabled', 'disabled');
@@ -211,9 +230,9 @@
                 $("#saleprice").attr('disabled', 'disabled');
                 $("#Amount").attr('disabled', 'disabled');
                 $("#CastingCD").attr('disabled', 'disabled');
-                $("#CastingName").attr('disabled', 'disabled');
                 $("#freeitem1").attr('disabled', 'disabled');
                 $("#freeitem2").attr('disabled', 'disabled');
+
                 $("#btnSave").focus();
                 ShowData();
             }
@@ -221,10 +240,29 @@
 
         function ProjectCheck(result) {
             if (result == 'OK') {
-                RequiredCheck($("#HinbanCD"));
                 AlreadyExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', $("#ProjectCD").val());
-                prjCheck();
+                ShowProjectData();
             }
+        }
+
+        function ShowProjectData() {
+            var Tmodel = {
+                ProjectCD: $('#ProjectCD').val(),
+            };
+            var data = CalltoApiController('@Url.Action("M_Hinban_Check_List", "api/TourokuProjectApi")', Tmodel);
+            var hbdata = JSON.parse(data);
+            $("#ProjectCD").val(hbdata[0].ProjectCD);
+            $("#ProjectName").val(hbdata[0].ProjectName);
+            $("#Year").val(hbdata[0].Year);
+            $("#Season").val(hbdata[0].Season);
+            $("#BrandCD").val(hbdata[0].BrandCD);
+            $("#BrandName").val(hbdata[0].BrandName);
+            $("#StartDate").val(hbdata[0].PeriodStart);
+            $("#EndDate").val(hbdata[0].PeriodEnd);
+            $("#totalProNo").val(hbdata[0].TotalProduction);
+            $("#totalamount").val(hbdata[0].TotalSP);
+            $("#DeliverNo").val(hbdata[0].TotalDeliveryAmount);
+            $("#Amount").val(hbdata[0].TotalSP);
         }
 
         function CheckProduction(result) {
@@ -242,30 +280,13 @@
             }
         }
 
-        function btnSaveClick() {
-            var res = ErrorCheckOnSave();
-            if (res == "0") {
-                var Mode = '@Model.Mode';
-                //show confirm message
-                if (Mode == "Delete") {
-                    ShowConfirmMessage("Q102", "DeleteConfrim");
-                }
-                else {
-                 
-                    DoProcess();
-                }
-            }
-            else
-                ShowErrorMessage(res);
-        }
-
-        function ShowData() {
-
+         function ShowData() {
             var Tmodel = {
                 HinbanCD: '@Model.HinbanCD',
                 ProjectCD: '@Model.ProjectCD'
 
             };
+            
             var data = CalltoApiController('@Url.Action("M_HinBan_Select_Edit", "api/TourokuProjectApi")', Tmodel);
             var hinbandata = JSON.parse(data);
             $("#ProjectCD").val(hinbandata[0].ProjectCD);
@@ -279,11 +300,11 @@
             $("#Production").val(hinbandata[0].Production);
             $("#saleprice").val(hinbandata[0].SalesPrice);
             $("#totalProNo").val(hinbandata[0].TotalProduction);
-            $("#totalamount").val(hinbandata[0].TotalSalesPrice);
+            $("#totalamount").val(hinbandata[0].TotalSP);
             $("#HinbanCD").val(hinbandata[0].HinbanCD);
             $("#HinbanName").val(hinbandata[0].HinbanName);
-            $("#DeliverNo").val(hinbandata[0].DeliveryAmount);
-            $("#Amount").val(hinbandata[0].TotalSalesPrice);
+            $("#DeliverNo").val(hinbandata[0].TotalDeliveryAmount);
+            $("#Amount").val(hinbandata[0].TotalSP);
             $("#CastingCD").val(hinbandata[0].CastingCD);
             $("#CastingName").val(hinbandata[0].CastingName);
             $("#Color").val(hinbandata[0].Color);
@@ -291,28 +312,34 @@
             $("#freeitem2").val(hinbandata[0].FreeItem2);
 
         }
-        
+
+        function btnSaveClick() {
+            var res = ErrorCheckOnSave();
+            if (res == "0") {
+                var Mode = '@Model.Mode';
+                //show confirm message
+                if (Mode == "Delete") {
+                    var res1 = ErrorCheckBreforeDelete();
+                    if (res1 == "0") {
+                        ShowConfirmMessage("Q102", "DeleteConfrim");
+                        DoProcess();
+                    }
+                    else {
+                        ShowErrorMessage(res1);
+                    }
+                }
+                else {
+                    DoProcess();
+                }
+            }
+            else
+                ShowErrorMessage(res);
+        }
+
         //insert,update
         function DoProcess() {
-            var Mode = '@Model.Mode';
-            if (Mode == 'New' || Mode == 'Edit' || Mode == 'Copy') {
-                var Tmodel = {
-                    ProjectCD: $("#ProjectCD").val(),
-                    HinbanCD: $("#HinbanCD").val(),
-                    HinbanName: $("#HinbanName").val(),
-                    Color: $("#Color").val(),
-                    CastingCD: $("#CastingCD").val(),
-                    Production: $("#Production").val(),
-                    SalePrice: $("#saleprice").val(),
-                    FreeItem1: $("#freeitem1").val(),
-                    FreeItem2: $("#freeitem2").val(),
-                    
-                    Mode: '@Model.Mode'
-                };
-                        var data = CalltoApiController('@Url.Action("Hinban_CUD", "api/TourokuProjectApi")', Tmodel);
-                        ShowSuccessMessage(data, '@Url.Action("TourokuHinban_List", "TourokuProject")');
-            }
-            else if (Mode == 'Delete') {
+            @*var Mode = '@Model.Mode';
+            if (Mode == 'Delete') {
                 var cost = DCost_Check();
                 if (cost == "E119") {
                     ShowErrorMessage("E119");
@@ -333,6 +360,23 @@
                     }
                 }
             }
+            else {*@
+                 var Tmodel = {
+                    ProjectCD: $("#ProjectCD").val(),
+                    HinbanCD: $("#HinbanCD").val(),
+                    HinbanName: $("#HinbanName").val(),
+                    Color: $("#Color").val(),
+                    CastingCD: $("#CastingCD").val(),
+                    Production: $("#Production").val(),
+                    SalePrice: $("#saleprice").val(),
+                    FreeItem1: $("#freeitem1").val(),
+                    FreeItem2: $("#freeitem2").val(),
+                    
+                    Mode: '@Model.Mode'
+                };
+                var data = CalltoApiController('@Url.Action("Hinban_CUD", "api/TourokuProjectApi")', Tmodel);
+                ShowSuccessMessage(data, '@Url.Action("TourokuHinban_List", "TourokuProject")');
+            //}
            
         }
 
@@ -340,7 +384,7 @@
             DoProcess();
         }
 
-        function DCost_Check() {
+        @*function DCost_Check() {
             var Tmodel = {
                  HinbanCD: $("#HinbanCD").val(),
                  ProjectCD: $("#ProjectCD").val(),
@@ -368,34 +412,37 @@
             else {
                 return checkdata[0].MessageID;
             }
-        }
+        }*@
+
+     function ErrorCheckBreforeDelete() {
+        var Tmodel = {
+            ProjectCD: $("#ProjectCD").val(),
+            HinbanCD: $("#HinbanCD").val()
+        };
+        var data = CalltoApiController('@Url.Action("D_Cost_ExistsDeleteCheck", "api/TourokuProjectApi")', Tmodel);
+        var costcheck = JSON.parse(data);
+            if (costcheck[0].MessageID == "E119") {
+                return "E119";
+            }
+            else {
+                   var data = CalltoApiController('@Url.Action("D_Devliery_ExistsDeleteCheck", "api/TourokuProjectApi")', Tmodel);
+                   var deliverycheck = JSON.parse(data);
+                    if (deliverycheck[0].MessageID == "E126") {
+                        return "E126";
+                    }
+                   else {
+                           return "0";
+                    }
+           }
+        return "0";
+    }
      
         function btnCancelClick() {
             location.href = '@Url.Action("TourokuHinban_List", "TourokuProject")';
         }
 
-        function prjCheck() {
-            var Tmodel = {
-                ProjectCD: $('#ProjectCD').val(),
-                //HinbanCD: $('#HinbanCD').val(),
-            };
-            var data = CalltoApiController('@Url.Action("M_Hinban_Check_List", "api/TourokuProjectApi")', Tmodel);
-            var hbdata = JSON.parse(data);
-            $("#ProjectCD").val(hbdata[0].ProjectCD);
-            $("#ProjectName").val(hbdata[0].ProjectName);
-            $("#Year").val(hbdata[0].Year);
-            $("#Season").val(hbdata[0].Season);
-            $("#BrandCD").val(hbdata[0].BrandCD);
-            $("#BrandName").val(hbdata[0].BrandName);
-            $("#StartDate").val(hbdata[0].PeriodStart);
-            $("#EndDate").val(hbdata[0].PeriodEnd);
-            $("#totalProNo").val(hbdata[0].TotalProduction);
-            $("#totalamount").val(hbdata[0].TotalSalesPrice);
-            $("#DeliverNo").val(hbdata[0].DeliveryAmount);
-            $("#Amount").val(hbdata[0].TotalSalesPrice);
-        }
+        
 
-      
-    </script>
+ </script>
    
 }
