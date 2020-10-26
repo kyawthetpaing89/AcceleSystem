@@ -15,13 +15,13 @@
                 <div class="card-body card-block">
                     <div class="row form-group">
                         <div class="col col-md-12">
-                            <button id="btnAdd" onclick="btnAddClick()" class="btn btn-primary col-xl-5 text-center" tabindex="38">
+                            <button id="btnAdd" onclick="btnAddClick()" class="btn btn-primary col-xl-5 text-center" tabindex="13">
                                 プロジェクト追加
                             </button>&nbsp;
-                            <button id="btnnext" onclick="btnNextClick()" class="btn btn-next col-xl-3 text-center" tabindex="38">
+                            <button id="btnnext" onclick="btnNextClick()" class="btn btn-next col-xl-3 text-center" tabindex="14">
                                 品番検索
                             </button>&nbsp;
-                            <button id="btnCSV" onclick="btnCSVClick()" class="btn btn-csv col-xl-2 text-center" tabindex="38">
+                            <button id="btnCSV" onclick="btnCSVClick()" class="btn btn-csv col-xl-2 text-center" tabindex="15">
                                 CSV
                             </button>
                             <div id="registration" style="padding-top: 1.8rem!important;">
@@ -417,8 +417,25 @@
 
         function btnDelClick(BrandCD, ProjectCD) {
             location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?ProjectCD=' + ProjectCD + '&BrandCD=' + BrandCD + '&Mode=Delete';
-        }
-        </script>
+     }
+
+     $('#btnCSV').keydown(function (e) {
+         var code = e.keyCode || e.which;
+         if (code == 9) {
+             if (e.shiftKey) {
+                 //Focus previous input
+                 if (thisTab == startIndex) {
+                     $("." + tabLimitInID).find('[tabindex=' + lastIndex + ']').focus();
+                     return false;
+                 }
+                 else {
+                     e.preventDefault();
+                 }
+             }
+             e.preventDefault();
+         }
+     });
+  </script>
 
 
     }
