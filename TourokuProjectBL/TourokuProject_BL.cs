@@ -161,9 +161,9 @@ namespace TourokuProjectBL
             Tmodel.Sqlprms[1] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = Tmodel.HinbanCD };
             Tmodel.Sqlprms[2] = new SqlParameter("@HinbanName", SqlDbType.VarChar) { Value = Tmodel.HinbanName };
             Tmodel.Sqlprms[3] = new SqlParameter("@CastingCD", SqlDbType.VarChar) { Value = Tmodel.CastingCD };
-            Tmodel.Sqlprms[4] = new SqlParameter("@StartPrice", SqlDbType.VarChar) { Value = Tmodel.StartPrice };
-            Tmodel.Sqlprms[5] = new SqlParameter("@EndPrice", SqlDbType.VarChar) { Value = Tmodel.EndPrice };
-            Tmodel.Sqlprms[6] = new SqlParameter("@CompleteYM", SqlDbType.VarChar) { Value = Tmodel.CompleteYM };
+            Tmodel.Sqlprms[4] = new SqlParameter("@StartPrice", SqlDbType.Int) { Value = (object)Tmodel.StartPrice ?? DBNull.Value };
+            Tmodel.Sqlprms[5] = new SqlParameter("@EndPrice", SqlDbType.Int) { Value = (object)Tmodel.EndPrice ?? DBNull.Value };
+            Tmodel.Sqlprms[6] = new SqlParameter("@CompleteYM", SqlDbType.Int) { Value = (object)Tmodel.CompleteYM ?? DBNull.Value };
             return bdl.SelectJson("M_HinBan_Search_List", Tmodel.Sqlprms);
 
         }
