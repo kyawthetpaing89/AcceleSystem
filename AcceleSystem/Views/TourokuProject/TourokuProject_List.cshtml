@@ -15,14 +15,13 @@
                 <div class="card-body card-block">
                     <div class="row form-group">
                         <div class="col col-md-12">
-                            <button id="btnAdd" onclick="btnAddClick()" class="btn btn-primary col-xl-4 text-center" tabindex="38" >
+                            <button id="btnAdd" onclick="btnAddClick()" class="btn btn-primary col-xl-5 text-center" tabindex="13">
                                 プロジェクト追加
-                            </button>
-                            <button id="btnnext" onclick="btnNextClick()" class="btn btn-next col-xl-3 text-center" tabindex="38" >
+                            </button>&nbsp;
+                            <button id="btnnext" onclick="btnNextClick()" class="btn btn-next col-xl-3 text-center" tabindex="14">
                                 品番検索
-                            </button>
-
-                            <button id="btnCSV" onclick="btnCSVClick()" class="btn btn-csv col-xl-2 text-center" tabindex="38" >
+                            </button>&nbsp;
+                            <button id="btnCSV" onclick="btnCSVClick()" class="btn btn-csv col-xl-2 text-center" tabindex="15">
                                 CSV
                             </button>
                             <div id="registration" style="padding-top: 1.8rem!important;">
@@ -33,8 +32,8 @@
                                     <div class="col-md-12" style="padding-left:17px;">
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label id="text" style="padding-right: 12px;">ブランド名</label>
-                                            <input type="text" tabindex="1" class="text-line col-xl-3 text-left" id="BrandCD" name="brandcd" maxlength="6" onkeydown="KeyDown(event,this)" required placeholder="入力" >
-                                            <input type="text" tabindex="2" class="text-line col-xl-3 text-left" id="BrandName" name="brandname" maxlength="40" onkeydown="KeyDown(event,this)" required placeholder="入力" >
+                                            <input type="text" tabindex="1" class="text-line col-xl-3 text-left" id="BrandCD" name="brandcd" maxlength="6" onkeydown="KeyDown(event,this)" required placeholder="入力">
+                                            <input type="text" tabindex="2" class="text-line col-xl-3 text-left" id="BrandName" name="brandname" maxlength="40" onkeydown="KeyDown(event,this)" required placeholder="入力">
                                         </div>
                                     </div>
                                 </div>
@@ -45,9 +44,9 @@
                                             <label id="text" style="padding-right:15px;">シーズン</label>
                                             <input type="checkbox" tabindex="3" id="Degreeyear" name="checkbox" onkeydown="KeyDown(event,this)" checked>
                                             <label style="padding-right:20px;">通年</label>
-                                            <input type="checkbox"  tabindex="3" id="SS" name="checkbox" onkeydown="KeyDown(event,this)">
+                                            <input type="checkbox" tabindex="3" id="SS" name="checkbox" onkeydown="KeyDown(event,this)">
                                             <label style="padding-right:20px;">SS</label>
-                                            <input type="checkbox" tabindex="4"  id="FW" name="checkbox" onkeydown="KeyDown(event,this)">
+                                            <input type="checkbox" tabindex="4" id="FW" name="checkbox" onkeydown="KeyDown(event,this)">
                                             <label>FW</label>
 
                                         </div>
@@ -67,8 +66,8 @@
                                     <div class="col-md-12" style="padding-left:0px;">
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label id="text" style="padding-right: 12px;">プロジェクト</label>
-                                            <input type="text" tabindex="6" class="text-line col-xl-3 text-left" id="ProjectCD" name="projectcd" maxlength="10" onkeydown="KeyDown(event,this)" required placeholder="入力" >
-                                            <input type="text" tabindex="7" class="text-line col-xl-3 text-left" id="ProjectName" name="projectname" maxlength="60" onkeydown="KeyDown(event,this)" required placeholder="入力" >
+                                            <input type="text" tabindex="6" class="text-line col-xl-3 text-left" id="ProjectCD" name="projectcd" maxlength="10" onkeydown="KeyDown(event,this)" required placeholder="入力">
+                                            <input type="text" tabindex="7" class="text-line col-xl-3 text-left" id="ProjectName" name="projectname" maxlength="60" onkeydown="KeyDown(event,this)" required placeholder="入力">
 
                                         </div>
                                     </div>
@@ -79,7 +78,7 @@
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label id="text" style="padding-right: 12px;">予定期間</label>
                                             <input type="text" tabindex="8" class="text-line col-xl-3 text-left" id="PeriodStart" name="periodstart" onkeydown="KeyDown(event,this)" required placeholder="入力">
-                                            <input type="text" tabindex="9" class="text-line col-xl-3 text-left" id="PeriodEnd" name="periodend" onkeydown="KeyDown(event,this,'DateCompare')" required placeholder="入力" >
+                                            <input type="text" tabindex="9" class="text-line col-xl-3 text-left" id="PeriodEnd" name="periodend" onkeydown="KeyDown(event,this,'DateCompare')" required placeholder="入力">
 
                                         </div>
                                     </div>
@@ -90,21 +89,21 @@
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label id="text" style="padding-right: 12px;">責任者</label>
                                             <input type="text" tabindex="10" class="text-line col-xl-3 text-left" id="ProjectManager" name="projectmanager" maxlength="20" onkeydown="KeyDown(event,this)" required placeholder="入力">
-                                            <input type="text" tabindex="11" class="text-line col-xl-3 text-left" id="ProjectManagerName" name="projectmanagername" onkeydown="KeyDown(event,this)" required placeholder="入力" >
+                                            <input type="text" tabindex="11" class="text-line col-xl-3 text-left" id="ProjectManagerName" name="projectmanagername" onkeydown="KeyDown(event,this)" required placeholder="入力">
 
                                         </div>
                                     </div>
                                 </div>
                                 <div class="pt-3 md-form" style="padding-left:0px; padding-top:2rem;">
                                     <div class="col-xl-12">
-                                        <div class="col-xl-9" >
+                                        <div class="col-xl-9">
                                             <button id="btnSearch" tabindex="12" onclick="btnSearchClick()" class="btn btn-dark col-xl-3 text-center float-lg-right">検索</button>
                                             &nbsp;&nbsp;&nbsp;&nbsp;
 
                                         </div>
                                     </div>
                                 </div>
-                             </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -418,8 +417,26 @@
 
         function btnDelClick(BrandCD, ProjectCD) {
             location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?ProjectCD=' + ProjectCD + '&BrandCD=' + BrandCD + '&Mode=Delete';
-        }
-        </script>
+     }
+
+     $('#btnCSV').keydown(function (e) {
+         var code = e.keyCode || e.which;
+         if (code == 9) {
+             if (e.shiftKey) {
+                 //Focus previous input
+                 if (thisTab == startIndex) {
+                     $("." + tabLimitInID).find('[tabindex=' + lastIndex + ']').focus();
+                     return false;
+                 }
+                 else {
+                     e.preventDefault();
+                 }
+             }
+             e.preventDefault();
+         }
+     });
+
+  </script>
 
 
     }

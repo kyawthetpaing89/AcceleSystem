@@ -7,162 +7,163 @@
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
 }
 
+<div id="divMain" class="container-fluid">
+        <div class="card">
+            <div class="row">
+                <div class="col-xs-12 col-md-5">
+                    <div class="card-body card-block">
+                        <div class="row form-group">
+                            <div class="col col-md-12">
+                                <button id="btnAdd" onclick="btnAddClick()" class="btn btn-primary col-xl-3 text-center" tabindex="20">品番追加</button>&nbsp;
+                                <button id="btnnext" onclick="btnnextClick()" class="btn btn-next col-xl-4 text-center" tabindex="21">プロジェクト検索</button>
 
-<div class="card">
-    <div class="row">
-        <div class="col-xs-12 col-md-5">
-            <div class="card-body card-block">
-                <div class="row form-group">
-                    <div class="col col-md-12">
-                        <button id="btnAdd" onclick="btnAddClick()" class="btn btn-primary col-xl-3 text-center" tabindex="40">品番追加</button>&nbsp;
-                        <button id="btnnext" onclick="btnnextClick()" class="btn btn-next col-xl-4 text-center" tabindex="40">プロジェクト検索</button>
-
-                        <div id="registration" style="padding-top: 1.8rem!important;">
-                            <div>
-                                <h4 class=" hr-text text-center">経費設定登録</h4>
-                            </div>
-                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                <div class="col-md-12" style="padding-left:0px;">
-                                    <div class="text-s text-custom1 text-uppercase mb-1">
-                                        <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this,'ProjectCDCheck')" id="proCD" name="proCD" maxlength="10" required placeholder="プロジェクトコード">
-
-                                        <input type="text" tabindex="2" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="proName" name="proName" maxlength="60" required placeholder="プロジェクト名">
+                                <div id="registration" style="padding-top: 1.8rem!important;">
+                                    <div>
+                                        <h4 class=" hr-text text-center">経費設定登録</h4>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                <div class="col-md-12" style="padding-left:0px;">
-                                    <div class="text-s text-custom1 text-uppercase mb-1">
-                                        <input type="text" tabindex="3" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="year" name="year" maxlength="4" required placeholder="年度">
+                                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                        <div class="col-md-12" style="padding-left:0px;">
+                                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                                <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this,'ProjectCDCheck')" id="proCD" name="proCD" maxlength="10" required placeholder="プロジェクトコード">
 
-                                        <input type="text" tabindex="4" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="season" name="season" maxlength="40" required placeholder="シーズン">
+                                                <input type="text" tabindex="2" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="proName" name="proName" maxlength="60" required placeholder="プロジェクト名">
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                <div class="col-md-12" style="padding-left:0px;">
-                                    <div class="text-s text-custom1 text-uppercase mb-1">
-                                        <input type="text" tabindex="5" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="BrandCD" name="brand" maxlength="50" required placeholder="ブランドコード">
-                                        <input type="text" tabindex="6" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="BrandName" name="brandname" maxlength="50" required placeholder="ブランド名">
+                                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                        <div class="col-md-12" style="padding-left:0px;">
+                                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                                <input type="text" tabindex="3" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="year" name="year" maxlength="4" required placeholder="年度">
+
+                                                <input type="text" tabindex="4" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="season" name="season" maxlength="40" required placeholder="シーズン">
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                <div class="col-md-12" style="padding-left:0px;">
-                                    <div class="text-s text-custom1 text-uppercase mb-1">
-                                        <label style="padding:initial;width: 80px;">予定期間</label>
-                                        <input type="text" tabindex="7" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="StartDate" name="StartDate" maxlength="7" required>
-                                        <label class="col-xl-1">~</label>
-                                        <input type="text" tabindex="8" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="EndDate" name="EndDate" maxlength="7" required>
-
+                                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                        <div class="col-md-12" style="padding-left:0px;">
+                                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                                <input type="text" tabindex="5" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="BrandCD" name="brand" maxlength="50" required placeholder="ブランドコード">
+                                                <input type="text" tabindex="6" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="BrandName" name="brandname" maxlength="50" required placeholder="ブランド名">
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                <div class="col-md-12" style="padding-left:0px;">
-                                    <div class="text-s text-custom1 text-uppercase mb-1">
-                                        <input type="text" tabindex="9" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="tpNo" name="tpNo" maxlength="10" required placeholder="総生産数">
+                                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                        <div class="col-md-12" style="padding-left:0px;">
+                                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                                <label style="padding:initial;width: 80px;">予定期間</label>
+                                                <input type="text" tabindex="7" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="StartDate" name="StartDate" maxlength="7" required>
+                                                <label class="col-xl-1">~</label>
+                                                <input type="text" tabindex="8" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="EndDate" name="EndDate" maxlength="7" required>
 
-                                        <input type="text" tabindex="10" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="tAmount" name="tAmount" maxlength="10" required placeholder="総金額">
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                <div class="col-md-12" style="padding-left:0px;">
-                                    <div class="text-s text-custom1 text-uppercase mb-1">
-                                        <input type="text" tabindex="11" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this,'HinbanCheck')" id="HinbanCD" name="HinbanCD" maxlength="10" required placeholder="品番コード">
+                                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                        <div class="col-md-12" style="padding-left:0px;">
+                                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                                <input type="text" tabindex="9" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="tpNo" name="tpNo" maxlength="10" required placeholder="総生産数">
 
-                                        <input type="text" tabindex="12" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="HinbanName" name="HinbanName" maxlength="60" required placeholder="品番名">
-
+                                                <input type="text" tabindex="10" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="tAmount" name="tAmount" maxlength="10" required placeholder="総金額">
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                <div class="col-md-12" style="padding-left:0px;">
-                                    <div class="text-s text-custom1 text-uppercase mb-1">
-                                        <label style="padding:initial;width: 80px;">予定単価</label>
+                                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                        <div class="col-md-12" style="padding-left:0px;">
+                                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                                <input type="text" tabindex="11" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this,'HinbanCheck')" id="HinbanCD" name="HinbanCD" maxlength="10" required placeholder="品番コード">
 
-                                        <input type="text" tabindex="13" class="text-line col-xl-3 text-left input-numeral1" onkeydown="KeyDown(event,this)" id="StartPrice" name="StartPrice" maxlength="7" required placeholder="0">
-                                        <label class="col-xl-1">~</label>
-                                        <input type="text" tabindex="14" class="text-line col-xl-3 text-left input-numeral2" onkeydown="KeyDown(event,this,'CheckPrice')" id="EndPrice" name="EndPrice" maxlength="7" required placeholder="5,000">
+                                                <input type="text" tabindex="12" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="HinbanName" name="HinbanName" maxlength="60" required placeholder="品番名">
 
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                <div class="col-md-12" style="padding-left:0px;">
-                                    <div class="text-s text-custom1 text-uppercase mb-1">
-                                        <label style="width: 80px;">金型</label>
-                                        <input type="text" tabindex="15" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="CastingCD" name="CastingCD" maxlength="20" required placeholder="入力">
+                                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                        <div class="col-md-12" style="padding-left:0px;">
+                                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                                <label style="padding:initial;width: 80px;">予定単価</label>
 
-                                        <input type="text" tabindex="16" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="CastingName" name="CastingName" maxlength="40" required>
+                                                <input type="text" tabindex="13" class="text-line col-xl-3 text-left input-numeral1" onkeydown="KeyDown(event,this)" id="StartPrice" name="StartPrice" maxlength="7" required placeholder="0">
+                                                <label class="col-xl-1">~</label>
+                                                <input type="text" tabindex="14" class="text-line col-xl-3 text-left input-numeral2" onkeydown="KeyDown(event,this,'CheckPrice')" id="EndPrice" name="EndPrice" maxlength="7" required placeholder="5,000">
 
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                <div class="col-md-12" style="padding-left:0px;">
-                                    <div class="text-s text-custom1 text-uppercase mb-1">
-                                        <label class="text" style="padding-right:20px;">納品状況</label>
-                                        <input type="checkbox" id="deliveryleft" name="check">
-                                        <label style="padding-right:20px;">納品残あり</label>
-                                        <input type="checkbox" id="payment" name="">
-                                        <label style="padding-right:20px;">完納</label>
+                                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                        <div class="col-md-12" style="padding-left:0px;">
+                                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                                <label style="width: 80px;">金型</label>
+                                                <input type="text" tabindex="15" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="CastingCD" name="CastingCD" maxlength="10" required placeholder="入力">
 
+                                                <input type="text" tabindex="16" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="CastingName" name="CastingName" maxlength="40" required>
+
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="pt-3 md-form" style="padding-left:0px; padding-top:2rem;">
-                                <div class="col-xl-12">
-                                    <div class="col-xl-9">
-                                        <button id="btnSearch" tabindex="17" onclick="btnSearchClick()" class="btn btn-dark col-xl-3 text-center float-lg-right">検索</button>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                        <div class="col-md-12" style="padding-left:0px;">
+                                            <div id="CompleteYMgp" class="text-s text-custom1 text-uppercase mb-1">
+                                                <label class="text" style="padding-right:20px;">納品状況</label>
+                                                <input type="checkbox" tabindex="17" id="deliveryleft" name="check" onkeydown="KeyDown(event,this)" checked>
+                                                <label style="padding-right:20px;">納品残あり</label>
+                                                <input type="checkbox" tabindex="18" id="payment" name="check" onkeydown="KeyDown(event,this)">
+                                                <label style="padding-right:20px;">完納</label>
 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pt-3 md-form" style="padding-left:0px; padding-top:2rem;">
+                                        <div class="col-xl-12">
+                                            <div class="col-xl-9">
+                                                <button id="btnSearch" tabindex="19" onclick="btnSearchClick()" class="btn btn-dark col-xl-3 text-center float-lg-right">検索</button>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;
+
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-xs-12 col-md-6">
-            <div class="card-body card-block">
-                <table id="tblProject" class="tb1 col-sm-12" style="margin-left:10px;">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <th>番号</th>
-                            <th>品番名</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <th>金型</th>
-                            <th>生産数</th>
-                            <th>予定単価</th>
-                            <th>総金額</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                </table>
+                <div class="col-xs-12 col-md-6">
+                    <div class="card-body card-block">
+                        <table id="tblProject" class="tb1 col-sm-12" style="margin-left:10px;">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <th>番号</th>
+                                    <th>品番名</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <th>金型</th>
+                                    <th>生産数</th>
+                                    <th>予定単価</th>
+                                    <th>総金額</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="col-xs-12 col-md-2"></div>
             </div>
 
         </div>
-        <div class="col-xs-12 col-md-2"></div>
-    </div>
-
 </div>
 
-@section Scripts{
-<script type="text/javascript">
+ @section Scripts{
+ <script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("品番検索");
             $("#proCD").focus();
@@ -176,33 +177,59 @@
             $("#EndDate").attr('disabled', 'disabled');
             $("#tpNo").attr('disabled', 'disabled');
             $("#tAmount").attr('disabled', 'disabled');
+            $("#CastingName").attr('disabled', 'disabled');
+
+            RequiredCheck($("#proCD"));
+            ExistsCheck($("#proCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "proName");
+            DoubleByteCheck($("#HinbanCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
 
             ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/TourokuProjectApi")', "CastingName");
-            HinBanTable();
+            DoubleByteCheck($("#CastingCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
 
+            GetHinban();
         });
 
-        
-    function HinBanTable() {
-        var model = {
 
+    function GetHinban() {
+        var Tmodel = {
+            ProjectCD: $('#proCD').val(),
+            HinbanCD: $('#HinbanCD').val(),
+            HinbanName: $('#HinbanName').val(),
+            CastingCD: $('#CastingCD').val(),
+            StartPrice: $('#StartPrice').val(),
+            EndPrice: $('#EndPrice').val(),
         };
+        if ($('#deliveryleft').is(':checked'))
+            Tmodel.CompleteYM = "1";
+        else if ($('#payment').is(':checked'))
+            Tmodel.CompleteYM = "2";
 
-        $.ajax({
-            type: "Post",
-            url: "@Url.Action("M_HinBan_Select_List", "api/TourokuProjectApi")",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            data: JSON.stringify(model),
-            headers:
-            {
-                Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-            },
-            success: function (response) {
-                BindTable(response);
-            }
-        });
+        //$('#CompleteYMgp *').filter(':input').each(function () {
+        //    if ($(this).attr('type') == "checkbox") {
+               
+        //    }
+        //   // alert($('[type=checkbox]').attr('id'));
+        //    //if ($(":input").attr('type') == "checkbox") {
+        //    //    alert("b");
+        //    //    if ($('#deliveryleft').is(':checked'))
+        //    //        alert("a");
+        //    //}
+        //});
 
+         $.ajax({
+                type: "Post",
+                url: "@Url.Action("M_HinBan_Search_List", "api/TourokuProjectApi")",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify(Tmodel),
+                headers:
+                {
+                    Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
+                },
+                success: function (response) {
+                    BindTable(response);
+                }
+            });
     }
 
     function BindTable(response) {
@@ -262,32 +289,115 @@
 
     }
 
-    function btnSearchClick() {
-        var deliveryleft = $('#deliveryleft').is(':checked');
-        var payment = $('#payment').is(':checked')
-            if (!deliveryleft && !payment) {
-            var data = ShowErrorMessage("E111");
-                return data;
-            }
-            else {
-                var Tmodel = {
+    function ProjectCDCheck(result) {
+        if (result == 'OK') {
+            Check();
+            ExistsCheck($("#HinbanCD"),"Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "HinbanName", $("#proCD").val());
+        }
+    }
+
+    function Check() {
+        if ($("#proCD").val()) {
+            var Tmodel = {
                 ProjectCD: $('#proCD').val(),
-                HinbanCD: $('#HinbanCD').val(),
-                HinbanName: $('#HinbanName').val(),
-                CastingCD: $('#CastingCD').val(),
+                //HinbanCD: $('#HinbanCD').val(),
+            };
+            var data = CalltoApiController('@Url.Action("M_Hinban_Check_List", "api/TourokuProjectApi")', Tmodel);
+            var hbdata = JSON.parse(data);
+            $("#proCD").val(hbdata[0].ProjectCD);
+            $("#proName").val(hbdata[0].ProjectName);
+            $("#year").val(hbdata[0].Year);
+            $("#season").val(hbdata[0].Season);
+            $("#BrandCD").val(hbdata[0].BrandCD);
+            $("#BrandName").val(hbdata[0].BrandName);
+            $("#StartDate").val(hbdata[0].PeriodStart);
+            $("#EndDate").val(hbdata[0].PeriodEnd);
+            $("#tpNo").val(hbdata[0].TotalProduction);
+            $("#tAmount").val(hbdata[0].TotalSP);
+        }
+        else {
+            $("#proCD").val('');
+            $("#proName").val('');
+            $("#year").val('');
+            $("#season").val('');
+            $("#BrandCD").val('');
+            $("#BrandName").val('');
+            $("#StartDate").val('');
+            $("#EndDate").val('');
+            $("#tpNo").val('');
+            $("#tAmount").val('');
+        }
+    }
+
+    function CheckPrice(result) {
+        if (result == 'OK') {
+            if (!($('#StartPrice').val().trim() == '' || $('#EndPrice').val().trim() == '')) {
+                var Tmodel = {
+                    StartPrice: $('#StartPrice').val(),
+                    EndPrice: $('#EndPrice').val(),
+                };
+                var data = CalltoApiController('@Url.Action("M_Hinban_Price_Check", "api/TourokuProjectApi")', Tmodel);
+                var SalePriceData = JSON.parse(data);
+                if (SalePriceData[0].flg == "false") {
+                    $("#EndPrice").focus();
+                    ShowErrorMessage("E124");
+                    //var data = ShowErrorMessage("E124");
+                    //StartPrice: $('#StartPrice').val("");
+                    //EndPrice: $('#EndPrice').val("");
+                    ////$("#StartPrice").focus();
+                    //return data;
+                }
+                else {
+                    $("#CastingCD").focus();
+                }
+            }
+        }
+    }
+
+    function CheckPriceOnSearch() {
+        if (!($('#StartPrice').val().trim() == '' || $('#EndPrice').val().trim() == '')) {
+            var Tmodel = {
                 StartPrice: $('#StartPrice').val(),
                 EndPrice: $('#EndPrice').val(),
             };
-            if ($('#deliveryleft').is(':checked'))
-                Tmodel.CompleteYM = "1";
-            else if ($('#payment').is(':checked'))
-                Tmodel.CompleteYM = "2";
-            var data = CalltoApiController('@Url.Action("M_HinBan_Search_List", "api/TourokuProjectApi")', Tmodel);
+            var data = CalltoApiController('@Url.Action("M_Hinban_Price_Check", "api/TourokuProjectApi")', Tmodel);
+            var SalePriceData = JSON.parse(data);
+            if (SalePriceData[0].flg == "false") {
+                return "E124";
+            }
+            else {
+                return "0";
+            }
         }
-        BindTable(data);
+        else return "0";
     }
 
-    function btnnextClick() {
+    function btnSearchClick() {
+        var deliveryleft = $('#deliveryleft').is(':checked');
+        var payment = $('#payment').is(':checked')
+        if (!deliveryleft && !payment) {
+            var data = ShowErrorMessage("E111");
+            return data;
+        }
+        else {
+            var res = ErrorCheckOnSave();
+            if (res == "0") {
+                var res1 = CheckPriceOnSearch();
+                if (res1 == "0") {
+                    GetHinban();
+                }
+                else {
+                    $("#EndPrice").focus();
+                    ShowErrorMessage(res1);
+                }
+            }
+            else {
+                ShowErrorMessage(res);
+            }
+        }
+    }
+
+     function btnnextClick() {
         location.href = '@Url.Action("TourokuProject_List", "TourokuProject")';
     }
 
@@ -305,60 +415,24 @@
 
     function btnCopyClick(ProjectCD, HinbanCD) {
         location.href = '@Url.Action("TourokuHinban_Entry", "TourokuProject")?HinbanCD=' + HinbanCD + '&ProjectCD=' + ProjectCD + ' &Mode=Copy';
-        }
+     }
 
-    function ProjectCDCheck(result) {
-        
-        if (result == 'OK') {
-            Check();
-            ExistsCheck($("#HinbanCD"),"Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "HinbanName", $("#proCD").val());
-        }
-    }
+     $('#btnnext').keydown(function (e) {
+         var code = e.keyCode || e.which;
+         if (code == 9) {
+             if (e.shiftKey) {
+                 //Focus previous input
+                 if (thisTab == startIndex) {
+                     $("." + tabLimitInID).find('[tabindex=' + lastIndex + ']').focus();
+                     return false;
+                 }
+                 else {
+                     e.preventDefault();
+                 }
+             }
+             e.preventDefault();
+         }
+     });
 
-
-    function CheckPrice(result) {
-
-        if (result == 'OK') {
-          
-            var Tmodel = {
-                StartPrice: $('#StartPrice').val(),
-                EndPrice:  $('#EndPrice').val(),
-            };
-             var data = CalltoApiController('@Url.Action("M_Hinban_Price_Check", "api/TourokuProjectApi")', Tmodel);
-            var SalePriceData = JSON.parse(data);
-            if (SalePriceData[0].flg == "false") {
-                var data = ShowErrorMessage("E124");
-                StartPrice: $('#StartPrice').val("");
-                EndPrice: $('#EndPrice').val("");
-                //$("#StartPrice").focus();
-                return data;
-            }
-            else { 
-                return "0";
-            }
-            
-        }
-    }
-   
-
-    function Check() {
-        var Tmodel = {
-            ProjectCD: $('#proCD').val(),
-            //HinbanCD: $('#HinbanCD').val(),
-        };
-        var data = CalltoApiController('@Url.Action("M_Hinban_Check_List", "api/TourokuProjectApi")', Tmodel);
-        var hbdata = JSON.parse(data);
-        $("#proCD").val(hbdata[0].ProjectCD);
-        $("#proName").val(hbdata[0].ProjectName);
-        $("#year").val(hbdata[0].Year);
-        $("#season").val(hbdata[0].Season);
-        $("#BrandCD").val(hbdata[0].BrandCD);
-        $("#BrandName").val(hbdata[0].BrandName);
-        $("#StartDate").val(hbdata[0].PeriodStart);
-        $("#EndDate").val(hbdata[0].PeriodEnd);
-        $("#tpNo").val(hbdata[0].TotalProduction);
-        $("#tAmount").val(hbdata[0].TotalSalesPrice);
-
-    }
-</script>
-}
+ </script>
+ }

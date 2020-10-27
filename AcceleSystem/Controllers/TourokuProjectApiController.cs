@@ -144,32 +144,6 @@ namespace AcceleSystem.Controllers
             return Tpbl.M_HinBan_ExistsCheck(Tmodel);
         }
 
-        //[UserAuthentication]
-        //[HttpPost]
-        //public string Production_LessthanCheck([FromBody] TourokuProjectModel Tmodel)
-        //{
-        //    if (!string.IsNullOrWhiteSpace(Tmodel.Production))
-        //    {
-        //        Tmodel.Production = Tmodel.Production.Replace(",", "");
-        //    }
-        //    TourokuProject_BL tbl = new TourokuProject_BL();
-        //    return tbl.LessthanZero_Checking(Tmodel.Production);
-
-        //}
-
-        //[UserAuthentication]
-        //[HttpPost]
-        //public string SalePrice_LessthanCheck([FromBody] TourokuProjectModel Tmodel)
-        //{
-        //    if (!string.IsNullOrWhiteSpace(Tmodel.SalePrice))
-        //    {
-        //        Tmodel.SalePrice = Tmodel.SalePrice.Replace(",", "");
-        //    }
-        //    TourokuProject_BL tbl = new TourokuProject_BL();
-        //    return tbl.LessthanZero_Checking(Tmodel.SalePrice);
-
-        //}
-
         [UserAuthentication]
         [HttpPost]
         public string M_Hinban_Price_Check([FromBody] TourokuProjectModel Tmodel)

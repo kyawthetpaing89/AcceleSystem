@@ -693,10 +693,10 @@ $(document).ready(function () {
         });
     }
 
-    if ($('.input-numeral7')[0]) {
+    if ($('.input-numeral7')[0]) {    // For CastingCD of MasterTouroku_Kanagata
         var cleaveNumeral7 = new Cleave('.input-numeral7', {
             numeral: true,
-            numeralThousandsGroupStyle: 'thousand'
+            numeralThousandsGroupStyle: 'none'
         });
     }
 
@@ -723,6 +723,27 @@ $(document).ready(function () {
 
     if ($('.input-numeral11')[0]) {   //projectEntry
         var cleaveNumeral11 = new Cleave('.input-numeral11', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'none'
+        });
+    }
+
+    if ($('.input-numeral12')[0]) {   // For CastingCD of HinbanEntry
+        var cleaveNumeral12 = new Cleave('.input-numeral12', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'none'
+        });
+    }
+
+    if ($('.input-numeral13')[0]) {   // For FreeItem2 of HinbanEntry
+        var cleaveNumeral13 = new Cleave('.input-numeral13', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'none'
+        });
+    }
+
+    if ($('.input-numeral14')[0]) {   // For Color of HinbanEntry
+        var cleaveNumeral14 = new Cleave('.input-numeral14', {
             numeral: true,
             numeralThousandsGroupStyle: 'none'
         });
