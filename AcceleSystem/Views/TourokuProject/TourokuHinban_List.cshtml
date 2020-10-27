@@ -102,7 +102,7 @@
                                     </div>
                                     <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                                         <div class="col-md-12" style="padding-left:0px;">
-                                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                            <div id="CompleteYMgp" class="text-s text-custom1 text-uppercase mb-1">
                                                 <label class="text" style="padding-right:20px;">納品状況</label>
                                                 <input type="checkbox" tabindex="17" id="deliveryleft" name="check" onkeydown="KeyDown(event,this)" checked>
                                                 <label style="padding-right:20px;">納品残あり</label>
@@ -203,6 +203,18 @@
             Tmodel.CompleteYM = "1";
         else if ($('#payment').is(':checked'))
             Tmodel.CompleteYM = "2";
+
+        //$('#CompleteYMgp *').filter(':input').each(function () {
+        //    if ($(this).attr('type') == "checkbox") {
+               
+        //    }
+        //   // alert($('[type=checkbox]').attr('id'));
+        //    //if ($(":input").attr('type') == "checkbox") {
+        //    //    alert("b");
+        //    //    if ($('#deliveryleft').is(':checked'))
+        //    //        alert("a");
+        //    //}
+        //});
 
          $.ajax({
                 type: "Post",
