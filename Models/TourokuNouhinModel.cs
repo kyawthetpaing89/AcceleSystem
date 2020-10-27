@@ -21,5 +21,9 @@ namespace Models
         public string HinbanName { get; set; }
         public string Production { get; set; }
         public string DeliveryStatus { get; set; }
+        //public string Remarks { get; set; }
+
+
+        
     }
 }

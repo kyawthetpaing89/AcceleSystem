@@ -132,6 +132,8 @@
                 
                 RequiredCheck($("#ProjectCD"));
                 ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "ProjectName");
+
+
                 RequiredCheck($("#DeliDate"));
                 DateCheck($("#DeliDate"), '@Url.Action("Date_Checking", "api/CommonApi")'); //E103
                 DateCheck($("#DeliDate"), '@Url.Action("Date_Checking", "api/CommonApi")', "2");  //E115
@@ -144,6 +146,7 @@
                 RequiredCheck($("#DeliDate"));
                 DateCheck($("#DeliDate"), '@Url.Action("Date_Checking", "api/CommonApi")'); //E103
                 DateCheck($("#DeliDate"), '@Url.Action("Date_Checking", "api/CommonApi")', "2");  //E115
+
                 ShowData();
             }
             else {

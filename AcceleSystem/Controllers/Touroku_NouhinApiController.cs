@@ -30,5 +30,13 @@ namespace AcceleSystem.Controllers
             Touroku_Nouhin_BL tnbl = new Touroku_Nouhin_BL();
             return tnbl.M_Project_Select_NouhinEntry(Tnmodel);
         }
+
+        //[UserAuthentication]
+        //[HttpPost]
+        //public string Nouhin_CUD([FromBody] TourokuNouhinModel Tnmodel)
+        //{
+        //    Touroku_Nouhin_BL tnbl = new Touroku_Nouhin_BL();
+        //    return tnbl.Nouhin_CUD(Tnmodel);
+        //}
     }
 }
