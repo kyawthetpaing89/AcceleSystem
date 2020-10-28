@@ -30,7 +30,7 @@ namespace Touroku_KeihiBL
             Kmodel.Sqlprms[3] = new SqlParameter("@CostDateTo", SqlDbType.Date) { Value = (object)Kmodel.CostDateTo ?? DBNull.Value };
             Kmodel.Sqlprms[4] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = (object)Kmodel.BrandCD ?? DBNull.Value };
             Kmodel.Sqlprms[5] = new SqlParameter("@BrandName", SqlDbType.VarChar) { Value = (object)Kmodel.BrandName ?? DBNull.Value };
-            Kmodel.Sqlprms[6] = new SqlParameter("@Season", SqlDbType.TinyInt) { Value = (object)Kmodel.Season ?? DBNull.Value };
+            Kmodel.Sqlprms[6] = new SqlParameter("@Season", SqlDbType.VarChar) { Value = (object)Kmodel.Season ?? DBNull.Value };
             Kmodel.Sqlprms[7] = new SqlParameter("@Year", SqlDbType.Int) { Value = (object)Kmodel.Year ?? DBNull.Value };
             Kmodel.Sqlprms[8] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = (object)Kmodel.ProjectCD ?? DBNull.Value };
             Kmodel.Sqlprms[9] = new SqlParameter("@ProjectName", SqlDbType.VarChar) { Value = (object)Kmodel.ProjectName ?? DBNull.Value };

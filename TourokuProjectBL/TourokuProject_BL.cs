@@ -14,7 +14,7 @@ namespace TourokuProjectBL
             Tmodel.Sqlprms = new SqlParameter[10];
             Tmodel.Sqlprms[0] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = Tmodel.BrandCD };
             Tmodel.Sqlprms[1] = new SqlParameter("@BrandName", SqlDbType.VarChar) { Value = Tmodel.BrandName };
-            Tmodel.Sqlprms[2] = new SqlParameter("@Season", SqlDbType.TinyInt) { Value = Tmodel.Season };
+            Tmodel.Sqlprms[2] = new SqlParameter("@Season", SqlDbType.VarChar) { Value = Tmodel.Season };
             Tmodel.Sqlprms[3] = new SqlParameter("@Year", SqlDbType.Int) { Value = (object)Tmodel.Year ?? DBNull.Value };
             Tmodel.Sqlprms[4] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = (object)Tmodel.ProjectCD ?? DBNull.Value };
             Tmodel.Sqlprms[5] = new SqlParameter("@ProjectName", SqlDbType.VarChar) { Value = Tmodel.ProjectName };
@@ -163,7 +163,7 @@ namespace TourokuProjectBL
             Tmodel.Sqlprms[3] = new SqlParameter("@CastingCD", SqlDbType.VarChar) { Value = Tmodel.CastingCD };
             Tmodel.Sqlprms[4] = new SqlParameter("@StartPrice", SqlDbType.Int) { Value = (object)Tmodel.StartPrice ?? DBNull.Value };
             Tmodel.Sqlprms[5] = new SqlParameter("@EndPrice", SqlDbType.Int) { Value = (object)Tmodel.EndPrice ?? DBNull.Value };
-            Tmodel.Sqlprms[6] = new SqlParameter("@CompleteYM", SqlDbType.Int) { Value = (object)Tmodel.CompleteYM ?? DBNull.Value };
+            Tmodel.Sqlprms[6] = new SqlParameter("@CompleteYM", SqlDbType.VarChar) { Value = Tmodel.CompleteYM  };
             return bdl.SelectJson("M_HinBan_Search_List", Tmodel.Sqlprms);
 
         }
