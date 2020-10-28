@@ -17,5 +17,12 @@ namespace AcceleSystem.Controllers
                 TnModel.Mode = "New";
             return View(TnModel);
         }
+
+        public ActionResult Touroku_BSNouhinEntry(TourokuNouhinModel TnModel)
+        {
+            if (string.IsNullOrWhiteSpace(TnModel.Mode))
+                TnModel.Mode = "New";
+            return View(TnModel);
+        }
     }
 }
