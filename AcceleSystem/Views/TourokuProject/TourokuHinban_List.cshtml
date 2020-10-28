@@ -15,11 +15,11 @@
                         <div class="row form-group">
                             <div class="col col-md-12">
                                 <button id="btnAdd" onclick="btnAddClick()" class="btn btn-primary col-xl-3 text-center" tabindex="20">品番追加</button>&nbsp;
-                                <button id="btnnext" onclick="btnnextClick()" class="btn btn-next col-xl-4 text-center" tabindex="21">プロジェクト検索</button>
+                                <button id="btnnext" onclick="btnnextClick()" class="btn btn-next col-xl-5 text-center" tabindex="21">プロジェクト検索</button>
 
                                 <div id="registration" style="padding-top: 1.8rem!important;">
                                     <div>
-                                        <h4 class=" hr-text text-center">経費設定登録</h4>
+                                        <h4 class=" hr-text text-center">検索条件入力</h4>
                                     </div>
                                     <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                                         <div class="col-md-12" style="padding-left:0px;">
@@ -104,9 +104,9 @@
                                         <div class="col-md-12" style="padding-left:0px;">
                                             <div id="CompleteYMgp" class="text-s text-custom1 text-uppercase mb-1">
                                                 <label class="text" style="padding-right:20px;">納品状況</label>
-                                                <input type="checkbox" tabindex="17" id="deliveryleft" name="check" onkeydown="KeyDown(event,this)" checked>
+                                                <input type="checkbox" tabindex="17" id="deliveryleft" name="check" value="0" onkeydown="KeyDown(event,this)" checked>
                                                 <label style="padding-right:20px;">納品残あり</label>
-                                                <input type="checkbox" tabindex="18" id="payment" name="check" onkeydown="KeyDown(event,this)">
+                                                <input type="checkbox" tabindex="18" id="payment" name="check" value="1" onkeydown="KeyDown(event,this)">
                                                 <label style="padding-right:20px;">完納</label>
 
                                             </div>
@@ -199,23 +199,14 @@
             StartPrice: $('#StartPrice').val(),
             EndPrice: $('#EndPrice').val(),
         };
-        if ($('#deliveryleft').is(':checked'))
-            Tmodel.CompleteYM = "1";
-        else if ($('#payment').is(':checked'))
-            Tmodel.CompleteYM = "2";
-
-        //$('#CompleteYMgp *').filter(':input').each(function () {
-        //    if ($(this).attr('type') == "checkbox") {
-               
-        //    }
-        //   // alert($('[type=checkbox]').attr('id'));
-        //    //if ($(":input").attr('type') == "checkbox") {
-        //    //    alert("b");
-        //    //    if ($('#deliveryleft').is(':checked'))
-        //    //        alert("a");
-        //    //}
-        //});
-
+       
+        var selected = new Array();
+        $("#CompleteYMgp input[type=checkbox]:checked").each(function () {
+            selected.push(this.value);
+        });
+        if (selected.length > 0)
+            Tmodel.CompleteYM = selected.join(",");
+        
          $.ajax({
                 type: "Post",
                 url: "@Url.Action("M_HinBan_Search_List", "api/TourokuProjectApi")",
