@@ -144,10 +144,12 @@
         function ShowData() {
             var TnModel = {
                 Year: $("#Year").val(),
-                BrandCD: $("#BrandCD").val(),
-                //: $("#DeliveryStartDate").val(),
-                DeliveryEndDate: $("#DeliveryEndDate").val()
+                BrandCD : $("#BrandCD").val(),
+                PeriodStart: $("#periodstart").val(),
+                PeriodEnd: $("#periodend").val()
             };
+
+
             var data = CalltoApiController('@Url.Action("M_Project_Select_NouhinEntry", "api/Touroku_NouhinApi")', TnModel);
             var nouhindata = JSON.parse(data);
 
