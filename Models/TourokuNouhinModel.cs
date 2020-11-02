@@ -25,6 +25,6 @@ namespace Models
         public string DeliveryAmount { get; set; }
         public string PeriodStart { get; set; }
         public string PeriodEnd { get; set; }
-
+        public string TableData { get; set; }
     }
 }

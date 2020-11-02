@@ -15,7 +15,7 @@ namespace TourokuNouhinBL
             Tnmodel.Sqlprms[0] = new SqlParameter("@Year", SqlDbType.Int) { Value = (object)Tnmodel.Year ?? DBNull.Value };
             Tnmodel.Sqlprms[1] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = Tnmodel.BrandCD };
             Tnmodel.Sqlprms[2] = new SqlParameter("@BrandName", SqlDbType.VarChar) { Value = Tnmodel.BrandName };
-            Tnmodel.Sqlprms[3] = new SqlParameter("@Season", SqlDbType.TinyInt) { Value = Tnmodel.Season };
+            Tnmodel.Sqlprms[3] = new SqlParameter("@Season", SqlDbType.VarChar) { Value = Tnmodel.Season };
             Tnmodel.Sqlprms[4] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tnmodel.ProjectCD };
             Tnmodel.Sqlprms[5] = new SqlParameter("@ProjectName", SqlDbType.VarChar) { Value = Tnmodel.ProjectName };
             Tnmodel.Sqlprms[6] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = Tnmodel.HinbanCD };
@@ -87,6 +87,17 @@ namespace TourokuNouhinBL
             Tnmodel.Sqlprms[4] = new SqlParameter("@PeriodEnd", SqlDbType.Int) { Value = (object)Tnmodel.PeriodEnd ?? DBNull.Value};
 
             return bdl.SelectJson("M_NouhinBS_Select", Tnmodel.Sqlprms);
+        }
+
+        public string M_NouhinBS_Insert(TourokuNouhinModel Tnmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            Tnmodel.Sqlprms = new SqlParameter[3];
+            Tnmodel.Sqlprms[0] = new SqlParameter("@DeliveryDate", SqlDbType.VarChar) { Value = Tnmodel.DeliveryStartDate };
+            Tnmodel.Sqlprms[1] = new SqlParameter("@Remarks", SqlDbType.VarChar) { Value = Tnmodel.Remarks };
+            Tnmodel.Sqlprms[2] = new SqlParameter("@TableData", SqlDbType.VarChar) { Value = Tnmodel.TableData };
+
+            return bdl.SelectJson("M_NouhinBS_Insert", Tnmodel.Sqlprms);
         }
     }
 }

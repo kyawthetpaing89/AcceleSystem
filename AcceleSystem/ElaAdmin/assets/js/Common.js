@@ -748,4 +748,11 @@ $(document).ready(function () {
             numeralThousandsGroupStyle: 'none'
         });
     }
+
+    if ($('.input-numeral15')[0]) {   // For Color of HinbanEntry
+        var cleaveNumeral14 = new Cleave('.input-numeral15', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand'
+        });
+    }
 });

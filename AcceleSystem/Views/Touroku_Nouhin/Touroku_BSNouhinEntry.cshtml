@@ -20,7 +20,7 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="3" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this)" id="Year" name="txtYear" maxlength="4" required placeholder="年度">
+                            <input type="text" tabindex="1" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this)" id="Year" name="txtYear" maxlength="4" required placeholder="年度">
                         </div>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="4" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="BrandCD" name="txtBrandCD" maxlength="20" required placeholder="ブランドコード">
+                            <input type="text" tabindex="2" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'BrandCheck')" id="BrandCD" name="txtBrandCD" maxlength="6" required placeholder="ブランドコード">
                             <label id="BrandName"><b>ブランド表示</b></label>
                         </div>
                     </div>
@@ -39,11 +39,11 @@
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <div class="custom-control custom-radio" style="padding-left:0px!important;">
                                 <label class="text" style="padding-right:20px!important">シーズン</label>
-                                <input type="radio" tabindex="5" id="rdoAllYear" name="radio" onkeydown="KeyDown(event,this)" checked>
+                                <input type="radio" tabindex="3" id="rdoAllYear" name="radio" onkeydown="KeyDown(event,this)" checked>
                                 <label for="rdoC" style="padding-right:8px!important">通年</label>
-                                <input type="radio" id="rdoSS" name="radio">
+                                <input type="radio" tabindex="4"  id="rdoSS" name="radio" onkeydown="KeyDown(event,this)">
                                 <label for="rdoS" style="padding-right:8px!important">SS</label>
-                                <input type="radio" id="rdoFW" name="radio">
+                                <input type="radio" tabindex="5"  id="rdoFW" name="radio" onkeydown="KeyDown(event,this)">
                                 <label for="rdoF" style="padding-right:8px!important">FW</label>
                             </div>
                         </div>
@@ -53,9 +53,9 @@
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="text" style="padding-right: 12px;">予定期間</label>
-                            <input type="text" tabindex="9" class="text-line col-xl-2 text-left" id="PeriodStart" name="periodstart" onkeydown="KeyDown(event,this)" required placeholder="入力">
+                            <input type="text" tabindex="6" class="text-line col-xl-2 text-left" id="PeriodStart" name="periodstart" onkeydown="KeyDown(event,this)" maxlength="6" required placeholder="入力">
                             &nbsp;~&nbsp;
-                            <input type="text" tabindex="10" class="text-line col-xl-2 text-left" id="PeriodEnd" name="periodend" onkeydown="KeyDown(event,this,'DateCompare')" required placeholder="入力">
+                            <input type="text" tabindex="7" class="text-line col-xl-2 text-left" id="PeriodEnd" name="periodend" onkeydown="KeyDown(event,this,'DateCompareCheck')" maxlength="6" required placeholder="入力">
 
                         </div>
                     </div>
@@ -63,30 +63,30 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="6" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="DeliDate" name="txtDeliDate" maxlength="10" required placeholder="納品日">
+                            <input type="text" tabindex="8" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'FiscalDateCheck')" id="DeliDate" name="txtDeliDate" maxlength="10" required placeholder="納品日">
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="7" class="text-line col-xl-9 text-left " onkeydown="KeyDown(event,this)" id="Remarks" name="txtRemarks" maxlength="40" required placeholder="備考">
+                            <input type="text" tabindex="9" class="text-line col-xl-9 text-left " onkeydown="KeyDown(event,this)" id="Remarks" name="txtRemarks" maxlength="40" required placeholder="備考">
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form">
+                    <div class="col-xl-11 text-center">
+                        <div class="text-s text-custom1 text-uppercase mb-1" style="padding-left:115px;">
+                            <button id="btnSearch" tabindex="10" onclick="AllSearch()" class="btn btn-dark col-xl-2 text-center">検索</button>
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
                         <div class="text-s text-custom1 text-uppercase mb-1" style="padding-left:165px;">
-                            <button id="btnSearch" tabindex="8" onclick="AllSearch()" class="btn btn-dark col-xl-2 text-center">全選択</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="pt-3 md-form">
-                    <div class="col-xl-12 text-center">
-                        <div class="text-s text-custom1 text-uppercase mb-1" style="padding-left:165px;">
-                            <button id="btnAllCheck" tabindex="8" onclick="AllCheck()" class="btn" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px;">全選択</button>
+                            <button id="btnAllCheck" tabindex="11" onclick="AllCheck()" class="btn btn-primary col-xl-2 text-center" >全選択</button>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <button id="btnAllUnCheck" tabindex="9" onclick="AllUnCheck()" class="btn" style="background-color:white; color:#1a8cff; border-radius:3px; border: 1px solid transparent; border-color:#1a8cff;">全解除</button>
+                            <button id="btnAllUnCheck" tabindex="12" onclick="AllUnCheck()" class="btn btn-next col-xl-2 text-center" >全解除</button>
                         </div>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
             <div class="p-5 col shadow">
                 <div class="container">
                     <div class="row">
-                        <table id="tblNouhinEntry" class="tb1 col-sm-12" style="width:100%">
+                        <table id="tblNouhinBS" class="tb1 col-sm-12" style="width:100%">
                             <thead>
                                 <tr>
                                     <th style="width:5%;">対象</th>
@@ -112,9 +112,9 @@
                 </div>
                 <div class="col-xl-12 text-center" style="padding-top:1.4rem!important;">
                     <div class="text-s text-custom1 text-uppercase mb-1" style="padding-left:30px;">
-                        <button id="btnSave" tabindex="8" onclick="btnSaveClick()" class="btn btn-dark col-xl-2 text-center">登録</button>
+                        <button id="btnSave" tabindex="13" onclick="btnSaveClick()" class="btn btn-dark col-xl-2 text-center">登録</button>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <button id="btnCancel" tabindex="9" onclick="btnCancelClick()" class="btn btn-primary col-xl-2 text-center">戻る</button>
+                        <button id="btnCancel" tabindex="14" onclick="btnCancelClick()" class="btn btn-primary col-xl-2 text-center">戻る</button>
                     </div>
                 </div>
             </div>
@@ -128,8 +128,10 @@
             $("#formtitle").text("B/S一括納品登録");
             var Mode = '@Model.Mode';
             $('#btnSave').html('登録');
+            $("#Year").focus();
 
             RequiredCheck($("#Year"));
+            YearCheck($("#Year"), '@Url.Action("Year_Checking", "api/CommonApi")');
             RequiredCheck($("#BrandCD"));
             DoubleByteCheck($("#BrandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
             ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
@@ -137,37 +139,111 @@
             YearMonthCheck($("#PeriodStart"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
             RequiredCheck($("#PeriodEnd"));
             YearMonthCheck($("#PeriodEnd"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
+            RequiredCheck($("#DeliDate"));
+            DateCheck($("#DeliDate"), '@Url.Action("Date_Checking", "api/CommonApi")'); //E103
 
             ShowData();
         });
 
+        function BrandCheck(result) {
+            if (result == 'OK') 
+                $("#BrandName").css("font-weight", "Bold");
+            else
+                $("#BrandName").text('ブランド表示');
+        }
+
+         function DateCompareCheck(result) {
+           if (result == 'OK') {
+               if (!($('#PeriodStart').val().trim() == '' || $('#PeriodEnd').val().trim() == '')) {
+                   var model = {
+                       startDate: $("#PeriodStart").val(),
+                       endDate: $("#PeriodEnd").val()
+                   };
+                   var data = CalltoApiController('@Url.Action("DateComapre", "api/CommonApi")', model);
+                   var dateData = JSON.parse(data);
+                   if (dateData[0].flg != 'false') {
+                       $("#DeliDate").focus();
+                   }
+                   else {
+                       $("#PeriodEnd").focus();
+                       ShowErrorMessage("E112");
+                   }
+               }
+           }
+         }
+
+       function DateCompareCheckOnSave() {
+           if (!($('#PeriodStart').val().trim() == '' || $('#PeriodEnd').val().trim() == '')) {
+               var model = {
+                   startDate: $("#PeriodStart").val(),
+                   endDate: $("#PeriodEnd").val()
+               };
+               var data = CalltoApiController('@Url.Action("DateComapre", "api/CommonApi")', model);
+               var dateData = JSON.parse(data);
+               if (dateData[0].flg != 'false') {
+                   return "0";
+               }
+               else {
+                   return "E112";
+               }
+           }
+           else return "0";
+       }
+
+        function FiscalDateCheck(result) {
+            if (result == 'OK') {
+                var model = {
+                    inputdate: $("#DeliDate").val(),
+                };
+                var data = CalltoApiController('@Url.Action("M_Control_FiscalCheck", "api/CommonApi")', model);
+                var dateData = JSON.parse(data);
+                if (dateData[0].MessageID != 'E115') {
+                    $("#Remarks").focus();
+                }
+                else {
+                    $("#DeliDate").focus();
+                    ShowErrorMessage("E115");
+                }
+            }
+        }
+
+        function FiscalDateCheckOnSave() {
+             var model = {
+                 inputdate: $("#DeliDate").val(),
+             };
+             var data = CalltoApiController('@Url.Action("M_Control_FiscalCheck", "api/CommonApi")', model);
+             var dateData = JSON.parse(data);
+             if (dateData[0].MessageID != 'E115') {
+                 $("#Remarks").focus();
+                 return "0";
+             }
+             else {
+                 return "E115";
+             }
+        }
+
         function ShowData() {
             var TnModel = {
                 Year: $("#Year").val(),
-                BrandCD : $("#BrandCD").val(),
-                PeriodStart: $("#periodstart").val(),
-                PeriodEnd: $("#periodend").val()
+                BrandCD: $("#BrandCD").val(),       
+                PeriodStart: ($("#PeriodStart").val()).replace("/",""),
+                PeriodEnd: ($("#PeriodEnd").val()).replace("/","")
             };
+            
+            if ($('#rdoAllYear').is(':checked'))
+                TnModel.Season = "1";
+            else if ($('#rdoSS').is(':checked'))
+                TnModel.Season = "2";
+            else TnModel.Season = "3";
 
-
-            var data = CalltoApiController('@Url.Action("M_Project_Select_NouhinEntry", "api/Touroku_NouhinApi")', TnModel);
+            var data = CalltoApiController('@Url.Action("M_NouhinBS_Select", "api/Touroku_NouhinApi")', TnModel);
             var nouhindata = JSON.parse(data);
-
-            $("#Year").val(nouhindata[0].Year);
-            $("#BrandCD").val(nouhindata[0].BrandCD);
-            $("#BrandName").text(projData[0].BrandName);
-
-            if (projData[0].Season == "1")
-                $("#rdoAllYear").prop("checked", true);
-            else if (projData[0].Season == "2")
-                $("#rdoSS").prop("checked", true);
-            else $("#rdoFW").prop("checked", true);
 
             BindTable(nouhindata);
         }
 
         function BindTable(nouhindata) {
-            table = $('#tblNouhinEntry').DataTable({
+            table = $('#tblNouhinBS').DataTable({
                 data: nouhindata,
                 "bFilter": false,
                 "bLengthChange": false,
@@ -178,9 +254,9 @@
                 "columns": [
                     {
                         "data": null,
-                        className: "select-checkbox",
+                        className: "Border1",
                         render: function (data, type, row) {
-                            return '<input type="checkbox"  id ="chk" />';
+                             return '<input type="checkbox"  id ="chk" >';
                             //return  '<input type="checkbox" ' + (data ? ' checked' : '') + '/>';
                         }
                     },
@@ -188,35 +264,42 @@
                         "data": null,
                         className: "Border2",
                         render: function (data, type, row) {
-                            return '<label>' + data.HinbanCD + '  ' + data.HinbanName  + '</label>';
+                            return '<label>' + data.ProjectCD + '  ' + data.ProjectName + '</label>';
                         }
                     },
                     {
                         "data": null,
                         className: "Border3",
                         render: function (data, type, row) {
-                            return '<input type="text"  id ="Production" class="text-line text-right border-0" value = ' + data.Production + ' readonly>';
+                            return '<label>' + data.HinbanCD + '  ' + data.HinbanName  + '</label>';
                         }
                     },
                     {
                         "data": null,
                         className: "Border4",
                         render: function (data, type, row) {
-                            return '<input type="text"  id ="SumDeliveryAmount" class="text-line text-right border-0" value = ' + data.SumDeliveryAmount + ' readonly>';
+                            return '<input type="text"  id ="Production" class="text-line text-right border-0" value = ' + data.Production + ' readonly>';
                         }
                     },
                     {
                         "data": null,
                         className: "Border5",
                         render: function (data, type, row) {
-                            return '<input type="text"  id ="DeliverAmount" class="text-line text-right border-0 " value = ' + data.DeliverAmount + '>';
+                            return '<input type="text"  id ="SumDeliveryAmount" class="text-line text-right border-0" value = ' + data.DeliveryAmount + ' readonly>';
                         }
                     },
                     {
                         "data": null,
                         className: "Border6",
                         render: function (data, type, row) {
-                            return '<input type="text"  id ="NofDeliverItems" class="text-line text-right border-0" value = ' + data.NofDeliverItems + ' readonly>';
+                            return '<input type="number"  id ="DeliverAmount" class="text-line text-right border-0 " value = ' + data.DeliverTimes + '>';
+                        }
+                    },
+                    {
+                        "data": null,
+                        className: "Border7",
+                        render: function (data, type, row) {
+                            return '<input type="text"  id ="NofDeliverItems" class="text-line text-right border-0" value = ' + data.UNDeliverTimes + ' readonly>';
                         }
                     }
                 ]
@@ -224,35 +307,49 @@
         }
 
         //Insert,Update,Delete
-         function DoProcess() {
-             TnModel = $("#UserID");
+        function DoProcess() {
+            var table = $('#tblNouhinBS').DataTable();
+          
+            //var selected = new Array();
+            //$("#tblNouhinBS input[type=checkbox]:checked").each(function (index) {
+               
+            //    selected.push(table.rows(this.index).data().toArray());
+            //})
+        
+            //var data = JSON.stringify(selected);
+            //alert(data);
+
+          
+            var data = JSON.stringify(table.rows().data().toArray());
              var TnModel = {
-                UserID: $("#UserID").val(),
-                UserName: $("#UserName").val(),
-                Password: $("#Password").val(),
-                Mode:'@Model.Mode'
+                 DeliveryStartDate: $("#DeliDate").val(),
+                 Remarks: $("#Remarks").val(),
+                 TableData: data
             };
 
-            var data = CalltoApiController('@Url.Action("User_CUD", "api/UserApi")', Umodel);
-            ShowSuccessMessage(data,'@Url.Action("UserList", "User")');
+            var data = CalltoApiController('@Url.Action("M_NouhinBS_Insert", "api/Touroku_NouhinApi")', TnModel);
+            ShowSuccessMessage(data,'@Url.Action("Touroku_NouhinList", "Touroku_Nouhin")');
         }
 
-        function DeleteConfrim() {
-            DoProcess();
-        }
-
+       
         //save
         function btnSaveClick() {
             var res = ErrorCheckOnSave();
-             if (res == "0") {
-                 var Mode = '@Model.Mode';
-
-                //show confirm message
-                if (Mode == "Delete") {
-                    ShowConfirmMessage("Q102", "DeleteConfrim");
+            if (res == "0") {
+                var res1 = DateCompareCheckOnSave();
+                if (res1 == "0") {
+                    var res2 = FiscalDateCheckOnSave();
+                    if (res2 == "0") {
+                        DoProcess();
+                    }
+                    else {
+                        $("#DeliDate").focus();
+                        ShowErrorMessage(res2);
+                    }
                 }
                 else {
-                    DoProcess();
+                    $("#PeriodEnd").focus();
+                    ShowErrorMessage(res1);
                 }
             }
             else
@@ -260,21 +357,56 @@
         }
 
         function AllSearch() {
-            ShowData();
+            var res = ErrorCheckOnSave();
+            if (res == "0") {
+                var res1 = DateCompareCheckOnSave();
+                if (res1 == "0") {
+                    var res2 = FiscalDateCheckOnSave();
+                    if (res2 == "0") {
+                        ShowData();
+                    }
+                    else {
+                        $("#DeliDate").focus();
+                        ShowErrorMessage(res2);
+                    }
+                }
+                else {
+                    $("#PeriodEnd").focus();
+                    ShowErrorMessage(res1);
+                }
+            }
+            else
+                ShowErrorMessage(res);
         }
 
         function AllCheck() {  // 全選択
-            $('#tblNouhinEntry tbody input[type="checkbox"]').prop('checked', true);
+            $('#tblNouhinBS tbody input[type="checkbox"]').prop('checked', true);
         }
 
         function AllUnCheck() {  // 全解除
-            $('#tblNouhinEntry tbody input[type="checkbox"]').prop('checked', false);
+            $('#tblNouhinBS tbody input[type="checkbox"]').prop('checked', false);
         }
 
         function btnCancelClick() {
             location.href = '@Url.Action("Touroku_NouhinList", "Touroku_Nouhin")';
         }
 
+        $('#btnCancel').keydown(function (e) {
+            var code = e.keyCode || e.which;
+            if (code == 9) {
+                if (e.shiftKey) {
+                    //Focus previous input
+                    if (thisTab == startIndex) {
+                        $("." + tabLimitInID).find('[tabindex=' + lastIndex + ']').focus();
+                        return false;
+                    }
+                    else {
+                        e.preventDefault();
+                    }
+                }
+                e.preventDefault();
+            }
+        });
 
     </script>
 
