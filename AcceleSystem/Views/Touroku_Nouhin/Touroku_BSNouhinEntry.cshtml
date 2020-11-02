@@ -20,18 +20,12 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this,'ShowNewmodeData')" id="ProjectCD" name="txtProjectCD" maxlength="10" required placeholder="プロジェクトコード">
-                            <label id="ProjectName"><b>プロジェクト表示</b></label>
-                        </div>
-                    </div>
-                </div>
-                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xs-12">
-                        <div class="text-s text-custom1 text-uppercase mb-1">
                             <input type="text" tabindex="3" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this)" id="Year" name="txtYear" maxlength="4" required placeholder="年度">
                         </div>
                     </div>
                 </div>
+
+
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
@@ -58,6 +52,17 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
+                            <label id="text" style="padding-right: 12px;">予定期間</label>
+                            <input type="text" tabindex="9" class="text-line col-xl-2 text-left" id="PeriodStart" name="periodstart" onkeydown="KeyDown(event,this)" required placeholder="入力">
+                            &nbsp;~&nbsp;
+                            <input type="text" tabindex="10" class="text-line col-xl-2 text-left" id="PeriodEnd" name="periodend" onkeydown="KeyDown(event,this,'DateCompare')" required placeholder="入力">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xs-12">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
                             <input type="text" tabindex="6" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="DeliDate" name="txtDeliDate" maxlength="10" required placeholder="納品日">
                         </div>
                     </div>
@@ -66,6 +71,13 @@
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <input type="text" tabindex="7" class="text-line col-xl-9 text-left " onkeydown="KeyDown(event,this)" id="Remarks" name="txtRemarks" maxlength="40" required placeholder="備考">
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form">
+                    <div class="col-xl-12 text-center">
+                        <div class="text-s text-custom1 text-uppercase mb-1" style="padding-left:165px;">
+                            <button id="btnSearch" tabindex="8" onclick="AllSearch()" class="btn btn-dark col-xl-2 text-center">全選択</button>
                         </div>
                     </div>
                 </div>
@@ -87,26 +99,15 @@
                             <thead>
                                 <tr>
                                     <th style="width:5%;">対象</th>
-                                    <th style="width:27%">品番名</th>
-                                    <th style="width:17%; text-align:right">生産数</th>
-                                    <th style="width:17%; text-align:right">累計納品数</th>
-                                    <th style="width:17%; text-align:right">今回納品数</th>
-                                    <th style="width:17%; text-align:right">今回納品数</th>
+                                    <th style="width:25%;">プロジェクト</th>
+                                    <th style="width:25%">品番名</th>
+                                    <th style="width:11%; text-align:right">生産数</th>
+                                    <th style="width:11%; text-align:right">累計納品数</th>
+                                    <th style="width:11%; text-align:right">今回納品数</th>
+                                    <th style="width:11%; text-align:right">今回納品数</th>
                                 </tr>
                             </thead>
                         </table>
-                        @*<table id="tblKeihi" class="tb1 col-sm-12">
-                                <thead>
-                                    <tr>
-                                        <td style="padding-right:17px">chk</td>
-                                        <td style="padding-right:63px">HinBan</td>
-                                        <td style="padding-right:8px">Production</td>
-                                        <td style="padding-right:5px">DeliveryAmount</td>
-                                        <td style="padding-right:23px">NoOfDeli</td>
-                                        <td>NoOfunDeli</td>
-                                    </tr>
-                                </thead>
-                            </table>*@
                     </div>
                 </div>
                 <div class="col-xl-12 text-center" style="padding-top:1.4rem!important;">
@@ -121,3 +122,158 @@
     </div>
 </div>
 
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#formtitle").text("B/S一括納品登録");
+            var Mode = '@Model.Mode';
+            $('#btnSave').html('登録');
+
+            RequiredCheck($("#Year"));
+            RequiredCheck($("#BrandCD"));
+            DoubleByteCheck($("#BrandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+            ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
+            RequiredCheck($("#PeriodStart"));   
+            YearMonthCheck($("#PeriodStart"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
+            RequiredCheck($("#PeriodEnd"));
+            YearMonthCheck($("#PeriodEnd"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
+
+            ShowData();
+        });
+
+        function ShowData() {
+            var TnModel = {
+                Year: $("#Year").val(),
+                BrandCD: $("#BrandCD").val(),
+                //: $("#DeliveryStartDate").val(),
+                DeliveryEndDate: $("#DeliveryEndDate").val()
+            };
+            var data = CalltoApiController('@Url.Action("M_Project_Select_NouhinEntry", "api/Touroku_NouhinApi")', TnModel);
+            var nouhindata = JSON.parse(data);
+
+            $("#Year").val(nouhindata[0].Year);
+            $("#BrandCD").val(nouhindata[0].BrandCD);
+            $("#BrandName").text(projData[0].BrandName);
+
+            if (projData[0].Season == "1")
+                $("#rdoAllYear").prop("checked", true);
+            else if (projData[0].Season == "2")
+                $("#rdoSS").prop("checked", true);
+            else $("#rdoFW").prop("checked", true);
+
+            BindTable(nouhindata);
+        }
+
+        function BindTable(nouhindata) {
+            table = $('#tblNouhinEntry').DataTable({
+                data: nouhindata,
+                "bFilter": false,
+                "bLengthChange": false,
+                "bInfo": false,
+                "bSort": false,
+                destroy: true,
+                "paging": false,
+                "columns": [
+                    {
+                        "data": null,
+                        className: "select-checkbox",
+                        render: function (data, type, row) {
+                            return '<input type="checkbox"  id ="chk" />';
+                            //return  '<input type="checkbox" ' + (data ? ' checked' : '') + '/>';
+                        }
+                    },
+                    {
+                        "data": null,
+                        className: "Border2",
+                        render: function (data, type, row) {
+                            return '<label>' + data.HinbanCD + '  ' + data.HinbanName  + '</label>';
+                        }
+                    },
+                    {
+                        "data": null,
+                        className: "Border3",
+                        render: function (data, type, row) {
+                            return '<input type="text"  id ="Production" class="text-line text-right border-0" value = ' + data.Production + ' readonly>';
+                        }
+                    },
+                    {
+                        "data": null,
+                        className: "Border4",
+                        render: function (data, type, row) {
+                            return '<input type="text"  id ="SumDeliveryAmount" class="text-line text-right border-0" value = ' + data.SumDeliveryAmount + ' readonly>';
+                        }
+                    },
+                    {
+                        "data": null,
+                        className: "Border5",
+                        render: function (data, type, row) {
+                            return '<input type="text"  id ="DeliverAmount" class="text-line text-right border-0 " value = ' + data.DeliverAmount + '>';
+                        }
+                    },
+                    {
+                        "data": null,
+                        className: "Border6",
+                        render: function (data, type, row) {
+                            return '<input type="text"  id ="NofDeliverItems" class="text-line text-right border-0" value = ' + data.NofDeliverItems + ' readonly>';
+                        }
+                    }
+                ]
+            });
+        }
+
+        //Insert,Update,Delete
+         function DoProcess() {
+             TnModel = $("#UserID");
+             var TnModel = {
+                UserID: $("#UserID").val(),
+                UserName: $("#UserName").val(),
+                Password: $("#Password").val(),
+                Mode:'@Model.Mode'
+            };
+
+            var data = CalltoApiController('@Url.Action("User_CUD", "api/UserApi")', Umodel);
+            ShowSuccessMessage(data,'@Url.Action("UserList", "User")');
+        }
+
+        function DeleteConfrim() {
+            DoProcess();
+        }
+
+        //save
+        function btnSaveClick() {
+            var res = ErrorCheckOnSave();
+             if (res == "0") {
+                 var Mode = '@Model.Mode';
+
+                //show confirm message
+                if (Mode == "Delete") {
+                    ShowConfirmMessage("Q102", "DeleteConfrim");
+                }
+                else {
+                    DoProcess();
+                }
+            }
+            else
+                ShowErrorMessage(res);
+        }
+
+        function AllSearch() {
+            ShowData();
+        }
+
+        function AllCheck() {  // 全選択
+            $('#tblNouhinEntry tbody input[type="checkbox"]').prop('checked', true);
+        }
+
+        function AllUnCheck() {  // 全解除
+            $('#tblNouhinEntry tbody input[type="checkbox"]').prop('checked', false);
+        }
+
+        function btnCancelClick() {
+            location.href = '@Url.Action("Touroku_NouhinList", "Touroku_Nouhin")';
+        }
+
+
+    </script>
+
+}
