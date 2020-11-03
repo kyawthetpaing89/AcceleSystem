@@ -23,8 +23,8 @@ namespace Models
         public string DeliveryStatus { get; set; }
         public string Remarks { get; set; }
         public string DeliveryAmount { get; set; }
-
-
-        
+        public string PeriodStart { get; set; }
+        public string PeriodEnd { get; set; }
+        public string TableData { get; set; }
     }
 }
