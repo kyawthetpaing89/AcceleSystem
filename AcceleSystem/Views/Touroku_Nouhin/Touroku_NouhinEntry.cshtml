@@ -143,6 +143,11 @@
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
 
+                RequiredCheck($("#ProjectCD"));
+                ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "ProjectName");
+
+                RequiredCheck($("#Year"));
+
                 RequiredCheck($("#DeliDate"));
                 DateCheck($("#DeliDate"), '@Url.Action("Date_Checking", "api/CommonApi")'); //E103
                 DateCheck($("#DeliDate"), '@Url.Action("Date_Checking", "api/CommonApi")', "2");  //E115
@@ -151,6 +156,7 @@
             else {
                 $('#btnSave').html('削除');
                 $("#ProjectCD").attr('disabled', 'disabled');
+                $("#HinbanCD").attr('disabled', 'disabled');
                 $("#Year").attr('disabled', 'disabled');
                 $("#BrandCD").attr('disabled', 'disabled');
                 $("#DeliDate").attr('disabled', 'disabled');
