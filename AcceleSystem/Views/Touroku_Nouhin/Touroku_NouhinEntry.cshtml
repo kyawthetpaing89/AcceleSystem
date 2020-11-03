@@ -136,7 +136,7 @@
 
                 RequiredCheck($("#DeliDate"));
                 DateCheck($("#DeliDate"), '@Url.Action("Date_Checking", "api/CommonApi")'); //E103
-                DateCheck($("#DeliDate"), '@Url.Action("Date_Checking", "api/CommonApi")', "2");  //E115
+                //DateCheck($("#DeliDate"), '@Url.Action("Date_Checking", "api/CommonApi")', "2");  //E115
                // LessthanZeroCheck($("#AmountMoney"), '@Url.Action("LessthanZero_Checking", "api/CommonApi")'); //E109
 
             }
@@ -150,7 +150,7 @@
 
                 RequiredCheck($("#DeliDate"));
                 DateCheck($("#DeliDate"), '@Url.Action("Date_Checking", "api/CommonApi")'); //E103
-                DateCheck($("#DeliDate"), '@Url.Action("Date_Checking", "api/CommonApi")', "2");  //E115
+                //DateCheck($("#DeliDate"), '@Url.Action("Date_Checking", "api/CommonApi")', "2");  //E115
                 ShowData();
             }
             else {
@@ -270,40 +270,60 @@
         }
 
         //Insert,Update,Delete
-         function DoProcess() {
-             TnModel = $("#UserID");
-             var TnModel = {
-                UserID: $("#UserID").val(),
-                UserName: $("#UserName").val(),
-                Password: $("#Password").val(),
-                Mode:'@Model.Mode'
+        function DoProcess() {
+            var table = $('#tblNouhinEntry').DataTable();
+
+            var data = JSON.stringify(table.rows().data().toArray());
+            //alert(data);
+            var TnModel = {
+                DeliveryStartDate: $("#DeliDate").val(),
+                Remarks: $("#Remarks").val(),
+                TableData: data
             };
 
-            var data = CalltoApiController('@Url.Action("User_CUD", "api/UserApi")', Umodel);
-            ShowSuccessMessage(data,'@Url.Action("UserList", "User")');
-        }
+            var data = CalltoApiController('@Url.Action("M_Nouhin_Insert", "api/Touroku_NouhinApi")', TnModel);
+            ShowSuccessMessage(data,'@Url.Action("Touroku_NouhinList", "Touroku_Nouhin")');
 
-        function DeleteConfrim() {
-            DoProcess();
         }
 
         //save
         function btnSaveClick() {
             var res = ErrorCheckOnSave();
-             if (res == "0") {
-                 var Mode = '@Model.Mode';
-
-                //show confirm message
-                if (Mode == "Delete") {
-                    ShowConfirmMessage("Q102", "DeleteConfrim");
-                }
-                else {
-                    DoProcess();
+            if (res == "0") {
+                var res1 = DateCompareCheckOnSave();
+                if (res1 == "0") {
+                    var res2 = FiscalDateCheckOnSave();
+                    if (res2 == "0") {
+                        DoProcess();
+                    }
+                    else {
+                        $("#DeliDate").focus();
+                        ShowErrorMessage(res2);
+                    }
                 }
             }
             else
                 ShowErrorMessage(res);
         }
+
+        //function AllSearch() {
+        //    var res = ErrorCheckOnSave();
+        //    if (res == "0") {
+        //        var res1 = DateCompareCheckOnSave();
+        //        if (res1 == "0") {
+        //            var res2 = FiscalDateCheckOnSave();
+        //            if (res2 == "0") {
+        //                ShowData();
+        //            }
+        //            else {
+        //                $("#DeliDate").focus();
+        //                ShowErrorMessage(res2);
+        //            }
+        //        }
+        //    }
+        //    else
+        //        ShowErrorMessage(res);
+        //}
 
         function AllCheck() {  // 全選択
             $('#tblNouhinEntry tbody input[type="checkbox"]').prop('checked', true);
