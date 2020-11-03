@@ -98,7 +98,7 @@ namespace TourokuNouhinBL
             Tnmodel.Sqlprms = new SqlParameter[3];
             Tnmodel.Sqlprms[0] = new SqlParameter("@DeliveryDate", SqlDbType.VarChar) { Value = Tnmodel.DeliveryStartDate };
             Tnmodel.Sqlprms[1] = new SqlParameter("@Remarks", SqlDbType.VarChar) { Value = Tnmodel.Remarks };
-            Tnmodel.Sqlprms[2] = new SqlParameter("@TableData", SqlDbType.VarChar) { Value = Tnmodel.TableData };
+            Tnmodel.Sqlprms[2] = new SqlParameter("@jsondata", SqlDbType.VarChar) { Value = Tnmodel.TableData };
 
             return bdl.SelectJson("M_NouhinBS_Insert", Tnmodel.Sqlprms);
         }
