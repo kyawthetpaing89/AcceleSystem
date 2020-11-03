@@ -274,14 +274,15 @@
             var table = $('#tblNouhinEntry').DataTable();
 
             var data = JSON.stringify(table.rows().data().toArray());
-            //alert(data);
+            alert(data);
             var TnModel = {
                 DeliveryStartDate: $("#DeliDate").val(),
+                ProjectCD: $("#ProjectCD").val(),
                 Remarks: $("#Remarks").val(),
                 TableData: data
             };
 
-            var data = CalltoApiController('@Url.Action("M_Nouhin_Insert", "api/Touroku_NouhinApi")', TnModel);
+            var data = CalltoApiController('@Url.Action("Nouhin_CUD", "api/Touroku_NouhinApi")', TnModel);
             ShowSuccessMessage(data,'@Url.Action("Touroku_NouhinList", "Touroku_Nouhin")');
 
         }
@@ -306,24 +307,24 @@
                 ShowErrorMessage(res);
         }
 
-        //function AllSearch() {
-        //    var res = ErrorCheckOnSave();
-        //    if (res == "0") {
-        //        var res1 = DateCompareCheckOnSave();
-        //        if (res1 == "0") {
-        //            var res2 = FiscalDateCheckOnSave();
-        //            if (res2 == "0") {
-        //                ShowData();
-        //            }
-        //            else {
-        //                $("#DeliDate").focus();
-        //                ShowErrorMessage(res2);
-        //            }
-        //        }
-        //    }
-        //    else
-        //        ShowErrorMessage(res);
-        //}
+        function AllSearch() {
+            var res = ErrorCheckOnSave();
+            if (res == "0") {
+                var res1 = DateCompareCheckOnSave();
+                if (res1 == "0") {
+                    var res2 = FiscalDateCheckOnSave();
+                    if (res2 == "0") {
+                        ShowData();
+                    }
+                    else {
+                        $("#DeliDate").focus();
+                        ShowErrorMessage(res2);
+                    }
+                }
+            }
+            else
+                ShowErrorMessage(res);
+        }
 
         function AllCheck() {  // 全選択
             $('#tblNouhinEntry tbody input[type="checkbox"]').prop('checked', true);
@@ -336,6 +337,24 @@
         function btnCancelClick() {
             location.href = '@Url.Action("Touroku_NouhinList", "Touroku_Nouhin")';
         }
+
+        $('#btnCancel').keydown(function (e) {
+            var code = e.keyCode || e.which;
+            if (code == 9) {
+                if (e.shiftKey) {
+                    //Focus previous input
+                    if (thisTab == startIndex) {
+                        $("." + tabLimitInID).find('[tabindex=' + lastIndex + ']').focus();
+                        return false;
+                    }
+                    else {
+                        e.preventDefault();
+                    }
+                }
+                e.preventDefault();
+            }
+        });
+
 
     </script>
     

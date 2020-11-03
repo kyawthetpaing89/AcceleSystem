@@ -57,7 +57,7 @@ namespace TourokuNouhinBL
                 Tnmodel.Sqlprms[0] = new SqlParameter("@DeliveryDate", SqlDbType.VarChar) { Value = Tnmodel.DeliveryStartDate };
                 Tnmodel.Sqlprms[1] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tnmodel.ProjectCD };
                 Tnmodel.Sqlprms[2] = new SqlParameter("@Remarks", SqlDbType.VarChar) { Value = Tnmodel.Remarks };
-                Tnmodel.Sqlprms[3] = new SqlParameter("@TableData", SqlDbType.VarChar) { Value = Tnmodel.TableData };
+                Tnmodel.Sqlprms[3] = new SqlParameter("@jsondata", SqlDbType.VarChar) { Value = Tnmodel.TableData };
             }
             else if (Tnmodel.Mode.Equals("Edit"))
             {
@@ -67,7 +67,7 @@ namespace TourokuNouhinBL
                 Tnmodel.Sqlprms[1] = new SqlParameter("@DeliveryDate", SqlDbType.VarChar) { Value = Tnmodel.DeliveryStartDate };
                 Tnmodel.Sqlprms[2] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tnmodel.ProjectCD };
                 Tnmodel.Sqlprms[3] = new SqlParameter("@Remarks", SqlDbType.VarChar) { Value = Tnmodel.Remarks };
-                Tnmodel.Sqlprms[4] = new SqlParameter("@TableData", SqlDbType.VarChar) { Value = Tnmodel.TableData };
+                Tnmodel.Sqlprms[4] = new SqlParameter("@jsondata", SqlDbType.VarChar) { Value = Tnmodel.TableData };
             }
             else if (Tnmodel.Mode.Equals("Delete"))
             {
@@ -76,7 +76,7 @@ namespace TourokuNouhinBL
                 Tnmodel.Sqlprms[0] = new SqlParameter("@SEQ", SqlDbType.VarChar) { Value = Tnmodel.SEQ };
             }
 
-            return bdl.SelectJson(Tnmodel.SPName, Tnmodel.Sqlprms);
+            return bdl.SelectJson("Nouhin_CUD", Tnmodel.Sqlprms);
         }
 
         public string M_NouhinBS_Select(TourokuNouhinModel Tnmodel)
