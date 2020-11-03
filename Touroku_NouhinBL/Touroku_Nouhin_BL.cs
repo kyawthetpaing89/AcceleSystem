@@ -53,24 +53,27 @@ namespace TourokuNouhinBL
             if (Tnmodel.Mode.Equals("New"))
             {
                 Tnmodel.SPName = "M_Nouhin_Insert";
-                Tnmodel.Sqlprms = new SqlParameter[3];
+                Tnmodel.Sqlprms = new SqlParameter[4];
                 Tnmodel.Sqlprms[0] = new SqlParameter("@DeliveryDate", SqlDbType.VarChar) { Value = Tnmodel.DeliveryStartDate };
-                Tnmodel.Sqlprms[1] = new SqlParameter("@Remarks", SqlDbType.VarChar) { Value = Tnmodel.Remarks };
-                Tnmodel.Sqlprms[2] = new SqlParameter("@DeliveryAmount", SqlDbType.VarChar) { Value = Tnmodel.DeliveryAmount };
+                Tnmodel.Sqlprms[1] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tnmodel.ProjectCD };
+                Tnmodel.Sqlprms[2] = new SqlParameter("@Remarks", SqlDbType.VarChar) { Value = Tnmodel.Remarks };
+                Tnmodel.Sqlprms[3] = new SqlParameter("@TableData", SqlDbType.VarChar) { Value = Tnmodel.TableData };
             }
             else if (Tnmodel.Mode.Equals("Edit"))
             {
                 Tnmodel.SPName = "M_Nouhin_Update";
-                Tnmodel.Sqlprms = new SqlParameter[3];
-                Tnmodel.Sqlprms[0] = new SqlParameter("@DeliveryDate", SqlDbType.VarChar) { Value = Tnmodel.DeliveryStartDate };
-                Tnmodel.Sqlprms[1] = new SqlParameter("@Remarks", SqlDbType.VarChar) { Value = Tnmodel.Remarks };
-                Tnmodel.Sqlprms[2] = new SqlParameter("@DeliveryAmount", SqlDbType.VarChar) { Value = Tnmodel.DeliveryAmount };
+                Tnmodel.Sqlprms = new SqlParameter[5];
+                Tnmodel.Sqlprms[0] = new SqlParameter("@SEQ", SqlDbType.VarChar) { Value = Tnmodel.SEQ };
+                Tnmodel.Sqlprms[1] = new SqlParameter("@DeliveryDate", SqlDbType.VarChar) { Value = Tnmodel.DeliveryStartDate };
+                Tnmodel.Sqlprms[2] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tnmodel.ProjectCD };
+                Tnmodel.Sqlprms[3] = new SqlParameter("@Remarks", SqlDbType.VarChar) { Value = Tnmodel.Remarks };
+                Tnmodel.Sqlprms[4] = new SqlParameter("@TableData", SqlDbType.VarChar) { Value = Tnmodel.TableData };
             }
             else if (Tnmodel.Mode.Equals("Delete"))
             {
                 Tnmodel.SPName = "M_Nouhin_Delete";
                 Tnmodel.Sqlprms = new SqlParameter[1];
-                Tnmodel.Sqlprms[0] = new SqlParameter("@DeliveryDate", SqlDbType.VarChar) { Value = Tnmodel.DeliveryStartDate };
+                Tnmodel.Sqlprms[0] = new SqlParameter("@SEQ", SqlDbType.VarChar) { Value = Tnmodel.SEQ };
             }
 
             return bdl.SelectJson(Tnmodel.SPName, Tnmodel.Sqlprms);
