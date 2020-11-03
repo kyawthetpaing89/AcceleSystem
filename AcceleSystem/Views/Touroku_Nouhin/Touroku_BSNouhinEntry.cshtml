@@ -256,7 +256,7 @@
                         "data": null,
                         className: "Border1",
                         render: function (data, type, row) {
-                             return '<input type="checkbox"  id ="chk" >';
+                            return '<input type="checkbox"  id ="chk" onclick="ColumnCheck(this)">' + '<input type="hidden" value="0" id="file_id" />';
                             //return  '<input type="checkbox" ' + (data ? ' checked' : '') + '/>';
                         }
                     },
@@ -306,21 +306,39 @@
             });
         }
 
+        function ColumnCheck(thisObj) {
+            //$(thisObj).find("file_id").val() = "1";
+            //$('#tblNouhinBS').DataTable().row($(thisObj).parents('tr')).child('td:eq(0)').val()= "1";
+            
+            //var dataExchangeCheckColumnVM = $('#tblNouhinBS').DataTable().row($(thisObj).parents('tr')).data();
+            //var dataExchangeCheckColumnList = $('#tblNouhinBS').DataTable().rows().data();
+        }
+
         //Insert,Update,Delete
         function DoProcess() {
             var table = $('#tblNouhinBS').DataTable();
           
             //var selected = new Array();
             //$("#tblNouhinBS input[type=checkbox]:checked").each(function (index) {
-               
-            //    selected.push(table.rows(this.index).data().toArray());
+            //    alert($(this).find("td:eq(0)").html());
+                
             //})
         
             //var data = JSON.stringify(selected);
             //alert(data);
+            //$("#tblNouhinBS tr").each(function () {
+            //    alert($(this).find("file_id").val());
+                //if ($(this).find("td:eq(0)").html() == $(this).find("td:eq(1)").html()) {
+                //    //$(this).find("td:eq(2) span").text("matched");
+                //    $(this).find("td:eq(2)").html("<img alt='' src='Image/matchedImage.png' />");
+                //}
+            //});
+
+
 
           
             var data = JSON.stringify(table.rows().data().toArray());
+            alert(data);
              var TnModel = {
                  DeliveryStartDate: $("#DeliDate").val(),
                  Remarks: $("#Remarks").val(),
