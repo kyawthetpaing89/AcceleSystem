@@ -291,40 +291,40 @@
         function btnSaveClick() {
             var res = ErrorCheckOnSave();
             if (res == "0") {
-                var res1 = DateCompareCheckOnSave();
-                if (res1 == "0") {
-                    var res2 = FiscalDateCheckOnSave();
-                    if (res2 == "0") {
-                        DoProcess();
-                    }
-                    else {
-                        $("#DeliDate").focus();
-                        ShowErrorMessage(res2);
-                    }
-                }
+            //    var res1 = DateCompareCheckOnSave();
+            //    if (res1 == "0") {
+            //        var res2 = FiscalDateCheckOnSave();
+            //        if (res2 == "0") {
+                       DoProcess();
+            //        }
+            //        else {
+            //            $("#DeliDate").focus();
+            //            ShowErrorMessage(res2);
+            //        }
+            //    }
             }
-            else
+                else
                 ShowErrorMessage(res);
         }
 
-        function AllSearch() {
-            var res = ErrorCheckOnSave();
-            if (res == "0") {
-                var res1 = DateCompareCheckOnSave();
-                if (res1 == "0") {
-                    var res2 = FiscalDateCheckOnSave();
-                    if (res2 == "0") {
-                        ShowData();
-                    }
-                    else {
-                        $("#DeliDate").focus();
-                        ShowErrorMessage(res2);
-                    }
-                }
-            }
-            else
-                ShowErrorMessage(res);
-        }
+        //function AllSearch() {
+        //    var res = ErrorCheckOnSave();
+        //    if (res == "0") {
+        //        var res1 = DateCompareCheckOnSave();
+        //        if (res1 == "0") {
+        //            var res2 = FiscalDateCheckOnSave();
+        //            if (res2 == "0") {
+        //                ShowData();
+        //            }
+        //            else {
+        //                $("#DeliDate").focus();
+        //                ShowErrorMessage(res2);
+        //            }
+        //        }
+        //    }
+        //    else
+        //        ShowErrorMessage(res);
+        //}
 
         function AllCheck() {  // 全選択
             $('#tblNouhinEntry tbody input[type="checkbox"]').prop('checked', true);
