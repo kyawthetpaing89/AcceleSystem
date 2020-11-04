@@ -92,6 +92,7 @@
                                         <th style="width:17%; text-align:right">累計納品数</th>
                                         <th style="width:17%; text-align:right">今回納品数</th>
                                         <th style="width:17%; text-align:right">今回納品数</th>
+                                        <th style="width:17%; text-align:right">SEQ</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -237,6 +238,7 @@
                             return '<label>' + data.HinbanCD + '  ' + data.HinbanName  + '</label>';
                         }
                     },
+                    
                     {
                         "data": null,
                         className: "Border3",
@@ -264,7 +266,15 @@
                         render: function (data, type, row) {
                             return '<input type="text"  id ="NofDeliverItems" class="text-line text-right border-0" value = ' + data.NofDeliverItems + ' readonly>';
                         }
+                    },
+                    {
+                        "data": null,
+                        className: "Border7",
+                        render: function (data, type, row) {
+                            return '<label>' + data.SEQ + '</label>';
+                        }
                     }
+
                 ]
             });
         }
@@ -279,7 +289,9 @@
                 DeliveryStartDate: $("#DeliDate").val(),
                 ProjectCD: $("#ProjectCD").val(),
                 Remarks: $("#Remarks").val(),
-                TableData: data
+                TableData: data,
+                Mode:'@Model.Mode'
+
             };
 
             var data = CalltoApiController('@Url.Action("Nouhin_CUD", "api/Touroku_NouhinApi")', TnModel);
@@ -291,40 +303,40 @@
         function btnSaveClick() {
             var res = ErrorCheckOnSave();
             if (res == "0") {
-                var res1 = DateCompareCheckOnSave();
-                if (res1 == "0") {
-                    var res2 = FiscalDateCheckOnSave();
-                    if (res2 == "0") {
-                        DoProcess();
-                    }
-                    else {
-                        $("#DeliDate").focus();
-                        ShowErrorMessage(res2);
-                    }
-                }
+            //    var res1 = DateCompareCheckOnSave();
+            //    if (res1 == "0") {
+            //        var res2 = FiscalDateCheckOnSave();
+            //        if (res2 == "0") {
+                       DoProcess();
+            //        }
+            //        else {
+            //            $("#DeliDate").focus();
+            //            ShowErrorMessage(res2);
+            //        }
+            //    }
             }
-            else
+                else
                 ShowErrorMessage(res);
         }
 
-        function AllSearch() {
-            var res = ErrorCheckOnSave();
-            if (res == "0") {
-                var res1 = DateCompareCheckOnSave();
-                if (res1 == "0") {
-                    var res2 = FiscalDateCheckOnSave();
-                    if (res2 == "0") {
-                        ShowData();
-                    }
-                    else {
-                        $("#DeliDate").focus();
-                        ShowErrorMessage(res2);
-                    }
-                }
-            }
-            else
-                ShowErrorMessage(res);
-        }
+        //function AllSearch() {
+        //    var res = ErrorCheckOnSave();
+        //    if (res == "0") {
+        //        var res1 = DateCompareCheckOnSave();
+        //        if (res1 == "0") {
+        //            var res2 = FiscalDateCheckOnSave();
+        //            if (res2 == "0") {
+        //                ShowData();
+        //            }
+        //            else {
+        //                $("#DeliDate").focus();
+        //                ShowErrorMessage(res2);
+        //            }
+        //        }
+        //    }
+        //    else
+        //        ShowErrorMessage(res);
+        //}
 
         function AllCheck() {  // 全選択
             $('#tblNouhinEntry tbody input[type="checkbox"]').prop('checked', true);

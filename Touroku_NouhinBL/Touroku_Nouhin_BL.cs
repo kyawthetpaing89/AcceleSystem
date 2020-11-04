@@ -76,7 +76,7 @@ namespace TourokuNouhinBL
                 Tnmodel.Sqlprms[0] = new SqlParameter("@SEQ", SqlDbType.VarChar) { Value = Tnmodel.SEQ };
             }
 
-            return bdl.SelectJson("Nouhin_CUD", Tnmodel.Sqlprms);
+            return bdl.SelectJson(Tnmodel.SPName, Tnmodel.Sqlprms);
         }
 
         public string M_NouhinBS_Select(TourokuNouhinModel Tnmodel)
