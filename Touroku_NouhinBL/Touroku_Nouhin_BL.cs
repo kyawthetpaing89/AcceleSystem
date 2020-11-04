@@ -39,10 +39,10 @@ namespace TourokuNouhinBL
         public string M_Project_Select_NouhinEntry(TourokuNouhinModel Tnmodel)
         {
             BaseDL bdl = new BaseDL();
-            Tnmodel.Sqlprms = new SqlParameter[3];
+            Tnmodel.Sqlprms = new SqlParameter[2];
             Tnmodel.Sqlprms[0] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tnmodel.ProjectCD };
             Tnmodel.Sqlprms[1] = new SqlParameter("@Mode", SqlDbType.VarChar) { Value = Tnmodel.Mode };
-            Tnmodel.Sqlprms[2] = new SqlParameter("@DeliveryDate", SqlDbType.VarChar) { Value = Tnmodel.DeliveryStartDate };
+            //Tnmodel.Sqlprms[2] = new SqlParameter("@DeliveryDate", SqlDbType.VarChar) { Value = Tnmodel.DeliveryStartDate };
 
             return bdl.SelectJson("M_Project_Select_NouhinEntry", Tnmodel.Sqlprms);
         }

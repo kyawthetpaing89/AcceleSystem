@@ -92,7 +92,7 @@
                                         <th style="width:17%; text-align:right">累計納品数</th>
                                         <th style="width:17%; text-align:right">今回納品数</th>
                                         <th style="width:17%; text-align:right">今回納品数</th>
-                                        <th style="width:17%; text-align:right">SEQ</th>
+                                        <th style="width:17%; text-align:right" hidden>SEQ</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -132,26 +132,22 @@
                 $('#btnSave').html('登録');
                 
                 RequiredCheck($("#ProjectCD"));
+                DoubleByteCheck($("#ProjectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "ProjectName");
-
 
                 RequiredCheck($("#DeliDate"));
                 DateCheck($("#DeliDate"), '@Url.Action("Date_Checking", "api/CommonApi")'); //E103
-                //DateCheck($("#DeliDate"), '@Url.Action("Date_Checking", "api/CommonApi")', "2");  //E115
-               // LessthanZeroCheck($("#AmountMoney"), '@Url.Action("LessthanZero_Checking", "api/CommonApi")'); //E109
-
             }
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
 
                 RequiredCheck($("#ProjectCD"));
+                DoubleByteCheck($("#ProjectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "ProjectName");
-
-                RequiredCheck($("#Year"));
 
                 RequiredCheck($("#DeliDate"));
                 DateCheck($("#DeliDate"), '@Url.Action("Date_Checking", "api/CommonApi")'); //E103
-                //DateCheck($("#DeliDate"), '@Url.Action("Date_Checking", "api/CommonApi")', "2");  //E115
+                
                 ShowData();
             }
             else {
@@ -168,27 +164,71 @@
             }
         });
 
+        function FiscalDateCheck(result) {
+            if (result == 'OK') {
+                var model = {
+                    inputdate: $("#DeliDate").val(),
+                };
+                var data = CalltoApiController('@Url.Action("M_Control_FiscalCheck", "api/CommonApi")', model);
+                var dateData = JSON.parse(data);
+                if (dateData[0].MessageID != 'E115') {
+                    $("#Remarks").focus();
+                }
+                else {
+                    $("#DeliDate").focus();
+                    ShowErrorMessage("E115");
+                }
+            }
+        }
+
+        function FiscalDateCheckOnSave() {
+            var model = {
+                inputdate: $("#DeliDate").val(),
+            };
+            var data = CalltoApiController('@Url.Action("M_Control_FiscalCheck", "api/CommonApi")', model);
+            var dateData = JSON.parse(data);
+            if (dateData[0].MessageID != 'E115') {
+                $("#Remarks").focus();
+                return "0";
+            }
+            else {
+                return "E115";
+            }
+        }
+
+
         function ShowNewmodeData(result) {  //Dispay Project Data
             if (result == 'OK') {
                 var TnModel = {
                     ProjectCD: $("#ProjectCD").val(),
-                     Mode:  '@Model.Mode'
+                    Mode: '@Model.Mode'
                 };
-                 var data = CalltoApiController('@Url.Action("M_Project_Select_NouhinEntry", "api/Touroku_NouhinApi")', TnModel);
+                var data = CalltoApiController('@Url.Action("M_Project_Select_NouhinEntry", "api/Touroku_NouhinApi")', TnModel);
                 var nouhindata = JSON.parse(data);
+                if (nouhindata.length > 0) {
+                    $("#Year").val(nouhindata[0].Year);
+                    $("#BrandCD").val(nouhindata[0].BrandCD);
+                    $("#BrandName").text(nouhindata[0].BrandName);
 
-                $("#Year").val(nouhindata[0].Year);
-                $("#BrandCD").val(nouhindata[0].BrandCD);
-                $("#BrandName").text(nouhindata[0].BrandName);
-                
-                if (nouhindata[0].Season == "1")
-                    $("#rdoAllYear").prop("checked", true);
-                else if (nouhindata[0].Season == "2")
-                    $("#rdoSS").prop("checked", true);
-                else $("#rdoFW").prop("checked", true);
-
+                    if (nouhindata[0].Season == "1")
+                        $("#rdoAllYear").prop("checked", true);
+                    else if (nouhindata[0].Season == "2")
+                        $("#rdoSS").prop("checked", true);
+                    else if (nouhindata[0].Season == "3")
+                        $("#rdoFW").prop("checked", true);
+                }
+                else {
+                    $("#Year").val('');
+                    $("#BrandCD").val('');
+                    $("#BrandName").text('ブランド表示');
+                }
                 BindTable(nouhindata);
             }
+            else {
+                $("#ProjectName").text('プロジェクト表示');
+            }
+            $("#ProjectName").css("font-weight", "Bold");
+            $("#BrandName").css("font-weight", "Bold");
         }
 
         function ShowData() {
@@ -199,16 +239,28 @@
             };
             var data = CalltoApiController('@Url.Action("M_Project_Select_NouhinEntry", "api/Touroku_NouhinApi")', TnModel);
             var nouhindata = JSON.parse(data);
-
-            $("#Year").val(nouhindata[0].Year);
-            $("#BrandCD").val(nouhindata[0].BrandCD);
-            $("#BrandName").text(projData[0].BrandName);
-            
-            if (projData[0].Season == "1")
-                $("#rdoAllYear").prop("checked", true);
-            else if (projData[0].Season == "2")
-                $("#rdoSS").prop("checked", true);
-            else $("#rdoFW").prop("checked", true);
+            if (nouhindata.length > 0) {
+                $("#ProjectCD").val(nouhindata[0].ProjectCD);
+                $("#ProjectName").text(nouhindata[0].ProjectName);
+                $("#Year").val(nouhindata[0].Year);
+                $("#BrandCD").val(nouhindata[0].BrandCD);
+                $("#BrandName").text(nouhindata[0].BrandName);
+                $("#DeliDate").val(nouhindata[0].DeliveryDate);
+                $("#Remarks").val(nouhindata[0].Remarks);
+                if (nouhindata[0].Season == "1")
+                    $("#rdoAllYear").prop("checked", true);
+                else if (nouhindata[0].Season == "2")
+                    $("#rdoSS").prop("checked", true);
+                else if (nouhindata[0].Season == "3")
+                    $("#rdoFW").prop("checked", true);
+            }
+            else {
+                $("#Year").val('');
+                $("#BrandCD").val('');
+                $("#BrandName").text('ブランド表示');
+            }
+            $("#ProjectName").css("font-weight", "Bold");
+            $("#BrandName").css("font-weight", "Bold");
 
             BindTable(nouhindata);
         }
@@ -271,7 +323,7 @@
                         "data": null,
                         className: "Border7",
                         render: function (data, type, row) {
-                            return '<label>' + data.SEQ + '</label>';
+                            return '<label hidden>' + data.SEQ + '</label>';
                         }
                     }
 
@@ -303,19 +355,24 @@
         function btnSaveClick() {
             var res = ErrorCheckOnSave();
             if (res == "0") {
-            //    var res1 = DateCompareCheckOnSave();
-            //    if (res1 == "0") {
-            //        var res2 = FiscalDateCheckOnSave();
-            //        if (res2 == "0") {
-                       DoProcess();
-            //        }
-            //        else {
-            //            $("#DeliDate").focus();
-            //            ShowErrorMessage(res2);
-            //        }
-            //    }
+              var Mode = '@Model.Mode';
+               
+                if (Mode == "Delete") {   //Delete
+                    ShowConfirmMessage("Q102", "DeleteConfrim");
+                    DoProcess();
+                }
+                else {     // Insert/Update
+                    var res1 = FiscalDateCheckOnSave();
+                    if (res1 == "0") {
+                        DoProcess();
+                    }
+                    else {
+                        $("#DeliDate").focus();
+                        ShowErrorMessage(res1);
+                    }
+                }
             }
-                else
+            else
                 ShowErrorMessage(res);
         }
 
