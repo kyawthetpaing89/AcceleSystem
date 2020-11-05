@@ -4,15 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{20CB34C1-BE05-421B-8FB8-4AD5AC09DEC2}</ProjectGuid>
+    <ProjectGuid>{A3634346-6E1B-4AC0-BB80-658B2C6D2D20}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CommonBL</RootNamespace>
-    <AssemblyName>CommonBL</AssemblyName>
+    <RootNamespace>Print_GenkaBL</RootNamespace>
+    <AssemblyName>Print_GenkaBL</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,22 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CsvHelper, Version=9.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\AcceleSystem\ElaAdmin\RequiredDLL\CsvHelper.dll</HintPath>
-    </Reference>
-    <Reference Include="ElencySolutions.CsvHelper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\AcceleSystem\ElaAdmin\RequiredDLL\ElencySolutions.CsvHelper.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\AcceleSystem\bin\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,16 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common_BL.cs" />
+    <Compile Include="Print_Genka_BL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DL\DL.csproj">
-      <Project>{86a23955-7ac1-4263-bc9a-96165936864c}</Project>
+      <Project>{86A23955-7AC1-4263-BC9A-96165936864C}</Project>
       <Name>DL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
-      <Project>{896a79e0-6565-4fc3-b927-50f8f80f5850}</Project>
+      <Project>{896A79E0-6565-4FC3-B927-50F8F80F5850}</Project>
       <Name>Models</Name>
     </ProjectReference>
   </ItemGroup>

@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Models
+{
+    public class Print_GenkaModel:BaseModel
+    { 
+        public string TargetYear { get; set; }
+        public string BrandCD { get; set; }
+        public string Season { get; set; }
+        public string ProjectCD { get; set; }
+        public string DeliveryStatus { get; set; }
+    }
+}

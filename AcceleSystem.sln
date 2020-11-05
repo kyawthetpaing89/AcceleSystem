@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Koushin_GenkaBL", "Koushin_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Touroku_KeihiBL", "Touroku_KeihiBL\Touroku_KeihiBL.csproj", "{CA66936F-F339-4BF9-B011-BFC8BAE178ED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Print_GenkaBL", "Print_GenkaBL\Print_GenkaBL.csproj", "{A3634346-6E1B-4AC0-BB80-658B2C6D2D20}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,10 @@ Global
 		{CA66936F-F339-4BF9-B011-BFC8BAE178ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA66936F-F339-4BF9-B011-BFC8BAE178ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA66936F-F339-4BF9-B011-BFC8BAE178ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3634346-6E1B-4AC0-BB80-658B2C6D2D20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3634346-6E1B-4AC0-BB80-658B2C6D2D20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3634346-6E1B-4AC0-BB80-658B2C6D2D20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3634346-6E1B-4AC0-BB80-658B2C6D2D20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
