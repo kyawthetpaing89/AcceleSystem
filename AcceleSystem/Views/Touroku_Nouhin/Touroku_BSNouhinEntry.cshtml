@@ -1,0 +1,464 @@
+﻿@model Models.TourokuNouhinModel
+@{
+    ViewBag.Title = "Touroku_BSNouhinEntry";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section Styles{
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
+}
+
+<div id="divMain" class="container-fluid">
+    <div class="content">
+        <div class="p-5 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white; border-radius:5px;">
+            <div class="col-xs-12 col-md-3"></div>
+            <div class="col-xs-12 col-md-6">
+                <div>
+                    <h2 class=" hr-text text-center">B/S一括納品登録</h2>
+                </div>
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xs-12">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <input type="text" tabindex="1" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this)" id="Year" name="txtYear" maxlength="4" required placeholder="年度">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xs-12">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <input type="text" tabindex="2" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'BrandCheck')" id="BrandCD" name="txtBrandCD" maxlength="6" required placeholder="ブランドコード">
+                            <label id="BrandName"><b>ブランド表示</b></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style=" padding-top:1.2rem!important;">
+                    <div class="col-xl-12" style="padding-left: 0px">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <div class="custom-control custom-radio" style="padding-left:0px!important;">
+                                <label class="text" style="padding-right:20px!important">シーズン</label>
+                                <input type="radio" tabindex="3" id="rdoAllYear" name="radio" onkeydown="KeyDown(event,this)" checked>
+                                <label for="rdoC" style="padding-right:8px!important">通年</label>
+                                <input type="radio" tabindex="4"  id="rdoSS" name="radio" onkeydown="KeyDown(event,this)">
+                                <label for="rdoS" style="padding-right:8px!important">SS</label>
+                                <input type="radio" tabindex="5"  id="rdoFW" name="radio" onkeydown="KeyDown(event,this)">
+                                <label for="rdoF" style="padding-right:8px!important">FW</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xs-12">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <label id="text" style="padding-right: 12px;">予定期間</label>
+                            <input type="text" tabindex="6" class="text-line col-xl-2 text-left" id="PeriodStart" name="periodstart" onkeydown="KeyDown(event,this)" maxlength="6" required placeholder="入力">
+                            &nbsp;~&nbsp;
+                            <input type="text" tabindex="7" class="text-line col-xl-2 text-left" id="PeriodEnd" name="periodend" onkeydown="KeyDown(event,this,'DateCompareCheck')" maxlength="6" required placeholder="入力">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xs-12">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <input type="text" tabindex="8" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'FiscalDateCheck')" id="DeliDate" name="txtDeliDate" maxlength="10" required placeholder="納品日">
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                    <div class="col-xs-12">
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <input type="text" tabindex="9" class="text-line col-xl-9 text-left " onkeydown="KeyDown(event,this)" id="Remarks" name="txtRemarks" maxlength="40" required placeholder="備考">
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form">
+                    <div class="col-xl-11 text-center">
+                        <div class="text-s text-custom1 text-uppercase mb-1" style="padding-left:115px;">
+                            <button id="btnSearch" tabindex="10" onclick="AllSearch()" class="btn btn-dark col-xl-2 text-center">検索</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-3 md-form">
+                    <div class="col-xl-12 text-center">
+                        <div class="text-s text-custom1 text-uppercase mb-1" style="padding-left:165px;">
+                            <button id="btnAllCheck" tabindex="11" onclick="AllCheck()" class="btn btn-primary col-xl-2 text-center" >全選択</button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <button id="btnAllUnCheck" tabindex="12" onclick="AllUnCheck()" class="btn btn-next col-xl-2 text-center" >全解除</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-3"></div>
+            <div class="p-5 col shadow">
+                <div class="container">
+                    <div class="row">
+                        <table id="tblNouhinBS" class="tb1 col-sm-12" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th style="width:5%;">対象</th>
+                                    <th style="width:25%;">プロジェクト</th>
+                                    <th style="width:25%">品番名</th>
+                                    <th style="width:11%; text-align:right">生産数</th>
+                                    <th style="width:11%; text-align:right">累計納品数</th>
+                                    <th style="width:11%; text-align:right">今回納品数</th>
+                                    <th style="width:11%; text-align:right">今回納品数</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-xl-12 text-center" style="padding-top:1.4rem!important;">
+                    <div class="text-s text-custom1 text-uppercase mb-1" style="padding-left:30px;">
+                        <button id="btnSave" tabindex="13" onclick="btnSaveClick()" class="btn btn-dark col-xl-2 text-center">登録</button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <button id="btnCancel" tabindex="14" onclick="btnCancelClick()" class="btn btn-primary col-xl-2 text-center">戻る</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#formtitle").text("B/S一括納品登録");
+            var Mode = '@Model.Mode';
+            $('#btnSave').html('登録');
+            $("#Year").focus();
+
+            RequiredCheck($("#Year"));
+            YearCheck($("#Year"), '@Url.Action("Year_Checking", "api/CommonApi")');
+            RequiredCheck($("#BrandCD"));
+            DoubleByteCheck($("#BrandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+            ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
+            RequiredCheck($("#PeriodStart"));   
+            YearMonthCheck($("#PeriodStart"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
+            RequiredCheck($("#PeriodEnd"));
+            YearMonthCheck($("#PeriodEnd"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
+            RequiredCheck($("#DeliDate"));
+            DateCheck($("#DeliDate"), '@Url.Action("Date_Checking", "api/CommonApi")'); //E103
+
+            ShowData();
+        });
+
+        function BrandCheck(result) {
+            if (result == 'OK') 
+                $("#BrandName").css("font-weight", "Bold");
+            else
+                $("#BrandName").text('ブランド表示');
+        }
+
+         function DateCompareCheck(result) {
+           if (result == 'OK') {
+               if (!($('#PeriodStart').val().trim() == '' || $('#PeriodEnd').val().trim() == '')) {
+                   var model = {
+                       startDate: $("#PeriodStart").val(),
+                       endDate: $("#PeriodEnd").val()
+                   };
+                   var data = CalltoApiController('@Url.Action("DateComapre", "api/CommonApi")', model);
+                   var dateData = JSON.parse(data);
+                   if (dateData[0].flg != 'false') {
+                       $("#DeliDate").focus();
+                   }
+                   else {
+                       $("#PeriodEnd").focus();
+                       ShowErrorMessage("E112");
+                   }
+               }
+           }
+         }
+
+       function DateCompareCheckOnSave() {
+           if (!($('#PeriodStart').val().trim() == '' || $('#PeriodEnd').val().trim() == '')) {
+               var model = {
+                   startDate: $("#PeriodStart").val(),
+                   endDate: $("#PeriodEnd").val()
+               };
+               var data = CalltoApiController('@Url.Action("DateComapre", "api/CommonApi")', model);
+               var dateData = JSON.parse(data);
+               if (dateData[0].flg != 'false') {
+                   return "0";
+               }
+               else {
+                   return "E112";
+               }
+           }
+           else return "0";
+       }
+
+        function FiscalDateCheck(result) {
+            if (result == 'OK') {
+                var model = {
+                    inputdate: $("#DeliDate").val(),
+                };
+                var data = CalltoApiController('@Url.Action("M_Control_FiscalCheck", "api/CommonApi")', model);
+                var dateData = JSON.parse(data);
+                if (dateData[0].MessageID != 'E115') {
+                    $("#Remarks").focus();
+                }
+                else {
+                    $("#DeliDate").focus();
+                    ShowErrorMessage("E115");
+                }
+            }
+        }
+
+        function FiscalDateCheckOnSave() {
+             var model = {
+                 inputdate: $("#DeliDate").val(),
+             };
+             var data = CalltoApiController('@Url.Action("M_Control_FiscalCheck", "api/CommonApi")', model);
+             var dateData = JSON.parse(data);
+             if (dateData[0].MessageID != 'E115') {
+                 $("#Remarks").focus();
+                 return "0";
+             }
+             else {
+                 return "E115";
+             }
+        }
+
+        function ShowData() {
+            var TnModel = {
+                Year: $("#Year").val(),
+                BrandCD: $("#BrandCD").val(),       
+                PeriodStart: ($("#PeriodStart").val()).replace("/",""),
+                PeriodEnd: ($("#PeriodEnd").val()).replace("/","")
+            };
+            
+            if ($('#rdoAllYear').is(':checked'))
+                TnModel.Season = "1";
+            else if ($('#rdoSS').is(':checked'))
+                TnModel.Season = "2";
+            else TnModel.Season = "3";
+
+            var data = CalltoApiController('@Url.Action("M_NouhinBS_Select", "api/Touroku_NouhinApi")', TnModel);
+            var nouhindata = JSON.parse(data);
+
+            BindTable(nouhindata);
+        }
+
+        function BindTable(nouhindata) {
+            table = $('#tblNouhinBS').DataTable({
+                data: nouhindata,
+                "bFilter": false,
+                "bLengthChange": false,
+                "bInfo": false,
+                "bSort": false,
+                destroy: true,
+                "paging": false,
+                "columns": [
+                    {
+                        "data": null,
+                        className: "Border1",
+                        render: function (data, type, row) {
+                           // return '<input type="checkbox"  id ="chk"  value = "0"/>  ';
+                            //return  '<input type="checkbox" ' + (data ? ' checked' : '') + '/>';
+                            return '<input type="checkbox" id ="chk"   ' + (data.checkval == "true" ? ' checked="checked"' : '') + '>';
+                        }
+                    },
+                    {
+                        "data": null,
+                        className: "Border2",
+                        render: function (data, type, row) {
+                            return '<label>' + data.ProjectCD + '  ' + data.ProjectName + '</label>';
+                        }
+                    },
+                    {
+                        "data": null,
+                        className: "Border3",
+                        render: function (data, type, row) {
+                            return '<label>' + data.HinbanCD + '  ' + data.HinbanName  + '</label>';
+                        }
+                    },
+                    {
+                        "data": null,
+                        className: "Border4",
+                        render: function (data, type, row) {
+                            return '<input type="text"  id ="Production" class="text-line text-right border-0" value = ' + data.Production + ' readonly>';
+                        }
+                    },
+                    {
+                        "data": null,
+                        className: "Border5",
+                        render: function (data, type, row) {
+                            return '<input type="text"  id ="SumDeliveryAmount" class="text-line text-right border-0" value = ' + data.DeliveryAmount + ' readonly>';
+                        }
+                    },
+                    {
+                        "data": null,
+                        className: "Border6",
+                        render: function (data, type, row) {
+                            return '<input type="number"  id ="DeliverAmount" class="text-line text-right border-0 " value = ' + data.DeliverTimes + '>';
+                        }
+                    },
+                    {
+                        "data": null,
+                        className: "Border7",
+                        render: function (data, type, row) {
+                            return '<input type="text"  id ="NofDeliverItems" class="text-line text-right border-0" value = ' + data.UNDeliverTimes + ' readonly>';
+                        }
+                    }
+                ]
+            });
+        }
+
+        
+        //function ColumnCheck(thisObj) {
+        //    //$(thisObj).find("file_id").val() = "1";
+         /// $('#tblNouhinBS').DataTable().row($(thisObj).parents('tr')).child('td:eq(0)').data('false');
+            
+        //    //var dataExchangeCheckColumnVM = $('#tblNouhinBS').DataTable().row($(thisObj).parents('tr')).data();
+        //    //var dataExchangeCheckColumnList = $('#tblNouhinBS').DataTable().rows().data();
+        //}
+
+
+        //$("#tblNouhinBS").on('change', "input[type='checkbox']", function (e) {
+        //    alert($('#tblNouhinBS').rows(e));
+        //});
+      
+        //Insert,Update,Delete
+        function DoProcess() {
+            var table = $('#tblNouhinBS').DataTable();
+            
+            // table.rows().invalidate().draw();
+           // var rowcollection = table.$("chk:checked", { "page": "all" });
+            //var data = JSON.stringify(rowcollection.rows().data().toArray());
+           // alert(data)
+           // alert(table.length);
+            //alert(table);
+            //var selected = new Array();
+           // $('table [type="checkbox"]').each(function (i, v) {
+                //if (v.checked) {
+                    //var colIndex = table.cell(this).index();
+                    //var rowIndex = table.cell(this).index();
+                    //table.cell(i, colIndex).data("new");
+
+                    //table.cell({ row: 0, column: 0 }).data('true').draw();
+                    //table.cell(i).data('true');
+                    //$("#chk").val('1');
+                //if (!$(this).is(':checked')) {
+                   // selected.push(i);
+                   // selected.push(table.rows(i).data().toArray);
+             //  }
+           // });
+            //alert(JSON.stringify(selected));
+
+            //var data = JSON.stringify(selected);
+            //alert(data);
+            ////var dt = new DataTable();
+            //table.rows().remove();
+            //var result=new Array();
+            //alert(selected);
+            //var i;
+            
+            //for (i = 0; i < selected.length; i++) {
+               //table.rows(selected[i]).remove();
+             //  result.push(table.rows(selected[i]).data().toArray());
+            //}
+            //var data = JSON.stringify(result);
+           // alert(JSON.stringify(result));
+
+
+            //var data = JSON.stringify(rowcollection.rows().data());
+            //alert(data)
+           
+            //var data = JSON.stringify(arrayItem);
+            //alert(data);
+            var data = JSON.stringify(table.rows().data().toArray());
+            alert(data);
+             @*var TnModel = {
+                 DeliveryStartDate: $("#DeliDate").val(),
+                 Remarks: $("#Remarks").val(),
+                 TableData: data,
+                 Mode:'@Model.Mode'
+            };
+            alert(TnModel);
+            var data = CalltoApiController('@Url.Action("M_NouhinBS_Insert", "api/Touroku_NouhinApi")', TnModel);
+            ShowSuccessMessage(data,'@Url.Action("Touroku_NouhinList", "Touroku_Nouhin")');*@
+        }
+
+       
+        //save
+        function btnSaveClick() {
+            //var res = ErrorCheckOnSave();
+            //if (res == "0") {
+            //    var res1 = DateCompareCheckOnSave();
+            //    if (res1 == "0") {
+            //        var res2 = FiscalDateCheckOnSave();
+            //        if (res2 == "0") {
+                        DoProcess();
+            //        }
+            //        else {
+            //            $("#DeliDate").focus();
+            //            ShowErrorMessage(res2);
+            //        }
+            //    }
+            //    else {
+            //        $("#PeriodEnd").focus();
+            //        ShowErrorMessage(res1);
+            //    }
+            //}
+            //else
+            //    ShowErrorMessage(res);
+        }
+
+        function AllSearch() {
+            //var res = ErrorCheckOnSave();
+            //if (res == "0") {
+            //    var res1 = DateCompareCheckOnSave();
+            //    if (res1 == "0") {
+            //        var res2 = FiscalDateCheckOnSave();
+            //        if (res2 == "0") {
+                        ShowData();
+            //        }
+            //        else {
+            //            $("#DeliDate").focus();
+            //            ShowErrorMessage(res2);
+            //        }
+            //    }
+            //    else {
+            //        $("#PeriodEnd").focus();
+            //        ShowErrorMessage(res1);
+            //    }
+            //}
+            //else
+            //    ShowErrorMessage(res);
+        }
+
+        function AllCheck() {  // 全選択
+            $('#tblNouhinBS tbody input[type="checkbox"]').prop('checked', true);
+        }
+
+        function AllUnCheck() {  // 全解除
+            $('#tblNouhinBS tbody input[type="checkbox"]').prop('checked', false);
+        }
+
+        function btnCancelClick() {
+            location.href = '@Url.Action("Touroku_NouhinList", "Touroku_Nouhin")';
+        }
+
+        $('#btnCancel').keydown(function (e) {
+            var code = e.keyCode || e.which;
+            if (code == 9) {
+                if (e.shiftKey) {
+                    //Focus previous input
+                    if (thisTab == startIndex) {
+                        $("." + tabLimitInID).find('[tabindex=' + lastIndex + ']').focus();
+                        return false;
+                    }
+                    else {
+                        e.preventDefault();
+                    }
+                }
+                e.preventDefault();
+            }
+        });
+
+    </script>
+
+}

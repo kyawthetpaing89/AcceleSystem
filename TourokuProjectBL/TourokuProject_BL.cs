@@ -14,7 +14,7 @@ namespace TourokuProjectBL
             Tmodel.Sqlprms = new SqlParameter[10];
             Tmodel.Sqlprms[0] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = Tmodel.BrandCD };
             Tmodel.Sqlprms[1] = new SqlParameter("@BrandName", SqlDbType.VarChar) { Value = Tmodel.BrandName };
-            Tmodel.Sqlprms[2] = new SqlParameter("@Season", SqlDbType.TinyInt) { Value = Tmodel.Season };
+            Tmodel.Sqlprms[2] = new SqlParameter("@Season", SqlDbType.VarChar) { Value = Tmodel.Season };
             Tmodel.Sqlprms[3] = new SqlParameter("@Year", SqlDbType.Int) { Value = (object)Tmodel.Year ?? DBNull.Value };
             Tmodel.Sqlprms[4] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = (object)Tmodel.ProjectCD ?? DBNull.Value };
             Tmodel.Sqlprms[5] = new SqlParameter("@ProjectName", SqlDbType.VarChar) { Value = Tmodel.ProjectName };
@@ -88,7 +88,7 @@ namespace TourokuProjectBL
             {
                 Tmodel.SPName = "M_Project_Delete";
                 Tmodel.Sqlprms = new SqlParameter[1];
-                Tmodel.Sqlprms[0] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = Tmodel.BrandCD };
+                Tmodel.Sqlprms[0] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tmodel.ProjectCD };
 
             }
 
@@ -161,9 +161,9 @@ namespace TourokuProjectBL
             Tmodel.Sqlprms[1] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = Tmodel.HinbanCD };
             Tmodel.Sqlprms[2] = new SqlParameter("@HinbanName", SqlDbType.VarChar) { Value = Tmodel.HinbanName };
             Tmodel.Sqlprms[3] = new SqlParameter("@CastingCD", SqlDbType.VarChar) { Value = Tmodel.CastingCD };
-            Tmodel.Sqlprms[4] = new SqlParameter("@StartPrice", SqlDbType.VarChar) { Value = Tmodel.StartPrice };
-            Tmodel.Sqlprms[5] = new SqlParameter("@EndPrice", SqlDbType.VarChar) { Value = Tmodel.EndPrice };
-            Tmodel.Sqlprms[6] = new SqlParameter("@CompleteYM", SqlDbType.VarChar) { Value = Tmodel.CompleteYM };
+            Tmodel.Sqlprms[4] = new SqlParameter("@StartPrice", SqlDbType.Int) { Value = (object)Tmodel.StartPrice ?? DBNull.Value };
+            Tmodel.Sqlprms[5] = new SqlParameter("@EndPrice", SqlDbType.Int) { Value = (object)Tmodel.EndPrice ?? DBNull.Value };
+            Tmodel.Sqlprms[6] = new SqlParameter("@CompleteYM", SqlDbType.VarChar) { Value = Tmodel.CompleteYM  };
             return bdl.SelectJson("M_HinBan_Search_List", Tmodel.Sqlprms);
 
         }
@@ -179,25 +179,26 @@ namespace TourokuProjectBL
                 Tmodel.Sqlprms[1] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tmodel.ProjectCD };
                 Tmodel.Sqlprms[2] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = Tmodel.HinbanCD };
                 Tmodel.Sqlprms[3] = new SqlParameter("@HinbanName", SqlDbType.VarChar) { Value = Tmodel.HinbanName };
-                Tmodel.Sqlprms[4] = new SqlParameter("@Color", SqlDbType.VarChar) { Value = Tmodel.Color };
-                Tmodel.Sqlprms[5] = new SqlParameter("@Production", SqlDbType.VarChar) { Value = Tmodel.Production };
+                Tmodel.Sqlprms[4] = new SqlParameter("@Color", SqlDbType.TinyInt) { Value = (object)Tmodel.Color ?? DBNull.Value };
+                Tmodel.Sqlprms[5] = new SqlParameter("@Production", SqlDbType.Int) { Value = (object)Tmodel.Production ?? DBNull.Value };
                 Tmodel.Sqlprms[6] = new SqlParameter("@freeitem1", SqlDbType.VarChar) { Value = Tmodel.FreeItem1 };
-                Tmodel.Sqlprms[7] = new SqlParameter("@freeitem2", SqlDbType.VarChar) { Value = Tmodel.FreeItem2  };
-                Tmodel.Sqlprms[8] = new SqlParameter("@saleprice", SqlDbType.VarChar) { Value = Tmodel.SalePrice };
+                Tmodel.Sqlprms[7] = new SqlParameter("@freeitem2", SqlDbType.Int) { Value = (object)Tmodel.FreeItem2 ?? DBNull.Value };
+                Tmodel.Sqlprms[8] = new SqlParameter("@saleprice", SqlDbType.Int) { Value = (object)Tmodel.SalePrice ?? DBNull.Value };
 
             }
             else if (Tmodel.Mode.Equals("Edit"))
             {
                 Tmodel.SPName = "M_Hinban_Update";
-                Tmodel.Sqlprms = new SqlParameter[8];
+                Tmodel.Sqlprms = new SqlParameter[9];
                 Tmodel.Sqlprms[0] = new SqlParameter("@CastingCD", SqlDbType.VarChar) { Value = Tmodel.CastingCD };
                 Tmodel.Sqlprms[1] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tmodel.ProjectCD };
                 Tmodel.Sqlprms[2] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = Tmodel.HinbanCD };
-                Tmodel.Sqlprms[3] = new SqlParameter("@Color", SqlDbType.VarChar) { Value = Tmodel.Color };
-                Tmodel.Sqlprms[4] = new SqlParameter("@Production", SqlDbType.VarChar) { Value = Tmodel.Production };
-                Tmodel.Sqlprms[5] = new SqlParameter("@freeitem1", SqlDbType.VarChar) { Value = Tmodel.FreeItem1 };
-                Tmodel.Sqlprms[6] = new SqlParameter("@freeitem2", SqlDbType.VarChar) { Value = Tmodel.FreeItem2 };
-                Tmodel.Sqlprms[7] = new SqlParameter("@saleprice", SqlDbType.VarChar) { Value = Tmodel.SalePrice };
+                Tmodel.Sqlprms[3] = new SqlParameter("@HinbanName", SqlDbType.VarChar) { Value = Tmodel.HinbanName };
+                Tmodel.Sqlprms[4] = new SqlParameter("@Color", SqlDbType.TinyInt) { Value = (object)Tmodel.Color ?? DBNull.Value };
+                Tmodel.Sqlprms[5] = new SqlParameter("@Production", SqlDbType.Int) { Value = (object)Tmodel.Production ?? DBNull.Value };
+                Tmodel.Sqlprms[6] = new SqlParameter("@freeitem1", SqlDbType.VarChar) { Value = Tmodel.FreeItem1 };
+                Tmodel.Sqlprms[7] = new SqlParameter("@freeitem2", SqlDbType.Int) { Value = (object)Tmodel.FreeItem2 ?? DBNull.Value };
+                Tmodel.Sqlprms[8] = new SqlParameter("@saleprice", SqlDbType.Int) { Value = (object)Tmodel.SalePrice ?? DBNull.Value };
             }
             else if(Tmodel.Mode.Equals("Copy"))
             {
@@ -207,11 +208,11 @@ namespace TourokuProjectBL
                 Tmodel.Sqlprms[1] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tmodel.ProjectCD };
                 Tmodel.Sqlprms[2] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = Tmodel.HinbanCD };
                 Tmodel.Sqlprms[3] = new SqlParameter("@HinbanName", SqlDbType.VarChar) { Value = Tmodel.HinbanName };
-                Tmodel.Sqlprms[4] = new SqlParameter("@Color", SqlDbType.VarChar) { Value = Tmodel.Color };
-                Tmodel.Sqlprms[5] = new SqlParameter("@Production", SqlDbType.VarChar) { Value = Tmodel.Production };
-                Tmodel.Sqlprms[6] = new SqlParameter("@freeitem1", SqlDbType.VarChar) { Value = Tmodel.FreeItem1 };
-                Tmodel.Sqlprms[7] = new SqlParameter("@freeitem2", SqlDbType.VarChar) { Value = Tmodel.FreeItem2 };
-                Tmodel.Sqlprms[8] = new SqlParameter("@saleprice", SqlDbType.VarChar) { Value = Tmodel.SalePrice };
+                Tmodel.Sqlprms[4] = new SqlParameter("@Color", SqlDbType.TinyInt) { Value = (object)Tmodel.Color ?? DBNull.Value };
+                Tmodel.Sqlprms[5] = new SqlParameter("@Production", SqlDbType.Int) { Value = (object)Tmodel.Production ?? DBNull.Value };
+                Tmodel.Sqlprms[6] = new SqlParameter("@freeitem1", SqlDbType.VarChar) { Value  = Tmodel.FreeItem1};
+                Tmodel.Sqlprms[7] = new SqlParameter("@freeitem2", SqlDbType.Int) { Value = (object)Tmodel.FreeItem2 ?? DBNull.Value };
+                Tmodel.Sqlprms[8] = new SqlParameter("@saleprice", SqlDbType.Int) { Value = (object)Tmodel.SalePrice ?? DBNull.Value };
             }
             else if (Tmodel.Mode.Equals("Delete"))
             {
@@ -242,13 +243,23 @@ namespace TourokuProjectBL
 
         }
 
-        public string M_HinBan_D_Delivery_Check(TourokuProjectModel Tmodel)
+        public string D_Devliery_ExistsDeleteCheck(TourokuProjectModel Tmodel)
         {
             BaseDL bdl = new BaseDL();
             Tmodel.Sqlprms = new SqlParameter[2];
             Tmodel.Sqlprms[0] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = (object)Tmodel.HinbanCD ?? DBNull.Value };
             Tmodel.Sqlprms[1] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = (object)Tmodel.ProjectCD ?? DBNull.Value };
-            return bdl.SelectJson("M_Hinban_DDelivery_Check", Tmodel.Sqlprms);
+            return bdl.SelectJson("D_Devliery_ExistsDeleteCheck", Tmodel.Sqlprms);
+
+        }
+
+        public string D_Cost_ExistsDeleteCheck(TourokuProjectModel Tmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            Tmodel.Sqlprms = new SqlParameter[2];
+            Tmodel.Sqlprms[0] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = (object)Tmodel.HinbanCD ?? DBNull.Value };
+            Tmodel.Sqlprms[1] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = (object)Tmodel.ProjectCD ?? DBNull.Value };
+            return bdl.SelectJson("D_Cost_ExistsDeleteCheck", Tmodel.Sqlprms);
 
         }
 
@@ -300,6 +311,24 @@ namespace TourokuProjectBL
                 return result;
             }
             
+        }
+
+        public string M_Project_CSV(TourokuProjectModel Tmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            Tmodel.Sqlprms = new SqlParameter[10];
+            Tmodel.Sqlprms[0] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = Tmodel.BrandCD };
+            Tmodel.Sqlprms[1] = new SqlParameter("@BrandName", SqlDbType.VarChar) { Value = Tmodel.BrandName };
+            Tmodel.Sqlprms[2] = new SqlParameter("@Season", SqlDbType.TinyInt) { Value = Tmodel.Season };
+            Tmodel.Sqlprms[3] = new SqlParameter("@Year", SqlDbType.Int) { Value = (object)Tmodel.Year ?? DBNull.Value };
+            Tmodel.Sqlprms[4] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = (object)Tmodel.ProjectCD ?? DBNull.Value };
+            Tmodel.Sqlprms[5] = new SqlParameter("@ProjectName", SqlDbType.VarChar) { Value = Tmodel.ProjectName };
+            Tmodel.Sqlprms[6] = new SqlParameter("@PeriodStart", SqlDbType.Int) { Value = (object)Tmodel.PeriodStart ?? DBNull.Value };
+            Tmodel.Sqlprms[7] = new SqlParameter("@PeriodEnd", SqlDbType.Int) { Value = (object)Tmodel.PeriodEnd ?? DBNull.Value };
+            Tmodel.Sqlprms[8] = new SqlParameter("@ProjectManager", SqlDbType.VarChar) { Value = Tmodel.ProjectManager };
+            Tmodel.Sqlprms[9] = new SqlParameter("@UserName", SqlDbType.VarChar) { Value = Tmodel.UserName };
+
+            return bdl.SelectJson("M_Project_CSV", Tmodel.Sqlprms);
         }
     }
 }

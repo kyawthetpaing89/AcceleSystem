@@ -16,7 +16,7 @@
                     <div class="card-body card-block">
                     <div class="row form-group">
                         <div class="col col-md-12">
-                            <button id="btnAdd" onclick="btnAddClick()" class="btn" style="background-color:#1a8cff; color:azure;  border-radius: 3px; margin-right: 20px; margin-top: 20px;">
+                            <button id="btnAdd" onclick="btnAddClick()" class="btn btn-primary col-xl-4 text-center">
                                 経費追加
                             </button>
                             @*<button id="btnDel" onclick="btnDelClick()" class="btn" style="background-color:white; color:#1a8cff; border-radius:3px; border: 1px solid transparent; border-color:#1a8cff; margin-top: 20px;">
@@ -69,13 +69,13 @@
                                     </div>
                                     <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                                         <div class="col-md-12" style="padding-left:32px;">
-                                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                            <div id="Seasongp" class="text-s text-custom1 text-uppercase mb-1">
                                                 <label id="text" style="padding-right:20px;">シーズン</label>
-                                                <input type="checkbox" tabindex="8" id="allyear" name="chk" onkeydown="KeyDown(event,this)">
+                                                <input type="checkbox" tabindex="8" id="allyear" name="chk"  value="1" onkeydown="KeyDown(event,this)" checked>
                                                 <label for="allyear" style="padding-right:20px!important;">通年</label>
-                                                <input type="checkbox" tabindex="9" id="SS" name="chk" onkeydown="KeyDown(event,this)">
+                                                <input type="checkbox" tabindex="9" id="SS" name="chk" value="2" onkeydown="KeyDown(event,this)">
                                                 <label for="SS" style="padding-right:20px!important;">SS</label>
-                                                <input type="checkbox" tabindex="10" id="FW" name="chk" onkeydown="KeyDown(event,this)">
+                                                <input type="checkbox" tabindex="10" id="FW" name="chk" value="3" onkeydown="KeyDown(event,this)">
                                                 <label for="FW" style="padding-right:20px!important;">FW</label>
                                             </div>
                                         </div>
@@ -104,13 +104,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-12"  style="padding-left:0px; padding-top:2rem;">
-                                        <div class="text-s text-custom1 text-uppercase mb-1" style="padding-left:250px;">
-                                            <button id="btnCSV" onclick="btnCSVClick()" class="btn text-center" tabindex="15" style="background-color:white; color:black; border-radius:3px; border: 1px solid transparent; border-color:black;">
-                                                CSV
-                                            </button>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;
-                                            <button id="btnSearch" tabindex="16" onclick="btnSearchClick()" class="btn text-center" style="background-color:#413839; color:azure;width:80px; height:37px;">検索</button>
+                                    <div class="pt-3 md-form"  style="padding-left:0px; padding-top:2rem;">
+                                        <div class="col-xl-12" >
+                                            <div class="col-xl-9" style="float:right;">
+                                                <button id="btnCSV" tabindex="15" onclick="btnCSVClick()" class="btn btn-csv col-xl-3 text-center">CSV</button>&nbsp;&nbsp;
+                                                <button id="btnSearch" tabindex="16" onclick="btnSearchClick()" class="btn btn-dark col-xl-3 text-center">検索</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -161,6 +160,7 @@
             DateCheck($("#CostDate1"), '@Url.Action("Date_Checking", "api/CommonApi")');
             DateCheck($("#CostDate2"), '@Url.Action("Date_Checking", "api/CommonApi")');
 
+            DoubleByteCheck($("#year"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
             YearCheck($("#year"), '@Url.Action("Year_Checking", "api/CommonApi")');
 
             ExistsCheck($("#brandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")', "brandname");
@@ -234,12 +234,12 @@
             HinbanName: $('#PartName').val(),
             };
 
-           if ($('#allyear').is(':checked'))
-                kmodel.Season = "1";
-            else if ($('#SS').is(':checked'))
-                kmodel.Season = "2";
-            else if ($('#FW').is(':checked'))
-                kmodel.Season = "3";
+           var selected = new Array();
+           $("#Seasongp input[type=checkbox]:checked").each(function () {
+               selected.push(this.value);
+           });
+           if (selected.length > 0)
+               kmodel.Season = selected.join(",");
 
             $.ajax({
                 type: "Post",
@@ -336,7 +336,7 @@
 
         }
 
-        function btnCSVClick() {
+       function btnCSVClick() {
         var allyear = $("#allyear").is(":checked");
         var ss = $("#SS").is(":checked");
         var fw = $("#FW").is(":checked");
@@ -371,20 +371,18 @@
                          else if ($('#FW').is(':checked'))
                              kmodel.Season = "3";
 
-                         var csvdata = CalltoApiController('@Url.Action("D_Cost_TKeihiCSV", "api/Touroku_KeihiApi")', kmodel);
-                         var kmodel = {
-                             value: csvdata,
-                             value1: "経費登録"
-                         };
-                         var data = CalltoApiController('@Url.Action("ExportCSVfile", "api/CommonApi")', kmodel);
-                         var csvdata = JSON.parse(data);
-                         if (csvdata[0].flg == "false") {
-                             var data = ShowErrorMessage("E104");
-                             return data;
-                         }
-                         else {
-                             alert("Success");
-                         }
+                         var data = CalltoApiController('@Url.Action("D_Cost_TKeihiCSV", "api/Touroku_KeihiApi")', kmodel);
+                       
+                         var csv = JSON2CSV(data);
+                         var downloadLink = document.createElement("a");
+                         var blob = new Blob(["\ufeff", csv]);
+                         var url = URL.createObjectURL(blob);
+                         downloadLink.href = url;
+                         downloadLink.download = "経費登録.csv";
+
+                         document.body.appendChild(downloadLink);
+                         downloadLink.click();
+                         document.body.removeChild(downloadLink);
                      }
                      else {
                          $("#CostDate2").focus();
@@ -394,7 +392,22 @@
                 else
                     ShowErrorMessage(res);
             }
-        }   
+       }   
+
+       //Convert Jsonstring to csv
+       function JSON2CSV(objArray) {
+           var array = typeof JSONString != 'object' ? JSON.parse(objArray) : JSONString;
+           var fields = Object.keys(array[0])
+           var replacer = function (key, value) { return value === null ? null : value }
+           var csv = array.map(function (row) {
+               return fields.map(function (fieldName) {
+                   return JSON.stringify(row[fieldName], replacer)
+               }).join(',')
+           })
+           csv.unshift(fields.join(',')) // add header column
+           csv = csv.join('\r\n');
+           return csv;
+       }
 
         function btnEditClick(SEQ) {
             location.href = '@Url.Action("Touroku_KeihiEntry","Touroku_Keihi")?SEQ='+SEQ+'&Mode=Edit';
