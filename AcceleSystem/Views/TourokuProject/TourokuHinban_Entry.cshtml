@@ -49,7 +49,7 @@
                             <label style="padding:initial;width: 130px;">予定期間</label>
 
                             <input type="text" tabindex="7" class="text-line col-xl-3" onkeydown="KeyDown(event,this)" id="StartDate" name="StartDate" maxlength="7" required>
-                            <label class="col-xl-1">~</label>
+                            &nbsp;~&nbsp;
                             <input type="text" tabindex="8" class="text-line col-xl-3" onkeydown="KeyDown(event,this)" id="EndDate" name="EndDate" maxlength="7" required>
 
                         </div>
@@ -152,7 +152,7 @@
                 $('#btnSave').html('登録');
 
                 $("#ProjectCD").focus();
-
+                RequiredCheck($("#ProjectCD"));
                 DoubleByteCheck($("#ProjectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "ProjectName");
                 

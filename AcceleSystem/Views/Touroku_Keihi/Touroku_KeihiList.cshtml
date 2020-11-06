@@ -16,7 +16,7 @@
                     <div class="card-body card-block">
                     <div class="row form-group">
                         <div class="col col-md-12">
-                            <button id="btnAdd" onclick="btnAddClick()" class="btn btn-primary col-xl-4 text-center">
+                            <button id="btnAdd" tabindex="17" onclick="btnAddClick()" class="btn btn-primary col-xl-4 text-center">
                                 経費追加
                             </button>
                             @*<button id="btnDel" onclick="btnDelClick()" class="btn" style="background-color:white; color:#1a8cff; border-radius:3px; border: 1px solid transparent; border-color:#1a8cff; margin-top: 20px;">
@@ -31,7 +31,7 @@
                                         <div class="col-md-12" style="padding-left:49px;">
                                             <div class="text-s text-custom1 text-uppercase mb-1">
                                                 <label id="text" style="padding-right: 16px;">経費名</label>
-                                                <input type="text" tabindex="1" class="text-line col-xl-3 text-left" id="CostCD" name="CostCD" maxlength="6" onkeydown="KeyDown(event,this)" required placeholder="入力" >
+                                                <input type="text" tabindex="1" class="text-line col-xl-3 input-numeral15 text-left" id="CostCD" name="CostCD" maxlength="6" onkeydown="KeyDown(event,this)" required placeholder="入力" >
                                                 <input type="text" tabindex="2" class="text-line col-xl-3 text-left" id="CostName" name="CostName" maxlength="40" onkeydown="KeyDown(event,this)" required placeholder="入力">
                                             </div>
                                         </div>
@@ -75,7 +75,7 @@
                                                 <label for="allyear" style="padding-right:20px!important;">通年</label>
                                                 <input type="checkbox" tabindex="9" id="SS" name="chk" value="2" onkeydown="KeyDown(event,this)">
                                                 <label for="SS" style="padding-right:20px!important;">SS</label>
-                                                <input type="checkbox" tabindex="10" id="FW" name="chk" value="3" onkeydown="KeyDown(event,this)">
+                                                <input type="checkbox" tabindex="10" id="FW" name="chk" value="3" onkeydown="KeyDown(event,this,'CheckboxCheck')">
                                                 <label for="FW" style="padding-right:20px!important;">FW</label>
                                             </div>
                                         </div>
@@ -218,6 +218,18 @@
            else return "0";
        }
 
+       function CheckboxCheck(result) {
+           if (result == 'OK') {
+               var allyear = $("#allyear").is(":checked");
+               var ss = $("#SS").is(":checked");
+               var fw = $("#FW").is(":checked");
+               if (!allyear && !ss && !fw) {
+                   $("#FW").focus();
+                   ShowErrorMessage("E111");
+               }
+           }
+       }
+
        function GetData() {
             var kmodel = {
             CostCD: $('#CostCD').val(),
@@ -315,6 +327,7 @@
             var ss = $("#SS").is(":checked");
             var fw = $("#FW").is(":checked");
             if (!allyear && !ss && !fw) {
+                $("#FW").focus();
                 var data = ShowErrorMessage("E111");
                 return data;
             }
@@ -340,7 +353,8 @@
         var allyear = $("#allyear").is(":checked");
         var ss = $("#SS").is(":checked");
         var fw = $("#FW").is(":checked");
-             if (!allyear && !ss && !fw) {
+           if (!allyear && !ss && !fw) {
+               $("#FW").focus();
                  var data = ShowErrorMessage("E111");
                 return data;
             }
@@ -408,6 +422,23 @@
            csv = csv.join('\r\n');
            return csv;
        }
+
+       $('#btnAdd').keydown(function (e) {
+           var code = e.keyCode || e.which;
+           if (code == 9) {
+               if (e.shiftKey) {
+                   //Focus previous input
+                   if (thisTab == startIndex) {
+                       $("." + tabLimitInID).find('[tabindex=' + lastIndex + ']').focus();
+                       return false;
+                   }
+                   else {
+                       e.preventDefault();
+                   }
+               }
+               e.preventDefault();
+           }
+       });
 
         function btnEditClick(SEQ) {
             location.href = '@Url.Action("Touroku_KeihiEntry","Touroku_Keihi")?SEQ='+SEQ+'&Mode=Edit';

@@ -70,7 +70,8 @@
                                     <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                                         <div class="col-md-12" style="padding-left:0px;">
                                             <div class="text-s text-custom1 text-uppercase mb-1">
-                                                <input type="text" tabindex="11" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this,'HinbanCheck')" id="HinbanCD" name="HinbanCD" maxlength="10" required placeholder="品番コード">
+                                                <label style="width: 80px;">品番名</label>
+                                                <input type="text" tabindex="11" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'HinbanCheck')" id="HinbanCD" name="HinbanCD" maxlength="10" required placeholder="品番コード">
 
                                                 <input type="text" tabindex="12" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="HinbanName" name="HinbanName" maxlength="60" required placeholder="品番名">
 
@@ -83,7 +84,7 @@
                                                 <label style="padding:initial;width: 80px;">予定単価</label>
 
                                                 <input type="text" tabindex="13" class="text-line col-xl-3 text-left input-numeral1" onkeydown="KeyDown(event,this)" id="StartPrice" name="StartPrice" maxlength="7" required placeholder="0">
-                                                <label class="col-xl-1">~</label>
+                                                &nbsp;~&nbsp;
                                                 <input type="text" tabindex="14" class="text-line col-xl-3 text-left input-numeral2" onkeydown="KeyDown(event,this,'CheckPrice')" id="EndPrice" name="EndPrice" maxlength="7" required placeholder="5,000">
 
                                             </div>
@@ -95,7 +96,7 @@
                                                 <label style="width: 80px;">金型</label>
                                                 <input type="text" tabindex="15" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="CastingCD" name="CastingCD" maxlength="10" required placeholder="入力">
 
-                                                <input type="text" tabindex="16" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="CastingName" name="CastingName" maxlength="40" required>
+                                                <input type="text" tabindex="16" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="CastingName" name="CastingName" maxlength="40" required>
 
                                             </div>
                                         </div>
@@ -106,7 +107,7 @@
                                                 <label class="text" style="padding-right:20px;">納品状況</label>
                                                 <input type="checkbox" tabindex="17" id="deliveryleft" name="check" value="0" onkeydown="KeyDown(event,this)" checked>
                                                 <label style="padding-right:20px;">納品残あり</label>
-                                                <input type="checkbox" tabindex="18" id="payment" name="check" value="1" onkeydown="KeyDown(event,this)">
+                                                <input type="checkbox" tabindex="18" id="payment" name="check" value="1" onkeydown="KeyDown(event,this,'CheckCheckbox')">
                                                 <label style="padding-right:20px;">完納</label>
 
                                             </div>
@@ -278,7 +279,18 @@
             //}
         });
 
-    }
+     }
+
+     function CheckCheckbox(result) {
+         if (result == 'OK') {
+             var deliveryleft = $('#deliveryleft').is(':checked');
+             var payment = $('#payment').is(':checked')
+             if (!deliveryleft && !payment) {
+                 $('#payment').focus();
+                 var data = ShowErrorMessage("E111");
+             }
+         }
+     }
 
     function ProjectCDCheck(result) {
         if (result == 'OK') {
@@ -367,6 +379,7 @@
         var deliveryleft = $('#deliveryleft').is(':checked');
         var payment = $('#payment').is(':checked')
         if (!deliveryleft && !payment) {
+            $('#payment').focus();
             var data = ShowErrorMessage("E111");
             return data;
         }

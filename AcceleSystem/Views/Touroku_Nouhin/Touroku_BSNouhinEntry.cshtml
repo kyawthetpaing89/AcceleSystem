@@ -250,7 +250,6 @@
                 "bInfo": false,
                 "bSort": false,
                 destroy: true,
-                "paging": false,
                 "columns": [
                     {
                         "data": null,
@@ -258,7 +257,7 @@
                         render: function (data, type, row) {
                            // return '<input type="checkbox"  id ="chk"  value = "0"/>  ';
                             //return  '<input type="checkbox" ' + (data ? ' checked' : '') + '/>';
-                            return '<input type="checkbox" id ="chk"   ' + (data.checkval == "true" ? ' checked="checked"' : '') + '>';
+                            return '<input type="checkbox" id ="chk" ' + (data.checkval == "true" ? ' checked="checked"' : '') + ' value = ' + data.checkval +'>';
                         }
                     },
                     {
@@ -307,6 +306,20 @@
             });
         }
 
+        $('#tblNouhinBS').on('change', '#chk', function () {
+            var row = $(this).closest('tr');
+            alert(JSON.stringify(row.data()));
+            //$('#chk', row).each(function () {
+            //    if($(this).val() == 'false')
+            //        $(this).val('true');
+            //    else 
+            //        $(this).val('false');
+                
+            //    alert($(this).val())
+            //});
+            ////$('.total', row).text(total);
+            //$('#tblNouhinBS').DataTable().draw();
+        });
         
         //function ColumnCheck(thisObj) {
         //    //$(thisObj).find("file_id").val() = "1";
@@ -323,11 +336,21 @@
       
         //Insert,Update,Delete
         function DoProcess() {
-            var table = $('#tblNouhinBS').DataTable();
-            
+            //var rowList = new Array();
+            //$("tblNouhinBS tr").each(function () {
+            //    var colList = new Array();
+            //    $("td", this).each(function () {
+            //        colList.push($(this).text());
+            //    });
+            //    rowList.push(colList);
+            //});
+
+            //var table = $('#tblNouhinBS').DataTable();
+            //var a = table.rows[1].cells[4].innerHTML;
+            //alert(a);
             // table.rows().invalidate().draw();
            // var rowcollection = table.$("chk:checked", { "page": "all" });
-            //var data = JSON.stringify(rowcollection.rows().data().toArray());
+            //var data = JSON.stringify(rowcollection.rows().data().toArray()); 
            // alert(data)
            // alert(table.length);
             //alert(table);
@@ -369,8 +392,9 @@
            
             //var data = JSON.stringify(arrayItem);
             //alert(data);
-            var data = JSON.stringify(table.rows().data().toArray());
-            alert(data);
+            //var data = JSON.stringify($('#tblNouhinBS'));
+            //var data = JSON.stringify(table.rows().data().toArray());
+            //alert(data);
              @*var TnModel = {
                  DeliveryStartDate: $("#DeliDate").val(),
                  Remarks: $("#Remarks").val(),

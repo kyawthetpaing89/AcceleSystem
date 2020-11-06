@@ -91,7 +91,7 @@
                 <div class="pt-3 md-form">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="11" class="text-line col-xl-5 text-left input-numeral11" onkeydown="KeyDown(event,this)" id="AllocationCount" name="allocationcount" required placeholder="配賦用固定値">
+                            <input type="text" tabindex="11" class="text-line col-xl-5 text-left input-numeral11" onkeydown="KeyDown(event,this)" id="AllocationCount" name="allocationcount" maxlength="4" required placeholder="配賦用固定値">
 
                         </div>
                     </div>
@@ -231,11 +231,12 @@
                 else if ($('#rdoss').is(':checked')) {
                     $("#rdoss").focus();
                 }
-                else if ($("#rdofw").is(':checked')){
+                else if ($('#rdofw').is(':checked')) {
                     $("#rdofw").focus();
+                }
+                
             }
-                else $("#rdoyear").focus();
-            }
+            else $("#rdoyear").focus();
         }
         else {
             $("#BrandCD").val('');
@@ -306,6 +307,7 @@
          $("#BrandName").css("font-weight", "Bold");
          $("#TotalProduction").css("font-weight", "Bold");
          $("#TotalSalesPrice").css("font-weight", "Bold");
+         $("#ProjectManagerName").css("font-weight", "Bold");
     }
 
     //Date Error check at Enter click

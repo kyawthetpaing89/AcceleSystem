@@ -46,7 +46,7 @@
                                             <label style="padding-right:20px;">通年</label>
                                             <input type="checkbox" tabindex="4" id="SS" name="checkbox" value="2" onkeydown="KeyDown(event,this)">
                                             <label style="padding-right:20px;">SS</label>
-                                            <input type="checkbox" tabindex="5" id="FW" name="checkbox" value="3" onkeydown="KeyDown(event,this)">
+                                            <input type="checkbox" tabindex="5" id="FW" name="checkbox" value="3" onkeydown="KeyDown(event,this,'CheckboxCheck')">
                                             <label>FW</label>
 
                                         </div>
@@ -78,6 +78,7 @@
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label id="text" style="padding-right: 12px;">予定期間</label>
                                             <input type="text" tabindex="9" class="text-line col-xl-3 text-left" id="PeriodStart" name="periodstart" onkeydown="KeyDown(event,this)" required placeholder="入力">
+                                            &nbsp;~&nbsp;
                                             <input type="text" tabindex="10" class="text-line col-xl-3 text-left" id="PeriodEnd" name="periodend" onkeydown="KeyDown(event,this,'DateCompare')" required placeholder="入力">
 
                                         </div>
@@ -171,7 +172,19 @@
         $("#ProjectManagerName").attr('disabled', 'disabled');
 
         GetProject();
-    });
+     });
+
+     function CheckboxCheck(result) {
+         if (result == 'OK') {
+             var degreeyear = $("#Degreeyear").is(":checked");
+             var ss = $("#SS").is(":checked");
+             var fw = $("#FW").is(":checked");
+             if (!degreeyear && !ss && !fw) {
+                 $("#FW").focus();
+                 ShowErrorMessage("E111");
+             }
+         }
+     }
 
      function DateCompare(result) {
          if (result == 'OK') {
@@ -201,7 +214,6 @@
                  };
                  var data = CalltoApiController('@Url.Action("DateComapre", "api/CommonApi")', model);
                 var dateData = JSON.parse(data);
-                alert(dateData);
                if (dateData[0].flg != 'false') {
                    return "0";
                }
@@ -217,6 +229,7 @@
             var ss = $("#SS").is(":checked");
             var fw = $("#FW").is(":checked");
             if (!degreeyear && !ss && !fw) {
+                $("#FW").focus();
                 var data = ShowErrorMessage("E111");
                 return data;
             }
@@ -335,7 +348,8 @@
             var degreeyear = $("#Degreeyear").is(":checked");
             var ss = $("#SS").is(":checked");
             var fw = $("#FW").is(":checked");
-                if (!degreeyear && !ss && !fw) {
+            if (!degreeyear && !ss && !fw) {
+                    $("#FW").focus();
                     var data = ShowErrorMessage("E111");
                     return data;
                 }
@@ -369,7 +383,7 @@
                              var blob = new Blob(["\ufeff", csv]);
                              var url = URL.createObjectURL(blob);
                              downloadLink.href = url;
-                             downloadLink.download = "経費登録.csv";
+                             downloadLink.download = "プロジェクト登録.csv";
 
                              document.body.appendChild(downloadLink);
                              downloadLink.click();
