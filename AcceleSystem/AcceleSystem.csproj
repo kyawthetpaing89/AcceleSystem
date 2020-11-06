@@ -603,6 +603,10 @@
       <Project>{896a79e0-6565-4fc3-b927-50f8f80f5850}</Project>
       <Name>Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Print_GenkaBL\Print_GenkaBL.csproj">
+      <Project>{a3634346-6e1b-4ac0-bb80-658b2c6d2d20}</Project>
+      <Name>Print_GenkaBL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TourokuProjectBL\TourokuProjectBL.csproj">
       <Project>{02c677ae-d5b4-4cd3-9d20-04098bedbf81}</Project>
       <Name>TourokuProjectBL</Name>
