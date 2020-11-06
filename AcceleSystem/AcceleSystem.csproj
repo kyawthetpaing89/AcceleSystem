@@ -150,6 +150,8 @@
     <Compile Include="Controllers\Koushin_GetsujiApiController.cs" />
     <Compile Include="Controllers\Koushin_GetsujiController.cs" />
     <Compile Include="Controllers\MessageApiController.cs" />
+    <Compile Include="Controllers\Print_GenkaApiController.cs" />
+    <Compile Include="Controllers\Print_GenkaController.cs" />
     <Compile Include="Controllers\TourokuProjectApiController.cs" />
     <Compile Include="Controllers\TourokuProjectController.cs" />
     <Compile Include="Controllers\Touroku_KeihiApiController.cs" />
@@ -545,6 +547,7 @@
     <Content Include="Views\Touroku_Keihi\Touroku_KeihiList.cshtml" />
     <Content Include="Views\Koushin_Genka\Koushin_Genka.cshtml" />
     <Content Include="Views\Touroku_Nouhin\Touroku_BSNouhinEntry.cshtml" />
+    <Content Include="Views\Print_Genka\Print_Genka.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
