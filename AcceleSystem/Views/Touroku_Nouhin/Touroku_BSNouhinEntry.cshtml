@@ -41,9 +41,9 @@
                                 <label class="text" style="padding-right:20px!important">シーズン</label>
                                 <input type="radio" tabindex="3" id="rdoAllYear" name="radio" onkeydown="KeyDown(event,this)" checked>
                                 <label for="rdoC" style="padding-right:8px!important">通年</label>
-                                <input type="radio" tabindex="4"  id="rdoSS" name="radio" onkeydown="KeyDown(event,this)">
+                                <input type="radio" tabindex="4" id="rdoSS" name="radio" onkeydown="KeyDown(event,this)">
                                 <label for="rdoS" style="padding-right:8px!important">SS</label>
-                                <input type="radio" tabindex="5"  id="rdoFW" name="radio" onkeydown="KeyDown(event,this)">
+                                <input type="radio" tabindex="5" id="rdoFW" name="radio" onkeydown="KeyDown(event,this)">
                                 <label for="rdoF" style="padding-right:8px!important">FW</label>
                             </div>
                         </div>
@@ -84,9 +84,9 @@
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
                         <div class="text-s text-custom1 text-uppercase mb-1" style="padding-left:165px;">
-                            <button id="btnAllCheck" tabindex="11" onclick="AllCheck()" class="btn btn-primary col-xl-2 text-center" >全選択</button>
+                            <button id="btnAllCheck" tabindex="11" onclick="AllCheck()" class="btn btn-primary col-xl-2 text-center">全選択</button>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <button id="btnAllUnCheck" tabindex="12" onclick="AllUnCheck()" class="btn btn-next col-xl-2 text-center" >全解除</button>
+                            <button id="btnAllUnCheck" tabindex="12" onclick="AllUnCheck()" class="btn btn-next col-xl-2 text-center">全解除</button>
                         </div>
                     </div>
                 </div>
@@ -124,6 +124,7 @@
 
 @section Scripts{
     <script type="text/javascript">
+        var row = null;
         $(document).ready(function () {
             $("#formtitle").text("B/S一括納品登録");
             var Mode = '@Model.Mode';
@@ -135,7 +136,7 @@
             RequiredCheck($("#BrandCD"));
             DoubleByteCheck($("#BrandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
             ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
-            RequiredCheck($("#PeriodStart"));   
+            RequiredCheck($("#PeriodStart"));
             YearMonthCheck($("#PeriodStart"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
             RequiredCheck($("#PeriodEnd"));
             YearMonthCheck($("#PeriodEnd"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
@@ -143,10 +144,11 @@
             DateCheck($("#DeliDate"), '@Url.Action("Date_Checking", "api/CommonApi")'); //E103
 
             ShowData();
+
         });
 
         function BrandCheck(result) {
-            if (result == 'OK') 
+            if (result == 'OK')
                 $("#BrandName").css("font-weight", "Bold");
             else
                 $("#BrandName").text('ブランド表示');
@@ -225,11 +227,11 @@
         function ShowData() {
             var TnModel = {
                 Year: $("#Year").val(),
-                BrandCD: $("#BrandCD").val(),       
+                BrandCD: $("#BrandCD").val(),
                 PeriodStart: ($("#PeriodStart").val()).replace("/",""),
                 PeriodEnd: ($("#PeriodEnd").val()).replace("/","")
             };
-            
+
             if ($('#rdoAllYear').is(':checked'))
                 TnModel.Season = "1";
             else if ($('#rdoSS').is(':checked'))
@@ -292,7 +294,7 @@
                         "data": null,
                         className: "Border6",
                         render: function (data, type, row) {
-                            return '<input type="number"  id ="DeliverAmount" class="text-line text-right border-0 " value = ' + data.DeliverTimes + '>';
+                            return '<input type="text"  id ="DeliverAmount" class="text-line text-right border-0 " value = ' + data.DeliverTimes + '>';
                         }
                     },
                     {
@@ -308,34 +310,100 @@
 
         $('#tblNouhinBS').on('change', '#chk', function () {
             var row = $(this).closest('tr');
-            alert(JSON.stringify(row.data()));
-            //$('#chk', row).each(function () {
-            //    if($(this).val() == 'false')
-            //        $(this).val('true');
-            //    else 
-            //        $(this).val('false');
-                
-            //    alert($(this).val())
-            //});
-            ////$('.total', row).text(total);
-            //$('#tblNouhinBS').DataTable().draw();
+            $('#chk', row).each(function () {
+                if ($(this).val() == 'false') {
+                    $(this).val('true');
+                }
+                else
+                    $(this).val('false');
+
+                alert($(this).val())
+            });
         });
-        
-        //function ColumnCheck(thisObj) {
-        //    //$(thisObj).find("file_id").val() = "1";
-         /// $('#tblNouhinBS').DataTable().row($(thisObj).parents('tr')).child('td:eq(0)').data('false');
-            
-        //    //var dataExchangeCheckColumnVM = $('#tblNouhinBS').DataTable().row($(thisObj).parents('tr')).data();
-        //    //var dataExchangeCheckColumnList = $('#tblNouhinBS').DataTable().rows().data();
-        //}
 
-
-        //$("#tblNouhinBS").on('change', "input[type='checkbox']", function (e) {
-        //    alert($('#tblNouhinBS').rows(e));
+        //$("#tblNouhinBS tr").click(function () {
+        //    alert($(this).text());
+        //    $("#DeliverAmount").val($(this).text());
+        //    row = $(this);
         //});
-      
+        //$('#tblNouhinBS').on('click', 'tr', function () {
+        //    alert($(this).find("td").eq(5).val());
+        //});
+
+        //$('#tblNouhinBS').on('click', '#DeliverAmount', function (e) {
+        //    alert($(this).val());
+        //    //if ($(this).prev().prev().text == "") {
+        //    //    alert("b");
+        //            var text = $(this).val();
+        //            $(this).val('');
+        //    $('#DeliverAmount').appendTo($(this)).val(text).select().blur(function () {
+        //                var newText = $(this).val();
+        //        $(this).draw();   // <-----
+        //            });
+        //    //}
+        //    e.stopPropagation();
+        //});
+
+        $('#tblNouhinBS').on('click', '#DeliverAmount', function () {
+            var row1 = $(this).closest('tr');
+            $('#DeliverAmount', row1).each(function (e) {
+                alert($(this).val());
+            });
+
+        });
+
+        function storeTblValues() {
+            var TableData = new Array();
+
+            $('#tblNouhinBS tr').each(function (row, tr) {
+                TableData[row] = {
+                    "checkval": $(tr).find('input').val()
+                    , "ProjectCD": $(tr).find('td:eq(1)').text()
+                    , "HinbanCD": $(tr).find('td:eq(2)').text()
+                    , "Production": $(tr).find('input:text').val()
+                    , "SumDeliveryAmount": $(tr).find('input:text').val()
+                    , "NofDeliverItems": $(tr).find('input:text').val()
+                }
+            }); 
+            TableData.shift();  // first row will be empty - so remove
+            return TableData;
+        }
+
         //Insert,Update,Delete
         function DoProcess() {
+            
+            var tb = storeTblValues();
+            var data = JSON.stringify(tb);
+            alert(data);
+            //var heads = [];
+            //$("#tblNouhinBS").find("tr").each(function () {
+            //    heads.push($(this).attr('id'));
+            //});
+            //alert(heads);
+            //var rows = [];
+            //$("tbody tr").each(function () {
+            //    cur = {};
+            //    $(this).find("td").each(function (i, v) {
+            //        cur[heads[i]] = $(this).text().trim();
+            //    });
+            //    rows.push(cur);
+            //    cur = {};
+            //});
+        
+            //var lines = $("#tblNouhinBS tr");
+            //var json = {};
+            //jQuery.each(lines, function (key) {
+            //    var l = {};
+            //    var cols = $(this).find("td");
+            //    jQuery.each(cols, function (key, val) {
+            //        l[key] = val.innerHTML;
+            //    });
+            //    json[key] = l;
+            //})
+            //json = JSON.stringify(json);
+            //alert(json);
+
+
             //var rowList = new Array();
             //$("tblNouhinBS tr").each(function () {
             //    var colList = new Array();
@@ -350,7 +418,7 @@
             //alert(a);
             // table.rows().invalidate().draw();
            // var rowcollection = table.$("chk:checked", { "page": "all" });
-            //var data = JSON.stringify(rowcollection.rows().data().toArray()); 
+            //var data = JSON.stringify(rowcollection.rows().data().toArray());
            // alert(data)
            // alert(table.length);
             //alert(table);
@@ -378,18 +446,18 @@
             //var result=new Array();
             //alert(selected);
             //var i;
-            
+
             //for (i = 0; i < selected.length; i++) {
                //table.rows(selected[i]).remove();
              //  result.push(table.rows(selected[i]).data().toArray());
             //}
             //var data = JSON.stringify(result);
-           // alert(JSON.stringify(result));
+            //alert(JSON.stringify(result));
 
 
             //var data = JSON.stringify(rowcollection.rows().data());
             //alert(data)
-           
+
             //var data = JSON.stringify(arrayItem);
             //alert(data);
             //var data = JSON.stringify($('#tblNouhinBS'));
@@ -398,7 +466,7 @@
              @*var TnModel = {
                  DeliveryStartDate: $("#DeliDate").val(),
                  Remarks: $("#Remarks").val(),
-                 TableData: data,
+                 TableData: json,
                  Mode:'@Model.Mode'
             };
             alert(TnModel);
@@ -406,7 +474,7 @@
             ShowSuccessMessage(data,'@Url.Action("Touroku_NouhinList", "Touroku_Nouhin")');*@
         }
 
-       
+
         //save
         function btnSaveClick() {
             //var res = ErrorCheckOnSave();
@@ -484,5 +552,4 @@
         });
 
     </script>
-
 }
