@@ -72,7 +72,8 @@ namespace TourokuNouhinBL
             {
                 Tnmodel.SPName = "M_Nouhin_Delete";
                 Tnmodel.Sqlprms = new SqlParameter[1];
-                Tnmodel.Sqlprms[0] = new SqlParameter("@DeliveryDate", SqlDbType.VarChar) { Value = Tnmodel.DeliveryStartDate };
+                Tnmodel.Sqlprms[0] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tnmodel.ProjectCD };
+                Tnmodel.Sqlprms[1] = new SqlParameter("@jsondata", SqlDbType.VarChar) { Value = Tnmodel.TableData };
             }
 
             return bdl.SelectJson(Tnmodel.SPName, Tnmodel.Sqlprms);

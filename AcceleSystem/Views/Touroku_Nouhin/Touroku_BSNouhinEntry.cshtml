@@ -124,7 +124,7 @@
 
 @section Scripts{
     <script type="text/javascript">
-        var row = null;
+        var Deliverydata = null;
         $(document).ready(function () {
             $("#formtitle").text("B/S一括納品登録");
             var Mode = '@Model.Mode';
@@ -330,28 +330,33 @@
         //    alert($(this).find("td").eq(5).val());
         //});
 
-        //$('#tblNouhinBS').on('click', '#DeliverAmount', function (e) {
-        //    alert($(this).val());
-        //    //if ($(this).prev().prev().text == "") {
-        //    //    alert("b");
-        //            var text = $(this).val();
-        //            $(this).val('');
-        //    $('#DeliverAmount').appendTo($(this)).val(text).select().blur(function () {
-        //                var newText = $(this).val();
-        //        $(this).draw();   // <-----
-        //            });
-        //    //}
-        //    e.stopPropagation();
-        //});
-
         $('#tblNouhinBS').on('click', '#DeliverAmount', function () {
             var row1 = $(this).closest('tr');
             $('#DeliverAmount', row1).each(function (e) {
-                alert($(this).val());
+                Deliverydata = $(this).val();
+                alert(Deliverydata);
             });
 
         });
 
+        $('#tblNouhinBS').on('change', '#DeliverAmount', function () {
+            var row = $(this).closest('tr');
+            $('#DeliverAmount', row).each(function (e) {
+                Deliverydata = $(this).val();
+                $(r).find('input:text').text(Deliverydata);
+                alert($(r).find('input:text').text());
+            });
+
+        });
+
+        $('#tblNouhinBS').on('keyup', '#DeliverAmount', function () {
+            var r = $(this).closest('tr');
+            $('#DeliverAmount', r).each(function (e) {
+                //alert(Deliverydata);
+                //$(r).find('input:text').val(Deliverydata);
+                alert($(r).find('input:text').text());
+            });
+        });
         function storeTblValues() {
             var TableData = new Array();
 
@@ -360,7 +365,7 @@
                     "checkval": $(tr).find('input').val()
                     , "ProjectCD": $(tr).find('td:eq(1)').text()
                     , "HinbanCD": $(tr).find('td:eq(2)').text()
-                    , "Production": $(tr).find('input:text').val()
+                    , "Production": $(tr).find('td:eq(3)').val()
                     , "SumDeliveryAmount": $(tr).find('input:text').val()
                     , "NofDeliverItems": $(tr).find('input:text').val()
                 }
@@ -368,7 +373,7 @@
             TableData.shift();  // first row will be empty - so remove
             return TableData;
         }
-
+        
         //Insert,Update,Delete
         function DoProcess() {
             
@@ -439,39 +444,14 @@
            // });
             //alert(JSON.stringify(selected));
 
-            //var data = JSON.stringify(selected);
-            //alert(data);
-            ////var dt = new DataTable();
-            //table.rows().remove();
-            //var result=new Array();
-            //alert(selected);
-            //var i;
-
-            //for (i = 0; i < selected.length; i++) {
-               //table.rows(selected[i]).remove();
-             //  result.push(table.rows(selected[i]).data().toArray());
-            //}
-            //var data = JSON.stringify(result);
-            //alert(JSON.stringify(result));
-
-
-            //var data = JSON.stringify(rowcollection.rows().data());
-            //alert(data)
-
-            //var data = JSON.stringify(arrayItem);
-            //alert(data);
-            //var data = JSON.stringify($('#tblNouhinBS'));
-            //var data = JSON.stringify(table.rows().data().toArray());
-            //alert(data);
-             @*var TnModel = {
+             var TnModel = {
                  DeliveryStartDate: $("#DeliDate").val(),
                  Remarks: $("#Remarks").val(),
-                 TableData: json,
+                 TableData: data,
                  Mode:'@Model.Mode'
             };
-            alert(TnModel);
             var data = CalltoApiController('@Url.Action("M_NouhinBS_Insert", "api/Touroku_NouhinApi")', TnModel);
-            ShowSuccessMessage(data,'@Url.Action("Touroku_NouhinList", "Touroku_Nouhin")');*@
+            ShowSuccessMessage(data,'@Url.Action("Touroku_NouhinList", "Touroku_Nouhin")');
         }
 
 
