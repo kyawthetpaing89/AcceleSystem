@@ -266,14 +266,14 @@
                         "data": null,
                         className: "Border2",
                         render: function (data, type, row) {
-                            return '<label>' + data.ProjectCD + '  ' + data.ProjectName + '</label>';
+                            return '<label id ="Projectcd">' + data.ProjectCD + '</label>' + '  ' + '<label id ="Projectname">' + data.ProjectName + '</label>';
                         }
                     },
                     {
                         "data": null,
                         className: "Border3",
                         render: function (data, type, row) {
-                            return '<label>' + data.HinbanCD + '  ' + data.HinbanName  + '</label>';
+                            return '<label id ="Hinbancd">' + data.HinbanCD + '</label>' + '  ' + '<label  id ="Hinbanname">' + data.HinbanName  + '</label>';
                         }
                     },
                     {
@@ -316,8 +316,6 @@
                 }
                 else
                     $(this).val('false');
-
-                alert($(this).val())
             });
         });
 
@@ -330,44 +328,43 @@
         //    alert($(this).find("td").eq(5).val());
         //});
 
-        $('#tblNouhinBS').on('click', '#DeliverAmount', function () {
-            var row1 = $(this).closest('tr');
-            $('#DeliverAmount', row1).each(function (e) {
-                Deliverydata = $(this).val();
-                alert(Deliverydata);
-            });
+        //$('#tblNouhinBS').on('click', '#DeliverAmount', function () {
+        //    var row1 = $(this).closest('tr');
+        //    $('#DeliverAmount', row1).each(function (e) {
+        //        Deliverydata = $(this).val();
+        //    });
 
-        });
+        //});
 
-        $('#tblNouhinBS').on('change', '#DeliverAmount', function () {
-            var row = $(this).closest('tr');
-            $('#DeliverAmount', row).each(function (e) {
-                Deliverydata = $(this).val();
-                $(r).find('input:text').text(Deliverydata);
-                alert($(r).find('input:text').text());
-            });
+        //$('#tblNouhinBS').on('change', '#DeliverAmount', function () {
+        //    var row = $(this).closest('tr');
+        //    $('#DeliverAmount', row).each(function (e) {
+        //        Deliverydata = $(this).val();
+        //       // $(r).find('input:text').text(Deliverydata);
+        //    });
 
-        });
+        //});
 
-        $('#tblNouhinBS').on('keyup', '#DeliverAmount', function () {
-            var r = $(this).closest('tr');
-            $('#DeliverAmount', r).each(function (e) {
-                //alert(Deliverydata);
-                //$(r).find('input:text').val(Deliverydata);
-                alert($(r).find('input:text').text());
-            });
-        });
+        //$('#tblNouhinBS').on('keyup', '#DeliverAmount', function () {
+        //    var r = $(this).closest('tr');
+        //    $('#DeliverAmount', r).each(function (e) {
+        //        //alert(Deliverydata);
+        //        //$(r).find('input:text').val(Deliverydata);
+        //        alert($(r).find('input:text').text());
+        //    });
+        //});
         function storeTblValues() {
             var TableData = new Array();
 
             $('#tblNouhinBS tr').each(function (row, tr) {
                 TableData[row] = {
                     "checkval": $(tr).find('input').val()
-                    , "ProjectCD": $(tr).find('td:eq(1)').text()
-                    , "HinbanCD": $(tr).find('td:eq(2)').text()
-                    , "Production": $(tr).find('td:eq(3)').val()
-                    , "SumDeliveryAmount": $(tr).find('input:text').val()
-                    , "NofDeliverItems": $(tr).find('input:text').val()
+                    , "ProjectCD": $(tr).find('#Projectcd').text()
+                    , "HinbanCD": $(tr).find('#Hinbancd').text()
+                    , "Production": $(tr).find('#Production').val()
+                    , "SumDeliveryAmount": $(tr).find('#SumDeliveryAmount').val()
+                    , "DeliverAmount": $(tr).find('#DeliverAmount').val()
+                    , "NofDeliverItems": $(tr).find('#NofDeliverItems').val()
                 }
             }); 
             TableData.shift();  // first row will be empty - so remove
@@ -380,70 +377,7 @@
             var tb = storeTblValues();
             var data = JSON.stringify(tb);
             alert(data);
-            //var heads = [];
-            //$("#tblNouhinBS").find("tr").each(function () {
-            //    heads.push($(this).attr('id'));
-            //});
-            //alert(heads);
-            //var rows = [];
-            //$("tbody tr").each(function () {
-            //    cur = {};
-            //    $(this).find("td").each(function (i, v) {
-            //        cur[heads[i]] = $(this).text().trim();
-            //    });
-            //    rows.push(cur);
-            //    cur = {};
-            //});
-        
-            //var lines = $("#tblNouhinBS tr");
-            //var json = {};
-            //jQuery.each(lines, function (key) {
-            //    var l = {};
-            //    var cols = $(this).find("td");
-            //    jQuery.each(cols, function (key, val) {
-            //        l[key] = val.innerHTML;
-            //    });
-            //    json[key] = l;
-            //})
-            //json = JSON.stringify(json);
-            //alert(json);
-
-
-            //var rowList = new Array();
-            //$("tblNouhinBS tr").each(function () {
-            //    var colList = new Array();
-            //    $("td", this).each(function () {
-            //        colList.push($(this).text());
-            //    });
-            //    rowList.push(colList);
-            //});
-
-            //var table = $('#tblNouhinBS').DataTable();
-            //var a = table.rows[1].cells[4].innerHTML;
-            //alert(a);
-            // table.rows().invalidate().draw();
-           // var rowcollection = table.$("chk:checked", { "page": "all" });
-            //var data = JSON.stringify(rowcollection.rows().data().toArray());
-           // alert(data)
-           // alert(table.length);
-            //alert(table);
-            //var selected = new Array();
-           // $('table [type="checkbox"]').each(function (i, v) {
-                //if (v.checked) {
-                    //var colIndex = table.cell(this).index();
-                    //var rowIndex = table.cell(this).index();
-                    //table.cell(i, colIndex).data("new");
-
-                    //table.cell({ row: 0, column: 0 }).data('true').draw();
-                    //table.cell(i).data('true');
-                    //$("#chk").val('1');
-                //if (!$(this).is(':checked')) {
-                   // selected.push(i);
-                   // selected.push(table.rows(i).data().toArray);
-             //  }
-           // });
-            //alert(JSON.stringify(selected));
-
+            
              var TnModel = {
                  DeliveryStartDate: $("#DeliDate").val(),
                  Remarks: $("#Remarks").val(),
