@@ -95,16 +95,16 @@
                                     <div class="col-md-12" style="padding-left:20px;">
                                         <div id="Statusgp" class="text-s text-custom1 text-uppercase mb-1">
                                             <label class="text" style="padding-right:30px;">納品状況</label>
-                                            <input type="checkbox" tabindex="13" id="Delleft" name="chkDelleft"  checked>
+                                            <input type="checkbox" tabindex="13" id="Delleft" name="chkDelleft" onkeydown="KeyDown(event,this)"  checked>
                                             <label style="padding-right:50px;">納品残あり</label>
-                                            <input type="checkbox" tabindex="14" id="Delcomplete" name="chkDelcomplete" >
+                                            <input type="checkbox" tabindex="14" id="Delcomplete" onkeydown="KeyDown(event,this)" name="chkDelcomplete" >
                                             <label style="padding-right:50px;">完納</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12" style="padding-left:0px; padding-top:2rem;">
                                     <div class="text-s text-custom1 text-uppercase mb-1">
-                                        <button id="btnSearch" tabindex="16" onclick="btnSearchClick()" class="btn btn-dark col-xl-3 text-center float-lg-right">検索</button>
+                                        <button id="btnSearch" tabindex="15" onclick="btnSearchClick()" class="btn btn-dark col-xl-3 text-center float-lg-right">検索</button>
                                         &nbsp;&nbsp;&nbsp;&nbsp;
                                     </div>
                                 </div>

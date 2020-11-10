@@ -28,14 +28,14 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="3" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this)" id="Year" name="txtYear" maxlength="4" required placeholder="年度">
+                            <input type="text" tabindex="2" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this)" id="Year" name="txtYear" maxlength="4" required placeholder="年度">
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="4" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="BrandCD" name="txtBrandCD" maxlength="20" required placeholder="ブランドコード">
+                            <input type="text" tabindex="3" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="BrandCD" name="txtBrandCD" maxlength="20" required placeholder="ブランドコード">
                             <label id="BrandName"><b>ブランド表示</b></label>
                         </div>
                     </div>
@@ -45,11 +45,11 @@
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <div class="custom-control custom-radio" style="padding-left:0px!important;">
                                 <label class="text" style="padding-right:20px!important">シーズン</label>
-                                <input type="radio" tabindex="5" id="rdoAllYear" name="radio" onkeydown="KeyDown(event,this)" checked>
+                                <input type="radio" tabindex="4" id="rdoAllYear" name="radio" onkeydown="KeyDown(event,this)" checked>
                                 <label for="rdoC" style="padding-right:8px!important">通年</label>
-                                <input type="radio" id="rdoSS" name="radio">
+                                <input type="radio" tabindex="5" id="rdoSS" name="radio" onkeydown="KeyDown(event,this)">
                                 <label for="rdoS" style="padding-right:8px!important">SS</label>
-                                <input type="radio" id="rdoFW" name="radio">
+                                <input type="radio" tabindex="6" id="rdoFW" name="radio" onkeydown="KeyDown(event,this)">
                                 <label for="rdoF" style="padding-right:8px!important">FW</label>
                             </div>
                         </div>
@@ -58,23 +58,23 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="6" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="DeliDate" name="txtDeliDate" maxlength="10" required placeholder="納品日">
+                            <input type="text" tabindex="7" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="DeliDate" name="txtDeliDate" maxlength="10" required placeholder="納品日">
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="7" class="text-line col-xl-9 text-left " onkeydown="KeyDown(event,this)" id="Remarks" name="txtRemarks" maxlength="40" required placeholder="備考">
+                            <input type="text" tabindex="8" class="text-line col-xl-9 text-left " onkeydown="KeyDown(event,this)" id="Remarks" name="txtRemarks" maxlength="40" required placeholder="備考">
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
                         <div class="text-s text-custom1 text-uppercase mb-1" style="padding-left:165px;">
-                            <button id="btnAllCheck" tabindex="8" onclick="AllCheck()" class="btn" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px;">全選択</button>
+                            <button id="btnAllCheck" tabindex="9" onclick="AllCheck()" class="btn" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px;">全選択</button>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <button id="btnAllUnCheck" tabindex="9" onclick="AllUnCheck()" class="btn" style="background-color:white; color:#1a8cff; border-radius:3px; border: 1px solid transparent; border-color:#1a8cff;">全解除</button>
+                            <button id="btnAllUnCheck" tabindex="10" onclick="AllUnCheck()" class="btn" style="background-color:white; color:#1a8cff; border-radius:3px; border: 1px solid transparent; border-color:#1a8cff;">全解除</button>
                         </div>
                     </div>
                 </div>
@@ -112,9 +112,9 @@
                 </div>
                 <div class="col-xl-12 text-center" style="padding-top:1.4rem!important;">
                     <div class="text-s text-custom1 text-uppercase mb-1" style="padding-left:30px;">
-                        <button id="btnSave" tabindex="8" onclick="btnSaveClick()" class="btn btn-dark col-xl-2 text-center">登録</button>
+                        <button id="btnSave" tabindex="" onclick="btnSaveClick()" class="btn btn-dark col-xl-2 text-center">登録</button>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <button id="btnCancel" tabindex="9" onclick="btnCancelClick()" class="btn btn-primary col-xl-2 text-center">戻る</button>
+                        <button id="btnCancel" tabindex="" onclick="btnCancelClick()" class="btn btn-primary col-xl-2 text-center">戻る</button>
                     </div>
                 </div>
             </div>
@@ -211,12 +211,20 @@
                     $("#BrandCD").val(nouhindata[0].BrandCD);
                     $("#BrandName").text(nouhindata[0].BrandName);
 
-                    if (nouhindata[0].Season == "1")
+                    if (nouhindata[0].Season == "1") {
                         $("#rdoAllYear").prop("checked", true);
-                    else if (nouhindata[0].Season == "2")
+                        $("#rdoAllYear").focus();
+                    }
+                    else if (nouhindata[0].Season == "2") {
                         $("#rdoSS").prop("checked", true);
-                    else if (nouhindata[0].Season == "3")
+                        $("#rdoSS").focus();
+                    }
+
+                    else if (nouhindata[0].Season == "3") {
                         $("#rdoFW").prop("checked", true);
+                        $("#rdoFW").focus();
+                    }
+                        
                 }
                 else {
                     $("#Year").val('');
@@ -231,6 +239,8 @@
             $("#ProjectName").css("font-weight", "Bold");
             $("#BrandName").css("font-weight", "Bold");
         }
+
+      
 
         function ShowData() {
             
