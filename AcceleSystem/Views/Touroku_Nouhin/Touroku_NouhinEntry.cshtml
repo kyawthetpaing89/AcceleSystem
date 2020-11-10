@@ -479,7 +479,24 @@
         //        if (res1 == "0") {
         //            var res2 = FiscalDateCheckOnSave();
         //            if (res2 == "0") {
-                        ShowData();
+            if ($('#ProjectCD').val().trim() == '') {
+                $('#ProjectCD').focus();
+                ShowErrorMessage("E102");
+            }
+            else {
+                var model = {
+                    value: $('#ProjectCD').val(),
+                };
+                var data = CalltoApiController('@Url.Action("DoubleByte_Checking", "api/CommonApi")', model);
+                var byteresult = JSON.parse(data);
+                if (byteresult[0].flg == "false") {
+                    $('#ProjectCD').focus();
+                    ShowErrorMessage("E129");
+                }
+                else {
+                    ShowData();
+                }
+            }
         //            }
         //            else {
         //                $("#DeliDate").focus();

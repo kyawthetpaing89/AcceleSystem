@@ -150,8 +150,10 @@
         function BrandCheck(result) {
             if (result == 'OK')
                 $("#BrandName").css("font-weight", "Bold");
-            else
+            else {
                 $("#BrandName").text('ブランド表示');
+                $("#BrandName").css("font-weight", "Bold");
+            }
         }
 
          function DateCompareCheck(result) {
@@ -294,7 +296,7 @@
                         "data": null,
                         className: "Border6",
                         render: function (data, type, row) {
-                            return '<input type="text"  id ="DeliverAmount" class="text-line text-right border-0 " value = ' + data.DeliverTimes + '>';
+                            return '<input type="number"  id ="DeliverAmount" class="text-line text-right border-0 " onKeyPress="if(this.value.length==10) return false;" value = ' + data.DeliverTimes + '>';
                         }
                     },
                     {
@@ -350,15 +352,8 @@
         function storeTblValues() {
             var TableData = new Array();
             $('#tblNouhinBS tr').each(function (row, tr) {
-                //if (parseInt($(tr).find('#DeliverAmount').val()) < 0) {
-                //    alert("error");
-                //}
-                //else if (parseInt($(tr).find('#DeliverAmount').val()) > (parseInt($(tr).find('#Production').val()) - parseInt($(tr).find('#SumDeliveryAmount').val()))) {
-                //    alert("error");
-                //}
-                //else {
                     TableData[row] = {
-                        "checkval": $(tr).find('input').val()
+                        "checkval": $(tr).find('#chk').val()
                         , "ProjectCD": $(tr).find('#Projectcd').text()
                         , "HinbanCD": $(tr).find('#Hinbancd').text()
                         , "Production": $(tr).find('#Production').val()
@@ -366,7 +361,6 @@
                         , "DeliverAmount": $(tr).find('#DeliverAmount').val()
                         , "UNDelivertimes": $(tr).find('#UNDelivertimes').val()
                     }
-                //}
             });
             TableData.shift();  // first row will be empty - so remove
             return TableData;
@@ -392,49 +386,49 @@
 
         //save
         function btnSaveClick() {
-            //var res = ErrorCheckOnSave();
-            //if (res == "0") {
-            //    var res1 = DateCompareCheckOnSave();
-            //    if (res1 == "0") {
-            //        var res2 = FiscalDateCheckOnSave();
-            //        if (res2 == "0") {
+            var res = ErrorCheckOnSave();
+            if (res == "0") {
+                var res1 = DateCompareCheckOnSave();
+                if (res1 == "0") {
+                    var res2 = FiscalDateCheckOnSave();
+                    if (res2 == "0") {
                         DoProcess();
-            //        }
-            //        else {
-            //            $("#DeliDate").focus();
-            //            ShowErrorMessage(res2);
-            //        }
-            //    }
-            //    else {
-            //        $("#PeriodEnd").focus();
-            //        ShowErrorMessage(res1);
-            //    }
-            //}
-            //else
-            //    ShowErrorMessage(res);
+                    }
+                    else {
+                        $("#DeliDate").focus();
+                        ShowErrorMessage(res2);
+                    }
+                }
+                else {
+                    $("#PeriodEnd").focus();
+                    ShowErrorMessage(res1);
+                }
+            }
+            else
+                ShowErrorMessage(res);
         }
 
         function AllSearch() {
-            //var res = ErrorCheckOnSave();
-            //if (res == "0") {
-            //    var res1 = DateCompareCheckOnSave();
-            //    if (res1 == "0") {
-            //        var res2 = FiscalDateCheckOnSave();
-            //        if (res2 == "0") {
+            var res = ErrorCheckOnSave();
+            if (res == "0") {
+                var res1 = DateCompareCheckOnSave();
+                if (res1 == "0") {
+                    var res2 = FiscalDateCheckOnSave();
+                    if (res2 == "0") {
                         ShowData();
-            //        }
-            //        else {
-            //            $("#DeliDate").focus();
-            //            ShowErrorMessage(res2);
-            //        }
-            //    }
-            //    else {
-            //        $("#PeriodEnd").focus();
-            //        ShowErrorMessage(res1);
-            //    }
-            //}
-            //else
-            //    ShowErrorMessage(res);
+                    }
+                    else {
+                        $("#DeliDate").focus();
+                        ShowErrorMessage(res2);
+                    }
+                }
+                else {
+                    $("#PeriodEnd").focus();
+                    ShowErrorMessage(res1);
+                }
+            }
+            else
+                ShowErrorMessage(res);
         }
 
         function AllCheck() {  // 全選択
