@@ -165,7 +165,6 @@
                 $("#BrandCD").attr('disabled', 'disabled');
                 $("#DeliDate").attr('disabled', 'disabled');
                 $("#Remarks").attr('disabled', 'disabled');
-                $("#DeliverAmount").attr('disabled', 'disabled');
                 $("#btnSave").focus();
 
                 ShowData();
@@ -323,7 +322,7 @@
                         "data": null,
                         className: "Border5",
                         render: function (data, type, row) {
-                            return '<input type="text"  id ="DeliverAmount" class="text-line text-right border-0 " value = ' + data.DeliverAmount + '>';
+                            return '<input type="number"  id ="DeliverAmount" class="text-line text-right border-0 " onKeyPress="if(this.value.length==10) return false;" value = ' + data.DeliverAmount + '>';
                         }
                     },
                     {
