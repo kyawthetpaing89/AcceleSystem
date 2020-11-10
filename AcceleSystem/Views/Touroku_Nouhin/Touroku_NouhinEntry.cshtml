@@ -91,7 +91,7 @@
                                         <th style="width:17%; text-align:right">生産数</th>
                                         <th style="width:17%; text-align:right">累計納品数</th>
                                         <th style="width:17%; text-align:right">今回納品数</th>
-                                        <th style="width:17%; text-align:right">今回納品数</th>
+                                        <th style="width:17%; text-align:right">未納品数</th>
                                         <th style="width:17%; text-align:right" hidden>SEQ</th>
                                     </tr>
                                 </thead>
@@ -127,6 +127,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("納品登録");
+            $("#ProjectCD").focus();
             var Mode = '@Model.Mode';
             if (Mode == 'New') {
                 $('#btnSave').html('登録');
@@ -375,7 +376,7 @@
                 ShowErrorMessage(res);
         }
 
-        //function AllSearch() {
+        ////function AllSearch() {
         //    var res = ErrorCheckOnSave();
         //    if (res == "0") {
         //        var res1 = DateCompareCheckOnSave();
