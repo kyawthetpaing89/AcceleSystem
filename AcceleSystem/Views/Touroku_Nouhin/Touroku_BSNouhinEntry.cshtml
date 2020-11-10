@@ -318,14 +318,13 @@
                     $(this).val('false');
             });
         });
-
-        //$("#tblNouhinBS tr").click(function () {
-        //    alert($(this).text());
-        //    $("#DeliverAmount").val($(this).text());
-        //    row = $(this);
-        //});
-        //$('#tblNouhinBS').on('click', 'tr', function () {
-        //    alert($(this).find("td").eq(5).val());
+        //$('#tblNouhinBS').on('keyup', '#DeliverAmount', function () {
+        //    var r = $(this).closest('tr');
+        //    $('#DeliverAmount', r).each(function (e) {
+        //        //alert(Deliverydata);
+        //        //$(r).find('input:text').val(Deliverydata);
+        //        alert($(r).find('input:text').text());
+        //    });
         //});
 
         //$('#tblNouhinBS').on('click', '#DeliverAmount', function () {
@@ -336,39 +335,42 @@
 
         //});
 
-        //$('#tblNouhinBS').on('change', '#DeliverAmount', function () {
+        //$('#tblNouhinBS').on('change', '#DeliverAmount', function () {  //for nouhinEntry error check
         //    var row = $(this).closest('tr');
         //    $('#DeliverAmount', row).each(function (e) {
-        //        Deliverydata = $(this).val();
-        //       // $(r).find('input:text').text(Deliverydata);
+        //        Deliverydata = parseInt($(this).val());
+        //        alert(Deliverydata);
+        //        if (Deliverydata < 0) {
+        //            $(row).find('#NofDeliverItems').val('111');
+        //        }
         //    });
 
         //});
 
-        //$('#tblNouhinBS').on('keyup', '#DeliverAmount', function () {
-        //    var r = $(this).closest('tr');
-        //    $('#DeliverAmount', r).each(function (e) {
-        //        //alert(Deliverydata);
-        //        //$(r).find('input:text').val(Deliverydata);
-        //        alert($(r).find('input:text').text());
-        //    });
-        //});
         function storeTblValues() {
             var TableData = new Array();
-
             $('#tblNouhinBS tr').each(function (row, tr) {
-                TableData[row] = {
-                    "checkval": $(tr).find('input').val()
-                    , "ProjectCD": $(tr).find('#Projectcd').text()
-                    , "HinbanCD": $(tr).find('#Hinbancd').text()
-                    , "Production": $(tr).find('#Production').val()
-                    , "SumDeliveryAmount": $(tr).find('#SumDeliveryAmount').val()
-                    , "DeliverAmount": $(tr).find('#DeliverAmount').val()
-                    , "NofDeliverItems": $(tr).find('#NofDeliverItems').val()
-                }
-            }); 
+                //if (parseInt($(tr).find('#DeliverAmount').val()) < 0) {
+                //    alert("error");
+                //}
+                //else if (parseInt($(tr).find('#DeliverAmount').val()) > (parseInt($(tr).find('#Production').val()) - parseInt($(tr).find('#SumDeliveryAmount').val()))) {
+                //    alert("error");
+                //}
+                //else {
+                    TableData[row] = {
+                        "checkval": $(tr).find('input').val()
+                        , "ProjectCD": $(tr).find('#Projectcd').text()
+                        , "HinbanCD": $(tr).find('#Hinbancd').text()
+                        , "Production": $(tr).find('#Production').val()
+                        , "SumDeliveryAmount": $(tr).find('#SumDeliveryAmount').val()
+                        , "DeliverAmount": $(tr).find('#DeliverAmount').val()
+                        , "NofDeliverItems": $(tr).find('#NofDeliverItems').val()
+                    }
+                //}
+            });
             TableData.shift();  // first row will be empty - so remove
             return TableData;
+                   
         }
         
         //Insert,Update,Delete
@@ -387,7 +389,6 @@
             var data = CalltoApiController('@Url.Action("M_NouhinBS_Insert", "api/Touroku_NouhinApi")', TnModel);
             ShowSuccessMessage(data,'@Url.Action("Touroku_NouhinList", "Touroku_Nouhin")');
         }
-
 
         //save
         function btnSaveClick() {
