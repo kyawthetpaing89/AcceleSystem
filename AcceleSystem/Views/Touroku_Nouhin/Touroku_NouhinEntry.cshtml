@@ -218,12 +218,18 @@
                     $("#BrandCD").val(nouhindata[0].BrandCD);
                     $("#BrandName").text(nouhindata[0].BrandName);
 
-                    if (nouhindata[0].Season == "1")
+                    if (nouhindata[0].Season == "1") {
                         $("#rdoAllYear").prop("checked", true);
-                    else if (nouhindata[0].Season == "2")
+                        $("#rdoAllYear").focus();
+                    }
+                    else if (nouhindata[0].Season == "2") {
                         $("#rdoSS").prop("checked", true);
-                    else if (nouhindata[0].Season == "3")
+                        $("#rdoSS").focus();
+                    }
+                    else if (nouhindata[0].Season == "3") {
                         $("#rdoFW").prop("checked", true);
+                        $("#rdoFW").focus();
+                    }
                 }
                 else {
                     $("#Year").val('');
