@@ -33,5 +33,12 @@ namespace Print_GenkaBL
             //need to write codes here
             return bdl.SelectJson("Print_GenkaCSV", Pmodel.Sqlprms);
         }
+
+        public string M_Contrl_Year_ExitCheck(Print_GenkaModel Pmodel) // for 対象年度
+        {
+            BaseDL bdl = new BaseDL();
+            Pmodel.Sqlprms = new SqlParameter[0];
+            return bdl.SelectJson("M_Contrl_Year_ExitCheck");
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿
+﻿@model Models.Print_GenkaModel
 @{
     ViewBag.Title = "Print_Genka";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,23 +9,23 @@
 <div id="divMain" class="container-fluid">
     <div class="content">
         <div class="p-5 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white; border-radius:5px;">
-            <div class="col-xs-12 col-md-2"></div>
-            <div class="col-xs-12 col-md-8">
+            <div class="col-xs-12 col-md-4"></div>
+            <div class="col-xs-12 col-md-5">
                 <div>
                     <h2 class=" hr-text text-center">原価集計表</h2>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" id="targetyear" onkeydown="KeyDown(event,this)" placeholder="対象年度">
+                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" id="targetyear" onkeydown="KeyDown(event,this)" maxlength="4" placeholder="対象年度">
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="2" class="text-line col-xl-5 text-left" id="BrandCD" name="brandname" onkeydown="KeyDown(event,this)" style="width:140px;" placeholder="ブランド名">
-                            <label id="#"><b>ブランド表示</b></label>
+                            <input type="text" tabindex="2" class="text-line col-xl-5 text-left" id="BrandCD" name="brandcd" onkeydown="KeyDown(event,this,'BrandCheck')" maxlength="6" style="width:140px;" placeholder="ブランド名">
+                            <label id="brandname"><b>ブランド表示</b></label>
                         </div>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="text" style="padding-right:20px;">プロジェクト</label>
-                            <input type="text" tabindex="6" class="text-line col-xl-5 text-left" id="ProjectCD" name="projectname" onkeydown="KeyDown(event,this)" style="width:80px;">
+                            <input type="text" tabindex="6" class="text-line col-xl-5 text-left" id="ProjectCD" name="projectcd" onkeydown="KeyDown(event,this)" maxlength="10" style="width:90px;">
                         </div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="text" style="padding-right:90px;"></label>
-                            <input type="text" tabindex="7" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)">
+                            <input type="text" id="projectName" tabindex="7" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)">
                         </div>
                     </div>
                 </div>
@@ -72,14 +72,14 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12" style="padding-left:110px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <button id="btnGenerate" tabindex="10" onclick="btnGenerateClick()" class="btn btn-dark col-xl-5 text-center"></button>
+                            <button id="btnGenerate" tabindex="10" onclick="btnGenerateClick()" class="btn btn-dark col-xl-5 text-center">処理実行</button>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <button id="btnCancel" tabindex="11" onclick="btnCancelClick()" class="btn btn-primary col-xl-5 text-center">戻る</button>
+                            @*<button id="btnCancel" tabindex="11" onclick="btnCancelClick()" class="btn btn-primary col-xl-5 text-center">戻る</button>*@
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-2"></div>
+            <div class="col-xs-12 col-md-3"></div>
         </div>
     </div>
 </div>
@@ -87,23 +87,50 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("原価集計表");
-            $("#txtYear").focus();
+            $("#targetyear").attr('disabled', 'disabled');
+            $("#BrandCD").focus();
             var Mode = '@Model.Mode';
             if (Mode == 'New') {
-                $('#btnGenerate').html('登録');
+               // $('#btnGenerate').html('登録');
 
-                RequiredCheck($("#txtYear"));
-                YearCheck($("#txtYear"), '@Url.Action("Year_Checking", "api/CommonApi")');
+                @*RequiredCheck($("#targetyear"));
+                DoubleByteCheck($("#targetyear"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                YearCheck($("#targetyear"), '@Url.Action("Year_Checking", "api/CommonApi")');*@
 
                 RequiredCheck($("#BrandCD"));
-                @*DoubleByteCheck($("#BrandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');*@
+                DoubleByteCheck($("#BrandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Print_GenkaApi")', "brandname");
 
                 RequiredCheck($("#projectCD"));
-                 @*DoubleByteCheck($("#projectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');*@
+                DoubleByteCheck($("#projectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#projectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Print_GenkaApi")', "projectName");
+
+                ShowTargetYear();
             }
         });
+
+        function ShowTargetYear() {
+            var Pmodel = {
+                TargetYear: $("#targetyear").val(),
+            };
+
+            var data = CalltoApiController('@Url.Action("M_Contrl_Year_ExitCheck", "api/Print_GenkaApi")', Pmodel);
+            var controldata = JSON.parse(data);
+            alert(controldata[0].FiscalYear);
+            if (controldata[0].FiscalYear) 
+                $("#targetyear").val(controldata[0].FiscalYear);
+            else
+                ShowErrorMessage("E101");
+        }
+
+        function BrandCheck(result) {    // Make bold to BrandName after databind
+            if (result == 'OK') {
+                $("#brandname").css("font-weight", "Bold");
+            }
+            else $("#brandname").text('ブランド表示');
+            $("#brandname").css("font-weight", "Bold");
+         }
+
         function btnGenerateClick(){
             var allyear = $("#allyear").is(":checked");
             var ss = $("#SS").is(":checked");
@@ -136,5 +163,22 @@
             }
              
         }
+
+        $('#btnGenerate').keydown(function (e) {
+            var code = e.keyCode || e.which;
+            if (code == 9) {
+                if (e.shiftKey) {
+                    //Focus previous input
+                    if (thisTab == startIndex) {
+                        $("." + tabLimitInID).find('[tabindex=' + lastIndex + ']').focus();
+                        return false;
+                    }
+                    else {
+                        e.preventDefault();
+                    }
+                }
+                e.preventDefault();
+            }
+        });
     </script>
 }

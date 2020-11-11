@@ -27,5 +27,11 @@ namespace AcceleSystem.Controllers
             Print_Genka_BL pgbl = new Print_Genka_BL();
             return pgbl.Print_GenkaCSV(pgmodel);
         }
+
+        public string M_Contrl_Year_ExitCheck([FromBody] Print_GenkaModel pgmodel) // for 対象年度
+        {
+            Print_Genka_BL pgbl = new Print_Genka_BL();
+            return pgbl.M_Contrl_Year_ExitCheck(pgmodel);
+        }
     }
 }
