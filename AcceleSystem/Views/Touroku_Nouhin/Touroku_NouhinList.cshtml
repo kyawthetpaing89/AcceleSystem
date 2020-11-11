@@ -11,7 +11,7 @@
 <div id="divMain" class="container-fluid">
     <div class="card">
         <div class="row">
-            <div class="col-xs-12 col-md-6">
+            <div class="col-xs-12 col-md-5">
                 <div class="card-body card-block">
                     <div class="row form-group">
                         <div class="col col-md-12">
@@ -49,10 +49,10 @@
                                         <div id="Seasongp" class="text-s text-custom1 text-uppercase mb-1">
                                             <label id="text" style="padding-right:35px;">シーズン</label>
                                             <input type="checkbox" tabindex="4" id="Allyear" name="chk" value="1" onkeydown="KeyDown(event,this)" checked>
-                                            <label for="Allyear" style="padding-right:40px;">度年</label>
-                                            <input type="checkbox"  tabindex="5" id="SS" name="chk" value="2" onkeydown="KeyDown(event,this)">
-                                            <label for="SS" style="padding-right:40px;">SS</label>
-                                            <input type="checkbox"  tabindex="6" id="FW" name="chk" value="3" onkeydown="KeyDown(event,this)">
+                                            <label for="Allyear" style="padding-right:25px;">通年</label>
+                                            <input type="checkbox" tabindex="5" id="SS" name="chk" value="2" onkeydown="KeyDown(event,this)">
+                                            <label for="SS" style="padding-right:25px;">SS</label>
+                                            <input type="checkbox" tabindex="6" id="FW" name="chk" value="3" onkeydown="KeyDown(event,this)">
                                             <label for="FW">FW</label>
                                         </div>
                                     </div>
@@ -84,8 +84,8 @@
                                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                                     <div class="col-md-12" style="padding-left:35px;">
                                         <div class="text-s text-custom1 text-uppercase mb-1">
-                                            <label id="text" style="padding-right:35px;">納品目</label>
-                                            <input type="text" tabindex="11" id="StartDate" name="txtStartDate" onkeydown="KeyDown(event,this)" class="text-line col-xl-4 text-left" maxlength="10" required placeholder="入力">
+                                            <label id="text" style="padding-right:35px;">納品日</label>
+                                            <input type="text" tabindex="11" id="StartDate" name="txtStartDate" onkeydown="KeyDown(event,this)" class="text-line col-xl-3 text-left" maxlength="10" required placeholder="入力">
                                             &nbsp;~&nbsp;
                                             <input type="text" tabindex="12" id="EndDate" name="txtEndDate" onkeydown="KeyDown(event,this,'DateCompareCheck')" class="text-line col-xl-4 text-left" maxlength="10" required placeholder="入力">
                                         </div>
@@ -95,16 +95,16 @@
                                     <div class="col-md-12" style="padding-left:20px;">
                                         <div id="Statusgp" class="text-s text-custom1 text-uppercase mb-1">
                                             <label class="text" style="padding-right:30px;">納品状況</label>
-                                            <input type="checkbox" tabindex="13" id="Delleft" name="chkDelleft"  checked>
-                                            <label style="padding-right:50px;">納品残あり</label>
-                                            <input type="checkbox" tabindex="14" id="Delcomplete" name="chkDelcomplete" >
-                                            <label style="padding-right:50px;">完納</label>
+                                            <input type="checkbox" tabindex="13" id="Delleft" name="chkDelleft" onkeydown="KeyDown(event,this)"  checked>
+                                            <label style="padding-right:12px;">納品残あり</label>
+                                            <input type="checkbox" tabindex="14" id="Delcomplete" onkeydown="KeyDown(event,this)" name="chkDelcomplete" >
+                                            <label>完納</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12" style="padding-left:0px; padding-top:2rem;">
                                     <div class="text-s text-custom1 text-uppercase mb-1">
-                                        <button id="btnSearch" tabindex="16" onclick="btnSearchClick()" class="btn btn-dark col-xl-3 text-center float-lg-right">検索</button>
+                                        <button id="btnSearch" tabindex="15" onclick="btnSearchClick()" class="btn btn-dark col-xl-3 text-center float-lg-right">検索</button>
                                         &nbsp;&nbsp;&nbsp;&nbsp;
                                     </div>
                                 </div>

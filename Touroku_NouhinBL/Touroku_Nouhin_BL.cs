@@ -71,7 +71,7 @@ namespace TourokuNouhinBL
             else if (Tnmodel.Mode.Equals("Delete"))
             {
                 Tnmodel.SPName = "M_Nouhin_Delete";
-                Tnmodel.Sqlprms = new SqlParameter[1];
+                Tnmodel.Sqlprms = new SqlParameter[2];
                 Tnmodel.Sqlprms[0] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tnmodel.ProjectCD };
                 Tnmodel.Sqlprms[1] = new SqlParameter("@jsondata", SqlDbType.VarChar) { Value = Tnmodel.TableData };
             }

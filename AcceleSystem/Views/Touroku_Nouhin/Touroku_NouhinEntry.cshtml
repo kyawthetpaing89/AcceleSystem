@@ -28,14 +28,14 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="3" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this)" id="Year" name="txtYear" maxlength="4" required placeholder="年度">
+                            <input type="text" tabindex="2" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this)" id="Year" name="txtYear" maxlength="4" required placeholder="年度">
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="4" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="BrandCD" name="txtBrandCD" maxlength="20" required placeholder="ブランドコード">
+                            <input type="text" tabindex="3" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="BrandCD" name="txtBrandCD" maxlength="20" required placeholder="ブランドコード">
                             <label id="BrandName"><b>ブランド表示</b></label>
                         </div>
                     </div>
@@ -43,13 +43,13 @@
                 <div class="pt-3 md-form" style=" padding-top:1.2rem!important;">
                     <div class="col-xl-12" style="padding-left: 0px">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <div class="custom-control custom-radio" style="padding-left:0px!important;">
+                            <div id="rdogp" class="custom-control custom-radio" style="padding-left:0px!important;">
                                 <label class="text" style="padding-right:20px!important">シーズン</label>
-                                <input type="radio" tabindex="5" id="rdoAllYear" name="radio" onkeydown="KeyDown(event,this)" checked>
+                                <input type="radio" tabindex="4" id="rdoAllYear" name="radio" onkeydown="KeyDown(event,this)" checked>
                                 <label for="rdoC" style="padding-right:8px!important">通年</label>
-                                <input type="radio" id="rdoSS" name="radio">
+                                <input type="radio" tabindex="5" id="rdoSS" name="radio" onkeydown="KeyDown(event,this)">
                                 <label for="rdoS" style="padding-right:8px!important">SS</label>
-                                <input type="radio" id="rdoFW" name="radio">
+                                <input type="radio" tabindex="6" id="rdoFW" name="radio" onkeydown="KeyDown(event,this)">
                                 <label for="rdoF" style="padding-right:8px!important">FW</label>
                             </div>
                         </div>
@@ -58,29 +58,29 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="6" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="DeliDate" name="txtDeliDate" maxlength="10" required placeholder="納品日">
+                            <input type="text" tabindex="7" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'FiscalDateCheck')" id="DeliDate" name="txtDeliDate" maxlength="10" required placeholder="納品日">
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="7" class="text-line col-xl-9 text-left " onkeydown="KeyDown(event,this)" id="Remarks" name="txtRemarks" maxlength="40" required placeholder="備考">
+                            <input type="text" tabindex="8" class="text-line col-xl-9 text-left " onkeydown="KeyDown(event,this)" id="Remarks" name="txtRemarks" maxlength="40" required placeholder="備考">
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
-                        <div class="text-s text-custom1 text-uppercase mb-1" style="padding-left:165px;">
-                            <button id="btnAllCheck" tabindex="8" onclick="AllCheck()" class="btn" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px;">全選択</button>
+                        <div class="text-s text-custom1 text-uppercase mb-1">
+                            <button id="btnAllCheck" tabindex="9" onclick="AllCheck()" class="btn btn-primary col-xl-3 text-center">全選択</button>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <button id="btnAllUnCheck" tabindex="9" onclick="AllUnCheck()" class="btn" style="background-color:white; color:#1a8cff; border-radius:3px; border: 1px solid transparent; border-color:#1a8cff;">全解除</button>
+                            <button id="btnAllUnCheck" tabindex="10" onclick="AllUnCheck()" class="btn btn-next col-xl-3 text-center">全解除</button>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-xs-12 col-md-3"></div>
-            <div class="p-5 col shadow">
+            <div class="p-5 col ">
                 <div class="container">
                     <div class="row">
                         <table id ="tblNouhinEntry" class="tb1 col-sm-12" style="width:100%">
@@ -112,9 +112,9 @@
                 </div>
                 <div class="col-xl-12 text-center" style="padding-top:1.4rem!important;">
                     <div class="text-s text-custom1 text-uppercase mb-1" style="padding-left:30px;">
-                        <button id="btnSave" tabindex="8" onclick="btnSaveClick()" class="btn btn-dark col-xl-2 text-center">登録</button>
+                        <button id="btnSave" tabindex="11" onclick="btnSaveClick()" class="btn btn-dark col-xl-2 text-center">登録</button>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <button id="btnCancel" tabindex="9" onclick="btnCancelClick()" class="btn btn-primary col-xl-2 text-center">戻る</button>
+                        <button id="btnCancel" tabindex="12" onclick="btnCancelClick()" class="btn btn-primary col-xl-2 text-center">戻る</button>
                     </div>
                 </div>
             </div>
@@ -129,6 +129,12 @@
             $("#formtitle").text("納品登録");
             $("#ProjectCD").focus();
             var Mode = '@Model.Mode';
+            $("#HinbanCD").attr('disabled', 'disabled');
+            $("#Year").attr('disabled', 'disabled');
+            $("#BrandCD").attr('disabled', 'disabled');
+            $("#rdoAllYear").attr('disabled', 'disabled');
+            $("#rdoSS").attr('disabled', 'disabled');
+            $("#rdoFW").attr('disabled', 'disabled');
             if (Mode == 'New') {
                 $('#btnSave').html('登録');
                 
@@ -211,12 +217,15 @@
                     $("#BrandCD").val(nouhindata[0].BrandCD);
                     $("#BrandName").text(nouhindata[0].BrandName);
 
-                    if (nouhindata[0].Season == "1")
+                    if (nouhindata[0].Season == "1") 
                         $("#rdoAllYear").prop("checked", true);
-                    else if (nouhindata[0].Season == "2")
+                  
+                    else if (nouhindata[0].Season == "2") 
                         $("#rdoSS").prop("checked", true);
-                    else if (nouhindata[0].Season == "3")
+                   
+                    else if (nouhindata[0].Season == "3") 
                         $("#rdoFW").prop("checked", true);
+
                 }
                 else {
                     $("#Year").val('');
@@ -273,21 +282,22 @@
                 "bLengthChange": false,
                 "bInfo": false,
                 "bSort": false,
-                "paging": false,
+                destroy: true,
                 "columns": [
                     {
                         "data": null,
                         className: "select-checkbox",
                         render: function (data, type, row) {
-                            return '<input type="checkbox"  id ="chk" />';
+                           // return '<input type="checkbox"  id ="chk" />';
                             //return  '<input type="checkbox" ' + (data ? ' checked' : '') + '/>';
+                            return '<input type="checkbox" id ="chk" ' + (data.checkval == "true" ? ' checked="checked"' : '') + ' value = ' + data.checkval + '>';
                         }
                     },
                     {
                         "data": null,
                         className: "Border2",
                         render: function (data, type, row) {
-                            return '<label>' + data.HinbanCD + '  ' + data.HinbanName  + '</label>';
+                            return '<label id ="Hinbancd">' + data.HinbanCD + '</label>' + '  ' + '<label  id ="Hinbanname">' + data.HinbanName + '</label>';
                         }
                     },
                     
@@ -309,21 +319,21 @@
                         "data": null,
                         className: "Border5",
                         render: function (data, type, row) {
-                            return '<input type="text"  id ="DeliverAmount" class="text-line text-right border-0 " value = ' + data.DeliverAmount + '>';
+                            return '<input type="number"  id ="DeliverAmount" class="text-line text-right border-0 " onKeyPress="if(this.value.length==10) return false;" value = ' + data.DeliverAmount + '>';
                         }
                     },
                     {
                         "data": null,
                         className: "Border6",
                         render: function (data, type, row) {
-                            return '<input type="text"  id ="NofDeliverItems" class="text-line text-right border-0" value = ' + data.NofDeliverItems + ' readonly>';
+                            return '<input type="text"  id ="UNDeliverItems" class="text-line text-right border-0" value = ' + data.UNDeliverItems + ' readonly>';
                         }
                     },
                     {
                         "data": null,
                         className: "Border7",
                         render: function (data, type, row) {
-                            return '<label hidden>' + data.SEQ + '</label>';
+                            return '<label id="seq" hidden>' + data.SEQ + '</label>';
                         }
                     }
 
@@ -331,59 +341,169 @@
             });
         }
 
+        $('#tblNouhinEntry').on('change', '#chk', function () {
+            var row = $(this).closest('tr');
+            $('#chk', row).each(function () {
+                if ($(this).val() == 'false') {
+                    $(this).val('true');
+                }
+                else
+                    $(this).val('false');
+            });
+        });
+
+        $('#tblNouhinEntry').on('change', '#DeliverAmount', function () {  //for nouhinEntry error check
+            var Deliverydata = null;
+            var Undeliverdata = null;
+            var row = $(this).closest('tr');
+            $('#DeliverAmount', row).each(function (e) {
+                if (!($(this).val())) {
+                    $(this).val(0);
+                }
+                Deliverydata = parseInt($(this).val());
+                if (Deliverydata < 0) {
+                    $(this).focus();
+                    ShowErrorMessage("E109");
+                }
+                else if (Deliverydata > (parseInt($('#Production').val()) - parseInt($('#SumDeliveryAmount').val()))) {
+                    $(this).focus();
+                    ShowErrorMessage("E128");
+                }
+                else {
+                    Undeliverdata = parseInt($('#Production').val()) - parseInt($('#SumDeliveryAmount').val()) - Deliverydata;
+                    $(row).find('#UNDeliverItems').val(Undeliverdata);
+                }
+            });
+
+        });
+
+        function tbErrorCheck() {
+            var result;
+            $('#tblNouhinEntry tr').each(function (row, tr) {
+                if (parseInt($(tr).find('#DeliverAmount').val()) < 0) {
+                    $(tr).find('#DeliverAmount').focus();
+                    result = "E109";
+                    return false;
+                }
+                else if (parseInt($(tr).find('#DeliverAmount').val()) > (parseInt($(tr).find('#Production').val()) - parseInt($(tr).find('#SumDeliveryAmount').val()))) {
+                       $(tr).find('#DeliverAmount').focus();
+                    result = "E128";
+                    return false;
+                }
+                else {
+                            result = "0";
+                            return true;
+                       }
+            });
+            return result;
+        }
+
+        function storeTblValues() {
+            var TableData = new Array();
+            $('#tblNouhinEntry tr').each(function (row, tr) {
+                TableData[row] = {
+                    "checkval": $(tr).find('#chk').val()
+                    , "HinbanCD": $(tr).find('#Hinbancd').text()
+                    , "Production": $(tr).find('#Production').val()
+                    , "SumDeliveryAmount": $(tr).find('#SumDeliveryAmount').val()
+                    , "DeliverAmount": $(tr).find('#DeliverAmount').val()
+                    , "UNDeliverItems": $(tr).find('#UNDeliverItems').val()
+                    , "SEQ": $(tr).find('#seq').text()
+                    }
+            });
+            TableData.shift();  // first row will be empty - so remove
+            return TableData;
+        }
+
+
         //Insert,Update,Delete
         function DoProcess() {
-            var table = $('#tblNouhinEntry').DataTable();
+            var tb = storeTblValues();
+            var data = JSON.stringify(tb);
 
-            var data = JSON.stringify(table.rows().data().toArray());
-            alert(data);
-            var TnModel = {
-                DeliveryStartDate: $("#DeliDate").val(),
-                ProjectCD: $("#ProjectCD").val(),
-                Remarks: $("#Remarks").val(),
-                TableData: data,
-                Mode:'@Model.Mode'
+                //var table = $('#tblNouhinEntry').DataTable();
+                //var data = JSON.stringify(table.rows().data().toArray());
 
-            };
+                var TnModel = {
+                    DeliveryStartDate: $("#DeliDate").val(),
+                    ProjectCD: $("#ProjectCD").val(),
+                    Remarks: $("#Remarks").val(),
+                    TableData: data,
+                    Mode: '@Model.Mode'
 
-            var data = CalltoApiController('@Url.Action("Nouhin_CUD", "api/Touroku_NouhinApi")', TnModel);
-            ShowSuccessMessage(data,'@Url.Action("Touroku_NouhinList", "Touroku_Nouhin")');
+                };
 
+                var data = CalltoApiController('@Url.Action("Nouhin_CUD", "api/Touroku_NouhinApi")', TnModel);
+                ShowSuccessMessage(data, '@Url.Action("Touroku_NouhinList", "Touroku_Nouhin")');
+            
         }
 
         //save
         function btnSaveClick() {
+            var isChecked = false;
             var res = ErrorCheckOnSave();
             if (res == "0") {
-              var Mode = '@Model.Mode';
-               
-                if (Mode == "Delete") {   //Delete
-                    ShowConfirmMessage("Q102", "DeleteConfrim");
-                    DoProcess();
-                }
-                else {     // Insert/Update
-                    var res1 = FiscalDateCheckOnSave();
-                    if (res1 == "0") {
+                $('#tblNouhinEntry tr:has(td)').find('input[type="checkbox"]').each(function () {
+                    if ($(this).prop("checked") == true)
+                        isChecked = true;
+                });
+                if (isChecked == true) {
+                    var Mode = '@Model.Mode';
+
+                    if (Mode == "Delete") {   //Delete
+                        ShowConfirmMessage("Q102", "DeleteConfrim");
                         DoProcess();
                     }
-                    else {
-                        $("#DeliDate").focus();
-                        ShowErrorMessage(res1);
+                    else {     // Insert/Update
+                        var res1 = FiscalDateCheckOnSave();
+                        if (res1 == "0") {
+                            var res2 = tbErrorCheck();
+                            if (res2 == "0") {
+                                DoProcess();
+                            }
+                            else {
+                                ShowErrorMessage(res2);
+                            }
+                        }
+                        else {
+                            $("#DeliDate").focus();
+                            ShowErrorMessage(res1);
+                        }
                     }
                 }
+                else
+                    ShowErrorMessage("E111");
             }
             else
                 ShowErrorMessage(res);
+           
         }
 
-        ////function AllSearch() {
-        //    var res = ErrorCheckOnSave();
+        function AllSearch() {
+         //   var res = ErrorCheckOnSave();
         //    if (res == "0") {
         //        var res1 = DateCompareCheckOnSave();
         //        if (res1 == "0") {
         //            var res2 = FiscalDateCheckOnSave();
         //            if (res2 == "0") {
-        //                ShowData();
+            if ($('#ProjectCD').val().trim() == '') {
+                $('#ProjectCD').focus();
+                ShowErrorMessage("E102");
+            }
+            else {
+                var model = {
+                    value: $('#ProjectCD').val(),
+                };
+                var data = CalltoApiController('@Url.Action("DoubleByte_Checking", "api/CommonApi")', model);
+                var byteresult = JSON.parse(data);
+                if (byteresult[0].flg == "false") {
+                    $('#ProjectCD').focus();
+                    ShowErrorMessage("E129");
+                }
+                else {
+                    ShowData();
+                }
+            }
         //            }
         //            else {
         //                $("#DeliDate").focus();
@@ -393,13 +513,19 @@
         //    }
         //    else
         //        ShowErrorMessage(res);
-        //}
+        }
 
         function AllCheck() {  // 全選択
+            $('#tblNouhinEntry tr:has(td)').find('input[type="checkbox"]').each(function () {
+                $(this).val('true');
+            });
             $('#tblNouhinEntry tbody input[type="checkbox"]').prop('checked', true);
         }
 
         function AllUnCheck() {  // 全解除
+            $('#tblNouhinEntry tr:has(td)').find('input[type="checkbox"]').each(function () {
+                $(this).val('false');
+            });
             $('#tblNouhinEntry tbody input[type="checkbox"]').prop('checked', false);
         }
 
