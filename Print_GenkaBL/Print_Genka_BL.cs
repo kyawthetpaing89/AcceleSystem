@@ -27,5 +27,11 @@ namespace Print_GenkaBL
             Pmodel.Sqlprms[0] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Pmodel.ProjectCD };
             return bdl.SelectJson("M_Project_ExistsCheck", Pmodel.Sqlprms);
         }
+        public string Print_GenkaCSV(Print_GenkaModel Pmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            //need to write codes here
+            return bdl.SelectJson("Print_GenkaCSV", Pmodel.Sqlprms);
+        }
     }
 }

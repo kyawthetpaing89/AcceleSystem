@@ -22,5 +22,10 @@ namespace AcceleSystem.Controllers
             Print_Genka_BL kgbl = new Print_Genka_BL();
             return kgbl.M_Project_ExistsCheck(pgmodel);
         }
+        public string Print_GenkaCSV([FromBody] Print_GenkaModel pgmodel)
+        {
+            Print_Genka_BL pgbl = new Print_Genka_BL();
+            return pgbl.Print_GenkaCSV(pgmodel);
+        }
     }
 }
