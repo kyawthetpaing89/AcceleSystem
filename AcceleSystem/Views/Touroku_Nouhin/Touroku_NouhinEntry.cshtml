@@ -361,7 +361,6 @@
                     $(this).val(0);
                 }
                 Deliverydata = parseInt($(this).val());
-                alert(Deliverydata);
                 if (Deliverydata < 0) {
                     $(this).focus();
                     ShowErrorMessage("E109");
@@ -421,7 +420,6 @@
         function DoProcess() {
             var tb = storeTblValues();
             var data = JSON.stringify(tb);
-            alert(data);
 
                 //var table = $('#tblNouhinEntry').DataTable();
                 //var data = JSON.stringify(table.rows().data().toArray());
@@ -460,7 +458,6 @@
                         var res1 = FiscalDateCheckOnSave();
                         if (res1 == "0") {
                             var res2 = tbErrorCheck();
-                            alert(res2);
                             if (res2 == "0") {
                                 DoProcess();
                             }
