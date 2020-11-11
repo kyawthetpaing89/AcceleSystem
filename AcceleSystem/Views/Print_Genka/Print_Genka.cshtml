@@ -116,7 +116,7 @@
 
             var data = CalltoApiController('@Url.Action("M_Contrl_Year_ExitCheck", "api/Print_GenkaApi")', Pmodel);
             var controldata = JSON.parse(data);
-            alert(controldata[0].FiscalYear);
+            //alert(controldata[0].FiscalYear);
             if (controldata[0].FiscalYear) 
                 $("#targetyear").val(controldata[0].FiscalYear);
             else
@@ -144,7 +144,12 @@
                 var res = ErrorCheckOnSave();
                 if (res == "0") {
                     var pmodel = {
-                        //need to write code 
+                        TargetYear: $('#targetyear').val(),
+                        BrandCD: $('#BrandCD').val(),
+                        ProjectName: $('#projectName').val(),
+                        //Season:
+                        //ProjectCD:
+                        //DeliveryStatus:
                     };
                      if ($('#allyear').is(':checked'))
                          pmodel.Season = "1";
@@ -153,16 +158,40 @@
                          else if ($('#FW').is(':checked'))
                          pmodel.Season = "3";
                     var data = CalltoApiController('@Url.Action("Print_GenkaCSV", "api/Print_GenkaApi")', pmodel);
-                    var items = JSON.parse(response);
-                    ExportToExcel(items, $("#AutoID option:selected").text() + today + ".xlsx", "Sheet1");
+                    var csv = JSON2CSV(data);
+                    var downloadLink = document.createElement("a");
+                    var blob = new Blob(["\ufeff", csv]);
+                    var url = URL.createObjectURL(blob);
+                    downloadLink.href = url;
+                    downloadLink.download = "原価集計表.csv";
+
+                    document.body.appendChild(downloadLink);
+                    downloadLink.click();
+                    document.body.removeChild(downloadLink);
+                    ShowSuccessMessage("I204")
                 }
                 else {
-                    $("#targetyear").focus();
+                    $("#BrandCD").focus();
                     ShowErrorMessage(res);
                 }
             }
-             
         }
+            
+       
+        //Convert Jsonstring to csv
+        function JSON2CSV(objArray) {
+            var array = typeof JSONString != 'object' ? JSON.parse(objArray) : JSONString;
+            var fields = Object.keys(array[0])
+            var replacer = function (key, value) { return value === null ? null : value }
+            var csv = array.map(function (row) {
+                return fields.map(function (fieldName) {
+                    return JSON.stringify(row[fieldName], replacer)
+                }).join(',')
+            })
+            csv.unshift(fields.join(',')) // add header column
+            csv = csv.join('\r\n');
+            return csv;
+        }                     
 
         $('#btnGenerate').keydown(function (e) {
             var code = e.keyCode || e.which;
