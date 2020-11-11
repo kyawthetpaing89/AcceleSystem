@@ -72,9 +72,9 @@
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
                         <div class="text-s text-custom1 text-uppercase mb-1" style="padding-left:165px;">
-                            <button id="btnAllCheck" tabindex="9" onclick="AllCheck()" class="btn" style="background-color:#1a8cff; color:azure; border:1px solid transparent; border-radius: 3px;">全選択</button>
+                            <button id="btnAllCheck" tabindex="9" onclick="AllCheck()" class="btn btn-primary col-xl-2 text-center">全選択</button>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <button id="btnAllUnCheck" tabindex="10" onclick="AllUnCheck()" class="btn" style="background-color:white; color:#1a8cff; border-radius:3px; border: 1px solid transparent; border-color:#1a8cff;">全解除</button>
+                            <button id="btnAllUnCheck" tabindex="10" onclick="AllUnCheck()" class="btn btn-next col-xl-2 text-center">全解除</button>
                         </div>
                     </div>
                 </div>
@@ -112,9 +112,9 @@
                 </div>
                 <div class="col-xl-12 text-center" style="padding-top:1.4rem!important;">
                     <div class="text-s text-custom1 text-uppercase mb-1" style="padding-left:30px;">
-                        <button id="btnSave" tabindex="8" onclick="btnSaveClick()" class="btn btn-dark col-xl-2 text-center">登録</button>
+                        <button id="btnSave" tabindex="11" onclick="btnSaveClick()" class="btn btn-dark col-xl-2 text-center">登録</button>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <button id="btnCancel" tabindex="9" onclick="btnCancelClick()" class="btn btn-primary col-xl-2 text-center">戻る</button>
+                        <button id="btnCancel" tabindex="12" onclick="btnCancelClick()" class="btn btn-primary col-xl-2 text-center">戻る</button>
                     </div>
                 </div>
             </div>
@@ -360,6 +360,9 @@
             var Undeliverdata = null;
             var row = $(this).closest('tr');
             $('#DeliverAmount', row).each(function (e) {
+                if (!($(this).val())) {
+                    $(this).val(0);
+                }
                 Deliverydata = parseInt($(this).val());
                 alert(Deliverydata);
                 if (Deliverydata < 0) {
@@ -442,34 +445,44 @@
 
         //save
         function btnSaveClick() {
+            var isChecked = false;
             var res = ErrorCheckOnSave();
             if (res == "0") {
-              var Mode = '@Model.Mode';
-               
-                if (Mode == "Delete") {   //Delete
-                    ShowConfirmMessage("Q102", "DeleteConfrim");
-                    DoProcess();
-                }
-                else {     // Insert/Update
-                    var res1 = FiscalDateCheckOnSave();
-                    if (res1 == "0") {
-                        var res2 = tbErrorCheck();
-                        alert(res2);
-                        if (res2 == "0") {
-                            DoProcess();
+                $('#tblNouhinEntry tr:has(td)').find('input[type="checkbox"]').each(function () {
+                    if ($(this).prop("checked") == true)
+                        isChecked = true;
+                });
+                if (isChecked == true) {
+                    var Mode = '@Model.Mode';
+
+                    if (Mode == "Delete") {   //Delete
+                        ShowConfirmMessage("Q102", "DeleteConfrim");
+                        DoProcess();
+                    }
+                    else {     // Insert/Update
+                        var res1 = FiscalDateCheckOnSave();
+                        if (res1 == "0") {
+                            var res2 = tbErrorCheck();
+                            alert(res2);
+                            if (res2 == "0") {
+                                DoProcess();
+                            }
+                            else {
+                                ShowErrorMessage(res2);
+                            }
                         }
                         else {
-                            ShowErrorMessage(res2);
+                            $("#DeliDate").focus();
+                            ShowErrorMessage(res1);
                         }
                     }
-                    else {
-                        $("#DeliDate").focus();
-                        ShowErrorMessage(res1);
-                    }
                 }
+                else
+                    ShowErrorMessage("E111");
             }
             else
                 ShowErrorMessage(res);
+           
         }
 
         function AllSearch() {
@@ -509,10 +522,16 @@
         }
 
         function AllCheck() {  // 全選択
+            $('#tblNouhinEntry tr:has(td)').find('input[type="checkbox"]').each(function () {
+                $(this).val('true');
+            });
             $('#tblNouhinEntry tbody input[type="checkbox"]').prop('checked', true);
         }
 
         function AllUnCheck() {  // 全解除
+            $('#tblNouhinEntry tr:has(td)').find('input[type="checkbox"]').each(function () {
+                $(this).val('false');
+            });
             $('#tblNouhinEntry tbody input[type="checkbox"]').prop('checked', false);
         }
 

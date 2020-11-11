@@ -104,7 +104,7 @@
                                     <th style="width:11%; text-align:right">生産数</th>
                                     <th style="width:11%; text-align:right">累計納品数</th>
                                     <th style="width:11%; text-align:right">今回納品数</th>
-                                    <th style="width:11%; text-align:right">今回納品数</th>
+                                    <th style="width:11%; text-align:right">未納品数</th>
                                 </tr>
                             </thead>
                         </table>
@@ -212,18 +212,19 @@
         }
 
         function FiscalDateCheckOnSave() {
-             var model = {
-                 inputdate: $("#DeliDate").val(),
-             };
-             var data = CalltoApiController('@Url.Action("M_Control_FiscalCheck", "api/CommonApi")', model);
-             var dateData = JSON.parse(data);
-             if (dateData[0].MessageID != 'E115') {
-                 $("#Remarks").focus();
-                 return "0";
-             }
-             else {
-                 return "E115";
-             }
+            var model = {
+                inputdate: $("#DeliDate").val(),
+            };
+            
+            var data = CalltoApiController('@Url.Action("M_Control_FiscalCheck", "api/CommonApi")', model);
+            var dateData = JSON.parse(data);
+            if (dateData[0].MessageID != 'E115') {
+                $("#Remarks").focus();
+                return "0";
+            }
+            else {
+                return "E115";
+            }
         }
 
         function ShowData() {
@@ -337,17 +338,15 @@
 
         //});
 
-        //$('#tblNouhinBS').on('change', '#DeliverAmount', function () {  //for nouhinEntry error check
-        //    var row = $(this).closest('tr');
-        //    $('#DeliverAmount', row).each(function (e) {
-        //        Deliverydata = parseInt($(this).val());
-        //        alert(Deliverydata);
-        //        if (Deliverydata < 0) {
-        //            $(row).find('#NofDeliverItems').val('111');
-        //        }
-        //    });
+        $('#tblNouhinBS').on('change', '#DeliverAmount', function () {  //for nouhinEntry error check
+            var row = $(this).closest('tr');
+            $('#DeliverAmount', row).each(function (e) {
+                if (!($(this).val())) {
+                    $(this).val(0);
+                }
+            });
 
-        //});
+        });
 
         function storeTblValues() {
             var TableData = new Array();
@@ -386,13 +385,24 @@
 
         //save
         function btnSaveClick() {
+            var isChecked = false;
             var res = ErrorCheckOnSave();
             if (res == "0") {
                 var res1 = DateCompareCheckOnSave();
                 if (res1 == "0") {
                     var res2 = FiscalDateCheckOnSave();
                     if (res2 == "0") {
-                        DoProcess();
+                        $('#tblNouhinBS tr:has(td)').find('input[type="checkbox"]').each(function () {
+                            if ($(this).prop("checked") == true)
+                                isChecked = true;
+                        });
+                        if (isChecked == true) {
+
+                            DoProcess();
+                        }
+                        else {
+                            ShowErrorMessage("E111");
+                        }
                     }
                     else {
                         $("#DeliDate").focus();
@@ -403,9 +413,11 @@
                     $("#PeriodEnd").focus();
                     ShowErrorMessage(res1);
                 }
+            
             }
             else
                 ShowErrorMessage(res);
+            
         }
 
         function AllSearch() {
@@ -415,7 +427,7 @@
                 if (res1 == "0") {
                     var res2 = FiscalDateCheckOnSave();
                     if (res2 == "0") {
-                        ShowData();
+                       ShowData();
                     }
                     else {
                         $("#DeliDate").focus();
@@ -432,10 +444,16 @@
         }
 
         function AllCheck() {  // 全選択
+            $('#tblNouhinBS tr:has(td)').find('input[type="checkbox"]').each(function () {
+                $(this).val('true');
+            });
             $('#tblNouhinBS tbody input[type="checkbox"]').prop('checked', true);
         }
 
         function AllUnCheck() {  // 全解除
+            $('#tblNouhinBS tr:has(td)').find('input[type="checkbox"]').each(function () {
+                $(this).val('false');
+            });
             $('#tblNouhinBS tbody input[type="checkbox"]').prop('checked', false);
         }
 
