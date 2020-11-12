@@ -62,9 +62,9 @@
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="text" style="padding-right:20px;">納品状況</label>
-                            <input type="checkbox" tabindex="8" id="allyear" name="chk" onkeydown="KeyDown(event,this)" checked>
+                            <input type="checkbox" tabindex="8" id="deliver" name="chk" onkeydown="KeyDown(event,this)" checked>
                             <label for="allyear" style="padding-right:20px!important;">納品残あり</label>
-                            <input type="checkbox" tabindex="9" id="SS" name="chk" onkeydown="KeyDown(event,this)">
+                            <input type="checkbox" tabindex="9" id="undeliver" name="chk" onkeydown="KeyDown(event,this)">
                             <label for="SS" style="padding-right:20px!important;">完納</label>
                         </div>
                     </div>
@@ -173,12 +173,18 @@
                         title: 'I204',
                         text: 'EXCEL出力が完了しました',
                     })
+                    ShowTargetYear();
                     $("#BrandCD").val('');
+                    $("#brandname").text('ブランド表示');
+                    $("#brandname").css("font-weight", "Bold");                    
+                    $('#allyear').prop('checked', true); 
+                    $('#SS').prop('checked', false); 
+                    $('#FW').prop('checked', false);
                     $("#ProjectCD").val('');
                     $("#projectName").val('');
-                    $("#brandname").text('ブランド表示');
-                    $("#brandname").css("font-weight", "Bold");
-                    ShowTargetYear();
+                    $('#deliver').prop('checked', true);
+                    $('#undeliver').prop('checked', false);                                      
+
                 }
                 else {
                     $("#BrandCD").focus();
