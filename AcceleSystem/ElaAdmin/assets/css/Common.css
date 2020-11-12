@@ -85,10 +85,26 @@
 }
 
 #tblProject {
-    width: 501px!important;
+    width: 520px!important;
 }
 
-#tblProject td.Border5{
-    width: 40px!important;
+#tblProject th.sorting_disabled.Border1 {
+    width: 130px!important;
+}
+
+#tblProject th.sorting_disabled.Border2 {
+    width: 150px!important;
+}
+
+#tblProject th.sorting_disabled.Border3 {
+    width: 130px!important;
+}
+
+#tblProject th.sorting_disabled.Border4 {
+    width: 130px!important;
+}
+
+#tblProject th.sorting_disabled.Border5 {
+    width: 130px!important;
 }
 
