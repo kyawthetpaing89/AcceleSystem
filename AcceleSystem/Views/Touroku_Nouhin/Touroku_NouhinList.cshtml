@@ -170,7 +170,7 @@
             //$("#BrandName").attr('disabled', 'disabled');
             //$("#ProjectName").attr('disabled', 'disabled');
             //$("#HinbanName").attr('disabled', 'disabled');
-            GetNouhin();
+            //GetNouhin();
 
         });
 
@@ -248,8 +248,8 @@
                 ProjectName: $("#ProjectName").val(),
                 HinbanCD: $("#HinbanCD").val(),
                 HinbanName: $("#HinbanName").val(),
-                DeliveryStartDate: $("#DeliveryStartDate").val(),
-                DeliveryEndDate: $("#DeliveryEndDate").val()
+                DeliveryStartDate: $("#StartDate").val(),
+                DeliveryEndDate: $("#EndDate").val()
             };
             var selected = new Array();
             $("#Seasongp input[type=checkbox]:checked").each(function () {
