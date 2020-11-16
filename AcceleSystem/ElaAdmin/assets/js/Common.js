@@ -221,7 +221,7 @@ function ErrChk(ctrl) {
                     else {
                         if ($(ctrl).attr("data-NameCtrl")) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
-                            $('#' + ctrlName).val("");
+                            //$('#' + ctrlName).val("");
                             return UserData[0].MessageID;
                         }
                     }
@@ -244,7 +244,7 @@ function ErrChk(ctrl) {
                     else {
                         if ($(ctrl).attr("data-NameCtrl")) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
-                            $('#' + ctrlName).val("");
+                            //$('#' + ctrlName).val("");
                             return BrandData[0].MessageID;
                         }
                     }
@@ -269,7 +269,7 @@ function ErrChk(ctrl) {
                     else {
                         if ($(ctrl).attr("data-NameCtrl")) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
-                            $('#' + ctrlName).val("");
+                            //$('#' + ctrlName).val("");
                             return KeihiData[0].MessageID;
                         }
                     }
@@ -292,7 +292,7 @@ function ErrChk(ctrl) {
                     else {
                         if ($(ctrl).attr("data-NameCtrl")) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
-                            $('#' + ctrlName).val("");
+                            //$('#' + ctrlName).val("");
                             return KanjoData[0].MessageID;
                         }
                     }
@@ -315,7 +315,7 @@ function ErrChk(ctrl) {
                     else {
                         if ($(ctrl).attr("data-NameCtrl")) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
-                            $('#' + ctrlName).val("");
+                            //$('#' + ctrlName).val("");
                             return HojoData[0].MessageID;
                         }
                     }
@@ -347,7 +347,7 @@ function ErrChk(ctrl) {
                     else {
                         if ($(ctrl).attr("data-NameCtrl")) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
-                            $('#' + ctrlName).val("");
+                            //$('#' + ctrlName).val("");
                             return CastingData[0].MessageID;
                         }
                     }
@@ -369,7 +369,7 @@ function ErrChk(ctrl) {
                     else {
                         if ($(ctrl).attr("data-NameCtrl")) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
-                            $('#' + ctrlName).val("");
+                            //$('#' + ctrlName).val("");
                             return ProjectData[0].MessageID;
                         }
                     }
@@ -392,7 +392,7 @@ function ErrChk(ctrl) {
                     else {
                         if ($(ctrl).attr("data-NameCtrl")) {
                             var ctrlName = $(ctrl).attr("data-NameCtrl");
-                            $('#' + ctrlName).val("");
+                            //$('#' + ctrlName).val("");
                             return HinbanData[0].MessageID;
                         }
                     }
