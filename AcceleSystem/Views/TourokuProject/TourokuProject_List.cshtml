@@ -43,11 +43,11 @@
                                         <div id ="Seasongp"class="text-s text-custom1 text-uppercase mb-1">
                                             <label id="text" style="padding-right:15px;">シーズン</label>
                                             <input type="checkbox" tabindex="3" id="Degreeyear" name="checkbox" value="1" onkeydown="KeyDown(event,this)" checked>
-                                            <label style="padding-right:20px;">通年</label>
+                                            <label for="Degreeyear" style="padding-right:20px;">通年</label>
                                             <input type="checkbox" tabindex="4" id="SS" name="checkbox" value="2" onkeydown="KeyDown(event,this)">
-                                            <label style="padding-right:20px;">SS</label>
+                                            <label for="SS" style="padding-right:20px;">SS</label>
                                             <input type="checkbox" tabindex="5" id="FW" name="checkbox" value="3" onkeydown="KeyDown(event,this,'CheckboxCheck')">
-                                            <label>FW</label>
+                                            <label for="FW">FW</label>
 
                                         </div>
                                     </div>
@@ -114,15 +114,15 @@
                     <table id="tblProject" class="tb1 col-sm-12" style="margin-left:10px;">
                         <thead>
                             <tr>
-                                <th>番号</th>
                                 <th>ブランド</th>
+                                <th></th>
                                 <th>シーズン</th>
                                 <th>年度</th>
                                 <th></th>
                             </tr>
                             <tr>
-                                <th>コード</th>
                                 <th>プロジェクト</th>
+                                <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>
@@ -167,9 +167,9 @@
          DoubleByteCheck($("#ProjectManager"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
          ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
         
-        $("#BrandName").attr('disabled', 'disabled');
-        $("#ProjectName").attr('disabled', 'disabled');
-        $("#ProjectManagerName").attr('disabled', 'disabled');
+        //$("#BrandName").attr('disabled', 'disabled');
+        //$("#ProjectName").attr('disabled', 'disabled');
+        //$("#ProjectManagerName").attr('disabled', 'disabled');
 
         GetProject();
      });
@@ -185,6 +185,8 @@
              }
          }
      }
+
+    
 
      function DateCompare(result) {
          if (result == 'OK') {
