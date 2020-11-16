@@ -208,6 +208,10 @@
                 ShowData();
                 $("#CostCD").focus();
 
+                RequiredCheck($("#CostCD"));
+                DoubleByteCheck($("#CostCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "costname", "accounting");
+
                 RequiredCheck($("#CostDate"));
                 DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi")');
 
@@ -244,6 +248,7 @@
 
                 RequiredCheck($("#CostCD"));
                 DoubleByteCheck($("#CostCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "costname", "accounting");
 
                 RequiredCheck($("#CostDate"));
                 DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi")');
