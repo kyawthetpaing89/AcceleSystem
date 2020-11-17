@@ -63,7 +63,7 @@
                                             <div class="text-s text-custom1 text-uppercase mb-1">
                                                 <label id="text" style="padding-right: 5px;">ブランド</label>
                                                 <input type="text" tabindex="6" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="brandCD" name="brandCD" maxlength="6" required placeholder="入力" >
-                                                <input type="text" tabindex="7" class="text-line col-xl-7 text-left" onkeydown="KeyDown(event,this)" id="brandname" name="brandname" maxlength="40" required placeholder="入力" >
+                                                <input type="text" tabindex="7" class="text-line col-xl-6 text-left" onkeydown="KeyDown(event,this)" id="brandname" name="brandname" maxlength="40" required placeholder="入力" >
                                             </div>
                                         </div>
                                     </div>
@@ -163,7 +163,7 @@
             ExistsCheck($("#projectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")', "projectname");
             DoubleByteCheck($("#projectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
 
-            //ExistsCheck($("#PartCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "PartName");
+            ExistsCheck($("#PartCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "PartName", $("#projectCD").val());
             DoubleByteCheck($("#PartCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
 
           
