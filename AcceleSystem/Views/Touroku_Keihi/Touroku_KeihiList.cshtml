@@ -84,7 +84,7 @@
                                         <div class="col-md-12" style="padding-left:0px;">
                                             <div class="text-s text-custom1 text-uppercase mb-1">
                                                 <label id="text" style="padding-right: 5px;">プロジェクト</label>
-                                                <input type="text" tabindex="11" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="projectCD" name="projectCD" maxlength="10" required placeholder="入力">
+                                                <input type="text" tabindex="11" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'ProjectCheck')" id="projectCD" name="projectCD" maxlength="10" required placeholder="入力">
                                                 <input type="text" tabindex="12" class="text-line col-xl-6 text-left" onkeydown="KeyDown(event,this)" id="projectname" name="projectname" maxlength="60" required placeholder="入力">
                                             </div>
                                         </div>
@@ -163,16 +163,17 @@
             ExistsCheck($("#projectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")', "projectname");
             DoubleByteCheck($("#projectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
 
-            ExistsCheck($("#PartCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "PartName");
+            //ExistsCheck($("#PartCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "PartName");
             DoubleByteCheck($("#PartCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
 
-            //GetData();
-        });
-        @*function Keihi(result) {
+          
+       });
+
+       function ProjectCheck(result) {
             if (result == 'OK') {
-                DateCheck($("#CostDate2"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#CostDate1").val());
+                ExistsCheck($("#PartCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "PartName", $("#projectCD").val());
             }
-       }*@
+         }
 
        function DateCompareCheck(result) {
            if (result == 'OK') {
