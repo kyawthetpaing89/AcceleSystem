@@ -181,9 +181,10 @@
                        startDate: $("#CostDate1").val(),
                        endDate: $("#CostDate2").val()
                    };
-                   var data = CalltoApiController('@Url.Action("DateComapre", "api/CommonApi")', model);
-                   var dateData = JSON.parse(data);
-                   if (dateData[0].flg != 'false') {
+                   @*var data = CalltoApiController('@Url.Action("DateComapre", "api/CommonApi")', model);
+                   var dateData = JSON.parse(data);*@
+                   //if (dateData[0].flg != 'false') {
+                   if (model.startDate <= model.endDate) {
                        $("#year").focus();
                    }
                    else {
@@ -200,9 +201,10 @@
                    startDate: $("#CostDate1").val(),
                    endDate: $("#CostDate2").val()
                };
-               var data = CalltoApiController('@Url.Action("DateComapre", "api/CommonApi")', model);
-               var dateData = JSON.parse(data);
-               if (dateData[0].flg != 'false') {
+               //var data = CalltoApiController('@Url.Action("DateComapre", "api/CommonApi")', model);
+               //var dateData = JSON.parse(data);
+               //if (dateData[0].flg != 'false') {
+               if (model.startDate <= model.endDate) {
                    return "0";
                }
                else {
