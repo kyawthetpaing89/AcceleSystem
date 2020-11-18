@@ -18,8 +18,8 @@
                 </div>
                 <div>
                     <div>
-                        <label id="SEQ" hidden></label>
-                        <label id="accounting" hidden><b></b></label>
+                        <label id="SEQ" ></label>
+                        <label id="accounting" ><b></b></label>
                     </div>
                     <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                         <div class="col-xs-12" style="padding-left:64px;">
@@ -189,131 +189,152 @@
                 RequiredCheck($("#CostCD"));
                 DoubleByteCheck($("#CostCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "costname", "accounting");
-                if ($("#accounting").text == "1") {
-                    RequiredCheck($("#projectCD"));
-                    RequiredCheck($("#HinbanCD"));
-                }
-                else if ($("#accounting").text == "2") {
-                    RequiredCheck($("#year"));
-                    RequiredCheck($("#BrandCD"));
-                    RequiredCheck($("#season"));
-                }
-                else if ($("#accounting").text == "3") {
-                    RequiredCheck($("#projectCD"));
-                }
-                else if ($("#accounting").text == "4") {
-                    RequiredCheck($("#CastingCD"));
-                }
-                else if ($("#accounting").text == "5") {
-                    RequiredCheck($("#Item"));
-                }
-
-                RequiredCheck($("#CostDate"));
+               
+                //RequiredCheck($("#CostDate"));
                 DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi")');
 
-                RequiredCheck($("#year"));
+                //RequiredCheck($("#year"));
                 DoubleByteCheck($("#year"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 YearCheck($("#year"), '@Url.Action("Year_Checking", "api/CommonApi")');
 
-                RequiredCheck($("#BrandCD"));
+                //RequiredCheck($("#BrandCD"));
                 DoubleByteCheck($("#BrandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")', "brandname");
 
-                RequiredCheck($("#projectCD"));
+                //RequiredCheck($("#projectCD"));
                 DoubleByteCheck($("#projectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#projectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")', "projectName");
 
-                RequiredCheck($("#HinbanCD"));
+                //RequiredCheck($("#HinbanCD"));
                 DoubleByteCheck($("#HinbanCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 //ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "HinbanName");
                 ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "HinbanName", $("#projectCD").val());
 
-                RequiredCheck($("#CastingCD"));
+                //RequiredCheck($("#CastingCD"));
                 DoubleByteCheck($("#CastingCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/Touroku_KeihiApi")', "CastingName");
 
-                RequiredCheck($("#Item"));
+                //RequiredCheck($("#Item"));
 
                 RequiredCheck($("#AmountMoney"));                
                 LessthanZeroCheck($("#AmountMoney"), '@Url.Action("LessthanZero_Checking", "api/CommonApi")');
             }
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
-                ShowData();
                 $("#CostCD").focus();
+                
+                $("SEQ").text(@Model.SEQ);
 
                 RequiredCheck($("#CostCD"));
                 DoubleByteCheck($("#CostCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "costname", "accounting");
 
-                RequiredCheck($("#CostDate"));
+                //RequiredCheck($("#CostDate"));
                 DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi")');
 
-                RequiredCheck($("#year"));
+                //RequiredCheck($("#year"));
                 DoubleByteCheck($("#year"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 YearCheck($("#year"), '@Url.Action("Year_Checking", "api/CommonApi")');
-               // YearCheck($("#year"), '@Url.Action("Year_Checking", "api/CommonApi")');
+               
 
-                RequiredCheck($("#BrandCD"));
+                //RequiredCheck($("#BrandCD"));
                 DoubleByteCheck($("#BrandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")', "brandname");
 
-                RequiredCheck($("#projectCD"));
+                //RequiredCheck($("#projectCD"));
                 DoubleByteCheck($("#projectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#projectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")', "projectName");
 
                 RequiredCheck($("#HinbanCD"));
                 DoubleByteCheck($("#HinbanCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-                //ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "HinbanName");
                 ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "HinbanName", $("#projectCD").val());
 
-                RequiredCheck($("#CastingCD"));
+                //RequiredCheck($("#CastingCD"));
                 DoubleByteCheck($("#CastingCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/Touroku_KeihiApi")', "CastingName");
 
-                RequiredCheck($("#Item"));
+                //RequiredCheck($("#Item"));
 
                 RequiredCheck($("#AmountMoney"));
                 LessthanZeroCheck($("#AmountMoney"), '@Url.Action("LessthanZero_Checking", "api/CommonApi")');
+
+                ShowData();
+                if ($("#accounting").text() == "1") {
+                    RequiredCheck($("#projectCD"));
+                    RequiredCheck($("#HinbanCD"));
+                }
+                else if ($("#accounting").text() == "2") {
+                    RequiredCheck($("#year"));
+                    RequiredCheck($("#BrandCD"));
+                    RequiredCheck($("#season"));
+                }
+                else if ($("#accounting").text() == "3") {
+                    RequiredCheck($("#projectCD"));
+                }
+                else if ($("#accounting").text() == "4") {
+                    RequiredCheck($("#CastingCD"));
+                }
+                else if ($("#accounting").text() == "5") {
+                    RequiredCheck($("#Item"));
+                }
             } 
             else if (Mode == 'Copy') {
                 $('#btnSave').html('登録');
-                ShowData();
                 $("#CostCD").focus();
+                
+                $("SEQ").text(@Model.SEQ) ;
 
                 RequiredCheck($("#CostCD"));
                 DoubleByteCheck($("#CostCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "costname", "accounting");
 
-                RequiredCheck($("#CostDate"));
+                //RequiredCheck($("#CostDate"));
                 DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi")');
 
-                RequiredCheck($("#year"));
+                //RequiredCheck($("#year"));
                 DoubleByteCheck($("#year"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 YearCheck($("#year"), '@Url.Action("Year_Checking", "api/CommonApi")');
-                @*DateCheck($("#year"), '@Url.Action("Date_Checking", "api/CommonApi")');*@
-
-                RequiredCheck($("#BrandCD"));
+                
+                //RequiredCheck($("#BrandCD"));
                 DoubleByteCheck($("#BrandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")', "brandname");
 
-                RequiredCheck($("#projectCD"));
+                //RequiredCheck($("#projectCD"));
                 DoubleByteCheck($("#projectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#projectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")', "projectName");
 
-                RequiredCheck($("#HinbanCD"));
+                //RequiredCheck($("#HinbanCD"));
                 DoubleByteCheck($("#HinbanCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-               // ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "HinbanName");
                 ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "HinbanName", $("#projectCD").val());
 
-                RequiredCheck($("#CastingCD"));
+                //RequiredCheck($("#CastingCD"));
                 DoubleByteCheck($("#CastingCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/Touroku_KeihiApi")', "CastingName");
 
-                RequiredCheck($("#Item"));
+                //RequiredCheck($("#Item"));
 
                 RequiredCheck($("#AmountMoney"));
                 LessthanZeroCheck($("#AmountMoney"), '@Url.Action("LessthanZero_Checking", "api/CommonApi")');
+
+                ShowData();
+                if ($("#accounting").text() == "1") {
+                    RequiredCheck($("#projectCD"));
+                    RequiredCheck($("#HinbanCD"));
+                }
+                else if ($("#accounting").text() == "2") {
+                    RequiredCheck($("#year"));
+                    RequiredCheck($("#BrandCD"));
+                    RequiredCheck($("#season"));
+                }
+                else if ($("#accounting").text() == "3") {
+                    RequiredCheck($("#projectCD"));
+                }
+                else if ($("#accounting").text() == "4") {
+                    RequiredCheck($("#CastingCD"));
+                }
+                else if ($("#accounting").text() == "5") {
+                    RequiredCheck($("#Item"));
+                }
             }
             else if (Mode == 'Delete') {              
                 $('#btnSave').html('削除');
@@ -340,7 +361,8 @@
             };
             var data = CalltoApiController('@Url.Action("D_Cost_Edit_List", "api/Touroku_KeihiApi")', Kmodel);
         var ProjectData = JSON.parse(data);
-            $("#SEQ").val(ProjectData[0].SEQ);
+            $("#SEQ").text(ProjectData[0].SEQ);
+            $("#accounting").text(ProjectData[0].Accounting);
             $("#CostCD").val(ProjectData[0].CostCD);
             if (!ProjectData[0].CostName) 
             $("#costname").text("経費名表示");
@@ -429,6 +451,25 @@
     function Cost(result) {
         if (result == 'OK') {
             $("#costname").css("font-weight", "Bold");
+
+             if ($("#accounting").text() == "1") {
+                    RequiredCheck($("#projectCD"));
+                    RequiredCheck($("#HinbanCD"));
+             }
+             else if ($("#accounting").text() == "2") {
+                 RequiredCheck($("#year"));
+                 RequiredCheck($("#BrandCD"));
+                 RequiredCheck($("#season"));
+             }
+             else if ($("#accounting").text() == "3") {
+                 RequiredCheck($("#projectCD"));
+             }
+             else if ($("#accounting").text() == "4") {
+                 RequiredCheck($("#CastingCD"));
+             }
+             else if ($("#accounting").text() == "5") {
+                 RequiredCheck($("#Item"));
+             }
         }
         else {
             $("#costname").text('経費名表示');

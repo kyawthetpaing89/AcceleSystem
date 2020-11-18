@@ -28,5 +28,6 @@ namespace Models
         public string InputAmount { get; set; }
         public string Remarks { get; set; }
         public string ZeikomiKBN { get; set; }
+        public string Accounting { get; set; }
     }
 }
