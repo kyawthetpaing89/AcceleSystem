@@ -12,39 +12,48 @@
 <div id="divMain" class="container-fluid">
     <div class="content">
         <div class="p-5 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white; border-radius:5px;">
-            <div class="col-xs-12 col-md-3"></div>
-            <div class="col-xs-12 col-md-6">
+            <div class="col-sm-12 col-md-1 col-lg-2"></div>
+            <div class="col-sm-12 col-md-10 col-lg-8">
                 <div>
                     <h2 class=" hr-text text-center">納品登録</h2>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="1" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this,'ShowNewmodeData')" id="ProjectCD" name="txtProjectCD" maxlength="10" required placeholder="プロジェクトコード">
+                            <label id="text" style="padding-right: 5px;">
+                                プロジェクト
+                            </label>
+                            <input type="text" tabindex="1" class="text-line col-sm-12 col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this,'ShowNewmodeData')" id="ProjectCD" name="txtProjectCD" maxlength="10" required placeholder="入力">
                             <label id="ProjectName"><b>プロジェクト表示</b></label>
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xs-12">
+                    <div class="col-xs-12" style="padding-left:63px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="2" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this)" id="Year" name="txtYear" maxlength="4" required placeholder="年度">
+                            <label id="text" style="padding-right: 5px;">
+                                年度
+                            </label>
+                            <input type="text" tabindex="2" class="text-line col-sm-12 col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this)" id="Year" name="txtYear" maxlength="4" required placeholder="">
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xs-12">
+                    <div class="col-xs-12" style="padding-left:29px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="3" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="BrandCD" name="txtBrandCD" maxlength="20" required placeholder="ブランドコード">
+                            <label id="text" style="padding-right: 5px;">
+                                ブランド
+                            </label>
+                            <input type="text" tabindex="3" class="text-line col-sm-12 col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this)" id="BrandCD" name="txtBrandCD" maxlength="20" required placeholder="">
                             <label id="BrandName"><b>ブランド表示</b></label>
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form" style=" padding-top:1.2rem!important;">
-                    <div class="col-xl-12" style="padding-left: 0px">
+                    <div class="col-xl-12" style="padding-left: 25px">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <div id="rdogp" class="custom-control custom-radio" style="padding-left:0px!important;">
-                                <label class="text" style="padding-right:20px!important">シーズン</label>
+                                <label class="text" style="padding-right:15px!important">シーズン</label>
                                 <input type="radio" tabindex="4" id="rdoAllYear" name="radio" onkeydown="KeyDown(event,this)" checked>
                                 <label for="rdoC" style="padding-right:8px!important">通年</label>
                                 <input type="radio" tabindex="5" id="rdoSS" name="radio" onkeydown="KeyDown(event,this)">
@@ -56,30 +65,36 @@
                     </div>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xs-12">
+                    <div class="col-xs-12"style="padding-left:47px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="7" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'FiscalDateCheck')" id="DeliDate" name="txtDeliDate" maxlength="10" required placeholder="納品日">
+                            <label id="text" style="padding-right: 5px;">
+                                納品日
+                            </label>
+                            <input type="text" tabindex="7" class="text-line col-sm-12 col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this,'FiscalDateCheck')" id="DeliDate" name="txtDeliDate" maxlength="10" required placeholder="入力">
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xs-12">
+                    <div class="col-xs-12"style="padding-left:63px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="8" class="text-line col-xl-9 text-left " onkeydown="KeyDown(event,this)" id="Remarks" name="txtRemarks" maxlength="40" required placeholder="備考">
+                            <label id="text" style="padding-right: 5px;">
+                                備考
+                            </label>
+                            <input type="text" tabindex="8" class="text-line col-sm-12 col-md-12 col-lg-8 text-left " onkeydown="KeyDown(event,this)" id="Remarks" name="txtRemarks" maxlength="40" required placeholder="入力">
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <button id="btnAllCheck" tabindex="9" onclick="AllCheck()" class="btn btn-primary col-xl-3 text-center">全選択</button>
+                            <button id="btnAllCheck" tabindex="9" onclick="AllCheck()" class="btn btn-primary col-xl-2 text-center">全選択</button>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <button id="btnAllUnCheck" tabindex="10" onclick="AllUnCheck()" class="btn btn-next col-xl-3 text-center">全解除</button>
+                            <button id="btnAllUnCheck" tabindex="10" onclick="AllUnCheck()" class="btn btn-next col-xl-2 text-center">全解除</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-3"></div>
+            <div class="col-sm-12 col-md-1 col-lg-2"></div>
             <div class="p-5 col ">
                 <div class="container">
                     <div class="row">

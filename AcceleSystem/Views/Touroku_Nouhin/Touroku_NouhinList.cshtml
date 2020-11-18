@@ -61,7 +61,7 @@
                                     <div class="col-md-12" style="padding-left:0px;">
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label id="text" style="padding-right:20px;">プロジェクト</label>
-                                            <input type="text" tabindex="7" id="ProjectCD" name="txtProjectCD" onkeydown="KeyDown(event,this)" class="text-line col-xl-3 text-left" maxlength="10" required placeholder="入力">
+                                            <input type="text" tabindex="7" id="ProjectCD" name="txtProjectCD" onkeydown="KeyDown(event,this,'ProjectCheck')" class="text-line col-xl-3 text-left" maxlength="10" required placeholder="入力">
 
                                         </div>
                                     </div>
@@ -96,9 +96,9 @@
                                         <div id="Statusgp" class="text-s text-custom1 text-uppercase mb-1">
                                             <label class="text" style="padding-right:30px;">納品状況</label>
                                             <input type="checkbox" tabindex="13" id="Delleft" name="chkDelleft" onkeydown="KeyDown(event,this)"  checked>
-                                            <label style="padding-right:12px;">納品残あり</label>
+                                            <label for="Delleft" style="padding-right:12px;">納品残あり</label>
                                             <input type="checkbox" tabindex="14" id="Delcomplete" onkeydown="KeyDown(event,this)" name="chkDelcomplete" >
-                                            <label>完納</label>
+                                            <label for="Delcomplete">完納</label>
                                         </div>
                                     </div>
                                 </div>
@@ -162,7 +162,8 @@
             ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "ProjectName");
 
             DoubleByteCheck($("#HinbanCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-            ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/TourokuProjectApi")', "HinbanName");
+           // ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/TourokuProjectApi")', "HinbanName");
+            ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "HinbanName", $("#ProjectCD").val());
 
             DateCheck($("#StartDate"), '@Url.Action("Date_Checking", "api/CommonApi")');
             DateCheck($("#EndDate"), '@Url.Action("Date_Checking", "api/CommonApi")');
@@ -173,7 +174,11 @@
             //GetNouhin();
 
         });
-
+        function ProjectCheck(result) {
+            if (result == 'OK') {
+                ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "HinbanName", $("#ProjectCD").val());
+            }
+        }
 
         function DateCompareCheck(result) {
            if (result == 'OK') {
@@ -182,9 +187,9 @@
                        startDate: $("#StartDate").val(),
                        endDate: $("#EndDate").val()
                    };
-                   var data = CalltoApiController('@Url.Action("DateComapre", "api/CommonApi")', model);
-                   var dateData = JSON.parse(data);
-                   if (dateData[0].flg != 'false') {
+                   @*var data = CalltoApiController('@Url.Action("DateComapre", "api/CommonApi")', model);
+                   var dateData = JSON.parse(data);*@
+                   if (model.startDate <= model.endDate) {
                        $("#Delleft").focus();
                    }
                    else {
@@ -201,9 +206,9 @@
                    startDate: $("#StartDate").val(),
                    endDate: $("#EndDate").val()
                };
-               var data = CalltoApiController('@Url.Action("DateComapre", "api/CommonApi")', model);
-               var dateData = JSON.parse(data);
-               if (dateData[0].flg != 'false') {
+               @*var data = CalltoApiController('@Url.Action("DateComapre", "api/CommonApi")', model);
+               var dateData = JSON.parse(data);*@
+                if (model.startDate <= model.endDate) {
                    return "0";
                }
                else {
