@@ -21,7 +21,7 @@ namespace TourokuProjectBL
             Tmodel.Sqlprms[6] = new SqlParameter("@PeriodStart", SqlDbType.Int) { Value = (object)Tmodel.PeriodStart ?? DBNull.Value };
             Tmodel.Sqlprms[7] = new SqlParameter("@PeriodEnd", SqlDbType.Int) { Value = (object)Tmodel.PeriodEnd ?? DBNull.Value };
             Tmodel.Sqlprms[8] = new SqlParameter("@ProjectManager", SqlDbType.VarChar) { Value = Tmodel.ProjectManager };
-            Tmodel.Sqlprms[9] = new SqlParameter("@UserName", SqlDbType.VarChar) { Value = Tmodel.UserName };
+            Tmodel.Sqlprms[9] = new SqlParameter("@ProjectManagerName", SqlDbType.VarChar) { Value = Tmodel.ProjectManagerName };
 
             return bdl.SelectJson("M_Project_Select_List", Tmodel.Sqlprms);
         }

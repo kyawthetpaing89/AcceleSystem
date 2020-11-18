@@ -11,9 +11,13 @@ namespace AcceleSystem.Controllers
         [HttpPost]
         public string M_Project_Select_List([FromBody] TourokuProjectModel Tmodel)
         {
-            if (Tmodel == null)
+            if (!string.IsNullOrWhiteSpace(Tmodel.PeriodStart))
             {
-                Tmodel = new TourokuProjectModel();
+                Tmodel.PeriodStart = Tmodel.PeriodStart.Replace("/", "");
+            }
+            if (!string.IsNullOrWhiteSpace(Tmodel.PeriodEnd))
+            {
+                Tmodel.PeriodEnd = Tmodel.PeriodEnd.Replace("/", "");
             }
             TourokuProject_BL Tpbl = new TourokuProject_BL();
             return Tpbl.M_Project_Select_List(Tmodel);

@@ -608,7 +608,7 @@ function ErrChk(ctrl) {
     else {
         if ($(ctrl).attr("data-NameCtrl")) {
             var ctrlName = $(ctrl).attr("data-NameCtrl");
-            $('#' + ctrlName).val("");
+            //$('#' + ctrlName).val("");
             return "0";
         }
     }

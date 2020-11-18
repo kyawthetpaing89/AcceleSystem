@@ -12,10 +12,10 @@
     <div id="divMain" class="container-fluid">
         <div class="card">
             <div class="row">
-                <div class="col-xs-12 col-md-5">
+                <div class="col-xs-12 col-md-12 col-lg-5">
                     <div class="card-body card-block">
                     <div class="row form-group">
-                        <div class="col col-md-12">
+                        
                             <button id="btnAdd" tabindex="17" onclick="btnAddClick()" class="btn btn-primary col-xl-4 text-center">
                                 経費追加
                             </button>
@@ -28,28 +28,28 @@
                                 </div>
                                 <div>
                                     <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                        <div class="col-md-12" style="padding-left:49px;">
+                                        <div class="col-sm-12 col-md-12 col-lg-12" style="padding-left:49px;">
                                             <div class="text-s text-custom1 text-uppercase mb-1">
-                                                <label id="text" style="padding-right: 16px;">経費名</label>
-                                                <input type="text" tabindex="1" class="text-line col-xl-3 input-numeral15 text-left" id="CostCD" name="CostCD" maxlength="6" onkeydown="KeyDown(event,this)" required placeholder="入力" >
-                                                <input type="text" tabindex="2" class="text-line col-xl-3 text-left" id="CostName" name="CostName" maxlength="40" onkeydown="KeyDown(event,this)" required placeholder="入力">
+                                                <label id="text" style="padding-right: 5px;">経費名</label>
+                                                <input type="text" tabindex="1" class="text-line col-xl-3  input-numeral15 text-left" id="CostCD" name="CostCD" maxlength="6" onkeydown="KeyDown(event,this)" required placeholder="入力" >
+                                                <input type="text" tabindex="2" class="text-line col-xl-7  text-left" id="CostName" name="CostName" maxlength="40" onkeydown="KeyDown(event,this)" required placeholder="入力">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                                         <div class="col-md-12" style="padding-left:49px;">
                                             <div class="text-s text-custom1 text-uppercase mb-1">
-                                                <label id="text" style="padding-right: 16px;">計上日</label>
-                                                <input type="text" tabindex="3" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="CostDate1" name="CostDate1" maxlength="10" required placeholder="入力" >
+                                                <label id="text" style="padding-right: 5px;">計上日</label>
+                                                <input type="text" tabindex="3" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this)" id="CostDate1" name="CostDate1" maxlength="10" required placeholder="入力" >
                                                 &nbsp;~&nbsp;
-                                                <input type="text" tabindex="4" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'DateCompareCheck')" id="CostDate2" name="CostDate2" maxlength="10" required placeholder="入力" >
+                                                <input type="text" tabindex="4" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this,'DateCompareCheck')" id="CostDate2" name="CostDate2" maxlength="10" required placeholder="入力" >
                                             </div>
                                         </div>
                                     </div>
                                     <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                                         <div class="col-md-12" style="padding-left:64px;">
                                             <div class="text-s text-custom1 text-uppercase mb-1">
-                                                <label id="text" style="padding-right: 16px;">年度</label>
+                                                <label id="text" style="padding-right: 5px;">年度</label>
                                                 <input type="text" tabindex="5" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="year" name="year" maxlength="4" required placeholder="入力">
                                                 @*&nbsp;&nbsp;
                                         <button id="btnMove" onclick="btnMoveClick()" class="btn col-xl-10 text-center" tabindex="6" style="background-color:#1a8cff; color:azure;width:90px;border-radius:5px;height:35px;">
@@ -59,23 +59,23 @@
                                         </div>
                                     </div>
                                     <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                        <div class="col-md-12" style="padding-left:32px;">
+                                        <div class="col-sm-12 col-md-12 col-lg-12" style="padding-left:32px;">
                                             <div class="text-s text-custom1 text-uppercase mb-1">
-                                                <label id="text" style="padding-right: 16px;">ブランド</label>
+                                                <label id="text" style="padding-right: 5px;">ブランド</label>
                                                 <input type="text" tabindex="6" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="brandCD" name="brandCD" maxlength="6" required placeholder="入力" >
-                                                <input type="text" tabindex="7" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="brandname" name="brandname" maxlength="40" required placeholder="入力" >
+                                                <input type="text" tabindex="7" class="text-line col-xl-6 text-left" onkeydown="KeyDown(event,this)" id="brandname" name="brandname" maxlength="40" required placeholder="入力" >
                                             </div>
                                         </div>
                                     </div>
                                     <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                                         <div class="col-md-12" style="padding-left:32px;">
                                             <div id="Seasongp" class="text-s text-custom1 text-uppercase mb-1">
-                                                <label id="text" style="padding-right:20px;">シーズン</label>
+                                                <label id="text" style="padding-right:9px;">シーズン</label>
                                                 <input type="checkbox" tabindex="8" id="allyear" name="chk"  value="1" onkeydown="KeyDown(event,this)" checked>
                                                 <label for="allyear" style="padding-right:20px!important;">通年</label>
-                                                <input type="checkbox" tabindex="9" id="SS" name="chk" value="2" onkeydown="KeyDown(event,this)">
+                                                <input type="checkbox" tabindex="9" id="SS" name="chk" value="2" onkeydown="KeyDown(event,this)" checked>
                                                 <label for="SS" style="padding-right:20px!important;">SS</label>
-                                                <input type="checkbox" tabindex="10" id="FW" name="chk" value="3" onkeydown="KeyDown(event,this,'CheckboxCheck')">
+                                                <input type="checkbox" tabindex="10" id="FW" name="chk" value="3" onkeydown="KeyDown(event,this,'CheckboxCheck')" checked>
                                                 <label for="FW" style="padding-right:20px!important;">FW</label>
                                             </div>
                                         </div>
@@ -83,24 +83,18 @@
                                     <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                                         <div class="col-md-12" style="padding-left:0px;">
                                             <div class="text-s text-custom1 text-uppercase mb-1">
-                                                <label id="text" style="padding-right: 16px;">プロジェクト</label>
-                                                <input type="text" tabindex="11" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="projectCD" name="projectCD" maxlength="10" required placeholder="入力" >
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                        <div class="col-md-12" style="padding-left:115px;">
-                                            <div class="text-s text-custom1 text-uppercase mb-1">
-                                                <input type="text" tabindex="12" class="text-line col-xl-7 text-left" onkeydown="KeyDown(event,this)" id="projectname" name="projectname" maxlength="60" required placeholder="入力" >
+                                                <label id="text" style="padding-right: 5px;">プロジェクト</label>
+                                                <input type="text" tabindex="11" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'ProjectCheck')" id="projectCD" name="projectCD" maxlength="10" required placeholder="入力">
+                                                <input type="text" tabindex="12" class="text-line col-xl-6 text-left" onkeydown="KeyDown(event,this)" id="projectname" name="projectname" maxlength="60" required placeholder="入力">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                                         <div class="col-md-12" style="padding-left:60px;">
                                             <div class="text-s text-custom1 text-uppercase mb-1">
-                                                <label id="text" style="padding-right: 19px;">品番</label>
+                                                <label id="text" style="padding-right: 7px;">品番</label>
                                                 <input type="text" tabindex="13" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="PartCD" name="PartCD" maxlength="6" required placeholder="入力" >
-                                                <input type="text" tabindex="14" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="PartName" name="PartName" maxlength="60" required placeholder="入力" >
+                                                <input type="text" tabindex="14" class="text-line col-xl-7 text-left" onkeydown="KeyDown(event,this)" id="PartName" name="PartName" maxlength="60" required placeholder="入力" >
                                             </div>
                                         </div>
                                     </div>
@@ -114,11 +108,11 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                       
                     </div>
                     </div>
                 </div>
-                <div class="col-xs-12 col-md-7">
+                <div class="col-xs-12 col-md-12 col-lg-7">
                     <div class="card-body card-block">
                         <table id="tblTouroku_Keihi" class="tb1 col-sm-12" style="margin-left:10px;width:100%">
                             <thead>
@@ -169,16 +163,17 @@
             ExistsCheck($("#projectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")', "projectname");
             DoubleByteCheck($("#projectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
 
-            ExistsCheck($("#PartCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "PartName");
             DoubleByteCheck($("#PartCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+            ExistsCheck($("#PartCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "PartName", $("#projectCD").val());
 
-            //GetData();
-        });
-        @*function Keihi(result) {
+          
+       });
+
+       function ProjectCheck(result) {
             if (result == 'OK') {
-                DateCheck($("#CostDate2"), '@Url.Action("Date_Checking", "api/CommonApi")', "1", $("#CostDate1").val());
+                ExistsCheck($("#PartCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "PartName", $("#projectCD").val());
             }
-       }*@
+         }
 
        function DateCompareCheck(result) {
            if (result == 'OK') {
@@ -187,9 +182,10 @@
                        startDate: $("#CostDate1").val(),
                        endDate: $("#CostDate2").val()
                    };
-                   var data = CalltoApiController('@Url.Action("DateComapre", "api/CommonApi")', model);
-                   var dateData = JSON.parse(data);
-                   if (dateData[0].flg != 'false') {
+                   @*var data = CalltoApiController('@Url.Action("DateComapre", "api/CommonApi")', model);
+                   var dateData = JSON.parse(data);*@
+                   //if (dateData[0].flg != 'false') {
+                   if (model.startDate <= model.endDate) {
                        $("#year").focus();
                    }
                    else {
@@ -206,9 +202,10 @@
                    startDate: $("#CostDate1").val(),
                    endDate: $("#CostDate2").val()
                };
-               var data = CalltoApiController('@Url.Action("DateComapre", "api/CommonApi")', model);
-               var dateData = JSON.parse(data);
-               if (dateData[0].flg != 'false') {
+               //var data = CalltoApiController('@Url.Action("DateComapre", "api/CommonApi")', model);
+               //var dateData = JSON.parse(data);
+               //if (dateData[0].flg != 'false') {
+               if (model.startDate <= model.endDate) {
                    return "0";
                }
                else {
@@ -289,7 +286,7 @@
                         "data": null,
                         className: "Border1",
                         render: function (data, type, row) {
-                            return '<label>' + data.CostCD + '  ' + data.CostName + '</label><br/><label>' + data.BrandName + '</label><br/><label>' + data.ProjectCD + '  ' + data.ProjectName + '</label>';
+                            return '<label>' + data.CostCD + '  ' + data.CostName + '</label><br/><label>' + data.BrandCD + '</label><br/><label>' + data.ProjectCD + '  ' + data.ProjectName + '</label>';
                         }
                     },
                     {
@@ -311,7 +308,7 @@
                         "data": null,
                         className: "Border4",
                         render: function (data, type, row) {
-                            return '<label><a href="#" onClick="btnEditClick(\'' + data.SEQ + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.SEQ + '\')" style="color:red">削除</a></label> <br/> <label><a href="#" onClick="btnCopyClick(\'' + data.SEQ + '\')" style="color:green">編集</a></label><br/>';
+                            return '<label><a href="#" onClick="btnEditClick(\'' + data.SEQ + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.SEQ + '\')" style="color:red">削除</a></label> <br/> <label><a href="#" onClick="btnCopyClick(\'' + data.SEQ + '\')" style="color:green">複写</a></label><br/>';
                         }
                     },
                 ]
@@ -336,7 +333,7 @@
                 if (res == "0") {
                     var res1 = DateCompareCheckOnSave();
                     if (res1 == "0") {
-                        GetData()
+                        GetData();
                     }
                     else {
                         $("#CostDate2").focus();

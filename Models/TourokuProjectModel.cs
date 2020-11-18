@@ -23,6 +23,7 @@ namespace Models
         public string StartPrice { get; set; }
         public string EndPrice { get; set; }
         public string UserName { get; set; }
+        public string ProjectManagerName { get; set; }
         public string HinbanCD { get; set; }
         public string HinbanName { get; set; }
         public string Color { get; set; }
