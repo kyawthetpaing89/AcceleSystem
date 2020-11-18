@@ -31,13 +31,13 @@
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
-                        <div class="text-s text-custom1 text-uppercase mb-1">
+                        <div id="Seasongp" class="text-s text-custom1 text-uppercase mb-1">
                             <label id="text" style="padding-right:20px;">シーズン</label>
-                            <input type="checkbox" tabindex="3" id="allyear" name="chk" onkeydown="KeyDown(event,this)" checked>
+                            <input type="checkbox" tabindex="3" id="allyear" name="chk" value="1" onkeydown="KeyDown(event,this)" checked>
                             <label for="allyear" style="padding-right:20px!important;">通年</label>
-                            <input type="checkbox" tabindex="4" id="SS" name="chk" onkeydown="KeyDown(event,this)">
+                            <input type="checkbox" tabindex="4" id="SS" name="chk" value="2" onkeydown="KeyDown(event,this)" checked>
                             <label for="SS" style="padding-right:20px!important;">SS</label>
-                            <input type="checkbox" tabindex="5" id="FW" name="chk" onkeydown="KeyDown(event,this)">
+                            <input type="checkbox" tabindex="5" id="FW" name="chk" value="3" onkeydown="KeyDown(event,this,'SeasonCheck')" checked>
                             <label for="FW" style="padding-right:20px!important;">FW</label>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                             <label id="text" style="padding-right:20px;">納品状況</label>
                             <input type="checkbox" tabindex="8" id="deliver" name="chk" onkeydown="KeyDown(event,this)" checked>
                             <label for="allyear" style="padding-right:20px!important;">納品残あり</label>
-                            <input type="checkbox" tabindex="9" id="undeliver" name="chk" onkeydown="KeyDown(event,this)">
+                            <input type="checkbox" tabindex="9" id="undeliver" name="chk" onkeydown="KeyDown(event,this,'flgCheck')">
                             <label for="SS" style="padding-right:20px!important;">完納</label>
                         </div>
                     </div>
@@ -129,7 +129,28 @@
             }
             else $("#brandname").text('ブランド表示');
             $("#brandname").css("font-weight", "Bold");
-         }
+        }
+
+        function SeasonCheck(result) {
+            if (result == 'OK') {
+                var allyear = $("#allyear").is(":checked");
+                var ss = $("#SS").is(":checked");
+                var fw = $("#FW").is(":checked");
+                if (!allyear && !ss && !fw) {
+                    $("#FW").focus();
+                    ShowErrorMessage("E111");
+                }
+            }
+        }
+
+        function flgCheck(result) {
+            if (result == 'OK') {
+                if (!$("#deliver").is(":checked") && !$("#undeliver").is(":checked")) {
+                    $("#undeliver").focus();
+                    ShowErrorMessage("E111");
+                }
+            }
+        }
 
         function btnGenerateClick(){
             var allyear = $("#allyear").is(":checked");
@@ -140,23 +161,31 @@
                 var data = ShowErrorMessage("E111");
                 return data;
             }
+            else if (!$("#deliver").is(":checked") && !$("#undeliver").is(":checked")) {
+                $("#undeliver").focus();
+                ShowErrorMessage("E111");
+            }
            else {
                 var res = ErrorCheckOnSave();
                 if (res == "0") {
                     var pmodel = {
-                        TargetYear: $('#targetyear').val(),
-                        BrandCD: $('#BrandCD').val(),
-                        ProjectName: $('#projectName').val(),
-                        //Season:
-                        //ProjectCD:
-                        //DeliveryStatus:
+                        TargetYear: $("#targetyear").val(),
+                        BrandCD: $("#BrandCD").val(),
+                        ProjectCD: $("#ProjectCD").val(),
+                        ProjectName: $("#projectName").val()
                     };
-                     if ($('#allyear').is(':checked'))
-                         pmodel.Season = "1";
-                         else if ($('#SS').is(':checked'))
-                         pmodel.Season = "2";
-                         else if ($('#FW').is(':checked'))
-                         pmodel.Season = "3";
+                    var selected = new Array();
+                    $("#Seasongp input[type=checkbox]:checked").each(function () {
+                        selected.push(this.value);
+                    });
+                    if (selected.length > 0)
+                        pmodel.Season = selected.join(",");
+
+                    if ($('#deliver').is(':checked'))
+                        pmodel.DeliveryStatus = "1";
+                    else if ($('#undeliver').is(':checked'))
+                        pmodel.DeliveryStatus = "2";
+
                     var data = CalltoApiController('@Url.Action("Print_GenkaCSV", "api/Print_GenkaApi")', pmodel);
                     var csv = JSON2CSV(data);
                     var downloadLink = document.createElement("a");
