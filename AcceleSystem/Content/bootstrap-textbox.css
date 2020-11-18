@@ -3,7 +3,7 @@
 .text-line {
     background-color: transparent;
     color: #C0C0C0;
-    width : 100%;
+    width : 105%;
     outline: none;
     outline-style: none;
     border-top: none;
@@ -81,4 +81,4 @@ input[type="checkbox"]:focus + label {
         box-shadow: 0 0 0 .2rem #e8f3fd;
     }
 
-
+  

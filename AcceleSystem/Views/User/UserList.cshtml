@@ -3,10 +3,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*@section Styles{
-    <link rel="stylesheet" href="@Url.Content("~/ElaAdmin/assets/css/lib/datatable/dataTables.bootstrap.min.css")" />
-}*@
-
+@section Styles{
+    @*<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />*@
+   
+}
 <div class="card">
     <div class="card-body">
         <div class="row">
@@ -15,10 +15,10 @@
                     ユーザー追加
                 </button>
             </div>
-            <div class="col-sm-7 col-md-6">
+            <div class="col-sm-9 col-md-9">
                 <i class="fa fa-search" style="padding-left:15px;"></i>
-            <input type="text" id="myInput" placeholder="ユーザー名入力......" class="border border-white" style="width:80%;padding-bottom:10px">
-                <table id="tblUser" class="tb col-sm-12"  style="padding-left:0px;">
+                <input type="text" id="myInput" placeholder="ユーザー名入力......" class="border border-white" style="width:80%;padding-bottom:10px">
+                <table id="tblUser" class="tb col-sm-12" style="padding-left:0px;">
                     <thead>
                         <tr>
                             <th>ユーザーID</th>
@@ -27,12 +27,12 @@
                         </tr>
                     </thead>
                     @*<tbody>
-                        <tr>
-                            <td>ID</td>
-                            <td>UserName</td>
-                            <td></td>
-                        </tr>
-                    </tbody>*@
+                            <tr>
+                                <td>ID</td>
+                                <td>UserName</td>
+                                <td></td>
+                            </tr>
+                        </tbody>*@
                 </table>
             </div>
         </div>
@@ -43,7 +43,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("ユーザー検索");
-            GetUser();        
+            GetUser();
             $("#myInput").focus();
         });
 
@@ -57,7 +57,7 @@
         function GetUser() {
             var Umodel = {
                 UserName: $('#myInput').val(),
-            };     
+            };
 
              $.ajax({
             type: "Post",
@@ -65,11 +65,11 @@
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             dataSrc: "",
-            data: JSON.stringify(Umodel),              
+            data: JSON.stringify(Umodel),
             headers:
              {
                    Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-             },  
+             },
              success: function (response) {
                     BindTable(response);
              }
@@ -86,7 +86,7 @@
                 destroy: true,
                 "columns": [
                     {
-                        "data": null,
+                        "data": null,                        
                         className:"Border1",
                         render: function (data, type, row) {
                             return '<label>' + data.ID + '</label>';
