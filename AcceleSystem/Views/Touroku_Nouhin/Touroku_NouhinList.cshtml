@@ -52,7 +52,7 @@
                                             <label for="Allyear" style="padding-right:25px;">通年</label>
                                             <input type="checkbox" tabindex="5" id="SS" name="chk" value="2" onkeydown="KeyDown(event,this)" checked>
                                             <label for="SS" style="padding-right:25px;">SS</label>
-                                            <input type="checkbox" tabindex="6" id="FW" name="chk" value="3" onkeydown="KeyDown(event,this)" checked>
+                                            <input type="checkbox" tabindex="6" id="FW" name="chk" value="3" onkeydown="KeyDown(event,this,'SeasonCheck')" checked>
                                             <label for="FW">FW</label>
                                         </div>
                                     </div>
@@ -97,7 +97,7 @@
                                             <label class="text" style="padding-right:30px;">納品状況</label>
                                             <input type="checkbox" tabindex="13" id="Delleft" name="chkDelleft" onkeydown="KeyDown(event,this)"  checked>
                                             <label for="Delleft" style="padding-right:12px;">納品残あり</label>
-                                            <input type="checkbox" tabindex="14" id="Delcomplete" onkeydown="KeyDown(event,this)" name="chkDelcomplete" >
+                                            <input type="checkbox" tabindex="14" id="Delcomplete" onkeydown="KeyDown(event,this,'flgCheck')" name="chkDelcomplete" >
                                             <label for="Delcomplete">完納</label>
                                         </div>
                                     </div>
@@ -216,13 +216,40 @@
                }
            }
            else return "0";
-       }
+        }
+
+        function SeasonCheck(result) {
+            if (result == 'OK') {
+                var allyear = $("#Allyear").is(":checked");
+                var ss = $("#SS").is(":checked");
+                var fw = $("#FW").is(":checked");
+                if (!allyear && !ss && !fw) {
+                    $("#FW").focus();
+                    ShowErrorMessage("E111");
+                }
+            }
+        }
+
+        function flgCheck(result) {
+            if (result == 'OK') {
+                if (!$("#Delleft").is(":checked") && !$("#Delcomplete").is(":checked")) {
+                    $("#Delcomplete").focus();
+                    ShowErrorMessage("E111");
+                }
+            }
+        }
 
         function btnSearchClick() {
             var allyear = $("#Allyear").is(":checked");
             var ss = $("#SS").is(":checked");
             var fw = $("#FW").is(":checked");
             if (!allyear && !ss && !fw) {
+                $("#FW").focus();
+                var data = ShowErrorMessage("E111");
+                return data;
+            }
+            else if (!$("#Delleft").is(":checked") && !$("#Delcomplete").is(":checked")) {
+                $("#Delcomplete").focus();
                 var data = ShowErrorMessage("E111");
                 return data;
             }
@@ -233,10 +260,10 @@
                     if (res1 == "0") {
                         GetNouhin();
                     }
-                    else {
+                   else {
                         $("#EndDate").focus();
                         ShowErrorMessage(res1);
-                    }
+                   }
                 }
                 else {
                     ShowErrorMessage(res);
