@@ -187,16 +187,18 @@
 
     
 
-     function DateCompare(result) {
+    //Date Error check at Enter click
+    function DateCompare(result) {
          if (result == 'OK') {
              if (!($('#PeriodStart').val().trim() == '' || $('#PeriodEnd').val().trim() == '')) {
                  var model = {
-                     startDate: $("#PeriodStart").val() + '/01',
-                     endDate: $("#PeriodEnd").val() + '/01'
+                     startDate: $("#PeriodStart").val(),
+                     endDate: $("#PeriodEnd").val()
                  };
-                 var data = CalltoApiController('@Url.Action("DateComapre", "api/CommonApi")', model);
+                 @*var data = CalltoApiController('@Url.Action("DateComapre", "api/CommonApi")', model);
                  var dateData = JSON.parse(data);
-                 if (dateData[0].flg != 'false') {
+                 if (dateData[0].flg != 'false') {*@
+                 if (model.startDate <= model.endDate) {
                      $("#ProjectManager").focus();
                  }
                  else {
@@ -207,23 +209,25 @@
          }
      }
 
-        function DateCompareOnSave() {
-            if (!($('#PeriodStart').val().trim() == '' || $('#PeriodEnd').val().trim() == '')) {
-                 var model = {
-                     startDate: $("#PeriodStart").val() + '/01',
-                     endDate: $("#PeriodEnd").val() + '/01'
-                 };
-                 var data = CalltoApiController('@Url.Action("DateComapre", "api/CommonApi")', model);
-                var dateData = JSON.parse(data);
-               if (dateData[0].flg != 'false') {
-                   return "0";
-               }
-               else {
-                   return "E112";
-               }
+    //Date Error check before insert/update
+    function DateCompareOnSave() {
+        if (!($('#PeriodStart').val().trim() == '' || $('#PeriodEnd').val().trim() == '')) {
+             var model = {
+                 startDate: $("#PeriodStart").val(),
+                 endDate: $("#PeriodEnd").val()
+             };
+             @*var data = CalltoApiController('@Url.Action("DateComapre", "api/CommonApi")', model);
+             var dateData = JSON.parse(data);
+           if (dateData[0].flg != 'false') {*@
+            if (model.startDate <= model.endDate) {
+               return "0";
            }
-             else return "0";
-        }
+           else {
+               return "E112";
+           }
+       }
+         else return "0";
+    }
 
         function btnSearchClick() {
             var degreeyear = $("#Degreeyear").is(":checked");
