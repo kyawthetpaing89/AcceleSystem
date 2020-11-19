@@ -448,11 +448,7 @@
        function btnEditClick(SEQ) {
             location.href = '@Url.Action("Touroku_KeihiEntry","Touroku_Keihi")?SEQ='+SEQ+'&Mode=Edit';
 
-            @*var kmodel = {
-                SEQ: $('#SEQ').val(),
-            };
-            var data = CalltoApiController('@Url.Action("M_Cost_Edit_List", "api/Touroku_KeihiApi")', kmodel);*@
-        }
+       }
 
         function btnDelClick(SEQ) {
             location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Keihi")?SEQ='+SEQ+'&Mode=Delete';
@@ -462,7 +458,7 @@
             location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Keihi")?SEQ='+SEQ+'&Mode=Copy';
         }
 
-        function btnAddClick() {
+       function btnAddClick() {
             location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Keihi")?Mode=New';
         }
 
