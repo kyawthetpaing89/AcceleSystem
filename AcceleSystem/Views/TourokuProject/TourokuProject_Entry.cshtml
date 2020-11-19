@@ -25,9 +25,9 @@
                             <label id="text" style="padding-right: 5px;">
                                 プロジェクト
                             </label>
-                            <input type="text" tabindex="1" class="text-line col-sm-12 col-md-12 col-lg-2 text-left input-numeral8" onkeydown="KeyDown(event,this)" id="ProjectCD" name="projectcd" maxlength="10" required placeholder="入力">&nbsp;
+                            <input type="text" tabindex="1" class="text-line col-sm-12 col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this)" id="ProjectCD" name="projectcd" maxlength="10" required placeholder="入力">&nbsp;
 
-                            <input type="text" tabindex="2" class="text-line col-sm-12 col-md-12 col-lg-8 text-left input-numeral8" onkeydown="KeyDown(event,this)" id="ProjectName" name="projectname" maxlength="60" required placeholder="入力">
+                            <input type="text" tabindex="2" class="text-line col-sm-12 col-md-12 col-lg-8 text-left" onkeydown="KeyDown(event,this)" id="ProjectName" name="projectname" maxlength="60" required placeholder="入力">
                         </div>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                             <label id="text" style="padding-right: 5px;">
                                 年度
                             </label>
-                            <input type="text" tabindex="3" class="text-line col-sm-12 col-md-12 col-lg-2 text-left input-numeral8" onkeydown="KeyDown(event,this)" id="Year" name="year" maxlength="4" required placeholder="入力">
+                            <input type="text" tabindex="3" class="text-line col-sm-12 col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this)" id="Year" name="year" maxlength="4" required placeholder="入力">
                         </div>
                     </div>
                 </div>
@@ -47,8 +47,8 @@
                             <label id="text" style="padding-right: 5px;">
                                 ブランド
                             </label>
-                            <input type="text" tabindex="4" class="text-line col-sm-12 col-md-12 col-lg-3 text-left input-numeral8" onkeydown="KeyDown(event,this,'BrandCheck')" id="BrandCD" name="brandcd" maxlength="6" required placeholder="入力">&nbsp;&nbsp;
-                            <label id="text"><b>ブランド表示</b></label>
+                            <input type="text" tabindex="4" class="text-line col-sm-12 col-md-12 col-lg-3 text-left" onkeydown="KeyDown(event,this,'BrandCheck')" id="BrandCD" name="brandcd" maxlength="6" required placeholder="入力">&nbsp;&nbsp;
+                            <label id="BrandName"><b>ブランド表示</b></label>
 
                         </div>
                     </div>
@@ -75,9 +75,9 @@
                             <label id="text" style="padding-right: 5px;">
                                 予定期間
                             </label>
-                            <input type="text" tabindex="8" class="text-line col-sm-12 col-md-12 col-lg-3 text-left input-numeral8" onkeydown="KeyDown(event,this)" id="PeriodStart" name="periodstart" required placeholder="入力">
+                            <input type="text" tabindex="8" class="text-line col-sm-12 col-md-12 col-lg-3 text-left" onkeydown="KeyDown(event,this)" id="PeriodStart" name="periodstart" required placeholder="入力">
                             <label class="col-xl-1" style="font-size: 1.4rem;text-align:center;">~</label>
-                            <input type="text" tabindex="9" class="text-line col-sm-12 col-md-12 col-lg-3 text-left input-numeral8" onkeydown="KeyDown(event,this,'DateCompare')" id="PeriodEnd" name="periodend" required placeholder="入力">
+                            <input type="text" tabindex="9" class="text-line col-sm-12 col-md-12 col-lg-3 text-left" onkeydown="KeyDown(event,this,'DateCompare')" id="PeriodEnd" name="periodend" required placeholder="入力">
 
                         </div>
                     </div>
@@ -98,7 +98,7 @@
                             <label id="text" style="padding-right: 5px;">
                                 責任者
                             </label>
-                            <input type="text" tabindex="10" class="text-line col-sm-12 col-md-12 col-lg-4 text-left input-numeral8" onkeydown="KeyDown(event,this,'ProjectManagerCheck')" id="ProjectManager" name="projectmanager" maxlength="20" required placeholder="入力">&nbsp;&nbsp;
+                            <input type="text" tabindex="10" class="text-line col-sm-12 col-md-12 col-lg-4 text-left" onkeydown="KeyDown(event,this,'ProjectManagerCheck')" id="ProjectManager" name="projectmanager" maxlength="20" required placeholder="入力">&nbsp;&nbsp;
                             <label id="ProjectManagerName"><b>責任者表示</b></label>
                         </div>
                     </div>
@@ -109,7 +109,7 @@
                             <label id="text" style="padding-right: 5px;">
                                 配賦用固定値
                             </label>
-                            <input type="text" tabindex="11" class="text-line col-sm-12 col-md-12 col-lg-5 text-left input-numeral8" onkeydown="KeyDown(event,this)" id="AllocationCount" name="allocationcount" maxlength="4" required placeholder="入力">
+                            <input type="text" tabindex="11" class="text-line col-sm-12 col-md-12 col-lg-5 text-left input-numeral11" onkeydown="KeyDown(event,this)" id="AllocationCount" name="allocationcount" maxlength="4" required placeholder="入力">
 
                         </div>
                     </div>
@@ -132,14 +132,14 @@
 
 
 @section Scripts{
-<script type="text/javascript">
+    <script type="text/javascript">
     $(document).ready(function () {
             $("#formtitle").text("プロジェクト登録");
             $("#ProjectCD").focus();
              var Mode = '@Model.Mode';
             if (Mode == 'New') {
                 $('#btnSave').html('登録');
-                
+
                 RequiredCheck($("#ProjectCD"));
                 DoubleByteCheck($("#ProjectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 AlreadyExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")');
@@ -160,7 +160,7 @@
 
                 DoubleByteCheck($("#ProjectManager"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
-                
+
                 DoubleByteCheck($("#Season"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
             }
             else if (Mode == 'Edit') {
@@ -187,7 +187,7 @@
                 DoubleByteCheck($("#ProjectManager"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
 
                 DoubleByteCheck($("#Season"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-                
+
                 ShowData();
             }
             else if (Mode == 'Copy') {
@@ -214,7 +214,7 @@
 
                      DoubleByteCheck($("#ProjectManager"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                      ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
-                     
+
                      DoubleByteCheck($("#Season"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
 
                      ShowData();
@@ -231,7 +231,7 @@
                         $("#ProjectManager").attr('disabled', 'disabled');
                         $("#AllocationCount").attr('disabled', 'disabled');
                         $("#btnSave").focus();
-            
+
                         ShowData();
                    }
     });
@@ -252,7 +252,7 @@
                 else if ($('#rdofw').is(':checked')) {
                     $("#rdofw").focus();
                 }
-                
+
             }
             else $("#rdoyear").focus();
         }
@@ -261,7 +261,7 @@
             $("#BrandName").text('ブランド表示');
             $("#Season").focus();
         }
-       
+
         $("#BrandName").css("font-weight", "Bold");
     }
 
@@ -301,7 +301,7 @@
              $("#BrandName").text("ブランド表示");
          else $("#BrandName").text(ProjectData[0].BrandName);
 
-         
+
          if (!ProjectData[0].ProjectManagerName)
              $("#ProjectManagerName").text("責任者表示");
          else $("#ProjectManagerName").text(ProjectData[0].ProjectManagerName);
@@ -476,9 +476,9 @@
         }
     });
 
-</script>
+    </script>
     @*<script src="@Url.Content("~/Scripts/datepicker.js")"></script>
-    <script src="@Url.Content("~/Scripts/datepicker.en.js")"></script>*@
-   
+        <script src="@Url.Content("~/Scripts/datepicker.en.js")"></script>*@
+
 }
 
