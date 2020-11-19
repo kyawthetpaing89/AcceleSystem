@@ -14,41 +14,50 @@
 <div id="divMain" class="container-fluid">
     <div class="content">
         <div class="p-5 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white; border-radius:5px;">
-            <div class="col-xs-12 col-md-2"></div>
-            <div class="col-xs-12 col-md-10">
+            <div class="col-sm-1 col-md-12 col-lg-2"></div>
+            <div class="col-sm-1 col-md-12 col-lg-10">
                 <div>
                     <h2 class=" hr-text text-center">プロジェクト登録</h2>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="1" class="text-line col-xl-2 text-left" onkeydown="KeyDown(event,this)" id="ProjectCD" name="projectcd" maxlength="10" required placeholder="プロジェクトコード">
+                            <label id="text" style="padding-right: 5px;">
+                                プロジェクト
+                            </label>
+                            <input type="text" tabindex="1" class="text-line col-sm-12 col-md-12 col-lg-2 text-left input-numeral8" onkeydown="KeyDown(event,this)" id="ProjectCD" name="projectcd" maxlength="10" required placeholder="入力">&nbsp;
 
-                            <input type="text" tabindex="2" class="text-line col-xl-9 text-left" onkeydown="KeyDown(event,this)" id="ProjectName" name="projectname" maxlength="60" required placeholder="プロジェクト名">
+                            <input type="text" tabindex="2" class="text-line col-sm-12 col-md-12 col-lg-8 text-left input-numeral8" onkeydown="KeyDown(event,this)" id="ProjectName" name="projectname" maxlength="60" required placeholder="入力">
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xs-12">
+                    <div class="col-xs-12" style="padding-left:62px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="3" class="text-line col-xl-2 text-left" onkeydown="KeyDown(event,this)" id="Year" name="year" maxlength="4"  required placeholder="年度">
+                            <label id="text" style="padding-right: 5px;">
+                                年度
+                            </label>
+                            <input type="text" tabindex="3" class="text-line col-sm-12 col-md-12 col-lg-2 text-left input-numeral8" onkeydown="KeyDown(event,this)" id="Year" name="year" maxlength="4" required placeholder="入力">
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xs-12">
+                    <div class="col-xs-12" style="padding-left:30px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="4" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'BrandCheck')" id="BrandCD" name="brandcd" maxlength="6" required placeholder="ブランド">
-                            <label id="BrandName" style="padding-left:15px;"><b>ブランド表示</b></label>
+                            <label id="text" style="padding-right: 5px;">
+                                ブランド
+                            </label>
+                            <input type="text" tabindex="4" class="text-line col-sm-12 col-md-12 col-lg-3 text-left input-numeral8" onkeydown="KeyDown(event,this,'BrandCheck')" id="BrandCD" name="brandcd" maxlength="6" required placeholder="入力">&nbsp;&nbsp;
+                            <label id="text"><b>ブランド表示</b></label>
 
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form" style=" padding-top:1.2rem!important;">
-                    <div class="col-xl-12" style="padding-left: 0px">
+                    <div class="col-xs-12" style="padding-left: 30px">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <div class="custom-control custom-radio" style="padding-left:0px!important;">
-                                <label class="text" id="Season" style="padding-right:30px;">シーズン</label>
+                                <label class="text" id="Season">シーズン</label>&nbsp;&nbsp;
                                 <input type="radio" tabindex="5" onkeydown="KeyDown(event,this)" id="rdoyear" name="radio" checked>
                                 <label for="rdoyear" style="padding-right:20px;">通年</label>
                                 <input type="radio" tabindex="6" onkeydown="KeyDown(event,this)" id="rdoss" name="radio">
@@ -61,37 +70,46 @@
 
                 </div>
                 <div>
-                    <div class="col-xs-12">
+                    <div class="col-xs-12" style="padding-left: 30px">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="8" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="PeriodStart" name="periodstart" required placeholder="予定期間">
+                            <label id="text" style="padding-right: 5px;">
+                                予定期間
+                            </label>
+                            <input type="text" tabindex="8" class="text-line col-sm-12 col-md-12 col-lg-3 text-left input-numeral8" onkeydown="KeyDown(event,this)" id="PeriodStart" name="periodstart" required placeholder="入力">
                             <label class="col-xl-1" style="font-size: 1.4rem;text-align:center;">~</label>
-                            <input type="text" tabindex="9" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this,'DateCompare')" id="PeriodEnd" name="periodend" required placeholder="予定期間">
+                            <input type="text" tabindex="9" class="text-line col-sm-12 col-md-12 col-lg-3 text-left input-numeral8" onkeydown="KeyDown(event,this,'DateCompare')" id="PeriodEnd" name="periodend" required placeholder="入力">
 
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form">
-                    <div class="col-xs-12">
+                    <div class="col-xs-12" style="padding-left:30px">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <label id="Production" style="padding-right:20px;">総生産数</label>
-                            <label id="TotalProduction" style="padding-right:30px;"><b>総生産数表示</b></label>
+                            <label id="Production" style="padding-right:5px;">総生産数</label>
+                            <label id="TotalProduction" style="padding-right:20px;"><b>総生産数表示</b></label>
                             <label id="SalesPrice" style="padding-right:20px;">総金額</label>
                             <label id="TotalSalesPrice"><b>総金額表示</b></label>
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form">
-                    <div class="col-xs-12">
+                    <div class="col-xs-12" style="padding-left:45px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="10" class="text-line col-xl-4 text-left"  onkeydown="KeyDown(event,this,'ProjectManagerCheck')" id="ProjectManager" name="projectmanager" maxlength="20" required placeholder="責任者">
-                            <label id="ProjectManagerName" style="padding-left:15px;"><b>責任者表示</b></label>
+                            <label id="text" style="padding-right: 5px;">
+                                責任者
+                            </label>
+                            <input type="text" tabindex="10" class="text-line col-sm-12 col-md-12 col-lg-4 text-left input-numeral8" onkeydown="KeyDown(event,this,'ProjectManagerCheck')" id="ProjectManager" name="projectmanager" maxlength="20" required placeholder="入力">&nbsp;&nbsp;
+                            <label id="ProjectManagerName"><b>責任者表示</b></label>
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="11" class="text-line col-xl-5 text-left input-numeral11" onkeydown="KeyDown(event,this)" id="AllocationCount" name="allocationcount" maxlength="4" required placeholder="配賦用固定値">
+                            <label id="text" style="padding-right: 5px;">
+                                配賦用固定値
+                            </label>
+                            <input type="text" tabindex="11" class="text-line col-sm-12 col-md-12 col-lg-5 text-left input-numeral8" onkeydown="KeyDown(event,this)" id="AllocationCount" name="allocationcount" maxlength="4" required placeholder="入力">
 
                         </div>
                     </div>
@@ -315,12 +333,13 @@
          if (result == 'OK') {
              if (!($('#PeriodStart').val().trim() == '' || $('#PeriodEnd').val().trim() == '')) {
                  var model = {
-                     startDate: $("#PeriodStart").val() + '/01',
-                     endDate: $("#PeriodEnd").val() + '/01'
+                     startDate: $("#PeriodStart").val(),
+                     endDate: $("#PeriodEnd").val()
                  };
-                 var data = CalltoApiController('@Url.Action("DateComapre", "api/CommonApi")', model);
+                 @*var data = CalltoApiController('@Url.Action("DateComapre", "api/CommonApi")', model);
                  var dateData = JSON.parse(data);
-                 if (dateData[0].flg != 'false') {
+                 if (dateData[0].flg != 'false') {*@
+                 if (model.startDate <= model.endDate) {
                      $("#ProjectManager").focus();
                  }
                  else {
@@ -335,12 +354,13 @@
     function DateCompareOnSave() {
         if (!($('#PeriodStart').val().trim() == '' || $('#PeriodEnd').val().trim() == '')) {
              var model = {
-                 startDate: $("#PeriodStart").val() + '/01',
-                 endDate: $("#PeriodEnd").val() + '/01'
+                 startDate: $("#PeriodStart").val(),
+                 endDate: $("#PeriodEnd").val()
              };
-             var data = CalltoApiController('@Url.Action("DateComapre", "api/CommonApi")', model);
+             @*var data = CalltoApiController('@Url.Action("DateComapre", "api/CommonApi")', model);
              var dateData = JSON.parse(data);
-           if (dateData[0].flg != 'false') {
+           if (dateData[0].flg != 'false') {*@
+            if (model.startDate <= model.endDate) {
                return "0";
            }
            else {
