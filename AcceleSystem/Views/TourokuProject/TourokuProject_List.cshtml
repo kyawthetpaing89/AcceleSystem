@@ -7,7 +7,11 @@
     @*<link rel="stylesheet" href="@Url.Content(" ~/ElaAdmin/assets/css/lib/datatable/dataTables.bootstrap.min.css")" />*@
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
 }
-
+<style>
+    .text-price {
+        text-align: right; 
+    }
+</style>
 <div id="divMain" class="container-fluid">
     <div class="card">
         <div class="row">
@@ -40,7 +44,7 @@
 
                                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                                     <div class="col-md-12" style="padding-left:34px;">
-                                        <div id ="Seasongp"class="text-s text-custom1 text-uppercase mb-1">
+                                        <div id="Seasongp" class="text-s text-custom1 text-uppercase mb-1">
                                             <label id="text" style="padding-right:15px;">シーズン</label>
                                             <input type="checkbox" tabindex="3" id="Degreeyear" name="checkbox" value="1" onkeydown="KeyDown(event,this)" checked>
                                             <label for="Degreeyear" style="padding-right:20px;">通年</label>
@@ -145,8 +149,8 @@
     </div>
 </div>
 
-    @section Scripts{
- <script type="text/javascript">
+@section Scripts{
+    <script type="text/javascript">
     $(document).ready(function () {
         $("#formtitle").text("プロジェクト検索");
         $("#BrandCD").focus();
@@ -165,7 +169,7 @@
 
          DoubleByteCheck($("#ProjectManager"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
          ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
-        
+
         //$("#BrandName").attr('disabled', 'disabled');
         //$("#ProjectName").attr('disabled', 'disabled');
         //$("#ProjectManagerName").attr('disabled', 'disabled');
@@ -185,7 +189,7 @@
          }
      }
 
-    
+
 
      function DateCompare(result) {
          if (result == 'OK') {
@@ -318,7 +322,7 @@
                         "data": null,
                         className: "Border3",
                         render: function (data, type, row) {
-                            return '<label>' + data.Season + '</label><br/><label></lable></br>' + data.Production +'</label>';
+                            return '<label>' + data.Season + '</label><br/><label></label><br/><label>' + data.Production +'</label>';
                         }
                     },
 
@@ -326,7 +330,11 @@
                         "data": null,
                         className: "Border4",
                         render: function (data, type, row) {
-                            return '<label>' + data.Year + '</label><br/><label></lable></br>' + data.SalesPrice + '</label>';
+                            //return '<span>' + data.Year + '</span><br/><label class="col-md-12 text-right">' + data.SalesPrice + '</label><br/><span class="col-md-12 text-right">' + data.SalesPrice + ' </span>';
+                           // return '<label>' + data.Year + '</label><br/><label></label><br/><label style="text-align:right;width:70%;">00000000000</label>';
+                            //return '<label>' + data.Year + '</label><br/><label></label><br/><label style="text-align:right;width:70%;">' + data.SalesPrice + '</label>';
+                            return '<label>' + data.Year + '</label><br/><label></label><br/><label class="col-md-12 text-right">' + data.SalesPrice + '</label>';
+                            //return '<label>' + data.Year + '</label><br/><label></label><br/><input type="text" class="text-price" value = ' + data.SalesPrice + ' readonly>';
                         }
                     },
 
@@ -453,7 +461,7 @@
          }
      });
 
-  </script>
+    </script>
 
 
-    }
+}
