@@ -145,7 +145,8 @@
 
  @section Scripts{
    <script type="text/javascript">
-        $(document).ready(function () {
+       var array;
+       $(document).ready(function () {
             $("#formtitle").text("経費検索");
             $("#CostCD").focus();
             ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "CostName");
@@ -375,25 +376,27 @@
                              HinbanName: $('#PartName').val(),
                          };
 
-                         if ($('#degreeyear').is(':checked'))
-                             kmodel.Season = "1";
-                         else if ($('#SS').is(':checked'))
-                             kmodel.Season = "2";
-                         else if ($('#FW').is(':checked'))
-                             kmodel.Season = "3";
+                         var selected = new Array();
+                         $("#Seasongp input[type=checkbox]:checked").each(function () {
+                             selected.push(this.value);
+                         });
+                         if (selected.length > 0)
+                             kmodel.Season = selected.join(",");
 
                          var data = CalltoApiController('@Url.Action("D_Cost_TKeihiCSV", "api/Touroku_KeihiApi")', kmodel);
                        
                          var csv = JSON2CSV(data);
-                         var downloadLink = document.createElement("a");
-                         var blob = new Blob(["\ufeff", csv]);
-                         var url = URL.createObjectURL(blob);
-                         downloadLink.href = url;
-                         downloadLink.download = "経費登録.csv";
+                         if (!(csv == "E104")) {
+                             var downloadLink = document.createElement("a");
+                             var blob = new Blob(["\ufeff", csv]);
+                             var url = URL.createObjectURL(blob);
+                             downloadLink.href = url;
+                             downloadLink.download = "経費登録.csv";
 
-                         document.body.appendChild(downloadLink);
-                         downloadLink.click();
-                         document.body.removeChild(downloadLink);
+                             document.body.appendChild(downloadLink);
+                             downloadLink.click();
+                             document.body.removeChild(downloadLink);
+                         }
                      }
                      else {
                          $("#CostDate2").focus();
@@ -407,17 +410,22 @@
 
        //Convert Jsonstring to csv
        function JSON2CSV(objArray) {
-           var array = typeof JSONString != 'object' ? JSON.parse(objArray) : JSONString;
-           var fields = Object.keys(array[0])
-           var replacer = function (key, value) { return value === null ? null : value }
-           var csv = array.map(function (row) {
-               return fields.map(function (fieldName) {
-                   return JSON.stringify(row[fieldName], replacer)
-               }).join(',')
-           })
-           csv.unshift(fields.join(',')) // add header column
-           csv = csv.join('\r\n');
-           return csv;
+           if (!(objArray == "[]")) {
+               var array = typeof JSONString != 'object' ? JSON.parse(objArray) : JSONString;
+               var fields = Object.keys(array[0]);
+               var replacer = function (key, value) { return value === null ? null : value }
+               var csv = array.map(function (row) {
+                   return fields.map(function (fieldName) {
+                       return JSON.stringify(row[fieldName], replacer)
+                   }).join(',')
+               })
+               csv.unshift(fields.join(',')) // add header column
+               csv = csv.join('\r\n');
+               return csv;
+           }
+           else {
+               return "E104";
+           }
        }
 
        $('#btnAdd').keydown(function (e) {
