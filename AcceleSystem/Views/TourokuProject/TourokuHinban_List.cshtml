@@ -355,11 +355,12 @@
                     StartPrice: $('#StartPrice').val(),
                     EndPrice: $('#EndPrice').val(),
                 };
-                var data = CalltoApiController('@Url.Action("M_Hinban_Price_Check", "api/TourokuProjectApi")', Tmodel);
+                @*var data = CalltoApiController('@Url.Action("M_Hinban_Price_Check", "api/TourokuProjectApi")', Tmodel);
                 var SalePriceData = JSON.parse(data);
-                if (SalePriceData[0].flg == "false") {
-                    $("#EndPrice").focus();
-                    ShowErrorMessage("E124");
+                if (SalePriceData[0].flg == "false") {*@
+                if (Tmodel.StartPrice <= Tmodel.EndPrice) {
+                    $("#CastingCD").focus();
+
                     //var data = ShowErrorMessage("E124");
                     //StartPrice: $('#StartPrice').val("");
                     //EndPrice: $('#EndPrice').val("");
@@ -367,7 +368,8 @@
                     //return data;
                 }
                 else {
-                    $("#CastingCD").focus();
+                    $("#EndPrice").focus();
+                    ShowErrorMessage("E124");
                 }
             }
         }
@@ -379,13 +381,14 @@
                 StartPrice: $('#StartPrice').val(),
                 EndPrice: $('#EndPrice').val(),
             };
-            var data = CalltoApiController('@Url.Action("M_Hinban_Price_Check", "api/TourokuProjectApi")', Tmodel);
+            @*var data = CalltoApiController('@Url.Action("M_Hinban_Price_Check", "api/TourokuProjectApi")', Tmodel);
             var SalePriceData = JSON.parse(data);
-            if (SalePriceData[0].flg == "false") {
-                return "E124";
+            if (SalePriceData[0].flg == "false") {*@
+            if (Tmodel.StartPrice <= EndPrice) {
+                return "0";
             }
             else {
-                return "0";
+                return "E124";
             }
         }
         else return "0";
