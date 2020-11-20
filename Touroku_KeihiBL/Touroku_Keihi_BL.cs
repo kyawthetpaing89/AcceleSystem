@@ -178,5 +178,16 @@ namespace Touroku_KeihiBL
             }
             return bdl.SelectJson(Kmodel.SPName, Kmodel.Sqlprms);
         }
+
+        public string Fnc_TAXCalculation(Touroku_KeihiModel tkmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            tkmodel.Sqlprms = new SqlParameter[4];
+            tkmodel.Sqlprms[0] = new SqlParameter("@Mode", SqlDbType.VarChar) { Value = tkmodel.Mode };
+            tkmodel.Sqlprms[1] = new SqlParameter("@ChangeDate", SqlDbType.VarChar) { Value = tkmodel.CostDate };
+            tkmodel.Sqlprms[2] = new SqlParameter("@TaxRateFLG", SqlDbType.VarChar) { Value = tkmodel.flg };
+            tkmodel.Sqlprms[3] = new SqlParameter("@Kingaku", SqlDbType.VarChar) { Value = tkmodel.CostAmount };
+            return bdl.SelectJson("Fnc_TAXCalculation", tkmodel.Sqlprms);
+        }
     }
 }
