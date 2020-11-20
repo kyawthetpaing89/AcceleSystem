@@ -10,6 +10,7 @@
 <style>
     .text-price {
         text-align: right; 
+        border: 0;
     }
 </style>
 <div id="divMain" class="container-fluid">
@@ -113,31 +114,30 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-6">
+            <div class="col-xs-12 col-md-7">
                 <div class="card-body card-block">
                     <table id="tblProject" class="tb1 col-sm-12" style="margin-left:10px;">
                         <thead>
                             <tr>
                                 <th>ブランド</th>
                                 <th></th>
-                                <th>シーズン</th>
-                                <th>年度</th>
+                                <th class="text-center">シーズン</th>
+                                <th class="text-center">年度</th>
                                 <th></th>
                             </tr>
                             <tr>
                                 <th>プロジェクト</th>
                                 <th></th>
-                                <th></th>
-                                <th></th>
+                                <th class="text-center"></th>
+                                <th class="text-center"></th>
                                 <th></th>
                             </tr>
                             <tr>
                                 <th>予定期間</th>
                                 <th></th>
-                                <th>総生産数</th>
-                                <th>総金額</th>
+                                <th class="text-center">総生産数</th>
+                                <th class="text-center">総金額</th>
                                 <th></th>
-
                             </tr>
 
                         </thead>
@@ -326,7 +326,8 @@
                         "data": null,
                         className: "Border3",
                         render: function (data, type, row) {
-                            return '<label>' + data.Season + '</label><br/><label></label><br/><label>' + data.Production +'</label>';
+                            //return '<label>' + data.Season + '</label><br/><label></label><br/><label>' + data.Production + '</label>';
+                            return '<label class="col-md-12 text-center">' + data.Season + '</label><br/><label></label><br/><label class="col-md-12 text-right">' + data.Production + '</label>';
                         }
                     },
 
@@ -335,10 +336,10 @@
                         className: "Border4",
                         render: function (data, type, row) {
                             //return '<span>' + data.Year + '</span><br/><label class="col-md-12 text-right">' + data.SalesPrice + '</label><br/><span class="col-md-12 text-right">' + data.SalesPrice + ' </span>';
-                           // return '<label>' + data.Year + '</label><br/><label></label><br/><label style="text-align:right;width:70%;">00000000000</label>';
-                            //return '<label>' + data.Year + '</label><br/><label></label><br/><label style="text-align:right;width:70%;">' + data.SalesPrice + '</label>';
-                            return '<label>' + data.Year + '</label><br/><label></label><br/><label class="col-md-12 text-right">' + data.SalesPrice + '</label>';
-                            //return '<label>' + data.Year + '</label><br/><label></label><br/><input type="text" class="text-price" value = ' + data.SalesPrice + ' readonly>';
+                           // return '<label>' + data.Year + '</label><br/><label></label><br/><label style="text-align:right;width:70%;">00000000000</label>';                 
+                            return '<label class="col-md-12 text-center">' + data.Year + '</label><br/><label></label><br/><label class="col-md-12 text-right">' + data.SalesPrice + '</label>';
+                            //return '<input type="text" class="text-center" style="border:0px;" value = ' + data.Year + ' readonly><br/><label></label><br/><input type="text" class="text-price" value = ' + data.SalesPrice + ' readonly>';
+                            //return '<label class="text-center">' + data.Year + '</label><br/><label></label><br/><label class="col-md-12 text-price">' + data.SalesPrice + '</label>';
                         }
                     },
 

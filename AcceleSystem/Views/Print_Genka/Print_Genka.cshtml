@@ -2,6 +2,14 @@
 @{
     ViewBag.Title = "Print_Genka";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    string loginUser = Session["UserInfo"].ToString();
+    string LoginID = string.Empty;
+
+    if (!string.IsNullOrEmpty(loginUser))
+    {
+        LoginID = loginUser.Split('_')[0].ToString();
+   }
+
 }
 @section Styles{
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
@@ -117,7 +125,7 @@
             var data = CalltoApiController('@Url.Action("M_Contrl_Year_ExitCheck", "api/Print_GenkaApi")', Pmodel);
             var controldata = JSON.parse(data);
             //alert(controldata[0].FiscalYear);
-            if (controldata[0].FiscalYear) 
+            if (controldata[0].FiscalYear)
                 $("#targetyear").val(controldata[0].FiscalYear);
             else
                 ShowErrorMessage("E101");
@@ -165,14 +173,17 @@
                 $("#undeliver").focus();
                 ShowErrorMessage("E111");
             }
-           else {
+            else {
                 var res = ErrorCheckOnSave();
+
                 if (res == "0") {
                     var pmodel = {
                         TargetYear: $("#targetyear").val(),
                         BrandCD: $("#BrandCD").val(),
+                        BrandName: $("#brandname").text(),
                         ProjectCD: $("#ProjectCD").val(),
-                        ProjectName: $("#projectName").val()
+                        ProjectName: $("#projectName").val(),
+                        LoginID: '@LoginID'
                     };
                     var selected = new Array();
                     $("#Seasongp input[type=checkbox]:checked").each(function () {
@@ -205,14 +216,14 @@
                     ShowTargetYear();
                     $("#BrandCD").val('');
                     $("#brandname").text('ブランド表示');
-                    $("#brandname").css("font-weight", "Bold");                    
-                    $('#allyear').prop('checked', true); 
-                    $('#SS').prop('checked', false); 
+                    $("#brandname").css("font-weight", "Bold");
+                    $('#allyear').prop('checked', true);
+                    $('#SS').prop('checked', false);
                     $('#FW').prop('checked', false);
                     $("#ProjectCD").val('');
                     $("#projectName").val('');
                     $('#deliver').prop('checked', true);
-                    $('#undeliver').prop('checked', false);                                      
+                    $('#undeliver').prop('checked', false);
 
                 }
                 else {
@@ -221,8 +232,8 @@
                 }
             }
         }
-            
-       
+
+
         //Convert Jsonstring to csv
         function JSON2CSV(objArray) {
             var array = typeof JSONString != 'object' ? JSON.parse(objArray) : JSONString;
@@ -236,7 +247,7 @@
             csv.unshift(fields.join(',')) // add header column
             csv = csv.join('\r\n');
             return csv;
-        }                     
+        }
 
         $('#btnGenerate').keydown(function (e) {
             var code = e.keyCode || e.which;
