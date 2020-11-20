@@ -139,7 +139,7 @@
                                 <label id="text" style="padding-right: 5px;">
                                     金額
                                 </label>
-                                <input type="text" tabindex="14" class="text-line col-md-12 col-lg-2 text-right input-numeral10" onkeydown="KeyDown(event,this)" id="AmountMoney" name="AmountMoney" maxlength="10" required placeholder="入力">
+                                <input type="text" tabindex="14" class="text-line col-md-12 col-lg-2 text-right input-numeral10" onkeydown="KeyDown(event,this,'CalculateTax')" id="AmountMoney" name="AmountMoney" maxlength="10" required placeholder="入力">
                                 &nbsp;
                                 <label id="text" style="padding-right: 5px;">
                                     本体金額
@@ -543,6 +543,18 @@
             else {
                 $("#tax").focus();
             }
+        }
+    }
+
+    function CalculateTax(result) {
+        if (result == 'OK') {
+            var Kmodel = {
+                Mode: 2,
+                CostDate: $('#CostDate').val(),  
+                flg: 1,
+                CostAmount: ($('#AmountMoney').val()).replace(",", ""),
+            };
+               var data = CalltoApiController('@Url.Action("D_Cost_CUD", "api/Touroku_KeihiApi")', Kmodel);
         }
     }
 
