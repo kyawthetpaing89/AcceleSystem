@@ -16,5 +16,6 @@ namespace Models
         public string ProjectName { get; set; }
         public string Year { get; set; }
         public string DeliveryStatus { get; set; }
+        public string LoginID { get; set; }
     }
 }

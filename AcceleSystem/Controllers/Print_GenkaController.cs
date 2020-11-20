@@ -10,6 +10,7 @@ namespace AcceleSystem.Controllers
     public class Print_GenkaController : Controller
     {
         // GET: Print_Genka
+        [SessionFilter]
         public ActionResult Print_Genka(Print_GenkaModel pgModel)
         {
             if (string.IsNullOrWhiteSpace(pgModel.Mode))

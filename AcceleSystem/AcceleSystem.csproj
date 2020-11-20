@@ -152,6 +152,7 @@
     <Compile Include="Controllers\MessageApiController.cs" />
     <Compile Include="Controllers\Print_GenkaApiController.cs" />
     <Compile Include="Controllers\Print_GenkaController.cs" />
+    <Compile Include="Controllers\SessionFilterAttribute.cs" />
     <Compile Include="Controllers\TourokuProjectApiController.cs" />
     <Compile Include="Controllers\TourokuProjectController.cs" />
     <Compile Include="Controllers\Touroku_KeihiApiController.cs" />
