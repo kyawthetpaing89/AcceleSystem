@@ -100,9 +100,7 @@
                                 <div class="pt-3 md-form" style="padding-left:0px; padding-top:2rem;">
                                     <div class="col-xl-12">
                                         <div class="col-xl-9" style="float:right;">
-                                            <button id="btnCSV" onclick="btnCSVClick()" class="btn btn-csv col-xl-3 text-center" tabindex="13">
-                                                CSV
-                                            </button>&nbsp;&nbsp;
+                                            <button id="btnCSV" tabindex="13" onclick="btnCSVClick()" class="btn btn-csv col-xl-3 text-center">CSV</button>&nbsp;&nbsp;
                                             <button id="btnSearch" tabindex="14" onclick="btnSearchClick()" class="btn btn-dark col-xl-3 text-center">検索</button>
                                         </div>
                                     </div>
@@ -455,7 +453,7 @@
             location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?ProjectCD=' + ProjectCD + '&BrandCD=' + BrandCD + '&Mode=Delete';
      }
 
-     $('#btnCSV').keydown(function (e) {
+        $('#btnnext').keydown(function (e) {
          var code = e.keyCode || e.which;
          if (code == 9) {
              if (e.shiftKey) {

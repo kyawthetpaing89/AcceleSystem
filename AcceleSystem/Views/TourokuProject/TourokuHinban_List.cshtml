@@ -148,8 +148,8 @@
                                 <tr>
                                     <th>金型</th>
                                     <th>生産数</th>
-                                    <th>予定単価</th>
-                                    <th>総金額</th>
+                                    <th class="text-center">予定単価</th>
+                                    <th class="text-center">総金額</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -180,7 +180,7 @@
             $("#tAmount").attr('disabled', 'disabled');
             $("#CastingName").attr('disabled', 'disabled');
 
-            RequiredCheck($("#proCD"));
+            //RequiredCheck($("#proCD"));
             ExistsCheck($("#proCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "proName");
             DoubleByteCheck($("#HinbanCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
 
@@ -254,7 +254,8 @@
                     "data": null,
                     className: "Border3",
                     render: function (data, type, row) {
-                        return '<label>' + '' + '</label><br/>' + '<label>' + '' + '</label><br/><br/><label>' + data.SalesPrice + '</label><br/>';
+                        //return '<label>' + '' + '</label><br/>' + '<label>' + '' + '</label><br/><br/><label>' + data.SalesPrice + '</label><br/>';
+                        return '<label class="col-md-12 text-center">' + '' + '</label><br/><label></label><br/><label class="col-md-12 text-right">' + data.SalesPrice + '</label>';
                     }
                 },
 
@@ -262,7 +263,8 @@
                     "data": null,
                     className: "Border4",
                     render: function (data, type, row) {
-                        return '<label>' + '' + '</label><br/>' + '<label>' + '' + '</label><br/><br/><label>' + data.TotalSalesPrice + '</label>';
+                        //return '<label>' + '' + '</label><br/>' + '<label>' + '' + '</label><br/><br/><label>' + /*data.TotalSalesPrice*/ + '</label>';
+                        return '<label class="col-md-12 text-center">' + '' + '</label><br/><label></label><br/><label class="col-md-12 text-right">' + data.TotalSalesPrice + '</label>';
                     }
                 },
 
