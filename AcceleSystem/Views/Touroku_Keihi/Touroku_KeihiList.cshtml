@@ -147,7 +147,35 @@
    <script type="text/javascript">
        var array;
        $(document).ready(function () {
-            $("#formtitle").text("経費検索");
+           $("#formtitle").text("経費検索");
+           if(jQuery.isEmptyObject('@Model')){
+               alert("a");
+           }
+               $('#CostCD').val('@Model.CostCD');
+               $('#CostName').val('@Model.CostName');
+               $('#CostDate1').val('@Model.CostDateFrom');
+               $('#CostDate2').val('@Model.CostDateTo');
+               $('#year').val('@Model.Year');
+               $('#brandCD').val('@Model.BrandCD');
+               $('#brandname').val('@Model.BrandName');
+               $('#projectCD').val('@Model.ProjectCD');
+               $('#projectname').val('@Model.ProjectName');
+               $('#PartCD').val('@Model.HinbanCD');
+               $('#PartName').val('@Model.HinbanName');
+           @*$.each('@Model.Season', function (i, val) {
+               alert(val);
+               $("input[value='" + val + "']").prop('checked', true);
+
+           });*@
+
+               @*var sval = '@Model.Season'.split(',');
+               if (!(sval[0] == "1"))
+                   $("#allyear").prop("checked", false);
+               if (!(sval[1] == "2"))
+                   $("#SS").prop("checked", false);
+               if (!(sval[2] == "3"))
+                   $("#FW").prop("checked", false);*@
+
             $("#CostCD").focus();
             ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "CostName");
             DoubleByteCheck($("#CostCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
@@ -446,21 +474,54 @@
        });
 
        function btnEditClick(SEQ) {
-            location.href = '@Url.Action("Touroku_KeihiEntry","Touroku_Keihi")?SEQ='+SEQ+'&Mode=Edit';
+           var kmodel = GetKeihiData();
+
+           location.href = '@Url.Action("Touroku_KeihiEntry","Touroku_Keihi")?CostCD=' + kmodel.CostCD + '&CostName=' + kmodel.CostName + '&CostDateFrom=' + kmodel.CostDateFrom + '&CostDateTo=' + kmodel.CostDateTo + '&Year=' + kmodel.Year + '&BrandCD=' + kmodel.BrandCD + '&BrandName=' + kmodel.BrandName + '&Season=' + kmodel.Season + '&ProjectCD=' + kmodel.ProjectCD + '&ProjectName=' + kmodel.ProjectName + '&HinbanCD=' + kmodel.HinbanCD + '&HinbanName=' + kmodel.HinbanName +'&SEQ='+SEQ+'&Mode=Edit';
 
        }
 
-        function btnDelClick(SEQ) {
-            location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Keihi")?SEQ='+SEQ+'&Mode=Delete';
+       function btnDelClick(SEQ) {
+           var kmodel = GetKeihiData();
+
+           location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Keihi")?CostCD=' + kmodel.CostCD + '&CostName=' + kmodel.CostName + '&CostDateFrom=' + kmodel.CostDateFrom + '&CostDateTo=' + kmodel.CostDateTo + '&Year=' + kmodel.Year + '&BrandCD=' + kmodel.BrandCD + '&BrandName=' + kmodel.BrandName + '&Season=' + kmodel.Season + '&ProjectCD=' + kmodel.ProjectCD + '&ProjectName=' + kmodel.ProjectName + '&HinbanCD=' + kmodel.HinbanCD + '&HinbanName=' + kmodel.HinbanName + '&SEQ=' + SEQ +'&Mode=Delete';
         }
 
-        function btnCopyClick(SEQ) {
-            location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Keihi")?SEQ='+SEQ+'&Mode=Copy';
+       function btnCopyClick(SEQ) {
+           var kmodel = GetKeihiData();
+
+           location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Keihi")?CostCD=' + kmodel.CostCD + '&CostName=' + kmodel.CostName + '&CostDateFrom=' + kmodel.CostDateFrom + '&CostDateTo=' + kmodel.CostDateTo + '&Year=' + kmodel.Year + '&BrandCD=' + kmodel.BrandCD + '&BrandName=' + kmodel.BrandName + '&Season=' + kmodel.Season + '&ProjectCD=' + kmodel.ProjectCD + '&ProjectName=' + kmodel.ProjectName + '&HinbanCD=' + kmodel.HinbanCD + '&HinbanName=' + kmodel.HinbanName + '&SEQ=' + SEQ +'&Mode=Copy';
         }
 
        function btnAddClick() {
-            location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Keihi")?Mode=New';
-        }
+           var kmodel = GetKeihiData();
+           
+           location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Keihi")?CostCD=' + kmodel.CostCD + '&CostName=' + kmodel.CostName + '&CostDateFrom=' + kmodel.CostDateFrom + '&CostDateTo=' + kmodel.CostDateTo + '&Year=' + kmodel.Year + '&BrandCD=' + kmodel.BrandCD + '&BrandName=' + kmodel.BrandName +'&Season='+ kmodel.Season+ '&ProjectCD=' + kmodel.ProjectCD + '&ProjectName=' + kmodel.ProjectName + '&HinbanCD=' + kmodel.HinbanCD + '&HinbanName=' + kmodel.HinbanName +'&Mode=New';
+       }
+
+       function GetKeihiData() {
+           var kmodel = {
+               CostCD: $('#CostCD').val(),
+               CostName: $('#CostName').val(),
+               CostDateFrom: $('#CostDate1').val(),
+               CostDateTo: $('#CostDate2').val(),
+               Year: $('#year').val(),
+               BrandCD: $('#brandCD').val(),
+               BrandName: $('#brandname').val(),
+               //Season: $('#season').val(),
+               ProjectCD: $('#projectCD').val(),
+               ProjectName: $('#projectname').val(),
+               HinbanCD: $('#PartCD').val(),
+               HinbanName: $('#PartName').val(),
+           };
+           var selected = new Array();
+           $("#Seasongp input[type=checkbox]:checked").each(function () {
+               selected.push(this.value);
+           });
+           if (selected.length > 0)
+               kmodel.Season = selected.join(",");
+
+           return kmodel;
+       }
 
         </script>
     }

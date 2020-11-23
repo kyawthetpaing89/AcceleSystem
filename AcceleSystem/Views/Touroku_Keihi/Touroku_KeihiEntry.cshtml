@@ -126,10 +126,10 @@
                         <div class="col-xs-12" style="padding-left:25px;">
                             <div class="custom-control custom-radio" style="padding-left:0px!important;">
                                 <label class="text" id="taxinclude" style="padding-right:10px;">税込区分</label>
-                                <input type="radio" tabindex="12" id="tax" onkeydown="KeyDown(event,this)" name="radios" checked>
-                                <label for="tax" style="padding-right:10px;">税別</label>
-                                <input type="radio" tabindex="13" id="nottax" onkeydown="KeyDown(event,this)" name="radios">
-                                <label for="nottax" style="padding-right:10px;">税込</label>
+                                <input type="radio" tabindex="12" id="taxNotInclude" onkeydown="KeyDown(event,this)" name="radios" checked>
+                                <label for="taxNotInclude" style="padding-right:10px;">税別</label>
+                                <input type="radio" tabindex="13" id="taxInclude" onkeydown="KeyDown(event,this)" name="radios">
+                                <label for="taxInclude" style="padding-right:10px;">税込</label>
                             </div>
                         </div>
                     </div>
@@ -414,6 +414,8 @@
         $("#projectName").css("font-weight", "Bold");
         $("#HinbanName").css("font-weight", "Bold");
         $("#CastingName").css("font-weight", "Bold");
+
+        
     }
 
     function FiscalDateCheck(result) {
@@ -533,28 +535,37 @@
         if (result == 'OK') {
              var Mode = '@Model.Mode';
             if (Mode == 'Edit') {
-                if ($('#tax').is(':checked')) {
-                    $("#tax").focus();
+                if ($('#taxNotInclude').is(':checked')) {
+                    $("#taxNotInclude").focus();
                 }
-                else if ($('#nottax').is(':checked')) {
-                    $("#nottax").focus();
+                else if ($('#taxInclude').is(':checked')) {
+                    $("#taxInclude").focus();
                 }
             }
             else {
-                $("#tax").focus();
+                $("#taxNotInclude").focus();
             }
         }
     }
 
     function CalculateTax(result) {
         if (result == 'OK') {
-            var Kmodel = {
-                Mode: 2,
-                CostDate: $('#CostDate').val(),  
-                flg: 1,
-                CostAmount: ($('#AmountMoney').val()).replace(",", ""),
-            };
-               var data = CalltoApiController('@Url.Action("D_Cost_CUD", "api/Touroku_KeihiApi")', Kmodel);
+            if ($('#taxInclude').is(':checked')) {
+                var Kmodel = {
+                    Mode: 2,
+                    CostDate: $('#CostDate').val(),
+                    flg: 1,
+                    CostAmount: ($('#AmountMoney').val()).replace(",", ""),
+                };
+                var data = CalltoApiController('@Url.Action("Fnc_TAXCalculation", "api/Touroku_KeihiApi")', Kmodel);
+                var tax = JSON.parse(data);
+                if (tax[0].Zeiritsu) {
+                    $("#BodyAmount").val(tax[0].Zeiritsu);
+                }
+            }
+            else {
+                //$("#BodyAmount").val('');
+            }
         }
     }
 
@@ -637,7 +648,7 @@
     });
 
     function btnCancelClick() {
-        location.href = '@Url.Action("Touroku_KeihiList", "Touroku_Keihi")';
+        location.href = '@Url.Action("Touroku_KeihiList", "Touroku_Keihi")?CostCD=' + '@Model.CostCD' + '&CostName=' + '@Model.CostName' + '&CostDateFrom=' + '@Model.CostDateFrom' + '&CostDateTo=' + '@Model.CostDateTo' + '&Year=' + '@Model.Year' + '&BrandCD=' + '@Model.BrandCD' + '&BrandName=' + '@Model.BrandName' + '&Season=' + '@Model.Season' + '&ProjectCD=' + '@Model.ProjectCD' + '&ProjectName=' + '@Model.ProjectName' + '&HinbanCD=' + '@Model.HinbanCD' + '&HinbanName=' + '@Model.HinbanName' ;
     }
 
 </script>

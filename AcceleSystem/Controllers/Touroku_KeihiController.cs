@@ -17,9 +17,9 @@ namespace AcceleSystem.Controllers
             return View(kmodel);
         }
 
-        public ActionResult Touroku_KeihiList()
+        public ActionResult Touroku_KeihiList(Touroku_KeihiModel kmodel)
         {
-            return View();
+            return View(kmodel);
         }
     }
 }
