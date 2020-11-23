@@ -3,6 +3,7 @@ using System.Web.Mvc;
 
 namespace AcceleSystem.Controllers
 {
+    [SessionFilter]
     public class Touroku_NouhinController : Controller
     {
         // GET: Touroku_Nouhin

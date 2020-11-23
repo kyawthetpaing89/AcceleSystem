@@ -7,6 +7,7 @@ using Models;
 
 namespace AcceleSystem.Controllers
 {
+    [SessionFilter]
     public class KanagataController : Controller
     {
         // GET: Kanagata

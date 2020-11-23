@@ -3,6 +3,7 @@ using System.Web.Mvc;
 
 namespace AcceleSystem.Controllers
 {
+    [SessionFilter]
     public class KeihiSetteiController : Controller
     {
         // GET: KeihiSettei

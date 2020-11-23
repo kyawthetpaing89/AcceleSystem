@@ -6,6 +6,7 @@ namespace AcceleSystem.Controllers
     public class UserController : Controller
     {
         // GET: User
+        [SessionFilter]
         public ActionResult UserList()
         {
             return View();
@@ -15,7 +16,7 @@ namespace AcceleSystem.Controllers
         {
             return View();            
         }
-
+        [SessionFilter]
         public ActionResult UserEntry(UserModel Umodel)
         {
             if (string.IsNullOrWhiteSpace(Umodel.Mode))

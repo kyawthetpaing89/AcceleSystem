@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace AcceleSystem.Controllers
 {
+    [SessionFilter]
     public class Koushin_GetsujiController : Controller
     {
         // GET: Koushin_Getsuji

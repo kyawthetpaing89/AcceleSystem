@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace AcceleSystem.Controllers
 {
-    [AttributeUsage(AttributeTargets.Method, Inherited = true, AllowMultiple = false)]
+    [AttributeUsage(AttributeTargets.All, Inherited = true, AllowMultiple = false)]
     public class SessionFilterAttribute : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
