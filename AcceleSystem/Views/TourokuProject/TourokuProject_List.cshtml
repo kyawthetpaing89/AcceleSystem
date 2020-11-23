@@ -9,26 +9,23 @@
 }
 <style>
     .text-price {
-        text-align: right; 
-        border: 0;
+        text-align: right;
     }
 </style>
 <div id="divMain" class="container-fluid">
     <div class="card">
         <div class="row">
-            <div class="col-xs-12 col-md-5">
+            <div class="col-xs-12 col-md-12 col-lg-5">
                 <div class="card-body card-block">
                     <div class="row form-group">
                         <div class="col col-md-12">
-                            <button id="btnAdd" onclick="btnAddClick()" class="btn btn-primary col-xl-5 text-center" tabindex="14">
+                            <button id="btnAdd" onclick="btnAddClick()" class="btn btn-primary col-xl-6 text-center" tabindex="15">
                                 プロジェクト追加
                             </button>&nbsp;
-                            <button id="btnnext" onclick="btnNextClick()" class="btn btn-next col-xl-3 text-center" tabindex="15">
+                            <button id="btnnext" onclick="btnNextClick()" class="btn btn-next col-xl-3 text-center" tabindex="16">
                                 品番検索
-                            </button>&nbsp;
-                            <button id="btnCSV" onclick="btnCSVClick()" class="btn btn-csv col-xl-2 text-center" tabindex="16">
-                                CSV
                             </button>
+
                             <div id="registration" style="padding-top: 1.8rem!important;">
                                 <div>
                                     <h4 class=" hr-text text-center">検索条件入力</h4>
@@ -71,7 +68,7 @@
                                     <div class="col-md-12" style="padding-left:0px;">
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label id="text" style="padding-right: 12px;">プロジェクト</label>
-                                            <input type="text" tabindex="7" class="text-line col-xl-3 text-left" id="ProjectCD" name="projectcd" maxlength="10" onkeydown="KeyDown(event,this)" required placeholder="入力">
+                                            <input type="text" tabindex="7" class="text-line col-xl-4 text-left" id="ProjectCD" name="projectcd" maxlength="10" onkeydown="KeyDown(event,this)" required placeholder="入力">
                                             <input type="text" tabindex="8" class="text-line col-xl-3 text-left" id="ProjectName" name="projectname" maxlength="60" onkeydown="KeyDown(event,this)" required placeholder="入力">
 
                                         </div>
@@ -95,17 +92,16 @@
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label id="text" style="padding-right: 12px;">責任者</label>
                                             <input type="text" tabindex="11" class="text-line col-xl-3 text-left" id="ProjectManager" name="projectmanager" maxlength="20" onkeydown="KeyDown(event,this)" required placeholder="入力">
-                                            <input type="text" tabindex="12" class="text-line col-xl-3 text-left" id="ProjectManagerName" name="projectmanagername" onkeydown="KeyDown(event,this)" required placeholder="入力">
+                                            <input type="text" tabindex="12" class="text-line col-xl-4 text-left" id="ProjectManagerName" name="projectmanagername" onkeydown="KeyDown(event,this)" required placeholder="入力">
 
                                         </div>
                                     </div>
                                 </div>
                                 <div class="pt-3 md-form" style="padding-left:0px; padding-top:2rem;">
                                     <div class="col-xl-12">
-                                        <div class="col-xl-9">
-                                            <button id="btnSearch" tabindex="13" onclick="btnSearchClick()" class="btn btn-dark col-xl-3 text-center float-lg-right">検索</button>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;
-
+                                        <div class="col-xl-9" style="float:right;">
+                                            <button id="btnCSV" tabindex="13" onclick="btnCSVClick()" class="btn btn-csv col-xl-4 text-center">CSV</button>&nbsp;&nbsp;
+                                            <button id="btnSearch" tabindex="14" onclick="btnSearchClick()" class="btn btn-dark col-xl-4 text-center">検索</button>
                                         </div>
                                     </div>
                                 </div>
@@ -114,7 +110,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-7">
+            <div class="col-xs-12 col-md-12 col-lg-7">
                 <div class="card-body card-block">
                     <table id="tblProject" class="tb1 col-sm-12" style="margin-left:10px;">
                         <thead>
@@ -144,7 +140,7 @@
                     </table>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-2"></div>
+            @*<div class="col-xs-12 col-md-2"></div>*@
         </div>
     </div>
 </div>
@@ -326,7 +322,7 @@
                         "data": null,
                         className: "Border3",
                         render: function (data, type, row) {
-                            //return '<label>' + data.Season + '</label><br/><label></label><br/><label>' + data.Production + '</label>';
+                            //return '<label>' + data.Season + '</label><br/><label></label><br/><label>' + data.Production +'</label>';
                             return '<label class="col-md-12 text-center">' + data.Season + '</label><br/><label></label><br/><label class="col-md-12 text-right">' + data.Production + '</label>';
                         }
                     },
@@ -335,11 +331,8 @@
                         "data": null,
                         className: "Border4",
                         render: function (data, type, row) {
-                            //return '<span>' + data.Year + '</span><br/><label class="col-md-12 text-right">' + data.SalesPrice + '</label><br/><span class="col-md-12 text-right">' + data.SalesPrice + ' </span>';
-                           // return '<label>' + data.Year + '</label><br/><label></label><br/><label style="text-align:right;width:70%;">00000000000</label>';                 
                             return '<label class="col-md-12 text-center">' + data.Year + '</label><br/><label></label><br/><label class="col-md-12 text-right">' + data.SalesPrice + '</label>';
-                            //return '<input type="text" class="text-center" style="border:0px;" value = ' + data.Year + ' readonly><br/><label></label><br/><input type="text" class="text-price" value = ' + data.SalesPrice + ' readonly>';
-                            //return '<label class="text-center">' + data.Year + '</label><br/><label></label><br/><label class="col-md-12 text-price">' + data.SalesPrice + '</label>';
+                            
                         }
                     },
 
@@ -393,15 +386,17 @@
                              var data = CalltoApiController('@Url.Action("M_Project_CSV", "api/TourokuProjectApi")', Tmodel);
 
                              var csv = JSON2CSV(data);
-                             var downloadLink = document.createElement("a");
-                             var blob = new Blob(["\ufeff", csv]);
-                             var url = URL.createObjectURL(blob);
-                             downloadLink.href = url;
-                             downloadLink.download = "プロジェクト登録.csv";
+                             if (!(csv == "E104")) {
+                                 var downloadLink = document.createElement("a");
+                                 var blob = new Blob(["\ufeff", csv]);
+                                 var url = URL.createObjectURL(blob);
+                                 downloadLink.href = url;
+                                 downloadLink.download = "プロジェクト登録.csv";
 
-                             document.body.appendChild(downloadLink);
-                             downloadLink.click();
-                             document.body.removeChild(downloadLink);
+                                 document.body.appendChild(downloadLink);
+                                 downloadLink.click();
+                                 document.body.removeChild(downloadLink);
+                             }
                          }
                          else {
                              $("#PeriodEnd").focus();
@@ -415,17 +410,22 @@
 
         //Convert Jsonstring to csv
         function JSON2CSV(objArray) {
-            var array = typeof JSONString != 'object' ? JSON.parse(objArray) : JSONString;
-            var fields = Object.keys(array[0])
-            var replacer = function (key, value) { return value === null ? null : value }
-            var csv = array.map(function (row) {
-                return fields.map(function (fieldName) {
-                    return JSON.stringify(row[fieldName], replacer)
-                }).join(',')
-            })
-            csv.unshift(fields.join(',')) // add header column
-            csv = csv.join('\r\n');
-            return csv;
+            if (!(objArray == "[]")) {
+                var array = typeof JSONString != 'object' ? JSON.parse(objArray) : JSONString;
+                var fields = Object.keys(array[0])
+                var replacer = function (key, value) { return value === null ? null : value }
+                var csv = array.map(function (row) {
+                    return fields.map(function (fieldName) {
+                        return JSON.stringify(row[fieldName], replacer)
+                    }).join(',')
+                })
+                csv.unshift(fields.join(',')) // add header column
+                csv = csv.join('\r\n');
+                return csv;
+            }
+            else {
+                return "E104";
+            }
         }
 
         function btnAddClick() {
@@ -449,7 +449,7 @@
             location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?ProjectCD=' + ProjectCD + '&BrandCD=' + BrandCD + '&Mode=Delete';
      }
 
-     $('#btnCSV').keydown(function (e) {
+        $('#btnnext').keydown(function (e) {
          var code = e.keyCode || e.which;
          if (code == 9) {
              if (e.shiftKey) {
