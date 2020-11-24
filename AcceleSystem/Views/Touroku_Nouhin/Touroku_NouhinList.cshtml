@@ -195,7 +195,7 @@
 
             DoubleByteCheck($("#HinbanCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
            // ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/TourokuProjectApi")', "HinbanName");
-            ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "HinbanName", $("#ProjectCD").val());
+           // ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "HinbanName", $("#ProjectCD").val());
 
             DateCheck($("#StartDate"), '@Url.Action("Date_Checking", "api/CommonApi")');
             DateCheck($("#EndDate"), '@Url.Action("Date_Checking", "api/CommonApi")');
@@ -286,20 +286,20 @@
                 return data;
             }
             else {
-                var res = ErrorCheckOnSave();
-                if (res == "0") {
-                    var res1 = DateCompareCheckOnSave();
-                    if (res1 == "0") {
-                        GetNouhin();
-                    }
-                   else {
-                        $("#EndDate").focus();
-                        ShowErrorMessage(res1);
+                    var res = ErrorCheckOnSave();
+                        if (res == "0") {
+                        var res1 = DateCompareCheckOnSave();
+                            if (res1 == "0") {
+                            GetNouhin();
+                            }
+                            else {
+                            $("#EndDate").focus();
+                            ShowErrorMessage(res1);
+                            }
+                        }
+                    else {
+                        ShowErrorMessage(res);
                    }
-                }
-                else {
-                    ShowErrorMessage(res);
-                }
             }
         }
 
