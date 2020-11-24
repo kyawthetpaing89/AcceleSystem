@@ -29,7 +29,7 @@
                                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                                     <div class="col-md-12" style="padding-left:50px;">
                                         <div class="text-s text-custom1 text-uppercase mb-1">
-                                            <label id="text" style="padding-right:37px;">年度</label>
+                                            <label id="text" style="padding-right:5px;">年度</label>
                                             <input type="text" tabindex="1" id="Year" name="txtYear" onkeydown="KeyDown(event,this)" class="text-line col-xl-4 text-left" maxlength="4" required placeholder="入力">
                                         </div>
                                     </div>
@@ -37,7 +37,7 @@
                                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                                     <div class="col-md-12" style="padding-left:0px;">
                                         <div class="text-s text-custom1 text-uppercase mb-1">
-                                            <label id="text" style="padding-right:35px;">ブランド名</label>
+                                            <label id="text" style="padding-right:5px;">ブランド名</label>
                                             <input type="text" tabindex="2" id="BrandCD" name="txtBrandCD" onkeydown="KeyDown(event,this)" class="text-line col-xl-2 text-left" maxlength="20" required placeholder="入力">
                                             &nbsp;&nbsp;
                                             <input type="text" tabindex="3" id="BrandName" name="txtBrandName" onkeydown="KeyDown(event,this)" class="text-line col-xl-4 text-left" maxlength="40" required placeholder="入力">
@@ -47,7 +47,7 @@
                                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                                     <div class="col-md-12" style="padding-left:16px;">
                                         <div id="Seasongp" class="text-s text-custom1 text-uppercase mb-1">
-                                            <label id="text" style="padding-right:35px;">シーズン</label>
+                                            <label id="text" style="padding-right:5px;">シーズン</label>
                                             <input type="checkbox" tabindex="4" id="Allyear" name="chk" value="1" onkeydown="KeyDown(event,this)" checked>
                                             <label for="Allyear" style="padding-right:25px;">通年</label>
                                             <input type="checkbox" tabindex="5" id="SS" name="chk" value="2" onkeydown="KeyDown(event,this)" checked>
@@ -60,12 +60,12 @@
                                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                                     <div class="col-md-12" style="padding-left:0px;">
                                         <div class="text-s text-custom1 text-uppercase mb-1">
-                                            <label id="text" style="padding-right:20px;">プロジェクト</label>
+                                            <label id="text" style="padding-right:5px;">プロジェクト</label>
                                             <input type="text" tabindex="7" id="ProjectCD" name="txtProjectCD" onkeydown="KeyDown(event,this,'ProjectCheck')" class="text-line col-xl-3 text-left" maxlength="10" required placeholder="入力">
 
                                         </div>
                                     </div>
-                                    <div class="col-md-12" style="padding-left:120px;">
+                                    <div class="col-md-12" style="padding-left:105px;">
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <input type="text" tabindex="8" id="ProjectName" name="txtProjectName" onkeydown="KeyDown(event,this)" class="text-line col-xl-10 text-left" maxlength="60" required placeholder="入力">
                                         </div>
@@ -74,7 +74,7 @@
                                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                                     <div class="col-md-12" style="padding-left:50px;">
                                         <div class="text-s text-custom1 text-uppercase mb-1">
-                                            <label id="text" style="padding-right:35px;">品番</label>
+                                            <label id="text" style="padding-right:5px;">品番</label>
                                             <input type="text" tabindex="9" id="HinbanCD" name="txtHinbanCD" onkeydown="KeyDown(event,this)" class="text-line col-xl-4 text-left" maxlength="10" required placeholder="入力">
                                             &nbsp;&nbsp;
                                             <input type="text" tabindex="10" id="HinbanName" name="txtHinbanName" onkeydown="KeyDown(event,this)" class="text-line col-xl-4 text-left" maxlength="60" required placeholder="入力">
@@ -84,7 +84,7 @@
                                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                                     <div class="col-md-12" style="padding-left:35px;">
                                         <div class="text-s text-custom1 text-uppercase mb-1">
-                                            <label id="text" style="padding-right:35px;">納品日</label>
+                                            <label id="text" style="padding-right:5px;">納品日</label>
                                             <input type="text" tabindex="11" id="StartDate" name="txtStartDate" onkeydown="KeyDown(event,this)" class="text-line col-xl-3 text-left" maxlength="10" required placeholder="入力">
                                             &nbsp;~&nbsp;
                                             <input type="text" tabindex="12" id="EndDate" name="txtEndDate" onkeydown="KeyDown(event,this,'DateCompareCheck')" class="text-line col-xl-4 text-left" maxlength="10" required placeholder="入力">
@@ -94,7 +94,7 @@
                                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                                     <div class="col-md-12" style="padding-left:20px;">
                                         <div id="Statusgp" class="text-s text-custom1 text-uppercase mb-1">
-                                            <label class="text" style="padding-right:30px;">納品状況</label>
+                                            <label class="text" style="padding-right:5px;">納品状況</label>
                                             <input type="checkbox" tabindex="13" id="Delleft" name="chkDelleft" onkeydown="KeyDown(event,this)"  checked>
                                             <label for="Delleft" style="padding-right:12px;">納品残あり</label>
                                             <input type="checkbox" tabindex="14" id="Delcomplete" onkeydown="KeyDown(event,this,'flgCheck')" name="chkDelcomplete" >
@@ -152,6 +152,19 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("納品履歴検索");
+            if ('@Model.flg' == "list") {
+                $("#Year").val('@Model.Year');
+                $("#BrandCD").val('@Model.BrandCD');
+                $("#BrandName").val('@Model.BrandName');
+                $("#ProjectCD").val('@Model.ProjectCD1');
+                $("#ProjectName").val('@Model.ProjectName');
+                $("#HinbanCD").val('@Model.HinbanCD');
+                $("#HinbanName").val('@Model.HinbanName');
+                $("#StartDate").val('@Model.DeliveryStartDate');
+                $("#EndDate").val('@Model.DeliveryEndDate');
+            }
+            
+
             $("#Year").focus();
             YearCheck($("#Year"), '@Url.Action("Year_Checking", "api/CommonApi")');
 
@@ -331,7 +344,7 @@
                         "data": null,
                         className:"Border1",
                         render: function (data, type, row) {
-                            return '<label>' + data.DeliveryDate + '</label><br/><label>' + data.ProjectCD + '</label><br/><label>' + data.HinbanCD +  '</label>';
+                            return '<label>' + data.DeliveryDate + '</label><br/><label>' + data.ProjectCD  + '</label><br/><label>' + data.HinbanCD +  '</label>';
                         }
                     },
                     {
@@ -369,32 +382,65 @@
             });
         }
 
-        //ButtonClick from table
+        @*//ButtonClick from table
         function btnAddClick() {
             location.href = '@Url.Action("Touroku_NouhinEntry", "Touroku_Nouhin")?Mode=New'
-        }
+        }*@
 
         function btnEditClick(ProjectCD) {
-            location.href = '@Url.Action("Touroku_NouhinEntry", "Touroku_Nouhin")?ProjectCD=' + ProjectCD+'&Mode=Edit';
+            var TnModel = NouhinData();
+            location.href = '@Url.Action("Touroku_NouhinEntry", "Touroku_Nouhin")?Year=' + TnModel.Year + '&BrandCD=' + TnModel.BrandCD + '&BrandName=' + TnModel.BrandName + '&ProjectCD1=' + TnModel.ProjectCD1 + '&ProjectName=' + TnModel.ProjectName + '&HinbanCD=' + TnModel.HinbanCD + '&HinbanName=' + TnModel.HinbanName + '&DeliveryStartDate=' + TnModel.DeliveryStartDate + '&DeliveryEndDate=' + TnModel.DeliveryEndDate + '&flg=' + TnModel.flg + '&ProjectCD=' + ProjectCD+'&Mode=Edit';
         }
 
         function btnDelClick(ProjectCD) {
-            location.href = '@Url.Action("Touroku_NouhinEntry", "Touroku_Nouhin")?ProjectCD=' + ProjectCD+'&Mode=Delete';
+            var TnModel = NouhinData();
+            location.href = '@Url.Action("Touroku_NouhinEntry", "Touroku_Nouhin")?Year=' + TnModel.Year + '&BrandCD=' + TnModel.BrandCD + '&BrandName=' + TnModel.BrandName + '&ProjectCD1=' + TnModel.ProjectCD1 + '&ProjectName=' + TnModel.ProjectName + '&HinbanCD=' + TnModel.HinbanCD + '&HinbanName=' + TnModel.HinbanName + '&DeliveryStartDate=' + TnModel.DeliveryStartDate + '&DeliveryEndDate=' + TnModel.DeliveryEndDate + '&flg=' + TnModel.flg + '&ProjectCD=' + ProjectCD+'&Mode=Delete';
         }
          //ButtonClick from table
 
         //ButtonClick from Searching
         function btnAdd_Click() {
-            location.href = '@Url.Action("Touroku_NouhinEntry", "Touroku_Nouhin")?Mode=New';
+            var TnModel = NouhinData();
+            location.href = '@Url.Action("Touroku_NouhinEntry", "Touroku_Nouhin")?Year=' + TnModel.Year + '&BrandCD=' + TnModel.BrandCD + '&BrandName=' + TnModel.BrandName + '&ProjectCD1=' + TnModel.ProjectCD1 + '&ProjectName=' + TnModel.ProjectName + '&HinbanCD=' + TnModel.HinbanCD + '&HinbanName=' + TnModel.HinbanName + '&DeliveryStartDate=' + TnModel.DeliveryStartDate + '&DeliveryEndDate=' + TnModel.DeliveryEndDate + '&flg='+ TnModel.flg + '&Mode=New';
          }
         function btnBSNouhin_Click() {
-            location.href = '@Url.Action("Touroku_BSNouhinEntry", "Touroku_Nouhin")?Mode=New';
-         }
-        function btnDelete_Click() {
-            location.href = '@Url.Action("Touroku_NouhinEntry", "Touroku_Nouhin")?ProjectCD=' + ProjectCD+'&Mode=Delete';
+            var TnModel = NouhinData();
+            location.href = '@Url.Action("Touroku_BSNouhinEntry", "Touroku_Nouhin")?Year=' + TnModel.Year + '&BrandCD=' + TnModel.BrandCD + '&BrandName=' + TnModel.BrandName + '&ProjectCD1=' + TnModel.ProjectCD1 + '&ProjectName=' + TnModel.ProjectName + '&HinbanCD=' + TnModel.HinbanCD + '&HinbanName=' + TnModel.HinbanName + '&DeliveryStartDate=' + TnModel.DeliveryStartDate + '&DeliveryEndDate=' + TnModel.DeliveryEndDate + '&flg=' + TnModel.flg +'&Mode=New';
         }
+
+        @*function btnDelete_Click() {
+            var model = NouhinData();
+            location.href = '@Url.Action("Touroku_NouhinEntry", "Touroku_Nouhin")?ProjectCD=' + ProjectCD+'&Mode=Delete';
+        }*@
         //ButtonClick from Searching
 
+
+        function NouhinData() {
+            var TnModel = {
+                Year: $("#Year").val(),
+                BrandCD: $("#BrandCD").val(),
+                BrandName: $("#BrandName").val(),
+                ProjectCD1: $("#ProjectCD").val(),
+                ProjectName: $("#ProjectName").val(),
+                HinbanCD: $("#HinbanCD").val(),
+                HinbanName: $("#HinbanName").val(),
+                DeliveryStartDate: $("#StartDate").val(),
+                DeliveryEndDate: $("#EndDate").val(),
+                flg: "list"
+            };
+            var selected = new Array();
+            $("#Seasongp input[type=checkbox]:checked").each(function () {
+                selected.push(this.value);
+            });
+            if (selected.length > 0)
+                TnModel.Season = selected.join(",");
+
+            if ($('#Delleft').is(':checked'))
+                TnModel.DeliveryStatus = "1";
+            else TnModel.DeliveryStatus = "2";
+
+            return TnModel;
+        }
 
         $('#btnBS').keydown(function (e) {
             var code = e.keyCode || e.which;

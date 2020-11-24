@@ -7,9 +7,9 @@ namespace AcceleSystem.Controllers
     public class Touroku_NouhinController : Controller
     {
         // GET: Touroku_Nouhin
-        public ActionResult Touroku_NouhinList()
+        public ActionResult Touroku_NouhinList(TourokuNouhinModel TnModel)
         {
-            return View();
+            return View(TnModel);
         }
 
         public ActionResult Touroku_NouhinEntry(TourokuNouhinModel TnModel)
