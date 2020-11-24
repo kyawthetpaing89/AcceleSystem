@@ -153,8 +153,8 @@
                                     <th></th>
                                 </tr>
                                 <tr>
-                                    <th>番号</th>
-                                    <th>品番名</th>
+                                    <th>品番</th>
+                                    <th>プロジェクト</th>
                                     <th></th>
                                     <th></th>
                                     <th></th>
@@ -208,6 +208,7 @@
     function GetHinban() {
         var Tmodel = {
             ProjectCD: $('#proCD').val(),
+            ProjectName: $('#proName').val(),
             HinbanCD: $('#HinbanCD').val(),
             HinbanName: $('#HinbanName').val(),
             CastingCD: $('#CastingCD').val(),
@@ -254,14 +255,14 @@
                     "data": null,
                     className: "Border1",
                     render: function (data, type, row) {
-                        return '<label>' + '' + '</label><br/>' + '<label>' + data.HinbanCD + '</label><br/><br/><label>' + data.Casting + '</label>';
+                        return '<label>' + data.HinbanCD + '  ' + data.HinbanName + '</label><br/><label>' + '' + '</label><br/><label>' + data.Casting + '</label>';
                     }
                 },
                 {
                     "data": null,
                     className: "Border2",
                     render: function (data, type, row) {
-                        return '<label>' + '' + '</label><br/>' + '<label>' + data.HinbanName + '</label><br/><br/><label>' + data.Production + '</label><br/>';
+                        return '<label>' + data.ProjectCD + '  ' + data.ProjectName + '</label><br/><label>' + '' + '</label><br/><label class="col-md-12 text-right">' + data.Production + '</label>';
                     }
                 },
                 {
