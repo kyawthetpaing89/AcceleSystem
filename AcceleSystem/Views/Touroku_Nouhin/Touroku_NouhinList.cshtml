@@ -162,8 +162,27 @@
                 $("#HinbanName").val('@Model.HinbanName');
                 $("#StartDate").val('@Model.DeliveryStartDate');
                 $("#EndDate").val('@Model.DeliveryEndDate');
+
+               var str = '@Model.Season';
+               if (str.includes("1"))
+                   $("#Allyear").prop("checked", true);
+               else $("#Allyear").prop("checked", false);
+               if (str.includes("2"))
+                   $("#SS").prop("checked", true);
+               else $("#SS").prop("checked", false);
+               if (str.includes("3"))
+                   $("#FW").prop("checked", true);
+               else $("#FW").prop("checked", false);
+           
+             var str1 = '@Model.DeliveryStatus';
+               if (str1.includes("1"))
+                   $("#Delleft").prop("checked", true);
+               else $("#Delleft").prop("checked", false);
+               if (str1.includes("2"))
+                   $("#Delcomplete").prop("checked", true);
+               else $("#Delcomplete").prop("checked", false);
+              
             }
-            
 
             $("#Year").focus();
             YearCheck($("#Year"), '@Url.Action("Year_Checking", "api/CommonApi")');
@@ -389,23 +408,23 @@
 
         function btnEditClick(ProjectCD) {
             var TnModel = NouhinData();
-            location.href = '@Url.Action("Touroku_NouhinEntry", "Touroku_Nouhin")?Year=' + TnModel.Year + '&BrandCD=' + TnModel.BrandCD + '&BrandName=' + TnModel.BrandName + '&ProjectCD1=' + TnModel.ProjectCD1 + '&ProjectName=' + TnModel.ProjectName + '&HinbanCD=' + TnModel.HinbanCD + '&HinbanName=' + TnModel.HinbanName + '&DeliveryStartDate=' + TnModel.DeliveryStartDate + '&DeliveryEndDate=' + TnModel.DeliveryEndDate + '&flg=' + TnModel.flg + '&ProjectCD=' + ProjectCD+'&Mode=Edit';
+            location.href = '@Url.Action("Touroku_NouhinEntry", "Touroku_Nouhin")?Year=' + TnModel.Year + '&BrandCD=' + TnModel.BrandCD + '&BrandName=' + TnModel.BrandName + '&Season=' + TnModel.Season + '&ProjectCD1=' + TnModel.ProjectCD1 + '&ProjectName=' + TnModel.ProjectName + '&HinbanCD=' + TnModel.HinbanCD + '&HinbanName=' + TnModel.HinbanName + '&DeliveryStartDate=' + TnModel.DeliveryStartDate + '&DeliveryEndDate=' + TnModel.DeliveryEndDate + '&DeliveryStatus=' + TnModel.DeliveryStatus + '&flg=' + TnModel.flg + '&ProjectCD=' + ProjectCD+'&Mode=Edit';
         }
 
         function btnDelClick(ProjectCD) {
             var TnModel = NouhinData();
-            location.href = '@Url.Action("Touroku_NouhinEntry", "Touroku_Nouhin")?Year=' + TnModel.Year + '&BrandCD=' + TnModel.BrandCD + '&BrandName=' + TnModel.BrandName + '&ProjectCD1=' + TnModel.ProjectCD1 + '&ProjectName=' + TnModel.ProjectName + '&HinbanCD=' + TnModel.HinbanCD + '&HinbanName=' + TnModel.HinbanName + '&DeliveryStartDate=' + TnModel.DeliveryStartDate + '&DeliveryEndDate=' + TnModel.DeliveryEndDate + '&flg=' + TnModel.flg + '&ProjectCD=' + ProjectCD+'&Mode=Delete';
+            location.href = '@Url.Action("Touroku_NouhinEntry", "Touroku_Nouhin")?Year=' + TnModel.Year + '&BrandCD=' + TnModel.BrandCD + '&BrandName=' + TnModel.BrandName + '&Season=' + TnModel.Season + '&ProjectCD1=' + TnModel.ProjectCD1 + '&ProjectName=' + TnModel.ProjectName + '&HinbanCD=' + TnModel.HinbanCD + '&HinbanName=' + TnModel.HinbanName + '&DeliveryStartDate=' + TnModel.DeliveryStartDate + '&DeliveryEndDate=' + TnModel.DeliveryEndDate + '&DeliveryStatus=' + TnModel.DeliveryStatus + '&flg=' + TnModel.flg + '&ProjectCD=' + ProjectCD+'&Mode=Delete';
         }
          //ButtonClick from table
 
         //ButtonClick from Searching
         function btnAdd_Click() {
             var TnModel = NouhinData();
-            location.href = '@Url.Action("Touroku_NouhinEntry", "Touroku_Nouhin")?Year=' + TnModel.Year + '&BrandCD=' + TnModel.BrandCD + '&BrandName=' + TnModel.BrandName + '&ProjectCD1=' + TnModel.ProjectCD1 + '&ProjectName=' + TnModel.ProjectName + '&HinbanCD=' + TnModel.HinbanCD + '&HinbanName=' + TnModel.HinbanName + '&DeliveryStartDate=' + TnModel.DeliveryStartDate + '&DeliveryEndDate=' + TnModel.DeliveryEndDate + '&flg='+ TnModel.flg + '&Mode=New';
+            location.href = '@Url.Action("Touroku_NouhinEntry", "Touroku_Nouhin")?Year=' + TnModel.Year + '&BrandCD=' + TnModel.BrandCD + '&BrandName=' + TnModel.BrandName + '&Season=' + TnModel.Season + '&ProjectCD1=' + TnModel.ProjectCD1 + '&ProjectName=' + TnModel.ProjectName + '&HinbanCD=' + TnModel.HinbanCD + '&HinbanName=' + TnModel.HinbanName + '&DeliveryStartDate=' + TnModel.DeliveryStartDate + '&DeliveryEndDate=' + TnModel.DeliveryEndDate + '&DeliveryStatus=' + TnModel.DeliveryStatus + '&flg='+ TnModel.flg + '&Mode=New';
          }
         function btnBSNouhin_Click() {
             var TnModel = NouhinData();
-            location.href = '@Url.Action("Touroku_BSNouhinEntry", "Touroku_Nouhin")?Year=' + TnModel.Year + '&BrandCD=' + TnModel.BrandCD + '&BrandName=' + TnModel.BrandName + '&ProjectCD1=' + TnModel.ProjectCD1 + '&ProjectName=' + TnModel.ProjectName + '&HinbanCD=' + TnModel.HinbanCD + '&HinbanName=' + TnModel.HinbanName + '&DeliveryStartDate=' + TnModel.DeliveryStartDate + '&DeliveryEndDate=' + TnModel.DeliveryEndDate + '&flg=' + TnModel.flg +'&Mode=New';
+            location.href = '@Url.Action("Touroku_BSNouhinEntry", "Touroku_Nouhin")?Year=' + TnModel.Year + '&BrandCD=' + TnModel.BrandCD + '&BrandName=' + TnModel.BrandName + '&Season=' + TnModel.Season + '&ProjectCD1=' + TnModel.ProjectCD1 + '&ProjectName=' + TnModel.ProjectName + '&HinbanCD=' + TnModel.HinbanCD + '&HinbanName=' + TnModel.HinbanName + '&DeliveryStartDate=' + TnModel.DeliveryStartDate + '&DeliveryEndDate=' + TnModel.DeliveryEndDate +'&DeliveryStatus='+TnModel.DeliveryStatus+ '&flg=' + TnModel.flg +'&Mode=New';
         }
 
         @*function btnDelete_Click() {

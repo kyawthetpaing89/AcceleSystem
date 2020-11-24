@@ -160,23 +160,17 @@
                $('#projectname').val('@Model.ProjectName');
                $('#PartCD').val('@Model.HinbanCD');
                $('#PartName').val('@Model.HinbanName');
+               var str = '@Model.Season';
+               if (str.includes("1"))
+                   $("#allyear").prop("checked", true);
+               else $("#allyear").prop("checked", false);
+               if (str.includes("2"))
+                   $("#SS").prop("checked", true);
+               else $("#SS").prop("checked", false);
+               if (str.includes("3"))
+                   $("#FW").prop("checked", true);
+               else $("#FW").prop("checked", false);
 
-               var array = '@Model.Season'.split(',');
-               $.each(array, function (i) {
-                   if (array[i] == "1")
-                       $("#allyear").prop("checked", true);
-                   else if (array[i] == "2")
-                       $("#SS").prop("checked", true);
-                   else if (array[i] == "3")
-                       $("#FW").prop("checked", true);
-               });
-               @*var sval = '@Model.Season'.split(',');
-               if (!(sval[0] == "1"))
-                   $("#allyear").prop("checked", false);
-               if (!(sval[1] == "2"))
-                   $("#SS").prop("checked", false);
-               if (!(sval[2] == "3"))
-                   $("#FW").prop("checked", false);*@
            }
             $("#CostCD").focus();
             ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "CostName");
