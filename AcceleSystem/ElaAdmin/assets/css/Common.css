@@ -23,15 +23,17 @@
         border-top: 1px solid #d3dcd3;
     }
 
-    #tblProject td {
-        border-top: 1px solid #d3dcd3;
-    }
+   
 
 #tblTouroku_Keihi > tbody > tr > td {
     border-top: 1px solid #d3dcd3;
 }
 
 #tblNouhin > tbody > tr > td {
+    border-top: 1px solid #d3dcd3;
+}
+
+#tblProject > tbody > tr > td {
     border-top: 1px solid #d3dcd3;
 }
 
@@ -80,47 +82,5 @@
       width: 180px !important;
  }
 
-#tblTouroku_Keihi {
-   /*width: 450px !important;*/
-}
 
-    /*#tblTouroku_Keihi th.sorting_disabled.Border1 {
-        width: 380px !important;
-    }
-
-    #tblTouroku_Keihi th.sorting_disabled.Border2 {
-        width: 280px !important;
-    }
-
-    #tblTouroku_Keihi th.sorting_disabled.Border3 {
-        width: 220px !important;
-    }
-
-    #tblTouroku_Keihi th.sorting_disabled.Border4 {
-        width: 180px !important;
-    }*/
-
-#tblProject {
-    width: 480px!important;
-}
-
-#tblProject th.sorting_disabled.Border1 {
-    width: 130px!important;
-}
-
-#tblProject th.sorting_disabled.Border2 {
-    width: 150px!important;
-}
-
-#tblProject th.sorting_disabled.Border3 {
-    width: 130px!important;
-}
-
-#tblProject th.sorting_disabled.Border4 {
-    width: 130px!important;
-}
-
-#tblProject th.sorting_disabled.Border5 {
-    width: 130px!important;
-}
 
