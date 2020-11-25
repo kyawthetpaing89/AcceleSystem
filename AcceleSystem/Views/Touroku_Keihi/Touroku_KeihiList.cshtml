@@ -158,9 +158,7 @@
        var array;
        $(document).ready(function () {
            $("#formtitle").text("経費検索");
-           if(jQuery.isEmptyObject('@Model')){
-               alert("a");
-           }
+           if ('@Model.flg' == "list") {
                $('#CostCD').val('@Model.CostCD');
                $('#CostName').val('@Model.CostName');
                $('#CostDate1').val('@Model.CostDateFrom');
@@ -172,20 +170,18 @@
                $('#projectname').val('@Model.ProjectName');
                $('#PartCD').val('@Model.HinbanCD');
                $('#PartName').val('@Model.HinbanName');
-           @*$.each('@Model.Season', function (i, val) {
-               alert(val);
-               $("input[value='" + val + "']").prop('checked', true);
+               var str = '@Model.Season';
+               if (str.includes("1"))
+                   $("#allyear").prop("checked", true);
+               else $("#allyear").prop("checked", false);
+               if (str.includes("2"))
+                   $("#SS").prop("checked", true);
+               else $("#SS").prop("checked", false);
+               if (str.includes("3"))
+                   $("#FW").prop("checked", true);
+               else $("#FW").prop("checked", false);
 
-           });*@
-
-               @*var sval = '@Model.Season'.split(',');
-               if (!(sval[0] == "1"))
-                   $("#allyear").prop("checked", false);
-               if (!(sval[1] == "2"))
-                   $("#SS").prop("checked", false);
-               if (!(sval[2] == "3"))
-                   $("#FW").prop("checked", false);*@
-
+           }
             $("#CostCD").focus();
             ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "CostName");
             DoubleByteCheck($("#CostCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
@@ -467,26 +463,26 @@
        function btnEditClick(SEQ) {
            var kmodel = GetKeihiData();
 
-           location.href = '@Url.Action("Touroku_KeihiEntry","Touroku_Keihi")?CostCD=' + kmodel.CostCD + '&CostName=' + kmodel.CostName + '&CostDateFrom=' + kmodel.CostDateFrom + '&CostDateTo=' + kmodel.CostDateTo + '&Year=' + kmodel.Year + '&BrandCD=' + kmodel.BrandCD + '&BrandName=' + kmodel.BrandName + '&Season=' + kmodel.Season + '&ProjectCD=' + kmodel.ProjectCD + '&ProjectName=' + kmodel.ProjectName + '&HinbanCD=' + kmodel.HinbanCD + '&HinbanName=' + kmodel.HinbanName +'&SEQ='+SEQ+'&Mode=Edit';
+           location.href = '@Url.Action("Touroku_KeihiEntry","Touroku_Keihi")?CostCD=' + kmodel.CostCD + '&CostName=' + kmodel.CostName + '&CostDateFrom=' + kmodel.CostDateFrom + '&CostDateTo=' + kmodel.CostDateTo + '&Year=' + kmodel.Year + '&BrandCD=' + kmodel.BrandCD + '&BrandName=' + kmodel.BrandName + '&Season=' + kmodel.Season + '&ProjectCD=' + kmodel.ProjectCD + '&ProjectName=' + kmodel.ProjectName + '&HinbanCD=' + kmodel.HinbanCD + '&HinbanName=' + kmodel.HinbanName + '&flg=' + kmodel.flg +'&SEQ='+SEQ+'&Mode=Edit';
 
        }
 
        function btnDelClick(SEQ) {
            var kmodel = GetKeihiData();
 
-           location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Keihi")?CostCD=' + kmodel.CostCD + '&CostName=' + kmodel.CostName + '&CostDateFrom=' + kmodel.CostDateFrom + '&CostDateTo=' + kmodel.CostDateTo + '&Year=' + kmodel.Year + '&BrandCD=' + kmodel.BrandCD + '&BrandName=' + kmodel.BrandName + '&Season=' + kmodel.Season + '&ProjectCD=' + kmodel.ProjectCD + '&ProjectName=' + kmodel.ProjectName + '&HinbanCD=' + kmodel.HinbanCD + '&HinbanName=' + kmodel.HinbanName + '&SEQ=' + SEQ +'&Mode=Delete';
+           location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Keihi")?CostCD=' + kmodel.CostCD + '&CostName=' + kmodel.CostName + '&CostDateFrom=' + kmodel.CostDateFrom + '&CostDateTo=' + kmodel.CostDateTo + '&Year=' + kmodel.Year + '&BrandCD=' + kmodel.BrandCD + '&BrandName=' + kmodel.BrandName + '&Season=' + kmodel.Season + '&ProjectCD=' + kmodel.ProjectCD + '&ProjectName=' + kmodel.ProjectName + '&HinbanCD=' + kmodel.HinbanCD + '&HinbanName=' + kmodel.HinbanName + '&flg=' + kmodel.flg  + '&SEQ=' + SEQ +'&Mode=Delete';
         }
 
        function btnCopyClick(SEQ) {
            var kmodel = GetKeihiData();
 
-           location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Keihi")?CostCD=' + kmodel.CostCD + '&CostName=' + kmodel.CostName + '&CostDateFrom=' + kmodel.CostDateFrom + '&CostDateTo=' + kmodel.CostDateTo + '&Year=' + kmodel.Year + '&BrandCD=' + kmodel.BrandCD + '&BrandName=' + kmodel.BrandName + '&Season=' + kmodel.Season + '&ProjectCD=' + kmodel.ProjectCD + '&ProjectName=' + kmodel.ProjectName + '&HinbanCD=' + kmodel.HinbanCD + '&HinbanName=' + kmodel.HinbanName + '&SEQ=' + SEQ +'&Mode=Copy';
+           location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Keihi")?CostCD=' + kmodel.CostCD + '&CostName=' + kmodel.CostName + '&CostDateFrom=' + kmodel.CostDateFrom + '&CostDateTo=' + kmodel.CostDateTo + '&Year=' + kmodel.Year + '&BrandCD=' + kmodel.BrandCD + '&BrandName=' + kmodel.BrandName + '&Season=' + kmodel.Season + '&ProjectCD=' + kmodel.ProjectCD + '&ProjectName=' + kmodel.ProjectName + '&HinbanCD=' + kmodel.HinbanCD + '&HinbanName=' + kmodel.HinbanName + '&flg=' + kmodel.flg  + '&SEQ=' + SEQ +'&Mode=Copy';
         }
 
        function btnAddClick() {
            var kmodel = GetKeihiData();
            
-           location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Keihi")?CostCD=' + kmodel.CostCD + '&CostName=' + kmodel.CostName + '&CostDateFrom=' + kmodel.CostDateFrom + '&CostDateTo=' + kmodel.CostDateTo + '&Year=' + kmodel.Year + '&BrandCD=' + kmodel.BrandCD + '&BrandName=' + kmodel.BrandName +'&Season='+ kmodel.Season+ '&ProjectCD=' + kmodel.ProjectCD + '&ProjectName=' + kmodel.ProjectName + '&HinbanCD=' + kmodel.HinbanCD + '&HinbanName=' + kmodel.HinbanName +'&Mode=New';
+           location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Keihi")?CostCD=' + kmodel.CostCD + '&CostName=' + kmodel.CostName + '&CostDateFrom=' + kmodel.CostDateFrom + '&CostDateTo=' + kmodel.CostDateTo + '&Year=' + kmodel.Year + '&BrandCD=' + kmodel.BrandCD + '&BrandName=' + kmodel.BrandName + '&Season=' + kmodel.Season + '&ProjectCD=' + kmodel.ProjectCD + '&ProjectName=' + kmodel.ProjectName + '&HinbanCD=' + kmodel.HinbanCD + '&HinbanName=' + kmodel.HinbanName + '&flg=' + kmodel.flg  +'&Mode=New';
        }
 
        function GetKeihiData() {
@@ -503,6 +499,7 @@
                ProjectName: $('#projectname').val(),
                HinbanCD: $('#PartCD').val(),
                HinbanName: $('#PartName').val(),
+               flg: "list"
            };
            var selected = new Array();
            $("#Seasongp input[type=checkbox]:checked").each(function () {

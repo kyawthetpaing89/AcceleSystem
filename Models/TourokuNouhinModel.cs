@@ -26,5 +26,6 @@ namespace Models
         public string PeriodStart { get; set; }
         public string PeriodEnd { get; set; }
         public string TableData { get; set; }
+        public string ProjectCD1 { get; set; }
     }
 }

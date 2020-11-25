@@ -156,14 +156,15 @@ namespace TourokuProjectBL
         public string M_HinBan_Search_List(TourokuProjectModel Tmodel)
         {
             BaseDL bdl = new BaseDL();
-            Tmodel.Sqlprms = new SqlParameter[7];
+            Tmodel.Sqlprms = new SqlParameter[8];
             Tmodel.Sqlprms[0] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tmodel.ProjectCD };
-            Tmodel.Sqlprms[1] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = Tmodel.HinbanCD };
-            Tmodel.Sqlprms[2] = new SqlParameter("@HinbanName", SqlDbType.VarChar) { Value = Tmodel.HinbanName };
-            Tmodel.Sqlprms[3] = new SqlParameter("@CastingCD", SqlDbType.VarChar) { Value = Tmodel.CastingCD };
-            Tmodel.Sqlprms[4] = new SqlParameter("@StartPrice", SqlDbType.Int) { Value = (object)Tmodel.StartPrice ?? DBNull.Value };
-            Tmodel.Sqlprms[5] = new SqlParameter("@EndPrice", SqlDbType.Int) { Value = (object)Tmodel.EndPrice ?? DBNull.Value };
-            Tmodel.Sqlprms[6] = new SqlParameter("@CompleteYM", SqlDbType.VarChar) { Value = Tmodel.CompleteYM  };
+            Tmodel.Sqlprms[1] = new SqlParameter("@ProjectName", SqlDbType.VarChar) { Value = Tmodel.ProjectName };
+            Tmodel.Sqlprms[2] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = Tmodel.HinbanCD };
+            Tmodel.Sqlprms[3] = new SqlParameter("@HinbanName", SqlDbType.VarChar) { Value = Tmodel.HinbanName };
+            Tmodel.Sqlprms[4] = new SqlParameter("@CastingCD", SqlDbType.VarChar) { Value = Tmodel.CastingCD };
+            Tmodel.Sqlprms[5] = new SqlParameter("@StartPrice", SqlDbType.Int) { Value = (object)Tmodel.StartPrice ?? DBNull.Value };
+            Tmodel.Sqlprms[6] = new SqlParameter("@EndPrice", SqlDbType.Int) { Value = (object)Tmodel.EndPrice ?? DBNull.Value };
+            Tmodel.Sqlprms[7] = new SqlParameter("@CompleteYM", SqlDbType.VarChar) { Value = Tmodel.CompleteYM  };
             return bdl.SelectJson("M_HinBan_Search_List", Tmodel.Sqlprms);
 
         }
