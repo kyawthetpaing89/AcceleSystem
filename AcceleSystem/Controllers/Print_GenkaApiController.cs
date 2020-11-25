@@ -11,26 +11,28 @@ namespace AcceleSystem.Controllers
 {
     public class Print_GenkaApiController : ApiController
     {
+        Print_Genka_BL pgbl = new Print_Genka_BL();
         public string M_Brand_ExistsCheck([FromBody] Print_GenkaModel pgmodel)
         {
-            Print_Genka_BL kgbl = new Print_Genka_BL();
-            return kgbl.M_Brand_ExistsCheck(pgmodel);
+            return pgbl.M_Brand_ExistsCheck(pgmodel);
         }
 
         public string M_Project_ExistsCheck([FromBody] Print_GenkaModel pgmodel)
         {
-            Print_Genka_BL kgbl = new Print_Genka_BL();
-            return kgbl.M_Project_ExistsCheck(pgmodel);
+            return pgbl.M_Project_ExistsCheck(pgmodel);
         }
         public string Print_GenkaCSV([FromBody] Print_GenkaModel pgmodel)
         {
-            Print_Genka_BL pgbl = new Print_Genka_BL();
             return pgbl.Print_GenkaCSV(pgmodel);
+        }
+
+        public string Print_Genka_ProjectData([FromBody] Print_GenkaModel pmodel)
+        {
+            return pgbl.Print_Genka_ProjectData(pmodel);
         }
 
         public string M_Contrl_Year_ExitCheck([FromBody] Print_GenkaModel pgmodel) // for 対象年度
         {
-            Print_Genka_BL pgbl = new Print_Genka_BL();
             return pgbl.M_Contrl_Year_ExitCheck(pgmodel);
         }
     }

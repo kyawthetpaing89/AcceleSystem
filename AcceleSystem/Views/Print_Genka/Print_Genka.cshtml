@@ -236,17 +236,84 @@
 
         //Convert Jsonstring to csv
         function JSON2CSV(objArray) {
+            var i, result = [];
             var array = typeof JSONString != 'object' ? JSON.parse(objArray) : JSONString;
-            var fields = Object.keys(array[0])
-            var replacer = function (key, value) { return value === null ? null : value }
-            var csv = array.map(function (row) {
-                return fields.map(function (fieldName) {
-                    return JSON.stringify(row[fieldName], replacer)
-                }).join(',')
-            })
-            csv.unshift(fields.join(',')) // add header column
-            csv = csv.join('\r\n');
-            return csv;
+            //var fields = Object.keys(array[0])
+            var col_name = [ "", "", "処理年月に｢★｣印を出力→", "前期発生金額", "1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月", "当期配賦金額", "費目合計", "当期仕掛金額" ]
+            var replacer = function (key, value) { return value === null ? '' : value }
+            //var csv = array.map(function (row) {
+            //    return fields.map(function (fieldName) {
+            //        return JSON.stringify(row[fieldName], replacer)
+            //    }).join(',')
+            //})
+
+            for (i = 0; i < array.length; i++) {
+                if (array[i]["SortKey"] == '10') {
+                    result.push(JSON.stringify(array[i]["BrandCD"], replacer) + ',' + JSON.stringify(array[i]["Casting"], replacer) + ',' + JSON.stringify(array[i]["CostName"], replacer) + ',' + JSON.stringify(array[i]["CostPre"], replacer) + ',' +
+                        JSON.stringify(array[i]["Cost1"], replacer) + ',' + JSON.stringify(array[i]["Cost2"], replacer) + ',' + JSON.stringify(array[i]["Cost3"], replacer) + ',' + JSON.stringify(array[i]["Cost4"], replacer) + ',' +
+                        JSON.stringify(array[i]["Cost5"], replacer) + ',' + JSON.stringify(array[i]["Cost6"], replacer) + ',' + JSON.stringify(array[i]["Cost7"], replacer) + ',' + JSON.stringify(array[i]["Cost8"], replacer) + ',' +
+                        JSON.stringify(array[i]["Cost9"], replacer) + ',' + JSON.stringify(array[i]["Cost10"], replacer) + ',' + JSON.stringify(array[i]["Cost11"], replacer) + ',' + JSON.stringify(array[i]["Cost12"], replacer) + ',' +
+                        JSON.stringify(array[i]["CostHaihu"], replacer) + ',' + JSON.stringify(array[i]["Total"], replacer) + ',' + JSON.stringify(array[i]["CostShikakari"], replacer));
+                }
+                else if (array[i]["SortKey"] == '11') {
+                    result.push(JSON.stringify(array[i]["BrandCD"], replacer) + ',' + JSON.stringify(array[i]["Casting"], replacer) + ',' + JSON.stringify(array[i]["CostName"], replacer) + ',' + JSON.stringify(array[i]["CostPre"], replacer) + ',' +
+                        JSON.stringify(array[i]["Cost1"], replacer) + ',' + JSON.stringify(array[i]["Cost2"], replacer) + ',' + JSON.stringify(array[i]["Cost3"], replacer) + ',' + JSON.stringify(array[i]["Cost4"], replacer) + ',' +
+                        JSON.stringify(array[i]["Cost5"], replacer) + ',' + JSON.stringify(array[i]["Cost6"], replacer) + ',' + JSON.stringify(array[i]["Cost7"], replacer) + ',' + JSON.stringify(array[i]["Cost8"], replacer) + ',' +
+                        JSON.stringify(array[i]["Cost9"], replacer) + ',' + JSON.stringify(array[i]["Cost10"], replacer) + ',' + JSON.stringify(array[i]["Cost11"], replacer) + ',' + JSON.stringify(array[i]["Cost12"], replacer) + ',' +
+                        JSON.stringify(array[i]["CostHaihu"], replacer) + ',' + JSON.stringify(array[i]["Total"], replacer) + ',' + JSON.stringify(array[i]["CostShikakari"], replacer));
+                }
+                else if (array[i]["SortKey"] == '20') {
+                    result.push(JSON.stringify(array[i]["BrandCD"], replacer) + ',' + JSON.stringify(array[i]["Casting"], replacer) + ',' + JSON.stringify(array[i]["CostName"], replacer) + ',' + JSON.stringify(array[i]["CostPre"], replacer) + ',' +
+                        JSON.stringify(array[i]["Cost1"], replacer) + ',' + JSON.stringify(array[i]["Cost2"], replacer) + ',' + JSON.stringify(array[i]["Cost3"], replacer) + ',' + JSON.stringify(array[i]["Cost4"], replacer) + ',' +
+                        JSON.stringify(array[i]["Cost5"], replacer) + ',' + JSON.stringify(array[i]["Cost6"], replacer) + ',' + JSON.stringify(array[i]["Cost7"], replacer) + ',' + JSON.stringify(array[i]["Cost8"], replacer) + ',' +
+                        JSON.stringify(array[i]["Cost9"], replacer) + ',' + JSON.stringify(array[i]["Cost10"], replacer) + ',' + JSON.stringify(array[i]["Cost11"], replacer) + ',' + JSON.stringify(array[i]["Cost12"], replacer) + ',' +
+                        JSON.stringify(array[i]["CostHaihu"], replacer) + ',' + JSON.stringify(array[i]["Total"], replacer) + ',' + JSON.stringify(array[i]["CostShikakari"], replacer));
+                }
+                else if (array[i]["SortKey"] == '21') {
+                    result.push(JSON.stringify(array[i]["BrandCD"], replacer) + ',' + JSON.stringify(array[i]["Casting"], replacer) + ',' + JSON.stringify(array[i]["CostName"], replacer) + ',' + JSON.stringify(array[i]["CostPre"], replacer) + ',' +
+                        JSON.stringify(array[i]["Cost1"], replacer) + ',' + JSON.stringify(array[i]["Cost2"], replacer) + ',' + JSON.stringify(array[i]["Cost3"], replacer) + ',' + JSON.stringify(array[i]["Cost4"], replacer) + ',' +
+                        JSON.stringify(array[i]["Cost5"], replacer) + ',' + JSON.stringify(array[i]["Cost6"], replacer) + ',' + JSON.stringify(array[i]["Cost7"], replacer) + ',' + JSON.stringify(array[i]["Cost8"], replacer) + ',' +
+                        JSON.stringify(array[i]["Cost9"], replacer) + ',' + JSON.stringify(array[i]["Cost10"], replacer) + ',' + JSON.stringify(array[i]["Cost11"], replacer) + ',' + JSON.stringify(array[i]["Cost12"], replacer) + ',' +
+                        JSON.stringify(array[i]["CostHaihu"], replacer) + ',' + JSON.stringify(array[i]["Total"], replacer) + ',' + JSON.stringify(array[i]["CostShikakari"], replacer));
+                }
+                else if (array[i]["SortKey"] == '30') {
+                    debugger;
+                    var rowcount = 1, col2, j;
+                    var pmodel = {
+                        ProjectCD: array[i]["ProjectCD"],
+                        LoginID: '@LoginID'
+                    };
+                    var data = CalltoApiController('@Url.Action("Print_Genka_ProjectData", "api/Print_GenkaApi")', pmodel);
+                    var prj_array = typeof JSONString != 'object' ? JSON.parse(data) : JSONString;
+                    for (j = 0; j < prj_array.length; j++) {
+                        if (prj_array[j]["SortKey"] == '30') {
+                            switch (rowcount) {
+                                case 1: col2 = JSON.stringify(prj_array[j]["ProjectCD"], replacer) + '  ' + JSON.stringify(prj_array[j]["ProjectName"], replacer);
+                                    break;
+                                case 2: col2 = JSON.stringify(prj_array[j]["PeriodStart"], replacer) + ' ～ ' + JSON.stringify(prj_array[j]["PeriodEnd"], replacer);
+                                    break;
+                                case 3: col2 = '総金額' + '  ' + JSON.stringify(prj_array[j]["ProductionSum"], replacer);
+                                    break;
+                                case 4: col2 = '総生産数' + '  ' + JSON.stringify(prj_array[j]["TotalValueSum"], replacer);
+                                    break;
+                            }
+                            rowcount = rowcount + 1;
+                            result.push(JSON.stringify(null, replacer) + ',' + col2 + ',' + JSON.stringify(prj_array[j]["CostName"], replacer) + ',' + JSON.stringify(prj_array[j]["CostPre"], replacer) + ',' +
+                                JSON.stringify(prj_array[j]["Cost1"], replacer) + ',' + JSON.stringify(prj_array[j]["Cost2"], replacer) + ',' + JSON.stringify(prj_array[j]["Cost3"], replacer) + ',' + JSON.stringify(prj_array[j]["Cost4"], replacer) + ',' +
+                                JSON.stringify(prj_array[j]["Cost5"], replacer) + ',' + JSON.stringify(prj_array[j]["Cost6"], replacer) + ',' + JSON.stringify(prj_array[j]["Cost7"], replacer) + ',' + JSON.stringify(prj_array[j]["Cost8"], replacer) + ',' +
+                                JSON.stringify(prj_array[j]["Cost9"], replacer) + ',' + JSON.stringify(prj_array[j]["Cost10"], replacer) + ',' + JSON.stringify(prj_array[j]["Cost11"], replacer) + ',' + JSON.stringify(prj_array[j]["Cost12"], replacer) + ',' +
+                                JSON.stringify(prj_array[j]["CostHaihu"], replacer) + ',' + JSON.stringify(prj_array[j]["Total"], replacer) + ',' + JSON.stringify(prj_array[j]["CostShikakari"], replacer));
+                        }
+                    }
+                }
+            }
+
+            //csv.unshift(fields.join(',')) // add header column
+            //csv = csv.join('\r\n');
+
+            result.unshift(col_name.join(',')) // add header column
+            result = result.join('\r\n');
+            return result;
         }
 
         $('#btnGenerate').keydown(function (e) {
