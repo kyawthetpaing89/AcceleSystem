@@ -317,8 +317,15 @@
                     Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
                 },
                 success: function (response) {
-                    BindTable(response);
-                }
+                    if (response == "[]") {
+                        BindTable(response);
+                        var data = ShowErrorMessage("E104");
+                        return data;
+                    }
+                    else {
+                        BindTable(response);
+                    }
+                },
             });
         }
 

@@ -27,9 +27,9 @@
                                             <label id="text" style="padding-right: 3px;">
                                                 プロジェクト
                                             </label>
-                                            <input type="text" tabindex="1" class="text-line col-sm-12 col-md-12 col-xl-3 text-left" onkeydown="KeyDown(event,this,'ProjectCDCheck')" id="proCD" name="proCD" maxlength="10" required placeholder="入力">&nbsp;
+                                            <input type="text" tabindex="1" class="text-line col-sm-12 col-md-12 col-xl-4 text-left" onkeydown="KeyDown(event,this,'ProjectCDCheck')" id="proCD" name="proCD" maxlength="10" required placeholder="入力">
 
-                                            <input type="text" tabindex="2" class="text-line col-sm-12 col-md-12 col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="proName" name="proName" maxlength="60" required placeholder="入力">
+                                            <input type="text" tabindex="2" class="text-line col-sm-12 col-md-12 col-xl-4 text-left" onkeydown="KeyDown(event,this)" id="proName" name="proName" maxlength="60" required placeholder="入力">
                                         </div>
                                     </div>
                                 </div>
@@ -187,8 +187,8 @@
                 $('#year').val('@Model.Year');
                 $('#BrandCD').val('@Model.BrandCD1');
                 $('#BrandName').val('@Model.BrandName');
-                $('#StartDate').val('@Model.PeriodStart');
-                $('#EndDate').val('@Model.PeriodEnd');
+                $('#StartDate').val('@Model.startDate');
+                $('#EndDate').val('@Model.endDate');
                 $('#tpNo').val('@Model.Production');
                 $('#tAmount').val('@Model.TotalAmount');
                 $('#HinbanCD').val('@Model.HinbanCD1');
@@ -197,8 +197,8 @@
                 $('#CastingName').val('@Model.CastingName');
                 $('#StartPrice').val('@Model.StartPrice');
                 $('#EndPrice').val('@Model.EndPrice');
-
-               var str = '@Model.Season';
+                $('#season').val('@Model.Season');
+               @*var str = '@Model.Season';
                if (str.includes("1"))
                    $("#Degreeyear").prop("checked", true);
                else $("#Degreeyear").prop("checked", false);
@@ -207,13 +207,13 @@
                else $("#SS").prop("checked", false);
                if (str.includes("3"))
                    $("#FW").prop("checked", true);
-               else $("#FW").prop("checked", false);
+               else $("#FW").prop("checked", false);*@
 
                var str1 = '@Model.CompleteYM';
-               if (str1.includes("1"))
+               if (str1.includes("0"))
                    $("#deliveryleft").prop("checked", true);
                else $("#deliveryleft").prop("checked", false);
-               if (str1.includes("2"))
+               if (str1.includes("1"))
                    $("#payment").prop("checked", true);
                else $("#payment").prop("checked", false);
             }
@@ -270,9 +270,16 @@
                 {
                     Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
                 },
-                success: function (response) {
-                    BindTable(response);
-                }
+                        success: function (response) {
+                         if (response == "[]") {
+                             BindTable(response);
+                             var data = ShowErrorMessage("E104");
+                             return data;
+                         }
+                         else {
+                             BindTable(response);
+                         }
+                     },
             });
     }
 
@@ -464,22 +471,22 @@
 
         function btnAddClick() {
             var Tmodel = GetHinbanData();
-            location.href = '@Url.Action("TourokuHinban_Entry", "TourokuProject")?ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName=' + Tmodel.ProjectName + '&BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&StartDate=' + Tmodel.PeriodStart + '&StartEnd=' + Tmodel.PeriodEnd + '&year=' + Tmodel.Year + '&Season=' + Tmodel.Season + '&tpNo=' + Tmodel.Production + '&tAmount=' + Tmodel.TotalAmount + '&HinbanCD1=' + Tmodel.HinbanCD1 + '&HinbanName=' + Tmodel.HinbanName + '&CastingCD=' + Tmodel.CastingCD + '&CastingName=' + Tmodel.CastingName + '&StartPrice=' + Tmodel.StartPrice + ' &EndPrice=' + Tmodel.EndPrice + ' &CompleteYM=' + Tmodel.CompleteYM + '&flg=' + Tmodel.flg + '&Mode=New';
+            location.href = '@Url.Action("TourokuHinban_Entry", "TourokuProject")?ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName=' + Tmodel.ProjectName + '&BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&StartDate=' + Tmodel.StartDate + '&EndDate=' + Tmodel.EndDate + '&Year=' + Tmodel.Year + '&Season=' + Tmodel.Season + '&Production=' + Tmodel.Production + '&TotalAmount=' + Tmodel.TotalAmount + '&HinbanCD1=' + Tmodel.HinbanCD1 + '&HinbanName=' + Tmodel.HinbanName + '&CastingCD=' + Tmodel.CastingCD + '&CastingName=' + Tmodel.CastingName + '&StartPrice=' + Tmodel.StartPrice + ' &EndPrice=' + Tmodel.EndPrice + '&CompleteYM=' + Tmodel.CompleteYM + '&flg=' + Tmodel.flg + '&Mode=New';
     }
 
         function btnEditClick(ProjectCD, HinbanCD) {
             var Tmodel = GetHinbanData();
-            location.href = '@Url.Action("TourokuHinban_Entry", "TourokuProject")?ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName=' + Tmodel.ProjectName + '&BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&StartDate=' + Tmodel.PeriodStart + '&StartEnd=' + Tmodel.PeriodEnd + '&year=' + Tmodel.Year + '&Season=' + Tmodel.Season + '&tpNo=' + Tmodel.Production + '&tAmount=' + Tmodel.TotalAmount + '&HinbanCD1=' + Tmodel.HinbanCD1 + '&HinbanName=' + Tmodel.HinbanName + '&CastingCD=' + Tmodel.CastingCD + '&CastingName=' + Tmodel.CastingName + '&StartPrice=' + Tmodel.StartPrice + '&EndPrice=' + Tmodel.EndPrice + '&CompleteYM=' + Tmodel.CompleteYM + '&flg=' + Tmodel.flg + '&HinbanCD=' + HinbanCD + '&ProjectCD=' + ProjectCD + '&Mode=Edit';
+            location.href = '@Url.Action("TourokuHinban_Entry", "TourokuProject")?ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName=' + Tmodel.ProjectName + '&BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&StartDate=' + Tmodel.StartDate + '&EndDate=' + Tmodel.EndDate + '&Year=' + Tmodel.Year + '&Season=' + Tmodel.Season + '&Production=' + Tmodel.Production + '&TotalAmount=' + Tmodel.TotalAmount + '&HinbanCD1=' + Tmodel.HinbanCD1 + '&HinbanName=' + Tmodel.HinbanName + '&CastingCD=' + Tmodel.CastingCD + '&CastingName=' + Tmodel.CastingName + '&StartPrice=' + Tmodel.StartPrice + '&EndPrice=' + Tmodel.EndPrice + '&CompleteYM=' + Tmodel.CompleteYM + '&flg=' + Tmodel.flg + '&HinbanCD=' + HinbanCD + '&ProjectCD=' + ProjectCD + '&Mode=Edit';
     }
 
         function btnDelClick(ProjectCD, HinbanCD) {
             Tmodel = GetHinbanData();
-            location.href = '@Url.Action("TourokuHinban_Entry", "TourokuProject")?ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName=' + Tmodel.ProjectName + '&BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&StartDate=' + Tmodel.PeriodStart + '&StartEnd=' + Tmodel.PeriodEnd + '&year=' + Tmodel.Year + '&Season=' + Tmodel.Season + '&tpNo=' + Tmodel.Production + '&tAmount=' + Tmodel.TotalAmount + '&HinbanCD1=' + Tmodel.HinbanCD1 + '&HinbanName=' + Tmodel.HinbanName + '&CastingCD=' + Tmodel.CastingCD + '&CastingName=' + Tmodel.CastingName + '&StartPrice=' + Tmodel.StartPrice + '&EndPrice=' + Tmodel.EndPrice + '&CompleteYM=' + Tmodel.CompleteYM  + '&flg=' + Tmodel.flg + '&HinbanCD=' + HinbanCD + '&ProjectCD=' + ProjectCD + '&Mode=Delete';
+            location.href = '@Url.Action("TourokuHinban_Entry", "TourokuProject")?ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName=' + Tmodel.ProjectName + '&BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&StartDate=' + Tmodel.StartDate + '&EndDate=' + Tmodel.EndDate + '&Year=' + Tmodel.Year + '&Season=' + Tmodel.Season + '&Production=' + Tmodel.Production + '&TotalAmount=' + Tmodel.TotalAmount + '&HinbanCD1=' + Tmodel.HinbanCD1 + '&HinbanName=' + Tmodel.HinbanName + '&CastingCD=' + Tmodel.CastingCD + '&CastingName=' + Tmodel.CastingName + '&StartPrice=' + Tmodel.StartPrice + '&EndPrice=' + Tmodel.EndPrice + '&CompleteYM=' + Tmodel.CompleteYM + '&flg=' + Tmodel.flg + '&HinbanCD=' + HinbanCD + '&ProjectCD=' + ProjectCD + '&Mode=Delete';
         }
 
         function btnCopyClick(ProjectCD, HinbanCD) {
             Tmodel = GetHinbanData();
-            location.href = '@Url.Action("TourokuHinban_Entry", "TourokuProject")?ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName=' + Tmodel.ProjectName + '&BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&StartDate=' + Tmodel.PeriodStart + '&StartEnd=' + Tmodel.PeriodEnd + '&year=' + Tmodel.Year + '&Season=' + Tmodel.Season + '&tpNo=' + Tmodel.Production + '&tAmount=' + Tmodel.TotalAmount + '&HinbanCD1=' + Tmodel.HinbanCD1 + '&HinbanName=' + Tmodel.HinbanName + '&CastingCD=' + Tmodel.CastingCD + '&CastingName=' + Tmodel.CastingName + '&StartPrice=' + Tmodel.StartPrice + '&EndPrice=' + Tmodel.EndPrice + '&CompleteYM=' + Tmodel.CompleteYM  + '&flg=' + Tmodel.flg + '&HinbanCD=' + HinbanCD + '&ProjectCD=' + ProjectCD + '&Mode=Copy';
+            location.href = '@Url.Action("TourokuHinban_Entry", "TourokuProject")?ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName=' + Tmodel.ProjectName + '&BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&StartDate=' + Tmodel.StartDate + '&EndDate=' + Tmodel.EndDate + '&Year=' + Tmodel.Year + '&Season=' + Tmodel.Season + '&Production=' + Tmodel.Production + '&TotalAmount=' + Tmodel.TotalAmount + '&HinbanCD1=' + Tmodel.HinbanCD1 + '&HinbanName=' + Tmodel.HinbanName + '&CastingCD=' + Tmodel.CastingCD + '&CastingName=' + Tmodel.CastingName + '&StartPrice=' + Tmodel.StartPrice + '&EndPrice=' + Tmodel.EndPrice + '&CompleteYM=' + Tmodel.CompleteYM + '&flg=' + Tmodel.flg + '&HinbanCD=' + HinbanCD + '&ProjectCD=' + ProjectCD + '&Mode=Copy';
         }
 
         function GetHinbanData() {
@@ -489,8 +496,8 @@
                 Year: $('#year').val(),
                 BrandCD1: $('#BrandCD').val(),
                 BrandName: $('#BrandName').val(),
-                StartDate: $('#PeriodStart').val(),
-                EndDate: $('#PeriodEnd').val(),
+                StartDate: $('#StartDate').val(),
+                EndDate: $('#EndDate').val(),
                 Production: $('#tpNo').val(),
                 TotalAmount: $('#tAmount').val(),
                 HinbanCD1: $('#HinbanCD').val(),
@@ -499,15 +506,16 @@
                 CastingName: $('#CastingName').val(),
                 StartPrice: $('#StartPrice').val(),
                 EndPrice: $('#EndPrice').val(),
+                Season: $('#season').val(),
                 flg: "list"
             };
 
-            var selected = new Array();
-            $("#Seasongp input[type=checkbox]:checked").each(function () {
-                selected.push(this.value);
-            });
-            if (selected.length > 0)
-                Tmodel.Season = selected.join(",");
+            //var selected = new Array();
+            //$("#Seasongp input[type=checkbox]:checked").each(function () {
+            //    selected.push(this.value);
+            //});
+            //if (selected.length > 0)
+            //    Tmodel.Season = selected.join(",");
 
             var selected = new Array();
             $("#CompleteYMgp input[type=checkbox]:checked").each(function () {
