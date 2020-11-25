@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Models.TourokuProjectModel
+@{
     ViewBag.Title = "TourokuProject_List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -147,8 +148,31 @@
 
 @section Scripts{
     <script type="text/javascript">
+        var array;
     $(document).ready(function () {
         $("#formtitle").text("プロジェクト検索");
+        if ('@Model.flg' == "list") {
+            $('#BrandCD').val('@Model.BrandCD1');
+            $('#BrandName').val('@Model.BrandName');
+            $('#Year').val('@Model.Year');
+            $('#ProjectCD').val('@Model.ProjectCD1');
+            $('#ProjectName').val('@Model.ProjectName');
+            $('#PeriodStart').val('@Model.PeriodStart');
+            $('#PeriodEnd').val('@Model.PeriodEnd');
+            $('#ProjectManager').val('@Model.ProjectManager');
+            $('#ProjectManagerName').val('@Model.ProjectManagerName');
+             var str = '@Model.Season';
+               if (str.includes("1"))
+                   $("#Degreeyear").prop("checked", true);
+               else $("#Degreeyear").prop("checked", false);
+               if (str.includes("2"))
+                   $("#SS").prop("checked", true);
+               else $("#SS").prop("checked", false);
+               if (str.includes("3"))
+                   $("#FW").prop("checked", true);
+               else $("#FW").prop("checked", false);
+
+        }
         $("#BrandCD").focus();
         DoubleByteCheck($("#BrandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
         ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
@@ -332,7 +356,7 @@
                         className: "Border4",
                         render: function (data, type, row) {
                             return '<label class="col-md-12 text-center">' + data.Year + '</label><br/><label></label><br/><label class="col-md-12 text-right">' + data.SalesPrice + '</label>';
-                            
+
                         }
                     },
 
@@ -429,25 +453,58 @@
         }
 
         function btnAddClick() {
-            location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?Mode=New'
+            var Tmodel = GetPorjectData();
+
+            location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&Year=' + Tmodel.Year + '&ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName=' + Tmodel.ProjectName + '&Season=' + Tmodel.Season + '&PeriodStart=' + Tmodel.PeriodStart + '&PeriodEnd=' + Tmodel.PeriodEnd + '&ProjectManager=' + Tmodel.ProjectManager + '&ProjectManagerName=' + Tmodel.ProjectManagerName + '&flg=' + Tmodel.flg + '&Mode=New';
         }
 
-         function btnNextClick() {
-            location.href = '@Url.Action("TourokuHinban_List", "TourokuProject")?Mode=New'
+        function btnNextClick() {
+            var Tmodel = GetPorjectData();
+
+            location.href = '@Url.Action("TourokuHinban_List", "TourokuProject")?BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&Year=' + Tmodel.Year + '&ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName' + Tmodel.ProjectName + '&Season=' + Tmodel.Season + '&PeriodStart=' + Tmodel.PeriodStart + '&PeriodEnd=' + Tmodel.PeriodEnd + '&ProjectManager=' + Tmodel.ProjectManager + '&ProjectManagerName=' + Tmodel.ProjectManagerName + '&flg=' + Tmodel.flg + '&Mode=New';
         }
 
         function btnEditClick(BrandCD, ProjectCD) {
-            location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?ProjectCD=' + ProjectCD + '&BrandCD=' + BrandCD + '&Mode=Edit';
+            var Tmodel = GetPorjectData();
+
+            location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&Year=' + Tmodel.Year + '&ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName=' + Tmodel.ProjectName + '&Season=' + Tmodel.Season + '&PeriodStart=' + Tmodel.PeriodStart + '&PeriodEnd=' + Tmodel.PeriodEnd + '&ProjectManager=' + Tmodel.ProjectManager + '&ProjectManagerName=' + Tmodel.ProjectManagerName + '&flg=' + Tmodel.flg + '&BrandCD=' + BrandCD + '&ProjectCD=' + ProjectCD + '&Mode=Edit';
         }
 
         function btnCopyClick(BrandCD, ProjectCD) {
-            location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?ProjectCD=' + ProjectCD + '&BrandCD=' + BrandCD + '&Mode=Copy';
+            var Tmodel = GetPorjectData();
+
+            location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&Year=' + Tmodel.Year + '&ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName=' + Tmodel.ProjectName + '&Season=' + Tmodel.Season + '&PeriodStart=' + Tmodel.PeriodStart + '&PeriodEnd=' + Tmodel.PeriodEnd + '&ProjectManager=' + Tmodel.ProjectManager + '&ProjectManagerName=' + Tmodel.ProjectManagerName + '&flg=' + Tmodel.flg + '&BrandCD=' + BrandCD + '&ProjectCD=' + ProjectCD + '&Mode=Copy';
 
         }
 
         function btnDelClick(BrandCD, ProjectCD) {
-            location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?ProjectCD=' + ProjectCD + '&BrandCD=' + BrandCD + '&Mode=Delete';
-     }
+            var Tmodel = GetPorjectData();
+
+            location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&Year=' + Tmodel.Year + '&ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName=' + Tmodel.ProjectName + '&Season='+Tmodel.Season+ '&PeriodStart=' + Tmodel.PeriodStart + '&PeriodEnd=' + Tmodel.PeriodEnd + '&ProjectManager=' + Tmodel.ProjectManager + '&ProjectManagerName=' + Tmodel.ProjectManagerName + '&flg=' + Tmodel.flg + '&BrandCD=' + BrandCD + '&ProjectCD=' + ProjectCD + '&Mode=Delete';
+        }
+
+        function GetPorjectData() {
+            var Tmodel = {
+                BrandCD1: $('#BrandCD').val(),
+                BrandName: $('#BrandName').val(),
+                Year: $('#Year').val(),
+                ProjectCD1: $('#ProjectCD').val(),
+                ProjectName: $('#ProjectName').val(),
+                PeriodStart: $('#PeriodStart').val(),
+                PeriodEnd: $('#PeriodEnd').val(),
+                ProjectManager: $('#ProjectManager').val(),
+                ProjectManagerName: $('#ProjectManagerName').val(),
+                flg: "list"
+            };
+            var selected = new Array();
+            $("#Seasongp input[type=checkbox]:checked").each(function () {
+                selected.push(this.value);
+            });
+            if (selected.length > 0)
+                Tmodel.Season = selected.join(",");
+
+            return Tmodel;
+        }
 
         $('#btnnext').keydown(function (e) {
          var code = e.keyCode || e.which;

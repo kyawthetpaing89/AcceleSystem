@@ -35,5 +35,7 @@ namespace Models
         public string CompleteYM { get; set; }
         public string FreeItem1 { get; set; }
         public string FreeItem2 { get; set; }
+        public string ProjectCD1 { get; set; }
+        public string BrandCD1 { get; set; }
     }
 }
