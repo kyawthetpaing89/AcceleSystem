@@ -449,7 +449,7 @@
                 };
 
                 var data = CalltoApiController('@Url.Action("Nouhin_CUD", "api/Touroku_NouhinApi")', TnModel);
-                ShowSuccessMessage(data, '@Url.Action("Touroku_NouhinList", "Touroku_Nouhin")');
+                ShowSuccessMessage(data, '@Url.Action("Touroku_NouhinList", "Touroku_Nouhin")Year=' + '@Model.Year' + '&Season=' + '@Model.Season' + '&BrandCD=' + '@Model.BrandCD' + '&BrandName=' + '@Model.BrandName' + '&ProjectCD1=' + '@Model.ProjectCD1' + '&ProjectName=' + '@Model.ProjectName' + '&HinbanCD=' + '@Model.HinbanCD' + '&HinbanName=' + '@Model.HinbanName' + '&DeliveryStartDate=' + '@Model.DeliveryStartDate' + '&DeliveryEndDate=' + '@Model.DeliveryEndDate' + '&DeliveryStatus=' + '@Model.DeliveryStatus' + '&flg=' + '@Model.flg' );
             
         }
 
