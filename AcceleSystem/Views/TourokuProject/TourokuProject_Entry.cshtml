@@ -417,7 +417,7 @@
          else Tmodel.Season = "3";
 
          var data = CalltoApiController('@Url.Action("Project_CUD", "api/TourokuProjectApi")', Tmodel);
-         ShowSuccessMessage(data,'@Url.Action("TourokuProject_List", "TourokuProject")?BrandCD=' + '@Model.BrandCD' + '&BrandName=' + '@Model.BrandName' + '&Year=' + '@Model.Year' + '&ProjectCD=' + '@Model.ProjectCD' + '&ProjectName=' + '@Model.ProjectName' + '&PeriodStart=' + '@Model.PeriodStart' + '&PeriodEnd=' + '@Model.ProjectManager' + '&ProjectManager=' + '@Model.ProjectManagerName' + '&ProjectManagerName=' + '@Model.ProjectCD' + '&ProjectName=' + '@Model.ProjectName' +'&flg=' + '@Model.flg');
+         ShowSuccessMessage(data,'@Url.Action("TourokuProject_List", "TourokuProject")?BrandCD1=' + '@Model.BrandCD1' + '&BrandName=' + '@Model.BrandName' + '&Year=' + '@Model.Year' + '&ProjectCD1=' + '@Model.ProjectCD1' + '&ProjectName=' + '@Model.ProjectName' + '&PeriodStart=' + '@Model.PeriodStart' + '&PeriodEnd=' + '@Model.PeriodEnd' + '&ProjectManager=' + '@Model.ProjectManager' + '&ProjectManagerName=' + '@Model.ProjectManagerName' +'&Season='+'@Model.Season' +'&flg=' + '@Model.flg');
     }
 
     function DeleteConfrim() {
@@ -456,7 +456,7 @@
     }
 
      function btnCancelClick() {
-         location.href = '@Url.Action("TourokuProject_List", "TourokuProject")?BrandCD=' + '@Model.BrandCD' + '&BrandName=' + '@Model.BrandName' + '&Year=' + '@Model.Year' + '&ProjectCD=' + '@Model.ProjectCD' + '&ProjectName=' + '@Model.ProjectName' + '&PeriodStart=' + '@Model.PeriodStart' + '&PeriodEnd=' + '@Model.ProjectManager' + '&ProjectManager=' + '@Model.ProjectManagerName' + '&ProjectManagerName=' + '@Model.ProjectCD' + '&ProjectName=' + '@Model.ProjectName' +'&flg=' + '@Model.flg';
+         location.href = '@Url.Action("TourokuProject_List", "TourokuProject")?BrandCD1=' + '@Model.BrandCD1' + '&BrandName=' + '@Model.BrandName' + '&Year=' + '@Model.Year' + '&ProjectCD1=' + '@Model.ProjectCD1' + '&ProjectName=' + '@Model.ProjectName' + '&PeriodStart=' + '@Model.PeriodStart' + '&PeriodEnd=' + '@Model.PeriodEnd' + '&ProjectManager=' + '@Model.ProjectManager' + '&ProjectManagerName=' + '@Model.ProjectManagerName' +'&Season='+'@Model.Season' +'&flg=' + '@Model.flg';
      }
 
     $('#btnCancel').keydown(function (e) {

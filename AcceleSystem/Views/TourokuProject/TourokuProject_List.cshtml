@@ -152,10 +152,10 @@
     $(document).ready(function () {
         $("#formtitle").text("プロジェクト検索");
         if ('@Model.flg' == "list") {
-            $('#BrandCD').val('@Model.BrandCD');
+            $('#BrandCD').val('@Model.BrandCD1');
             $('#BrandName').val('@Model.BrandName');
             $('#Year').val('@Model.Year');
-            $('#ProjectCD').val('@Model.ProjectCD');
+            $('#ProjectCD').val('@Model.ProjectCD1');
             $('#ProjectName').val('@Model.ProjectName');
             $('#PeriodStart').val('@Model.PeriodStart');
             $('#PeriodEnd').val('@Model.PeriodEnd');
@@ -453,42 +453,42 @@
         }
 
         function btnAddClick() {
-            var Tmodel = GetProjectData();
+            var Tmodel = GetPorjectData();
 
-            location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?ProjectCD=' + Tmodel.BrandCD + '&BrandName=' + Tmodel.BrandName + '&Year' + Tmodel.Year + '&ProjectCD' + Tmodel.ProjectCD + '&ProjectName' + Tmodel.ProjectName + '&PeriodStart' + Tmodel.PeriodStart + '&PeriodEnd' + Tmodel.PeriodEnd + '&ProjectManager' + Tmodel.ProjectManager + '&ProjectManagerName' + Tmodel.ProjectManagerName + '&flg=' + Tmodel.flg + '&Mode=New';
+            location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&Year=' + Tmodel.Year + '&ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName=' + Tmodel.ProjectName + '&Season=' + Tmodel.Season + '&PeriodStart=' + Tmodel.PeriodStart + '&PeriodEnd=' + Tmodel.PeriodEnd + '&ProjectManager=' + Tmodel.ProjectManager + '&ProjectManagerName=' + Tmodel.ProjectManagerName + '&flg=' + Tmodel.flg + '&Mode=New';
         }
 
         function btnNextClick() {
-            var Tmodel = GetProjectData();
+            var Tmodel = GetPorjectData();
 
-             location.href = '@Url.Action("TourokuHinban_List", "TourokuProject")?BrandCD=' + Tmodel.BrandCD + '&BrandName=' + Tmodel.BrandName + '&Year' + Tmodel.Year + '&ProjectCD' + Tmodel.ProjectCD + '&ProjectName' + Tmodel.ProjectName + '&PeriodStart' + Tmodel.PeriodStart + '&PeriodEnd' + Tmodel.PeriodEnd + '&ProjectManager' + Tmodel.ProjectManager + '&ProjectManagerName' + Tmodel.ProjectManagerName + '&flg=' + Tmodel.flg + '&Mode=New';
+            location.href = '@Url.Action("TourokuHinban_List", "TourokuProject")?BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&Year=' + Tmodel.Year + '&ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName' + Tmodel.ProjectName + '&Season=' + Tmodel.Season + '&PeriodStart=' + Tmodel.PeriodStart + '&PeriodEnd=' + Tmodel.PeriodEnd + '&ProjectManager=' + Tmodel.ProjectManager + '&ProjectManagerName=' + Tmodel.ProjectManagerName + '&flg=' + Tmodel.flg + '&Mode=New';
         }
 
         function btnEditClick(BrandCD, ProjectCD) {
-            var Tmodel = GetProjectData();
+            var Tmodel = GetPorjectData();
 
-            location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?BrandCD=' + Tmodel.BrandCD + '&BrandName=' + Tmodel.BrandName + '&Year' + Tmodel.Year + '&ProjectCD' + Tmodel.ProjectCD + '&ProjectName' + Tmodel.ProjectName + '&PeriodStart' + Tmodel.PeriodStart + '&PeriodEnd' + Tmodel.PeriodEnd + '&ProjectManager' + Tmodel.ProjectManager + '&ProjectManagerName' + Tmodel.ProjectManagerName + '&flg=' + Tmodel.flg + '&BrandCD=' + BrandCD + '&ProjectCD=' + ProjectCD + '&Mode=Edit';
+            location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&Year=' + Tmodel.Year + '&ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName=' + Tmodel.ProjectName + '&Season=' + Tmodel.Season + '&PeriodStart=' + Tmodel.PeriodStart + '&PeriodEnd=' + Tmodel.PeriodEnd + '&ProjectManager=' + Tmodel.ProjectManager + '&ProjectManagerName=' + Tmodel.ProjectManagerName + '&flg=' + Tmodel.flg + '&BrandCD=' + BrandCD + '&ProjectCD=' + ProjectCD + '&Mode=Edit';
         }
 
         function btnCopyClick(BrandCD, ProjectCD) {
-            var Tmodel = GetProjectData();
+            var Tmodel = GetPorjectData();
 
-            location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?BrandCD=' + Tmodel.BrandCD + '&BrandName=' + Tmodel.BrandName + '&Year' + Tmodel.Year + '&ProjectCD' + Tmodel.ProjectCD + '&ProjectName' + Tmodel.ProjectName + '&PeriodStart' + Tmodel.PeriodStart + '&PeriodEnd' + Tmodel.PeriodEnd + '&ProjectManager' + Tmodel.ProjectManager + '&ProjectManagerName' + Tmodel.ProjectManagerName + '&flg=' + Tmodel.flg + '&BrandCD=' + BrandCD + '&ProjectCD=' + ProjectCD + '&Mode=Copy';
+            location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&Year=' + Tmodel.Year + '&ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName=' + Tmodel.ProjectName + '&Season=' + Tmodel.Season + '&PeriodStart=' + Tmodel.PeriodStart + '&PeriodEnd=' + Tmodel.PeriodEnd + '&ProjectManager=' + Tmodel.ProjectManager + '&ProjectManagerName=' + Tmodel.ProjectManagerName + '&flg=' + Tmodel.flg + '&BrandCD=' + BrandCD + '&ProjectCD=' + ProjectCD + '&Mode=Copy';
 
         }
 
         function btnDelClick(BrandCD, ProjectCD) {
-            var Tmodel = GetProjectData();
+            var Tmodel = GetPorjectData();
 
-            location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?BrandCD=' + Tmodel.BrandCD + '&BrandName=' + Tmodel.BrandName + '&Year' + Tmodel.Year + '&ProjectCD' + Tmodel.ProjectCD + '&ProjectName' + Tmodel.ProjectName + '&PeriodStart' + Tmodel.PeriodStart + '&PeriodEnd' + Tmodel.PeriodEnd + '&ProjectManager' + Tmodel.ProjectManager + '&ProjectManagerName' + Tmodel.ProjectManagerName + '&flg=' + Tmodel.flg + '&BrandCD=' + BrandCD + '&ProjectCD=' + ProjectCD + '&Mode=Delete';
+            location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&Year=' + Tmodel.Year + '&ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName=' + Tmodel.ProjectName + '&Season='+Tmodel.Season+ '&PeriodStart=' + Tmodel.PeriodStart + '&PeriodEnd=' + Tmodel.PeriodEnd + '&ProjectManager=' + Tmodel.ProjectManager + '&ProjectManagerName=' + Tmodel.ProjectManagerName + '&flg=' + Tmodel.flg + '&BrandCD=' + BrandCD + '&ProjectCD=' + ProjectCD + '&Mode=Delete';
         }
 
         function GetPorjectData() {
             var Tmodel = {
-                BrandCD: $('#BrandCD').val(),
+                BrandCD1: $('#BrandCD').val(),
                 BrandName: $('#BrandName').val(),
                 Year: $('#Year').val(),
-                ProjectCD: $('#ProjectCD').val(),
+                ProjectCD1: $('#ProjectCD').val(),
                 ProjectName: $('#ProjectName').val(),
                 PeriodStart: $('#PeriodStart').val(),
                 PeriodEnd: $('#PeriodEnd').val(),
