@@ -31,16 +31,25 @@ namespace Print_GenkaBL
         {
             BaseDL bdl = new BaseDL();
             Pmodel.Sqlprms = new SqlParameter[8];
-            Pmodel.Sqlprms[0] = new SqlParameter("@targetyear", SqlDbType.Int) { Value = (object)Pmodel.TargetYear ?? DBNull.Value };
+            Pmodel.Sqlprms[0] = new SqlParameter("@targetyear", SqlDbType.VarChar) { Value = (object)Pmodel.TargetYear ?? DBNull.Value };
             Pmodel.Sqlprms[1] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = (object)Pmodel.BrandCD ?? DBNull.Value };
             Pmodel.Sqlprms[2] = new SqlParameter("@BrandName", SqlDbType.VarChar) { Value = (object)Pmodel.BrandName ?? DBNull.Value };
             Pmodel.Sqlprms[3] = new SqlParameter("@Season", SqlDbType.VarChar) { Value = (object)Pmodel.Season ?? DBNull.Value };
             Pmodel.Sqlprms[4] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = (object)Pmodel.ProjectCD ?? DBNull.Value };
             Pmodel.Sqlprms[5] = new SqlParameter("@ProjectName", SqlDbType.VarChar) { Value = (object)Pmodel.ProjectName ?? DBNull.Value };
-            Pmodel.Sqlprms[6] = new SqlParameter("@DeliveryStatus", SqlDbType.Int) { Value = (object)Pmodel.DeliveryStatus ?? DBNull.Value };
+            Pmodel.Sqlprms[6] = new SqlParameter("@DeliveryStatus", SqlDbType.VarChar) { Value = (object)Pmodel.DeliveryStatus ?? DBNull.Value };
             Pmodel.Sqlprms[7] = new SqlParameter("@LoginID", SqlDbType.VarChar) { Value = (object)Pmodel.LoginID ?? DBNull.Value };
             //Pmodel.Sqlprms[6] = new SqlParameter("@FiscalYYYYMM", SqlDbType.Int) { Value = (object)Pmodel.Year ?? DBNull.Value };
             return bdl.SelectJson("Print_GenkaCSV", Pmodel.Sqlprms);
+        }
+
+        public string Print_Genka_ProjectData(Print_GenkaModel Pmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            Pmodel.Sqlprms = new SqlParameter[2];
+            Pmodel.Sqlprms[0] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = (object)Pmodel.ProjectCD ?? DBNull.Value };
+            Pmodel.Sqlprms[1] = new SqlParameter("@LoginID", SqlDbType.VarChar) { Value = (object)Pmodel.LoginID ?? DBNull.Value };
+            return bdl.SelectJson("Print_Genka_ProjectData", Pmodel.Sqlprms);
         }
 
         public string M_Contrl_Year_ExitCheck(Print_GenkaModel Pmodel) // for 対象年度
