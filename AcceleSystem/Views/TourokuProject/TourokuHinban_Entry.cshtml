@@ -298,7 +298,30 @@
                 DeliverNo = parseInt(DeliverNo);
 
                 if (Production < DeliverNo) {
+                    $('#Production').focus();
                     ShowErrorMessage("E125");
+                }
+                else {
+                    $('#saleprice').focus();
+                }
+            }
+        }
+
+        function CheckProductionOnSave() {
+            if (!($('#Production').val().trim()) == '') {
+                var pro = $('#Production').val();
+                var del = $('#DeliverNo').val();
+                var Production = pro.replace(",", "");
+                Production = parseInt(Production);
+                var DeliverNo = del.replace(",", "");
+                DeliverNo = parseInt(DeliverNo);
+
+                if (Production < DeliverNo) {
+                    $('#Production').focus();
+                    return "E125";
+                }
+                else {
+                    return "0";
                 }
             }
         }
@@ -352,7 +375,11 @@
                     }
                 }
                 else {
-                    DoProcess();
+                    var res2 = CheckProductionOnSave();
+                    if (res2 == "0")
+                        DoProcess();
+                    else
+                        ShowErrorMessage(res2);
                 }
             }
             else
