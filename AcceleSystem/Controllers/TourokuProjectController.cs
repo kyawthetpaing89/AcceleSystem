@@ -11,9 +11,9 @@ namespace AcceleSystem.Controllers
     public class TourokuProjectController : Controller
     {
         // GET: Touroku
-        public ActionResult TourokuProject_List()
+        public ActionResult TourokuProject_List(TourokuProjectModel Tmodel)
         {
-            return View();
+            return View(Tmodel);
         }
         public ActionResult TourokuProject_Entry(TourokuProjectModel Tmodel)
         {

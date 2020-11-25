@@ -132,7 +132,7 @@
 
 
 @section Scripts{
-    <script type="text/javascript">
+<script type="text/javascript">
     $(document).ready(function () {
             $("#formtitle").text("プロジェクト登録");
             $("#ProjectCD").focus();
@@ -417,7 +417,7 @@
          else Tmodel.Season = "3";
 
          var data = CalltoApiController('@Url.Action("Project_CUD", "api/TourokuProjectApi")', Tmodel);
-         ShowSuccessMessage(data,'@Url.Action("TourokuProject_List", "TourokuProject")');
+         ShowSuccessMessage(data,'@Url.Action("TourokuProject_List", "TourokuProject")?BrandCD=' + '@Model.BrandCD' + '&BrandName=' + '@Model.BrandName' + '&Year=' + '@Model.Year' + '&ProjectCD=' + '@Model.ProjectCD' + '&ProjectName=' + '@Model.ProjectName' + '&PeriodStart=' + '@Model.PeriodStart' + '&PeriodEnd=' + '@Model.ProjectManager' + '&ProjectManager=' + '@Model.ProjectManagerName' + '&ProjectManagerName=' + '@Model.ProjectCD' + '&ProjectName=' + '@Model.ProjectName' +'&flg=' + '@Model.flg');
     }
 
     function DeleteConfrim() {
@@ -456,7 +456,7 @@
     }
 
      function btnCancelClick() {
-         location.href = '@Url.Action("TourokuProject_List", "TourokuProject")';
+         location.href = '@Url.Action("TourokuProject_List", "TourokuProject")?BrandCD=' + '@Model.BrandCD' + '&BrandName=' + '@Model.BrandName' + '&Year=' + '@Model.Year' + '&ProjectCD=' + '@Model.ProjectCD' + '&ProjectName=' + '@Model.ProjectName' + '&PeriodStart=' + '@Model.PeriodStart' + '&PeriodEnd=' + '@Model.ProjectManager' + '&ProjectManager=' + '@Model.ProjectManagerName' + '&ProjectManagerName=' + '@Model.ProjectCD' + '&ProjectName=' + '@Model.ProjectName' +'&flg=' + '@Model.flg';
      }
 
     $('#btnCancel').keydown(function (e) {
@@ -476,7 +476,7 @@
         }
     });
 
-    </script>
+</script>
     @*<script src="@Url.Content("~/Scripts/datepicker.js")"></script>
         <script src="@Url.Content("~/Scripts/datepicker.en.js")"></script>*@
 
