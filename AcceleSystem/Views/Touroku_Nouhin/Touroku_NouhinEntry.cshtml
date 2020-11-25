@@ -34,7 +34,7 @@
                             <label id="text" style="padding-right: 5px;">
                                 年度
                             </label>
-                            <input type="text" tabindex="2" class="text-line col-sm-12 col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this)" id="Year" name="txtYear" maxlength="4" required placeholder="">
+                            <input type="text" tabindex="2" class="text-line col-sm-12 col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this)" id="Year" name="txtYear" maxlength="4" required placeholder="入力">
                         </div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                             <label id="text" style="padding-right: 5px;">
                                 ブランド
                             </label>
-                            <input type="text" tabindex="3" class="text-line col-sm-12 col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this)" id="BrandCD" name="txtBrandCD" maxlength="20" required placeholder="">
+                            <input type="text" tabindex="3" class="text-line col-sm-12 col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this)" id="BrandCD" name="txtBrandCD" maxlength="20" required placeholder="入力">
                             <label id="BrandName"><b>ブランド表示</b></label>
                         </div>
                     </div>
@@ -380,12 +380,12 @@
                     $(this).focus();
                     ShowErrorMessage("E109");
                 }
-                else if (Deliverydata > (parseInt($('#Production').val()) - parseInt($('#SumDeliveryAmount').val()))) {
+                else if (Deliverydata > (parseInt($(row).find('#Production').val()) - parseInt($(row).find('#SumDeliveryAmount').val()))) {
                     $(this).focus();
                     ShowErrorMessage("E128");
                 }
                 else {
-                    Undeliverdata = parseInt($('#Production').val()) - parseInt($('#SumDeliveryAmount').val()) - Deliverydata;
+                    Undeliverdata = parseInt($(row).find('#Production').val()) - parseInt($(row).find('#SumDeliveryAmount').val()) - Deliverydata;
                     $(row).find('#UNDeliverItems').val(Undeliverdata);
                 }
             });
@@ -395,21 +395,24 @@
         function tbErrorCheck() {
             var result;
             $('#tblNouhinEntry tr').each(function (row, tr) {
-                if (parseInt($(tr).find('#DeliverAmount').val()) < 0) {
-                    $(tr).find('#DeliverAmount').focus();
-                    result = "E109";
-                    return false;
+                if ($(tr).find('#chk').val() == "true") {
+                    if (parseInt($(tr).find('#DeliverAmount').val()) < 0) {
+                        $(tr).find('#DeliverAmount').focus();
+                        result = "E109";
+                        return false;
+                    }
+                    else if (parseInt($(tr).find('#DeliverAmount').val()) > (parseInt($(tr).find('#Production').val()) - parseInt($(tr).find('#SumDeliveryAmount').val()))) {
+                        $(tr).find('#DeliverAmount').focus();
+                        result = "E128";
+                        return false;
+                    }
+                    else {
+                        result = "0";
+                        return true;
+                    }
                 }
-                else if (parseInt($(tr).find('#DeliverAmount').val()) > (parseInt($(tr).find('#Production').val()) - parseInt($(tr).find('#SumDeliveryAmount').val()))) {
-                       $(tr).find('#DeliverAmount').focus();
-                    result = "E128";
-                    return false;
-                }
-                else {
-                            result = "0";
-                            return true;
-                       }
             });
+        
             return result;
         }
 
@@ -449,7 +452,7 @@
                 };
 
                 var data = CalltoApiController('@Url.Action("Nouhin_CUD", "api/Touroku_NouhinApi")', TnModel);
-                ShowSuccessMessage(data, '@Url.Action("Touroku_NouhinList", "Touroku_Nouhin")Year=' + '@Model.Year' + '&Season=' + '@Model.Season' + '&BrandCD=' + '@Model.BrandCD' + '&BrandName=' + '@Model.BrandName' + '&ProjectCD1=' + '@Model.ProjectCD1' + '&ProjectName=' + '@Model.ProjectName' + '&HinbanCD=' + '@Model.HinbanCD' + '&HinbanName=' + '@Model.HinbanName' + '&DeliveryStartDate=' + '@Model.DeliveryStartDate' + '&DeliveryEndDate=' + '@Model.DeliveryEndDate' + '&DeliveryStatus=' + '@Model.DeliveryStatus' + '&flg=' + '@Model.flg' );
+                ShowSuccessMessage(data, '@Url.Action("Touroku_NouhinList", "Touroku_Nouhin")?Year=' + '@Model.Year' + '&Season=' + '@Model.Season' + '&BrandCD=' + '@Model.BrandCD' + '&BrandName=' + '@Model.BrandName' + '&ProjectCD1=' + '@Model.ProjectCD1' + '&ProjectName=' + '@Model.ProjectName' + '&HinbanCD=' + '@Model.HinbanCD' + '&HinbanName=' + '@Model.HinbanName' + '&DeliveryStartDate=' + '@Model.DeliveryStartDate' + '&DeliveryEndDate=' + '@Model.DeliveryEndDate' + '&DeliveryStatus=' + '@Model.DeliveryStatus' + '&flg=' + '@Model.flg' );
             
         }
 
