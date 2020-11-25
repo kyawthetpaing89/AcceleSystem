@@ -15,13 +15,13 @@
                 <div class="card-body card-block">
                     <div class="row form-group">
                         <div class="col col-md-12">
-                            <button id="btnAdd" tabindex="17" onclick="btnAdd_Click()" class="btn btn-primary col-xl-3 text-center" >
+                            <button id="btnAdd" tabindex="17" onclick="btnAdd_Click()" class="btn btn-primary col-xl-3 text-center">
                                 納品追加
                             </button>
                             <button id="btnBS" tabindex="18" onclick="btnBSNouhin_Click()" class="btn btn-primary col-xl-4 text-center">
                                 B/S一括納品
                             </button>
-                          
+
                             <div id="registration" style="padding-top: 1.8rem!important;">
                                 <div>
                                     <h4 class=" hr-text text-center">検索条件入力</h4>
@@ -95,9 +95,9 @@
                                     <div class="col-md-12" style="padding-left:20px;">
                                         <div id="Statusgp" class="text-s text-custom1 text-uppercase mb-1">
                                             <label class="text" style="padding-right:30px;">納品状況</label>
-                                            <input type="checkbox" tabindex="13" id="Delleft" name="chkDelleft" onkeydown="KeyDown(event,this)"  checked>
+                                            <input type="checkbox" tabindex="13" id="Delleft" name="chkDelleft" onkeydown="KeyDown(event,this)" checked>
                                             <label for="Delleft" style="padding-right:12px;">納品残あり</label>
-                                            <input type="checkbox" tabindex="14" id="Delcomplete" onkeydown="KeyDown(event,this,'flgCheck')" name="chkDelcomplete" >
+                                            <input type="checkbox" tabindex="14" id="Delcomplete" onkeydown="KeyDown(event,this,'flgCheck')" name="chkDelcomplete">
                                             <label for="Delcomplete">完納</label>
                                         </div>
                                     </div>
@@ -113,37 +113,43 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-xs-12 col-md-6">
-                <div class="card-body card-block">
-                    <table id="tblNouhin" class="tb1 col-sm-12" style="margin-left:10px;width:100%">
-                        <thead>
-                            <tr>
-                                <th>納品日</th>
-                                <th>ブランド</th>
-                                <th>シーズン</th>
-                                <th>年度</th>
-                                <th></th>
-                            </tr>
-                            <tr>
-                                <th>プロジェクト</th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                            <tr>
-                                <th>品番</th>
-                                <th></th>
-                                <th>生産数</th>
-                                <th>納品数</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
+            <div class="card-body card-block">
+                <table id="tblNouhin" class="tb1 col-sm-12" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>
+                                <table class="col-md-12">
+                                    <tr>
+                                        <th style="width: 20%">納品日</th>
+                                        <th style="width: 40%">ブランド</th>
+                                        <th style="width: 15%">シーズン</th>
+                                        <th style="width: 15%">年度</th>
+                                        <th style="width: 10%"></th>
+                                    </tr>
+                                    <tr>
+                                        <th>プロジェクト</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                    <tr>
+                                        <th>品番</th>
+                                        <th></th>
+                                        <th>生産数</th>
+                                        <th>納品数</th>
+                                        <th></th>
+                                    </tr>
+                                </table>
+                            </th>
+                            
+                        </tr>
+                    </thead>
+                </table>
             </div>
-            @*<div class="col-md-2"></div>*@
+        </div>
+          
         </div>
     </div>
 </div>
@@ -325,44 +331,58 @@
                 "bLengthChange": false,
                 "bInfo": false,
                 "bSort": false,
-                destroy:true,
+                destroy: true,
+              
                 "columns": [
                     {
                         "data": null,
-                        className:"Border1",
+                        className: "Border1",
                         render: function (data, type, row) {
-                            return '<label>' + data.DeliveryDate + '</label><br/><label>' + data.ProjectCD + '</label><br/><label>' + data.HinbanCD +  '</label>';
-                        }
-                    },
-                    {
-                        "data": null,
-                        className: "Border2",
-                        render: function (data, type, row) {
-                            return '<label>' + data.BrandName + '</label><br/><label>' + data.ProjectName + '</label><br/><label>' + data.HinbanName + '</label>';
-                        }
-                    },
-                    {
-                        "data": null,
-                        className: "Border3",
-                        render: function (data, type, row) {
-                            return '<label>' + data.Season + '</label><br/><label>' + ' ' + '</label><br/><label>' + data.Production + '</label>';
-                        }
-                    },
-                    {
-                        "data": null,
-                        className: "Border4",
-                        render: function (data, type, row) {
-                            return '<label>' + data.Year + '</label><br/><label>' + '' + '</label><br/><label>' + data.DeliveryAmount  + '</label>';
-                        }
-                    },
-                    {
-                        "data": null,
-                        className: "Border5",
-                        render: function (data, type, row) {
-                            return '<label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.ProjectCD +'\')" style="color:red">削除</a></label>';
+                            return '<table class="col-md-12"><tr><td style="width: 20%">' + data.DeliveryDate + '</td><td style="width: 40%">' + data.BrandName + '</td><td style="width: 15%">' + data.Season + '</td><td style="width:15%">' + data.Year + '</td><td style="width:10%"><label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label><br/></td></tr>' +
+                                '<tr><td>' + data.ProjectCD + '</td><td>' + data.ProjectName + '</td><td></td><td></td><td></td></tr>' +                                
+                                '<tr><td>' + data.HinbanCD + '</td><td>' + data.HinbanName + '</td><td>' + data.Production + '</td><td>' + data.DeliveryAmount + '</td><td><label><a href="#" onClick="btnDelClick(\'' + data.ProjectCD + '\')" style="color:red">削除</a></label></td></tr></table>';
+
+
                         }
                     },
                 ]
+                //"columns": [
+                //    {
+                //        "data": null,
+                //        className:"Border1",
+                //        render: function (data, type, row) {
+                //            return '<label>' + data.DeliveryDate + '</label><br/><label>' + data.ProjectCD + '</label><br/><label>' + data.HinbanCD +  '</label>';
+                //        }
+                //    },
+                //    {
+                //        "data": null,
+                //        className: "Border2",
+                //        render: function (data, type, row) {
+                //            return '<label>' + data.BrandName + '</label><br/><label>' + data.ProjectName + '</label><br/><label>' + data.HinbanName + '</label>';
+                //        }
+                //    },
+                //    {
+                //        "data": null,
+                //        className: "Border3",
+                //        render: function (data, type, row) {
+                //            return '<label>' + data.Season + '</label><br/><label>' + ' ' + '</label><br/><label>' + data.Production + '</label>';
+                //        }
+                //    },
+                //    {
+                //        "data": null,
+                //        className: "Border4",
+                //        render: function (data, type, row) {
+                //            return '<label>' + data.Year + '</label><br/><label>' + '' + '</label><br/><label>' + data.DeliveryAmount  + '</label>';
+                //        }
+                //    },
+                //    {
+                //        "data": null,
+                //        className: "Border5",
+                //        render: function (data, type, row) {
+                //            return '<label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label><br/><label><a href="#" onClick="btnDelClick(\'' + data.ProjectCD +'\')" style="color:red">削除</a></label>';
+                //        }
+                //    },
+                //]
                 //"drawCallback": function (settings) {
                 //    $("#tblNouhin thead").remove();
                 //}

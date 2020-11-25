@@ -27,13 +27,13 @@
         border-top: 1px solid #d3dcd3;
     }
 
-    #tblTouroku_Keihi td {
-        border-top: 1px solid #d3dcd3;
-    }
+#tblTouroku_Keihi > tbody > tr > td {
+    border-top: 1px solid #d3dcd3;
+}
 
-    #tblNouhin td {
-        border-top: 1px solid #d3dcd3;
-    }
+#tblNouhin > tbody > tr > td {
+    border-top: 1px solid #d3dcd3;
+}
 
     #tblUser th.sorting_disabled.Border1 {
         width: 100px !important;
@@ -81,10 +81,10 @@
  }
 
 #tblTouroku_Keihi {
-    width: 450px !important;
+   /*width: 450px !important;*/
 }
 
-    #tblTouroku_Keihi th.sorting_disabled.Border1 {
+    /*#tblTouroku_Keihi th.sorting_disabled.Border1 {
         width: 380px !important;
     }
 
@@ -98,7 +98,7 @@
 
     #tblTouroku_Keihi th.sorting_disabled.Border4 {
         width: 180px !important;
-    }
+    }*/
 
 #tblProject {
     width: 520px!important;
