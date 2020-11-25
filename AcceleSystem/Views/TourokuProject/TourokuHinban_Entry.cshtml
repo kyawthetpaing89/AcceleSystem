@@ -397,8 +397,8 @@
                     
                     Mode: '@Model.Mode'
                 };
-                var data = CalltoApiController('@Url.Action("Hinban_CUD", "api/TourokuProjectApi")', Tmodel);
-                ShowSuccessMessage(data, '@Url.Action("TourokuHinban_List", "TourokuProject")');
+            var data = CalltoApiController('@Url.Action("Hinban_CUD", "api/TourokuProjectApi")', Tmodel);
+            ShowSuccessMessage(data, '@Url.Action("TourokuHinban_List", "TourokuProject")?ProjectCD1=' + '@Model.ProjectCD1' + ' & ProjectName=' + '@Model.ProjectName' + '&HinbanCD1=' + '@Model.HinbanCD1' + '&HinbanName=' + '@Model.HinbanName' + '&CastingCD=' + '@Model.CastingCD' + '&CastingName=' + '@Model.CastingName' '&BrandCD1=' + '@Model.BrandCD1' +'&BrandName=' + '@Model.BrandCD1' +'&StartDate=' + '@Model.PeriodStart' +'&EndDate=' + '@Model.PeriodEnd' +'&Project=' + '@Model.CastingCD' +'&CastingCD=' + '@Model.CastingCD' + '&StartPrice=' + '@Model.StartPrice' + '&EndPrice=' + '@Model.EndPrice' + '&CompleteYM=' + '@Model.CompleteYM' + '&flg=' + '@Model.flg');
             //}
            
         }
@@ -461,7 +461,7 @@
     }
      
      function btnCancelClick() {
-         location.href = '@Url.Action("TourokuHinban_List", "TourokuProject")';
+         location.href = '@Url.Action("TourokuHinban_List", "TourokuProject")?ProjectCD1=' + '@Model.ProjectCD1' + '&ProjectName=' +  '@Model.ProjectName' + '&HinbanCD1=' +  '@Model.HinbanCD1' + '&HinbanName=' +  '@Model.HinbanName' + '&CastingCD=' + '@Model.CastingCD' + '&StartPrice=' + '@Model.StartPrice' + '&EndPrice=' + '@Model.EndPrice' + '&CompleteYM=' + '@Model.CompleteYM' + '&flg=' + '@Model.flg';
      }
 
     $('#btnCancel').keydown(function (e) {
