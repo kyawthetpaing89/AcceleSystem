@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Models.TourokuProjectModel
+@{
     ViewBag.Title = "TourokuProject_List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -160,17 +161,17 @@
             $('#PeriodEnd').val('@Model.PeriodEnd');
             $('#ProjectManager').val('@Model.ProjectManager');
             $('#ProjectManagerName').val('@Model.ProjectManagerName');
+             var str = '@Model.Season';
+               if (str.includes("1"))
+                   $("#Degreeyear").prop("checked", true);
+               else $("#Degreeyear").prop("checked", false);
+               if (str.includes("2"))
+                   $("#SS").prop("checked", true);
+               else $("#SS").prop("checked", false);
+               if (str.includes("3"))
+                   $("#FW").prop("checked", true);
+               else $("#FW").prop("checked", false);
 
-            var array = '@Model.Season'.split(',');
-            $.each(array, function (i) {
-                if (array[i] == "1")
-                    $("#Degreeyear").prop("checked", true);
-                else if (array[i] == "2")
-                    $("#SS").prop("checked", true);
-                else if (array[i] == "3")
-                    $("#FW").prop("checked", true);
-
-            });
         }
         $("#BrandCD").focus();
         DoubleByteCheck($("#BrandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
@@ -355,7 +356,7 @@
                         className: "Border4",
                         render: function (data, type, row) {
                             return '<label class="col-md-12 text-center">' + data.Year + '</label><br/><label></label><br/><label class="col-md-12 text-right">' + data.SalesPrice + '</label>';
-                            
+
                         }
                     },
 
