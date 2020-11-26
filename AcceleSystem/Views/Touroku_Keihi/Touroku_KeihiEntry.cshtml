@@ -18,8 +18,8 @@
                 </div>
                 <div>
                     <div>
-                        <label id="SEQ" ></label>
-                        <label id="accounting" ><b></b></label>
+                        <label id="SEQ" hidden></label>
+                        <label id="accounting" hidden ><b></b></label>
                     </div>
                     <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                         <div class="col-xs-12" style="padding-left:69px;">
@@ -221,6 +221,7 @@
                 $("#CostCD").focus();
                 
                 $("SEQ").text(@Model.SEQ);
+                ShowData();
 
                 RequiredCheck($("#CostCD"));
                 DoubleByteCheck($("#CostCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
@@ -242,7 +243,7 @@
                 DoubleByteCheck($("#projectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#projectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")', "projectName");
 
-                RequiredCheck($("#HinbanCD"));
+                //RequiredCheck($("#HinbanCD"));
                 DoubleByteCheck($("#HinbanCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "HinbanName", $("#projectCD").val());
 
@@ -255,7 +256,7 @@
                 RequiredCheck($("#AmountMoney"));
                 LessthanZeroCheck($("#AmountMoney"), '@Url.Action("LessthanZero_Checking", "api/CommonApi")');
 
-                ShowData();
+                
                 if ($("#accounting").text() == "1") {
                     RequiredCheck($("#projectCD"));
                     RequiredCheck($("#HinbanCD"));
@@ -280,6 +281,7 @@
                 $("#CostCD").focus();
                 
                 $("SEQ").text(@Model.SEQ) ;
+                ShowData();
 
                 RequiredCheck($("#CostCD"));
                 DoubleByteCheck($("#CostCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
@@ -313,7 +315,7 @@
                 RequiredCheck($("#AmountMoney"));
                 LessthanZeroCheck($("#AmountMoney"), '@Url.Action("LessthanZero_Checking", "api/CommonApi")');
 
-                ShowData();
+                
                 if ($("#accounting").text() == "1") {
                     RequiredCheck($("#projectCD"));
                     RequiredCheck($("#HinbanCD"));
