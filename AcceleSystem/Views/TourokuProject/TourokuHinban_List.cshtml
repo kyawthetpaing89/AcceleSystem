@@ -407,7 +407,7 @@
             @*var data = CalltoApiController('@Url.Action("M_Hinban_Price_Check", "api/TourokuProjectApi")', Tmodel);
             var SalePriceData = JSON.parse(data);
             if (SalePriceData[0].flg == "false") {*@
-            if (Tmodel.StartPrice <= EndPrice) {
+            if (Tmodel.StartPrice <= Tmodel.EndPrice) {
                 return "0";
             }
             else {
