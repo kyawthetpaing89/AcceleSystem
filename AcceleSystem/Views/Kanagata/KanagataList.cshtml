@@ -15,12 +15,19 @@
             <div class="col-sm-7 col-md-6">
                 <i class="fa fa-search" style="padding-left:15px;"></i>
                 <input type="text" id="myInput" placeholder="金型名入力" class="border border-white" style="width:80%;padding-bottom:10px">
-                <table id="tblCasting" class="tb1 col-sm-12" style="padding-left:0px;">
+                <table id="tblCasting" class="tb1 col-sm-12" style="padding-left:0px; width: 100%">
                     <thead>
                         <tr>
-                            <th>金型コード</th>
-                            <th>金型名</th>
-                            <th></th>
+                            <th>
+                                <table class="col-md-12">
+                                    <tr>
+                                        <th style="width:20%">金型コード</th>
+                                        <th style="width:40%">金型名</th>
+                                        <th style="width:20%"></th>
+                                    </tr>
+                                </table>
+                            </th>
+                            
                         </tr>
                     </thead>
                 </table>
@@ -75,27 +82,11 @@
                         "data": null,
                         className: "Border1",
                         render: function (data, type, row) {
-                            return '<label>' + data.CastingCD + '</label>';
-                        }
-                    },
-                    {
-                        "data": null,
-                        className: "Border2",
-                        render: function (data, type, row) {
-                            return '<label>' + data.CastingName + '</label>';
-                        }
-                    },
-                    {
-                        "data": null,
-                        className: "Border3",
-                        render: function (data, type, row) {
-                            return '<label><a href="#" onClick="btnEditClick(\'' + data.CastingCD + '\')" style="color:blue">編集</a></label>&nbsp;&nbsp;&nbsp;<label><a href="#" onClick="btnDelClick(\'' + data.CastingCD + '\')" style="color:red">削除</a></label>';
-                        }
+                            return '<table class="col-md-12"><tr><td style="width:20%">' + data.CastingCD + '</td><td style="width:40%">' + data.CastingName + '</td><td style="width:20%"><label><a href="#" onClick="btnEditClick(\'' + data.CastingCD + '\')" style="color:blue">編集</a></label>&nbsp;&nbsp;&nbsp;<label><a href="#" onClick="btnDelClick(\'' + data.CastingCD + '\')" style="color:red">削除</a></label></td></tr></table>';
                     }
-                ]
-                //"drawCallback": function (settings) {
-                //    $("#tblCasting thead").remove();
-                //}
+                },
+                  ] 
+                
             });
         }
         function btnAddClick() {
