@@ -7,13 +7,13 @@
     border-bottom: 1px solid #d3dcd3;
 }*/
 
-    #tblUser td {
-        border-top: 1px solid #d3dcd3;
-    }
+#tblUser > tbody > tr > td {
+    border-top: 1px solid #d3dcd3;
+}
 
-    #tblBrand td{
-        border-top: 1px solid #d3dcd3;
-    }
+#tblBrand > tbody > tr > td {
+    border-top: 1px solid #d3dcd3;
+}
 
     #tblCasting td {
         border-top: 1px solid #d3dcd3;

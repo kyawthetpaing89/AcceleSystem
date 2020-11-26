@@ -18,21 +18,22 @@
             <div class="col-sm-8 col-md-8 col-lg-8">
                 <i class="fa fa-search" style="padding-left:15px;"></i>
                 <input type="text" id="myInput" placeholder="ブランド名入力" class="border border-white" style="width:80%;padding-bottom:10px">
-                <table id="tblBrand" class="tb1 col-sm-12" style="padding-left:0px;">
+                <table id="tblBrand" class="tb1 col-sm-12" style="padding-left:0px;width:100%">
                     <thead>
                         <tr>
-                            <th>ブランドコード</th>
-                            <th>ブランド名</th>
-                            <th></th>
+                            <th>
+                                <table>
+                                    <tr class="col-md-12">
+                                        <th style="width:20%">ブランドコード</th>
+                                        <th style="width:50%">ブランド名</th>
+                                        <th style="width:20%"></th>
+                                    </tr>
+                                </table>
+                            </th>
+                            
                         </tr>
                     </thead>
-                    @*<tbody>
-                        <tr>
-                            <td>BrandCD</td>
-                            <td>BrandName</td>
-                            <td></td>
-                        </tr>
-                    </tbody>*@
+                    
                 </table>
             </div>
         </div>
@@ -83,34 +84,20 @@
                 "bLengthChange": false,
                 "bInfo": false,
                 "bSort": false,
-                destroy:true,
+                destroy: true,
+
                 "columns": [
                     {
                         "data": null,
                         className: "Border1",
                         render: function (data, type, row) {
-                            return '<label>' + data.BrandCD + '</label>';
+                            return '<table class="col-md-12"><tr><td style="width:20%">' + data.BrandCD + '</td><td style="width:50%">' + data.BrandName + '</td><td style="width:20%"><label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\')" style="color:blue">編集</a></label>&nbsp;&nbsp;&nbsp;<label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\')" style="color:red">削除</a></label></td></tr>'
                         }
                     },
-                    {
-                        "data": null,
-                        className: "Border2",
-                        render: function (data, type, row) {
-                            return '<label>' + data.BrandName + '</label>';
-                        }
-                    },
-                    {
-                        "data": null,
-                        className: "Border3",
-                        render: function (data, type, row) {
-                            return '<label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\')" style="color:blue">編集</a></label>&nbsp;&nbsp;&nbsp;<label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\')" style="color:red">削除</a></label>';
-                        }
-                    }
+
                 ]
 
-            //    "drawCallback": function (settings) {
-            //        $("#tblBrand thead").remove();
-            //    }
+               
             });
 
         }
