@@ -170,7 +170,7 @@
             $("#Amount").attr('disabled', 'disabled');
             $("#CastingName").attr('disabled', 'disabled');
 
-            var Mode = '@Model.Mode'; 
+            var Mode = '@Model.Mode';
             if (Mode == 'New') {
                 $('#btnSave').html('登録');
 
@@ -178,7 +178,7 @@
                 RequiredCheck($("#ProjectCD"));
                 DoubleByteCheck($("#ProjectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "ProjectName");
-                
+
                 RequiredCheck($("#HinbanCD"));
                 DoubleByteCheck($("#HinbanCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 RequiredCheck($("#HinbanName"));
@@ -191,7 +191,7 @@
 
                 DoubleByteCheck($("#CastingCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/TourokuProjectApi")', "CastingName");
-                
+
             }
             else if (Mode == 'Edit') {
                 ShowData();
@@ -214,7 +214,7 @@
 
                 DoubleByteCheck($("#CastingCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/TourokuProjectApi")', "CastingName");
-                
+
             }
 
             else if (Mode == 'Copy') {
@@ -224,11 +224,11 @@
 
                 DoubleByteCheck($("#ProjectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "ProjectName");
-                
+
                 RequiredCheck($("#HinbanCD"));
                 DoubleByteCheck($("#HinbanCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 AlreadyExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', $("#ProjectCD").val());
-                
+
                 RequiredCheck($("#HinbanName"));
 
                 RequiredCheck($("#Production"));
@@ -239,7 +239,7 @@
 
                 DoubleByteCheck($("#CastingCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/TourokuProjectApi")', "CastingName");
-                
+
             }
             else if (Mode == 'Delete') {
                 $('#btnSave').html('削除');
@@ -296,9 +296,32 @@
                 Production = parseInt(Production);
                 var DeliverNo = del.replace(",", "");
                 DeliverNo = parseInt(DeliverNo);
-              
+
                 if (Production < DeliverNo) {
+                    $('#Production').focus();
                     ShowErrorMessage("E125");
+                }
+                else {
+                    $('#saleprice').focus();
+                }
+            }
+        }
+
+        function CheckProductionOnSave() {
+            if (!($('#Production').val().trim()) == '') {
+                var pro = $('#Production').val();
+                var del = $('#DeliverNo').val();
+                var Production = pro.replace(",", "");
+                Production = parseInt(Production);
+                var DeliverNo = del.replace(",", "");
+                DeliverNo = parseInt(DeliverNo);
+
+                if (Production < DeliverNo) {
+                    $('#Production').focus();
+                    return "E125";
+                }
+                else {
+                    return "0";
                 }
             }
         }
@@ -309,7 +332,7 @@
                 ProjectCD: '@Model.ProjectCD'
 
             };
-            
+
             var data = CalltoApiController('@Url.Action("M_HinBan_Select_Edit", "api/TourokuProjectApi")', Tmodel);
             var hinbandata = JSON.parse(data);
             $("#ProjectCD").val(hinbandata[0].ProjectCD);
@@ -352,7 +375,11 @@
                     }
                 }
                 else {
-                    DoProcess();
+                    var res2 = CheckProductionOnSave();
+                    if (res2 == "0")
+                        DoProcess();
+                    else
+                        ShowErrorMessage(res2);
                 }
             }
             else
@@ -394,13 +421,13 @@
                     SalePrice: $("#saleprice").val(),
                     FreeItem1: $("#freeitem1").val(),
                     FreeItem2: $("#freeitem2").val(),
-                    
+
                     Mode: '@Model.Mode'
                 };
-                var data = CalltoApiController('@Url.Action("Hinban_CUD", "api/TourokuProjectApi")', Tmodel);
-                ShowSuccessMessage(data, '@Url.Action("TourokuHinban_List", "TourokuProject")');
+            var data = CalltoApiController('@Url.Action("Hinban_CUD", "api/TourokuProjectApi")', Tmodel);
+            ShowSuccessMessage(data, '@Url.Action("TourokuHinban_List", "TourokuProject")?ProjectCD1=' + '@Model.ProjectCD1' + '&ProjectName=' + '@Model.ProjectName' + '&BrandCD1=' + '@Model.BrandCD1' + '&BrandName=' + '@Model.BrandName' + '&StartDate=' + '@Model.startDate' + '&EndDate=' + '@Model.endDate' + '&Year=' + '@Model.Year' + '&Season=' + '@Model.Season' + '&Production=' + '@Model.Production' + '&TotalAmount=' + '@Model.TotalAmount' + '&HinbanCD1=' + '@Model.HinbanCD1' + '&HinbanName=' + '@Model.HinbanName' + '&CastingCD=' + '@Model.CastingCD' + '&CastingName=' + '@Model.CastingName' + '&StartPrice=' + '@Model.StartPrice' + ' &EndPrice=' + '@Model.EndPrice' + ' &CompleteYM=' + '@Model.CompleteYM' + '&flg=' + '@Model.flg');
             //}
-           
+
         }
 
         function DeleteConfrim() {
@@ -413,7 +440,7 @@
                  ProjectCD: $("#ProjectCD").val(),
             };
             var data = CalltoApiController('@Url.Action("M_Hinban_DCost_Check", "api/TourokuProjectApi")', Tmodel);
-            var checkdata = JSON.parse(data); 
+            var checkdata = JSON.parse(data);
             if (checkdata[0].MessageID == 'E119') {
                 return checkdata[0].MessageID;
             }
@@ -459,9 +486,9 @@
            }
         return "0";
     }
-     
+
      function btnCancelClick() {
-         location.href = '@Url.Action("TourokuHinban_List", "TourokuProject")';
+         location.href = '@Url.Action("TourokuHinban_List", "TourokuProject")?ProjectCD1=' + '@Model.ProjectCD1' + '&ProjectName=' + '@Model.ProjectName' + '&BrandCD1=' + '@Model.BrandCD1' + '&BrandName=' + '@Model.BrandName' + '&StartDate=' + '@Model.startDate' + '&EndDate=' + '@Model.endDate' + '&Year=' + '@Model.Year' + '&Season=' + '@Model.Season' + '&Production=' + '@Model.Production' + '&TotalAmount=' + '@Model.TotalAmount' + '&HinbanCD1=' + '@Model.HinbanCD1' + '&HinbanName=' + '@Model.HinbanName' + '&CastingCD=' + '@Model.CastingCD' + '&CastingName=' + '@Model.CastingName' + '&StartPrice=' + '@Model.StartPrice' + ' &EndPrice=' + '@Model.EndPrice' + ' &CompleteYM=' + '@Model.CompleteYM' + '&flg=' + '@Model.flg';
      }
 
     $('#btnCancel').keydown(function (e) {
@@ -482,6 +509,6 @@
     });
 
 
- </script>
+</script>
    
 }

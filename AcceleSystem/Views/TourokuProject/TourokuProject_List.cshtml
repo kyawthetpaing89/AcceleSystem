@@ -317,8 +317,15 @@
                     Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
                 },
                 success: function (response) {
-                    BindTable(response);
-                }
+                    if (response == "[]") {
+                        BindTable(response);
+                        var data = ShowErrorMessage("E104");
+                        return data;
+                    }
+                    else {
+                        BindTable(response);
+                    }
+                },
             });
         }
 
@@ -337,7 +344,6 @@
                         "data": null,
                         className: "Border1",
                         render: function (data, type, row) {
-                           // return '<label>' + data.BrandCD + '</label><br/><label>' + data.ProjectCD + '</label><br/><label>' + data.PeriodStart + '</label>';
                             return '<table class="col-md-12"><tr><td style="width: 20%">' + data.BrandCD + '</td><td style="width: 20%">' + data.BrandName + '</td><td style="width: 20%">' + data.Season + '</td><td style="width: 20%">' + data.Year + '</td><td><label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label></td></tr> ' +
                                 '<tr><td>' + data.ProjectCD + '</td><td>' + data.ProjectName + '</td><td style="width: 20%">' + '' + '</td><td style="width: 20%">' + '' + '</td><td style="width: 20%">' +'' + '</td><td><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:red">削除</a></label></td></tr>' +
                                 '<tr><td>'+ data.Production + '</td><td>' + data.Year + '</td><td></td><td><label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:green">複写</a></label></td></tr></table > ';
@@ -436,9 +442,7 @@
         }
 
         function btnNextClick() {
-            var Tmodel = GetPorjectData();
-
-            location.href = '@Url.Action("TourokuHinban_List", "TourokuProject")?BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&Year=' + Tmodel.Year + '&ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName' + Tmodel.ProjectName + '&Season=' + Tmodel.Season + '&PeriodStart=' + Tmodel.PeriodStart + '&PeriodEnd=' + Tmodel.PeriodEnd + '&ProjectManager=' + Tmodel.ProjectManager + '&ProjectManagerName=' + Tmodel.ProjectManagerName + '&flg=' + Tmodel.flg + '&Mode=New';
+            location.href = '@Url.Action("TourokuHinban_List", "TourokuProject")';
         }
 
         function btnEditClick(BrandCD, ProjectCD) {
