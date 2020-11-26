@@ -15,9 +15,9 @@
     border-top: 1px solid #d3dcd3;
 }
 
-    #tblCasting td {
-        border-top: 1px solid #d3dcd3;
-    }
+#tblCasting > tbody > tr > td {
+    border-top: 1px solid #d3dcd3;
+}
 
     #tblKeihi td {
         border-top: 1px solid #d3dcd3;
