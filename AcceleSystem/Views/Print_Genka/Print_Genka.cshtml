@@ -118,7 +118,7 @@
         </div>
         <div class="col-md-12">
             <table id="tblExcel" style="display:none;">
-                <thead><tr></tr></thead>
+                <thead></thead>
                 <tbody></tbody>
             </table>
             <a id="dlink" style="display:none;"></a>
@@ -232,16 +232,20 @@
                         pmodel.DeliveryStatus = "2";
 
                     var data = CalltoApiController('@Url.Action("Print_GenkaCSV", "api/Print_GenkaApi")', pmodel);
-                    var csv = JSON2CSV(data);
-                    var downloadLink = document.createElement("a");
-                    var blob = new Blob(["\ufeff", csv]);
-                    var url = URL.createObjectURL(blob);
-                    downloadLink.href = url;
-                    downloadLink.download = "原価集計表.csv";
+                    //var csv = JSON2CSV(data);
+                    //var downloadLink = document.createElement("a");
+                    //var blob = new Blob(["\ufeff", csv]);
+                    //var url = URL.createObjectURL(blob);
+                    //downloadLink.href = url;
+                    //downloadLink.download = "原価集計表.csv";
 
-                    document.body.appendChild(downloadLink);
-                    downloadLink.click();
-                    document.body.removeChild(downloadLink);
+                    //document.body.appendChild(downloadLink);
+                    //downloadLink.click();
+                    //document.body.removeChild(downloadLink);
+
+                    JSON2CSV(data);
+                    download();
+
                     Swal.fire({
                         icon: 'success',
                         title: 'I204',
@@ -265,7 +269,6 @@
                     ShowErrorMessage(res);
                 }
             }
-            download();
         }
 
 
@@ -275,15 +278,16 @@
             var i, result = [];
             var array = typeof JSONString != 'object' ? JSON.parse(objArray) : JSONString;
             //var fields = Object.keys(array[0])
-            var col_name = [ "", "", "処理年月に｢★｣印を出力→", "前期発生金額", "1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月", "当期配賦金額", "費目合計", "当期仕掛金額" ]
+            //var col_name = [ "", "", "処理年月に｢★｣印を出力→", "前期発生金額", "1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月", "当期配賦金額", "費目合計", "当期仕掛金額" ]
             var replacer = function (key, value) { return value === null ? '' : value }
+            var cost_replacer = function (key, value) { return value == 0 ? '' : value }
             //var csv = array.map(function (row) {
             //    return fields.map(function (fieldName) {
             //        return JSON.stringify(row[fieldName], replacer)
             //    }).join(',')
             //})
 
-            for (i = 0; i < array.length; i++) {
+            @*for (i = 0; i < array.length; i++) {
                 if (array[i]["SortKey"] == '10') {
                     fiscalMM = array[i]["FiscalMM"];
                     result.push(JSON.stringify(array[i]["BrandCD"], replacer) + ',' + JSON.stringify(array[i]["Casting"], replacer) + ',' + JSON.stringify(array[i]["CostName"], replacer) + ',' + JSON.stringify(array[i]["CostPre"], replacer) + ',' +
@@ -342,16 +346,17 @@
                         }
                     }
                 }
-            }
+            }*@
 
             fiscalMM = array[0]["FiscalMM"];
             var colname = ["処理年月に｢★｣印を出力→", "前期発生金額", "1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月", "当期配賦金額", "費目合計", "当期仕掛金額"]
+            $('#tblExcel thead').append($('<tr>'));
             for (var i = 0; i <= colname.length - 1; i++) {
                 if (i == 0) {
-                    $('#tblExcel tr').append($("<th colspan='3' style = 'font-weight: bold;color: white;background-color: #000099'>"));
+                    $('#tblExcel thead tr:last').append($("<th colspan='3' style = 'font-weight: bold;color: white;background-color: #000099'>"));
                 }
                 else {
-                    $('#tblExcel tr').append($("<th style = 'font-weight: bold;color: white;background-color: #000099'>"));
+                    $('#tblExcel thead tr:last').append($("<th style = 'font-weight: bold;color: white;background-color: #000099'>"));
                 }
 
                 if (colname[i].slice(0, -1) == fiscalMM) {
@@ -367,57 +372,57 @@
             for (i = 0; i < array.length; i++) {
                 if (array[i]["SortKey"] == '10') {
                     if (a_row == 0) {
-                        add_row = '<td rowspan = ' + array[i]["Row_Count"] + ' style="text-align: center; vertical-align: middle;">' + JSON.stringify(array[i]["BrandCD"], replacer) + '</td><td>' + JSON.stringify(array[i]["Casting"], replacer) + '</td><td>' + JSON.stringify(array[i]["CostName"], replacer) + '</td><td>' + JSON.stringify(array[i]["CostPre"], replacer) + '</td><td>' +
-                            JSON.stringify(array[i]["Cost1"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost2"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost3"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost4"], replacer) + '</td><td>' +
-                            JSON.stringify(array[i]["Cost5"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost6"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost7"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost8"], replacer) + '</td><td>' +
-                            JSON.stringify(array[i]["Cost9"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost10"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost11"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost12"], replacer) + '</td><td>' +
-                            JSON.stringify(array[i]["CostHaihu"], replacer) + '</td><td>' + JSON.stringify(array[i]["Total"], replacer) + '</td><td>' + JSON.stringify(array[i]["CostShikakari"], replacer) + '</td>';
+                        add_row = '<td rowspan = ' + array[i]["Row_Count"] + ' style="text-align: center; vertical-align: middle;">' + array[i]["BrandCD"] + '</td><td>' + array[i]["Casting"] + '</td><td>' + array[i]["CostName"] + '</td><td>' + replaceZero(array[i]["CostPre"]) + '</td><td>' +
+                            replaceZero(array[i]["Cost1"]) + '</td><td>' + replaceZero(array[i]["Cost2"]) + '</td><td>' + replaceZero(array[i]["Cost3"]) + '</td><td>' + replaceZero(array[i]["Cost4"]) + '</td><td>' +
+                            replaceZero(array[i]["Cost5"]) + '</td><td>' + replaceZero(array[i]["Cost6"]) + '</td><td>' + replaceZero(array[i]["Cost7"]) + '</td><td>' + replaceZero(array[i]["Cost8"]) + '</td><td>' +
+                            replaceZero(array[i]["Cost9"]) + '</td><td>' + replaceZero(array[i]["Cost10"]) + '</td><td>' + replaceZero(array[i]["Cost11"]) + '</td><td>' + replaceZero(array[i]["Cost12"]) + '</td><td>' +
+                            replaceZero(array[i]["CostHaihu"]) + '</td><td>' + array[i]["Total"] + '</td><td>' + array[i]["CostShikakari"] + '</td>';
                     }
                     else {
-                        add_row = '<td>' + JSON.stringify(array[i]["Casting"], replacer) + '</td><td>' + JSON.stringify(array[i]["CostName"], replacer) + '</td><td>' + JSON.stringify(array[i]["CostPre"], replacer) + '</td><td>' +
-                            JSON.stringify(array[i]["Cost1"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost2"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost3"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost4"], replacer) + '</td><td>' +
-                            JSON.stringify(array[i]["Cost5"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost6"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost7"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost8"], replacer) + '</td><td>' +
-                            JSON.stringify(array[i]["Cost9"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost10"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost11"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost12"], replacer) + '</td><td>' +
-                            JSON.stringify(array[i]["CostHaihu"], replacer) + '</td><td>' + JSON.stringify(array[i]["Total"], replacer) + '</td><td>' + JSON.stringify(array[i]["CostShikakari"], replacer) + '</td>';
+                        add_row = '<td>' + array[i]["Casting"] + '</td><td>' + array[i]["CostName"] + '</td><td>' + replaceZero(array[i]["CostPre"]) + '</td><td>' +
+                            replaceZero(array[i]["Cost1"]) + '</td><td>' + replaceZero(array[i]["Cost2"], cost_replacer) + '</td><td>' + replaceZero(array[i]["Cost3"]) + '</td><td>' + replaceZero(array[i]["Cost4"]) + '</td><td>' +
+                            replaceZero(array[i]["Cost5"]) + '</td><td>' + replaceZero(array[i]["Cost6"], cost_replacer) + '</td><td>' + replaceZero(array[i]["Cost7"]) + '</td><td>' + replaceZero(array[i]["Cost8"]) + '</td><td>' +
+                            replaceZero(array[i]["Cost9"]) + '</td><td>' + replaceZero(array[i]["Cost10"], cost_replacer) + '</td><td>' + replaceZero(array[i]["Cost11"]) + '</td><td>' + replaceZero(array[i]["Cost12"]) + '</td><td>' +
+                            replaceZero(array[i]["CostHaihu"]) + '</td><td>' + array[i]["Total"] + '</td><td>' + array[i]["CostShikakari"] + '</td>';
                     }
                     a_row = 1;
                     $('#tblExcel tbody').append($('<tr>'));
                     $('#tblExcel tbody tr:last').append(add_row);
                 }
                 else if (array[i]["SortKey"] == '11') {
-                    add_row = '<td>' + JSON.stringify(array[i]["Casting"], replacer) + '</td><td>' + JSON.stringify(array[i]["CostName"], replacer) + '</td><td>' + JSON.stringify(array[i]["CostPre"], replacer) + '</td><td>' +
-                        JSON.stringify(array[i]["Cost1"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost2"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost3"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost4"], replacer) + '</td><td>,' +
-                        JSON.stringify(array[i]["Cost5"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost6"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost7"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost8"], replacer) + '</td><td>' +
-                        JSON.stringify(array[i]["Cost9"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost10"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost11"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost12"], replacer) + '</td><td>' +
-                        JSON.stringify(array[i]["CostHaihu"], replacer) + '</td><td>' + JSON.stringify(array[i]["Total"], replacer) + '</td><td>' + JSON.stringify(array[i]["CostShikakari"], replacer) + '</td>';
-                    $('#tblExcel tbody').append($('<tr style="border - top: 2px solid; border - bottom: 2px solid">'));
+                    add_row = '<td></td><td style="border-top: 1px solid; border-bottom: 1px solid">' + array[i]["CostName"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + array[i]["CostPre"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
+                        array[i]["Cost1"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + array[i]["Cost2"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + array[i]["Cost3"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + array[i]["Cost4"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">,' +
+                        array[i]["Cost5"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + array[i]["Cost6"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + array[i]["Cost7"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + array[i]["Cost8"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
+                        array[i]["Cost9"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + array[i]["Cost10"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + array[i]["Cost11"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + array[i]["Cost12"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
+                        array[i]["CostHaihu"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + array[i]["Total"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + array[i]["CostShikakari"] + '</td>';
+                    $('#tblExcel tbody').append($('<tr>'));
                     $('#tblExcel tbody tr:last').append(add_row);
                 }
                 else if (array[i]["SortKey"] == '20') {
                     if (o_row == 0) {
-                        add_row = '<td rowspan = ' + array[i]["Row_Count"] + ' style="text-align: center;background-color: blue; vertical-align: middle;">' + JSON.stringify(array[i]["BrandCD"], replacer) + '</td><td style="background-color: blue"></td><td>' + JSON.stringify(array[i]["CostName"], replacer) + '</td><td>' +
-                            JSON.stringify(array[i]["CostPre"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost1"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost2"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost3"], replacer) + '</td><td>' +
-                            JSON.stringify(array[i]["Cost4"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost5"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost6"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost7"], replacer) + '</td><td>' +
-                            JSON.stringify(array[i]["Cost8"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost9"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost10"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost11"], replacer) + '</td><td>' +
-                            JSON.stringify(array[i]["Cost12"], replacer) + '</td><td>' + JSON.stringify(array[i]["CostHaihu"], replacer) + '</td><td>' + JSON.stringify(array[i]["Total"], replacer) + '</td><td>' + JSON.stringify(array[i]["CostShikakari"], replacer) + '</td>';
+                        add_row = '<td rowspan = ' + array[i]["Row_Count"] + ' style="text-align: center;background-color: blue; vertical-align: middle;">' + array[i]["BrandCD"] + '</td><td style="background-color: blue"></td><td>' + array[i]["CostName"] + '</td><td>' +
+                            replaceZero(array[i]["CostPre"]) + '</td><td>' + replaceZero(array[i]["Cost1"]) + '</td><td>' + replaceZero(array[i]["Cost2"]) + '</td><td>' + replaceZero(array[i]["Cost3"]) + '</td><td>' +
+                            replaceZero(array[i]["Cost4"]) + '</td><td>' + replaceZero(array[i]["Cost5"]) + '</td><td>' + replaceZero(array[i]["Cost6"]) + '</td><td>' + replaceZero(array[i]["Cost7"]) + '</td><td>' +
+                            replaceZero(array[i]["Cost8"]) + '</td><td>' + replaceZero(array[i]["Cost9"]) + '</td><td>' + replaceZero(array[i]["Cost10"]) + '</td><td>' + replaceZero(array[i]["Cost11"]) + '</td><td>' +
+                            replaceZero(array[i]["Cost12"]) + '</td><td>' + replaceZero(array[i]["CostHaihu"]) + '</td><td>' + array[i]["Total"] + '</td><td>' + array[i]["CostShikakari"] + '</td>';
                     }
                     else {
-                        add_row = '<td style="background-color: blue"></td><td>' + JSON.stringify(array[i]["CostName"], replacer) + '</td><td>' + JSON.stringify(array[i]["CostPre"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost1"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost2"], replacer) + '</td><td>' +
-                            JSON.stringify(array[i]["Cost3"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost4"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost5"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost6"], replacer) + '</td><td>' +
-                            JSON.stringify(array[i]["Cost7"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost8"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost9"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost10"], replacer) + '</td><td>' +
-                            JSON.stringify(array[i]["Cost11"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost12"], replacer) + '</td><td>' + JSON.stringify(array[i]["CostHaihu"], replacer) + '</td><td>' + JSON.stringify(array[i]["Total"], replacer) + '</td><td>' + JSON.stringify(array[i]["CostShikakari"], replacer) + '</td>';
+                        add_row = '<td style="background-color: blue"></td><td>' + array[i]["CostName"] + '</td><td>' + replaceZero(array[i]["CostPre"]) + '</td><td>' + replaceZero(array[i]["Cost1"]) + '</td><td>' + replaceZero(array[i]["Cost2"]) + '</td><td>' +
+                            replaceZero(array[i]["Cost3"]) + '</td><td>' + replaceZero(array[i]["Cost4"]) + '</td><td>' + replaceZero(array[i]["Cost5"]) + '</td><td>' + replaceZero(array[i]["Cost6"]) + '</td><td>' +
+                            replaceZero(array[i]["Cost7"]) + '</td><td>' + replaceZero(array[i]["Cost8"]) + '</td><td>' + replaceZero(array[i]["Cost9"]) + '</td><td>' + replaceZero(array[i]["Cost10"]) + '</td><td>' +
+                            replaceZero(array[i]["Cost11"]) + '</td><td>' + replaceZero(array[i]["Cost12"]) + '</td><td>' + replaceZero(array[i]["CostHaihu"]) + '</td><td>' + array[i]["Total"] + '</td><td>' + array[i]["CostShikakari"] + '</td>';
                     }
                     o_row = 1;
                     $('#tblExcel tbody').append($('<tr>'));
                     $('#tblExcel tbody tr:last').append(add_row);
                 }
                 else if (array[i]["SortKey"] == '21') {
-                    add_row = '<td style="background-color: blue"></td><td>' + JSON.stringify(array[i]["CostName"], replacer) + '</td><td>' + JSON.stringify(array[i]["CostPre"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost1"], replacer) + '</td><td>' +
-                        JSON.stringify(array[i]["Cost2"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost3"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost4"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost5"], replacer) + '</td><td>' +
-                        JSON.stringify(array[i]["Cost6"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost7"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost8"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost9"], replacer) + '</td><td>' +
-                        JSON.stringify(array[i]["Cost10"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost11"], replacer) + '</td><td>' + JSON.stringify(array[i]["Cost12"], replacer) + '</td><td>' +
-                        JSON.stringify(array[i]["CostHaihu"], replacer) + '</td><td>' + JSON.stringify(array[i]["Total"], replacer) + '</td><td>' + JSON.stringify(array[i]["CostShikakari"], replacer) + '</td>';
-                    $('#tblExcel tbody').append($('<tr style="border - top: 2px solid; border - bottom: 2px solid">'));
+                    add_row = '<td style="background-color: blue"></td><td style="border-top: 1px solid; border-bottom: 1px solid">' + array[i]["CostName"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + array[i]["CostPre"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + array[i]["Cost1"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
+                        array[i]["Cost2"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + array[i]["Cost3"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + array[i]["Cost4"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + array[i]["Cost5"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
+                        array[i]["Cost6"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + array[i]["Cost7"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + array[i]["Cost8"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + array[i]["Cost9"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
+                        array[i]["Cost10"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + array[i]["Cost11"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + array[i]["Cost12"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
+                        array[i]["CostHaihu"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + array[i]["Total"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + array[i]["CostShikakari"] + '</td>';
+                    $('#tblExcel tbody').append($('<tr>'));
                     $('#tblExcel tbody tr:last').append(add_row);
                 }
                 else if (array[i]["SortKey"] == '30') {
@@ -431,21 +436,30 @@
                     for (j = 0; j < prj_array.length; j++) {
                         if (prj_array[j]["SortKey"] == '30') {
                             switch (rowcount) {
-                                case 1: col2 = JSON.stringify(prj_array[j]["ProjectCD"], replacer) + '  ' + JSON.stringify(prj_array[j]["ProjectName"], replacer);
+                                case 1: col2 = prj_array[j]["ProjectCD"] + '  ' + prj_array[j]["ProjectName"];
                                     break;
-                                case 2: col2 = JSON.stringify(prj_array[j]["PeriodStart"], replacer) + ' ～ ' + JSON.stringify(prj_array[j]["PeriodEnd"], replacer);
+                                case 2: col2 = prj_array[j]["PeriodStart"] + ' ～ ' + prj_array[j]["PeriodEnd"];
                                     break;
-                                case 3: col2 = '総金額' + '  ' + JSON.stringify(prj_array[j]["ProductionSum"], replacer);
+                                case 3: col2 = '総金額' + '  ' + prj_array[j]["ProductionSum"];
                                     break;
-                                case 4: col2 = '総生産数' + '  ' + JSON.stringify(prj_array[j]["TotalValueSum"], replacer);
+                                case 4: col2 = '総生産数' + '  ' + prj_array[j]["TotalValueSum"];
                                     break;
                             }
                             rowcount = rowcount + 1;
-                            add_row = '<td>' + col2 + '</td><td>' + JSON.stringify(prj_array[j]["CostName"], replacer) + '</td><td>' + JSON.stringify(prj_array[j]["CostPre"], replacer) + '</td><td>' +
-                                JSON.stringify(prj_array[j]["Cost1"], replacer) + '</td><td>' + JSON.stringify(prj_array[j]["Cost2"], replacer) + '</td><td>' + JSON.stringify(prj_array[j]["Cost3"], replacer) + '</td><td>' + JSON.stringify(prj_array[j]["Cost4"], replacer) + '</td><td>' +
-                                JSON.stringify(prj_array[j]["Cost5"], replacer) + '</td><td>' + JSON.stringify(prj_array[j]["Cost6"], replacer) + '</td><td>' + JSON.stringify(prj_array[j]["Cost7"], replacer) + '</td><td>' + JSON.stringify(prj_array[j]["Cost8"], replacer) + '</td><td>' +
-                                JSON.stringify(prj_array[j]["Cost9"], replacer) + '</td><td>' + JSON.stringify(prj_array[j]["Cost10"], replacer) + '</td><td>' + JSON.stringify(prj_array[j]["Cost11"], replacer) + '</td><td>' + JSON.stringify(prj_array[j]["Cost12"], replacer) + '</td><td>' +
-                                JSON.stringify(prj_array[j]["CostHaihu"], replacer) + '</td><td>' + JSON.stringify(prj_array[j]["Total"], replacer) + '</td><td>' + JSON.stringify(prj_array[j]["CostShikakari"], replacer) + '</td>';
+                            if (rowcount == 4) {
+                                add_row = '<td style="border-bottom: 1px solid">' + col2 + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + prj_array[j]["CostName"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + replaceZero(prj_array[j]["CostPre"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
+                                    replaceZero(prj_array[j]["Cost1"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + replaceZero(prj_array[j]["Cost2"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + replaceZero(prj_array[j]["Cost3"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + replaceZero(prj_array[j]["Cost4"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
+                                    replaceZero(prj_array[j]["Cost5"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + replaceZero(prj_array[j]["Cost6"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + replaceZero(prj_array[j]["Cost7"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + replaceZero(prj_array[j]["Cost8"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
+                                    replaceZero(prj_array[j]["Cost9"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + replaceZero(prj_array[j]["Cost10"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + replaceZero(prj_array[j]["Cost11"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + replaceZero(prj_array[j]["Cost12"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
+                                    replaceZero(prj_array[j]["CostHaihu"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + prj_array[j]["Total"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + prj_array[j]["CostShikakari"] + '</td>';
+                            }
+                            else {
+                                add_row = '<td>' + col2 + '</td><td>' + prj_array[j]["CostName"] + '</td><td>' + replaceZero(prj_array[j]["CostPre"]) + '</td><td>' +
+                                    replaceZero(prj_array[j]["Cost1"]) + '</td><td>' + replaceZero(prj_array[j]["Cost2"]) + '</td><td>' + replaceZero(prj_array[j]["Cost3"]) + '</td><td>' + replaceZero(prj_array[j]["Cost4"]) + '</td><td>' +
+                                    replaceZero(prj_array[j]["Cost5"]) + '</td><td>' + replaceZero(prj_array[j]["Cost6"]) + '</td><td>' + replaceZero(prj_array[j]["Cost7"]) + '</td><td>' + replaceZero(prj_array[j]["Cost8"]) + '</td><td>' +
+                                    replaceZero(prj_array[j]["Cost9"]) + '</td><td>' + replaceZero(prj_array[j]["Cost10"]) + '</td><td>' + replaceZero(prj_array[j]["Cost11"]) + '</td><td>' + replaceZero(prj_array[j]["Cost12"]) + '</td><td>' +
+                                    replaceZero(prj_array[j]["CostHaihu"]) + '</td><td>' + prj_array[j]["Total"] + '</td><td>' + prj_array[j]["CostShikakari"] + '</td>';
+                            }
                         }
                         $('#tblExcel tbody').append($('<tr>'));
                         $('#tblExcel tbody tr:last').append(add_row);
@@ -456,9 +470,9 @@
             //csv.unshift(fields.join(',')) // add header column
             //csv = csv.join('\r\n');
 
-            result.unshift(col_name.join(',')) // add header column
-            result = result.join('\r\n');
-            return result;
+            //result.unshift(col_name.join(',')) // add header column
+            //result = result.join('\r\n');
+            //return result;
         }
 
         $('#btnGenerate').keydown(function (e) {
@@ -501,8 +515,15 @@
             $(document).find('tfoot').remove();
             var name = '原価集計表.xls';
             tableToExcel('tblExcel', '原価集計表', name);
-            $('#tblExcel tr th').remove();
-            $('#tblExcel tr td').remove();
+            $('#tblExcel thead tr').remove();
+            $('#tblExcel tbody tr').remove();
+        }
+
+        function replaceZero(str) {
+            if (str == 0)
+                return str.toString().replace(0, '');
+            else
+                return str;
         }
         //Excel Print//
     </script>
