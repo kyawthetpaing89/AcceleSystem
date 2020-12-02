@@ -13,7 +13,7 @@
     <div class="content">
         <div class="p-5 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white; border-radius:5px;">
             <div class="col-sm-12 col-md-1 col-lg-2"></div>
-            <div class="col-sm-12 col-md-10 col-lg-8">
+            <div class="col-sm-12 col-md-10 col-lg-10">
                 <div>
                     <h2 class=" hr-text text-center">B/S一括納品登録</h2>
                 </div>
@@ -71,7 +71,7 @@
                             <label id="text" style="padding-right: 5px;">
                                 納品日
                             </label>
-                            <input type="text" tabindex="8" class="text-line col-sm-12 col-md-12 col-lg-2  text-left" onkeydown="KeyDown(event,this,'FiscalDateCheck')" id="DeliDate" name="txtDeliDate" maxlength="10" required placeholder="入力">
+                            <input type="text" tabindex="8" class="text-line col-sm-12 col-md-12 col-lg-3  text-left" onkeydown="KeyDown(event,this,'FiscalDateCheck')" id="DeliDate" name="txtDeliDate" maxlength="10" required placeholder="入力">
                         </div>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                             <label id="text" style="padding-right: 5px;">
                                 備考
                             </label>
-                            <input type="text" tabindex="9" class="text-line col-sm-12 col-md-12 col-lg-9 text-left" onkeydown="KeyDown(event,this)" id="Remarks" name="txtRemarks" maxlength="40" required placeholder="入力">
+                            <input type="text" tabindex="9" class="text-line col-sm-12 col-md-12 col-lg-10 text-left" onkeydown="KeyDown(event,this)" id="Remarks" name="txtRemarks" maxlength="40" required placeholder="入力">
                         </div>
                     </div>
                 </div>
@@ -108,7 +108,7 @@
                     </div>
                 </div>*@
             </div>
-            <div class="col-sm-12 col-md-1 col-lg-2"></div>
+           @* <div class="col-sm-12 col-md-1 col-lg-2"></div>*@
             <div class="p-5 col ">
                 <div class="container">
                     <div class="row">
@@ -180,9 +180,9 @@
                        startDate: $("#PeriodStart").val(),
                        endDate: $("#PeriodEnd").val()
                    };
-                   var data = CalltoApiController('@Url.Action("DateComapre", "api/CommonApi")', model);
-                   var dateData = JSON.parse(data);
-                   if (dateData[0].flg != 'false') {
+                   @*var data = CalltoApiController('@Url.Action("DateComapre", "api/CommonApi")', model);
+                   var dateData = JSON.parse(data);*@
+                   if (model.startDate <= model.endDate) {
                        $("#DeliDate").focus();
                    }
                    else {
@@ -199,9 +199,9 @@
                    startDate: $("#PeriodStart").val(),
                    endDate: $("#PeriodEnd").val()
                };
-               var data = CalltoApiController('@Url.Action("DateComapre", "api/CommonApi")', model);
-               var dateData = JSON.parse(data);
-               if (dateData[0].flg != 'false') {
+               @*var data = CalltoApiController('@Url.Action("DateComapre", "api/CommonApi")', model);
+               var dateData = JSON.parse(data);*@
+               if (model.startDate <= model.endDate) {
                    return "0";
                }
                else {
