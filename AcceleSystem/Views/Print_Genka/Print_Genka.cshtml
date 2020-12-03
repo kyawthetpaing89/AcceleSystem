@@ -209,12 +209,16 @@
             }
             else {
                 var res = ErrorCheckOnSave();
-
+                var brandname;
+                if ($("#brandname").text() == 'ブランド表示')
+                    brandname = '';
+                else
+                    brandname = $("#brandname").text();
                 if (res == "0") {
                     var pmodel = {
                         TargetYear: $("#targetyear").val(),
                         BrandCD: $("#BrandCD").val(),
-                        BrandName: $("#brandname").text(),
+                        BrandName: brandname,
                         ProjectCD: $("#ProjectCD").val(),
                         ProjectName: $("#projectName").val(),
                         LoginID: '@LoginID'
@@ -352,7 +356,7 @@
             $('#tblExcel thead').append($('<tr>'));
             for (var i = 0; i <= colname.length - 1; i++) {
                 if (i == 0) {
-                    $('#tblExcel thead tr:last').append($("<th colspan='3' style = 'font-weight: bold;color: white;background-color: #000099'>"));
+                    $('#tblExcel thead tr:last').append($("<th colspan='3' style = 'font-weight: bold;color: white;background-color: #000099; text-align: right;'>"));
                 }
                 else {
                     $('#tblExcel thead tr:last').append($("<th style = 'font-weight: bold;color: white;background-color: #000099'>"));
@@ -367,7 +371,6 @@
             }
 
             var add_row, a_row = 0, o_row = 0;
-            debugger;
             for (i = 0; i < array.length; i++) {
                 if (array[i]["SortKey"] == '10') {
                     if (a_row == 0) {
@@ -433,15 +436,15 @@
                     var data = CalltoApiController('@Url.Action("Print_Genka_ProjectData", "api/Print_GenkaApi")', pmodel);
                     var prj_array = typeof JSONString != 'object' ? JSON.parse(data) : JSONString;
                     for (j = 0; j < prj_array.length; j++) {
-                        if (prj_array[j]["SortKey"] == '30' || prj_array[j]["SortKey"] == '31') {
+                        if (prj_array[j]["SortKey"] == '30' || prj_array[j]["SortKey"] == '31' || prj_array[j]["SortKey"] == '32') {
                             switch (rowcountC) {
-                                case 1: col2 = prj_array[j]["ProjectCD"] + '  ' + prj_array[j]["ProjectName"];
+                                case 1: col2 = prj_array[0]["ProjectCD"] + '    ' + prj_array[0]["ProjectName"];
                                     break;
-                                case 2: col2 = prj_array[j]["PeriodStart"] + ' ～ ' + prj_array[j]["PeriodEnd"];
+                                case 2: col2 = prj_array[0]["PeriodStart"] + ' ～ ' + prj_array[0]["PeriodEnd"];
                                     break;
-                                case 3: col2 = '総金額     ' + prj_array[j]["ProductionSum"];
+                                case 3: col2 = '総金額      ' + prj_array[0]["ProductionSum"];
                                     break;
-                                case 4: col2 = '総生産数    ' + prj_array[j]["TotalValueSum"];
+                                case 4: col2 = '総生産数    ' + prj_array[0]["TotalValueSum"];
                                     break;
                                 default: col2 = '';
                                     break;
@@ -524,6 +527,7 @@
             $(document).find('tfoot').remove();
             var name = '原価集計表.xls';
             tableToExcel('tblExcel', '原価集計表', name);
+            debugger;
             $('#tblExcel thead tr').remove();
             $('#tblExcel tbody tr').remove();
         }
