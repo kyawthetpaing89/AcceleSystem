@@ -370,7 +370,7 @@
                         "data": null,
                         className: "Border1",
                         render: function (data, type, row) {
-                            return '<table class="col-md-12"><tr><td style="width: 20%">' + data.DeliveryDate + '</td><td style="width: 40%">' + data.BrandName + '</td><td style="width: 15%">' + data.Season + '</td><td style="width:15%">' + data.Year + '</td><td style="width:10%"><label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label><br/></td></tr>' +
+                            return '<table class="col-md-12"><tr><td style="width: 20%">' + data.DeliveryDate + '</td><td style="width: 40%">' +data.BrandCD+ '  ' + data.BrandName + '</td><td style="width: 15%">' + data.Season + '</td><td style="width:15%">' + data.Year + '</td><td style="width:10%"><label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label><br/></td></tr>' +
                                 '<tr><td>' + data.ProjectCD + '</td><td>' + data.ProjectName + '</td><td></td><td></td><td></td></tr>' +
                                 '<tr><td>' + data.HinbanCD + '</td><td>' + data.HinbanName + '</td><td>' + data.Production + '</td><td>' + data.DeliveryAmount + '</td><td><label><a href="#" onClick="btnDelClick(\'' + data.ProjectCD + '\')" style="color:red">削除</a></label></td></tr></table>';
 
