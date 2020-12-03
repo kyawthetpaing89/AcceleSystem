@@ -323,7 +323,7 @@
                         className: "Border1",
                         render: function (data, type, row) {                           
                             return '<table class="col-md-12"><tr><td style="width: 40%">' + data.CostCD + '  ' + data.CostName + '</td><td style="width: 30%">' + data.CostDate + '</td><td style="width: 12%"></td><td style="width: 8%"><label><a href="#" onClick="btnEditClick(\'' + data.SEQ + '\')" style="color:blue">編集</a></label></td></tr> ' +
-                                '<tr><td>' + data.BrandCD + '</td><td>' + data.Season + '</td><td>' + data.Year + '</td><td><label><a href="#" onClick="btnDelClick(\'' + data.SEQ + '\')" style="color:red">削除</a></label></td></tr>' +
+                                '<tr><td>' + data.BrandCD + '  '+ data.BrandName + '</td><td>' + data.Season + '</td><td>' + data.Year + '</td><td><label><a href="#" onClick="btnDelClick(\'' + data.SEQ + '\')" style="color:red">削除</a></label></td></tr>' +
                                 '<tr><td>' + data.ProjectCD + '  ' + data.ProjectName + '</td><td>' + data.HinbanCD + '  ' + data.HinbanName + '</td><td></td><td><label><a href="#" onClick="btnCopyClick(\'' + data.SEQ + '\')" style="color:green">複写</a></label></td></tr></table > ';
                         }
                     },
