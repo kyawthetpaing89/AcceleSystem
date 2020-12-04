@@ -7,7 +7,16 @@
 @section Styles{
     <link rel="stylesheet" href="@Url.Content("~/ElaAdmin/assets/css/lib/datatable/dataTables.bootstrap.min.css")" />
 }
-
+    <style>
+    .text-keihisetti{
+        text-overflow: ellipsis;
+        display: inline-block;
+        overflow: hidden;
+        width: 90px;
+        white-space: nowrap;
+        /*vertical-align: middle;*/
+    }
+        </style>
 <div class="card">
     <div class="card-body">
         <div class="row">
@@ -79,7 +88,7 @@
 
         function BindTable(response) {
             table = $('#tblKeihi').DataTable({
-               
+
                 data: JSON.parse(response),
                 "bFilter": false,
                 "bLengthChange": false,
@@ -98,7 +107,7 @@
                         "data": null,
                         className: "Border2",
                         render: function (data, type, row) {
-                            return '<label>' + data.CostName + '</label>';
+                            return '<label class="text-keihisetti">' + data.CostName + '</label>';
                         }
                     },
                     {
