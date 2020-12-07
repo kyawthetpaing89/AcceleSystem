@@ -10,7 +10,12 @@
 }
 <style>
     .text-price {
-        text-align: right;
+        text-overflow: ellipsis;
+        display: inline-block;
+        overflow: hidden;
+        width: 90px;
+        white-space: nowrap;
+        /*vertical-align: middle;*/
     }
 </style>
 <div id="divMain" class="container-fluid">
@@ -113,16 +118,23 @@
             </div>
             <div class="col-xs-12 col-md-12 col-lg-7">
                 <div class="card-body card-block" style="padding-left:0px;">
-                    <table id="tblProject" class="tb1 col-md-12" style="width:110%">
+                    <table id="tblProject" class="tb1 col-md-12" style="width:100%">
                         <thead>
                             <tr>
                                 <th>
                                     <table class="col-md-12">
+                                        @*<tr>
+            <th style="width: 25%">ブランド</th>
+            <th style="width: 30%"></th>
+            <th class="text-center" style="width: 18%">シーズン</th>
+            <th class="text-center" style="width: 20%">年度</th>
+            <th style="width: 8%"></th>
+        </tr>*@
                                         <tr>
                                             <th style="width: 25%">ブランド</th>
                                             <th style="width: 30%"></th>
-                                            <th class="text-center" style="width: 18%">シーズン</th>
-                                            <th class="text-center" style="width: 20%">年度</th>
+                                            <th style="width: 15%" class="text-center" >シーズン</th>
+                                            <th style="width: 20%" class="text-center">年度</th>
                                             <th style="width: 8%"></th>
                                         </tr>
                                         <tr>
@@ -337,13 +349,25 @@
                 "bInfo": false,
                 "bSort": false,
                 destroy: true,
+                //"columns": [
+                //    {
+                //        "data": null,
+                //        className: "Border1",
+                //        render: function (data, type, row) {
+                //            return '<table class="col-md-12"><tr><td style="width: 25%">' + data.BrandCD + '</td><td class="text-price" style="width: 30%">' + data.BrandName + '</td><td class="text-center" style="width: 15%">' + data.Season + '</td><td style="width: 18%" class="text-center">' + data.Year + '</td><td style="width: 20%"><label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label></td></tr>' +
+                //                '<tr><td>' + data.ProjectCD + '</td><td class="text-price">' + data.ProjectName + '</td><td></td><td></td><td><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:red">削除</a></label></td></tr>' +
+                //                '<tr><td>' + data.PeriodStart + '</td><td></td><td class="text-right">' + data.Production + '</td><td class="text-right">' + data.SalesPrice + '</td><td><label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:green">複写</a></label></td></tr></table>'
+                //        }
+                //    },
+                //]
+
                 "columns": [
                     {
                         "data": null,
                         className: "Border1",
                         render: function (data, type, row) {
-                            return '<table class="col-md-12"><tr><td style="width: 25%">' + data.BrandCD + '</td><td style="width: 30%">' + data.BrandName + '</td><td class="text-center" style="width: 15%">' + data.Season + '</td><td style="width: 18%" class="text-center">' + data.Year + '</td><td style="width: 20%"><label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label></td></tr>' +
-                                '<tr><td>' + data.ProjectCD + '</td><td>' + data.ProjectName + '</td><td></td><td></td><td><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:red">削除</a></label></td></tr>' +
+                            return '<table class="col-md-12"><tr><td style="width: 25%">' + data.BrandCD + '</td><td class="text-price" style="width: 30%">' + data.BrandName + '</td><td class="text-center" style="width: 15%">' + data.Season + '</td><td class="text-center" style="width: 20%">' + data.Year + '</td><td style="width: 8%"><label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label></td></tr>' +
+                                '<tr><td>' + data.ProjectCD + '</td><td class="text-price">' + data.ProjectName + '</td><td></td><td></td><td><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:red">削除</a></label></td></tr>' +
                                 '<tr><td>' + data.PeriodStart + '</td><td></td><td class="text-right">' + data.Production + '</td><td class="text-right">' + data.SalesPrice + '</td><td><label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:green">複写</a></label></td></tr></table>'
                         }
                     },
