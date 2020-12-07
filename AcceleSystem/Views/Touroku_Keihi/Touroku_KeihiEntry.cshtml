@@ -402,10 +402,10 @@
             }
 
             if (ProjectData[0].ZeikomiKBN == "1")
-                $("#tax").prop("checked", true);
+                $("#taxNotInclude").prop("checked", true);
             else {
-                $("#tax").prop("checked", false);
-                $("#nottax").prop("checked", true);
+                $("#taxNotInclude").prop("checked", false);
+                $("#taxInclude").prop("checked", true);
             }
         $("#costname").css("font-weight", "Bold");
         $("#accounting").css("font-weight", "Bold");
@@ -549,6 +549,7 @@
 
     function CalculateTax(result) {
         if (result == 'OK') {
+            alert("a");
             if ($('#taxInclude').is(':checked')) {
                 var Kmodel = {
                     Mode: 2,
@@ -558,8 +559,8 @@
                 };
                 var data = CalltoApiController('@Url.Action("Fnc_TAXCalculation", "api/Touroku_KeihiApi")', Kmodel);
                 var tax = JSON.parse(data);
-                if (tax[0].Zeiritsu) {
-                    $("#BodyAmount").val(tax[0].Zeiritsu);
+                if (tax[0].Kingaku1) {
+                    $("#BodyAmount").val(tax[0].Kingaku1);
                 }
             }
             else {
@@ -617,6 +618,7 @@
                 else {     // Insert/Update
                     var res1 = FiscalDateCheckOnSave();
                     if (res1 == "0") {
+                        CalculateTax('OK');
                         DoProcess();
                     }
                     else {
