@@ -315,7 +315,7 @@
                     "data": null,
                     className: "Border1",
                     render: function (data, type, row) {
-                        return '<table class="col-md-12"><tr><td style="max-width: 30%" class="fixed-width">' + data.ProjectCD + '  ' + data.ProjectName + '</td><td style="width: 20%"></td><td style="width: 20%"></td><td style="width: 20%"></td><td style="width: 10%; text-align: center;"><label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:blue">編集</a></label></td></tr>' +
+                        return '<table class="col-md-12"><tr><td class="fixed-width">' + data.ProjectCD + '  ' + data.ProjectName + '</td><td style="width: 20%"></td><td style="width: 20%"></td><td style="width: 20%"></td><td style="width: 10%; text-align: center;"><label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:blue">編集</a></label></td></tr>' +
                             '<tr><td class="fixed-width">' + data.HinbanCD + '  ' + data.HinbanName + '</td><td></td><td></td><td></td><td style="text-align: center;"><label><a href="#" onClick="btnDelClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:red">削除</a></label></td></tr>' +
                             '<tr><td class="fixed-width">' + data.Casting + '  ' + data.CastingName + '</td><td class="text-right">' + data.Production + '</td><td class="text-right">' + data.SalesPrice + '</td><td class="text-right">' + data.TotalSalesPrice + '</td><td style="text-align: center;"><label><a href="#" onClick="btnCopyClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:green">複写</a></label></td></tr></table>';
                     }
