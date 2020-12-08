@@ -7,13 +7,22 @@
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
 }
 
+<style>
+    .fixed-width {
+        text-overflow: ellipsis;
+        display: inline-block;
+        overflow: hidden;
+        width: 250px;
+        white-space: nowrap;
+    }
+</style>
 <div id="divMain" class="container-fluid">
     <div class="card">
         <div class="row">
-            <div class="col-xs-12 col-md-12 col-lg-6">
-                <div class="card-body card-block">
+            <div class="col-xs-12 col-md-12 col-lg-5" style="padding-right: 0px;">
+                <div class="card-body card-block" style="padding-right: 0px;">
                     <div class="row form-group">
-                        <div class="col col-md-12">
+                        <div class="col col-md-12" style="padding-right: 0px;">
                             <button id="btnAdd" onclick="btnAddClick()" class="btn btn-primary col-xl-3 text-center" tabindex="20">品番追加</button>&nbsp;
                             <button id="btnnext" onclick="btnnextClick()" class="btn btn-next col-xl-6 text-center" tabindex="21">プロジェクト検索</button>
 
@@ -141,18 +150,18 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-12 col-lg-6">
+            <div class="col-xs-12 col-md-12 col-lg-7">
                 <div class="card-body card-block" style="padding-left:0px;">
-                    <table id="tblProject" class="tb1 col-sm-12" style="width:108%">
+                    <table id="tblProject" class="tb1 col-sm-12" style="width:100%">
                         <thead>
                             <tr>
                                 <th>
                                     <table class="col-md-12">
                                         <tr>
-                                            <th style="width: 23%">プロジェクト</th>
-                                            <th style="width: 30%"></th>
-                                            <th style="width: 22%"></th>
-                                            <th style="width: 15%"></th>
+                                            <th style="max-width: 30%">プロジェクト</th>
+                                            <th style="width: 20%"></th>
+                                            <th style="width: 20%"></th>
+                                            <th style="width: 20%"></th>
                                             <th style="width: 10%"></th>
                                         </tr>
                                         <tr>
@@ -172,7 +181,7 @@
                                     </table>
                                 </th>
                             </tr>
-                            
+
                         </thead>
                     </table>
                 </div>
@@ -300,19 +309,19 @@
             "bInfo": false,
             "ordering":false,
             "pagingType": "simple_numbers",
-            destroy: true,     
+            destroy: true,
              "columns": [
                 {
                     "data": null,
                     className: "Border1",
                     render: function (data, type, row) {
-                        return '<table class="col-md-12"><tr><td style="width: 23%">' + data.ProjectCD + '  ' + data.ProjectName + '</td><td style="width: 30%"></td><td style="width: 22%"></td><td style="width: 15%"></td><td style="width: 10%"><label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:blue">編集</a></label></td></tr>' +
-                            '<tr><td>' + data.HinbanCD + '  ' + data.HinbanName + '</td><td class="text-center"></td><td></td><td></td><td><label><a href="#" onClick="btnDelClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:red">削除</a></label></td></tr>' +
-                            '<tr><td>' + data.Casting + '  ' + data.CastingName + '</td><td class="text-right">' + data.Production + '</td><td class="text-right">' + data.SalesPrice + '</td><td class="text-right">' + data.TotalSalesPrice + '</td><td><label><a href="#" onClick="btnCopyClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:green">複写</a></label></td></tr></table>';
+                        return '<table class="col-md-12"><tr><td style="max-width: 30%" class="fixed-width">' + data.ProjectCD + '  ' + data.ProjectName + '</td><td style="width: 20%"></td><td style="width: 20%"></td><td style="width: 20%"></td><td style="width: 10%; text-align: center;"><label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:blue">編集</a></label></td></tr>' +
+                            '<tr><td class="fixed-width">' + data.HinbanCD + '  ' + data.HinbanName + '</td><td></td><td></td><td></td><td style="text-align: center;"><label><a href="#" onClick="btnDelClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:red">削除</a></label></td></tr>' +
+                            '<tr><td class="fixed-width">' + data.Casting + '  ' + data.CastingName + '</td><td class="text-right">' + data.Production + '</td><td class="text-right">' + data.SalesPrice + '</td><td class="text-right">' + data.TotalSalesPrice + '</td><td style="text-align: center;"><label><a href="#" onClick="btnCopyClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:green">複写</a></label></td></tr></table>';
                     }
                 },
             ]
-            
+
             //"drawCallback": function (settings) {
             //    $("#tblProject thead").remove();
             //}
@@ -487,13 +496,6 @@
                 Season: $('#season').val(),
                 flg: "list"
             };
-
-            //var selected = new Array();
-            //$("#Seasongp input[type=checkbox]:checked").each(function () {
-            //    selected.push(this.value);
-            //});
-            //if (selected.length > 0)
-            //    Tmodel.Season = selected.join(",");
 
             var selected = new Array();
             $("#CompleteYMgp input[type=checkbox]:checked").each(function () {
