@@ -7,21 +7,30 @@
 @section Styles{
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
 }
-
+    <style>
+        .text-nouhin {
+            text-overflow: ellipsis;
+            display: inline-block;
+            overflow: hidden;
+            width: 200px;
+            white-space: nowrap;
+            /*vertical-align: middle;*/
+        }
+    </style>
 <div id="divMain" class="container-fluid">
     <div class="card">
         <div class="row">
-            <div class="col-xs-12 col-md-6">
-                <div class="card-body card-block">
+            <div class="col-xs-12 col-md-5">
+                <div class="card-body card-block" style="padding-right: 0px;">
                     <div class="row form-group">
-                        <div class="col col-md-12">
+                        <div class="col col-md-12" style="padding-right: 0px;">
                             <button id="btnAdd" tabindex="17" onclick="btnAdd_Click()" class="btn btn-primary col-xl-3 text-center" >
                                 納品追加
                             </button>
                             <button id="btnBS" tabindex="18" onclick="btnBSNouhin_Click()" class="btn btn-primary col-xl-4 text-center">
                                 B/S一括納品
                             </button>
-                          
+
                             <div id="registration" style="padding-top: 1.8rem!important;">
                                 <div>
                                     <h4 class=" hr-text text-center">検索条件入力</h4>
@@ -39,7 +48,7 @@
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label id="text" style="padding-right:3px;">ブランド名</label>
                                             <input type="text" tabindex="2" id="BrandCD" name="txtBrandCD" onkeydown="KeyDown(event,this)" class="text-line col-xl-3 text-left" maxlength="20" required placeholder="入力">
-                                            
+
                                             <input type="text" tabindex="3" id="BrandName" name="txtBrandName" onkeydown="KeyDown(event,this)" class="text-line col-xl-5 text-left" maxlength="40" required placeholder="入力">
                                         </div>
                                     </div>
@@ -62,7 +71,7 @@
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label id="text" style="padding-right:2px;">プロジェクト</label>
                                             <input type="text" tabindex="7" id="ProjectCD" name="txtProjectCD" onkeydown="KeyDown(event,this,'ProjectCheck')" class="text-line col-xl-3 text-left" maxlength="10" required placeholder="入力">
-                                           
+
                                         @*</div>
                                     </div>
                                     <div class="col-md-12" style="padding-left:105px;">
@@ -76,7 +85,7 @@
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label id="text" style="padding-right:3px;">品番</label>
                                             <input type="text" tabindex="9" id="HinbanCD" name="txtHinbanCD" onkeydown="KeyDown(event,this)" class="text-line col-xl-3 text-left" maxlength="10" required placeholder="入力">
-                                            
+
                                             <input type="text" tabindex="10" id="HinbanName" name="txtHinbanName" onkeydown="KeyDown(event,this)" class="text-line col-xl-6 text-left" maxlength="60" required placeholder="入力">
                                         </div>
                                     </div>
@@ -114,8 +123,8 @@
                 </div>
             </div>
 
-            <div class="col-xs-12 col-md-6">
-                <div class="card-body card-block">
+            <div class="col-xs-12 col-md-7">
+                <div class="card-body card-block" style="padding-right: 0px;">
                     <table id="tblNouhin" class="tb1 col-sm-12" style="width:100%">
                         <thead>
                             <tr>
@@ -124,8 +133,8 @@
                                         <tr>
                                             <th style="width: 20%">納品日</th>
                                             <th style="width: 40%">ブランド</th>
-                                            <th style="width: 15%">シーズン</th>
-                                            <th style="width: 15%">年度</th>
+                                            <th style="width: 15%" class="text-center">シーズン</th>
+                                            <th style="width: 15%" class="text-center">年度</th>
                                             <th style="width: 10%"></th>
                                         </tr>
                                         <tr>
@@ -180,7 +189,7 @@
                if (str.includes("3"))
                    $("#FW").prop("checked", true);
                else $("#FW").prop("checked", false);
-           
+
              var str1 = '@Model.DeliveryStatus';
                if (str1.includes("1"))
                    $("#Delleft").prop("checked", true);
@@ -188,7 +197,7 @@
                if (str1.includes("2"))
                    $("#Delcomplete").prop("checked", true);
                else $("#Delcomplete").prop("checked", false);
-              
+
             }
 
             $("#Year").focus();
@@ -371,8 +380,8 @@
                         className: "Border1",
                         render: function (data, type, row) {
                             return '<table class="col-md-12"><tr><td style="width: 20%">' + data.DeliveryDate + '</td><td style="width: 40%">' +data.BrandCD+ '  ' + data.BrandName + '</td><td style="width: 15%">' + data.Season + '</td><td style="width:15%">' + data.Year + '</td><td style="width:10%"><label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label><br/></td></tr>' +
-                                '<tr><td>' + data.ProjectCD + '</td><td>' + data.ProjectName + '</td><td></td><td></td><td></td></tr>' +
-                                '<tr><td>' + data.HinbanCD + '</td><td>' + data.HinbanName + '</td><td>' + data.Production + '</td><td>' + data.DeliveryAmount + '</td><td><label><a href="#" onClick="btnDelClick(\'' + data.ProjectCD + '\')" style="color:red">削除</a></label></td></tr></table>';
+                                '<tr><td>' + data.ProjectCD + '</td><td class="text-nouhin">' + data.ProjectName + '</td><td></td><td></td><td></td></tr>' +
+                                '<tr><td>' + data.HinbanCD + '</td><td class="text-nouhin">' + data.HinbanName + '</td><td style="text-align: right; padding-right: 3%;">' + data.Production + '</td><td style="text-align: right; padding-right: 3%;">' + data.DeliveryAmount + '</td><td><label><a href="#" onClick="btnDelClick(\'' + data.ProjectCD + '\')" style="color:red">削除</a></label></td></tr></table>';
 
 
                         }

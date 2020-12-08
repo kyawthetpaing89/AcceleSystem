@@ -12,7 +12,7 @@
         text-overflow: ellipsis;
         display: inline-block;
         overflow: hidden;
-        width: 250px;
+        width: 150px;
         white-space: nowrap;
     }
 </style>
@@ -20,7 +20,7 @@
     <div class="card">
         <div class="row">
             <div class="col-xs-12 col-md-12 col-lg-5" style="padding-right: 0px;">
-                <div class="card-body card-block" style="padding-right: 0px;">
+                <div class="card-body card-block" style="padding-right: 0px; padding-left: 10px;">
                     <div class="row form-group">
                         <div class="col col-md-12" style="padding-right: 0px;">
                             <button id="btnAdd" onclick="btnAddClick()" class="btn btn-primary col-xl-3 text-center" tabindex="20">品番追加</button>&nbsp;
@@ -315,7 +315,7 @@
                     "data": null,
                     className: "Border1",
                     render: function (data, type, row) {
-                        return '<table class="col-md-12"><tr><td style="max-width: 30%" class="fixed-width">' + data.ProjectCD + '  ' + data.ProjectName + '</td><td style="width: 20%"></td><td style="width: 20%"></td><td style="width: 20%"></td><td style="width: 10%; text-align: center;"><label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:blue">編集</a></label></td></tr>' +
+                        return '<table class="col-md-12"><tr><td class="fixed-width">' + data.ProjectCD + '  ' + data.ProjectName + '</td><td style="width: 20%"></td><td style="width: 20%"></td><td style="width: 20%"></td><td style="width: 10%; text-align: center;"><label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:blue">編集</a></label></td></tr>' +
                             '<tr><td class="fixed-width">' + data.HinbanCD + '  ' + data.HinbanName + '</td><td></td><td></td><td></td><td style="text-align: center;"><label><a href="#" onClick="btnDelClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:red">削除</a></label></td></tr>' +
                             '<tr><td class="fixed-width">' + data.Casting + '  ' + data.CastingName + '</td><td class="text-right">' + data.Production + '</td><td class="text-right">' + data.SalesPrice + '</td><td class="text-right">' + data.TotalSalesPrice + '</td><td style="text-align: center;"><label><a href="#" onClick="btnCopyClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:green">複写</a></label></td></tr></table>';
                     }
