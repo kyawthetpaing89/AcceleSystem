@@ -407,7 +407,9 @@
 
                 $("#year").val('');
                 $("#BrandCD").val('');
+                $("#brandname").text('ブランド表示');
                 $("#CastingCD").val('');
+                $("#CastingName").text('金型表示');
                 $("#Item").val('');
              }
             else if ($("#accounting").text() == "2") {
@@ -423,8 +425,11 @@
                 $("#Item").attr('disabled', 'disabled');
 
                 $("#projectCD").val('');
+                $("#projectName").text('プロジェクト表示');
                 $("#HinbanCD").val('');
+                $("#HinbanName").text('品番表示');
                 $("#CastingCD").val('');
+                $("#CastingName").text('金型表示');
                 $("#Item").val('');
              }
              else if ($("#accounting").text() == "3") {
@@ -440,8 +445,11 @@
 
                 $("#year").val('');
                 $("#BrandCD").val('');
+                $("#brandname").text('ブランド表示');
                 $("#HinbanCD").val('');
+                $("#HinbanName").text('品番表示');
                 $("#CastingCD").val('');
+                $("#CastingName").text('金型表示');
                 $("#Item").val('');
             }
              else if ($("#accounting").text() == "4") {
@@ -457,8 +465,11 @@
 
                 $("#year").val('');
                 $("#BrandCD").val('');
+                $("#brandname").text('ブランド表示');
                 $("#HinbanCD").val('');
+                $("#HinbanName").text('品番表示');
                 $("#projectCD").val('');
+                $("#projectName").text('プロジェクト表示');
                 $("#Item").val('');
              }
              else if ($("#accounting").text() == "5") {
@@ -474,9 +485,13 @@
 
                 $("#year").val('');
                 $("#BrandCD").val('');
+                $("#brandname").text('ブランド表示');
                 $("#HinbanCD").val('');
+                $("#HinbanName").text('品番表示');
                 $("#CastingCD").val('');
+                $("#CastingName").text('金型表示');
                 $("#projectCD").val('');
+                $("#projectName").text('プロジェクト表示');
              }
         }
         else {
@@ -595,14 +610,18 @@
             };
 
             //For Season
-            
-            if ($('#allyear').is(':checked'))
-                Kmodel.Season = "1";
-            else if ($('#SS').is(':checked'))
-                Kmodel.Season = "2";
-            else if ($('#FW').is(':checked'))
-                Kmodel.Season = "3";
-
+            //if ($("#Seasongp").children().attr('disabled', 'disabled')) {
+            //    alert("1");
+            //    Kmodel.Season = null;
+            //}
+            //else {
+                if ($('#allyear').is(':checked'))
+                    Kmodel.Season = "1";
+                else if ($('#SS').is(':checked'))
+                    Kmodel.Season = "2";
+                else if ($('#FW').is(':checked'))
+                    Kmodel.Season = "3";
+            //}
             if ($('#taxNotInclude').is(':checked'))
                 Kmodel.ZeikomiKBN = "1";
             else if ($('#taxInclude').is(':checked'))
