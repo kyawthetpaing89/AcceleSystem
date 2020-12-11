@@ -8,7 +8,16 @@
 @section Styles{
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
 }
-
+    <style>
+        .text-BSEntry {
+            text-overflow: ellipsis;
+            display: inline-block;
+            overflow: hidden;
+            width: 100px;
+            white-space: nowrap;
+            vertical-align: middle;
+        }
+    </style>
 <div id="divMain" class="container-fluid">
     <div class="content">
         <div class="p-5 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white; border-radius:5px;">
@@ -117,11 +126,11 @@
                                 <tr>
                                     <th style="width:5%;">対象</th>
                                     <th style="width:25%;">プロジェクト</th>
-                                    <th style="width:25%">品番名</th>
-                                    <th style="width:11%; text-align:right">生産数</th>
-                                    <th style="width:11%; text-align:right">累計納品数</th>
-                                    <th style="width:11%; text-align:right">今回納品数</th>
-                                    <th style="width:11%; text-align:right">未納品数</th>
+                                    <th style="width:20%">品番名</th>
+                                    <th style="width:13%; text-align:right">生産数</th>
+                                    <th style="width:13%; text-align:right">累計納品数</th>
+                                    <th style="width:13%; text-align:right">今回納品数</th>
+                                    <th style="width:13%; text-align:right">未納品数</th>
                                 </tr>
                             </thead>
                         </table>
@@ -286,14 +295,14 @@
                         "data": null,
                         className: "Border2",
                         render: function (data, type, row) {
-                            return '<label id ="Projectcd">' + data.ProjectCD + '</label>' + '  ' + '<label id ="Projectname">' + data.ProjectName + '</label>';
+                            return '<label id ="Projectcd">' + data.ProjectCD + '</label>' + '  ' + '<label class="text-BSEntry" id ="Projectname">' + data.ProjectName + '</label>';
                         }
                     },
                     {
                         "data": null,
                         className: "Border3",
                         render: function (data, type, row) {
-                            return '<label id ="Hinbancd">' + data.HinbanCD + '</label>' + '  ' + '<label  id ="Hinbanname">' + data.HinbanName  + '</label>';
+                            return '<label id ="Hinbancd">' + data.HinbanCD + '</label>' + '  ' + '<label class="text-BSEntry" id ="Hinbanname">' + data.HinbanName  + '</label>';
                         }
                     },
                     {

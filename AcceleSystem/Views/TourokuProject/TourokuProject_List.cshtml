@@ -13,7 +13,7 @@
         text-overflow: ellipsis;
         display: inline-block;
         overflow: hidden;
-        width: 230px;
+        width: 210px;
         white-space: nowrap;
         /*vertical-align: middle;*/
     }
@@ -126,8 +126,8 @@
                                         <tr>
                                             <th style="width: 25%">ブランド</th>
                                             <th style="max-width: 25%"></th>
-                                            <th style="width: 20%" class="text-center" >シーズン</th>
-                                            <th style="width: 20%" class="text-center">年度</th>
+                                            <th style="width: 22%" class="text-center" >シーズン</th>
+                                            <th style="width: 22%" class="text-center">年度</th>
                                             <th style="width: 10%"></th>
                                         </tr>
                                         <tr>
@@ -334,7 +334,7 @@
                         "data": null,
                         className: "Border1",
                         render: function (data, type, row) {
-                            return '<table class="col-md-12"><tr><td class="text-price">' + data.BrandCD + '  ' + data.BrandName + '</td><td class="text-center" style="width: 20%">' + data.Season + '</td><td class="text-center" style="width: 20%">' + data.Year + '</td><td style="width: 10%; text-align: center;"><label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label></td></tr>' +
+                            return '<table class="col-md-12"><tr><td class="text-price">' + data.BrandCD + '  ' + data.BrandName + '</td><td class="text-center" style="width: 22%">' + data.Season + '</td><td class="text-center" style="width: 22%">' + data.Year + '</td><td style="width: 10%; text-align: center;"><label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label></td></tr>' +
                                 '<tr><td class="text-price">' + data.ProjectCD + '  ' + data.ProjectName + '</td><td></td><td></td><td style="text-align: center;"><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:red">削除</a></label></td></tr>' +
                                 '<tr><td class="text-price">' + data.PeriodStart + '</td><td style="text-align: right; padding-right: 3%;">' + data.Production + '</td><td style="text-align: right; padding-right: 3%;">' + data.SalesPrice + '</td><td style="text-align: center;"><label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:green">複写</a></label></td></tr></table>'
                         }

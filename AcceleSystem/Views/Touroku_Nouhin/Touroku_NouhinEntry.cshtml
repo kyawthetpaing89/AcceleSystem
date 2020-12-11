@@ -9,6 +9,18 @@
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
 }
 
+<style>
+    .text-Entry {
+        text-overflow: ellipsis;
+        display: inline-block;
+        overflow: hidden;
+        width: 200px;
+        white-space: nowrap;
+        vertical-align: middle;
+        padding-top: 3%;
+    }
+</style>
+
 <div id="divMain" class="container-fluid">
     <div class="content">
         <div class="p-5 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white; border-radius:5px;">
@@ -65,7 +77,7 @@
                     </div>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xs-12"style="padding-left:47px;">
+                    <div class="col-xs-12" style="padding-left:47px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="text" style="padding-right: 5px;">
                                 納品日
@@ -75,7 +87,7 @@
                     </div>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xs-12"style="padding-left:63px;">
+                    <div class="col-xs-12" style="padding-left:63px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="text" style="padding-right: 5px;">
                                 備考
@@ -98,20 +110,20 @@
             <div class="p-5 col ">
                 <div class="container">
                     <div class="row">
-                        <table id ="tblNouhinEntry" class="tb1 col-sm-12" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th style="width:5%;">対象</th>
-                                        <th style="width:27%">品番名</th>
-                                        <th style="width:17%; text-align:right">生産数</th>
-                                        <th style="width:17%; text-align:right">累計納品数</th>
-                                        <th style="width:17%; text-align:right">今回納品数</th>
-                                        <th style="width:17%; text-align:right">未納品数</th>
-                                        <th style="width:17%; text-align:right" hidden>SEQ</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                            @*<table id="tblKeihi" class="tb1 col-sm-12">
+                        <table id="tblNouhinEntry" class="tb1 col-sm-12" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th style="width:5%;">対象</th>
+                                    <th style="width:27%">品番名</th>
+                                    <th style="width:17%; text-align:right">生産数</th>
+                                    <th style="width:17%; text-align:right">累計納品数</th>
+                                    <th style="width:17%; text-align:right">今回納品数</th>
+                                    <th style="width:17%; text-align:right">未納品数</th>
+                                    <th style="width:17%; text-align:right" hidden>SEQ</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        @*<table id="tblKeihi" class="tb1 col-sm-12">
                                 <thead>
                                     <tr>
                                         <td style="padding-right:17px">chk</td>
@@ -152,7 +164,7 @@
             $("#rdoFW").attr('disabled', 'disabled');
             if (Mode == 'New') {
                 $('#btnSave').html('登録');
-                
+
                 RequiredCheck($("#ProjectCD"));
                 DoubleByteCheck($("#ProjectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "ProjectName");
@@ -169,7 +181,7 @@
 
                 RequiredCheck($("#DeliDate"));
                 DateCheck($("#DeliDate"), '@Url.Action("Date_Checking", "api/CommonApi")'); //E103
-                
+
                 ShowData();
             }
             else {
@@ -232,13 +244,13 @@
                     $("#BrandCD").val(nouhindata[0].BrandCD);
                     $("#BrandName").text(nouhindata[0].BrandName);
 
-                    if (nouhindata[0].Season == "1") 
+                    if (nouhindata[0].Season == "1")
                         $("#rdoAllYear").prop("checked", true);
-                  
-                    else if (nouhindata[0].Season == "2") 
+
+                    else if (nouhindata[0].Season == "2")
                         $("#rdoSS").prop("checked", true);
-                   
-                    else if (nouhindata[0].Season == "3") 
+
+                    else if (nouhindata[0].Season == "3")
                         $("#rdoFW").prop("checked", true);
 
                 }
@@ -257,7 +269,7 @@
         }
 
         function ShowData() {
-            
+
             var TnModel = {
                 ProjectCD: '@Model.ProjectCD',
                 Mode: '@Model.Mode'
@@ -312,10 +324,10 @@
                         "data": null,
                         className: "Border2",
                         render: function (data, type, row) {
-                            return '<label id ="Hinbancd">' + data.HinbanCD + '</label>' + '  ' + '<label  id ="Hinbanname">' + data.HinbanName + '</label>';
+                            return '<label class="text-Entry id ="Hinbancd">' + data.HinbanCD + '  '  + data.HinbanName + '</label>';
                         }
                     },
-                    
+
                     {
                         "data": null,
                         className: "Border3",
@@ -412,7 +424,7 @@
                     }
                 }
             });
-        
+
             return result;
         }
 
@@ -453,7 +465,7 @@
 
                 var data = CalltoApiController('@Url.Action("Nouhin_CUD", "api/Touroku_NouhinApi")', TnModel);
                 ShowSuccessMessage(data, '@Url.Action("Touroku_NouhinList", "Touroku_Nouhin")?Year=' + '@Model.Year' + '&Season=' + '@Model.Season' + '&BrandCD=' + '@Model.BrandCD' + '&BrandName=' + '@Model.BrandName' + '&ProjectCD1=' + '@Model.ProjectCD1' + '&ProjectName=' + '@Model.ProjectName' + '&HinbanCD=' + '@Model.HinbanCD' + '&HinbanName=' + '@Model.HinbanName' + '&DeliveryStartDate=' + '@Model.DeliveryStartDate' + '&DeliveryEndDate=' + '@Model.DeliveryEndDate' + '&DeliveryStatus=' + '@Model.DeliveryStatus' + '&flg=' + '@Model.flg' );
-            
+
         }
 
         //save
@@ -494,7 +506,7 @@
             }
             else
                 ShowErrorMessage(res);
-           
+
         }
 
         function AllSearch() {
@@ -570,5 +582,5 @@
 
 
     </script>
-    
+
 }
