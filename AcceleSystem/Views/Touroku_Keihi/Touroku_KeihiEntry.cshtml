@@ -201,7 +201,7 @@
 
                 DoubleByteCheck($("#HinbanCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 //ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "HinbanName");
-                ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "HinbanName", $("#projectCD").val());
+               // ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "HinbanName", $("#projectCD").val());
 
                 DoubleByteCheck($("#CastingCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/Touroku_KeihiApi")', "CastingName");
@@ -232,7 +232,7 @@
                 ExistsCheck($("#projectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")', "projectName");
 
                 DoubleByteCheck($("#HinbanCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-                ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "HinbanName", $("#projectCD").val());
+                //ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "HinbanName", $("#projectCD").val());
 
                 DoubleByteCheck($("#CastingCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/Touroku_KeihiApi")', "CastingName");
@@ -265,7 +265,7 @@
                 ExistsCheck($("#projectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")', "projectName");
 
                 DoubleByteCheck($("#HinbanCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-                ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "HinbanName", $("#projectCD").val());
+                //ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "HinbanName", $("#projectCD").val());
 
                 DoubleByteCheck($("#CastingCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/Touroku_KeihiApi")', "CastingName");
@@ -399,6 +399,11 @@
                 RequiredCheck($("#projectCD"));
                 RequiredCheck($("#HinbanCD"));
 
+                RemoveRequired("#year");
+                RemoveRequired("#BrandCD");
+                RemoveRequired("#CastingCD");
+                RemoveRequired("#Item");
+
                 $("#year").attr('disabled', 'disabled');
                 $("#BrandCD").attr('disabled', 'disabled');
                 $("#Seasongp").children().attr('disabled', 'disabled');
@@ -419,6 +424,11 @@
                 RequiredCheck($("#year"));
                 RequiredCheck($("#BrandCD"));
 
+                RemoveRequired("#projectCD");
+                RemoveRequired("#HinbanCD");
+                RemoveRequired("#CastingCD");
+                RemoveRequired("#Item");
+
                 $("#projectCD").attr('disabled', 'disabled');
                 $("#HinbanCD").attr('disabled', 'disabled');
                 $("#CastingCD").attr('disabled', 'disabled');
@@ -434,7 +444,13 @@
              }
              else if ($("#accounting").text() == "3") {
                 $("#projectCD").removeAttr('disabled');
-                 RequiredCheck($("#projectCD"));
+                RequiredCheck($("#projectCD"));
+
+                RemoveRequired("#year");
+                RemoveRequired("#BrandCD");
+                RemoveRequired("#HinbanCD");
+                RemoveRequired("#CastingCD");
+                RemoveRequired("#Item");
 
                  $("#year").attr('disabled', 'disabled');
                  $("#BrandCD").attr('disabled', 'disabled');
@@ -456,6 +472,12 @@
                 $("#CastingCD").removeAttr('disabled');
                  RequiredCheck($("#CastingCD"));
 
+                RemoveRequired("#year");
+                RemoveRequired("#BrandCD");
+                RemoveRequired("#HinbanCD");
+                RemoveRequired("#projectCD");
+                RemoveRequired("#Item");
+
                  $("#year").attr('disabled', 'disabled');
                  $("#BrandCD").attr('disabled', 'disabled');
                  $("#Seasongp").children().attr('disabled', 'disabled');
@@ -474,14 +496,20 @@
              }
              else if ($("#accounting").text() == "5") {
                 $("#Item").removeAttr('disabled');
-                 RequiredCheck($("#Item"));
+                RequiredCheck($("#Item"));
+
+                RemoveRequired("#year");
+                RemoveRequired("#BrandCD");
+                RemoveRequired("#HinbanCD");
+                RemoveRequired("#projectCD");
+                RemoveRequired("#CastingCD");
 
                  $("#year").attr('disabled', 'disabled');
                  $("#BrandCD").attr('disabled', 'disabled');
                  $("#Seasongp").children().attr('disabled', 'disabled');
                  $("#HinbanCD").attr('disabled', 'disabled');
                  $("#CastingCD").attr('disabled', 'disabled');
-                $("#projectCD").attr('disabled', 'disabled');
+                 $("#projectCD").attr('disabled', 'disabled');
 
                 $("#year").val('');
                 $("#BrandCD").val('');
@@ -523,7 +551,12 @@
 
     function Project(result) {
         if (result == 'OK') {
-            ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "HinbanName", $("#projectCD").val());
+            if ($("#projectCD").val()) {
+                ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "HinbanName", $("#projectCD").val());
+            }
+            else
+                $("#projectName").text('プロジェクト表示');
+
             $("#projectName").css("font-weight", "Bold");
         }
         else {
