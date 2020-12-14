@@ -108,7 +108,7 @@
                             <label id="text" style="padding-right: 5px;">
                                 予定単価/総金額
                             </label>
-                            <input type="text" tabindex="16" class="text-line col-sm-12 col-md-12 col-lg-4 text-right input-numeral4" onkeydown="KeyDown(event,this)" id="saleprice" name="saleparice" maxlength="7" required placeholder="入力">&nbsp;
+                            <input type="text" tabindex="16" class="text-line col-sm-12 col-md-12 col-lg-4 text-right input-numeral4" onkeydown="KeyDown(event,this,'CalculateTotalAmt')" id="saleprice" name="saleparice" maxlength="7" required placeholder="入力">&nbsp;
 
                             <input type="text" tabindex="17" class="text-line col-sm-12 col-md-12 col-lg-4 text-right" onkeydown="KeyDown(event,this)" id="Amount" name="Amount" maxlength="10" required placeholder="入力">
                         </div>
@@ -287,6 +287,13 @@
             //$("#DeliverNo").val(hbdata[0].TotalDeliveryAmount);
             //$("#Amount").val(hbdata[0].TotalSP);
         }
+
+    function CalculateTotalAmt() {
+        if ($('#saleprice').val() && $('#Production').val()) {
+            var result = parseInt($('#Production').val().replace(",", "")) * parseInt($('#saleprice').val().replace(",", ""));
+            $('#Amount').val(result);
+        }
+    }
 
         function CheckProduction(result) {
             if (result == 'OK') {
