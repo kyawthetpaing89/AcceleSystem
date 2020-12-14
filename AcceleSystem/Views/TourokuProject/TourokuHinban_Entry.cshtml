@@ -196,10 +196,13 @@
             else if (Mode == 'Edit') {
                 ShowData();
                 $('#btnSave').html('更新');
-                $("#HinbanName").focus();
+                $("#Color").focus();
 
                 $("#ProjectCD").attr('disabled', 'disabled');
                 $("#HinbanCD").attr('disabled', 'disabled');
+                $("HinbanName").attr('disabled', 'disabled');
+                $("DeliverNo").attr('disabled', 'disabled');
+                $("CastingName").attr('disabled', 'disabled');
 
                 DoubleByteCheck($("#ProjectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "ProjectName");
@@ -222,6 +225,9 @@
                 $('#btnSave').html('登録');
                 $("#ProjectCD").focus();
 
+                $("DeliverNo").attr('disabled', 'disabled');
+                $("CastingName").attr('disabled', 'disabled');
+
                 DoubleByteCheck($("#ProjectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "ProjectName");
 
@@ -243,7 +249,7 @@
             }
             else if (Mode == 'Delete') {
                 $('#btnSave').html('削除');
-
+                ShowData();
                 $("#ProjectCD").attr('disabled', 'disabled');
                 $("#HinbanCD").attr('disabled', 'disabled');
                 $("#HinbanName").attr('disabled', 'disabled');
@@ -253,11 +259,12 @@
                 $("#saleprice").attr('disabled', 'disabled');
                 $("#Amount").attr('disabled', 'disabled');
                 $("#CastingCD").attr('disabled', 'disabled');
+                $("CastingName").attr('disabled', 'disabled');
                 $("#freeitem1").attr('disabled', 'disabled');
                 $("#freeitem2").attr('disabled', 'disabled');
 
                 $("#btnSave").focus();
-                ShowData();
+                
             }
         });
 
