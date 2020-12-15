@@ -295,10 +295,12 @@
             //$("#Amount").val(hbdata[0].TotalSP);
         }
 
-    function CalculateTotalAmt() {
-        if ($('#saleprice').val() && $('#Production').val()) {
-            var result = parseInt($('#Production').val().replace(",", "")) * parseInt($('#saleprice').val().replace(",", ""));
-            $('#Amount').val(result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+    function CalculateTotalAmt(result) {
+        if (result == 'OK') {
+            if ($('#saleprice').val() && $('#Production').val()) {
+                var result = parseInt($('#Production').val().replace(",", "")) * parseInt($('#saleprice').val().replace(",", ""));
+                $('#Amount').val(result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+            }
         }
     }
 
@@ -390,8 +392,10 @@
                 }
                 else {
                     var res2 = CheckProductionOnSave();
-                    if (res2 == "0")
+                    if (res2 == "0") {
+                        CalculateTotalAmt('OK');
                         DoProcess();
+                    }
                     else
                         ShowErrorMessage(res2);
                 }
