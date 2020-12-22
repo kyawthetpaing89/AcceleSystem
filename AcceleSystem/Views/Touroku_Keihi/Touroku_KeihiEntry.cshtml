@@ -615,7 +615,7 @@
                 var data = CalltoApiController('@Url.Action("Fnc_TAXCalculation", "api/Touroku_KeihiApi")', Kmodel);
                 var tax = JSON.parse(data);
                 if (tax[0].Kingaku1) {
-                    $("#BodyAmount").val(tax[0].Kingaku1);
+                    $("#BodyAmount").val(tax[0].Kingaku1.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
                 }
             }
             else {
