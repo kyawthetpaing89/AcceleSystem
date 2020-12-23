@@ -16,6 +16,7 @@
             width: 100px;
             white-space: nowrap;
             vertical-align: middle;
+            padding-top:3%;
         }
     </style>
 <div id="divMain" class="container-fluid">
@@ -296,6 +297,7 @@
                         className: "Border2",
                         render: function (data, type, row) {
                             return '<label id ="Projectcd">' + data.ProjectCD + '</label>' + '  ' + '<label class="text-BSEntry" id ="Projectname">' + data.ProjectName + '</label>';
+                            //return '<label id ="Projectcd">' + data.ProjectCD + '</label>' + '  ' + '<input type="text"  id ="Production" class="text-line text-right border-0" value = ' + data.Production + ' readonly>';
                         }
                     },
                     {
@@ -310,6 +312,7 @@
                         className: "Border4",
                         render: function (data, type, row) {
                             return '<input type="text"  id ="Production" class="text-line text-right border-0" value = ' + data.Production + ' readonly>';
+                            //return '<label class="text-BSEntry" id ="Projectname">' + data.ProjectName + '</label>';
                         }
                     },
                     {

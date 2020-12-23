@@ -81,6 +81,11 @@
  #tblKeihi td.Border1.sorting_1 {
       width: 180px !important;
  }
+ 
+#tblNouhinBS > tbody > tr > td {
+    border-top: 1px solid #d3dcd3;
+}
 
-
-
+#tblNouhinEntry > tbody > tr > td {
+    border-top: 1px solid #d3dcd3;
+}
