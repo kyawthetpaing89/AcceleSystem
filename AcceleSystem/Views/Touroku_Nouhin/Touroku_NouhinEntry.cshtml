@@ -14,7 +14,7 @@
         text-overflow: ellipsis;
         display: inline-block;
         overflow: hidden;
-        width: 200px;
+        width: 170px;
         white-space: nowrap;
         vertical-align: middle;
         padding-top: 3%;
@@ -324,7 +324,7 @@
                         "data": null,
                         className: "Border2",
                         render: function (data, type, row) {
-                            return '<label class="text-Entry id ="Hinbancd">' + data.HinbanCD + '  '  + data.HinbanName + '</label>';
+                            return '<label  id ="Hinbancd">' + data.HinbanCD + '</label>' + '  ' + '<label class="text-Entry" id ="Hinbanname">' + data.HinbanName + '</label>';
                         }
                     },
 
@@ -387,18 +387,19 @@
                 if (!($(this).val())) {
                     $(this).val(0);
                 }
-                Deliverydata = parseInt($(this).val());
+                Deliverydata = parseInt($(this).val().replace(',',''));
                 if (Deliverydata < 0) {
                     $(this).focus();
                     ShowErrorMessage("E109");
                 }
-                else if (Deliverydata > (parseInt($(row).find('#Production').val()) - parseInt($(row).find('#SumDeliveryAmount').val()))) {
+                
+                else if (Deliverydata > (parseInt($(row).find('#Production').val().replace(',', '')) - parseInt($(row).find('#SumDeliveryAmount').val().replace(',', '')))) {
                     $(this).focus();
                     ShowErrorMessage("E128");
                 }
                 else {
-                    Undeliverdata = parseInt($(row).find('#Production').val()) - parseInt($(row).find('#SumDeliveryAmount').val()) - Deliverydata;
-                    $(row).find('#UNDeliverItems').val(Undeliverdata);
+                    Undeliverdata = parseInt($(row).find('#Production').val().replace(',', '')) - parseInt($(row).find('#SumDeliveryAmount').val().replace(',', '')) - Deliverydata;
+                    $(row).find('#UNDeliverItems').val(Undeliverdata.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
                 }
             });
 
@@ -408,12 +409,12 @@
             var result;
             $('#tblNouhinEntry tr').each(function (row, tr) {
                 if ($(tr).find('#chk').val() == "true") {
-                    if (parseInt($(tr).find('#DeliverAmount').val()) < 0) {
+                    if (parseInt($(tr).find('#DeliverAmount').val().replace(',', '')) < 0) {
                         $(tr).find('#DeliverAmount').focus();
                         result = "E109";
                         return false;
                     }
-                    else if (parseInt($(tr).find('#DeliverAmount').val()) > (parseInt($(tr).find('#Production').val()) - parseInt($(tr).find('#SumDeliveryAmount').val()))) {
+                    else if (parseInt($(tr).find('#DeliverAmount').val().replace(',', '')) > (parseInt($(tr).find('#Production').val().replace(',', '')) - parseInt($(tr).find('#SumDeliveryAmount').val().replace(',', '')))) {
                         $(tr).find('#DeliverAmount').focus();
                         result = "E128";
                         return false;
@@ -450,9 +451,6 @@
         function DoProcess() {
             var tb = storeTblValues();
             var data = JSON.stringify(tb);
-
-                //var table = $('#tblNouhinEntry').DataTable();
-                //var data = JSON.stringify(table.rows().data().toArray());
 
                 var TnModel = {
                     DeliveryStartDate: $("#DeliDate").val(),
