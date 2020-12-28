@@ -379,29 +379,35 @@
             });
         });
 
-        $('#tblNouhinEntry').on('change', '#DeliverAmount', function () {  //for nouhinEntry error check
-            var Deliverydata = null;
-            var Undeliverdata = null;
-            var row = $(this).closest('tr');
-            $('#DeliverAmount', row).each(function (e) {
-                if (!($(this).val())) {
-                    $(this).val(0);
-                }
-                Deliverydata = parseInt($(this).val().replace(',',''));
-                if (Deliverydata < 0) {
-                    $(this).focus();
-                    ShowErrorMessage("E109");
-                }
-                
-                else if (Deliverydata > (parseInt($(row).find('#Production').val().replace(',', '')) - parseInt($(row).find('#SumDeliveryAmount').val().replace(',', '')))) {
-                    $(this).focus();
-                    ShowErrorMessage("E128");
-                }
-                else {
-                    Undeliverdata = parseInt($(row).find('#Production').val().replace(',', '')) - parseInt($(row).find('#SumDeliveryAmount').val().replace(',', '')) - Deliverydata;
-                    $(row).find('#UNDeliverItems').val(Undeliverdata.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-                }
-            });
+        $('#tblNouhinEntry').on('keydown', '#DeliverAmount', function (e) {  //for nouhinEntry error check
+          if (e.keyCode == 13) {
+                var Deliverydata = null;
+                var Undeliverdata = null;
+                var row = $(this).closest('tr');
+                $('#DeliverAmount', row).each(function (e) {
+                    if (!($(this).val())) {
+                        $(this).val(0);
+                    }
+                    Deliverydata = parseInt($(this).val().replace(',', ''));
+                    alert(Deliverydata);
+                    if (Deliverydata < 0) {
+                        $(this).focus();
+                        ShowErrorMessage("E109");
+                    }
+
+                    else if (Deliverydata > (parseInt($(row).find('#Production').val().replace(',', '')) - parseInt($(row).find('#SumDeliveryAmount').val().replace(',', '')))) {
+                        $(this).focus();
+                        ShowErrorMessage("E128");
+                    }
+                    else {
+                        alert("a");
+
+                        Undeliverdata = parseInt($(row).find('#Production').val().replace(',', '')) - parseInt($(row).find('#SumDeliveryAmount').val().replace(',', '')) - Deliverydata;
+                        alert(Undeliverdata);
+                        $(row).find('#UNDeliverItems').val(Undeliverdata.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+                    }
+                });
+            }
 
         });
 
