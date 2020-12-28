@@ -195,6 +195,9 @@
                 $("#btnSave").focus();
 
                 ShowData();
+                $('#tblNouhinEntry tr').each(function (row, tr) {
+                    $(tr).find('#DeliverAmount').attr('readonly',true);
+                });
             }
         });
 
@@ -389,7 +392,7 @@
                         $(this).val(0);
                     }
                     Deliverydata = parseInt($(this).val().replace(',', ''));
-                    alert(Deliverydata);
+                    
                     if (Deliverydata < 0) {
                         $(this).focus();
                         ShowErrorMessage("E109");
@@ -400,14 +403,12 @@
                         ShowErrorMessage("E128");
                     }
                     else {
-                        alert("a");
-
                         Undeliverdata = parseInt($(row).find('#Production').val().replace(',', '')) - parseInt($(row).find('#SumDeliveryAmount').val().replace(',', '')) - Deliverydata;
-                        alert(Undeliverdata);
+                      
                         $(row).find('#UNDeliverItems').val(Undeliverdata.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
                     }
                 });
-            }
+          }
 
         });
 
