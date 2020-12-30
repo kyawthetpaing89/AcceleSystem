@@ -19,7 +19,7 @@
                 <div>
                     <div>
                         <label id="SEQ" hidden></label>
-                        <label id="accounting"  ><b></b></label>
+                        <label id="accounting"  hidden><b></b></label>
                     </div>
                     <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                         <div class="col-xs-12" style="padding-left:69px;">
@@ -299,31 +299,42 @@
                 SEQ: '@Model.SEQ',
             };
             var data = CalltoApiController('@Url.Action("D_Cost_Edit_List", "api/Touroku_KeihiApi")', Kmodel);
-        var ProjectData = JSON.parse(data);
+            var ProjectData = JSON.parse(data);
             $("#SEQ").text(ProjectData[0].SEQ);
             $("#accounting").text(ProjectData[0].Accounting);
+       
             $("#CostCD").val(ProjectData[0].CostCD);
+            
             if (!ProjectData[0].CostName) 
-            $("#costname").text("経費名表示");
+                $("#costname").text("経費名表示");
             else $("#costname").text(ProjectData[0].CostName);
+
             $("#CostDate").val(ProjectData[0].CostDate);
             $("#year").val(ProjectData[0].Year);
             $("#BrandCD").val(ProjectData[0].BrandCD);
+
             if (!ProjectData[0].BrandName) 
-            $("#brandname").text("ブランド表示");
+                $("#brandname").text("ブランド表示");
             else $("#brandname").text(ProjectData[0].BrandName);
+
             $("#projectCD").val(ProjectData[0].ProjectCD);
+
             if (!ProjectData[0].ProjectName) 
-            $("#projectName").text("プロジェクト表示");
+                $("#projectName").text("プロジェクト表示");
             else $("#projectName").text(ProjectData[0].ProjectName);
+
             $("#HinbanCD").val(ProjectData[0].HinbanCD);
+
             if (!ProjectData[0].HinbanName) 
-            $("#HinbanName").text("品番表示");
+                $("#HinbanName").text("品番表示");
             else $("#HinbanName").text(ProjectData[0].HinbanName);
+
             $("#CastingCD").val(ProjectData[0].CastingCD);
+
             if (!ProjectData[0].CastingName) 
-            $("#CastingName").text("金型表示"); 
+                $("#CastingName").text("金型表示"); 
             else $("#CastingName").text(ProjectData[0].CastingName);
+
             $("#Item").val(ProjectData[0].FreeItem1);
             $("#AmountMoney").val(ProjectData[0].CostAmount);
             $("#BodyAmount").val(ProjectData[0].InputAmount);
