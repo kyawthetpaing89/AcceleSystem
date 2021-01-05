@@ -326,7 +326,7 @@
                         "data": null,
                         className: "Border6",
                         render: function (data, type, row) {
-                            return '<input type="number"  id ="DeliverAmount" class="text-line text-right border-0 " onKeyPress="if(this.value.length==10) return false;" value = ' + data.DeliverTimes + '>';
+                            return '<input type="text"  id ="DeliverAmount" class="text-line text-right border-0 "  value = ' + data.DeliverTimes + '>';
                         }
                     },
                     {
@@ -375,6 +375,23 @@
                 }
             });
 
+        });
+
+        $('#tblNouhinBS').on('keyup', '#DeliverAmount', function (e) {  //Allow only numer with comma for 今回納品数
+            if (e.which >= 37 && e.which <= 40) event.preventDefault();
+
+            // format number
+            $(this).val(function (index, value) {
+                return value
+                    .replace(/\D/g, "")
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                    ;
+            });
+            //if (this.value.length == 10) event.preventDefault();
+        });
+
+        $('#tblNouhinBS').on('keypress', '#DeliverAmount', function (e) {  // check Maxlength for 今回納品数
+            if (this.value.length == 10) event.preventDefault();
         });
 
         function storeTblValues() {
