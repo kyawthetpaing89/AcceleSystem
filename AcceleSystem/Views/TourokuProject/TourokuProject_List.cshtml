@@ -17,6 +17,14 @@
         white-space: nowrap;
         /*vertical-align: middle;*/
     }
+
+    .fixed-project {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 440px;
+        white-space: nowrap;
+        display: inline-block;
+    }
 </style>
 <div id="divMain" class="container-fluid">
     <div class="card">
@@ -335,7 +343,7 @@
                         className: "Border1",
                         render: function (data, type, row) {
                             return '<table class="col-md-12"><tr><td class="text-price">' + data.BrandCD + '  ' + data.BrandName + '</td><td class="text-center" style="width: 22%">' + data.Season + '</td><td class="text-center" style="width: 22%">' + data.Year + '</td><td style="width: 10%; text-align: center;"><label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label></td></tr>' +
-                                '<tr><td class="text-price">' + data.ProjectCD + '  ' + data.ProjectName + '</td><td></td><td></td><td style="text-align: center;"><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:red">削除</a></label></td></tr>' +
+                                '<tr><td colspan=4><span class="fixed-project">' + data.ProjectCD + '  ' + data.ProjectName + '</span></td><td style="text-align: center;"><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:red">削除</a></label></td></tr>' +
                                 '<tr><td class="text-price">' + data.PeriodStart + '</td><td style="text-align: right; padding-right: 3%;">' + data.Production + '</td><td style="text-align: right; padding-right: 3%;">' + data.SalesPrice + '</td><td style="text-align: center;"><label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:green">複写</a></label></td></tr></table>'
                         }
                     },
