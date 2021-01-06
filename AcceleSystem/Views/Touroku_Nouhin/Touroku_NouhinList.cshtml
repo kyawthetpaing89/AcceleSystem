@@ -12,9 +12,16 @@
             text-overflow: ellipsis;
             display: inline-block;
             overflow: hidden;
-            width: 140px;
+            width: 180px;
             white-space: nowrap;
             vertical-align: middle;
+        }
+        .fixed-hinban {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            width: 350px;
+            white-space: nowrap;
+            display: inline-block;
         }
     </style>
 <div id="divMain" class="container-fluid">
@@ -133,7 +140,7 @@
                                         <tr>
                                             <th style="width: 20%">納品日</th>
                                             <th style="width: 28%">ブランド</th>
-                                            <th style="width: 22%; text-align:center;">シーズン</th>
+                                            <th style="width: 22%; text-align:right;">シーズン</th>
                                             <th style="width: 22%;text-align:center;">年度</th>
                                             <th style="width: 10%"></th>
                                         </tr>
@@ -147,7 +154,7 @@
                                         <tr>
                                             <th>品番</th>
                                             <th></th>
-                                            <th style="text-align:center;">生産数</th>
+                                            <th style="text-align:right;">生産数</th>
                                             <th style="text-align:center;">納品数</th>
                                             <th></th>
                                         </tr>
@@ -379,12 +386,9 @@
                         "data": null,
                         className: "Border1",
                         render: function (data, type, row) {
-                            return '<table class="col-md-12"><tr><td style="width: 20%">' + data.DeliveryDate + '</td><td class="text-nouhin">' + data.BrandCD + '  ' + data.BrandName + '</td><td style="width: 22%" class="text-center">' + data.Season + '</td><td style="width: 22%" class="text-center">' + data.Year + '</td><td><label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label><br/></td></tr>' +
-                                '<tr><td>' + data.ProjectCD + '</td><td class="text-nouhin">' + data.ProjectName + '</td><td></td><td></td><td></td></tr>' +
-                                '<tr><td>' + data.HinbanCD + '</td><td class="text-nouhin">' + data.HinbanName + '</td><td style="text-align: right; padding-right: 3%; ">' + data.Production + '</td><td style="text-align: right; padding-right: 5%;">' + data.DeliveryAmount + '</td><td><label><a href="#" onClick="btnDelClick(\'' + data.ProjectCD + '\')" style="color:red">削除</a></label></td></tr></table>';
-                           
-
-
+                            return '<table class="col-md-12"><tr><td style="width: 20%">' + data.DeliveryDate + '</td><td class="text-nouhin">' + data.BrandCD + '  ' + data.BrandName + '</td><td class="text-center">' + data.Season + '</td><td style="width: 22%" class="text-center">' + data.Year + '</td><td><label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label><br/></td></tr>' +
+                                '<tr><td>' + data.ProjectCD + '</td><td colspan=4><span class="fixed-hinban">' + data.ProjectName + '</span></td></tr>' +
+                                '<tr><td>' + data.HinbanCD + '</td><td class="text-nouhin">' + data.HinbanName + '</td><td style="text-align: right;">' + data.Production + '</td><td style="text-align: right; padding-right: 5%;">' + data.DeliveryAmount + '</td><td><label><a href="#" onClick="btnDelClick(\'' + data.ProjectCD + '\')" style="color:red">削除</a></label></td></tr></table>';
                         }
                     },
                 ]
