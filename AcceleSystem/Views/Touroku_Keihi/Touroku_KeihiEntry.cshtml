@@ -19,7 +19,7 @@
                 <div>
                     <div>
                         <label id="SEQ" hidden></label>
-                        <label id="accounting"  hidden><b></b></label>
+                        <label id="accounting" hidden ><b></b></label>
                     </div>
                     <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                         <div class="col-xs-12" style="padding-left:69px;">
@@ -654,18 +654,19 @@
             };
 
             //For Season
-            //if ($("#Seasongp").children().attr('disabled', 'disabled')) {
-            //    alert("1");
-            //    Kmodel.Season = null;
-            //}
-            //else {
+            alert($('#accounting').text());
+            if ($('#accounting').text() == "2") {
                 if ($('#allyear').is(':checked'))
                     Kmodel.Season = "1";
                 else if ($('#SS').is(':checked'))
                     Kmodel.Season = "2";
                 else if ($('#FW').is(':checked'))
                     Kmodel.Season = "3";
-            //}
+            }
+            else {
+                Kmodel.Season = "";
+            }
+
             if ($('#taxNotInclude').is(':checked'))
                 Kmodel.ZeikomiKBN = "1";
             else if ($('#taxInclude').is(':checked'))
