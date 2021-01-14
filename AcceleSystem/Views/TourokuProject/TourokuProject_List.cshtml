@@ -9,11 +9,32 @@
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
 }
 <style>
+    @@media only screen and (max-width: 1450px) {
+        p{
+            width: 210px;
+        }
+    }
+    @@media only screen and (min-width: 1450px) {
+        p {
+            width: 330px;
+        }
+    }
+    @@media only screen and (min-width: 1681px) {
+        p {
+            width: 97%;
+        }
+    }
+    p {
+        line-height: unset;
+        color: unset;
+        margin-bottom: unset;
+    }
+
     .text-price {
         text-overflow: ellipsis;
         display: inline-block;
         overflow: hidden;
-        width: 210px;
+        /*width: 210px;*/
         white-space: nowrap;
         /*vertical-align: middle;*/
     }
@@ -342,9 +363,9 @@
                         "data": null,
                         className: "Border1",
                         render: function (data, type, row) {
-                            return '<table class="col-md-12"><tr><td class="text-price">' + data.BrandCD + '  ' + data.BrandName + '</td><td class="text-center" style="width: 22%">' + data.Season + '</td><td class="text-center" style="width: 22%">' + data.Year + '</td><td style="width: 10%; text-align: center;"><label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label></td></tr>' +
+                            return '<table class="col-md-12"><tr><td><p class="text-price">' + data.BrandCD + '  ' + data.BrandName + '</p></td><td class="text-center" style="width: 22%">' + data.Season + '</td><td class="text-center" style="width: 22%">' + data.Year + '</td><td style="width: 10%; text-align: center;"><label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label></td></tr>' +
                                 '<tr><td colspan=3><span class="fixed-project">' + data.ProjectCD + ' ' + data.ProjectName + '</span></td><td style="text-align: center;"><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:red">削除</a></label></td></tr>' +
-                                '<tr><td class="text-price">' + data.PeriodStart + '</td><td style="text-align: right; padding-right: 3%;">' + data.Production + '</td><td style="text-align: right; padding-right: 3%;">' + data.SalesPrice + '</td><td style="text-align: center;"><label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:green">複写</a></label></td></tr></table>'
+                                '<tr><td class="text-price" style="width: 210px;">' + data.PeriodStart + '</td><td style="text-align: right; padding-right: 3%;">' + data.Production + '</td><td style="text-align: right; padding-right: 3%;">' + data.SalesPrice + '</td><td style="text-align: center;"><label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:green">複写</a></label></td></tr></table>'
                         }
                     },
                 ]
