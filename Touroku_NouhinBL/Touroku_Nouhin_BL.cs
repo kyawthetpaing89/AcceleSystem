@@ -102,5 +102,14 @@ namespace TourokuNouhinBL
 
             return bdl.SelectJson("M_NouhinBS_Insert", Tnmodel.Sqlprms);
         }
+
+        public string M_Nouhin_Project_ExistsCheck(TourokuNouhinModel Tnmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            Tnmodel.Sqlprms = new SqlParameter[1];
+            Tnmodel.Sqlprms[0] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Tnmodel.ProjectCD };
+            
+            return bdl.SelectJson("M_Nouhin_Project_ExistsCheck", Tnmodel.Sqlprms);
+        }
     }
 }
