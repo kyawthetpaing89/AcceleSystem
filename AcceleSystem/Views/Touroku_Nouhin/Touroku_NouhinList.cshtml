@@ -111,9 +111,9 @@
                                     <div class="col-md-12" style="padding-left:33px;">
                                         <div id="Statusgp" class="text-s text-custom1 text-uppercase mb-1">
                                             <label class="text" style="padding-right:5px;">納品状況</label>
-                                            <input type="checkbox" tabindex="13" id="Delleft" name="chkDelleft" onkeydown="KeyDown(event,this)"  checked>
+                                            <input type="checkbox" tabindex="13" id="Delleft" name="chkDelleft" value="1" onkeydown="KeyDown(event,this)"  checked>
                                             <label for="Delleft" style="padding-right:12px;">納品残あり</label>
-                                            <input type="checkbox" tabindex="14" id="Delcomplete" onkeydown="KeyDown(event,this,'flgCheck')" name="chkDelcomplete" >
+                                            <input type="checkbox" tabindex="14" id="Delcomplete" value="2" onkeydown="KeyDown(event,this,'flgCheck')" name="chkDelcomplete" >
                                             <label for="Delcomplete">完納</label>
                                         </div>
                                     </div>
@@ -339,15 +339,20 @@
                 DeliveryEndDate: $("#EndDate").val()
             };
             var selected = new Array();
+            var selected1 = new Array();
             $("#Seasongp input[type=checkbox]:checked").each(function () {
                 selected.push(this.value);
             });
             if (selected.length > 0)
                 TnModel.Season = selected.join(",");
 
-            if ($('#Delleft').is(':checked'))
-                TnModel.DeliveryStatus = "1";
-            else TnModel.DeliveryStatus = "2";
+            $("#Statusgp input[type=checkbox]:checked").each(function () {
+                selected1.push(this.value);
+            });
+            if (selected1.length > 0) {
+                alert(selected1.join(","));
+                TnModel.DeliveryStatus = selected1.join(",");
+            }
 
             $.ajax({
                 type: "Post",
@@ -445,15 +450,23 @@
                 flg: "list"
             };
             var selected = new Array();
+            var selected1 = new Array();
             $("#Seasongp input[type=checkbox]:checked").each(function () {
                 selected.push(this.value);
             });
             if (selected.length > 0)
                 TnModel.Season = selected.join(",");
 
-            if ($('#Delleft').is(':checked'))
-                TnModel.DeliveryStatus = "1";
-            else TnModel.DeliveryStatus = "2";
+            
+            $("#Statusgp input[type=checkbox]:checked").each(function () {
+                selected1.push(this.value);
+            });
+            if (selected1.length > 0)
+                TnModel.DeliveryStatus = selected.join(",");
+
+            //if ($('#Delleft').is(':checked'))
+            //    TnModel.DeliveryStatus = "1";
+            //else TnModel.DeliveryStatus = "2";
 
             return TnModel;
         }

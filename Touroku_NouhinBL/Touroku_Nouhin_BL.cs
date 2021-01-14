@@ -22,7 +22,7 @@ namespace TourokuNouhinBL
             Tnmodel.Sqlprms[7] = new SqlParameter("@HinbanName", SqlDbType.VarChar) { Value = Tnmodel.HinbanName };
             Tnmodel.Sqlprms[8] = new SqlParameter("@DeliveryStartDate", SqlDbType.Date) { Value = Tnmodel.DeliveryStartDate };
             Tnmodel.Sqlprms[9] = new SqlParameter("@DeliveryEndDate", SqlDbType.Date) { Value = Tnmodel.DeliveryEndDate };
-            Tnmodel.Sqlprms[10] = new SqlParameter("@DeliveryStatus", SqlDbType.TinyInt) { Value = (object)Tnmodel.DeliveryStatus ??  DBNull.Value };
+            Tnmodel.Sqlprms[10] = new SqlParameter("@DeliveryStatus", SqlDbType.VarChar) { Value = (object)Tnmodel.DeliveryStatus ??  DBNull.Value };
 
             return bdl.SelectJson("D_Delivery_Search", Tnmodel.Sqlprms);
         }
