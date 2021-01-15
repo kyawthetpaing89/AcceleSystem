@@ -8,11 +8,34 @@
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
 }
     <style>
+        @@media only screen and (max-width: 1450px) {
+            p {
+                width: 135px;
+            }
+        }
+
+        @@media only screen and (min-width: 1450px) {
+            p {
+                width: 330px;
+            }
+        }
+
+        @@media only screen and (min-width: 1681px) {
+            p {
+                width: 215px;
+            }
+        }
+
+        p {
+            line-height: unset;
+            color: unset;
+            margin-bottom: unset;
+        }
         .text-nouhin {
             text-overflow: ellipsis;
             display: inline-block;
             overflow: hidden;
-            width: 185px;
+            /*width: 185px;*/
             white-space: nowrap;
             vertical-align: middle;
         }
@@ -350,7 +373,7 @@
                 selected1.push(this.value);
             });
             if (selected1.length > 0) {
-                alert(selected1.join(","));
+                //alert(selected1.join(","));
                 TnModel.DeliveryStatus = selected1.join(",");
             }
 
@@ -391,9 +414,9 @@
                         "data": null,
                         className: "Border1",
                         render: function (data, type, row) {
-                            return '<table class="col-md-12"><tr><td style="width: 20%">' + data.DeliveryDate + '</td><td class="text-nouhin">' + data.BrandCD + '  ' + data.BrandName + '</td><td class="text-center">' + data.Season + '</td><td style="width: 22%" class="text-center">' + data.Year + '</td><td><label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label><br/></td></tr>' +
+                            return '<table class="col-md-12"><tr><td style="width: 20%">' + data.DeliveryDate + '</td><td><p class="text-nouhin">' + data.BrandCD + '  ' + data.BrandName + '</p></td><td class="text-center">' + data.Season + '</td><td style="width: 22%" class="text-center">' + data.Year + '</td><td><label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label><br/></td></tr>' +
                                 '<tr><td>' + data.ProjectCD + '</td><td colspan=4><span class="fixed-hinban">' + data.ProjectName + '</span></td></tr>' +
-                                '<tr><td>' + data.HinbanCD + '</td><td class="text-nouhin">' + data.HinbanName + '</td><td style="text-align: right;">' + data.Production + '</td><td style="text-align: right; padding-right: 5%;">' + data.DeliveryAmount + '</td><td><label><a href="#" onClick="btnDelClick(\'' + data.ProjectCD + '\')" style="color:red">削除</a></label></td></tr></table>';
+                                '<tr><td>' + data.HinbanCD + '</td><td><p class="text-nouhin">' + data.HinbanName + '</td><td style="text-align: right;">' + data.Production + '</p></td><td style="text-align: right; padding-right: 5%;">' + data.DeliveryAmount + '</td><td><label><a href="#" onClick="btnDelClick(\'' + data.ProjectCD + '\')" style="color:red">削除</a></label></td></tr></table>';
                         }
                     },
                 ]
