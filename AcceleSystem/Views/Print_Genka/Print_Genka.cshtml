@@ -250,11 +250,14 @@
                     JSON2CSV(data);
                     download();
 
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'I204',
-                        text: 'EXCEL出力が完了しました',
-                    })
+
+                    if ($('#tblExcel thread tr').length > 0) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'I204',
+                            text: 'EXCEL出力が完了しました',
+                        })
+                    }
                     ShowTargetYear();
                     $("#BrandCD").val('');
                     $("#brandname").text('ブランド表示');
@@ -548,7 +551,8 @@
         function download() {
             $(document).find('tfoot').remove();
             var name = '原価集計表.xls';
-            tableToExcel('tblExcel', '原価集計表', name);
+            if ($('#tblExcel thread tr').length > 0)
+                tableToExcel('tblExcel', '原価集計表', name);
             $('#tblExcel thead tr').remove();
             $('#tblExcel tbody tr').remove();
         }
