@@ -12,17 +12,29 @@
             p {
                 width: 135px;
             }
+
+            .fixed-project {
+                width: 200px;
+            }
         }
 
         @@media only screen and (min-width: 1450px) {
             p {
                 width: 330px;
             }
+
+            .fixed-project {
+                width: 550px;
+            }
         }
 
         @@media only screen and (min-width: 1681px) {
             p {
-                width: 215px;
+                width: 97%;
+            }
+
+            .fixed-project {
+                width: 95%;
             }
         }
 
@@ -31,18 +43,20 @@
             color: unset;
             margin-bottom: unset;
         }
+
         .text-nouhin {
             text-overflow: ellipsis;
             display: inline-block;
             overflow: hidden;
             /*width: 185px;*/
             white-space: nowrap;
-            vertical-align: middle;
+           
+            /*vertical-align: middle;*/
         }
-        .fixed-hinban {
+        .fixed-project {
             text-overflow: ellipsis;
             overflow: hidden;
-            width: 350px;
+            /*width: 350px;*/
             white-space: nowrap;
             display: inline-block;
         }
@@ -161,11 +175,11 @@
                                 <th>
                                     <table class="col-md-12">
                                         <tr>
-                                            <th style="width: 20%">納品日</th>
-                                            <th style="width: 28%">ブランド</th>
-                                            <th style="width: 22%; text-align:right;">シーズン</th>
-                                            <th style="width: 22%;text-align:center;">年度</th>
-                                            <th style="width: 10%"></th>
+                                            <th style="width: 18%; max-width: 18%;">納品日</th>
+                                            <th style="width: 28%; max-width: 28%;">ブランド</th>
+                                            <th style="width: 22%; max-width: 22%;"  class="text-center">シーズン</th>
+                                            <th style="width: 22%; max-width: 22%;" class="text-center">年度</th>
+                                            <th style="width: 10%; max-width: 7%;"></th>
                                         </tr>
                                         <tr>
                                             <th>プロジェクト</th>
@@ -177,8 +191,8 @@
                                         <tr>
                                             <th>品番</th>
                                             <th></th>
-                                            <th style="text-align:right;">生産数</th>
-                                            <th style="text-align:center;">納品数</th>
+                                            <th class="text-center">生産数</th>
+                                            <th class="text-center">納品数</th>
                                             <th></th>
                                         </tr>
                                     </table>
@@ -414,9 +428,9 @@
                         "data": null,
                         className: "Border1",
                         render: function (data, type, row) {
-                            return '<table class="col-md-12"><tr><td style="width: 20%">' + data.DeliveryDate + '</td><td><p class="text-nouhin">' + data.BrandCD + '  ' + data.BrandName + '</p></td><td class="text-center">' + data.Season + '</td><td style="width: 22%" class="text-center">' + data.Year + '</td><td><label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label><br/></td></tr>' +
-                                '<tr><td>' + data.ProjectCD + '</td><td colspan=4><span class="fixed-hinban">' + data.ProjectName + '</span></td></tr>' +
-                                '<tr><td>' + data.HinbanCD + '</td><td><p class="text-nouhin">' + data.HinbanName + '</td><td style="text-align: right;">' + data.Production + '</p></td><td style="text-align: right; padding-right: 5%;">' + data.DeliveryAmount + '</td><td><label><a href="#" onClick="btnDelClick(\'' + data.ProjectCD + '\')" style="color:red">削除</a></label></td></tr></table>';
+                            return '<table class="col-md-12"><tr><td style="width: 18%; max-width: 18%;"><p class="text-nouhin">' + data.DeliveryDate + '</p></td><td style="width: 28%; max-width: 28%;"><p class="text-nouhin">' + data.BrandCD + '  ' + data.BrandName + '</p></td><td style="width: 22%; max-width: 22%;" class="text-center">' + data.Season + '</td><td style="width: 22%; max-width: 22%;" class="text-center">' + data.Year + '</td><td style="width: 10%; max-width: 10%;text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label><br/></td></tr>' +
+                                '<tr><td colspan=4><span class="fixed-project">' + data.ProjectCD + '  ' + data.ProjectName + '</span></td></tr>' +
+                                '<tr><td colspan=2><span class="fixed-project">' + data.HinbanCD + '  ' + data.HinbanName + '</span></td><td style="text-align: right; padding-right: 3%;">' + data.Production + '</td><td style="text-align: right; padding-right: 3%;">' + data.DeliveryAmount + '</td><td style="text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnDelClick(\'' + data.ProjectCD + '\')" style="color:red">削除</a></label></td></tr></table>';
                         }
                     },
                 ]
