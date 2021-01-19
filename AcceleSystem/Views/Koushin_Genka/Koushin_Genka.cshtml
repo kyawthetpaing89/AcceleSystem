@@ -71,5 +71,12 @@
             ShowSuccessMessage(data,'@Url.Action("Koushin_Genka", "Koushin_Genka")');           
         }
 
+        $('#btnSave').keydown(function (e) {
+            var code = e.keyCode || e.which;
+            if (code == 9) {
+                e.preventDefault();
+            }
+        });
+
     </script>
 }
