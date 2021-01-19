@@ -11,17 +11,26 @@
 <style>
     @@media only screen and (max-width: 1450px) {
         p{
-            width: 210px;
+            width: 230px;
+        }
+        .fixed-project {
+            width: 420px;
         }
     }
     @@media only screen and (min-width: 1450px) {
         p {
             width: 330px;
         }
+        .fixed-project {
+            width: 550px;
+        }
     }
     @@media only screen and (min-width: 1681px) {
         p {
             width: 97%;
+        }
+        .fixed-project {
+            width: 95%;
         }
     }
     p {
@@ -42,7 +51,7 @@
     .fixed-project {
         text-overflow: ellipsis;
         overflow: hidden;
-        width: 95%;
+        /*width: 95%;*/
         white-space: nowrap;
         display: inline-block;
     }
@@ -153,22 +162,19 @@
                                 <th>
                                     <table class="col-md-12">
                                         <tr>
-                                            <th style="width: 25%">ブランド</th>
-                                            <th style="max-width: 25%"></th>
-                                            <th style="width: 22%" class="text-center" >シーズン</th>
-                                            <th style="width: 22%" class="text-center">年度</th>
-                                            <th style="width: 10%"></th>
+                                            <th style="width: 50%; max-width: 50%;">ブランド</th>
+                                            <th style="width: 22%; max-width: 22%;" class="text-center" >シーズン</th>
+                                            <th style="width: 22%; max-width: 22%;" class="text-center">年度</th>
+                                            <th style="width: 70px; max-width: 70px;"></th>
                                         </tr>
                                         <tr>
                                             <th>プロジェクト</th>
                                             <th></th>
                                             <th></th>
                                             <th></th>
-                                            <th></th>
                                         </tr>
                                         <tr>
                                             <th>予定期間</th>
-                                            <th></th>
                                             <th class="text-center">総生産数</th>
                                             <th class="text-center">総金額</th>
                                             <th></th>
@@ -363,9 +369,9 @@
                         "data": null,
                         className: "Border1",
                         render: function (data, type, row) {
-                            return '<table class="col-md-12"><tr><td><p class="text-price">' + data.BrandCD + '  ' + data.BrandName + '</p></td><td class="text-center" style="width: 22%">' + data.Season + '</td><td class="text-center" style="width: 22%">' + data.Year + '</td><td style="width: 10%; text-align: center;"><label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label></td></tr>' +
-                                '<tr><td colspan=3><span class="fixed-project">' + data.ProjectCD + ' ' + data.ProjectName + '</span></td><td style="text-align: center;"><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:red">削除</a></label></td></tr>' +
-                                '<tr><td class="text-price" style="width: 210px;">' + data.PeriodStart + '</td><td style="text-align: right; padding-right: 3%;">' + data.Production + '</td><td style="text-align: right; padding-right: 3%;">' + data.SalesPrice + '</td><td style="text-align: center;"><label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:green">複写</a></label></td></tr></table>'
+                            return '<table class="col-md-12"><tr><td style="width: 50%; max-width: 50%;"><p class="text-price">' + data.BrandCD + '  ' + data.BrandName + '</p></td><td class="text-center" style="width: 22%; max-width: 22%;">' + data.Season + '</td><td class="text-center" style="width: 22%; max-width: 22%;">' + data.Year + '</td><td style="width: 70px; max-width: 70px; text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label></td></tr>' +
+                                '<tr><td colspan=3><span class="fixed-project">' + data.ProjectCD + ' ' + data.ProjectName + '</span></td><td style="text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:red">削除</a></label></td></tr>' +
+                                '<tr><td class="text-price" style="width: 210px;">' + data.PeriodStart + '</td><td style="text-align: right; padding-right: 3%;">' + data.Production + '</td><td style="text-align: right; padding-right: 3%;">' + data.SalesPrice + '</td><td style="text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:green">複写</a></label></td></tr></table>'
                         }
                     },
                 ]
