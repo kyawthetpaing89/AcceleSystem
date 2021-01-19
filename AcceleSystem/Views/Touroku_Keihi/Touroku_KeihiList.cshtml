@@ -8,11 +8,34 @@
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
 }
 <style>
+    @@media only screen and (max-width: 1450px) {
+        .text-keihi {
+            width: 230px;
+        }
+    }
+
+    @@media only screen and (min-width: 1450px) {
+        .text-keihi {
+            width: 295px;
+        }
+    }
+
+    @@media only screen and (min-width: 1681px) {
+        .text-keihi {
+            width: 97%;
+        }
+    }
+
+    p {
+        line-height: unset;
+        color: unset;
+        margin-bottom: unset;
+    }
     .text-keihi {
         text-overflow: ellipsis;
         display: inline-block;
         overflow: hidden;
-        width: 230px;
+        /*width: 230px;*/
         white-space: nowrap;
         vertical-align: middle;
     }
