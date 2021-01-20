@@ -7,73 +7,74 @@
 @section Styles{
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
 }
-    <style>
-        @@media only screen and (max-width: 1450px) {
-            .text-nouhin {
-                width: 165px;
-            }
-            .text-nouhin1 {
-                width: 270px;
-            }
-            .fixed-nouhin {
-                width: 350px;
-            }
-        }
 
-        @@media only screen and (min-width: 1450px) {
-            .text-nouhin {
-                width: 220px;
-            }
-            .text-nouhin1 {
-                width: 370px;
-            }
-            .fixed-nouhin {
-                width: 550px;
-            }
-        }
-
-        @@media only screen and (min-width: 1681px) {
-            .text-nouhin {
-                width: 300px;
-            }
-            .text-nouhin1 {
-                width: 95%;
-            }
-
-            .fixed-nouhin {
-                width: 95%;
-            }
-        }
-
-        p {
-            line-height: unset;
-            color: unset;
-            margin-bottom: unset;
-        }
+<style>
+    @@media only screen and (max-width: 1450px) {
         .text-nouhin {
-            text-overflow: ellipsis;
-            display: inline-block;
-            overflow: hidden;
-            /*width: 185px;*/
-            white-space: nowrap;
-           
-            /*vertical-align: middle;*/
+            width: 180px;
+        }
+
+        .fixed-nouhin {
+            width: 350px;
+        }
+        .text-nouhin1{
+            width: 180px;
+        }
+    }
+
+    @@media only screen and (min-width: 1450px) {
+        .text-nouhin {
+            width: 250px;
         }
         .fixed-nouhin {
-            text-overflow: ellipsis;
-            overflow: hidden;
-            /*width: 350px;*/
-            white-space: nowrap;
-            display: inline-block;
+            width: 450px;
         }
         .text-nouhin1 {
-            text-overflow: ellipsis;
-            overflow: hidden;
-            /*width: 350px;*/
-            white-space: nowrap;
-            display: inline-block;
+            width: 180px;
         }
-    </style>
+    }
+
+    @@media only screen and (min-width: 1681px) {
+        .text-nouhin {
+            width: 97%;
+        }
+        .fixed-nouhin {
+            width: 95%;
+        }
+        .text-nouhin1 {
+            width: 95%;
+        }
+    }
+
+    p {
+        line-height: unset;
+        color: unset;
+        margin-bottom: unset;
+    }
+
+    .text-nouhin {
+        text-overflow: ellipsis;
+        display: inline-block;
+        overflow: hidden;
+        /*width: 210px;*/
+        white-space: nowrap;      
+    }
+
+    .fixed-nouhin {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        /*width: 95%;*/
+        white-space: nowrap;
+        display: inline-block;
+    }
+    .text-nouhin1 {
+        text-overflow: ellipsis;
+        display: inline-block;
+        overflow: hidden;
+        /*width: 210px;*/
+        white-space: nowrap;
+    }
+</style>
 <div id="divMain" class="container-fluid">
     <div class="card">
         <div class="row">
@@ -81,7 +82,7 @@
                 <div class="card-body card-block" style="padding-right: 0px;">
                     <div class="row form-group">
                         <div class="col col-md-12" style="padding-right: 0px;">
-                            <button id="btnAdd" tabindex="17" onclick="btnAdd_Click()" class="btn btn-primary col-xl-3 text-center" >
+                            <button id="btnAdd" tabindex="17" onclick="btnAdd_Click()" class="btn btn-primary col-xl-3 text-center">
                                 納品追加
                             </button>
                             <button id="btnBS" tabindex="18" onclick="btnBSNouhin_Click()" class="btn btn-primary col-xl-4 text-center">
@@ -129,10 +130,10 @@
                                             <label id="text" style="padding-right:2px;">プロジェクト</label>
                                             <input type="text" tabindex="7" id="ProjectCD" name="txtProjectCD" onkeydown="KeyDown(event,this,'ProjectCheck')" class="text-line col-xl-4 text-left" maxlength="10" required placeholder="入力">
 
-                                        @*</div>
-                                    </div>
-                                    <div class="col-md-12" style="padding-left:105px;">
-                                        <div class="text-s text-custom1 text-uppercase mb-1">*@
+                                            @*</div>
+                                                </div>
+                                                <div class="col-md-12" style="padding-left:105px;">
+                                                    <div class="text-s text-custom1 text-uppercase mb-1">*@
                                             <input type="text" tabindex="8" id="ProjectName" name="txtProjectName" onkeydown="KeyDown(event,this)" class="text-line col-xl-4 text-left" maxlength="60" required placeholder="入力">
                                         </div>
                                     </div>
@@ -161,9 +162,9 @@
                                     <div class="col-md-12" style="padding-left:33px;">
                                         <div id="Statusgp" class="text-s text-custom1 text-uppercase mb-1">
                                             <label class="text" style="padding-right:5px;">納品状況</label>
-                                            <input type="checkbox" tabindex="13" id="Delleft" name="chkDelleft" value="1" onkeydown="KeyDown(event,this)"  checked>
+                                            <input type="checkbox" tabindex="13" id="Delleft" name="chkDelleft" value="1" onkeydown="KeyDown(event,this)" checked>
                                             <label for="Delleft" style="padding-right:12px;">納品残あり</label>
-                                            <input type="checkbox" tabindex="14" id="Delcomplete" value="2" onkeydown="KeyDown(event,this,'flgCheck')" name="chkDelcomplete" >
+                                            <input type="checkbox" tabindex="14" id="Delcomplete" value="2" onkeydown="KeyDown(event,this,'flgCheck')" name="chkDelcomplete">
                                             <label for="Delcomplete">完納</label>
                                         </div>
                                     </div>
@@ -190,8 +191,8 @@
                                         <tr>
                                             <th style="width: 20%; max-width: 20%;">納品日</th>
                                             <th style="width: 30%; max-width: 30%;">ブランド</th>
-                                            <th style="width: 22%; max-width: 22%;"  class="text-center">シーズン</th>
-                                            <th style="width: 22%; max-width: 22%;" class="text-center">年度</th>
+                                            <th style="width: 20%; max-width: 20%;" class="text-center">シーズン</th>
+                                            <th style="width: 20%; max-width: 20%;" class="text-center">年度</th>
                                             <th style="width: 70px; max-width: 70px;"></th>
                                         </tr>
                                         <tr>
@@ -442,9 +443,11 @@
                         className: "Border1",
                         render: function (data, type, row) {
                             return '<table class="col-md-12">' +
-                                '<tr><td style="width: 20%; max-width: 20%;"><span style="width:135px">' + data.DeliveryDate + '</span></td><td style="width: 30%; max-width: 30%;"><span class="text-nouhin">' + data.BrandCD + '  ' + data.BrandName + '</span></td><td style="width: 22%; max-width: 22%;" class="text-center">' + data.Season + '</td><td style="width: 22%; max-width: 22%;" class="text-center">' + data.Year + '</td><td style="width: 70px; max-width: 70px; text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label><br /></td></tr >' +
-                                '<tr><td colspan=4><span class="fixed-nouhin">' + data.ProjectCD + '  ' + data.ProjectName + '</span></td></tr>' +
-                                '<tr><td colspan=2><span class="text-nouhin1">' + data.HinbanCD + '  ' + data.HinbanName + '</span></td><td style="text-align: right; padding-right: 5%;">' + data.Production + '</td><td style="text-align: right; padding-right: 5%;">' + data.DeliveryAmount + '</td><td style="width: 70px; max-width: 70px; text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnDelClick(\'' + data.ProjectCD + '\')" style="color:red">削除</a></label></td></tr></table>';
+                                '<tr><td style="width: 20%; max-width: 20%;">' + data.DeliveryDate + '</td><td style="width: 30%; max-width: 30%;"><span class="text-nouhin">' + data.BrandCD + '  ' + data.BrandName + '</span></td><td style="width: 20%; max-width: 20%;">' + data.Season + '</td><td style="width: 20%; max-width: 20%; text-align: center;">' + data.Year + '</td><td style="width: 70px; max-width: 70px; text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label><br /></td></tr>' +                         
+                                '<tr><td>' + data.ProjectCD + '</td><td colspan=4><span class="fixed-nouhin">' + data.ProjectName + '</span></td></tr>' +
+                                '<tr><td>' + data.HinbanCD + '</td><td class="text-nouhin1">' + data.HinbanName + '</td><td style="text-align:right; padding-right:3%">' + data.Production + '</td><td style="text-align: right; padding-right:3%">' + data.DeliveryAmount + '</td><td style="width: 70px; max-width: 70px; text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnDelClick(\'' + data.ProjectCD + '\')" style="color:red">削除</a></label></td></tr>' +
+                                
+                            '</table > ';
                         }
                     },
                 ]
@@ -508,7 +511,7 @@
             if (selected.length > 0)
                 TnModel.Season = selected.join(",");
 
-            
+
             $("#Statusgp input[type=checkbox]:checked").each(function () {
                 selected1.push(this.value);
             });
