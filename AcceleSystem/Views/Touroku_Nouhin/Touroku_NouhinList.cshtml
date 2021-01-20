@@ -15,35 +15,29 @@
         }
 
         .fixed-nouhin {
-            width: 350px;
+            width: 440px;
         }
-        .text-nouhin1{
-            width: 180px;
-        }
+        
     }
 
     @@media only screen and (min-width: 1450px) {
         .text-nouhin {
-            width: 250px;
+            width: 200px;
         }
         .fixed-nouhin {
-            width: 450px;
+            width: 550px;
         }
-        .text-nouhin1 {
-            width: 180px;
-        }
+       
     }
 
     @@media only screen and (min-width: 1681px) {
         .text-nouhin {
-            width: 97%;
+            width: 255px;
         }
         .fixed-nouhin {
             width: 95%;
         }
-        .text-nouhin1 {
-            width: 95%;
-        }
+       
     }
 
     p {
@@ -67,13 +61,7 @@
         white-space: nowrap;
         display: inline-block;
     }
-    .text-nouhin1 {
-        text-overflow: ellipsis;
-        display: inline-block;
-        overflow: hidden;
-        /*width: 210px;*/
-        white-space: nowrap;
-    }
+    
 </style>
 <div id="divMain" class="container-fluid">
     <div class="card">
@@ -443,10 +431,9 @@
                         className: "Border1",
                         render: function (data, type, row) {
                             return '<table class="col-md-12">' +
-                                '<tr><td style="width: 20%; max-width: 20%;">' + data.DeliveryDate + '</td><td style="width: 30%; max-width: 30%;"><span class="text-nouhin">' + data.BrandCD + '  ' + data.BrandName + '</span></td><td style="width: 20%; max-width: 20%;">' + data.Season + '</td><td style="width: 20%; max-width: 20%; text-align: center;">' + data.Year + '</td><td style="width: 70px; max-width: 70px; text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label><br /></td></tr>' +                         
-                                '<tr><td>' + data.ProjectCD + '</td><td colspan=4><span class="fixed-nouhin">' + data.ProjectName + '</span></td></tr>' +
-                                '<tr><td>' + data.HinbanCD + '</td><td class="text-nouhin1">' + data.HinbanName + '</td><td style="text-align:right; padding-right:3%">' + data.Production + '</td><td style="text-align: right; padding-right:3%">' + data.DeliveryAmount + '</td><td style="width: 70px; max-width: 70px; text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnDelClick(\'' + data.ProjectCD + '\')" style="color:red">削除</a></label></td></tr>' +
-                                
+                                '<tr><td style="width: 20%; max-width: 20%;">' + data.DeliveryDate + '</td><td style="width: 30%; max-width: 30%;"><span class="text-nouhin">' + data.BrandCD + '  ' + data.BrandName + '</span></td><td style="width: 20%; max-width: 20%;text-align: center;">' + data.Season + '</td><td style="width: 20%; max-width: 20%; text-align: center;">' + data.Year + '</td><td style="width: 70px; max-width: 70px; text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label><br /></td></tr>' +                         
+                                '<tr><td colspan=4><span class="fixed-nouhin">' + data.ProjectCD + ' ' + data.ProjectName + '</span></td></tr>' +
+                                '<tr><td>' + data.HinbanCD + '</td><td><span class="text-nouhin">' + data.HinbanName + '</span></td><td style="text-align:right; padding-right:3%">' + data.Production + '</td><td style="text-align: right; padding-right:3%">' + data.DeliveryAmount + '</td><td style="width: 70px; max-width: 70px; text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnDelClick(\'' + data.ProjectCD + '\')" style="color:red">削除</a></label></td></tr>' +
                             '</table > ';
                         }
                     },
