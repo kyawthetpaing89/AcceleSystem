@@ -341,16 +341,22 @@
             $("#Remark").val(ProjectData[0].Remarks);
 
             //Bind Season
-            if (ProjectData[0].Season == "1")
-                $("#allyear").prop("checked", true);
-            else if (ProjectData[0].Season == "2") {
-                $("#allyear").prop("checked", false);
-                $("#SS").prop("checked", true);
-            }
-            else {
-                $("#allyear").prop("checked", false);
-                $("#FW").prop("checked", true);
-            }
+        alert(ProjectData[0].Season);
+        if (ProjectData[0].Season == "1")
+            $("#allyear").prop("checked", true);
+        else if (ProjectData[0].Season == "2") {
+            //$("#allyear").prop("checked", false);
+            $("#SS").prop("checked", true);
+        }
+        else if (ProjectData[0].Season == "3") {
+            // $("#allyear").prop("checked", false);
+            $("#FW").prop("checked", true);
+        }
+        else {
+            $("#allyear").prop("checked", false);
+            $("#SS").prop("checked", false);
+            $("#FW").prop("checked", false);
+        }
 
             if (ProjectData[0].ZeikomiKBN == "1")
                 $("#taxNotInclude").prop("checked", true);
