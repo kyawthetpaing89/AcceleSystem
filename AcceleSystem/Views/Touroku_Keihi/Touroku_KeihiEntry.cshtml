@@ -645,23 +645,17 @@
             focusControl = $("#CostCD");
             var Kmodel = {
                  SEQ: $('#SEQ').text(),
-                 CostCD: $('#CostCD').val(),                 
-                 CostDate: $('#CostDate').val(),             
-                 Year: $('#year').val(),
-                 BrandCD: $('#BrandCD').val(),               
-                 HinbanCD: $('#HinbanCD').val(),
-                 ProjectCD: $('#projectCD').val(), 
-                 CastingCD: $('#CastingCD').val(),
-                 Item: $('#Item').val(),
+                 CostCD: $('#CostCD').val(),
+                CostDate: $('#CostDate').val(),
+                Year: $('#year').val(),
                  CostAmount: ($('#AmountMoney').val()).replace(",",""),
                  InputAmount: ($('#BodyAmount').val()).replace(",",""),
                  Remarks: $('#Remark').val(),                
                  Mode:'@Model.Mode'
             };
-
-            //For Season
             
-            if ($('#accounting').text() == "2") {
+            //For Season
+            if ($('#accounting').text() == "2" || $('#accounting').text() == "1" || $('#accounting').text() == "3") {
                 if ($('#allyear').is(':checked'))
                     Kmodel.Season = "1";
                 else if ($('#SS').is(':checked'))
@@ -669,8 +663,8 @@
                 else if ($('#FW').is(':checked'))
                     Kmodel.Season = "3";
             }
-            else {
-                Kmodel.Season = "";
+            else  {
+                Kmodel.Season = "9";
             }
 
             if ($('#taxNotInclude').is(':checked'))

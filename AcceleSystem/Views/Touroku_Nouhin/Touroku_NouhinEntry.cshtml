@@ -242,6 +242,7 @@
                 };
                 var data = CalltoApiController('@Url.Action("M_Project_Select_NouhinEntry", "api/Touroku_NouhinApi")', TnModel);
                 var nouhindata = JSON.parse(data);
+                alert(nouhindata.length);
                 if (nouhindata.length > 0) {
                     $("#Year").val(nouhindata[0].Year);
                     $("#BrandCD").val(nouhindata[0].BrandCD);
@@ -256,13 +257,16 @@
                     else if (nouhindata[0].Season == "3")
                         $("#rdoFW").prop("checked", true);
 
+                    BindTable(nouhindata);
                 }
                 else {
+                    
                     $("#Year").val('');
                     $("#BrandCD").val('');
                     $("#BrandName").text('ブランド表示');
+                    $('#tblNouhinEntry').empty();
                 }
-                BindTable(nouhindata);
+                
             }
             else {
                 $("#ProjectName").text('プロジェクト表示');
@@ -293,16 +297,19 @@
                     $("#rdoSS").prop("checked", true);
                 else if (nouhindata[0].Season == "3")
                     $("#rdoFW").prop("checked", true);
+
+                BindTable(nouhindata);
             }
             else {
                 $("#Year").val('');
                 $("#BrandCD").val('');
                 $("#BrandName").text('ブランド表示');
+
             }
             $("#ProjectName").css("font-weight", "Bold");
             $("#BrandName").css("font-weight", "Bold");
 
-            BindTable(nouhindata);
+            
         }
 
         function BindTable(nouhindata) {
