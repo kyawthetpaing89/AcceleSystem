@@ -151,7 +151,7 @@
 
 
 @section Scripts{
-    <script type="text/javascript">
+<script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("納品登録");
             $("#ProjectCD").focus();
@@ -238,15 +238,16 @@
             if (result == 'OK') {
                 var TnModel = {
                     ProjectCD: $("#ProjectCD").val(),
-                    Mode: '@Model.Mode'
+                    Mode: 'New'
                 };
                 var data = CalltoApiController('@Url.Action("M_Project_Select_NouhinEntry", "api/Touroku_NouhinApi")', TnModel);
                 var nouhindata = JSON.parse(data);
-                alert(nouhindata.length);
                 if (nouhindata.length > 0) {
                     $("#Year").val(nouhindata[0].Year);
                     $("#BrandCD").val(nouhindata[0].BrandCD);
                     $("#BrandName").text(nouhindata[0].BrandName);
+                    $("#DeliDate").val('');
+                    $("#Remarks").val('');
 
                     if (nouhindata[0].Season == "1")
                         $("#rdoAllYear").prop("checked", true);
@@ -260,16 +261,22 @@
                     BindTable(nouhindata);
                 }
                 else {
-                    
                     $("#Year").val('');
                     $("#BrandCD").val('');
                     $("#BrandName").text('ブランド表示');
-                    $('#tblNouhinEntry').empty();
+                    $("#ProjectName").text('プロジェクト表示');
+                    $("#rdoAllYear").prop("checked", true);
+                    BindTable(JSON.parse("[]"));
                 }
-                
+
             }
             else {
+                $("#Year").val('');
+                $("#BrandCD").val('');
+                $("#BrandName").text('ブランド表示');
                 $("#ProjectName").text('プロジェクト表示');
+                $("#rdoAllYear").prop("checked", true);
+                BindTable(JSON.parse("[]"));
             }
             $("#ProjectName").css("font-weight", "Bold");
             $("#BrandName").css("font-weight", "Bold");
@@ -304,12 +311,12 @@
                 $("#Year").val('');
                 $("#BrandCD").val('');
                 $("#BrandName").text('ブランド表示');
-
+                $("#ProjectName").text('プロジェクト表示');
+                $("#rdoAllYear").prop("checked", true);
+                BindTable(JSON.parse("[]"));
             }
             $("#ProjectName").css("font-weight", "Bold");
             $("#BrandName").css("font-weight", "Bold");
-
-            
         }
 
         function BindTable(nouhindata) {
@@ -399,12 +406,12 @@
                     .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                     ;
             });
-           
+
         });
 
         $('#tblNouhinEntry').on('keypress', '#DeliverAmount', function (e) {  //for nouhinEntry error check
             if (this.value.length == 10) event.preventDefault();
-           
+
             if (e.keyCode == 13) {
                 var Deliverydata = null;
                 var Undeliverdata = null;
@@ -608,6 +615,6 @@
         });
 
 
-    </script>
+</script>
 
 }

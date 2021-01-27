@@ -340,8 +340,6 @@
             $("#BodyAmount").val(ProjectData[0].InputAmount);
             $("#Remark").val(ProjectData[0].Remarks);
 
-            //Bind Season
-        alert(ProjectData[0].Season);
         if (ProjectData[0].Season == "1")
             $("#allyear").prop("checked", true);
         else if (ProjectData[0].Season == "2") {
@@ -646,13 +644,19 @@
             var Kmodel = {
                  SEQ: $('#SEQ').text(),
                  CostCD: $('#CostCD').val(),
-                CostDate: $('#CostDate').val(),
-                Year: $('#year').val(),
+                 CostDate: $('#CostDate').val(),
+                 Year: $('#year').val(),
                  CostAmount: ($('#AmountMoney').val()).replace(",",""),
                  InputAmount: ($('#BodyAmount').val()).replace(",",""),
                  Remarks: $('#Remark').val(),                
                  Mode:'@Model.Mode'
             };
+
+            //For Brand 
+            if ($('#accounting').text() == "2") {
+                Kmodel.BrandCD = $('#BrandCD').val();
+            }
+            else Kmodel.BrandCD = "@@@@@@";
             
             //For Season
             if ($('#accounting').text() == "2" || $('#accounting').text() == "1" || $('#accounting').text() == "3") {
@@ -666,6 +670,30 @@
             else  {
                 Kmodel.Season = "9";
             }
+
+            //For Project
+            if ( $('#accounting').text() == "1" || $('#accounting').text() == "3") {
+                Kmodel.ProjectCD= $('#projectCD').val();
+            }
+            else Kmodel.ProjectCD = "@@@@@@";
+
+            //For Hinban
+            if ($('#accounting').text() == "1") {
+                Kmodel.HinbanCD = $('#HinbanCD').val();
+            }
+            else Kmodel.HinbanCD = "@@@@@@";
+
+            //For CastingCD
+            if ($('#accounting').text() == "4") {
+                Kmodel.CastingCD = $('#CastingCD').val();
+            }
+            else Kmodel.CastingCD = "@@@@@@";
+
+            //For Item
+            if ($('#accounting').text() == "5") {
+                Kmodel.Item = $('#Item').val();
+            }
+            else Kmodel.Item = "@@@@@@";
 
             if ($('#taxNotInclude').is(':checked'))
                 Kmodel.ZeikomiKBN = "1";

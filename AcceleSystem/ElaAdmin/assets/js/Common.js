@@ -18,7 +18,10 @@ function CalltoApiController(url, model) {
             result = data;
         },
     });
-    return result;
+    if (result == "false")
+        ShowErrorMessage("S001");
+    else
+        return result;
 }
 
 function ShowConfirmMessage(msgid, functionname) {

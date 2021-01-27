@@ -18,25 +18,32 @@ namespace DL
 
         public string SelectJson(string sSQL, params SqlParameter[] para)
         {
-            DataTable dt = new DataTable
+            try
             {
-                TableName = "data"
-            };
-            var newCon = new SqlConnection(conStr);
-            using (var adapt = new SqlDataAdapter(sSQL, newCon))
-            {
-                newCon.Open();
-                adapt.SelectCommand.CommandType = CommandType.StoredProcedure;
-                if (para != null)
+                DataTable dt = new DataTable
                 {
-                    para = ChangeToDBNull(para);
-                    adapt.SelectCommand.Parameters.AddRange(para);
+                    TableName = "data"
+                };
+                var newCon = new SqlConnection(conStr);
+                using (var adapt = new SqlDataAdapter(sSQL, newCon))
+                {
+                    newCon.Open();
+                    adapt.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    if (para != null)
+                    {
+                        para = ChangeToDBNull(para);
+                        adapt.SelectCommand.Parameters.AddRange(para);
+                    }
+
+                    adapt.Fill(dt);
+                    newCon.Close();
                 }
-                    
-                adapt.Fill(dt);
-                newCon.Close();
+                return DataTableToJSONWithJSONNet(dt);
             }
-            return DataTableToJSONWithJSONNet(dt);
+            catch(Exception ex)
+            {
+                return "false";
+            }
         }
 
         private SqlParameter[] ChangeToDBNull(SqlParameter[] para)
