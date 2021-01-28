@@ -139,6 +139,7 @@
     <Compile Include="Controllers\BrandApiController.cs" />
     <Compile Include="Controllers\BrandController.cs" />
     <Compile Include="Controllers\CommonApiController.cs" />
+    <Compile Include="Controllers\CustomErrorController.cs" />
     <Compile Include="Controllers\HelloController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KanagataApiController.cs" />
@@ -549,6 +550,7 @@
     <Content Include="Views\Koushin_Genka\Koushin_Genka.cshtml" />
     <Content Include="Views\Touroku_Nouhin\Touroku_BSNouhinEntry.cshtml" />
     <Content Include="Views\Print_Genka\Print_Genka.cshtml" />
+    <Content Include="Views\CustomError\CustomErrorView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
