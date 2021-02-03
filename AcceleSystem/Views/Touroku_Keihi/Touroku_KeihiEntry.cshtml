@@ -701,7 +701,7 @@
                 Kmodel.ZeikomiKBN = "2";
 
            
-            var data = CalltoApiController('@Url.Action("D_Cost_CUD", "api/Touroku_KeihiApi")', Kmodel);
+            var data = CalltoApiController('@Url.Action("D_Cost_CUD", "api/Touroku_KeihiApi" Kmodel);
             ShowSuccessMessage(data,'@Url.Action("Touroku_KeihiList", "Touroku_Keihi")?CostCD=' + '@Model.CostCD' + '&CostName=' + '@Model.CostName' + '&CostDateFrom=' + '@Model.CostDateFrom' + '&CostDateTo=' + '@Model.CostDateTo' + '&Year=' + '@Model.Year' + '&BrandCD=' + '@Model.BrandCD' + '&BrandName=' + '@Model.BrandName' + '&Season=' + '@Model.Season' + '&ProjectCD=' + '@Model.ProjectCD' + '&ProjectName=' + '@Model.ProjectName' + '&HinbanCD=' + '@Model.HinbanCD' + '&HinbanName=' + '@Model.HinbanName' +'&flg=' + '@Model.flg');
         }
 
