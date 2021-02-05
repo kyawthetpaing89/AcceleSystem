@@ -123,8 +123,8 @@
                         </div>
                     </div>
                     <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                        <div class="col-xs-12" style="padding-left:28px;">
-                            <div class="custom-control custom-radio" style="padding-left:0px!important;">
+                        <div  class="col-xs-12" style="padding-left:28px;">
+                            <div id="taxgp" class="custom-control custom-radio" style="padding-left:0px!important;">
                                 <label class="text" id="taxinclude" style="padding-right:10px;">税込区分</label>
                                 <input type="radio" tabindex="12" id="taxNotInclude" onkeydown="KeyDown(event,this)" name="radios" checked>
                                 <label for="taxNotInclude" style="padding-right:10px;">税別</label>
@@ -281,16 +281,17 @@
                 $("#CostDate").attr('disabled', 'disabled');
                 $("#year").attr('disabled', 'disabled');
                 $("#BrandCD").attr('disabled', 'disabled');
-                $("#season").attr('disabled', 'disabled');
+                $("#Seasongp").children().attr('disabled', 'disabled');
                 $("#HinbanCD").attr('disabled', 'disabled');
                 $("#CastingCD").attr('disabled', 'disabled');
                 $("#Item").attr('disabled', 'disabled');
                 $("#AmountMoney").attr('disabled', 'disabled');
+                $("#taxgp").children().attr('disabled', 'disabled');
                 $("#BodyAmount").attr('disabled', 'disabled');
                 $("#Remark").attr('disabled', 'disabled');
                 $("#btnSave").focus();
                 ShowData();
-            }
+            } 
     });
 
     //set data
@@ -701,7 +702,7 @@
                 Kmodel.ZeikomiKBN = "2";
 
            
-            var data = CalltoApiController('@Url.Action("D_Cost_CUD", "api/Touroku_KeihiApi" Kmodel);
+            var data = CalltoApiController('@Url.Action("D_Cost_CUD", "api/Touroku_KeihiApi")', Kmodel);
             ShowSuccessMessage(data,'@Url.Action("Touroku_KeihiList", "Touroku_Keihi")?CostCD=' + '@Model.CostCD' + '&CostName=' + '@Model.CostName' + '&CostDateFrom=' + '@Model.CostDateFrom' + '&CostDateTo=' + '@Model.CostDateTo' + '&Year=' + '@Model.Year' + '&BrandCD=' + '@Model.BrandCD' + '&BrandName=' + '@Model.BrandName' + '&Season=' + '@Model.Season' + '&ProjectCD=' + '@Model.ProjectCD' + '&ProjectName=' + '@Model.ProjectName' + '&HinbanCD=' + '@Model.HinbanCD' + '&HinbanName=' + '@Model.HinbanName' +'&flg=' + '@Model.flg');
         }
 
