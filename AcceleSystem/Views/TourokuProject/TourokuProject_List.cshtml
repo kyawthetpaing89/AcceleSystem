@@ -9,31 +9,93 @@
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
 }
 <style>
-    @@media only screen and (max-width: 1450px) {
-        p{
+
+    @@media only screen and (min-width: 400px) {
+        .text-price {
+            width: 180px;
+        }
+
+        .fixed-project {
+            width:350px;
+        }
+    }
+
+    @@media only screen and (min-width: 800px) {
+        .text-price {
+            width: 270px;
+        }
+
+        .fixed-project {
+            width: 400px;
+        }
+    }
+    @@media only screen and (min-width: 1020px) {
+        .text-price {
+            width: 150px;
+        }
+
+        .fixed-project {
+            width: 250px;
+        }
+    }
+
+    /*@@media only screen and (min-width: 1150px) {
+        .text-price {
+            width: 180px;
+        }
+
+        .fixed-project {
+            width: 270px;
+        }
+    }*/
+   
+    @@media only screen and (min-width: 1300px) {
+        .text-price {
+            width: 240px;
+        }
+        .fixed-project {
+            width: 450px;
+        }
+    }
+    /*@@media only screen and (max-width: 1450px) {
+        .text-price {
             width: 260px;
         }
         .fixed-project {
             width: 470px;
         }
-    }
+    }*/
     @@media only screen and (min-width: 1450px) {
-        p {
-            width: 375px;
+        .text-price {
+            width: 280px;
         }
         .fixed-project {
             width: 550px;
         }
     }
     @@media only screen and (min-width: 1600px) {
-        p {
-            width: 350px;
+        .text-price {
+            width: 310px;
         }
         .fixed-project {
             width: 600px;
         }
     }
-    p {
+    @@media only screen and (min-width: 1920px) {
+        .text-price {
+            width: 350px;
+        }
+
+        .fixed-project {
+            width: 750px;
+        }
+    }
+    .text-price {
+        line-height: unset;
+        color: unset;
+        margin-bottom: unset;
+    }
+    .fixed-project {
         line-height: unset;
         color: unset;
         margin-bottom: unset;
@@ -162,7 +224,7 @@
                                 <th>
                                     <table class="col-md-12">
                                         <tr>
-                                            <th style="width: 50%; max-width: 50%;">ブランド</th>
+                                            <th style="width: 46%; max-width: 46%;">ブランド</th>
                                             <th style="width: 22%; max-width: 22%;" class="text-center" >シーズン</th>
                                             <th style="width: 22%; max-width: 22%;" class="text-center">年度</th>
                                             <th style="width: 70px; max-width: 70px;"></th>
@@ -369,9 +431,16 @@
                         "data": null,
                         className: "Border1",
                         render: function (data, type, row) {
-                            return '<table class="col-md-12"><tr><td style="width: 50%; max-width: 50%;"><p class="text-price">' + data.BrandCD + '  ' + data.BrandName + '</p></td><td class="text-center" style="width: 22%; max-width: 22%;">' + data.Season + '</td><td class="text-center" style="width: 22%; max-width: 22%;">' + data.Year + '</td><td style="width: 70px; max-width: 70px; text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label></td></tr>' +
+                            return '<table class="col-md-12">' +
+                                '<tr><td style="width: 46%; max-width: 46%;"><p class="text-price">' + data.BrandCD + '  ' + data.BrandName + '</p></td><td style="width: 22%; max-width: 22%;text-align:center;">' + data.Season + '</td><td style = "width: 22%; max-width: 22%;text-align:center;" > ' + data.Year + '</td> <td style="width: 70px; max-width: 70px; text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label></td></tr> ' +
                                 '<tr><td colspan=3><span class="fixed-project">' + data.ProjectCD + ' ' + data.ProjectName + '</span></td><td style="text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:red">削除</a></label></td></tr>' +
-                                '<tr><td class="text-price" style="width: 210px;">' + data.PeriodStart + '</td><td style="text-align: right; padding-right: 5%;">' + data.Production + '</td><td style="text-align: right; padding-right: 5%;">' + data.SalesPrice + '</td><td style="text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:green">複写</a></label></td></tr></table>'
+                                //'<tr><td class="text-price">' + data.PeriodStart + '</td><td style="text-align: right; padding-right: 5%;">' + data.Production + '</td><td style="text-align: right; padding-right: 5%;">' + data.SalesPrice + '</td><td style="text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:green">複写</a></label></td></tr>' +
+
+                            '</table > ';
+
+                        //    return '<table class="col-md-12"><tr><td style="width: 50%; max-width: 50%;"><p class="text-price">' + data.BrandCD + '  ' + data.BrandName + '</p></td><td class="text-center" style="width: 22%; max-width: 22%;">' + data.Season + '</td><td class="text-center" style="width: 22%; max-width: 22%;">' + data.Year + '</td><td style="width: 70px; max-width: 70px; text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label></td></tr>' +
+                        //        '<tr><td colspan=3><span class="fixed-project">' + data.ProjectCD + ' ' + data.ProjectName + '</span></td><td style="text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:red">削除</a></label></td></tr>' +
+                        //        '<tr><td class="text-price" style="width: 210px;">' + data.PeriodStart + '</td><td style="text-align: right; padding-right: 5%;">' + data.Production + '</td><td style="text-align: right; padding-right: 5%;">' + data.SalesPrice + '</td><td style="text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:green">複写</a></label></td></tr></table>'
                         }
                     },
                 ]
