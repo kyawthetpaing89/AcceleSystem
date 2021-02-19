@@ -8,34 +8,97 @@
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
 }
 <style>
-    @@media only screen and (max-width: 1450px) {
+
+    @@media only screen and (min-width: 400px) {
+        .text-keihi {
+            width: 90px;
+        }
+
+        .fixed-keihi {
+            width: 90px;
+        }
+    }
+
+    @@media only screen and (min-width: 600px) {
+        .text-keihi {
+            width: 140px;
+        }
+
+        .fixed-keihi {
+            width: 140px;
+        }
+    }
+    @@media only screen and (min-width: 800px) {
+        .text-price {
+            width: 145px;
+        }
+
+        .fixed-project {
+            width: 170px;
+        }
+    }
+
+    @@media only screen and (min-width: 1020px) {
+        .text-keihi {
+            width: 120px;
+        }
+
+        .fixed-keihi {
+            width: 120px;
+        }
+    }
+    @@media only screen and (min-width: 1300px) {
+        .text-keihi {
+            width: 210px;
+        }
+
+        .fixed-keihi {
+            width: 190px;
+        }
+    }
+    /*@@media only screen and (max-width: 1450px) {
         .text-keihi {
             width: 230px;
         }
         .fixed-keihi {
             width: 210px;
         }
-    }
+    }*/
 
     @@media only screen and (min-width: 1450px) {
         .text-keihi {
-            width: 295px;
+            width: 225px;
         }
         .fixed-keihi {
             width: 270px;
         }
     }
 
-    @@media only screen and (min-width: 1681px) {
+    @@media only screen and (min-width: 1600px) {
         .text-keihi {
-            width: 380px;
+            width: 295px;
         }
         .fixed-keihi{
             width: 270px;
         }
     }
 
-    p {
+    @@media only screen and (min-width: 1900px) {
+        .text-keihi {
+            width: 390px;
+        }
+
+        .fixed-keihi {
+            width: 300px;
+        }
+    }
+
+    .text-keihi {
+        line-height: unset;
+        color: unset;
+        margin-bottom: unset;
+    }
+    .fixed-keihi {
         line-height: unset;
         color: unset;
         margin-bottom: unset;
@@ -165,7 +228,7 @@
                                                 <th style="max-width: 37%">経費名</th>
                                                 <th style="width: 30%">計上日</th>
                                                 <th style="width: 13%"></th>
-                                                <th style="width: 10%"></th>
+                                                <th style="width: 13%"></th>
                                             </tr>
                                             <tr>
                                                 <th>ブランド</th>
@@ -359,7 +422,7 @@
                         "data": null,
                         className: "Border1",
                         render: function (data, type, row) {                           
-                            return '<table class="col-md-12"><tr><td class="text-keihi">' + data.CostCD + '  ' + data.CostName + '</td><td style="width: 30%">' + data.CostDate + '</td><td style="width: 13%"></td><td style="width: 10%; text-align: center;"><label><a href="#" onClick="btnEditClick(\'' + data.SEQ + '\')" style="color:blue">編集</a></label></td></tr> ' +
+                            return '<table class="col-md-12"><tr><td class="text-keihi">' + data.CostCD + '  ' + data.CostName + '</td><td style="width: 30%">' + data.CostDate + '</td><td style="width: 13%"></td><td style="width: 13%; text-align: center;"><label><a href="#" onClick="btnEditClick(\'' + data.SEQ + '\')" style="color:blue">編集</a></label></td></tr> ' +
                                 '<tr><td class="text-keihi">' + data.BrandCD + '  ' + data.BrandName + '</td><td>' + data.Season + '</td><td>' + data.Year + '</td><td style="text-align: center;"><label><a href="#" onClick="btnDelClick(\'' + data.SEQ + '\')" style="color:red">削除</a></label></td></tr>' +
                                 '<tr><td class="text-keihi">' + data.ProjectCD + '  ' + data.ProjectName + '</td><td colspan=2><span class="fixed-keihi">' + data.HinbanCD + '  ' + data.HinbanName + '</span></td><td style="text-align: center;"><label><a href="#" onClick="btnCopyClick(\'' + data.SEQ + '\')" style="color:green">複写</a></label></td></tr></table > ';
                         }
