@@ -55,6 +55,12 @@ namespace DL
                     p.Value = DBNull.Value;
                     p.SqlValue = DBNull.Value;
                 }
+                else
+                {
+                    p.Value = p.Value.ToString().Replace("\t", string.Empty);
+                    
+                }
+                
             }
 
             return para;
