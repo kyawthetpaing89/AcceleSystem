@@ -55,6 +55,9 @@
     <link rel="stylesheet" href="@Url.Content("~/ElaAdmin/assets/css/normalize.min.css")" />
     <link rel="stylesheet" href="@Url.Content("~/ElaAdmin/assets/css/bootstrap.min.css")" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="@Url.Content("~/ElaAdmin/assets/css/pe-icon-7-stroke.min.css")" />
     <link rel="stylesheet" href="@Url.Content("~/ElaAdmin/assets/css/flag-icon.min.css")" />
@@ -76,7 +79,7 @@
                     </li>
 
                     <li class="menu-item-has-children">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="menu-icon"></i>プロジェクト管理</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="menu-icon fa fa-comments"></i>プロジェクト管理</a>
                         <ul class="sub-menu dropdown-menu">
                             <li><i class=""></i><a href="~/TourokuProject/TourokuProject_List">プロジェクト検索</a></li>
                             <li><i class=""></i><a href="~/TourokuProject/TourokuProject_Entry">プロジェクト登録</a></li>
@@ -84,11 +87,14 @@
                     </li>
 
                     <li class="menu-item-has-children">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="menu-icon"></i>経費管理</a>
-                      <ul class="sub-menu dropdown-menu">
-                          <li><i class=""></i><a href="~/Touroku_Keihi/Touroku_KeihiList">経費検索</a></li>
-                          <li><i class=""></i><a href="~/Touroku_Keihi/Touroku_KeihiEntry">経費登録</a></li>
-                      </ul>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="receipt" style="width:25px;height:15px;" class="menu-icon  fa-receipt fa-w-12" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                <path fill="currentColor" d="M358.4 3.2L320 48 265.6 3.2a15.9 15.9 0 0 0-19.2 0L192 48 137.6 3.2a15.9 15.9 0 0 0-19.2 0L64 48 25.6 3.2C15-4.7 0 2.8 0 16v480c0 13.2 15 20.7 25.6 12.8L64 464l54.4 44.8a15.9 15.9 0 0 0 19.2 0L192 464l54.4 44.8a15.9 15.9 0 0 0 19.2 0L320 464l38.4 44.8c10.5 7.9 25.6.4 25.6-12.8V16c0-13.2-15-20.7-25.6-12.8zM320 360c0 4.4-3.6 8-8 8H72c-4.4 0-8-3.6-8-8v-16c0-4.4 3.6-8 8-8h240c4.4 0 8 3.6 8 8v16zm0-96c0 4.4-3.6 8-8 8H72c-4.4 0-8-3.6-8-8v-16c0-4.4 3.6-8 8-8h240c4.4 0 8 3.6 8 8v16zm0-96c0 4.4-3.6 8-8 8H72c-4.4 0-8-3.6-8-8v-16c0-4.4 3.6-8 8-8h240c4.4 0 8 3.6 8 8v16z"></path>
+                            </svg>経費管理</a>
+                        <ul class="sub-menu dropdown-menu">
+                            <li><i class=""></i><a href="~/Touroku_Keihi/Touroku_KeihiList">経費検索</a></li>
+                            <li><i class=""></i><a href="~/Touroku_Keihi/Touroku_KeihiEntry">経費登録</a></li>
+                        </ul>
                     </li>
                     <li class="menu-item-has-children">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="menu-icon fa fa-calendar"></i>納品管理</a>
@@ -98,13 +104,13 @@
                         </ul>
                     </li>
                     <li class="menu-item-has-children">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="menu-icon"></i>原価管理</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="menu-icon fa "></i>原価管理</a>
                         <ul class="sub-menu dropdown-menu">
                             <li><i class=""></i><a href="~/Koushin_Genka/Koushin_Genka">原価計算</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="menu-icon fa fa-bar-chart"></i>原価集計表</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="menu-icon fa fa-bar-chart"></span>原価集計表</a>
                         <ul class="sub-menu dropdown-menu">
                             <li><i class=""></i><a href="~/Print_Genka/Print_Genka">原価集計表</a></li>
                         </ul>
@@ -131,14 +137,17 @@
 
                     </li>
                     <li class="menu-item-has-children">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="menu-icon fa fa-comments"></i>金型管理</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="menu-icon fa fa-ge"></i>金型管理</a>
                         <ul class="sub-menu dropdown-menu">
                             <li><i class=""></i><a href="~/Kanagata/KanagataList">金型検索</a></li>
                             <li><i class=""></i><a href="~/Kanagata/KanagataEntry">金型登録</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="menu-icon"></i>経費設定管理</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="receipt" style="width:25px;height:15px;" class="menu-icon fa fa-receipt fa-w-12" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                <path fill="currentColor" d="M358.4 3.2L320 48 265.6 3.2a15.9 15.9 0 0 0-19.2 0L192 48 137.6 3.2a15.9 15.9 0 0 0-19.2 0L64 48 25.6 3.2C15-4.7 0 2.8 0 16v480c0 13.2 15 20.7 25.6 12.8L64 464l54.4 44.8a15.9 15.9 0 0 0 19.2 0L192 464l54.4 44.8a15.9 15.9 0 0 0 19.2 0L320 464l38.4 44.8c10.5 7.9 25.6.4 25.6-12.8V16c0-13.2-15-20.7-25.6-12.8zM320 360c0 4.4-3.6 8-8 8H72c-4.4 0-8-3.6-8-8v-16c0-4.4 3.6-8 8-8h240c4.4 0 8 3.6 8 8v16zm0-96c0 4.4-3.6 8-8 8H72c-4.4 0-8-3.6-8-8v-16c0-4.4 3.6-8 8-8h240c4.4 0 8 3.6 8 8v16zm0-96c0 4.4-3.6 8-8 8H72c-4.4 0-8-3.6-8-8v-16c0-4.4 3.6-8 8-8h240c4.4 0 8 3.6 8 8v16z"></path>
+                            </svg>経費設定管理</a>
                         <ul class="sub-menu dropdown-menu">
                             <li><i class=""></i><a href="~/KeihiSettei/KeihiSetteiList">経費設定検索</a></li>
                             <li><i class=""></i><a href="~/KeihiSettei/KeihiSetteiEntry">経費設定登録</a></li>
@@ -188,8 +197,8 @@
                         </a>
                         <div class="user-menu dropdown-menu">
                             @*<a class="nav-link" href="#"><i class="fa fa-user"></i>My Profile</a>
-                            <a class="nav-link" href="#"><i class="fa fa-bell-o"></i>Notifications <span class="count">13</span></a>
-                            <a class="nav-link" href="#"><i class="fa fa-cog"></i>Settings</a>*@
+                                <a class="nav-link" href="#"><i class="fa fa-bell-o"></i>Notifications <span class="count">13</span></a>
+                                <a class="nav-link" href="#"><i class="fa fa-cog"></i>Settings</a>*@
                             <a class="nav-link" href="~/User/UserLogin"><i class="fa fa-power-off"></i>Logout</a>
                         </div>
                     </div>
@@ -229,6 +238,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+    
     <script src="@Url.Content("~/ElaAdmin/assets/js/SweetAlert2.js")"></script>
     <script src="@Url.Content("~/ElaAdmin/assets/js/Message.js")"></script>
     <script src="@Url.Content("~/ElaAdmin/assets/js/Common.js")"></script>
