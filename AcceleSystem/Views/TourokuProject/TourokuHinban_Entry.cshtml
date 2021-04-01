@@ -438,10 +438,14 @@
                     Production: $("#Production").val(),
                     SalePrice: $("#saleprice").val(),
                     FreeItem1: $("#freeitem1").val(),
-                    FreeItem2: $("#freeitem2").val(),
+                    //FreeItem2: $("#freeitem2").val(),
 
                     Mode: '@Model.Mode'
-                };
+            };
+            if (!$("#freeitem1").val())
+                Tmodel.FreeItem2 = 0;
+            else Tmodel.FreeItem2 = $("#freeitem2").val();
+
             var data = CalltoApiController('@Url.Action("Hinban_CUD", "api/TourokuProjectApi")', Tmodel);
             ShowSuccessMessage(data, '@Url.Action("TourokuHinban_List", "TourokuProject")?ProjectCD1=' + '@Model.ProjectCD1' + '&ProjectName=' + '@Model.ProjectName' + '&BrandCD1=' + '@Model.BrandCD1' + '&BrandName=' + '@Model.BrandName' + '&StartDate=' + '@Model.startDate' + '&EndDate=' + '@Model.endDate' + '&Year=' + '@Model.Year' + '&Season=' + '@Model.Season' + '&Production=' + '@Model.Production' + '&TotalAmount=' + '@Model.TotalAmount' + '&HinbanCD1=' + '@Model.HinbanCD1' + '&HinbanName=' + '@Model.HinbanName' + '&CastingCD=' + '@Model.CastingCD' + '&CastingName=' + '@Model.CastingName' + '&StartPrice=' + '@Model.StartPrice' + '&EndPrice=' + '@Model.EndPrice' + '&CompleteYM=' + '@Model.CompleteYM' + '&flg=' + '@Model.flg');
             //}

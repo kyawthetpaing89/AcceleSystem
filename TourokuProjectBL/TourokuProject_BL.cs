@@ -184,6 +184,7 @@ namespace TourokuProjectBL
                 Tmodel.Sqlprms[5] = new SqlParameter("@Production", SqlDbType.Int) { Value = (object)Tmodel.Production ?? DBNull.Value };
                 Tmodel.Sqlprms[6] = new SqlParameter("@freeitem1", SqlDbType.VarChar) { Value = Tmodel.FreeItem1 };
                 Tmodel.Sqlprms[7] = new SqlParameter("@freeitem2", SqlDbType.Int) { Value = (object)Tmodel.FreeItem2 ?? DBNull.Value };
+                //Tmodel.Sqlprms[7] = new SqlParameter("@freeitem2", SqlDbType.Int) { Value = Tmodel.FreeItem2};
                 Tmodel.Sqlprms[8] = new SqlParameter("@saleprice", SqlDbType.Int) { Value = (object)Tmodel.SalePrice ?? DBNull.Value };
 
             }
