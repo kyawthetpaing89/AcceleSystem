@@ -283,7 +283,6 @@
                 var i, result = [];
                 var array = typeof JSONString != 'object' ? JSON.parse(objArray) : JSONString;
                 var replacer = function (key, value) { return value === null ? '' : value }
-
                 if (array.length > 0) {
                     fiscalMM = array[0]["FiscalMM"];
                     var colname = ["処理年月に｢★｣印を出力→", "前期発生金額", "1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月", "当期配賦金額", "費目合計", "当期仕掛金額"]
@@ -303,7 +302,6 @@
                             $('#tblExcel thead tr>th:last').html(colname[i]);
                         }
                     }
-
                     var add_row, a_row = 0, o_row = 0, isrowspan = 0;
                     for (i = 0; i < array.length; i++) {
                         if (array[i]["SortKey"] == '10') {
@@ -312,14 +310,14 @@
                                     replaceZero(array[i]["Cost1"]) + '</td><td>' + replaceZero(array[i]["Cost2"]) + '</td><td>' + replaceZero(array[i]["Cost3"]) + '</td><td>' + replaceZero(array[i]["Cost4"]) + '</td><td>' +
                                     replaceZero(array[i]["Cost5"]) + '</td><td>' + replaceZero(array[i]["Cost6"]) + '</td><td>' + replaceZero(array[i]["Cost7"]) + '</td><td>' + replaceZero(array[i]["Cost8"]) + '</td><td>' +
                                     replaceZero(array[i]["Cost9"]) + '</td><td>' + replaceZero(array[i]["Cost10"]) + '</td><td>' + replaceZero(array[i]["Cost11"]) + '</td><td>' + replaceZero(array[i]["Cost12"]) + '</td><td>' +
-                                    replaceZero(array[i]["CostHaihu"]) + '</td><td>' + commaSeparate(array[i]["Total"]) + '</td><td>' + commaSeparate(array[i]["CostShikakari"]) + '</td>';
+                                    replaceZero(array[i]["CostHaihu"]) + '</td><td>' + commaSeparate(array[i]["CostHimoku"]) + '</td><td>' + commaSeparate(array[i]["CostShikakari"]) + '</td>';
                             }
                             else {
                                 add_row = '<td>' + array[i]["Casting"] + '</td><td>' + array[i]["CostName"] + '</td><td>' + replaceZero(array[i]["CostPre"]) + '</td><td>' +
                                     replaceZero(array[i]["Cost1"]) + '</td><td>' + replaceZero(array[i]["Cost2"]) + '</td><td>' + replaceZero(array[i]["Cost3"]) + '</td><td>' + replaceZero(array[i]["Cost4"]) + '</td><td>' +
                                     replaceZero(array[i]["Cost5"]) + '</td><td>' + replaceZero(array[i]["Cost6"]) + '</td><td>' + replaceZero(array[i]["Cost7"]) + '</td><td>' + replaceZero(array[i]["Cost8"]) + '</td><td>' +
                                     replaceZero(array[i]["Cost9"]) + '</td><td>' + replaceZero(array[i]["Cost10"]) + '</td><td>' + replaceZero(array[i]["Cost11"]) + '</td><td>' + replaceZero(array[i]["Cost12"]) + '</td><td>' +
-                                    replaceZero(array[i]["CostHaihu"]) + '</td><td>' + commaSeparate(array[i]["Total"]) + '</td><td>' + commaSeparate(array[i]["CostShikakari"]) + '</td>';
+                                    replaceZero(array[i]["CostHaihu"]) + '</td><td>' + commaSeparate(array[i]["CostHimoku"]) + '</td><td>' + commaSeparate(array[i]["CostShikakari"]) + '</td>';
                             }
                             a_row = 1;
                             $('#tblExcel tbody').append($('<tr>'));
@@ -330,7 +328,7 @@
                                 commaSeparate(array[i]["Cost1"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["Cost2"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["Cost3"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["Cost4"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
                                 commaSeparate(array[i]["Cost5"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["Cost6"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["Cost7"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["Cost8"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
                                 commaSeparate(array[i]["Cost9"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["Cost10"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["Cost11"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["Cost12"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
-                                commaSeparate(array[i]["CostHaihu"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["Total"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["CostShikakari"]) + '</td>';
+                                commaSeparate(array[i]["CostHaihu"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["CostHimoku"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["CostShikakari"]) + '</td>';
                             $('#tblExcel tbody').append($('<tr>'));
                             $('#tblExcel tbody tr:last').append(add_row);
                         }
@@ -341,13 +339,13 @@
                                     replaceZero(array[i]["CostPre"]) + '</td><td>' + replaceZero(array[i]["Cost1"]) + '</td><td>' + replaceZero(array[i]["Cost2"]) + '</td><td>' + replaceZero(array[i]["Cost3"]) + '</td><td>' +
                                     replaceZero(array[i]["Cost4"]) + '</td><td>' + replaceZero(array[i]["Cost5"]) + '</td><td>' + replaceZero(array[i]["Cost6"]) + '</td><td>' + replaceZero(array[i]["Cost7"]) + '</td><td>' +
                                     replaceZero(array[i]["Cost8"]) + '</td><td>' + replaceZero(array[i]["Cost9"]) + '</td><td>' + replaceZero(array[i]["Cost10"]) + '</td><td>' + replaceZero(array[i]["Cost11"]) + '</td><td>' +
-                                    replaceZero(array[i]["Cost12"]) + '</td><td>' + replaceZero(array[i]["CostHaihu"]) + '</td><td>' + commaSeparate(array[i]["Total"]) + '</td><td>' + commaSeparate(array[i]["CostShikakari"]) + '</td>';
+                                    replaceZero(array[i]["Cost12"]) + '</td><td>' + replaceZero(array[i]["CostHaihu"]) + '</td><td>' + commaSeparate(array[i]["CostHimoku"]) + '</td><td>' + commaSeparate(array[i]["CostShikakari"]) + '</td>';
                             }
                             else {
                                 add_row = '<td style="background-color: blue"></td><td>' + array[i]["CostName"] + '</td><td>' + replaceZero(array[i]["CostPre"]) + '</td><td>' + replaceZero(array[i]["Cost1"]) + '</td><td>' + replaceZero(array[i]["Cost2"]) + '</td><td>' +
                                     replaceZero(array[i]["Cost3"]) + '</td><td>' + replaceZero(array[i]["Cost4"]) + '</td><td>' + replaceZero(array[i]["Cost5"]) + '</td><td>' + replaceZero(array[i]["Cost6"]) + '</td><td>' +
                                     replaceZero(array[i]["Cost7"]) + '</td><td>' + replaceZero(array[i]["Cost8"]) + '</td><td>' + replaceZero(array[i]["Cost9"]) + '</td><td>' + replaceZero(array[i]["Cost10"]) + '</td><td>' +
-                                    replaceZero(array[i]["Cost11"]) + '</td><td>' + replaceZero(array[i]["Cost12"]) + '</td><td>' + replaceZero(array[i]["CostHaihu"]) + '</td><td>' + commaSeparate(array[i]["Total"]) + '</td><td>' + commaSeparate(array[i]["CostShikakari"]) + '</td>';
+                                    replaceZero(array[i]["Cost11"]) + '</td><td>' + replaceZero(array[i]["Cost12"]) + '</td><td>' + replaceZero(array[i]["CostHaihu"]) + '</td><td>' + commaSeparate(array[i]["CostHimoku"]) + '</td><td>' + commaSeparate(array[i]["CostShikakari"]) + '</td>';
                             }
                             o_row = 1;
                             $('#tblExcel tbody').append($('<tr>'));
@@ -358,7 +356,7 @@
                                 commaSeparate(array[i]["Cost2"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["Cost3"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["Cost4"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["Cost5"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
                                 commaSeparate(array[i]["Cost6"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["Cost7"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["Cost8"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["Cost9"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
                                 commaSeparate(array[i]["Cost10"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["Cost11"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["Cost12"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
-                                commaSeparate(array[i]["CostHaihu"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["Total"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["CostShikakari"]) + '</td>';
+                                commaSeparate(array[i]["CostHaihu"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["CostHimoku"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["CostShikakari"]) + '</td>';
                             $('#tblExcel tbody').append($('<tr>'));
                             $('#tblExcel tbody tr:last').append(add_row);
                         }
@@ -372,6 +370,8 @@
                             rowspancount = array[i]["Row_Count"];
                             var data = CalltoApiController('@Url.Action("Print_Genka_ProjectData", "api/Print_GenkaApi")', pmodel);
                             var prj_array = typeof JSONString != 'object' ? JSON.parse(data) : JSONString;
+
+                            
                             for (j = 0; j < prj_array.length; j++) {
                                 if (prj_array[j]["SortKey"] == '30' || prj_array[j]["SortKey"] == '31' || prj_array[j]["SortKey"] == '32') {
                                     switch (rowcountC) {
@@ -386,6 +386,7 @@
                                         default: colC2 = '';
                                             break;
                                     }
+                                    
                                     if (prj_array[j]["SortKey"] == '30') {
                                         if (isrowspan == 0) {
                                             newrowspan = '<td rowspan = ' + rowspancount + ' style="text-align: center;background-color: blue; vertical-align: middle;"></td>';
@@ -395,9 +396,10 @@
                                             replaceZero(prj_array[j]["Cost1"]) + '</td><td>' + replaceZero(prj_array[j]["Cost2"]) + '</td><td>' + replaceZero(prj_array[j]["Cost3"]) + '</td><td>' + replaceZero(prj_array[j]["Cost4"]) + '</td><td>' +
                                             replaceZero(prj_array[j]["Cost5"]) + '</td><td>' + replaceZero(prj_array[j]["Cost6"]) + '</td><td>' + replaceZero(prj_array[j]["Cost7"]) + '</td><td>' + replaceZero(prj_array[j]["Cost8"]) + '</td><td>' +
                                             replaceZero(prj_array[j]["Cost9"]) + '</td><td>' + replaceZero(prj_array[j]["Cost10"]) + '</td><td>' + replaceZero(prj_array[j]["Cost11"]) + '</td><td>' + replaceZero(prj_array[j]["Cost12"]) + '</td><td>' +
-                                            replaceZero(prj_array[j]["CostHaihu"]) + '</td><td>' + commaSeparate(prj_array[j]["Total"]) + '</td><td>' + commaSeparate(prj_array[j]["CostShikakari"]) + '</td>';
+                                            replaceZero(prj_array[j]["CostHaihu"]) + '</td><td>' + commaSeparate(prj_array[j]["CostHimoku"]) + '</td><td>' + commaSeparate(prj_array[j]["CostShikakari"]) + '</td>';
 
                                         newrowspan = '';
+                                        
                                     }
                                     else if (prj_array[j]["SortKey"] == '31') {
                                         add_row = '<td>' + colC2 + '</td>';
@@ -407,11 +409,12 @@
                                             commaSeparate(prj_array[j]["Cost1"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prj_array[j]["Cost2"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prj_array[j]["Cost3"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prj_array[j]["Cost4"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
                                             commaSeparate(prj_array[j]["Cost5"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prj_array[j]["Cost6"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prj_array[j]["Cost7"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prj_array[j]["Cost8"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
                                             commaSeparate(prj_array[j]["Cost9"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prj_array[j]["Cost10"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prj_array[j]["Cost11"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prj_array[j]["Cost12"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
-                                            commaSeparate(prj_array[j]["CostHaihu"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prj_array[j]["Total"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prj_array[j]["CostShikakari"]) + '</td>';
+                                            commaSeparate(prj_array[j]["CostHaihu"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prj_array[j]["CostHimoku"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prj_array[j]["CostShikakari"]) + '</td>';
                                     }
                                     rowcountC = rowcountC + 1;
                                     $('#tblExcel tbody').append($('<tr>'));
                                     $('#tblExcel tbody tr:last').append(add_row);
+                                    
                                 }
                                 else {
                                     if (prj_array[j]["SortKey"] == '40') {
@@ -454,12 +457,13 @@
                                             else
                                                 style = '';
 
+                                           
                                             if (prjD_array[k]["SortKey"] !== 42 && prjD_array[k]["SortKey"] !== 43) {
                                                 add_row = '<td>' + colD2 + '</td><td>' + prjD_array[k]["CostName"] + '</td><td>' + replaceZero(prjD_array[k]["CostPre"]) + '</td><td>' +
                                                     replaceZero(prjD_array[k]["Cost1"]) + '</td><td>' + replaceZero(prjD_array[k]["Cost2"]) + '</td><td>' + replaceZero(prjD_array[k]["Cost3"]) + '</td><td>' + replaceZero(prjD_array[k]["Cost4"]) + '</td><td>' +
                                                     replaceZero(prjD_array[k]["Cost5"]) + '</td><td>' + replaceZero(prjD_array[k]["Cost6"]) + '</td><td>' + replaceZero(prjD_array[k]["Cost7"]) + '</td><td>' + replaceZero(prjD_array[k]["Cost8"]) + '</td><td>' +
                                                     replaceZero(prjD_array[k]["Cost9"]) + '</td><td>' + replaceZero(prjD_array[k]["Cost10"]) + '</td><td>' + replaceZero(prjD_array[k]["Cost11"]) + '</td><td>' + replaceZero(prjD_array[k]["Cost12"]) + '</td><td>' +
-                                                    replaceZero(prjD_array[k]["CostHaihu"]) + '</td><td>' + commaSeparate(prjD_array[k]["Total"]) + '</td><td>' + commaSeparate(prjD_array[k]["CostShikakari"]) + '</td>';
+                                                    replaceZero(prjD_array[k]["CostHaihu"]) + '</td><td>' + commaSeparate(prjD_array[k]["CostHimoku"]) + '</td><td>' + commaSeparate(prjD_array[k]["CostShikakari"]) + '</td>';
                                             }
                                             else if (prjD_array[k]["SortKey"] == '42') {
                                                 add_row = '<td>' + colD2 + '</td>';
@@ -469,7 +473,7 @@
                                                     commaSeparate(prjD_array[k]["Cost1"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["Cost2"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["Cost3"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["Cost4"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
                                                     commaSeparate(prjD_array[k]["Cost5"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["Cost6"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["Cost7"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["Cost8"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
                                                     commaSeparate(prjD_array[k]["Cost9"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["Cost10"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["Cost11"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["Cost12"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
-                                                    commaSeparate(prjD_array[k]["CostHaihu"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["Total"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["CostShikakari"]) + '</td>';
+                                                    commaSeparate(prjD_array[k]["CostHaihu"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["CostHimoku"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["CostShikakari"]) + '</td>';
                                             }
                                             rowcountD = rowcountD + 1;
                                             $('#tblExcel tbody').append($('<tr>'));
@@ -496,7 +500,7 @@
                                         commaSeparate(prjPTotal_array[l]["Cost1"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["Cost2"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["Cost3"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["Cost4"]) + '</td><td style="border-bottom: 1px solid">' +
                                         commaSeparate(prjPTotal_array[l]["Cost5"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["Cost6"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["Cost7"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["Cost8"]) + '</td><td style="border-bottom: 1px solid">' +
                                         commaSeparate(prjPTotal_array[l]["Cost9"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["Cost10"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["Cost11"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["Cost12"]) + '</td><td style="border-bottom: 1px solid">' +
-                                        commaSeparate(prjPTotal_array[l]["CostHaihu"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["Total"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["CostShikakari"]) + '</td>';
+                                        commaSeparate(prjPTotal_array[l]["CostHaihu"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["CostHimoku"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["CostShikakari"]) + '</td>';
                                     $('#tblExcel tbody').append($('<tr>'));
                                     $('#tblExcel tbody tr:last').append(add_row);
                                 }
@@ -517,7 +521,7 @@
                                 commaSeparate(prjDTotal_array[m]["Cost1"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["Cost2"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["Cost3"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["Cost4"]) + '</td><td style="border-bottom: 1px solid">' +
                                 commaSeparate(prjDTotal_array[m]["Cost5"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["Cost6"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["Cost7"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["Cost8"]) + '</td><td style="border-bottom: 1px solid">' +
                                 commaSeparate(prjDTotal_array[m]["Cost9"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["Cost10"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["Cost11"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["Cost12"]) + '</td><td style="border-bottom: 1px solid">' +
-                                commaSeparate(prjDTotal_array[m]["CostHaihu"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["Total"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["CostShikakari"]) + '</td>';
+                                commaSeparate(prjDTotal_array[m]["CostHaihu"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["CostHimoku"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["CostShikakari"]) + '</td>';
                             $('#tblExcel tbody').append($('<tr>'));
                             $('#tblExcel tbody tr:last').append(add_row);
                         }
