@@ -189,5 +189,14 @@ namespace Touroku_KeihiBL
             tkmodel.Sqlprms[3] = new SqlParameter("@Kingaku", SqlDbType.VarChar) { Value = tkmodel.CostAmount };
             return bdl.SelectJson("Fnc_TAXCalculation", tkmodel.Sqlprms);
         }
+
+        public string M_project_SelectByProjectCD(Touroku_KeihiModel Kmodel)
+        {
+            BaseDL bdl = new BaseDL();
+            Kmodel.Sqlprms = new SqlParameter[1];
+            Kmodel.Sqlprms[0] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = Kmodel.ProjectCD };
+
+            return bdl.SelectJson("M_project_SelectByProjectCD", Kmodel.Sqlprms);
+        }
     }
 }

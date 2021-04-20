@@ -569,6 +569,21 @@
         if (result == 'OK') {
             if ($("#projectCD").val()) {
                 ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "HinbanName", $("#projectCD").val());
+                if ($("#accounting").text() == "1" || $("#accounting").text() == "3") {
+                    var Kmodel = {
+                        ProjectCD: $('#projectCD').val()
+                    };
+                    var data = CalltoApiController('@Url.Action("M_project_SelectByProjectCD", "api/Touroku_KeihiApi")', Kmodel);
+                    var result = JSON.parse(data);
+                    if (result[0].Season == "1")
+                        $("#allyear").prop("checked", true);
+                    else if (result[0].Season == "2") {
+                        $("#SS").prop("checked", true);
+                    }
+                    else if (result[0].Season == "3") {
+                        $("#FW").prop("checked", true);
+                    }
+                }
             }
             else
                 $("#projectName").text('プロジェクト表示');
