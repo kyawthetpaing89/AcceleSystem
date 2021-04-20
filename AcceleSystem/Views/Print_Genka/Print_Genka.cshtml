@@ -285,7 +285,7 @@
                 var replacer = function (key, value) { return value === null ? '' : value }
                 if (array.length > 0) {
                     fiscalMM = array[0]["FiscalMM"];
-                    var colname = ["処理年月に｢★｣印を出力→", "前期発生金額", "1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月", "当期配賦金額", "費目合計", "当期仕掛金額"]
+                    var colname = ["", "前期発生金額", "1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月", "当期配賦金額", "費目合計", "当期仕掛金額"]
                     $('#tblExcel thead').append($('<tr>'));
                     for (var i = 0; i <= colname.length - 1; i++) {
                         if (i == 0) {
@@ -335,14 +335,14 @@
                         else if (array[i]["SortKey"] == '20') {
                             if (o_row == 0) {
                                 isrowspan = 1;
-                                add_row = '<td rowspan = ' + array[i]["Row_Count"] + ' style="text-align: center;background-color: blue; vertical-align: middle;">' + array[i]["BrandCD"] + '</td><td style="background-color: blue"></td><td>' + array[i]["CostName"] + '</td><td>' +
+                                add_row = '<td rowspan = ' + array[i]["Row_Count"] + ' style="text-align: center;background-color: #8FAADC; vertical-align: middle;">' + array[i]["BrandCD"] + '</td><td style="background-color: #8FAADC"></td><td>' + array[i]["CostName"] + '</td><td>' +
                                     replaceZero(array[i]["CostPre"]) + '</td><td>' + replaceZero(array[i]["Cost1"]) + '</td><td>' + replaceZero(array[i]["Cost2"]) + '</td><td>' + replaceZero(array[i]["Cost3"]) + '</td><td>' +
                                     replaceZero(array[i]["Cost4"]) + '</td><td>' + replaceZero(array[i]["Cost5"]) + '</td><td>' + replaceZero(array[i]["Cost6"]) + '</td><td>' + replaceZero(array[i]["Cost7"]) + '</td><td>' +
                                     replaceZero(array[i]["Cost8"]) + '</td><td>' + replaceZero(array[i]["Cost9"]) + '</td><td>' + replaceZero(array[i]["Cost10"]) + '</td><td>' + replaceZero(array[i]["Cost11"]) + '</td><td>' +
                                     replaceZero(array[i]["Cost12"]) + '</td><td>' + replaceZero(array[i]["CostHaihu"]) + '</td><td>' + commaSeparate(array[i]["CostHimoku"]) + '</td><td>' + commaSeparate(array[i]["CostShikakari"]) + '</td>';
                             }
                             else {
-                                add_row = '<td style="background-color: blue"></td><td>' + array[i]["CostName"] + '</td><td>' + replaceZero(array[i]["CostPre"]) + '</td><td>' + replaceZero(array[i]["Cost1"]) + '</td><td>' + replaceZero(array[i]["Cost2"]) + '</td><td>' +
+                                add_row = '<td style="background-color: #8FAADC"></td><td>' + array[i]["CostName"] + '</td><td>' + replaceZero(array[i]["CostPre"]) + '</td><td>' + replaceZero(array[i]["Cost1"]) + '</td><td>' + replaceZero(array[i]["Cost2"]) + '</td><td>' +
                                     replaceZero(array[i]["Cost3"]) + '</td><td>' + replaceZero(array[i]["Cost4"]) + '</td><td>' + replaceZero(array[i]["Cost5"]) + '</td><td>' + replaceZero(array[i]["Cost6"]) + '</td><td>' +
                                     replaceZero(array[i]["Cost7"]) + '</td><td>' + replaceZero(array[i]["Cost8"]) + '</td><td>' + replaceZero(array[i]["Cost9"]) + '</td><td>' + replaceZero(array[i]["Cost10"]) + '</td><td>' +
                                     replaceZero(array[i]["Cost11"]) + '</td><td>' + replaceZero(array[i]["Cost12"]) + '</td><td>' + replaceZero(array[i]["CostHaihu"]) + '</td><td>' + commaSeparate(array[i]["CostHimoku"]) + '</td><td>' + commaSeparate(array[i]["CostShikakari"]) + '</td>';
@@ -352,7 +352,7 @@
                             $('#tblExcel tbody tr:last').append(add_row);
                         }
                         else if (array[i]["SortKey"] == '21') {
-                            add_row = '<td style="background-color: blue"></td><td style="border-top: 1px solid; border-bottom: 1px solid">' + array[i]["CostName"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["CostPre"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["Cost1"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
+                            add_row = '<td style="background-color: #8FAADC"></td><td style="border-top: 1px solid; border-bottom: 1px solid">' + array[i]["CostName"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["CostPre"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["Cost1"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
                                 commaSeparate(array[i]["Cost2"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["Cost3"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["Cost4"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["Cost5"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
                                 commaSeparate(array[i]["Cost6"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["Cost7"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["Cost8"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["Cost9"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
                                 commaSeparate(array[i]["Cost10"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["Cost11"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(array[i]["Cost12"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
@@ -389,7 +389,7 @@
                                     
                                     if (prj_array[j]["SortKey"] == '30') {
                                         if (isrowspan == 0) {
-                                            newrowspan = '<td rowspan = ' + rowspancount + ' style="text-align: center;background-color: blue; vertical-align: middle;"></td>';
+                                            newrowspan = '<td rowspan = ' + rowspancount + ' style="text-align: center;background-color: #8FAADC; vertical-align: middle;"></td>';
                                             isrowspan = 1;
                                         }
 
