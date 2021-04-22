@@ -592,7 +592,10 @@
         }
 
         function commaSeparate(str) {
-            return str.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            if (str)
+                return str.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            else
+                return str;
         }
         //Excel Print//
     </script>
