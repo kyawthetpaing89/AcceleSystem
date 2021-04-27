@@ -1,0 +1,40 @@
+﻿<div id="divSearch" data-iziModal-title="Order Select" data-iziModal-icon="icon-home">
+    <div id="divSearch1">
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    var CD;
+    var Name;
+    function LoadSearchForm(typeID, BrandCD, BrandName) {
+        this.CD = BrandCD;
+        this.Name = BrandName;
+        if (typeID == "1") {
+            $(".iziModal-header-title").text("ブランド検索");
+            $("#divSearch1").empty();
+
+            $("#divSearch1").load('@Url.Action("BrandList","Brand")', function () {
+                BrandSearchSetting();
+            });            
+        }
+    }
+
+    function BrandSearchSetting() {
+        $("#BrandType").val("2");
+        GetBrand();
+        $("#myInput").focus();
+        $("#divAddBrand").hide();
+    }
+
+    function SelectBrand(cd, name) {
+        $(CD).val(cd);
+        $(Name).val(name);
+        $("#divSearch").iziModal('close');
+
+        //fire keydown of BrandName
+        var e = jQuery.Event("keydown");
+        e.which = 13; // # Some key code value
+        $(Name).trigger(e);
+    }
+</script>

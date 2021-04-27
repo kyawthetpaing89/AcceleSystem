@@ -16,7 +16,7 @@
         }
 
         .fixed-project {
-            width:350px;
+            width: 350px;
         }
     }
 
@@ -29,6 +29,7 @@
             width: 350px;
         }
     }
+
     @@media only screen and (min-width: 900px) {
         .text-price {
             width: 170px;
@@ -68,11 +69,12 @@
             width: 380px;
         }
     }
-   
+
     @@media only screen and (min-width: 1300px) {
         .text-price {
             width: 240px;
         }
+
         .fixed-project {
             width: 450px;
         }
@@ -89,18 +91,22 @@
         .text-price {
             width: 280px;
         }
+
         .fixed-project {
             width: 550px;
         }
     }
+
     @@media only screen and (min-width: 1600px) {
         .text-price {
             width: 300px;
         }
+
         .fixed-project {
             width: 600px;
         }
     }
+
     @@media only screen and (min-width: 1920px) {
         .text-price {
             width: 350px;
@@ -110,11 +116,13 @@
             width: 750px;
         }
     }
+
     .text-price {
         line-height: unset;
         color: unset;
         margin-bottom: unset;
     }
+
     .fixed-project {
         line-height: unset;
         color: unset;
@@ -161,6 +169,7 @@
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label id="text">ブランド名</label>
                                             <input type="text" tabindex="1" class="text-line col-xl-3 text-left" id="BrandCD" name="brandcd" maxlength="6" onkeydown="KeyDown(event,this)" required placeholder="入力">
+                                            <input type="button" value="..." onclick="Search(1)" />
                                             <input type="text" tabindex="2" class="text-line col-xl-5 text-left" id="BrandName" name="brandname" maxlength="40" onkeydown="KeyDown(event,this)" required placeholder="入力">
                                         </div>
                                     </div>
@@ -245,7 +254,7 @@
                                     <table class="col-md-12">
                                         <tr>
                                             <th style="width: 46%; max-width: 46%;">ブランド</th>
-                                            <th style="width: 22%; max-width: 22%;" class="text-center" >シーズン</th>
+                                            <th style="width: 22%; max-width: 22%;" class="text-center">シーズン</th>
                                             <th style="width: 22%; max-width: 22%;" class="text-center">年度</th>
                                             <th style="width: 70px; max-width: 70px;"></th>
                                         </tr>
@@ -262,17 +271,19 @@
                                             <th></th>
                                         </tr>
                                     </table>
-                                    </th>
-                                </tr>
-                             </thead>
-                        </table>
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@Html.Partial("~/Views/Search/SearchBase.cshtml")
 
 @section Scripts{
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Brand.js")"></script>
     <script type="text/javascript">
         var array;
     $(document).ready(function () {
@@ -316,7 +327,19 @@
          DoubleByteCheck($("#ProjectManager"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
          ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
 
+
+        $("#divSearch").iziModal({
+            top: 50,
+            width: "70%",
+            overlayClose: false,
+            zindex: 1000,
+        });
      });
+
+        function Search(type) {
+            LoadSearchForm(type,$("#BrandCD"),$("#BrandName"));
+            $("#divSearch").iziModal('open');
+        }
 
      function CheckboxCheck(result) {
          if (result == 'OK') {

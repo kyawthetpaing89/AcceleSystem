@@ -1,24 +1,23 @@
 ﻿
 @{
     ViewBag.Title = "BrandList";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = Request.IsAjaxRequest() ? null : "~/Views/Shared/_Layout.cshtml";
 }
 
-
-
+<input type="hidden" id="BrandType" value="1" />
 <div class="card">
     <div class="card-body">
         <div class="row">
-            <div class="col-sm-2 col-md-3">
-                <button id="btnAdd" onclick="btnAddClick()" class="btn col-xl-10 text-center" tabindex="38" style="background-color:#1a8cff; color:azure;">
+            <div id="divAddBrand" class="col-sm-2 col-md-3">
+                <button id="btnAdd" onclick="AddBrand()" class="btn col-xl-10 text-center" tabindex="38" style="background-color:#1a8cff; color:azure;">
                     ブランド追加
                 </button>
             </div>
-            
+
             <div class="col-sm-8 col-md-8 col-lg-8">
                 <i class="fa fa-search" style="padding-left:15px;"></i>
-                <input type="text" id="myInput" placeholder="ブランド名入力" class="border border-white" style="width:80%;padding-bottom:10px">
-                <table id="tblBrand" class="tb1 col-sm-12" style="padding-left:0px;width:100%">
+                <input type="text" id="myInput" placeholder="ブランド名入力" onkeydown="BrandKeyDown(event)" class="border border-white" style="width:80%;padding-bottom:10px">
+                <table id="tblBrand" data-request-url='@Url.Action("M_Brand_Select", "api/BrandApi")' class="tb1 col-sm-12" style="padding-left:0px;width:100%">
                     <thead>
                         <tr>
                             <th>
@@ -30,10 +29,10 @@
                                     </tr>
                                 </table>
                             </th>
-                            
+
                         </tr>
                     </thead>
-                    
+
                 </table>
             </div>
         </div>
@@ -41,90 +40,26 @@
 </div>
 
 @section Scripts{
+
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#formtitle").text("ブランド検索");
-            GetBrand();
-            $("#myInput").focus();
+            BrandList_Load();
         });
 
-        $('#myInput').on("keypress", function (e) {
-            if (e.keyCode == 13) {
-                GetBrand();
-                return false; // prevent the button click from happening
-            }
-        });
 
-        function GetBrand() {
-            var bmodel = {
-                BrandName: $('#myInput').val(),
-            };
 
-        $.ajax({
-            type: "Post",
-            url:"@Url.Action("M_Brand_Select", "api/BrandApi")",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            data: JSON.stringify(bmodel),
-            headers:
-            {
-                Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-            },
-            success: function (response) {
-                    BindTable(response);
-                }
-        });
-    }
-
-        function BindTable(response) {
-            table = $('#tblBrand').DataTable({
-
-                data: JSON.parse(response),
-                "bFilter": false,
-                "bLengthChange": false,
-                "bInfo": false,
-                "bSort": false,
-                destroy: true,
-
-                "columns": [
-                    {
-                        "data": null,
-                        className: "Border1",
-                        render: function (data, type, row) {
-                            return '<table class="col-md-12"><tr><td style="width:20%">' + data.BrandCD + '</td><td style="width:60%">' + data.BrandName + '</td><td style="width:20%"><label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\')" style="color:blue">編集</a></label>&nbsp;&nbsp;&nbsp;<label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\')" style="color:red">削除</a></label></td></tr>'
-                        }
-                    },
-
-                ]
-
-               
-            });
-
-        }
-
-    function btnAddClick() {
+    function AddBrand() {
         location.href = '@Url.Action("BrandEntry", "Brand")?Mode=New'
     }
 
-    function btnEditClick(BrandCD) {
+    function EditBrand(BrandCD) {
         location.href = '@Url.Action("BrandEntry", "Brand")?BrandCD='+BrandCD+'&Mode=Edit';
     }
 
-    function btnDelClick(BrandCD) {
+    function DelBrand(BrandCD) {
         location.href = '@Url.Action("BrandEntry", "Brand")?BrandCD='+BrandCD+'&Mode=Delete';
         }
     </script>
-
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/datatables.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/dataTables.bootstrap.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/dataTables.buttons.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.bootstrap.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/jszip.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/vfs_fonts.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.html5.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.print.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.colVis.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/init/datatables-init.js")"></script>
-
-  }
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Brand.js")"></script>
+}
 

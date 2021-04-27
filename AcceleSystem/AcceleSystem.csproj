@@ -154,6 +154,7 @@
     <Compile Include="Controllers\MessageApiController.cs" />
     <Compile Include="Controllers\Print_GenkaApiController.cs" />
     <Compile Include="Controllers\Print_GenkaController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\SessionFilterAttribute.cs" />
     <Compile Include="Controllers\TourokuProjectApiController.cs" />
     <Compile Include="Controllers\TourokuProjectController.cs" />
@@ -185,6 +186,8 @@
     <Content Include="ElaAdmin\assets\css\Common.css" />
     <Content Include="ElaAdmin\assets\css\cs-skin-elastic.css" />
     <Content Include="ElaAdmin\assets\css\flag-icon.min.css" />
+    <Content Include="ElaAdmin\assets\css\iziModal.css" />
+    <Content Include="ElaAdmin\assets\css\iziModal.min.css" />
     <Content Include="ElaAdmin\assets\css\lib\chosen\chosen-sprite%402x.png" />
     <Content Include="ElaAdmin\assets\css\lib\chosen\chosen-sprite.png" />
     <Content Include="ElaAdmin\assets\css\lib\chosen\chosen.css" />
@@ -226,8 +229,11 @@
     <Content Include="ElaAdmin\assets\css\userlogin\vendor\tilt\tilt.jquery.min.js" />
     <Content Include="ElaAdmin\assets\fonts\icomoon\icomoon.svg" />
     <Content Include="ElaAdmin\assets\fonts\icomoon\index.html" />
+    <Content Include="ElaAdmin\assets\js\Brand.js" />
     <Content Include="ElaAdmin\assets\js\Cleave.js" />
     <Content Include="ElaAdmin\assets\js\Common.js" />
+    <Content Include="ElaAdmin\assets\js\iziModal.js" />
+    <Content Include="ElaAdmin\assets\js\iziModal.min.js" />
     <Content Include="ElaAdmin\assets\js\Message.js" />
     <Content Include="ElaAdmin\assets\js\dashboard.js" />
     <Content Include="ElaAdmin\assets\js\init\chartjs-init.js" />
@@ -556,6 +562,9 @@
     <Content Include="Views\Print_Genka\Print_Genka.cshtml" />
     <Content Include="Views\CustomError\CustomErrorView.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Search\SearchBase.cshtml" />
+    <Content Include="Views\Search\BrandSearch.cshtml" />
+    <Content Include="Views\Search\BSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

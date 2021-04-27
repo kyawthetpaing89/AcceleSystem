@@ -89,3 +89,7 @@
 #tblNouhinEntry > tbody > tr > td {
     border-top: 1px solid #d3dcd3;
 }
+
+.hide{
+    display:none;
+}
