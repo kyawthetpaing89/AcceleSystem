@@ -82,14 +82,16 @@
                                 品番/色数
                             </label>
 
-                            <input type="text" tabindex="11" class="text-line col-sm-12 col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this)" id="HinbanCD" name="HinbanCD" maxlength="6" required placeholder="入力" style="width:73px;">
-                            <input type="text" tabindex="12" class="text-line col-sm-12 col-md-12 col-lg-8 text-left" onkeydown="KeyDown(event,this)" id="HinbanName" name="HinbanName" maxlength="60" required placeholder="入力" >
-                            <input type="text" tabindex="13" class="text-line col-sm-12 col-md-12 col-lg-1 text-right input-numeral14" onkeydown="KeyDown(event,this)" id="Color" name="Color" maxlength="2" required placeholder="入力" style="width:40px;" >
+                            <input type="text" tabindex="11" class="text-line col-sm-12 col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this)"
+                                   id="HinbanCD" name="HinbanCD" maxlength="6" required placeholder="入力" style="width:73px;">
+                            <input type="button" value="..." onclick="Search(3)" />
+                            <input type="text" tabindex="12" class="text-line col-sm-12 col-md-12 col-lg-8 text-left" onkeydown="KeyDown(event,this)" id="HinbanName" name="HinbanName" maxlength="60" required placeholder="入力">
+                            <input type="text" tabindex="13" class="text-line col-sm-12 col-md-12 col-lg-1 text-right input-numeral14" onkeydown="KeyDown(event,this)" id="Color" name="Color" maxlength="2" required placeholder="入力" style="width:45px;">
                         </div>
 
                     </div>
                 </div>
-              
+
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12" style="padding-left:66px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
@@ -150,10 +152,12 @@
         </div>
     </div>
 </div>
-
+@Html.Partial("~/Views/Search/SearchBase.cshtml")
 
 @section Scripts{
-<script type="text/javascript">
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Search.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Hinban.js")"></script>
+    <script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("品番登録");
 
@@ -223,7 +227,7 @@
             else if (Mode == 'Copy') {
                 ShowData();
                 $('#btnSave').html('登録');
-                
+
                 $("#ProjectCD").attr('disabled', 'disabled');
                 $("#DeliverNo").attr('disabled', 'disabled');
                 $("#CastingName").attr('disabled', 'disabled');
@@ -264,8 +268,15 @@
                 $("#freeitem2").attr('disabled', 'disabled');
 
                 $("#btnSave").focus();
-                
+
             }
+
+            $("#divSearch").iziModal({
+                top: 50,
+                width: "70%",
+                overlayClose: false,
+                zindex: 1000,
+            });
         });
 
         function ProjectCheck(result) {
@@ -530,7 +541,5 @@
         }
     });
 
-
-</script>
-   
+    </script>
 }

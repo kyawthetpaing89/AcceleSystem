@@ -144,9 +144,12 @@ function DoubleByteCheck(ctrl, apiURL) {
     $(ctrl).attr("data-doublebyte_DataCheckApiUrl", apiURL); 
 }
 
-function ErrorCheckOnSave() {
+function ErrorCheckOnSave(v1) {
+    if (typeof v1 === "undefined") {
+        v1 = 'divMain';
+    }
     var r1 = "0";
-    $('#divMain *').filter(':input').each(function () {
+    $('#'+ v1 +' *').filter(':input').each(function () {
         var result = ErrChk(this);
         if (result != "0") {
             $(this).focus();
@@ -648,6 +651,7 @@ function moveNext(ctrl) {
             break;
         }
     } while ($(ctrl).is('[disabled=disabled]'));
+    
     $(ctrl).select();
     $(ctrl).focus();
 }

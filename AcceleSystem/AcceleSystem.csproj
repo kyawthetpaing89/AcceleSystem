@@ -232,6 +232,7 @@
     <Content Include="ElaAdmin\assets\js\Brand.js" />
     <Content Include="ElaAdmin\assets\js\Cleave.js" />
     <Content Include="ElaAdmin\assets\js\Common.js" />
+    <Content Include="ElaAdmin\assets\js\Hinban.js" />
     <Content Include="ElaAdmin\assets\js\iziModal.js" />
     <Content Include="ElaAdmin\assets\js\iziModal.min.js" />
     <Content Include="ElaAdmin\assets\js\Message.js" />
@@ -265,7 +266,9 @@
     <Content Include="ElaAdmin\assets\js\lib\gmap\gmaps.js" />
     <Content Include="ElaAdmin\assets\js\lib\gmap\gmaps.min.js" />
     <Content Include="ElaAdmin\assets\js\main.js" />
+    <Content Include="ElaAdmin\assets\js\Search.js" />
     <Content Include="ElaAdmin\assets\js\SweetAlert2.js" />
+    <Content Include="ElaAdmin\assets\js\User.js" />
     <Content Include="ElaAdmin\assets\js\vmap.sampledata.js" />
     <Content Include="ElaAdmin\assets\js\widgets.js" />
     <Content Include="ElaAdmin\assets\scss\style.css" />

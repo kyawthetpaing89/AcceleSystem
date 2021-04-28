@@ -1,7 +1,7 @@
 ﻿@model Models.TourokuProjectModel
 @{
     ViewBag.Title = "TourokuHinban_List";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = Request.IsAjaxRequest() ? null : "~/Views/Shared/_Layout.cshtml";
 }
 @section Styles{
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
@@ -37,6 +37,7 @@
             width: 340px;
         }
     }
+
     @@media only screen and (min-width: 1020px) {
         .fixed-width {
             width: 100px;
@@ -46,6 +47,7 @@
             width: 290px;
         }
     }
+
     @@media only screen and (min-width: 1300px) {
         .fixed-width {
             width: 160px;
@@ -60,6 +62,7 @@
         .fixed-width {
             width: 210px;
         }
+
         .fixed-hinban {
             width: 500px;
         }
@@ -69,10 +72,12 @@
         .fixed-width {
             width: 240px;
         }
+
         .fixed-hinban {
             width: 560px;
         }
     }
+
     @@media only screen and (min-width: 1900px) {
         .fixed-width {
             width: 285px;
@@ -88,11 +93,13 @@
         color: unset;
         margin-bottom: unset;
     }
+
     .fixed-hinban {
         line-height: unset;
         color: unset;
         margin-bottom: unset;
     }
+
     .fixed-width {
         text-overflow: ellipsis;
         display: inline-block;
@@ -109,7 +116,8 @@
         display: inline-block;
     }
 </style>
-<div id="divMain" class="container-fluid">
+<input type="hidden" id="HinbanType" value="1" />
+<div id="divMainList" class="container-fluid">
     <div class="card">
         <div class="row">
             <div class="col-xs-12 col-md-12 col-lg-5" style="padding-right: 0px;">
@@ -129,7 +137,9 @@
                                             <label id="text" style="padding-right: 3px;">
                                                 プロジェクト
                                             </label>
-                                            <input type="text" tabindex="1" class="text-line col-sm-12 col-md-12 col-xl-4 text-left" onkeydown="KeyDown(event,this,'ProjectCDCheck')" id="proCD" name="proCD" maxlength="10" required placeholder="入力">
+                                            <input type="text" tabindex="1" class="text-line col-sm-12 col-md-12 col-xl-4 text-left"
+                                                   onkeydown="KeyDown(event,this,'ProjectCDCheck')" id="proCD" name="proCD" maxlength="10" required placeholder="入力"
+                                                   data-existcheck-url='@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")'>
 
                                             <input type="text" tabindex="2" class="text-line col-sm-12 col-md-12 col-xl-4 text-left" onkeydown="KeyDown(event,this)" id="proName" name="proName" maxlength="60" required placeholder="入力">
                                         </div>
@@ -141,9 +151,9 @@
                                             <label id="text" style="padding-right:3px;">
                                                 年度/シーズン
                                             </label>
-                                            <input type="text" tabindex="3" class="text-line col-sm-12 col-md-12 col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="year" name="year" maxlength="4" required placeholder="入力">
+                                            <input type="text" tabindex="3" class="text-line col-sm-12 col-md-12 col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="HLyear" name="year" maxlength="4" required placeholder="入力">
 
-                                            <input type="text" tabindex="4" class="text-line col-sm-12 col-md-12 col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="season" name="season" maxlength="40" required placeholder="入力">
+                                            <input type="text" tabindex="4" class="text-line col-sm-12 col-md-12 col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="HLseason" name="season" maxlength="40" required placeholder="入力">
                                         </div>
                                     </div>
                                 </div>
@@ -153,8 +163,8 @@
                                             <label id="text" style="padding-right:3px;">
                                                 ブランド
                                             </label>
-                                            <input type="text" tabindex="5" class="text-line col-sm-12 col-md-12 col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="BrandCD" name="brand" maxlength="50" required placeholder="入力">
-                                            <input type="text" tabindex="6" class="text-line col-sm-12 col-md-12 col-xl-6 text-left" onkeydown="KeyDown(event,this)" id="BrandName" name="brandname" maxlength="50" required placeholder="入力">
+                                            <input type="text" tabindex="5" class="text-line col-sm-12 col-md-12 col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="HLBrandCD" name="brand" maxlength="50" required placeholder="入力">
+                                            <input type="text" tabindex="6" class="text-line col-sm-12 col-md-12 col-xl-6 text-left" onkeydown="KeyDown(event,this)" id="HLBrandName" name="brandname" maxlength="50" required placeholder="入力">
                                         </div>
                                     </div>
                                 </div>
@@ -164,9 +174,9 @@
                                             <label style="padding-right:3px;">
                                                 予定期間
                                             </label>
-                                            <input type="text" tabindex="7" class="text-line col-sm-12 col-md-12 col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="StartDate" name="StartDate" maxlength="7" required placeholder="入力">
+                                            <input type="text" tabindex="7" class="text-line col-sm-12 col-md-12 col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="HLStartDate" name="StartDate" maxlength="7" required placeholder="入力">
                                             &nbsp;~&nbsp;
-                                            <input type="text" tabindex="8" class="text-line col-sm-12 col-md-12 col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="EndDate" name="EndDate" maxlength="7" required placeholder="入力">
+                                            <input type="text" tabindex="8" class="text-line col-sm-12 col-md-12 col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="HLEndDate" name="EndDate" maxlength="7" required placeholder="入力">
 
                                         </div>
                                     </div>
@@ -187,9 +197,13 @@
                                     <div class="col-md-12" style="padding-left:69px;">
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label style="padding-right:3px;">品番名</label>
-                                            <input type="text" tabindex="11" class="text-line col-sm-12 col-md-12 col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="HinbanCD" name="HinbanCD" maxlength="6" required placeholder="入力">
+                                            <input type="text" tabindex="11" class="text-line col-sm-12 col-md-12 col-xl-3 text-left"
+                                                   data-doublebytecheck-url='@Url.Action("DoubleByte_Checking", "api/CommonApi")'
+                                                   data-existcheck-url='@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")'
+                                                   data-checklist-url='@Url.Action("M_Hinban_Check_List", "api/TourokuProjectApi")'
+                                                   onkeydown="KeyDown(event,this)" id="HLHinbanCD" name="HinbanCD" maxlength="6" required placeholder="入力">
 
-                                            <input type="text" tabindex="12" class="text-line col-sm-12 col-md-12 col-xl-6 text-left" onkeydown="KeyDown(event,this)" id="HinbanName" name="HinbanName" maxlength="60" required placeholder="入力">
+                                            <input type="text" tabindex="12" class="text-line col-sm-12 col-md-12 col-xl-6 text-left" onkeydown="KeyDown(event,this)" id="HLHinbanName" name="HLHinbanName" maxlength="60" required placeholder="入力">
 
                                         </div>
                                     </div>
@@ -210,9 +224,11 @@
                                     <div class="col-md-12" style="padding-left:83px;">
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label style="padding-right:3px;">金型</label>
-                                            <input type="text" tabindex="15" class="text-line col-sm-12 col-md-12 col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="CastingCD" name="CastingCD" maxlength="10" required placeholder="入力">
+                                            <input type="text" tabindex="15" class="text-line col-sm-12 col-md-12 col-xl-3 text-left"
+                                                   data-existcheck-url='@Url.Action("M_Casting_ExistsCheck", "api/TourokuProjectApi")'
+                                                   onkeydown="KeyDown(event,this)" id="HLCastingCD" name="CastingCD" maxlength="10" required placeholder="入力">
 
-                                            <input type="text" tabindex="16" class="text-line col-sm-12 col-md-12 col-xl-6 text-left" onkeydown="KeyDown(event,this)" id="CastingName" name="CastingName" maxlength="40" required placeholder="入力">
+                                            <input type="text" tabindex="16" class="text-line col-sm-12 col-md-12 col-xl-6 text-left" onkeydown="KeyDown(event,this)" id="HLCastingName" name="CastingName" maxlength="40" required placeholder="入力">
 
                                         </div>
                                     </div>
@@ -232,7 +248,7 @@
                                 <div class="pt-3 md-form" style="padding-left:0px; padding-top:2rem;">
                                     <div class="col-xl-12">
                                         <div class="col-xl-9">
-                                            <button id="btnSearch" tabindex="19" onclick="btnSearchClick()" class="btn btn-dark col-xl-4 text-center float-lg-right">検索</button>
+                                            <button id="btnSearch" tabindex="19" onclick="HinbanSearch()" class="btn btn-dark col-xl-4 text-center float-lg-right">検索</button>
                                             &nbsp;&nbsp;&nbsp;&nbsp;
 
                                         </div>
@@ -245,7 +261,7 @@
             </div>
             <div class="col-xs-12 col-md-12 col-lg-7" style="padding-left:0px;padding-right:0px;">
                 <div class="card-body card-block" style="padding-left:0px;">
-                    <table id="tblProject" class="tb1 col-sm-12" style="width:100%">
+                    <table id="tblHinban" data-request-url='@Url.Action("M_HinBan_Search_List", "api/TourokuProjectApi")' class="tb1 col-sm-12" style="width:100%">
                         <thead>
                             <tr>
                                 <th>
@@ -287,263 +303,48 @@
 </div>
 
 @section Scripts{
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Hinban.js")"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("品番検索");
-            if ('@Model.flg' == "list") {
-                $('#proCD').val('@Model.ProjectCD1');
-                $('#proName').val('@Model.ProjectName');
-                $('#year').val('@Model.Year');
-                $('#BrandCD').val('@Model.BrandCD1');
-                $('#BrandName').val('@Model.BrandName');
-                $('#StartDate').val('@Model.startDate');
-                $('#EndDate').val('@Model.endDate');
-                $('#tpNo').val('@Model.Production');
-                $('#tAmount').val('@Model.TotalAmount');
-                $('#HinbanCD').val('@Model.HinbanCD1');
-                $('#HinbanName').val('@Model.HinbanName');
-                $('#CastingCD').val('@Model.CastingCD');
-                $('#CastingName').val('@Model.CastingName');
-                $('#StartPrice').val('@Model.StartPrice');
-                $('#EndPrice').val('@Model.EndPrice');
-                $('#season').val('@Model.Season');
-               @*var str = '@Model.Season';
-               if (str.includes("1"))
-                   $("#Degreeyear").prop("checked", true);
-               else $("#Degreeyear").prop("checked", false);
-               if (str.includes("2"))
-                   $("#SS").prop("checked", true);
-               else $("#SS").prop("checked", false);
-               if (str.includes("3"))
-                   $("#FW").prop("checked", true);
-               else $("#FW").prop("checked", false);*@
+        if ('@Model.flg' == "list") {
+            $('#proCD').val('@Model.ProjectCD1');
+            $('#proName').val('@Model.ProjectName');
+            $('#HLyear').val('@Model.Year');
+            $('#HLBrandCD').val('@Model.BrandCD1');
+            $('#HLBrandName').val('@Model.BrandName');
+            $('#HLStartDate').val('@Model.startDate');
+            $('#HLEndDate').val('@Model.endDate');
+            $('#tpNo').val('@Model.Production');
+            $('#tAmount').val('@Model.TotalAmount');
+            $('#HLHinbanCD').val('@Model.HinbanCD1');
+            $('#HLHinbanName').val('@Model.HinbanName');
+            $('#HLCastingCD').val('@Model.CastingCD');
+            $('#HLCastingName').val('@Model.CastingName');
+            $('#StartPrice').val('@Model.StartPrice');
+            $('#EndPrice').val('@Model.EndPrice');
+            $('#HLseason').val('@Model.Season');
+            //@*var str = '@Model.Season';
+            //if (str.includes("1"))
+            //    $("#Degreeyear").prop("checked", true);
+            //else $("#Degreeyear").prop("checked", false);
+            //if (str.includes("2"))
+            //    $("#SS").prop("checked", true);
+            //else $("#SS").prop("checked", false);
+            //if (str.includes("3"))
+            //    $("#FW").prop("checked", true);
+            //else $("#FW").prop("checked", false);*@
 
-               var str1 = '@Model.CompleteYM';
-               if (str1.includes("0"))
-                   $("#deliveryleft").prop("checked", true);
-               else $("#deliveryleft").prop("checked", false);
-               if (str1.includes("1"))
-                   $("#payment").prop("checked", true);
-               else $("#payment").prop("checked", false);
-            }
-
-            $("#proCD").focus();
-
-            $("#proName").attr('disabled', 'disabled');
-            $("#year").attr('disabled', 'disabled');
-            $("#season").attr('disabled', 'disabled');
-            $("#BrandCD").attr('disabled', 'disabled');
-            $("#BrandName").attr('disabled', 'disabled');
-            $("#StartDate").attr('disabled', 'disabled');
-            $("#EndDate").attr('disabled', 'disabled');
-            $("#tpNo").attr('disabled', 'disabled');
-            $("#tAmount").attr('disabled', 'disabled');
-            $("#CastingName").attr('disabled', 'disabled');
-
-            //RequiredCheck($("#proCD"));
-            ExistsCheck($("#proCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "proName");
-            DoubleByteCheck($("#HinbanCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-
-            ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/TourokuProjectApi")', "CastingName");
-            DoubleByteCheck($("#CastingCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-
-            //GetHinban();
+            var str1 = '@Model.CompleteYM';
+            if (str1.includes("0"))
+                $("#deliveryleft").prop("checked", true);
+            else $("#deliveryleft").prop("checked", false);
+            if (str1.includes("1"))
+                $("#payment").prop("checked", true);
+            else $("#payment").prop("checked", false);
+        }
+            HinbanList_Load();
         });
-
-
-    function GetHinban() {
-        var Tmodel = {
-            ProjectCD: $('#proCD').val(),
-            ProjectName: $('#proName').val(),
-            HinbanCD: $('#HinbanCD').val(),
-            HinbanName: $('#HinbanName').val(),
-            CastingCD: $('#CastingCD').val(),
-            StartPrice: $('#StartPrice').val(),
-            EndPrice: $('#EndPrice').val(),
-        };
-
-        var selected = new Array();
-        $("#CompleteYMgp input[type=checkbox]:checked").each(function () {
-            selected.push(this.value);
-        });
-        if (selected.length > 0)
-            Tmodel.CompleteYM = selected.join(",");
-
-         $.ajax({
-                type: "Post",
-                url: "@Url.Action("M_HinBan_Search_List", "api/TourokuProjectApi")",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                data: JSON.stringify(Tmodel),
-                headers:
-                {
-                    Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-                },
-                        success: function (response) {
-                         if (response == "[]") {
-                             BindTable(response);
-                             var data = ShowErrorMessage("E104");
-                             return data;
-                         }
-                         else {
-                             BindTable(response);
-                         }
-                     },
-            });
-    }
-
-    function BindTable(response) {
-
-        table = $('#tblProject').DataTable({
-
-            data: JSON.parse(response),
-            "bFilter": false,
-            "bLengthChange": false,
-            "bInfo": false,
-            "ordering":false,
-            "pagingType": "simple_numbers",
-            destroy: true,
-             "columns": [
-                {
-                    "data": null,
-                    className: "Border1",
-                     render: function (data, type, row) {
-                         //return '<table class="col-md-12"><tr><td colspan=3 style="width: 85%;display: inline-block;" class="fixed-width"><span style="width: 80%;display: inline-block;" class="fixed-width">' + data.ProjectCD + '  ' + data.ProjectName + '</span></td><td style="width: 10%; text-align: center;"><label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:blue">編集</a></label></td></tr>' +
-                         //    '<tr><td colspan=3 style="width: 85%;display: inline-block;" class="fixed-width"><span style="width: 100%;display: inline-block;" class="fixed-width">' + data.HinbanCD + '  ' + data.HinbanName + '</span></td><td style="text-align: center;"><label><a href="#" onClick="btnDelClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:red">削除</a></label></td></tr>' +
-                         //    '<tr><td style="width: 150px;display: inline-block;" class="fixed-width">' + data.Casting + '  ' + data.CastingName + '</td><td style="width: 20%" class="text-right">' + data.Production + '</td><td style="width: 20%" class="text-right">' + data.SalesPrice + '</td><td style="width: 20%" class="text-right">' + data.TotalSalesPrice + '</td><td style="text-align: center;"><label><a href="#" onClick="btnCopyClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:green">複写</a></label></td></tr></table>';
-                         return '<table class="col-md-12">' +
-                             '<tr> <td colspan=4><span class="fixed-hinban" > ' + data.ProjectCD + '  ' + data.ProjectName + '</span></td > <td style="width: 70px; max-width: 70px; text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:blue">編集</a></label></td></tr > ' +
-                             '<tr><td colspan=4><span class="fixed-hinban">' + data.HinbanCD + '  ' + data.HinbanName + '</span></td><td style="width: 70px; max-width: 70px; text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnDelClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:red">削除</a></label></td></tr>' +
-                             '<tr><td style="width: 33%; max-width: 33%;"><span class="fixed-width">' + data.Casting + '  ' + data.CastingName + '</span></td><td style="text-align: center; width: 18%; max-width: 18%;">' + data.Production + '</td><td style="text-align: center; width: 18%; max-width: 18%;">' + data.SalesPrice + '</td><td style="text-align: center; width: 18%; max-width: 18%;">' + data.TotalSalesPrice + '</td><td style="width: 70px; max-width: 70px; text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnCopyClick(\'' + data.ProjectCD + '\',\'' + data.HinbanCD + '\')" style="color:green">複写</a></label></td></tr></table>';
-                    }
-                },
-            ]
-        });
-
-     }
-
-     function CheckCheckbox(result) {
-         if (result == 'OK') {
-             var deliveryleft = $('#deliveryleft').is(':checked');
-             var payment = $('#payment').is(':checked')
-             if (!deliveryleft && !payment) {
-                 $('#payment').focus();
-                 var data = ShowErrorMessage("E111");
-             }
-         }
-     }
-
-    function ProjectCDCheck(result) {
-        if (result == 'OK') {
-            Check();
-            ExistsCheck($("#HinbanCD"),"Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "HinbanName", $("#proCD").val());
-        }
-    }
-
-    function Check() {
-        if ($("#proCD").val()) {
-            var Tmodel = {
-                ProjectCD: $('#proCD').val(),
-                //HinbanCD: $('#HinbanCD').val(),
-            };
-            var data = CalltoApiController('@Url.Action("M_Hinban_Check_List", "api/TourokuProjectApi")', Tmodel);
-            var hbdata = JSON.parse(data);
-            $("#proCD").val(hbdata[0].ProjectCD);
-            $("#proName").val(hbdata[0].ProjectName);
-            $("#year").val(hbdata[0].Year);
-            $("#season").val(hbdata[0].Season);
-            $("#BrandCD").val(hbdata[0].BrandCD);
-            $("#BrandName").val(hbdata[0].BrandName);
-            $("#StartDate").val(hbdata[0].PeriodStart);
-            $("#EndDate").val(hbdata[0].PeriodEnd);
-            $("#tpNo").val(hbdata[0].TotalProduction);
-            $("#tAmount").val(hbdata[0].TotalSP);
-        }
-        else {
-            $("#proCD").val('');
-            $("#proName").val('');
-            $("#year").val('');
-            $("#season").val('');
-            $("#BrandCD").val('');
-            $("#BrandName").val('');
-            $("#StartDate").val('');
-            $("#EndDate").val('');
-            $("#tpNo").val('');
-            $("#tAmount").val('');
-        }
-    }
-
-    function CheckPrice(result) {
-        if (result == 'OK') {
-            if (!($('#StartPrice').val().trim() == '' || $('#EndPrice').val().trim() == '')) {
-                var Tmodel = {
-                    StartPrice: $('#StartPrice').val(),
-                    EndPrice: $('#EndPrice').val(),
-                };
-                @*var data = CalltoApiController('@Url.Action("M_Hinban_Price_Check", "api/TourokuProjectApi")', Tmodel);
-                var SalePriceData = JSON.parse(data);
-                if (SalePriceData[0].flg == "false") {*@
-                if (Tmodel.StartPrice <= Tmodel.EndPrice) {
-                    $("#CastingCD").focus();
-
-                    //var data = ShowErrorMessage("E124");
-                    //StartPrice: $('#StartPrice').val("");
-                    //EndPrice: $('#EndPrice').val("");
-                    ////$("#StartPrice").focus();
-                    //return data;
-                }
-                else {
-                    $("#EndPrice").focus();
-                    ShowErrorMessage("E124");
-                }
-            }
-        }
-    }
-
-    function CheckPriceOnSearch() {
-        if (!($('#StartPrice').val().trim() == '' || $('#EndPrice').val().trim() == '')) {
-            var Tmodel = {
-                StartPrice: $('#StartPrice').val(),
-                EndPrice: $('#EndPrice').val(),
-            };
-            @*var data = CalltoApiController('@Url.Action("M_Hinban_Price_Check", "api/TourokuProjectApi")', Tmodel);
-            var SalePriceData = JSON.parse(data);
-            if (SalePriceData[0].flg == "false") {*@
-            if (Tmodel.StartPrice <= Tmodel.EndPrice) {
-                return "0";
-            }
-            else {
-                return "E124";
-            }
-        }
-        else return "0";
-    }
-
-    function btnSearchClick() {
-        var deliveryleft = $('#deliveryleft').is(':checked');
-        var payment = $('#payment').is(':checked')
-        if (!deliveryleft && !payment) {
-            $('#payment').focus();
-            var data = ShowErrorMessage("E111");
-            return data;
-        }
-        else {
-            var res = ErrorCheckOnSave();
-            if (res == "0") {
-                var res1 = CheckPriceOnSearch();
-                if (res1 == "0") {
-                    GetHinban();
-                }
-                else {
-                    $("#EndPrice").focus();
-                    ShowErrorMessage(res1);
-                }
-            }
-            else {
-                ShowErrorMessage(res);
-            }
-        }
-    }
 
      function btnnextClick() {
         location.href = '@Url.Action("TourokuProject_List", "TourokuProject")';
@@ -567,37 +368,6 @@
         function btnCopyClick(ProjectCD, HinbanCD) {
             Tmodel = GetHinbanData();
             location.href = '@Url.Action("TourokuHinban_Entry", "TourokuProject")?ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName=' + Tmodel.ProjectName + '&BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&StartDate=' + Tmodel.StartDate + '&EndDate=' + Tmodel.EndDate + '&Year=' + Tmodel.Year + '&Season=' + Tmodel.Season + '&Production=' + Tmodel.Production + '&TotalAmount=' + Tmodel.TotalAmount + '&HinbanCD1=' + Tmodel.HinbanCD1 + '&HinbanName=' + Tmodel.HinbanName + '&CastingCD=' + Tmodel.CastingCD + '&CastingName=' + Tmodel.CastingName + '&StartPrice=' + Tmodel.StartPrice + '&EndPrice=' + Tmodel.EndPrice + '&CompleteYM=' + Tmodel.CompleteYM + '&flg=' + Tmodel.flg + '&HinbanCD=' + HinbanCD + '&ProjectCD=' + ProjectCD + '&Mode=Copy';
-        }
-
-        function GetHinbanData() {
-            var Tmodel = {
-                ProjectCD1: $('#proCD').val(),
-                ProjectName: $('#proName').val(),
-                Year: $('#year').val(),
-                BrandCD1: $('#BrandCD').val(),
-                BrandName: $('#BrandName').val(),
-                StartDate: $('#StartDate').val(),
-                EndDate: $('#EndDate').val(),
-                Production: $('#tpNo').val(),
-                TotalAmount: $('#tAmount').val(),
-                HinbanCD1: $('#HinbanCD').val(),
-                HinbanName: $('#HinbanName').val(),
-                CastingCD: $('#CastingCD').val(),
-                CastingName: $('#CastingName').val(),
-                StartPrice: $('#StartPrice').val(),
-                EndPrice: $('#EndPrice').val(),
-                Season: $('#season').val(),
-                flg: "list"
-            };
-
-            var selected = new Array();
-            $("#CompleteYMgp input[type=checkbox]:checked").each(function () {
-                selected.push(this.value);
-            });
-            if (selected.length > 0)
-                Tmodel.CompleteYM = selected.join(",");
-
-            return Tmodel;
         }
 
      $('#btnnext').keydown(function (e) {

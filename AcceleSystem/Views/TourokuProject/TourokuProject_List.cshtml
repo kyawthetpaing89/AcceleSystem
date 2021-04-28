@@ -227,6 +227,7 @@
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label id="text">責任者</label>
                                             <input type="text" tabindex="11" class="text-line col-xl-4 text-left" id="ProjectManager" name="projectmanager" maxlength="20" onkeydown="KeyDown(event,this)" required placeholder="入力">
+                                            <input type="button" value="..." onclick="Search(2)" />
                                             <input type="text" tabindex="12" class="text-line col-xl-5 text-left" id="ProjectManagerName" name="projectmanagername" onkeydown="KeyDown(event,this)" required placeholder="入力">
 
                                         </div>
@@ -284,6 +285,7 @@
 
 @section Scripts{
     <script src="@Url.Content("~/ElaAdmin/assets/js/Brand.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/User.js")"></script>
     <script type="text/javascript">
         var array;
     $(document).ready(function () {
@@ -335,11 +337,6 @@
             zindex: 1000,
         });
      });
-
-        function Search(type) {
-            LoadSearchForm(type,$("#BrandCD"),$("#BrandName"));
-            $("#divSearch").iziModal('open');
-        }
 
      function CheckboxCheck(result) {
          if (result == 'OK') {
@@ -639,6 +636,6 @@
      });
 
     </script>
-
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Search.js")"></script>
 
 }
