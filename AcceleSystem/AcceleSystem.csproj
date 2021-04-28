@@ -235,6 +235,7 @@
     <Content Include="ElaAdmin\assets\js\Hinban.js" />
     <Content Include="ElaAdmin\assets\js\iziModal.js" />
     <Content Include="ElaAdmin\assets\js\iziModal.min.js" />
+    <Content Include="ElaAdmin\assets\js\Kanagata.js" />
     <Content Include="ElaAdmin\assets\js\Message.js" />
     <Content Include="ElaAdmin\assets\js\dashboard.js" />
     <Content Include="ElaAdmin\assets\js\init\chartjs-init.js" />

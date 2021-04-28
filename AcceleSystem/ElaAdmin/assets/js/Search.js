@@ -9,6 +9,9 @@
         case 3://hinban
             LoadSearchForm(type, $("#HinbanCD"), $("#HinbanName"));
             break;
+        case 4:
+            LoadSearchForm(type, $("#CastingCD"), $("#CastingName"));
+            break;
     }
 
     $("#divSearch").iziModal('open');

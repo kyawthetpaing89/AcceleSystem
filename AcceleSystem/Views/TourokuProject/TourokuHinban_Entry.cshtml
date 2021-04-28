@@ -121,6 +121,7 @@
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="text" style="padding-right:5px;">金型</label>
                             <input type="text" tabindex="18" class="text-line col-sm-12 col-md-12 col-lg-4 text-left" onkeydown="KeyDown(event,this)" id="CastingCD" name="CastingCD" maxlength="10" required placeholder="入力">&nbsp;
+                            <input type="button" value="..." onclick="Search(4)" />
                             <input type="text" tabindex="19" class="text-line col-sm-12 col-md-12 col-lg-6 text-left" onkeydown="KeyDown(event,this)" id="CastingName" name="CastingName" maxlength="40" required placeholder="入力">
 
                         </div>
@@ -157,6 +158,7 @@
 @section Scripts{
     <script src="@Url.Content("~/ElaAdmin/assets/js/Search.js")"></script>
     <script src="@Url.Content("~/ElaAdmin/assets/js/Hinban.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Kanagata.js")"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("品番登録");

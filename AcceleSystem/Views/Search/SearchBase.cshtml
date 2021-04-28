@@ -31,6 +31,12 @@
                     SearchSetting(typeID);
                 });
                 break;
+            case 4:
+                $(".iziModal-header-title").text("金型検索");
+                $("#divSearch1").load('@Url.Action("KanagataList", "Kanagata")', function () {
+                    SearchSetting(typeID);
+                });
+                break;
         }
     }
 
@@ -48,11 +54,16 @@
                 GetUser();
                 $("#UserInput").focus();
                 $("#divAddUser").hide();
-            case 3:              
+            case 3:
                 HinbanList_Load();
                 $("#HinbanType").val("2");
                 $("#btnAdd").hide();
                 $("#btnnext").hide();
+            case 4:
+                $("#KanagataType").val("2");
+                GetCasting();
+                $("#KanagataInput").focus();
+                $('#divAddKanagata').hide();
         }
     }
 
@@ -67,7 +78,7 @@
         e.which = 13; // # Some key code value
 
         if ($(Name).is('input')) {
-            
+
             $(Name).trigger(e);
         }
         else {
