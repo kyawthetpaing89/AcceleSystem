@@ -48,6 +48,7 @@
                                 ブランド
                             </label>
                             <input type="text" tabindex="4" class="text-line col-sm-12 col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this,'BrandCheck')" id="BrandCD" name="brandcd" maxlength="6" required placeholder="入力">&nbsp;&nbsp;
+                            <input type="button" value="..." onclick="Search(1)" />
                             <label id="BrandName"><b>ブランド表示</b></label>
 
                         </div>
@@ -129,10 +130,12 @@
         </div>
     </div>
 </div>
-
+@Html.Partial("~/Views/Search/SearchBase.cshtml")
 
 @section Scripts{
-<script type="text/javascript">
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Search.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Brand.js")"></script>
+    <script type="text/javascript">
     $(document).ready(function () {
             $("#formtitle").text("プロジェクト登録");
             $("#ProjectCD").focus();
@@ -233,7 +236,14 @@
                         $("#btnSave").focus();
 
                         ShowData();
-                   }
+        }
+
+        $("#divSearch").iziModal({
+            top: 50,
+            width: "70%",
+            overlayClose: false,
+            zindex: 1000,
+        });
     });
 
     function BrandCheck(result) {
@@ -476,7 +486,7 @@
         }
     });
 
-</script>
+    </script>
     @*<script src="@Url.Content("~/Scripts/datepicker.js")"></script>
         <script src="@Url.Content("~/Scripts/datepicker.en.js")"></script>*@
 

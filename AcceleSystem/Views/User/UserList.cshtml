@@ -1,24 +1,25 @@
 ﻿@{
     ViewBag.Title = "UserList";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = Request.IsAjaxRequest() ? null : "~/Views/Shared/_Layout.cshtml";
 }
 
 @section Styles{
     @*<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />*@
-   
+
 }
+<input type="hidden" id="UserType" value="1" />
 <div class="card">
     <div class="card-body">
         <div class="row">
-            <div class="col-sm-2 col-md-3">
-                <button id="btnAdd" onclick="btnAddClick()" class="btn col-xl-10 text-center" tabindex="38" style="background-color:#1a8cff; color:azure;">
+            <div id="divAddUser" class="col-sm-2 col-md-3">
+                <button id="btnAdd" onclick="AddUser()" class="btn col-xl-10 text-center" tabindex="38" style="background-color:#1a8cff; color:azure;">
                     ユーザー追加
                 </button>
             </div>
             <div class="col-sm-9 col-md-9">
                 <i class="fa fa-search" style="padding-left:15px;"></i>
-                <input type="text" id="myInput" placeholder="ユーザー名入力......" class="border border-white" style="width:80%;padding-bottom:10px">
-                <table id="tblUser" class="tb col-sm-12" style="padding-left:0px;width:100%">
+                <input type="text" id="UserInput" onkeydown="UserKeyDown(event)" placeholder="ユーザー名入力......" class="border border-white" style="width:80%;padding-bottom:10px">
+                <table id="tblUser" data-request-url='@Url.Action("M_User_Select", "api/UserApi")' class="tb col-sm-12" style="padding-left:0px;width:100%">
                     <thead>
                         <tr>
                             <th>
@@ -29,10 +30,10 @@
                                         <th style="width:15%"></th>
                                     </tr>
                                 </table>
-                            </th>                           
+                            </th>
                         </tr>
                     </thead>
-                    
+
                 </table>
             </div>
         </div>
@@ -40,88 +41,22 @@
 </div>
 
 @section Scripts{
+    <script src="@Url.Content("~/ElaAdmin/assets/js/User.js")"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#formtitle").text("ユーザー検索");
-            GetUser();
-            $("#myInput").focus();
+            UserList_Load();
         });
-
-        $('#myInput').on("keypress", function (e) {
-            if (e.keyCode == 13) {
-                GetUser();
-                return false; // prevent the button click from happening
-            }
-        });
-
-        function GetUser() {
-            var Umodel = {
-                UserName: $('#myInput').val(),
-            };
-
-             $.ajax({
-            type: "Post",
-            url:"@Url.Action("M_User_Select", "api/UserApi")",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            dataSrc: "",
-            data: JSON.stringify(Umodel),
-            headers:
-             {
-                   Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-             },
-             success: function (response) {
-                    BindTable(response);
-             }
-            });
-        }
-
-        function BindTable(response) {
-            table = $('#tblUser').DataTable({
-                data: JSON.parse(response),
-                "bFilter": false,
-                "bLengthChange": false,
-                "bInfo": false,
-                "bSort": false,
-                destroy: true,
-                "columns": [
-                    {
-                        "data": null,
-                        className: "Border1",
-                        render: function (data, type, row) {
-                            return '<table class="col-md-12"><tr><td style="width:30%">' + data.ID + '</td><td style="width:55%">' + data.UserName + '</td><td style="width:15%"><label><a href="#" onClick="btnEditClick(\'' + data.ID + '\')" style="color:blue">編集</a></label>&nbsp;&nbsp;&nbsp;<label><a href="#" onClick="btnDelClick(\'' + data.ID + '\')" style="color:red">削除</a></label></td></tr></table>';
-                        }
-                    },
-                   
-                ]
-                
-                //"drawCallback": function (settings) {
-                //    $("#tblUser thead").remove();
-                //}
-            });
-
-        }
-        function btnAddClick() {
+       
+        function AddUser() {
             location.href = '@Url.Action("UserEntry", "User")?Mode=New'
         }
 
-        function btnEditClick(UserID) {
+        function EditUser(UserID) {
             location.href = '@Url.Action("UserEntry", "User")?UserID='+UserID+'&Mode=Edit';
         }
 
-        function btnDelClick(UserID) {
+        function DelUser(UserID) {
             location.href = '@Url.Action("UserEntry", "User")?UserID='+UserID+'&Mode=Delete';
         }
     </script>
-
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/datatables.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/dataTables.bootstrap.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/dataTables.buttons.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.bootstrap.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/jszip.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/vfs_fonts.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.html5.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.print.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.colVis.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/init/datatables-init.js")"></script>
 }

@@ -1,21 +1,23 @@
 ﻿@{
     ViewBag.Title = "KanagataList";
+    Layout = Request.IsAjaxRequest() ? null : "~/Views/Shared/_Layout.cshtml";
 }
-@section Styles{
-    <link rel="stylesheet" href="@Url.Content(" ~/ElaAdmin/assets/css/lib/datatable/dataTables.bootstrap.min.css")" />
-}
+@*@section Styles{
+        <link rel="stylesheet" href="@Url.Content(" ~/ElaAdmin/assets/css/lib/datatable/dataTables.bootstrap.min.css")" />
+    }*@
+<input type="hidden" id="KanagataType" value="1" />
 <div class="card">
     <div class="card-body">
         <div class="row">
-            <div class="col-sm-2 col-md-3">
+            <div id="divAddKanagata" class="col-sm-2 col-md-3">
                 <button id="btnAdd" onclick="btnAddClick()" class="btn col-xl-10 text-center" tabindex="38" style="background-color:#1a8cff; color:azure;">
                     金型追加
                 </button>
             </div>
             <div class="col-sm-7 col-md-6">
                 <i class="fa fa-search" style="padding-left:15px;"></i>
-                <input type="text" id="myInput" placeholder="金型名入力" class="border border-white" style="width:80%;padding-bottom:10px">
-                <table id="tblCasting" class="tb1 col-sm-12" style="padding-left:0px; width: 100%">
+                <input type="text" id="KanagataInput" onkeydown="KanagataKeyDown(event)" placeholder="金型名入力" class="border border-white" style="width:80%;padding-bottom:10px">
+                <table id="tblCasting" data-request-url="@Url.Action("M_Casting_Select", "api/KanagataApi")" class="tb1 col-sm-12" style="padding-left:0px; width: 100%">
                     <thead>
                         <tr>
                             <th>
@@ -27,7 +29,7 @@
                                     </tr>
                                 </table>
                             </th>
-                            
+
                         </tr>
                     </thead>
                 </table>
@@ -37,81 +39,25 @@
 </div>
 
 @section Scripts{
+
     <script type="text/javascript">
     $(document).ready(function () {
-        $("#formtitle").text("金型検索")
-        GetCasting();
-        $("#myInput").focus();
+        KanagataList_Load();
     });
-        $('#myInput').on("keypress", function (e) {
-            if (e.keyCode == 13) {
-                GetCasting();
-                return false; // prevent the button click from happening
-            }
-    });
-        function GetCasting() {
-            var kgmodel = {
-                CastingName: $('#myInput').val(),
-            };
 
-            $.ajax({
-            type: "Post",
-            url:"@Url.Action("M_Casting_Select", "api/KanagataApi")",
-            contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                data: JSON.stringify(kgmodel),
-            headers:
-            {
-                Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-            },
-            success: function (response) {
-                    BindTable(response);
-                }
-            });
-    }
-        function BindTable(response) {
-            table = $('#tblCasting').DataTable({
-                data: JSON.parse(response),
-                "bFilter": false,
-                "bLengthChange": false,
-                "bSort": false,
-                "bInfo": false,
-                "destroy": true,
-                "columns": [
-                    {
-                        "data": null,
-                        className: "Border1",
-                        render: function (data, type, row) {
-                            return '<table class="col-md-12"><tr><td style="width:25%">' + data.CastingCD + '</td><td style="width:45%">' + data.CastingName + '</td><td style="width:20%"><label><a href="#" onClick="btnEditClick(\'' + data.CastingCD + '\')" style="color:blue">編集</a></label>&nbsp;&nbsp;&nbsp;<label><a href="#" onClick="btnDelClick(\'' + data.CastingCD + '\')" style="color:red">削除</a></label></td></tr></table>';
-                    }
-                },
-                  ] 
-                
-            });
-        }
-        function btnAddClick() {
+    function btnAddClick() {
         location.href = '@Url.Action("KanagataEntry", "Kanagata")?Mode=New'
     }
 
-        function btnEditClick(CastingCD) {
-            location.href = '@Url.Action("KanagataEntry", "Kanagata")?CastingCD=' + CastingCD + '&Mode=Edit';
+    function btnEditClick(CastingCD) {
+        location.href = '@Url.Action("KanagataEntry", "Kanagata")?CastingCD=' + CastingCD + '&Mode=Edit';
     }
 
-        function btnDelClick(CastingCD) {
-            location.href = '@Url.Action("KanagataEntry", "Kanagata")?CastingCD=' + CastingCD + '&Mode=Delete';
-        }
+    function btnDelClick(CastingCD) {
+        location.href = '@Url.Action("KanagataEntry", "Kanagata")?CastingCD=' + CastingCD + '&Mode=Delete';
+    }
     </script>
-
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/datatables.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/dataTables.bootstrap.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/dataTables.buttons.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.bootstrap.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/jszip.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/vfs_fonts.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.html5.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.print.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.colVis.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/init/datatables-init.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Kanagata.js")"></script>
 }
 
 

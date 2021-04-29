@@ -7,27 +7,68 @@
 <script type="text/javascript">
     var CD;
     var Name;
-    function LoadSearchForm(typeID, BrandCD, BrandName) {
-        this.CD = BrandCD;
-        this.Name = BrandName;
-        if (typeID == "1") {  // 1 = Brand
-            $(".iziModal-header-title").text("ブランド検索");
-            $("#divSearch1").empty();
+    function LoadSearchForm(typeID, CD, Name) {
+        this.CD = CD;
+        this.Name = Name;
+        $("#divSearch1").empty();
 
-            $("#divSearch1").load('@Url.Action("BrandList","Brand")', function () {
-                BrandSearchSetting();
-            });            
+        switch (typeID) {
+            case 1:
+                $(".iziModal-header-title").text("ブランド検索");
+                $("#divSearch1").load('@Url.Action("BrandList","Brand")', function () {
+                    SearchSetting(typeID);
+                });
+                break;
+            case 2:
+                $(".iziModal-header-title").text("ユーザー検索");
+                $("#divSearch1").load('@Url.Action("UserList","User")', function () {
+                    SearchSetting(typeID);
+                });
+                break;
+            case 3:
+                $(".iziModal-header-title").text("品番検索");
+                $("#divSearch1").load('@Url.Action("TourokuHinban_List", "TourokuProject")', function () {
+                    SearchSetting(typeID);
+                });
+                break;
+            case 4:
+                $(".iziModal-header-title").text("金型検索");
+                $("#divSearch1").load('@Url.Action("KanagataList", "Kanagata")', function () {
+                    SearchSetting(typeID);
+                });
+                break;
         }
     }
 
-    function BrandSearchSetting() {
-        $("#BrandType").val("2");
-        GetBrand();
-        $("#myInput").focus();
-        $("#divAddBrand").hide();
+    function SearchSetting(type) {
+
+        switch (type) {
+            case 1:
+                $("#BrandType").val("2");
+                GetBrand();
+                $("#myInput").focus();
+                $("#divAddBrand").hide();
+                break;
+            case 2:
+                $("#UserType").val("2");
+                GetUser();
+                $("#UserInput").focus();
+                $("#divAddUser").hide();
+            case 3:
+                HinbanList_Load();
+                $("#HinbanType").val("2");
+                $("#btnAdd").hide();
+                $("#btnnext").hide();
+            case 4:
+                $("#KanagataType").val("2");
+                GetCasting();
+                $("#KanagataInput").focus();
+                $('#divAddKanagata').hide();
+        }
     }
 
-    function SelectBrand(cd, name) {
+    function ReturnSelected(cd, name) {
+        $("#divSearch1").empty();
         $(CD).val(cd);
         $(Name).val(name);
         $("#divSearch").iziModal('close');
@@ -35,6 +76,13 @@
         //fire keydown of BrandName
         var e = jQuery.Event("keydown");
         e.which = 13; // # Some key code value
-        $(Name).trigger(e);
+
+        if ($(Name).is('input')) {
+
+            $(Name).trigger(e);
+        }
+        else {
+            $(CD).trigger(e);
+        }
     }
 </script>
