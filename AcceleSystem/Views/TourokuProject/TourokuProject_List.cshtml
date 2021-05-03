@@ -1,7 +1,7 @@
 ﻿@model Models.TourokuProjectModel
 @{
     ViewBag.Title = "TourokuProject_List";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = Request.IsAjaxRequest() ? null : "~/Views/Shared/_Layout.cshtml";
 }
 
 @section Styles{
@@ -146,6 +146,7 @@
         display: inline-block;
     }
 </style>
+<input type="hidden" id="ProjectType" value="1" />
 <div id="divMain" class="container-fluid">
     <div class="card">
         <div class="row">
@@ -153,12 +154,15 @@
                 <div class="card-body card-block" style="padding-right: 0px;">
                     <div class="row form-group">
                         <div class="col col-md-12" style="padding-right: 0px;">
-                            <button id="btnAdd" onclick="btnAddClick()" class="btn btn-primary col-xl-6 text-center" tabindex="15">
-                                プロジェクト追加
-                            </button>&nbsp;
-                            <button id="btnnext" onclick="btnNextClick()" class="btn btn-next col-xl-3 text-center" tabindex="16">
-                                品番検索
-                            </button>
+                            <div id="divbtn">
+                                <button id="btnAdd" onclick="btnAddClick()" class="btn btn-primary col-xl-6 text-center" tabindex="15">
+                                    プロジェクト追加
+                                </button>&nbsp;
+                                <button id="btnnext" onclick="btnNextClick()" class="btn btn-next col-xl-3 text-center" tabindex="16">
+                                    品番検索
+                                </button>
+                            </div>
+                            
 
                             <div id="registration" style="padding-top: 1.8rem!important;">
                                 <div>
@@ -168,8 +172,11 @@
                                     <div class="col-md-12" style="padding-left:17px;">
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label id="text">ブランド名</label>
-                                            <input type="text" tabindex="1" class="text-line col-xl-3 text-left" id="BrandCD" name="brandcd" maxlength="6" onkeydown="KeyDown(event,this)" required placeholder="入力">
-                                            <input type="button" value="..." onclick="Search(1)" />
+                                            <input type="text" tabindex="1" class="text-line col-xl-3 text-left" id="BrandCD"
+                                                   data-doublebytecheck-url='@Url.Action("DoubleByte_Checking", "api/CommonApi")'
+                                                   data-existcheck-url='@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")'
+                                                   name="brandcd" maxlength="6" onkeydown="KeyDown(event,this)" required placeholder="入力">
+                                            <input id="btnPSearch" type="button" value="..." onclick="Search(1)" />
                                             <input type="text" tabindex="2" class="text-line col-xl-5 text-left" id="BrandName" name="brandname" maxlength="40" onkeydown="KeyDown(event,this)" required placeholder="入力">
                                         </div>
                                     </div>
@@ -194,7 +201,9 @@
                                     <div class="col-md-12" style="padding-left:64px;">
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label id="text">年度</label>
-                                            <input type="text" tabindex="6" class="text-line col-xl-3 text-left" id="Year" name="year" onkeydown="KeyDown(event,this)" required placeholder="入力">
+                                            <input type="text" tabindex="6" class="text-line col-xl-3 text-left" id="Year"
+                                                   data-yearcheck-url='@Url.Action("Year_Checking", "api/CommonApi")'
+                                                   name="year" onkeydown="KeyDown(event,this)" required placeholder="入力">
                                         </div>
                                     </div>
                                 </div>
@@ -203,7 +212,11 @@
                                     <div class="col-md-12" style="padding-left:0px;">
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label id="text">プロジェクト</label>
-                                            <input type="text" tabindex="7" class="text-line col-xl-4 text-left" id="ProjectCD" name="projectcd" maxlength="10" onkeydown="KeyDown(event,this)" required placeholder="入力">
+                                            <input type="text" tabindex="7" class="text-line col-xl-4 text-left" id="ProjectCD"
+                                                   data-existcheck-url='@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")'
+                                                   data-projectselect-url='@Url.Action("M_Project_Select_List", "api/TourokuProjectApi")'
+                                                   data-projectcsv-url='@Url.Action("M_Project_CSV", "api/TourokuProjectApi")'
+                                                   name="projectcd" maxlength="10" onkeydown="KeyDown(event,this)" required placeholder="入力">
                                             <input type="text" tabindex="8" class="text-line col-xl-4 text-left" id="ProjectName" name="projectname" maxlength="60" onkeydown="KeyDown(event,this)" required placeholder="入力">
 
                                         </div>
@@ -214,7 +227,9 @@
                                     <div class="col-md-12" style="padding-left:30px;">
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label id="text">予定期間</label>
-                                            <input type="text" tabindex="9" class="text-line col-xl-3 text-left" id="PeriodStart" name="periodstart" onkeydown="KeyDown(event,this)" required placeholder="入力">
+                                            <input type="text" tabindex="9" class="text-line col-xl-3 text-left"
+                                                   data-yearmonthcheck-url='@Url.Action("YearMonth_Checking", "api/CommonApi")'
+                                                   id="PeriodStart" name="periodstart" onkeydown="KeyDown(event,this)" required placeholder="入力">
                                             &nbsp;~&nbsp;
                                             <input type="text" tabindex="10" class="text-line col-xl-3 text-left" id="PeriodEnd" name="periodend" onkeydown="KeyDown(event,this,'DateCompare')" required placeholder="入力">
 
@@ -226,8 +241,10 @@
                                     <div class="col-md-12" style="padding-left:45px;">
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label id="text">責任者</label>
-                                            <input type="text" tabindex="11" class="text-line col-xl-4 text-left" id="ProjectManager" name="projectmanager" maxlength="20" onkeydown="KeyDown(event,this)" required placeholder="入力">
-                                            <input type="button" value="..." onclick="Search(2)" />
+                                            <input type="text" tabindex="11" class="text-line col-xl-4 text-left"
+                                                   data-existcheck-url='@Url.Action("M_User_ExistsCheck", "api/UserApi")'
+                                                   id="ProjectManager" name="projectmanager" maxlength="20" onkeydown="KeyDown(event,this)" required placeholder="入力">
+                                            <input id="btnPUser" type="button" value="..." onclick="Search(2)" />
                                             <input type="text" tabindex="12" class="text-line col-xl-5 text-left" id="ProjectManagerName" name="projectmanagername" onkeydown="KeyDown(event,this)" required placeholder="入力">
 
                                         </div>
@@ -236,8 +253,8 @@
                                 <div class="pt-3 md-form" style="padding-left:0px; padding-top:2rem;">
                                     <div class="col-xl-12">
                                         <div class="col-xl-9" style="float:right;">
-                                            <button id="btnCSV" tabindex="13" onclick="btnCSVClick()" class="btn btn-csv col-xl-4 text-center">CSV</button>&nbsp;&nbsp;
-                                            <button id="btnSearch" tabindex="14" onclick="btnSearchClick()" class="btn btn-dark col-xl-4 text-center">検索</button>
+                                            <button id="btnCSV" tabindex="13" onclick="btnProjectCSVClick()" class="btn btn-csv col-xl-4 text-center">CSV</button>&nbsp;&nbsp;
+                                            <button id="btnSearch" tabindex="14" onclick="btnProjectSearchClick()" class="btn btn-dark col-xl-4 text-center">検索</button>
                                         </div>
                                     </div>
                                 </div>
@@ -286,6 +303,7 @@
 @section Scripts{
     <script src="@Url.Content("~/ElaAdmin/assets/js/Brand.js")"></script>
     <script src="@Url.Content("~/ElaAdmin/assets/js/User.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Project.js")"></script>
     <script type="text/javascript">
         var array;
     $(document).ready(function () {
@@ -312,313 +330,69 @@
                else $("#FW").prop("checked", false);
 
         }
-        $("#BrandCD").focus();
-        DoubleByteCheck($("#BrandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-        ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
-
-         @*YearCheck($("#Year"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');*@
-         DoubleByteCheck($("#Year"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-         YearCheck($("#Year"), '@Url.Action("Year_Checking", "api/CommonApi")');
-
-         DoubleByteCheck($("#ProjectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-         ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "ProjectName");
-
-         YearMonthCheck($("#PeriodStart"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
-         YearMonthCheck($("#PeriodEnd"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');
-
-         DoubleByteCheck($("#ProjectManager"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-         ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
-
-
         $("#divSearch").iziModal({
             top: 50,
             width: "70%",
             overlayClose: false,
             zindex: 1000,
         });
+
+        ProjectList_Load();
      });
 
-     function CheckboxCheck(result) {
-         if (result == 'OK') {
-             var degreeyear = $("#Degreeyear").is(":checked");
-             var ss = $("#SS").is(":checked");
-             var fw = $("#FW").is(":checked");
-             if (!degreeyear && !ss && !fw) {
-                 $("#FW").focus();
-                 ShowErrorMessage("E111");
-             }
-         }
-     }
+    function btnAddClick() {
+        var Tmodel = GetPorjectData();
 
-    //Date Error check at Enter click
-    function DateCompare(result) {
-         if (result == 'OK') {
-             if (!($('#PeriodStart').val().trim() == '' || $('#PeriodEnd').val().trim() == '')) {
-                 var model = {
-                     startDate: $("#PeriodStart").val(),
-                     endDate: $("#PeriodEnd").val()
-                 };
-                 if (model.startDate <= model.endDate) {
-                     $("#ProjectManager").focus();
-                 }
-                 else {
-                     $("#PeriodEnd").focus();
-                     ShowErrorMessage("E112");
-                 }
-             }
-         }
-     }
-
-    //Date Error check before insert/update
-    function DateCompareOnSave() {
-        if (!($('#PeriodStart').val().trim() == '' || $('#PeriodEnd').val().trim() == '')) {
-             var model = {
-                 startDate: $("#PeriodStart").val(),
-                 endDate: $("#PeriodEnd").val()
-             };
-            if (model.startDate <= model.endDate) {
-               return "0";
-           }
-           else {
-               return "E112";
-           }
-       }
-         else return "0";
+        location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&Year=' + Tmodel.Year + '&ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName=' + Tmodel.ProjectName + '&Season=' + Tmodel.Season + '&PeriodStart=' + Tmodel.PeriodStart + '&PeriodEnd=' + Tmodel.PeriodEnd + '&ProjectManager=' + Tmodel.ProjectManager + '&ProjectManagerName=' + Tmodel.ProjectManagerName + '&flg=' + Tmodel.flg + '&Mode=New';
     }
 
-        function btnSearchClick() {
-            var degreeyear = $("#Degreeyear").is(":checked");
-            var ss = $("#SS").is(":checked");
-            var fw = $("#FW").is(":checked");
-            if (!degreeyear && !ss && !fw) {
-                $("#FW").focus();
-                var data = ShowErrorMessage("E111");
-                return data;
-            }
-            else {
-                var res = ErrorCheckOnSave();
-                if (res == "0") {
-                    var res1 = DateCompareOnSave();
-                    if (res1 == "0") {
-                        GetProject()
-                    }
-                    else {
-                        $("#PeriodEnd").focus();
-                        ShowErrorMessage(res1);
-                    }
-                }
-                else {
-                    ShowErrorMessage(res);
-                }
-            }
+    function btnNextClick() {
+        location.href = '@Url.Action("TourokuHinban_List", "TourokuProject")';
+    }
 
-        }
+    function btnEditClick(BrandCD, ProjectCD) {
+        var Tmodel = GetPorjectData();
 
-        function GetProject() {
-            var Tmodel = {
-                BrandCD: $('#BrandCD').val(),
-                BrandName: $('#BrandName').val(),
-                Year: $('#Year').val(),
-                ProjectCD: $('#ProjectCD').val(),
-                ProjectName: $('#ProjectName').val(),
-                PeriodStart: $('#PeriodStart').val(),
-                PeriodEnd: $('#PeriodEnd').val(),
-                ProjectManager: $('#ProjectManager').val(),
-                ProjectManagerName: $('#ProjectManagerName').val(),
-            };
+        location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&Year=' + Tmodel.Year + '&ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName=' + Tmodel.ProjectName + '&Season=' + Tmodel.Season + '&PeriodStart=' + Tmodel.PeriodStart + '&PeriodEnd=' + Tmodel.PeriodEnd + '&ProjectManager=' + Tmodel.ProjectManager + '&ProjectManagerName=' + Tmodel.ProjectManagerName + '&flg=' + Tmodel.flg + '&BrandCD=' + BrandCD + '&ProjectCD=' + ProjectCD + '&Mode=Edit';
+    }
 
-            var selected = new Array();
-            $("#Seasongp input[type=checkbox]:checked").each(function () {
-                selected.push(this.value);
-            });
-            if (selected.length > 0)
-                Tmodel.Season = selected.join(",");
+    function btnCopyClick(BrandCD, ProjectCD) {
+        var Tmodel = GetPorjectData();
 
-            $.ajax({
-                type: "Post",
-                url: "@Url.Action("M_Project_Select_List", "api/TourokuProjectApi")",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                data: JSON.stringify(Tmodel),
-                headers:
-                {
-                    Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-                },
-                success: function (response) {
-                    if (response == "[]") {
-                        BindTable(response);
-                        var data = ShowErrorMessage("E104");
-                        return data;
-                    }
-                    else {
-                        BindTable(response);
-                    }
-                },
-            });
-        }
+        location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&Year=' + Tmodel.Year + '&ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName=' + Tmodel.ProjectName + '&Season=' + Tmodel.Season + '&PeriodStart=' + Tmodel.PeriodStart + '&PeriodEnd=' + Tmodel.PeriodEnd + '&ProjectManager=' + Tmodel.ProjectManager + '&ProjectManagerName=' + Tmodel.ProjectManagerName + '&flg=' + Tmodel.flg + '&BrandCD=' + BrandCD + '&ProjectCD=' + ProjectCD + '&Mode=Copy';
 
-        function BindTable(response) {
-            table = $('#tblProject').DataTable({
+    }
 
-                data: JSON.parse(response),
-                "bFilter": false,
-                "bLengthChange": false,
-                "bInfo": false,
-                "bSort": false,
-                destroy: true,
-                "columns": [
-                    {
-                        "data": null,
-                        className: "Border1",
-                        render: function (data, type, row) {
-                            return '<table class="col-md-12">' +
-                                '<tr><td style="width: 46%; max-width: 46%;"><p class="text-price">' + data.BrandCD + '  ' + data.BrandName + '</p></td><td style="width: 22%; max-width: 22%;text-align:center;">' + data.Season + '</td><td style = "width: 22%; max-width: 22%;text-align:center;" > ' + data.Year + '</td> <td style="width: 70px; max-width: 70px; text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label></td></tr> ' +
-                                '<tr><td colspan=3><span class="fixed-project">' + data.ProjectCD + ' ' + data.ProjectName + '</span></td><td style="text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:red">削除</a></label></td></tr>' +
-                                '<tr><td class="text-price">' + data.PeriodStart + '</td><td style="text-align: right; padding-right: 5%;">' + data.Production + '</td><td style="text-align: right; padding-right: 5%;">' + data.SalesPrice + '</td><td style="text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:green">複写</a></label></td></tr>' +
+    function btnDelClick(BrandCD, ProjectCD) {
+        var Tmodel = GetPorjectData();
 
-                            '</table > ';
+        location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&Year=' + Tmodel.Year + '&ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName=' + Tmodel.ProjectName + '&Season='+Tmodel.Season+ '&PeriodStart=' + Tmodel.PeriodStart + '&PeriodEnd=' + Tmodel.PeriodEnd + '&ProjectManager=' + Tmodel.ProjectManager + '&ProjectManagerName=' + Tmodel.ProjectManagerName + '&flg=' + Tmodel.flg + '&BrandCD=' + BrandCD + '&ProjectCD=' + ProjectCD + '&Mode=Delete';
+    }
 
-                        //    return '<table class="col-md-12"><tr><td style="width: 50%; max-width: 50%;"><p class="text-price">' + data.BrandCD + '  ' + data.BrandName + '</p></td><td class="text-center" style="width: 22%; max-width: 22%;">' + data.Season + '</td><td class="text-center" style="width: 22%; max-width: 22%;">' + data.Year + '</td><td style="width: 70px; max-width: 70px; text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label></td></tr>' +
-                        //        '<tr><td colspan=3><span class="fixed-project">' + data.ProjectCD + ' ' + data.ProjectName + '</span></td><td style="text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:red">削除</a></label></td></tr>' +
-                        //        '<tr><td class="text-price" style="width: 210px;">' + data.PeriodStart + '</td><td style="text-align: right; padding-right: 5%;">' + data.Production + '</td><td style="text-align: right; padding-right: 5%;">' + data.SalesPrice + '</td><td style="text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:green">複写</a></label></td></tr></table>'
-                        }
-                    },
-                ]
-            });
+    function GetPorjectData() {
+        var Tmodel = {
+            BrandCD1: $('#BrandCD').val(),
+            BrandName: $('#BrandName').val(),
+            Year: $('#Year').val(),
+            ProjectCD1: $('#ProjectCD').val(),
+            ProjectName: $('#ProjectName').val(),
+            PeriodStart: $('#PeriodStart').val(),
+            PeriodEnd: $('#PeriodEnd').val(),
+            ProjectManager: $('#ProjectManager').val(),
+            ProjectManagerName: $('#ProjectManagerName').val(),
+            flg: "list"
+        };
+        var selected = new Array();
+        $("#Seasongp input[type=checkbox]:checked").each(function () {
+            selected.push(this.value);
+        });
+        if (selected.length > 0)
+            Tmodel.Season = selected.join(",");
 
-        }
+        return Tmodel;
+    }
 
-        function btnCSVClick() {
-            var degreeyear = $("#Degreeyear").is(":checked");
-            var ss = $("#SS").is(":checked");
-            var fw = $("#FW").is(":checked");
-            if (!degreeyear && !ss && !fw) {
-                    $("#FW").focus();
-                    var data = ShowErrorMessage("E111");
-                    return data;
-                }
-                else {
-                var res = ErrorCheckOnSave();
-                     if (res == "0") {
-                         var res1 = DateCompareOnSave();
-                         if (res1 == "0") {
-                             var Tmodel = {
-                                 BrandCD: $('#BrandCD').val(),
-                                 BrandName: $('#BrandName').val(),
-                                 Year: $('#Year').val(),
-                                 ProjectCD: $('#ProjectCD').val(),
-                                 ProjectName: $('#ProjectName').val(),
-                                 PeriodStart: $('#PeriodStart').val(),
-                                 PeriodEnd: $('#PeriodEnd').val(),
-                                 ProjectManager: $('#ProjectManager').val(),
-                                 ProjectManagerName: $('#ProjectManagerName').val(),
-                             };
-
-                             var selected = new Array();
-                             $("#Seasongp input[type=checkbox]:checked").each(function () {
-                                 selected.push(this.value);
-                             });
-                             if (selected.length > 0)
-                                 Tmodel.Season = selected.join(",");
-
-                             var data = CalltoApiController('@Url.Action("M_Project_CSV", "api/TourokuProjectApi")', Tmodel);
-
-                             var csv = JSON2CSV(data);
-                             if (!(csv == "E104")) {
-                                 var downloadLink = document.createElement("a");
-                                 var blob = new Blob(["\ufeff", csv]);
-                                 var url = URL.createObjectURL(blob);
-                                 downloadLink.href = url;
-                                 downloadLink.download = "プロジェクト登録.csv";
-
-                                 document.body.appendChild(downloadLink);
-                                 downloadLink.click();
-                                 document.body.removeChild(downloadLink);
-                             }
-                         }
-                         else {
-                             $("#PeriodEnd").focus();
-                             ShowErrorMessage(res1);
-                         }
-                    }
-                    else
-                        ShowErrorMessage(res);
-                 }
-       }
-
-        //Convert Jsonstring to csv
-        function JSON2CSV(objArray) {
-            if (!(objArray == "[]")) {
-                var array = typeof JSONString != 'object' ? JSON.parse(objArray) : JSONString;
-                var fields = Object.keys(array[0])
-                var replacer = function (key, value) { return value === null ? null : value }
-                var csv = array.map(function (row) {
-                    return fields.map(function (fieldName) {
-                        return JSON.stringify(row[fieldName], replacer)
-                    }).join(',')
-                })
-                csv.unshift(fields.join(',')) // add header column
-                csv = csv.join('\r\n');
-                return csv;
-            }
-            else {
-                return "E104";
-            }
-        }
-
-        function btnAddClick() {
-            var Tmodel = GetPorjectData();
-
-            location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&Year=' + Tmodel.Year + '&ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName=' + Tmodel.ProjectName + '&Season=' + Tmodel.Season + '&PeriodStart=' + Tmodel.PeriodStart + '&PeriodEnd=' + Tmodel.PeriodEnd + '&ProjectManager=' + Tmodel.ProjectManager + '&ProjectManagerName=' + Tmodel.ProjectManagerName + '&flg=' + Tmodel.flg + '&Mode=New';
-        }
-
-        function btnNextClick() {
-            location.href = '@Url.Action("TourokuHinban_List", "TourokuProject")';
-        }
-
-        function btnEditClick(BrandCD, ProjectCD) {
-            var Tmodel = GetPorjectData();
-
-            location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&Year=' + Tmodel.Year + '&ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName=' + Tmodel.ProjectName + '&Season=' + Tmodel.Season + '&PeriodStart=' + Tmodel.PeriodStart + '&PeriodEnd=' + Tmodel.PeriodEnd + '&ProjectManager=' + Tmodel.ProjectManager + '&ProjectManagerName=' + Tmodel.ProjectManagerName + '&flg=' + Tmodel.flg + '&BrandCD=' + BrandCD + '&ProjectCD=' + ProjectCD + '&Mode=Edit';
-        }
-
-        function btnCopyClick(BrandCD, ProjectCD) {
-            var Tmodel = GetPorjectData();
-
-            location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&Year=' + Tmodel.Year + '&ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName=' + Tmodel.ProjectName + '&Season=' + Tmodel.Season + '&PeriodStart=' + Tmodel.PeriodStart + '&PeriodEnd=' + Tmodel.PeriodEnd + '&ProjectManager=' + Tmodel.ProjectManager + '&ProjectManagerName=' + Tmodel.ProjectManagerName + '&flg=' + Tmodel.flg + '&BrandCD=' + BrandCD + '&ProjectCD=' + ProjectCD + '&Mode=Copy';
-
-        }
-
-        function btnDelClick(BrandCD, ProjectCD) {
-            var Tmodel = GetPorjectData();
-
-            location.href = '@Url.Action("TourokuProject_Entry", "TourokuProject")?BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&Year=' + Tmodel.Year + '&ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName=' + Tmodel.ProjectName + '&Season='+Tmodel.Season+ '&PeriodStart=' + Tmodel.PeriodStart + '&PeriodEnd=' + Tmodel.PeriodEnd + '&ProjectManager=' + Tmodel.ProjectManager + '&ProjectManagerName=' + Tmodel.ProjectManagerName + '&flg=' + Tmodel.flg + '&BrandCD=' + BrandCD + '&ProjectCD=' + ProjectCD + '&Mode=Delete';
-        }
-
-        function GetPorjectData() {
-            var Tmodel = {
-                BrandCD1: $('#BrandCD').val(),
-                BrandName: $('#BrandName').val(),
-                Year: $('#Year').val(),
-                ProjectCD1: $('#ProjectCD').val(),
-                ProjectName: $('#ProjectName').val(),
-                PeriodStart: $('#PeriodStart').val(),
-                PeriodEnd: $('#PeriodEnd').val(),
-                ProjectManager: $('#ProjectManager').val(),
-                ProjectManagerName: $('#ProjectManagerName').val(),
-                flg: "list"
-            };
-            var selected = new Array();
-            $("#Seasongp input[type=checkbox]:checked").each(function () {
-                selected.push(this.value);
-            });
-            if (selected.length > 0)
-                Tmodel.Season = selected.join(",");
-
-            return Tmodel;
-        }
-
-        $('#btnnext').keydown(function (e) {
+    $('#btnnext').keydown(function (e) {
          var code = e.keyCode || e.which;
          if (code == 9) {
              if (e.shiftKey) {

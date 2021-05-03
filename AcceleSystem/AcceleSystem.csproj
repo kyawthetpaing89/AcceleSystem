@@ -236,6 +236,7 @@
     <Content Include="ElaAdmin\assets\js\iziModal.js" />
     <Content Include="ElaAdmin\assets\js\iziModal.min.js" />
     <Content Include="ElaAdmin\assets\js\Kanagata.js" />
+    <Content Include="ElaAdmin\assets\js\Keihi.js" />
     <Content Include="ElaAdmin\assets\js\Message.js" />
     <Content Include="ElaAdmin\assets\js\dashboard.js" />
     <Content Include="ElaAdmin\assets\js\init\chartjs-init.js" />
@@ -267,6 +268,7 @@
     <Content Include="ElaAdmin\assets\js\lib\gmap\gmaps.js" />
     <Content Include="ElaAdmin\assets\js\lib\gmap\gmaps.min.js" />
     <Content Include="ElaAdmin\assets\js\main.js" />
+    <Content Include="ElaAdmin\assets\js\Project.js" />
     <Content Include="ElaAdmin\assets\js\Search.js" />
     <Content Include="ElaAdmin\assets\js\SweetAlert2.js" />
     <Content Include="ElaAdmin\assets\js\User.js" />

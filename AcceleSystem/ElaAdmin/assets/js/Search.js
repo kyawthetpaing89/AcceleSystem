@@ -12,6 +12,12 @@
         case 4:
             LoadSearchForm(type, $("#CastingCD"), $("#CastingName"));
             break;
+        case 5:
+            LoadSearchForm(type, $("#KeihiCD"), $("#KeihiName"));
+            break;
+        case 6:
+            LoadSearchForm(type, $("#proCD"), $("#proName"));
+            break;
     }
 
     $("#divSearch").iziModal('open');

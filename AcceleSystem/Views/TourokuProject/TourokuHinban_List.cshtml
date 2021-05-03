@@ -140,7 +140,7 @@
                                             <input type="text" tabindex="1" class="text-line col-sm-12 col-md-12 col-xl-4 text-left"
                                                    onkeydown="KeyDown(event,this,'ProjectCDCheck')" id="proCD" name="proCD" maxlength="10" required placeholder="入力"
                                                    data-existcheck-url='@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")'>
-
+                                            <input type="button" value="..." onclick="Search(6)" />
                                             <input type="text" tabindex="2" class="text-line col-sm-12 col-md-12 col-xl-4 text-left" onkeydown="KeyDown(event,this)" id="proName" name="proName" maxlength="60" required placeholder="入力">
                                         </div>
                                     </div>
@@ -301,9 +301,12 @@
 
     </div>
 </div>
+@Html.Partial("~/Views/Search/SearchBase.cshtml")
 
 @section Scripts{
     <script src="@Url.Content("~/ElaAdmin/assets/js/Hinban.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Project.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Search.js")"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("品番検索");
@@ -342,7 +345,15 @@
             if (str1.includes("1"))
                 $("#payment").prop("checked", true);
             else $("#payment").prop("checked", false);
-        }
+            }
+
+            $("#divSearch").iziModal({
+                top: 50,
+                width: "70%",
+                overlayClose: false,
+                zindex: 1000,
+            });
+
             HinbanList_Load();
         });
 

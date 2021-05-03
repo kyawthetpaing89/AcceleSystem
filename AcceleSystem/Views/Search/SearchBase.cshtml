@@ -37,6 +37,18 @@
                     SearchSetting(typeID);
                 });
                 break;
+            case 5:
+                $(".iziModal-header-title").text("経費検索");
+                $("#divSearch1").load('@Url.Action("Touroku_KeihiList", "Touroku_Keihi")', function () {
+                    SearchSetting(typeID);
+                });
+                break;
+            case 6:
+                $(".iziModal-header-title").text("プロジェクト検索");
+                $("#divSearch1").load('@Url.Action("TourokuProject_List", "TourokuProject")', function () {
+                    SearchSetting(typeID);
+                });
+                break;
         }
     }
 
@@ -54,16 +66,32 @@
                 GetUser();
                 $("#UserInput").focus();
                 $("#divAddUser").hide();
+                break;
             case 3:
                 HinbanList_Load();
                 $("#HinbanType").val("2");
                 $("#btnAdd").hide();
                 $("#btnnext").hide();
+                break;
             case 4:
                 $("#KanagataType").val("2");
                 GetCasting();
                 $("#KanagataInput").focus();
                 $('#divAddKanagata').hide();
+                break;
+            case 5:
+                $("#KeihiType").val("2");
+                KeihiList_Load();
+                break;
+            case 6:
+                $("#ProjectType").val("2");
+                ProjectList_Load();
+                $("#divSearch1 #divbtn").hide();
+                //$("#divSearch1 #btnnext").hide();
+                $("#divSearch1 #btnCSV").hide();
+                $("#divSearch1 #btnPSearch").hide();
+                $("#divSearch1 #btnPUser").hide();
+                break;
         }
     }
 
