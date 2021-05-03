@@ -140,7 +140,7 @@
                                             <input type="text" tabindex="1" class="text-line col-sm-12 col-md-12 col-xl-4 text-left"
                                                    onkeydown="KeyDown(event,this,'ProjectCDCheck')" id="proCD" name="proCD" maxlength="10" required placeholder="入力"
                                                    data-existcheck-url='@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")'>
-                                            <input type="button" value="..." onclick="Search(6)" />
+                                            <input type="button" id="btnProjectSearch" value="..." onclick="Search(6)" />
                                             <input type="text" tabindex="2" class="text-line col-sm-12 col-md-12 col-xl-4 text-left" onkeydown="KeyDown(event,this)" id="proName" name="proName" maxlength="60" required placeholder="入力">
                                         </div>
                                     </div>
@@ -227,7 +227,7 @@
                                             <input type="text" tabindex="15" class="text-line col-sm-12 col-md-12 col-xl-3 text-left"
                                                    data-existcheck-url='@Url.Action("M_Casting_ExistsCheck", "api/TourokuProjectApi")'
                                                    onkeydown="KeyDown(event,this)" id="HLCastingCD" name="CastingCD" maxlength="10" required placeholder="入力">
-
+                                            <input type="button" id="btnHibanSearch" value="..." onclick="Search(7)" />
                                             <input type="text" tabindex="16" class="text-line col-sm-12 col-md-12 col-xl-6 text-left" onkeydown="KeyDown(event,this)" id="HLCastingName" name="CastingName" maxlength="40" required placeholder="入力">
 
                                         </div>
@@ -307,6 +307,7 @@
     <script src="@Url.Content("~/ElaAdmin/assets/js/Hinban.js")"></script>
     <script src="@Url.Content("~/ElaAdmin/assets/js/Project.js")"></script>
     <script src="@Url.Content("~/ElaAdmin/assets/js/Search.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Kanagata.js")"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("品番検索");

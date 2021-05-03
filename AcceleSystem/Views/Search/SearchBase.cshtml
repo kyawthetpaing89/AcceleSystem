@@ -32,6 +32,7 @@
                 });
                 break;
             case 4:
+            case 7:
                 $(".iziModal-header-title").text("金型検索");
                 $("#divSearch1").load('@Url.Action("KanagataList", "Kanagata")', function () {
                     SearchSetting(typeID);
@@ -72,8 +73,11 @@
                 $("#HinbanType").val("2");
                 $("#btnAdd").hide();
                 $("#btnnext").hide();
+                $("#btnHibanSearch").hide();
+                $("#btnProjectSearch").hide();
                 break;
             case 4:
+            case 7:
                 $("#KanagataType").val("2");
                 GetCasting();
                 $("#KanagataInput").focus();

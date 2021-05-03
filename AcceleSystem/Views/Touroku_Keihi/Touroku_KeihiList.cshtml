@@ -28,6 +28,7 @@
             width: 140px;
         }
     }
+
     @@media only screen and (min-width: 800px) {
         .text-price {
             width: 145px;
@@ -47,6 +48,7 @@
             width: 120px;
         }
     }
+
     @@media only screen and (min-width: 1300px) {
         .text-keihi {
             width: 210px;
@@ -69,6 +71,7 @@
         .text-keihi {
             width: 225px;
         }
+
         .fixed-keihi {
             width: 270px;
         }
@@ -78,7 +81,8 @@
         .text-keihi {
             width: 295px;
         }
-        .fixed-keihi{
+
+        .fixed-keihi {
             width: 270px;
         }
     }
@@ -98,11 +102,13 @@
         color: unset;
         margin-bottom: unset;
     }
+
     .fixed-keihi {
         line-height: unset;
         color: unset;
         margin-bottom: unset;
     }
+
     .text-keihi {
         text-overflow: ellipsis;
         display: inline-block;
@@ -111,6 +117,7 @@
         white-space: nowrap;
         vertical-align: middle;
     }
+
     .fixed-keihi {
         text-overflow: ellipsis;
         overflow: hidden;
@@ -121,109 +128,109 @@
 </style>
 
 <input type="hidden" id="KeihiType" value="1" />
-    <div id="divMain" class="container-fluid">
-        <div class="card">
-            <div class="row">
-                <div class="col-xs-12 col-md-12 col-lg-5">
-                    <div class="card-body card-block" style="padding-right: 0px;">
-                        <div class="row form-group">
-                            <div class="col col-md-12" style="padding-right: 0px;">
-                                <button id="btnAdd" tabindex="17" onclick="btnAddClick()" class="btn btn-primary col-xl-4 text-center">
-                                    経費追加
-                                </button>
-                                <div id="registration" style="padding-top: 1.8rem!important;">
-                                    <div>
-                                        <h4 class=" hr-text text-center">検索条件入力</h4>
+<div id="divMain" class="container-fluid">
+    <div class="card">
+        <div class="row">
+            <div class="col-xs-12 col-md-12 col-lg-5">
+                <div class="card-body card-block" style="padding-right: 0px;">
+                    <div class="row form-group">
+                        <div class="col col-md-12" style="padding-right: 0px;">
+                            <button id="btnAdd" tabindex="17" onclick="btnAddClick()" class="btn btn-primary col-xl-4 text-center">
+                                経費追加
+                            </button>
+                            <div id="registration" style="padding-top: 1.8rem!important;">
+                                <div>
+                                    <h4 class=" hr-text text-center">検索条件入力</h4>
+                                </div>
+                                <div>
+                                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                        <div class="col-sm-12 col-md-12 col-lg-12" style="padding-left:49px;">
+                                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                                <label id="text" style="padding-right: 5px;">経費名</label>
+                                                <input type="text" tabindex="1" class="text-line col-xl-3"
+                                                       data-existcheck-url='@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")'
+                                                       data-doublebytecheck-url='@Url.Action("DoubleByte_Checking", "api/CommonApi")'
+                                                       data-costselect-url='@Url.Action("M_Cost_Select_List", "api/Touroku_KeihiApi")'
+                                                       data-csv-url='@Url.Action("D_Cost_TKeihiCSV", "api/Touroku_KeihiApi")'
+                                                       input-numeral15 text-left" id="CostCD" name="CostCD" maxlength="6" onkeydown="KeyDown(event,this)" required placeholder="入力">
+                                                <input type="text" tabindex="2" class="text-line col-xl-6  text-left" id="CostName" name="CostName" maxlength="40" onkeydown="KeyDown(event,this)" required placeholder="入力">
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                            <div class="col-sm-12 col-md-12 col-lg-12" style="padding-left:49px;">
-                                                <div class="text-s text-custom1 text-uppercase mb-1">
-                                                    <label id="text" style="padding-right: 5px;">経費名</label>
-                                                    <input type="text" tabindex="1" class="text-line col-xl-3" 
-                                                           data-existcheck-url='@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")'
-                                                           data-doublebytecheck-url='@Url.Action("DoubleByte_Checking", "api/CommonApi")'
-                                                           data-costselect-url='@Url.Action("M_Cost_Select_List", "api/Touroku_KeihiApi")'
-                                                           data-csv-url='@Url.Action("D_Cost_TKeihiCSV", "api/Touroku_KeihiApi")'
-                                                           input-numeral15 text-left" id="CostCD" name="CostCD" maxlength="6" onkeydown="KeyDown(event,this)" required placeholder="入力">
-                                                    <input type="text" tabindex="2" class="text-line col-xl-6  text-left" id="CostName" name="CostName" maxlength="40" onkeydown="KeyDown(event,this)" required placeholder="入力">
-                                                </div>
+                                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                        <div class="col-md-12" style="padding-left:49px;">
+                                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                                <label id="text" style="padding-right: 5px;">計上日</label>
+                                                <input type="text" tabindex="3" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this)"
+                                                       data-datecheck-url='@Url.Action("Date_Checking", "api/CommonApi")'
+                                                       id="CostDate1" name="CostDate1" maxlength="10" required placeholder="入力">
+                                                &nbsp;~&nbsp;
+                                                <input type="text" tabindex="4" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this,'DateCompareCheck')" id="CostDate2" name="CostDate2" maxlength="10" required placeholder="入力">
                                             </div>
                                         </div>
-                                        <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                            <div class="col-md-12" style="padding-left:49px;">
-                                                <div class="text-s text-custom1 text-uppercase mb-1">
-                                                    <label id="text" style="padding-right: 5px;">計上日</label>
-                                                    <input type="text" tabindex="3" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this)"
-                                                           data-datecheck-url='@Url.Action("Date_Checking", "api/CommonApi")'
-                                                           id="CostDate1" name="CostDate1" maxlength="10" required placeholder="入力">
-                                                    &nbsp;~&nbsp;
-                                                    <input type="text" tabindex="4" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this,'DateCompareCheck')" id="CostDate2" name="CostDate2" maxlength="10" required placeholder="入力">
-                                                </div>
+                                    </div>
+                                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                        <div class="col-md-12" style="padding-left:64px;">
+                                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                                <label id="text" style="padding-right: 5px;">年度</label>
+                                                <input type="text" tabindex="5" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)"
+                                                       data-yearcheck-url='@Url.Action("Year_Checking", "api/CommonApi")'
+                                                       id="year" name="year" maxlength="4" required placeholder="入力">
                                             </div>
                                         </div>
-                                        <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                            <div class="col-md-12" style="padding-left:64px;">
-                                                <div class="text-s text-custom1 text-uppercase mb-1">
-                                                    <label id="text" style="padding-right: 5px;">年度</label>
-                                                    <input type="text" tabindex="5" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" 
-                                                           data-yearcheck-url='@Url.Action("Year_Checking", "api/CommonApi")'
-                                                           id="year" name="year" maxlength="4" required placeholder="入力">
-                                                </div>
+                                    </div>
+                                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                        <div class="col-sm-12 col-md-12 col-lg-12" style="padding-left:32px;">
+                                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                                <label id="text" style="padding-right: 5px;">ブランド</label>
+                                                <input type="text" tabindex="6" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)"
+                                                       data-existcheck-url='@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")'
+                                                       id="BrandCD" name="brandCD" maxlength="6" required placeholder="入力">
+                                                <input type="button" id="btnBrandSearch" value="..." onclick="Search(1)" />
+                                                <input type="text" tabindex="7" class="text-line col-xl-6 text-left" onkeydown="KeyDown(event,this)" id="BrandName" name="brandname" maxlength="40" required placeholder="入力">
                                             </div>
                                         </div>
-                                        <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                            <div class="col-sm-12 col-md-12 col-lg-12" style="padding-left:32px;">
-                                                <div class="text-s text-custom1 text-uppercase mb-1">
-                                                    <label id="text" style="padding-right: 5px;">ブランド</label>
-                                                    <input type="text" tabindex="6" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" 
-                                                           data-existcheck-url='@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")'
-                                                           id="brandCD" name="brandCD" maxlength="6" required placeholder="入力">
-                                                    <input type="text" tabindex="7" class="text-line col-xl-6 text-left" onkeydown="KeyDown(event,this)" id="brandname" name="brandname" maxlength="40" required placeholder="入力">
-                                                </div>
+                                    </div>
+                                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                        <div class="col-md-12" style="padding-left:32px;">
+                                            <div id="Seasongp" class="text-s text-custom1 text-uppercase mb-1">
+                                                <label id="text" style="padding-right:9px;">シーズン</label>
+                                                <input type="checkbox" tabindex="8" id="allyear" name="chk" value="1" onkeydown="KeyDown(event,this)" checked>
+                                                <label for="allyear" style="padding-right:20px!important;">通年</label>
+                                                <input type="checkbox" tabindex="9" id="SS" name="chk" value="2" onkeydown="KeyDown(event,this)" checked>
+                                                <label for="SS" style="padding-right:20px!important;">SS</label>
+                                                <input type="checkbox" tabindex="10" id="FW" name="chk" value="3" onkeydown="KeyDown(event,this,'CheckboxCheck')" checked>
+                                                <label for="FW" style="padding-right:20px!important;">FW</label>
                                             </div>
                                         </div>
-                                        <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                            <div class="col-md-12" style="padding-left:32px;">
-                                                <div id="Seasongp" class="text-s text-custom1 text-uppercase mb-1">
-                                                    <label id="text" style="padding-right:9px;">シーズン</label>
-                                                    <input type="checkbox" tabindex="8" id="allyear" name="chk" value="1" onkeydown="KeyDown(event,this)" checked>
-                                                    <label for="allyear" style="padding-right:20px!important;">通年</label>
-                                                    <input type="checkbox" tabindex="9" id="SS" name="chk" value="2" onkeydown="KeyDown(event,this)" checked>
-                                                    <label for="SS" style="padding-right:20px!important;">SS</label>
-                                                    <input type="checkbox" tabindex="10" id="FW" name="chk" value="3" onkeydown="KeyDown(event,this,'CheckboxCheck')" checked>
-                                                    <label for="FW" style="padding-right:20px!important;">FW</label>
-                                                </div>
+                                    </div>
+                                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                        <div class="col-md-12" style="padding-left:0px;">
+                                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                                <label id="text">プロジェクト</label>
+                                                <input type="text" tabindex="11" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this,'ProjectCheck')"
+                                                       data-existcheck-url='@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")'
+                                                       id="projectCD" name="projectCD" maxlength="10" required placeholder="入力">
+                                                <input type="text" tabindex="12" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this)" id="projectname" name="projectname" maxlength="60" required placeholder="入力">
                                             </div>
                                         </div>
-                                        <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                            <div class="col-md-12" style="padding-left:0px;">
-                                                <div class="text-s text-custom1 text-uppercase mb-1">
-                                                    <label id="text">プロジェクト</label>
-                                                    <input type="text" tabindex="11" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this,'ProjectCheck')" 
-                                                           data-existcheck-url='@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")'
-                                                           id="projectCD" name="projectCD" maxlength="10" required placeholder="入力">
-                                                    <input type="text" tabindex="12" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this)" id="projectname" name="projectname" maxlength="60" required placeholder="入力">
-                                                </div>
+                                    </div>
+                                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                        <div class="col-md-12" style="padding-left:60px;">
+                                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                                <label id="text" style="padding-right: 7px;">品番</label>
+                                                <input type="text" tabindex="13" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)"
+                                                       data-existcheck-url='@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")'
+                                                       id="PartCD" name="PartCD" maxlength="6" required placeholder="入力">
+                                                <input type="text" tabindex="14" class="text-line col-xl-6 text-left" onkeydown="KeyDown(event,this)" id="PartName" name="PartName" maxlength="60" required placeholder="入力">
                                             </div>
                                         </div>
-                                        <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                            <div class="col-md-12" style="padding-left:60px;">
-                                                <div class="text-s text-custom1 text-uppercase mb-1">
-                                                    <label id="text" style="padding-right: 7px;">品番</label>
-                                                    <input type="text" tabindex="13" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)" 
-                                                           data-existcheck-url='@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")'
-                                                           id="PartCD" name="PartCD" maxlength="6" required placeholder="入力">
-                                                    <input type="text" tabindex="14" class="text-line col-xl-6 text-left" onkeydown="KeyDown(event,this)" id="PartName" name="PartName" maxlength="60" required placeholder="入力">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="pt-3 md-form" style="padding-left:0px; padding-top:2rem;">
-                                            <div class="col-xl-12">
-                                                <div class="col-xl-9" style="float:right;">
-                                                    <button id="btnCSV" tabindex="15" onclick="btnKeihiCSVClick()" class="btn btn-csv col-xl-3 text-center">CSV</button>&nbsp;&nbsp;
-                                                    <button id="btnSearch" tabindex="16" onclick="btnKeihiSearchClick()" class="btn btn-dark col-xl-3 text-center">検索</button>
-                                                </div>
+                                    </div>
+                                    <div class="pt-3 md-form" style="padding-left:0px; padding-top:2rem;">
+                                        <div class="col-xl-12">
+                                            <div class="col-xl-9" style="float:right;">
+                                                <button id="btnCSV" tabindex="15" onclick="btnKeihiCSVClick()" class="btn btn-csv col-xl-3 text-center">CSV</button>&nbsp;&nbsp;
+                                                <button id="btnSearch" tabindex="16" onclick="btnKeihiSearchClick()" class="btn btn-dark col-xl-3 text-center">検索</button>
                                             </div>
                                         </div>
                                     </div>
@@ -232,45 +239,52 @@
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="col-xs-12 col-md-12 col-lg-7">
-                    <div class="card-body card-block" style="padding-left:0px;">
-                        <table id="tblTouroku_Keihi" class="tb1 col-md-12" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        <table class="col-md-12">
-                                            <tr>
-                                                <th style="max-width: 37%">経費名</th>
-                                                <th style="width: 30%">計上日</th>
-                                                <th style="width: 13%"></th>
-                                                <th style="width: 13%"></th>
-                                            </tr>
-                                            <tr>
-                                                <th>ブランド</th>
-                                                <th>シーズン</th>
-                                                <th>年度</th>
-                                                <th></th>
-                                            </tr>
-                                            <tr>
-                                                <th>プロジェクト</th>
-                                                <th>品番</th>
-                                                <th></th>
-                                                <th></th>
-                                            </tr>
-                                        </table>
-                                    </th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
+            <div class="col-xs-12 col-md-12 col-lg-7">
+                <div class="card-body card-block" style="padding-left:0px;">
+                    <table id="tblTouroku_Keihi" class="tb1 col-md-12" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <table class="col-md-12">
+                                        <tr>
+                                            <th style="max-width: 37%">経費名</th>
+                                            <th style="width: 30%">計上日</th>
+                                            <th style="width: 13%"></th>
+                                            <th style="width: 13%"></th>
+                                        </tr>
+                                        <tr>
+                                            <th>ブランド</th>
+                                            <th>シーズン</th>
+                                            <th>年度</th>
+                                            <th></th>
+                                        </tr>
+                                        <tr>
+                                            <th>プロジェクト</th>
+                                            <th>品番</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </table>
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/Keihi.js")"></script>
- @section Scripts{
-   <script type="text/javascript">
+</div>
+@Html.Partial("~/Views/Search/SearchBase.cshtml")
+
+<script src="@Url.Content("~/ElaAdmin/assets/js/Keihi.js")"></script>
+<script src="@Url.Content("~/ElaAdmin/assets/js/Brand.js")"></script>
+<script src="@Url.Content("~/ElaAdmin/assets/js/Project.js")"></script>
+<script src="@Url.Content("~/ElaAdmin/assets/js/Kanagata.js")"></script>
+<script src="@Url.Content("~/ElaAdmin/assets/js/Search.js")"></script>
+@section Scripts{
+    <script type="text/javascript">
        var array;
        $(document).ready(function () {
            $("#formtitle").text("経費検索");
@@ -280,8 +294,8 @@
                $('#CostDate1').val('@Model.CostDateFrom');
                $('#CostDate2').val('@Model.CostDateTo');
                $('#year').val('@Model.Year');
-               $('#brandCD').val('@Model.BrandCD');
-               $('#brandname').val('@Model.BrandName');
+               $('#BrandCD').val('@Model.BrandCD');
+               $('#BrandName').val('@Model.BrandName');
                $('#projectCD').val('@Model.ProjectCD');
                $('#projectname').val('@Model.ProjectName');
                $('#PartCD').val('@Model.HinbanCD');
@@ -300,8 +314,13 @@
            }
            KeihiList_Load();
             //ExistsCheck($("#PartCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "PartName", $("#projectCD").val());
+           $("#divSearch").iziModal({
+               top: 50,
+               width: "70%",
+               overlayClose: false,
+               zindex: 1000,
+           });
 
-          
        });
 
        $('#btnAdd').keydown(function (e) {
@@ -342,13 +361,13 @@
 
        function btnAddClick() {
            var kmodel = GetKeihiData();
-           
+
            location.href = '@Url.Action("Touroku_KeihiEntry", "Touroku_Keihi")?CostCD=' + kmodel.CostCD + '&CostName=' + kmodel.CostName + '&CostDateFrom=' + kmodel.CostDateFrom + '&CostDateTo=' + kmodel.CostDateTo + '&Year=' + kmodel.Year + '&BrandCD=' + kmodel.BrandCD + '&BrandName=' + kmodel.BrandName + '&Season=' + kmodel.Season + '&ProjectCD=' + kmodel.ProjectCD + '&ProjectName=' + kmodel.ProjectName + '&HinbanCD=' + kmodel.HinbanCD + '&HinbanName=' + kmodel.HinbanName + '&flg=' + kmodel.flg  +'&Mode=New';
        }
 
-       
 
-        </script>
-    }
+
+    </script>
+}
 
 

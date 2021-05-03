@@ -18,6 +18,9 @@
         case 6:
             LoadSearchForm(type, $("#proCD"), $("#proName"));
             break;
+        case 7://Casting
+            LoadSearchForm(type, $("#HLCastingCD"), $("#HLCastingName"));
+            break;
     }
 
     $("#divSearch").iziModal('open');

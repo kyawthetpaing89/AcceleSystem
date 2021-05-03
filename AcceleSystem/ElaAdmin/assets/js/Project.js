@@ -138,12 +138,24 @@ function BindProjectTable(response) {
                 "data": null,
                 className: "Border1",
                 render: function (data, type, row) {
-                    return '<table class="col-md-12">' +
-                        '<tr><td style="width: 46%; max-width: 46%;"><p class="text-price">' + data.BrandCD + '  ' + data.BrandName + '</p></td><td style="width: 22%; max-width: 22%;text-align:center;">' + data.Season + '</td><td style = "width: 22%; max-width: 22%;text-align:center;" > ' + data.Year + '</td> <td style="width: 70px; max-width: 70px; text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label></td></tr> ' +
-                        '<tr><td colspan=3><span class="fixed-project">' + data.ProjectCD + ' ' + data.ProjectName + '</span></td><td style="text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:red">削除</a></label></td></tr>' +
-                        '<tr><td class="text-price">' + data.PeriodStart + '</td><td style="text-align: right; padding-right: 5%;">' + data.Production + '</td><td style="text-align: right; padding-right: 5%;">' + data.SalesPrice + '</td><td style="text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:green">複写</a></label></td></tr>' +
+                    if ($("#ProjectType").val() == "1") {
+                        return '<table class="col-md-12">' +
+                            '<tr><td style="width: 46%; max-width: 46%;"><p class="text-price">' + data.BrandCD + '  ' + data.BrandName + '</p></td><td style="width: 22%; max-width: 22%;text-align:center;">' + data.Season + '</td><td style = "width: 22%; max-width: 22%;text-align:center;" > ' + data.Year + '</td> <td style="width: 70px; max-width: 70px; text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label></td></tr> ' +
+                            '<tr><td colspan=3><span class="fixed-project">' + data.ProjectCD + ' ' + data.ProjectName + '</span></td><td style="text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:red">削除</a></label></td></tr>' +
+                            '<tr><td class="text-price">' + data.PeriodStart + '</td><td style="text-align: right; padding-right: 5%;">' + data.Production + '</td><td style="text-align: right; padding-right: 5%;">' + data.SalesPrice + '</td><td style="text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnCopyClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:green">複写</a></label></td></tr>' +
 
-                        '</table > ';
+                            '</table > ';
+                    }
+                    else {
+                        return '<table class="col-md-12">' +
+                            '<tr><td style="width: 46%; max-width: 46%;"><p class="text-price">' + data.BrandCD + '  ' + data.BrandName + '</p></td><td style="width: 22%; max-width: 22%;text-align:center;">' + data.Season + '</td><td style = "width: 22%; max-width: 22%;text-align:center;" > ' + data.Year + '</td> <td style="width: 70px; max-width: 70px; text-align: center; white-space: nowrap;"><label><a onClick="ReturnSelected(\'' + data.ProjectCD + '\',\'' + data.ProjectName + '\')" style="color:blue">選択</a></label></td></tr> ' +
+                            '<tr><td colspan=3><span class="fixed-project">' + data.ProjectCD + ' ' + data.ProjectName + '</span></td><td style="text-align: center; white-space: nowrap;"></td></tr>' +
+                            '<tr><td class="text-price">' + data.PeriodStart + '</td><td style="text-align: right; padding-right: 5%;">' + data.Production + '</td><td style="text-align: right; padding-right: 5%;">' + data.SalesPrice + '</td><td style="text-align: center; white-space: nowrap;"></td></tr>' +
+
+                            '</table > ';
+                    }
+
+                   
 
                     //    return '<table class="col-md-12"><tr><td style="width: 50%; max-width: 50%;"><p class="text-price">' + data.BrandCD + '  ' + data.BrandName + '</p></td><td class="text-center" style="width: 22%; max-width: 22%;">' + data.Season + '</td><td class="text-center" style="width: 22%; max-width: 22%;">' + data.Year + '</td><td style="width: 70px; max-width: 70px; text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnEditClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label></td></tr>' +
                     //        '<tr><td colspan=3><span class="fixed-project">' + data.ProjectCD + ' ' + data.ProjectName + '</span></td><td style="text-align: center; white-space: nowrap;"><label><a href="#" onClick="btnDelClick(\'' + data.BrandCD + '\',\'' + data.ProjectCD + '\')" style="color:red">削除</a></label></td></tr>' +

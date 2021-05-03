@@ -207,6 +207,7 @@ function ErrChk(ctrl) {
 
         var dataExistsCheck = $(ctrl).attr("data-ExistsCheck");
         if (dataExistsCheck) {
+            
             var ApiURL = $(ctrl).attr("data-ExistsApiUrl");
             var param1 = $(ctrl).attr("data-Param1");
             switch (dataExistsCheck) {

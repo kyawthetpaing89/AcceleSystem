@@ -9,8 +9,8 @@
     DoubleByteCheck($("#year"), $("#CostCD").data('doublebytecheck-url'));
     YearCheck($("#year"), $("#year").data('yearcheck-url'));
 
-    ExistsCheck($("#brandCD"), "Brand", $("#brandCD").data('existcheck-url'), "brandname");
-    DoubleByteCheck($("#brandCD"), $("#CostCD").data('doublebytecheck-url'));
+    ExistsCheck($("#BrandCD"), "Brand", $("#BrandCD").data('existcheck-url'), "BrandName");
+    DoubleByteCheck($("#BrandCD"), $("#CostCD").data('doublebytecheck-url'));
 
     ExistsCheck($("#projectCD"), "Project", $("#projectCD").data('existcheck-url'), "projectname");
     DoubleByteCheck($("#projectCD"), $("#CostCD").data('doublebytecheck-url'));
@@ -81,8 +81,8 @@ function Get_KeihiData() {
         CostDateFrom: $('#CostDate1').val(),
         CostDateTo: $('#CostDate2').val(),
         Year: $('#year').val(),
-        BrandCD: $('#brandCD').val(),
-        BrandName: $('#brandname').val(),
+        BrandCD: $('#BrandCD').val(),
+        BrandName: $('#BrandName').val(),
         //Season: $('#season').val(),
         ProjectCD: $('#projectCD').val(),
         ProjectName: $('#projectname').val(),
@@ -183,8 +183,8 @@ function btnKeihiCSVClick() {
                     CostDateFrom: $('#CostDate1').val(),
                     CostDateTo: $('#CostDate2').val(),
                     Year: $('#year').val(),
-                    BrandCD: $('#brandCD').val(),
-                    BrandName: $('#brandname').val(),
+                    BrandCD: $('#BrandCD').val(),
+                    BrandName: $('#BrandName').val(),
                     //Season: $('#season').val(),
                     ProjectCD: $('#projectCD').val(),
                     ProjectName: $('#projectname').val(),
@@ -251,8 +251,8 @@ function GetKeihiData() {
         CostDateFrom: $('#CostDate1').val(),
         CostDateTo: $('#CostDate2').val(),
         Year: $('#year').val(),
-        BrandCD: $('#brandCD').val(),
-        BrandName: $('#brandname').val(),
+        BrandCD: $('#BrandCD').val(),
+        BrandName: $('#BrandName').val(),
         //Season: $('#season').val(),
         ProjectCD: $('#projectCD').val(),
         ProjectName: $('#projectname').val(),
