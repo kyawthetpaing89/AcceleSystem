@@ -763,6 +763,13 @@ $(document).ready(function () {
             numeralThousandsGroupStyle: 'none'
         });
     }
+
+    if ($('.input-numeral16')[0]) {   // For Color of HinbanEntry
+        var cleaveNumeral16 = new Cleave('.input-numeral16', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'none'
+        });
+    }
 });
 
 
