@@ -210,8 +210,9 @@
                                                 <label id="text">プロジェクト</label>
                                                 <input type="text" tabindex="11" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this,'ProjectCheck')"
                                                        data-existcheck-url='@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")'
-                                                       id="projectCD" name="projectCD" maxlength="10" required placeholder="入力">
-                                                <input type="text" tabindex="12" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this)" id="projectname" name="projectname" maxlength="60" required placeholder="入力">
+                                                       id="proCD" name="projectCD" maxlength="10" required placeholder="入力">
+                                                <input type="button" id="btnProjectSearch" value="..." onclick="Search(6)" />
+                                                <input type="text" tabindex="12" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this)" id="proName" name="projectname" maxlength="60" required placeholder="入力">
                                             </div>
                                         </div>
                                     </div>
@@ -221,8 +222,9 @@
                                                 <label id="text" style="padding-right: 7px;">品番</label>
                                                 <input type="text" tabindex="13" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)"
                                                        data-existcheck-url='@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")'
-                                                       id="PartCD" name="PartCD" maxlength="6" required placeholder="入力">
-                                                <input type="text" tabindex="14" class="text-line col-xl-6 text-left" onkeydown="KeyDown(event,this)" id="PartName" name="PartName" maxlength="60" required placeholder="入力">
+                                                       id="HinbanCD" name="PartCD" maxlength="6" required placeholder="入力">
+                                                <input type="button" id="btnHinbanSearch" value="..." onclick="Search(3)" />
+                                                <input type="text" tabindex="14" class="text-line col-xl-6 text-left" onkeydown="KeyDown(event,this)" id="HinbanName" name="PartName" maxlength="60" required placeholder="入力">
                                             </div>
                                         </div>
                                     </div>
@@ -281,7 +283,7 @@
 <script src="@Url.Content("~/ElaAdmin/assets/js/Keihi.js")"></script>
 <script src="@Url.Content("~/ElaAdmin/assets/js/Brand.js")"></script>
 <script src="@Url.Content("~/ElaAdmin/assets/js/Project.js")"></script>
-<script src="@Url.Content("~/ElaAdmin/assets/js/Kanagata.js")"></script>
+<script src="@Url.Content("~/ElaAdmin/assets/js/Hinban.js")"></script>
 <script src="@Url.Content("~/ElaAdmin/assets/js/Search.js")"></script>
 @section Scripts{
     <script type="text/javascript">
@@ -296,10 +298,10 @@
                $('#year').val('@Model.Year');
                $('#BrandCD').val('@Model.BrandCD');
                $('#BrandName').val('@Model.BrandName');
-               $('#projectCD').val('@Model.ProjectCD');
-               $('#projectname').val('@Model.ProjectName');
-               $('#PartCD').val('@Model.HinbanCD');
-               $('#PartName').val('@Model.HinbanName');
+               $('#proCD').val('@Model.ProjectCD');
+               $('#proName').val('@Model.ProjectName');
+               $('#HinbanCD').val('@Model.HinbanCD');
+               $('#HinbanName').val('@Model.HinbanName');
                var str = '@Model.Season';
                if (str.includes("1"))
                    $("#allyear").prop("checked", true);

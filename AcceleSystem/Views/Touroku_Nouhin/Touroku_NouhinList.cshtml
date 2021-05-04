@@ -14,6 +14,7 @@
         .text-nouhin {
             width: 70px;
         }
+
         .fixed-nouhin {
             width: 285px;
         }
@@ -28,6 +29,7 @@
             width: 185px;
         }
     }
+
     @@media only screen and (min-width: 700px) {
         .text-nouhin {
             width: 80px;
@@ -42,6 +44,7 @@
         .text-nouhin {
             width: 80px;
         }
+
         .fixed-nouhin {
             width: 230px;
         }
@@ -61,10 +64,12 @@
         .text-nouhin {
             width: 100px;
         }
+
         .fixed-nouhin {
             width: 280px;
         }
     }
+
     @@media only screen and (min-width: 1150px) {
         .text-nouhin {
             width: 130px;
@@ -74,34 +79,36 @@
             width: 370px;
         }
     }
+
     @@media only screen and (min-width: 1300px) {
         .text-nouhin {
             width: 160px;
         }
+
         .fixed-nouhin {
             width: 450px;
         }
     }
-   
+
 
     @@media only screen and (min-width: 1450px) {
         .text-nouhin {
             width: 185px;
         }
+
         .fixed-nouhin {
             width: 560px;
         }
-       
     }
 
     @@media only screen and (min-width: 1600px) {
         .text-nouhin {
             width: 220px;
         }
+
         .fixed-nouhin {
             width: 650px;
         }
-       
     }
 
     @@media only screen and (min-width: 1750px) {
@@ -141,7 +148,7 @@
         display: inline-block;
         overflow: hidden;
         /*width: 210px;*/
-        white-space: nowrap;      
+        white-space: nowrap;
     }
 
     .fixed-nouhin {
@@ -151,8 +158,9 @@
         white-space: nowrap;
         display: inline-block;
     }
-    
 </style>
+
+<input type="hidden" id="NouhinType" value="1" />
 <div id="divMain" class="container-fluid">
     <div class="card">
         <div class="row">
@@ -184,7 +192,7 @@
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label id="text" style="padding-right:3px;">ブランド名</label>
                                             <input type="text" tabindex="2" id="BrandCD" name="txtBrandCD" onkeydown="KeyDown(event,this)" class="text-line col-xl-3 text-left" maxlength="20" required placeholder="入力">
-
+                                            <input type="button" id="btnBrandSearch" value="..." onclick="Search(1)" />
                                             <input type="text" tabindex="3" id="BrandName" name="txtBrandName" onkeydown="KeyDown(event,this)" class="text-line col-xl-5 text-left" maxlength="40" required placeholder="入力">
                                         </div>
                                     </div>
@@ -206,13 +214,9 @@
                                     <div class="col-md-12" style="padding-left:0px;">
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label id="text" style="padding-right:2px;">プロジェクト</label>
-                                            <input type="text" tabindex="7" id="ProjectCD" name="txtProjectCD" onkeydown="KeyDown(event,this,'ProjectCheck')" class="text-line col-xl-4 text-left" maxlength="10" required placeholder="入力">
-
-                                            @*</div>
-                                                </div>
-                                                <div class="col-md-12" style="padding-left:105px;">
-                                                    <div class="text-s text-custom1 text-uppercase mb-1">*@
-                                            <input type="text" tabindex="8" id="ProjectName" name="txtProjectName" onkeydown="KeyDown(event,this)" class="text-line col-xl-4 text-left" maxlength="60" required placeholder="入力">
+                                            <input type="text" tabindex="7" id="proCD" name="txtProjectCD" onkeydown="KeyDown(event,this,'ProjectCheck')" class="text-line col-xl-4 text-left" maxlength="10" required placeholder="入力">
+                                            <input type="button" id="btnProjectSearch" value="..." onclick="Search(6)" />
+                                            <input type="text" tabindex="8" id="proName" name="txtProjectName" onkeydown="KeyDown(event,this)" class="text-line col-xl-4 text-left" maxlength="60" required placeholder="入力">
                                         </div>
                                     </div>
                                 </div>
@@ -221,7 +225,7 @@
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label id="text" style="padding-right:3px;">品番</label>
                                             <input type="text" tabindex="9" id="HinbanCD" name="txtHinbanCD" onkeydown="KeyDown(event,this)" class="text-line col-xl-4 text-left" maxlength="6" required placeholder="入力">
-
+                                            <input type="button" id="btnProjectSearch" value="..." onclick="Search(3)" />
                                             <input type="text" tabindex="10" id="HinbanName" name="txtHinbanName" onkeydown="KeyDown(event,this)" class="text-line col-xl-6 text-left" maxlength="60" required placeholder="入力">
                                         </div>
                                     </div>
@@ -299,7 +303,11 @@
         </div>
     </div>
 </div>
+@Html.Partial("~/Views/Search/SearchBase.cshtml")
 
+<script src="@Url.Content("~/ElaAdmin/assets/js/Brand.js")"></script>
+<script src="@Url.Content("~/ElaAdmin/assets/js/Project.js")"></script>
+<script src="@Url.Content("~/ElaAdmin/assets/js/Hinban.js")"></script>
 @section Scripts{
     <script type="text/javascript">
         $(document).ready(function () {
@@ -308,8 +316,8 @@
                 $("#Year").val('@Model.Year');
                 $("#BrandCD").val('@Model.BrandCD');
                 $("#BrandName").val('@Model.BrandName');
-                $("#ProjectCD").val('@Model.ProjectCD1');
-                $("#ProjectName").val('@Model.ProjectName');
+                $("#proCD").val('@Model.ProjectCD1');
+                $("#proName").val('@Model.ProjectName');
                 $("#HinbanCD").val('@Model.HinbanCD');
                 $("#HinbanName").val('@Model.HinbanName');
                 $("#StartDate").val('@Model.DeliveryStartDate');
@@ -342,8 +350,8 @@
             DoubleByteCheck($("#BrandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
             ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
 
-            DoubleByteCheck($("#ProjectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-            ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "ProjectName");
+            DoubleByteCheck($("#proCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+            ExistsCheck($("#proCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "proName");
 
             DoubleByteCheck($("#HinbanCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
            // ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/TourokuProjectApi")', "HinbanName");
@@ -357,10 +365,16 @@
             //$("#HinbanName").attr('disabled', 'disabled');
             //GetNouhin();
 
+            $("#divSearch").iziModal({
+                top: 50,
+                width: "70%",
+                overlayClose: false,
+                zindex: 1000,
+            });
         });
         function ProjectCheck(result) {
             if (result == 'OK') {
-                ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "HinbanName", $("#ProjectCD").val());
+                ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "HinbanName", $("#proCD").val());
             }
         }
 
@@ -460,8 +474,8 @@
                 Year: $("#Year").val(),
                 BrandCD: $("#BrandCD").val(),
                 BrandName: $("#BrandName").val(),
-                ProjectCD: $("#ProjectCD").val(),
-                ProjectName: $("#ProjectName").val(),
+                ProjectCD: $("#proCD").val(),
+                ProjectName: $("#proName").val(),
                 HinbanCD: $("#HinbanCD").val(),
                 HinbanName: $("#HinbanName").val(),
                 DeliveryStartDate: $("#StartDate").val(),
@@ -521,7 +535,7 @@
                         className: "Border1",
                         render: function (data, type, row) {
                             return '<table class="col-md-12">' +
-                                '<tr><td style="width: 20%; max-width: 20%; padding-top: 0%;">' + data.DeliveryDate + '</td><td style="width: 33%; max-width: 33%; padding-top:1.5%;"><span class="text-nouhin" >' + data.BrandCD + '  ' + data.BrandName + '</span></td><td style="width: 17%; max-width: 17%;text-align: center;">' + data.Season + '</td><td style="width: 20%; max-width: 20%; text-align: center;">' + data.Year + '</td><td style="width: 70px; max-width: 70px; text-align: center; white-space: nowrap;padding-top:1.5%;"><label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label><br /></td></tr>' +                         
+                                '<tr><td style="width: 20%; max-width: 20%; padding-top: 0%;">' + data.DeliveryDate + '</td><td style="width: 33%; max-width: 33%; padding-top:1.5%;"><span class="text-nouhin" >' + data.BrandCD + '  ' + data.BrandName + '</span></td><td style="width: 17%; max-width: 17%;text-align: center;">' + data.Season + '</td><td style="width: 20%; max-width: 20%; text-align: center;">' + data.Year + '</td><td style="width: 70px; max-width: 70px; text-align: center; white-space: nowrap;padding-top:1.5%;"><label><a href="#" onClick="btnEditClick(\'' + data.ProjectCD + '\')" style="color:blue">編集</a></label><br /></td></tr>' +
                                 '<tr><td colspan=4><span class="fixed-nouhin">' + data.ProjectCD + ' ' + data.ProjectName + '</span></td></tr>' +
                                 '<tr><td>' + data.HinbanCD + '</td><td><span class="text-nouhin">' + data.HinbanName + '</span></td><td style="text-align:right;">' + data.Production + '</td><td style="text-align: right; padding-right:2%">' + data.DeliveryAmount + '</td><td style="width: 70px; max-width: 70px; text-align: center; white-space: nowrap; padding-top:1.5%;"><label><a href="#" onClick="btnDelClick(\'' + data.ProjectCD + '\')" style="color:red">削除</a></label></td></tr>' +
                             '</table > ';
@@ -572,8 +586,8 @@
                 Year: $("#Year").val(),
                 BrandCD: $("#BrandCD").val(),
                 BrandName: $("#BrandName").val(),
-                ProjectCD1: $("#ProjectCD").val(),
-                ProjectName: $("#ProjectName").val(),
+                ProjectCD1: $("#proCD").val(),
+                ProjectName: $("#proName").val(),
                 HinbanCD: $("#HinbanCD").val(),
                 HinbanName: $("#HinbanName").val(),
                 DeliveryStartDate: $("#StartDate").val(),
@@ -620,15 +634,6 @@
         });
     </script>
 
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/datatables.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/dataTables.bootstrap.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/dataTables.buttons.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.bootstrap.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/jszip.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/vfs_fonts.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.html5.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.print.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/buttons.colVis.min.js")"></script>
-    <script src="@Url.Content("~/ElaAdmin/assets/js/init/datatables-init.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Search.js")"></script>
 
 }

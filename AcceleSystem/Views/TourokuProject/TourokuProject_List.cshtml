@@ -147,7 +147,7 @@
     }
 </style>
 <input type="hidden" id="ProjectType" value="1" />
-<div id="divMain" class="container-fluid">
+<div id="divMainList" class="container-fluid">
     <div class="card">
         <div class="row">
             <div class="col-xs-12 col-md-12 col-lg-5">
@@ -309,25 +309,25 @@
     $(document).ready(function () {
         $("#formtitle").text("プロジェクト検索");
         if ('@Model.flg' == "list") {
-            $('#BrandCD').val('@Model.BrandCD1');
-            $('#BrandName').val('@Model.BrandName');
-            $('#Year').val('@Model.Year');
-            $('#ProjectCD').val('@Model.ProjectCD1');
-            $('#ProjectName').val('@Model.ProjectName');
-            $('#PeriodStart').val('@Model.PeriodStart');
-            $('#PeriodEnd').val('@Model.PeriodEnd');
-            $('#ProjectManager').val('@Model.ProjectManager');
-            $('#ProjectManagerName').val('@Model.ProjectManagerName');
+            $('#divMainList #BrandCD').val('@Model.BrandCD1');
+            $('#divMainList #BrandName').val('@Model.BrandName');
+            $('#divMainList #Year').val('@Model.Year');
+            $('#divMainList #ProjectCD').val('@Model.ProjectCD1');
+            $('#divMainList #ProjectName').val('@Model.ProjectName');
+            $('#divMainList #PeriodStart').val('@Model.PeriodStart');
+            $('#divMainList #PeriodEnd').val('@Model.PeriodEnd');
+            $('#divMainList #ProjectManager').val('@Model.ProjectManager');
+            $('#divMainList #ProjectManagerName').val('@Model.ProjectManagerName');
              var str = '@Model.Season';
                if (str.includes("1"))
-                   $("#Degreeyear").prop("checked", true);
-               else $("#Degreeyear").prop("checked", false);
+                   $("#divMainList #Degreeyear").prop("checked", true);
+               else $("#divMainList #Degreeyear").prop("checked", false);
                if (str.includes("2"))
-                   $("#SS").prop("checked", true);
-               else $("#SS").prop("checked", false);
+                   $("#divMainList #SS").prop("checked", true);
+               else $("#divMainList #SS").prop("checked", false);
                if (str.includes("3"))
-                   $("#FW").prop("checked", true);
-               else $("#FW").prop("checked", false);
+                   $("#divMainList #FW").prop("checked", true);
+               else $("#divMainList #FW").prop("checked", false);
 
         }
         $("#divSearch").iziModal({

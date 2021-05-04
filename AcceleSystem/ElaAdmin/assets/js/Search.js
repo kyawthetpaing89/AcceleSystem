@@ -22,6 +22,4 @@
             LoadSearchForm(type, $("#HLCastingCD"), $("#HLCastingName"));
             break;
     }
-
-    $("#divSearch").iziModal('open');
 }

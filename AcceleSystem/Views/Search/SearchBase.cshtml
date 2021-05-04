@@ -73,8 +73,8 @@
                 $("#HinbanType").val("2");
                 $("#btnAdd").hide();
                 $("#btnnext").hide();
-                $("#btnHibanSearch").hide();
-                $("#btnProjectSearch").hide();
+                $("#divSearch1 #btnHibanSearch").hide();
+                $("#divSearch1 #btnProjectSearch").hide();
                 break;
             case 4:
             case 7:
@@ -97,6 +97,8 @@
                 $("#divSearch1 #btnPUser").hide();
                 break;
         }
+
+        $("#divSearch").iziModal('open');
     }
 
     function ReturnSelected(cd, name) {

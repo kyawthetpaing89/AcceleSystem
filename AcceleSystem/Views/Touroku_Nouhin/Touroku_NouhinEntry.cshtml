@@ -35,8 +35,9 @@
                             <label id="text" style="padding-right: 5px;">
                                 プロジェクト
                             </label>
-                            <input type="text" tabindex="1" class="text-line col-sm-12 col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this,'ShowNewmodeData')" id="ProjectCD" name="txtProjectCD" maxlength="10" required placeholder="入力">
-                            <label id="ProjectName"><b>プロジェクト表示</b></label>
+                            <input type="text" tabindex="1" class="text-line col-sm-12 col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this,'ShowNewmodeData')" id="proCD" name="txtProjectCD" maxlength="10" required placeholder="入力">
+                            <input type="button" id="btnProjectSearch" value="..." onclick="Search(6)" />
+                            <label id="proName"><b>プロジェクト表示</b></label>
                         </div>
                     </div>
                 </div>
@@ -148,13 +149,14 @@
         </div>
     </div>
 </div>
-
+@Html.Partial("~/Views/Search/SearchBase.cshtml")
 
 @section Scripts{
-<script type="text/javascript">
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Project.js")"></script>
+    <script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("納品登録");
-            $("#ProjectCD").focus();
+            $("#proCD").focus();
             var Mode = '@Model.Mode';
             $("#HinbanCD").attr('disabled', 'disabled');
             $("#Year").attr('disabled', 'disabled');
@@ -165,9 +167,9 @@
             if (Mode == 'New') {
                 $('#btnSave').html('登録');
 
-                RequiredCheck($("#ProjectCD"));
-                DoubleByteCheck($("#ProjectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-                ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Nouhin_Project_ExistsCheck", "api/Touroku_NouhinApi")', "ProjectName");
+                RequiredCheck($("#proCD"));
+                DoubleByteCheck($("#proCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                ExistsCheck($("#proCD"), "Project", '@Url.Action("M_Nouhin_Project_ExistsCheck", "api/Touroku_NouhinApi")', "proName");
 
                 RequiredCheck($("#DeliDate"));
                 DateCheck($("#DeliDate"), '@Url.Action("Date_Checking", "api/CommonApi")'); //E103
@@ -175,9 +177,9 @@
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
 
-                RequiredCheck($("#ProjectCD"));
-                DoubleByteCheck($("#ProjectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-                ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Nouhin_Project_ExistsCheck", "api/Touroku_NouhinApi")', "ProjectName");
+                RequiredCheck($("#proCD"));
+                DoubleByteCheck($("#proCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                ExistsCheck($("#proCD"), "Project", '@Url.Action("M_Nouhin_Project_ExistsCheck", "api/Touroku_NouhinApi")', "proName");
 
                 RequiredCheck($("#DeliDate"));
                 DateCheck($("#DeliDate"), '@Url.Action("Date_Checking", "api/CommonApi")'); //E103
@@ -186,7 +188,7 @@
             }
             else {
                 $('#btnSave').html('削除');
-                $("#ProjectCD").attr('disabled', 'disabled');
+                $("#proCD").attr('disabled', 'disabled');
                 $("#HinbanCD").attr('disabled', 'disabled');
                 $("#Year").attr('disabled', 'disabled');
                 $("#BrandCD").attr('disabled', 'disabled');
@@ -199,6 +201,13 @@
                     $(tr).find('#DeliverAmount').attr('readonly',true);
                 });
             }
+
+            $("#divSearch").iziModal({
+                top: 50,
+                width: "70%",
+                overlayClose: false,
+                zindex: 1000,
+            });
         });
 
         function FiscalDateCheck(result) {
@@ -237,7 +246,7 @@
         function ShowNewmodeData(result) {  //Dispay Project Data
             if (result == 'OK') {
                 var TnModel = {
-                    ProjectCD: $("#ProjectCD").val(),
+                    ProjectCD: $("#proCD").val(),
                     Mode: 'New'
                 };
                 var data = CalltoApiController('@Url.Action("M_Project_Select_NouhinEntry", "api/Touroku_NouhinApi")', TnModel);
@@ -264,7 +273,7 @@
                     $("#Year").val('');
                     $("#BrandCD").val('');
                     $("#BrandName").text('ブランド表示');
-                    $("#ProjectName").text('プロジェクト表示');
+                    $("#proName").text('プロジェクト表示');
                     $("#rdoAllYear").prop("checked", true);
                     BindTable(JSON.parse("[]"));
                 }
@@ -274,11 +283,11 @@
                 $("#Year").val('');
                 $("#BrandCD").val('');
                 $("#BrandName").text('ブランド表示');
-                $("#ProjectName").text('プロジェクト表示');
+                $("#proName").text('プロジェクト表示');
                 $("#rdoAllYear").prop("checked", true);
                 BindTable(JSON.parse("[]"));
             }
-            $("#ProjectName").css("font-weight", "Bold");
+            $("#proName").css("font-weight", "Bold");
             $("#BrandName").css("font-weight", "Bold");
         }
 
@@ -291,8 +300,8 @@
             var data = CalltoApiController('@Url.Action("M_Project_Select_NouhinEntry", "api/Touroku_NouhinApi")', TnModel);
             var nouhindata = JSON.parse(data);
             if (nouhindata.length > 0) {
-                $("#ProjectCD").val(nouhindata[0].ProjectCD);
-                $("#ProjectName").text(nouhindata[0].ProjectName);
+                $("#proCD").val(nouhindata[0].ProjectCD);
+                $("#proName").text(nouhindata[0].ProjectName);
                 $("#Year").val(nouhindata[0].Year);
                 $("#BrandCD").val(nouhindata[0].BrandCD);
                 $("#BrandName").text(nouhindata[0].BrandName);
@@ -311,11 +320,11 @@
                 $("#Year").val('');
                 $("#BrandCD").val('');
                 $("#BrandName").text('ブランド表示');
-                $("#ProjectName").text('プロジェクト表示');
+                $("#proName").text('プロジェクト表示');
                 $("#rdoAllYear").prop("checked", true);
                 BindTable(JSON.parse("[]"));
             }
-            $("#ProjectName").css("font-weight", "Bold");
+            $("#proName").css("font-weight", "Bold");
             $("#BrandName").css("font-weight", "Bold");
         }
 
@@ -490,7 +499,7 @@
 
                 var TnModel = {
                     DeliveryStartDate: $("#DeliDate").val(),
-                    ProjectCD: $("#ProjectCD").val(),
+                    ProjectCD: $("#proCD").val(),
                     Remarks: $("#Remarks").val(),
                     TableData: data,
                     Mode: '@Model.Mode'
@@ -550,18 +559,18 @@
         //        if (res1 == "0") {
         //            var res2 = FiscalDateCheckOnSave();
         //            if (res2 == "0") {
-            if ($('#ProjectCD').val().trim() == '') {
-                $('#ProjectCD').focus();
+            if ($('#proCD').val().trim() == '') {
+                $('#proCD').focus();
                 ShowErrorMessage("E102");
             }
             else {
                 var model = {
-                    value: $('#ProjectCD').val(),
+                    value: $('#proCD').val(),
                 };
                 var data = CalltoApiController('@Url.Action("DoubleByte_Checking", "api/CommonApi")', model);
                 var byteresult = JSON.parse(data);
                 if (byteresult[0].flg == "false") {
-                    $('#ProjectCD').focus();
+                    $('#proCD').focus();
                     ShowErrorMessage("E129");
                 }
                 else {
@@ -615,6 +624,6 @@
         });
 
 
-</script>
-
+    </script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Search.js")"></script>
 }

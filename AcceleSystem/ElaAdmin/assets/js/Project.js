@@ -1,29 +1,29 @@
 ﻿function ProjectList_Load(){
-    $("#BrandCD").focus();
-    DoubleByteCheck($("#BrandCD"), $("#BrandCD").data('doublebytecheck-url'));
-    ExistsCheck($("#BrandCD"), "Brand", $("#BrandCD").data('existcheck-url'), "BrandName");
+    $("#divMainList #BrandCD").focus();
+    DoubleByteCheck($("#divMainList #BrandCD"), $("#divMainList #BrandCD").data('doublebytecheck-url'));
+    ExistsCheck($("#divMainList #BrandCD"), "Brand", $("#divMainList #BrandCD").data('existcheck-url'), "BrandName");
 
     //@* YearCheck($("#Year"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');*@
-    DoubleByteCheck($("#Year"), $("#BrandCD").data('doublebytecheck-url'));
-    YearCheck($("#Year"), $("#Year").data('yearcheck-url'));
+    DoubleByteCheck($("#divMainList #Year"), $("#divMainList #BrandCD").data('doublebytecheck-url'));
+    YearCheck($("#divMainList #Year"), $("#divMainList #Year").data('yearcheck-url'));
 
-    DoubleByteCheck($("#ProjectCD"), $("#BrandCD").data('doublebytecheck-url'));
-    ExistsCheck($("#ProjectCD"), "Project", $("#ProjectCD").data('existcheck-url'), "ProjectName");
+    DoubleByteCheck($("#divMainList #ProjectCD"), $("#divMainList #BrandCD").data('doublebytecheck-url'));
+    ExistsCheck($("#divMainList #ProjectCD"), "Project", $("#divMainList #ProjectCD").data('existcheck-url'), "ProjectName");
 
-    YearMonthCheck($("#PeriodStart"), $("#PeriodStart").data('yearmonthcheck-url'));
-    YearMonthCheck($("#PeriodEnd"), $("#PeriodStart").data('yearmonthcheck-url'));
+    YearMonthCheck($("#divMainList #PeriodStart"), $("#divMainList #PeriodStart").data('yearmonthcheck-url'));
+    YearMonthCheck($("#divMainList #PeriodEnd"), $("#divMainList #PeriodStart").data('yearmonthcheck-url'));
 
-    DoubleByteCheck($("#ProjectManager"), $("#BrandCD").data('doublebytecheck-url'));
-    ExistsCheck($("#ProjectManager"), "User", $("#ProjectManager").data('existcheck-url'), "ProjectManagerName");
+    DoubleByteCheck($("#divMainList #ProjectManager"), $("#divMainList #BrandCD").data('doublebytecheck-url'));
+    ExistsCheck($("#divMainList #ProjectManager"), "User", $("#divMainList #ProjectManager").data('existcheck-url'), "ProjectManagerName");
 }
 
 function CheckboxCheck(result) {
     if (result == 'OK') {
         var degreeyear = $("#Degreeyear").is(":checked");
-        var ss = $("#SS").is(":checked");
-        var fw = $("#FW").is(":checked");
+        var ss = $("#divMainList #SS").is(":checked");
+        var fw = $("#divMainList #FW").is(":checked");
         if (!degreeyear && !ss && !fw) {
-            $("#FW").focus();
+            $("#divMainList #FW").focus();
             ShowErrorMessage("E111");
         }
     }
@@ -32,16 +32,16 @@ function CheckboxCheck(result) {
 //Date Error check at Enter click
 function DateCompare(result) {
     if (result == 'OK') {
-        if (!($('#PeriodStart').val().trim() == '' || $('#PeriodEnd').val().trim() == '')) {
+        if (!($('#divMainList #PeriodStart').val().trim() == '' || $('#divMainList #PeriodEnd').val().trim() == '')) {
             var model = {
-                startDate: $("#PeriodStart").val(),
+                startDate: $("#divMainList #PeriodStart").val(),
                 endDate: $("#PeriodEnd").val()
             };
             if (model.startDate <= model.endDate) {
-                $("#ProjectManager").focus();
+                $("#divMainList #ProjectManager").focus();
             }
             else {
-                $("#PeriodEnd").focus();
+                $("#divMainList #PeriodEnd").focus();
                 ShowErrorMessage("E112");
             }
         }
@@ -50,10 +50,10 @@ function DateCompare(result) {
 
 //Date Error check before insert/update
 function DateCompareOnSave() {
-    if (!($('#PeriodStart').val().trim() == '' || $('#PeriodEnd').val().trim() == '')) {
+    if (!($('#divMainList #PeriodStart').val().trim() == '' || $('#divMainList #PeriodEnd').val().trim() == '')) {
         var model = {
-            startDate: $("#PeriodStart").val(),
-            endDate: $("#PeriodEnd").val()
+            startDate: $("#divMainList #PeriodStart").val(),
+            endDate: $("#divMainList #PeriodEnd").val()
         };
         if (model.startDate <= model.endDate) {
             return "0";
@@ -66,23 +66,23 @@ function DateCompareOnSave() {
 }
 
 function btnProjectSearchClick() {
-    var degreeyear = $("#Degreeyear").is(":checked");
-    var ss = $("#SS").is(":checked");
-    var fw = $("#FW").is(":checked");
+    var degreeyear = $("#divMainList #Degreeyear").is(":checked");
+    var ss = $("#divMainList #SS").is(":checked");
+    var fw = $("#divMainList #FW").is(":checked");
     if (!degreeyear && !ss && !fw) {
-        $("#FW").focus();
+        $("#divMainList #FW").focus();
         var data = ShowErrorMessage("E111");
         return data;
     }
     else {
-        var res = ErrorCheckOnSave();
+        var res = ErrorCheckOnSave('divMainList');
         if (res == "0") {
             var res1 = DateCompareOnSave();
             if (res1 == "0") {
                 GetProject()
             }
             else {
-                $("#PeriodEnd").focus();
+                $("#divMainList #PeriodEnd").focus();
                 ShowErrorMessage(res1);
             }
         }
@@ -95,25 +95,25 @@ function btnProjectSearchClick() {
 
 function GetProject() {
     var Tmodel = {
-        BrandCD: $('#BrandCD').val(),
-        BrandName: $('#BrandName').val(),
-        Year: $('#Year').val(),
-        ProjectCD: $('#ProjectCD').val(),
-        ProjectName: $('#ProjectName').val(),
-        PeriodStart: $('#PeriodStart').val(),
-        PeriodEnd: $('#PeriodEnd').val(),
-        ProjectManager: $('#ProjectManager').val(),
-        ProjectManagerName: $('#ProjectManagerName').val(),
+        BrandCD: $('#divMainList #BrandCD').val(),
+        BrandName: $('#divMainList #BrandName').val(),
+        Year: $('#divMainList #Year').val(),
+        ProjectCD: $('#divMainList #ProjectCD').val(),
+        ProjectName: $('#divMainList #ProjectName').val(),
+        PeriodStart: $('#divMainList #PeriodStart').val(),
+        PeriodEnd: $('#divMainList #PeriodEnd').val(),
+        ProjectManager: $('#divMainList #ProjectManager').val(),
+        ProjectManagerName: $('#divMainList #ProjectManagerName').val(),
     };
 
     var selected = new Array();
-    $("#Seasongp input[type=checkbox]:checked").each(function () {
+    $("#divMainList #Seasongp input[type=checkbox]:checked").each(function () {
         selected.push(this.value);
     });
     if (selected.length > 0)
         Tmodel.Season = selected.join(",");
 
-    var response = CalltoApiController($("#ProjectCD").data('projectselect-url'), Tmodel);
+    var response = CalltoApiController($("#divMainList #ProjectCD").data('projectselect-url'), Tmodel);
     if (response == "[]") {
         BindProjectTable(response);
         var data = ShowErrorMessage("E104");
@@ -168,11 +168,11 @@ function BindProjectTable(response) {
 }
 
 function btnProjectCSVClick() {
-    var degreeyear = $("#Degreeyear").is(":checked");
-    var ss = $("#SS").is(":checked");
-    var fw = $("#FW").is(":checked");
+    var degreeyear = $("#divMainList #Degreeyear").is(":checked");
+    var ss = $("#divMainList #SS").is(":checked");
+    var fw = $("#divMainList #FW").is(":checked");
     if (!degreeyear && !ss && !fw) {
-        $("#FW").focus();
+        $("#divMainList #FW").focus();
         var data = ShowErrorMessage("E111");
         return data;
     }
@@ -182,25 +182,25 @@ function btnProjectCSVClick() {
             var res1 = DateCompareOnSave();
             if (res1 == "0") {
                 var Tmodel = {
-                    BrandCD: $('#BrandCD').val(),
-                    BrandName: $('#BrandName').val(),
-                    Year: $('#Year').val(),
-                    ProjectCD: $('#ProjectCD').val(),
-                    ProjectName: $('#ProjectName').val(),
-                    PeriodStart: $('#PeriodStart').val(),
-                    PeriodEnd: $('#PeriodEnd').val(),
-                    ProjectManager: $('#ProjectManager').val(),
-                    ProjectManagerName: $('#ProjectManagerName').val(),
+                    BrandCD: $('#divMainList #BrandCD').val(),
+                    BrandName: $('#divMainList #BrandName').val(),
+                    Year: $('#divMainList #Year').val(),
+                    ProjectCD: $('#divMainList #ProjectCD').val(),
+                    ProjectName: $('#divMainList #ProjectName').val(),
+                    PeriodStart: $('#divMainList #PeriodStart').val(),
+                    PeriodEnd: $('#divMainList #PeriodEnd').val(),
+                    ProjectManager: $('#divMainList #ProjectManager').val(),
+                    ProjectManagerName: $('#divMainList #ProjectManagerName').val(),
                 };
 
                 var selected = new Array();
-                $("#Seasongp input[type=checkbox]:checked").each(function () {
+                $("#divMainList #Seasongp input[type=checkbox]:checked").each(function () {
                     selected.push(this.value);
                 });
                 if (selected.length > 0)
                     Tmodel.Season = selected.join(",");
 
-                var data = CalltoApiController($("#ProjectCD").data('projectcsv-url'), Tmodel);
+                var data = CalltoApiController($("#divMainList #ProjectCD").data('projectcsv-url'), Tmodel);
 
                 var csv = JSON2CSV(data);
                 if (!(csv == "E104")) {
@@ -216,7 +216,7 @@ function btnProjectCSVClick() {
                 }
             }
             else {
-                $("#PeriodEnd").focus();
+                $("#divMainList #PeriodEnd").focus();
                 ShowErrorMessage(res1);
             }
         }

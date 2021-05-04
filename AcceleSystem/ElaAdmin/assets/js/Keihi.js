@@ -12,15 +12,15 @@
     ExistsCheck($("#BrandCD"), "Brand", $("#BrandCD").data('existcheck-url'), "BrandName");
     DoubleByteCheck($("#BrandCD"), $("#CostCD").data('doublebytecheck-url'));
 
-    ExistsCheck($("#projectCD"), "Project", $("#projectCD").data('existcheck-url'), "projectname");
-    DoubleByteCheck($("#projectCD"), $("#CostCD").data('doublebytecheck-url'));
+    ExistsCheck($("#proCD"), "Project", $("#proCD").data('existcheck-url'), "proName");
+    DoubleByteCheck($("#proCD"), $("#CostCD").data('doublebytecheck-url'));
 
-    DoubleByteCheck($("#PartCD"), $("#CostCD").data('doublebytecheck-url'));
+    DoubleByteCheck($("#HinbanCD"), $("#CostCD").data('doublebytecheck-url'));
 }
 
 function ProjectCheck(result) {
     if (result == 'OK') {
-        ExistsCheck($("#PartCD"), "Hinban", $("#PartCD").data('existcheck-url'), "PartName", $("#projectCD").val());
+        ExistsCheck($("#HinbanCD"), "Hinban", $("#HinbanCD").data('existcheck-url'), "HinbanName", $("#proCD").val());
     }
 }
 
@@ -84,10 +84,10 @@ function Get_KeihiData() {
         BrandCD: $('#BrandCD').val(),
         BrandName: $('#BrandName').val(),
         //Season: $('#season').val(),
-        ProjectCD: $('#projectCD').val(),
-        ProjectName: $('#projectname').val(),
-        HinbanCD: $('#PartCD').val(),
-        HinbanName: $('#PartName').val(),
+        ProjectCD: $('#proCD').val(),
+        ProjectName: $('#proName').val(),
+        HinbanCD: $('#HinbanCD').val(),
+        HinbanName: $('#HinbanName').val(),
     };
 
     var selected = new Array();
@@ -186,10 +186,10 @@ function btnKeihiCSVClick() {
                     BrandCD: $('#BrandCD').val(),
                     BrandName: $('#BrandName').val(),
                     //Season: $('#season').val(),
-                    ProjectCD: $('#projectCD').val(),
-                    ProjectName: $('#projectname').val(),
-                    HinbanCD: $('#PartCD').val(),
-                    HinbanName: $('#PartName').val(),
+                    ProjectCD: $('#proCD').val(),
+                    ProjectName: $('#proName').val(),
+                    HinbanCD: $('#HinbanCD').val(),
+                    HinbanName: $('#HinbanName').val(),
                 };
 
                 var selected = new Array();
@@ -254,10 +254,10 @@ function GetKeihiData() {
         BrandCD: $('#BrandCD').val(),
         BrandName: $('#BrandName').val(),
         //Season: $('#season').val(),
-        ProjectCD: $('#projectCD').val(),
-        ProjectName: $('#projectname').val(),
-        HinbanCD: $('#PartCD').val(),
-        HinbanName: $('#PartName').val(),
+        ProjectCD: $('#proCD').val(),
+        ProjectName: $('#proName').val(),
+        HinbanCD: $('#HinbanCD').val(),
+        HinbanName: $('#HinbanName').val(),
         flg: "list"
     };
     var selected = new Array();

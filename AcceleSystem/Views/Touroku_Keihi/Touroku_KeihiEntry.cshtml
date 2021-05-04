@@ -19,7 +19,7 @@
                 <div>
                     <div>
                         <label id="SEQ" hidden></label>
-                        <label id="accounting" hidden ><b></b></label>
+                        <label id="accounting" hidden><b></b></label>
                     </div>
                     <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                         <div class="col-xs-12" style="padding-left:69px;">
@@ -49,12 +49,13 @@
                                     ブランド
                                 </label>
                                 <input type="text" tabindex="3" class="text-line col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this,'Brand')" id="BrandCD" name="BrandCD" maxlength="6" required placeholder="入力">&nbsp;&nbsp;
-                                <label id="brandname"><b>ブランド表示</b></label>
+                                <input type="button" id="btnBrandSearch" value="..." onclick="Search(1)" />
+                                <label id="BrandName"><b>ブランド表示</b></label>
                             </div>
                         </div>
                     </div>
                     <div class="pt-3 md-form" style=" padding-top:1.2rem!important;">
-                        <div class="col-xs-12"  style="padding-left:30px;">
+                        <div class="col-xs-12" style="padding-left:30px;">
                             <div class="text-s text-custom1 text-uppercase mb-1">
                                 <div id="Seasongp" class="custom-control custom-radio" style="padding-left:0px!important;">
                                     <label class="text" id="season" style="padding-right:10px;">シーズン</label>
@@ -69,7 +70,7 @@
                         </div>
                     </div>
                     <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                        <div class="col-xl-12"  style="padding-left:70px;">
+                        <div class="col-xl-12" style="padding-left:70px;">
                             <div class="text-s text-custom1 text-uppercase mb-1">
                                 <label id="text" style="padding-right: 5px;">
                                     年度
@@ -85,8 +86,9 @@
                                 <label id="text" style="padding-right: 5px;">
                                     プロジェクト
                                 </label>
-                                <input type="text" tabindex="8" class="text-line col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this,'Project')" id="projectCD" name="projectCD" maxlength="10" required placeholder="入力">&nbsp;&nbsp;
-                                <label id="projectName"><b>プロジェクト表示</b></label>
+                                <input type="text" tabindex="8" class="text-line col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this,'Project')" id="proCD" name="projectCD" maxlength="10" required placeholder="入力">
+                                <input type="button" id="btnProjectSearch" value="..." onclick="Search(6)" />
+                                <label id="proName"><b>プロジェクト表示</b></label>
                             </div>
                         </div>
                     </div>
@@ -96,7 +98,8 @@
                                 <label id="text" style="padding-right: 5px;">
                                     品番
                                 </label>
-                                <input type="text" tabindex="9" class="text-line col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this,'Hinban')" id="HinbanCD" name="HinbanCD" maxlength="10" required placeholder="入力">&nbsp;&nbsp;
+                                <input type="text" tabindex="9" class="text-line col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this,'Hinban')" id="HinbanCD" name="HinbanCD" maxlength="10" required placeholder="入力">
+                                <input type="button" id="btnHinbanSearch" value="..." onclick="Search(3)" />
                                 <label id="HinbanName"><b>品番表示</b></label>
                             </div>
                         </div>
@@ -107,7 +110,8 @@
                                 <label id="text" style="padding-right: 5px;">
                                     金型
                                 </label>
-                                <input type="text" tabindex="10" class="text-line col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this,'Casting')" id="CastingCD" name="CastingCD" maxlength="10" required placeholder="入力">&nbsp;&nbsp;
+                                <input type="text" tabindex="10" class="text-line col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this,'Casting')" id="CastingCD" name="CastingCD" maxlength="10" required placeholder="入力">
+                                <input type="button" id="btnKanagataSearch" value="..." onclick="Search(4)" />
                                 <label id="CastingName"><b>金型表示</b></label>
                             </div>
                         </div>
@@ -123,7 +127,7 @@
                         </div>
                     </div>
                     <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                        <div  class="col-xs-12" style="padding-left:28px;">
+                        <div class="col-xs-12" style="padding-left:28px;">
                             <div id="taxgp" class="custom-control custom-radio" style="padding-left:0px!important;">
                                 <label class="text" id="taxinclude" style="padding-right:10px;">税込区分</label>
                                 <input type="radio" tabindex="12" id="taxNotInclude" onkeydown="KeyDown(event,this)" name="radios" checked>
@@ -166,17 +170,23 @@
                     </div>
                 </div>
             </div>
-           @* <div class="col-sm-1 col-md-12 col-lg-1"></div>*@
+            @* <div class="col-sm-1 col-md-12 col-lg-1"></div>*@
         </div>
     </div>
 
 </div>
-
+@Html.Partial("~/Views/Search/SearchBase.cshtml")
 
 
 @section Scripts{
-<script type="text/javascript">
-    $(document).ready(function () {     
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Keihi.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Brand.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Project.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Hinban.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Search.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Kanagata.js")"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
         $("#formtitle").text("経費登録");
         $("#CostCD").focus();
             var Mode = '@Model.Mode';
@@ -186,7 +196,7 @@
                 RequiredCheck($("#CostCD"));
                 DoubleByteCheck($("#CostCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "costname", "accounting");
-               
+
                 RequiredCheck($("#CostDate"));
                 DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi")');
 
@@ -194,10 +204,10 @@
                 YearCheck($("#year"), '@Url.Action("Year_Checking", "api/CommonApi")');
 
                 DoubleByteCheck($("#BrandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-                ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")', "brandname");
+                ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")', "BrandName");
 
-                DoubleByteCheck($("#projectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-                ExistsCheck($("#projectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")', "projectName");
+                DoubleByteCheck($("#proCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                ExistsCheck($("#proCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")', "proName");
 
                 DoubleByteCheck($("#HinbanCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 //ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/Touroku_KeihiApi")', "HinbanName");
@@ -206,13 +216,13 @@
                 DoubleByteCheck($("#CastingCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/Touroku_KeihiApi")', "CastingName");
 
-                RequiredCheck($("#AmountMoney"));                
+                RequiredCheck($("#AmountMoney"));
                 LessthanZeroCheck($("#AmountMoney"), '@Url.Action("LessthanZero_Checking", "api/CommonApi")');
             }
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
                 $("#CostCD").focus();
-                
+
                 $("SEQ").text(@Model.SEQ);
                 ShowData();
 
@@ -224,45 +234,12 @@
 
                 DoubleByteCheck($("#year"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 YearCheck($("#year"), '@Url.Action("Year_Checking", "api/CommonApi")');
-               
+
                 DoubleByteCheck($("#BrandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-                ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")', "brandname");
+                ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")', "BrandName");
 
-                DoubleByteCheck($("#projectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-                ExistsCheck($("#projectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")', "projectName");
-
-                DoubleByteCheck($("#HinbanCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-                //ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "HinbanName", $("#projectCD").val());
-
-                DoubleByteCheck($("#CastingCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-                ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/Touroku_KeihiApi")', "CastingName");
-
-                RequiredCheck($("#AmountMoney"));
-                LessthanZeroCheck($("#AmountMoney"), '@Url.Action("LessthanZero_Checking", "api/CommonApi")');
-
-                Cost('OK');
-            } 
-            else if (Mode == 'Copy') {
-                $('#btnSave').html('登録');
-                $("#CostCD").focus();
-                
-                $("SEQ").text(@Model.SEQ) ;
-                ShowData();
-
-                RequiredCheck($("#CostCD"));
-                DoubleByteCheck($("#CostCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-                ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "costname", "accounting");
-
-                DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi")');
-
-                DoubleByteCheck($("#year"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-                YearCheck($("#year"), '@Url.Action("Year_Checking", "api/CommonApi")');
-                
-                DoubleByteCheck($("#BrandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-                ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")', "brandname");
-
-                DoubleByteCheck($("#projectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-                ExistsCheck($("#projectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")', "projectName");
+                DoubleByteCheck($("#proCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                ExistsCheck($("#proCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")', "proName");
 
                 DoubleByteCheck($("#HinbanCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 //ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "HinbanName", $("#projectCD").val());
@@ -275,7 +252,40 @@
 
                 Cost('OK');
             }
-            else if (Mode == 'Delete') {              
+            else if (Mode == 'Copy') {
+                $('#btnSave').html('登録');
+                $("#CostCD").focus();
+
+                $("SEQ").text(@Model.SEQ) ;
+                ShowData();
+
+                RequiredCheck($("#CostCD"));
+                DoubleByteCheck($("#CostCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                ExistsCheck($("#CostCD"), "Keihi", '@Url.Action("M_Keihi_ExistsCheck", "api/Touroku_KeihiApi")', "costname", "accounting");
+
+                DateCheck($("#CostDate"), '@Url.Action("Date_Checking", "api/CommonApi")');
+
+                DoubleByteCheck($("#year"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                YearCheck($("#year"), '@Url.Action("Year_Checking", "api/CommonApi")');
+
+                DoubleByteCheck($("#BrandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")', "BrandName");
+
+                DoubleByteCheck($("#proCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                ExistsCheck($("#proCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")', "proName");
+
+                DoubleByteCheck($("#HinbanCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                //ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "HinbanName", $("#projectCD").val());
+
+                DoubleByteCheck($("#CastingCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                ExistsCheck($("#CastingCD"), "Casting", '@Url.Action("M_Casting_ExistsCheck", "api/Touroku_KeihiApi")', "CastingName");
+
+                RequiredCheck($("#AmountMoney"));
+                LessthanZeroCheck($("#AmountMoney"), '@Url.Action("LessthanZero_Checking", "api/CommonApi")');
+
+                Cost('OK');
+            }
+            else if (Mode == 'Delete') {
                 $('#btnSave').html('削除');
                 $("#CostCD").attr('disabled', 'disabled');
                 $("#CostDate").attr('disabled', 'disabled');
@@ -291,7 +301,13 @@
                 $("#Remark").attr('disabled', 'disabled');
                 $("#btnSave").focus();
                 ShowData();
-            } 
+        }
+        $("#divSearch").iziModal({
+            top: 50,
+            width: "70%",
+            overlayClose: false,
+            zindex: 1000,
+        });
     });
 
     //set data
@@ -303,10 +319,10 @@
             var ProjectData = JSON.parse(data);
             $("#SEQ").text(ProjectData[0].SEQ);
             $("#accounting").text(ProjectData[0].Accounting);
-       
+
             $("#CostCD").val(ProjectData[0].CostCD);
-            
-            if (!ProjectData[0].CostName) 
+
+            if (!ProjectData[0].CostName)
                 $("#costname").text("経費名表示");
             else $("#costname").text(ProjectData[0].CostName);
 
@@ -314,26 +330,26 @@
             $("#year").val(ProjectData[0].Year);
             $("#BrandCD").val(ProjectData[0].BrandCD);
 
-            if (!ProjectData[0].BrandName) 
-                $("#brandname").text("ブランド表示");
-            else $("#brandname").text(ProjectData[0].BrandName);
+            if (!ProjectData[0].BrandName)
+                $("#BrandName").text("ブランド表示");
+            else $("#BrandName").text(ProjectData[0].BrandName);
 
-            $("#projectCD").val(ProjectData[0].ProjectCD);
+            $("#proCD").val(ProjectData[0].ProjectCD);
 
-            if (!ProjectData[0].ProjectName) 
-                $("#projectName").text("プロジェクト表示");
-            else $("#projectName").text(ProjectData[0].ProjectName);
+            if (!ProjectData[0].ProjectName)
+                $("#proName").text("プロジェクト表示");
+            else $("#proName").text(ProjectData[0].ProjectName);
 
             $("#HinbanCD").val(ProjectData[0].HinbanCD);
 
-            if (!ProjectData[0].HinbanName) 
+            if (!ProjectData[0].HinbanName)
                 $("#HinbanName").text("品番表示");
             else $("#HinbanName").text(ProjectData[0].HinbanName);
 
             $("#CastingCD").val(ProjectData[0].CastingCD);
 
-            if (!ProjectData[0].CastingName) 
-                $("#CastingName").text("金型表示"); 
+            if (!ProjectData[0].CastingName)
+                $("#CastingName").text("金型表示");
             else $("#CastingName").text(ProjectData[0].CastingName);
 
             $("#Item").val(ProjectData[0].FreeItem1);
@@ -365,12 +381,12 @@
             }
         $("#costname").css("font-weight", "Bold");
         $("#accounting").css("font-weight", "Bold");
-        $("#brandname").css("font-weight", "Bold");
-        $("#projectName").css("font-weight", "Bold");
+        $("#BrandName").css("font-weight", "Bold");
+        $("#proName").css("font-weight", "Bold");
         $("#HinbanName").css("font-weight", "Bold");
         $("#CastingName").css("font-weight", "Bold");
 
-        
+
     }
 
     function FiscalDateCheck(result) {
@@ -410,9 +426,9 @@
             $("#costname").css("font-weight", "Bold");
 
             if ($("#accounting").text() == "1") {
-                $("#projectCD").removeAttr('disabled');
+                $("#proCD").removeAttr('disabled');
                 $("#HinbanCD").removeAttr('disabled');
-                RequiredCheck($("#projectCD"));
+                RequiredCheck($("#proCD"));
                 RequiredCheck($("#HinbanCD"));
 
                 RemoveRequired("#year");
@@ -428,7 +444,7 @@
 
                 $("#year").val('');
                 $("#BrandCD").val('');
-                $("#brandname").text('ブランド表示');
+                $("#BrandName").text('ブランド表示');
                 $("#CastingCD").val('');
                 $("#CastingName").text('金型表示');
                 $("#Item").val('');
@@ -440,18 +456,18 @@
                 RequiredCheck($("#year"));
                 RequiredCheck($("#BrandCD"));
 
-                RemoveRequired("#projectCD");
+                RemoveRequired("#proCD");
                 RemoveRequired("#HinbanCD");
                 RemoveRequired("#CastingCD");
                 RemoveRequired("#Item");
 
-                $("#projectCD").attr('disabled', 'disabled');
+                $("#proCD").attr('disabled', 'disabled');
                 $("#HinbanCD").attr('disabled', 'disabled');
                 $("#CastingCD").attr('disabled', 'disabled');
                 $("#Item").attr('disabled', 'disabled');
 
-                $("#projectCD").val('');
-                $("#projectName").text('プロジェクト表示');
+                $("#proCD").val('');
+                $("#proName").text('プロジェクト表示');
                 $("#HinbanCD").val('');
                 $("#HinbanName").text('品番表示');
                 $("#CastingCD").val('');
@@ -459,8 +475,8 @@
                 $("#Item").val('');
              }
              else if ($("#accounting").text() == "3") {
-                $("#projectCD").removeAttr('disabled');
-                RequiredCheck($("#projectCD"));
+                $("#proCD").removeAttr('disabled');
+                RequiredCheck($("#proCD"));
 
                 RemoveRequired("#year");
                 RemoveRequired("#BrandCD");
@@ -477,7 +493,7 @@
 
                 $("#year").val('');
                 $("#BrandCD").val('');
-                $("#brandname").text('ブランド表示');
+                $("#BrandName").text('ブランド表示');
                 $("#HinbanCD").val('');
                 $("#HinbanName").text('品番表示');
                 $("#CastingCD").val('');
@@ -491,23 +507,23 @@
                 RemoveRequired("#year");
                 RemoveRequired("#BrandCD");
                 RemoveRequired("#HinbanCD");
-                RemoveRequired("#projectCD");
+                RemoveRequired("#proCD");
                 RemoveRequired("#Item");
 
                  $("#year").attr('disabled', 'disabled');
                  $("#BrandCD").attr('disabled', 'disabled');
                  $("#Seasongp").children().attr('disabled', 'disabled');
                  $("#HinbanCD").attr('disabled', 'disabled');
-                 $("#projectCD").attr('disabled', 'disabled');
+                $("#proCD").attr('disabled', 'disabled');
                  $("#Item").attr('disabled', 'disabled');
 
                 $("#year").val('');
                 $("#BrandCD").val('');
-                $("#brandname").text('ブランド表示');
+                $("#BrandName").text('ブランド表示');
                 $("#HinbanCD").val('');
                 $("#HinbanName").text('品番表示');
-                $("#projectCD").val('');
-                $("#projectName").text('プロジェクト表示');
+                $("#proCD").val('');
+                $("#proName").text('プロジェクト表示');
                 $("#Item").val('');
              }
              else if ($("#accounting").text() == "5") {
@@ -517,7 +533,7 @@
                 RemoveRequired("#year");
                 RemoveRequired("#BrandCD");
                 RemoveRequired("#HinbanCD");
-                RemoveRequired("#projectCD");
+                RemoveRequired("#proCD");
                 RemoveRequired("#CastingCD");
 
                  $("#year").attr('disabled', 'disabled');
@@ -525,17 +541,17 @@
                  $("#Seasongp").children().attr('disabled', 'disabled');
                  $("#HinbanCD").attr('disabled', 'disabled');
                  $("#CastingCD").attr('disabled', 'disabled');
-                 $("#projectCD").attr('disabled', 'disabled');
+                $("#proCD").attr('disabled', 'disabled');
 
                 $("#year").val('');
                 $("#BrandCD").val('');
-                $("#brandname").text('ブランド表示');
+                $("#BrandName").text('ブランド表示');
                 $("#HinbanCD").val('');
                 $("#HinbanName").text('品番表示');
                 $("#CastingCD").val('');
                 $("#CastingName").text('金型表示');
-                $("#projectCD").val('');
-                $("#projectName").text('プロジェクト表示');
+                $("#proCD").val('');
+                $("#proName").text('プロジェクト表示');
              }
         }
         else {
@@ -560,18 +576,18 @@
               //  else $("#allyear").focus();
         }
         else {
-            $("#brandname").text('ブランド表示');
+            $("#BrandName").text('ブランド表示');
         }
-        $("#brandname").css("font-weight", "Bold");
+        $("#BrandName").css("font-weight", "Bold");
     }
 
     function Project(result) {
         if (result == 'OK') {
-            if ($("#projectCD").val()) {
-                ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "HinbanName", $("#projectCD").val());
+            if ($("#proCD").val()) {
+                ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "HinbanName", $("#proCD").val());
                 if ($("#accounting").text() == "1" || $("#accounting").text() == "3") {
                     var Kmodel = {
-                        ProjectCD: $('#projectCD').val()
+                        ProjectCD: $('#proCD').val()
                     };
                     var data = CalltoApiController('@Url.Action("M_project_SelectByProjectCD", "api/Touroku_KeihiApi")', Kmodel);
                     var result = JSON.parse(data);
@@ -586,14 +602,14 @@
                 }
             }
             else
-                $("#projectName").text('プロジェクト表示');
+                $("#proName").text('プロジェクト表示');
 
-            $("#projectName").css("font-weight", "Bold");
+            $("#proName").css("font-weight", "Bold");
         }
         else {
-            $("#projectName").text('プロジェクト表示');
+            $("#proName").text('プロジェクト表示');
         }
-        $("#projectName").css("font-weight", "Bold");
+        $("#proName").css("font-weight", "Bold");
     }
 
     function Hinban(result) {
@@ -664,16 +680,16 @@
                  Year: $('#year').val(),
                  CostAmount: ($('#AmountMoney').val()).replace(",",""),
                  InputAmount: ($('#BodyAmount').val()).replace(",",""),
-                 Remarks: $('#Remark').val(),                
+                 Remarks: $('#Remark').val(),
                  Mode:'@Model.Mode'
             };
 
-            //For Brand 
+            //For Brand
             if ($('#accounting').text() == "2") {
                 Kmodel.BrandCD = $('#BrandCD').val();
             }
             else Kmodel.BrandCD = "@@@@@@";
-            
+
             //For Season
             if ($('#accounting').text() == "2" || $('#accounting').text() == "1" || $('#accounting').text() == "3") {
                 if ($('#allyear').is(':checked'))
@@ -689,7 +705,7 @@
 
             //For Project
             if ( $('#accounting').text() == "1" || $('#accounting').text() == "3") {
-                Kmodel.ProjectCD= $('#projectCD').val();
+                Kmodel.ProjectCD = $('#proCD').val();
             }
             else Kmodel.ProjectCD = "@@@@@@";
 
@@ -716,7 +732,7 @@
             else if ($('#taxInclude').is(':checked'))
                 Kmodel.ZeikomiKBN = "2";
 
-           
+
             var data = CalltoApiController('@Url.Action("D_Cost_CUD", "api/Touroku_KeihiApi")', Kmodel);
             ShowSuccessMessage(data,'@Url.Action("Touroku_KeihiList", "Touroku_Keihi")?CostCD=' + '@Model.CostCD' + '&CostName=' + '@Model.CostName' + '&CostDateFrom=' + '@Model.CostDateFrom' + '&CostDateTo=' + '@Model.CostDateTo' + '&Year=' + '@Model.Year' + '&BrandCD=' + '@Model.BrandCD' + '&BrandName=' + '@Model.BrandName' + '&Season=' + '@Model.Season' + '&ProjectCD=' + '@Model.ProjectCD' + '&ProjectName=' + '@Model.ProjectName' + '&HinbanCD=' + '@Model.HinbanCD' + '&HinbanName=' + '@Model.HinbanName' +'&flg=' + '@Model.flg');
         }
@@ -726,7 +742,7 @@
             var res = ErrorCheckOnSave();
             if (res == "0") {
                 var Mode = '@Model.Mode';
-               
+
                 if (Mode == "Delete") {   //Delete
                     ShowConfirmMessage("Q102", "DeleteConfrim");
                     DoProcess();
@@ -768,7 +784,7 @@
         location.href = '@Url.Action("Touroku_KeihiList", "Touroku_Keihi")?CostCD=' + '@Model.CostCD' + '&CostName=' + '@Model.CostName' + '&CostDateFrom=' + '@Model.CostDateFrom' + '&CostDateTo=' + '@Model.CostDateTo' + '&Year=' + '@Model.Year' + '&BrandCD=' + '@Model.BrandCD' + '&BrandName=' + '@Model.BrandName' + '&Season=' + '@Model.Season' + '&ProjectCD=' + '@Model.ProjectCD' + '&ProjectName=' + '@Model.ProjectName' + '&HinbanCD=' + '@Model.HinbanCD' + '&HinbanName=' + '@Model.HinbanName' +'&flg=' + '@Model.flg';
     }
 
-</script>
+    </script>
     <script src="@Url.Content("~/Scripts/datepicker.js")"></script>
     <script src="@Url.Content("~/Scripts/datepicker.en.js")"></script>
 
