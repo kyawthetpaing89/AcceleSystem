@@ -37,6 +37,10 @@
     border-top: 1px solid #d3dcd3;
 }
 
+#tblHinban > tbody > tr > td {
+    border-top: 1px solid #d3dcd3;
+}
+
     #tblUser th.sorting_disabled.Border1 {
         width: 100px !important;
     }
