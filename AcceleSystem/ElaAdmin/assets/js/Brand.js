@@ -39,10 +39,10 @@ function BindBrandTable(response) {
                 className: "Border1",
                 render: function (data, type, row) {
                     if ($("#BrandType").val() == "1") {
-                        return '<table class="col-md-12"><tr><td style="width:20%">' + data.BrandCD + '</td><td style="width:60%">' + data.BrandName + '</td><td style="width:20%"><label><a href="#" onClick="EditBrand(\'' + data.BrandCD + '\')" style="color:blue">編集</a></label>&nbsp;&nbsp;&nbsp;<label><a href="#" onClick="DelBrand(\'' + data.BrandCD + '\')" style="color:red">削除</a></label></td></tr>'
+                        return '<table class="col-md-12"><tr><td style="width:30%">' + data.BrandCD + '</td><td style="width:60%">' + data.BrandName + '</td><td style="width:10%"><label><a href="#" onClick="EditBrand(\'' + data.BrandCD + '\')" style="color:blue">編集</a></label>&nbsp;&nbsp;&nbsp;<label><a href="#" onClick="DelBrand(\'' + data.BrandCD + '\')" style="color:red">削除</a></label></td></tr>'
                     }
                     else {
-                        return '<table class="col-md-12"><tr><td style="width:20%">' + data.BrandCD + '</td><td style="width:60%">' + data.BrandName + '</td><td style="width:20%"><label><a href="#" onClick="ReturnSelected(\'' + data.BrandCD + '\',\''+ data.BrandName +'\')" style="color:blue">選択</a></label></td></tr>'
+                        return '<table class="col-md-12"><tr><td style="width:30%">' + data.BrandCD + '</td><td style="width:60%">' + data.BrandName + '</td><td style="width:10%"><label><a href="#" onClick="ReturnSelected(\'' + data.BrandCD + '\',\''+ data.BrandName +'\')" style="color:blue">選択</a></label></td></tr>'
                     }
                 }
             },
