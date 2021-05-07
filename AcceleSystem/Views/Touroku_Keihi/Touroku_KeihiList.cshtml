@@ -184,6 +184,7 @@
                                             <div class="text-s text-custom1 text-uppercase mb-1">
                                                 <label id="text" style="padding-right: 5px;">ブランド</label>
                                                 <input type="text" tabindex="6" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)"
+                                                       data-doublebytecheck-url='@Url.Action("DoubleByte_Checking", "api/CommonApi")'
                                                        data-existcheck-url='@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")'
                                                        id="BrandCD" name="brandCD" maxlength="6" required placeholder="入力">
                                                 <input type="button" id="btnBrandSearch" value="..." onclick="Search(1)" />
