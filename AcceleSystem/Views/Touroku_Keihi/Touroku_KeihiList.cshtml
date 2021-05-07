@@ -314,7 +314,7 @@
                else $("#FW").prop("checked", false);
 
            }
-           KeihiList_Load();
+           
             //ExistsCheck($("#PartCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "PartName", $("#projectCD").val());
            $("#divSearch").iziModal({
                top: 50,
@@ -322,7 +322,7 @@
                overlayClose: false,
                zindex: 1000,
            });
-
+           KeihiList_Load();
        });
 
        $('#btnAdd').keydown(function (e) {
