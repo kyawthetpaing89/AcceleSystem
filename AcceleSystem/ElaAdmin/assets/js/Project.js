@@ -1,20 +1,20 @@
 ﻿function ProjectList_Load(){
     $("#divMainList #BrandCD").focus();
     DoubleByteCheck($("#divMainList #BrandCD"), $("#divMainList #BrandCD").data('doublebytecheck-url'));
-    ExistsCheck($("#divMainList #BrandCD"), "Brand", $("#divMainList #BrandCD").data('existcheck-url'), "BrandName");
+    ExistsCheck($("#divMainList #BrandCD"), "Brand", $("#divMainList #BrandCD").data('existcheck-url'), "divMainList #BrandName");
 
     //@* YearCheck($("#Year"), '@Url.Action("YearMonth_Checking", "api/CommonApi")');*@
     DoubleByteCheck($("#divMainList #Year"), $("#divMainList #BrandCD").data('doublebytecheck-url'));
     YearCheck($("#divMainList #Year"), $("#divMainList #Year").data('yearcheck-url'));
 
     DoubleByteCheck($("#divMainList #ProjectCD"), $("#divMainList #BrandCD").data('doublebytecheck-url'));
-    ExistsCheck($("#divMainList #ProjectCD"), "Project", $("#divMainList #ProjectCD").data('existcheck-url'), "ProjectName");
+    ExistsCheck($("#divMainList #ProjectCD"), "Project", $("#divMainList #ProjectCD").data('existcheck-url'), "divMainList #ProjectName");
 
     YearMonthCheck($("#divMainList #PeriodStart"), $("#divMainList #PeriodStart").data('yearmonthcheck-url'));
     YearMonthCheck($("#divMainList #PeriodEnd"), $("#divMainList #PeriodStart").data('yearmonthcheck-url'));
 
     DoubleByteCheck($("#divMainList #ProjectManager"), $("#divMainList #BrandCD").data('doublebytecheck-url'));
-    ExistsCheck($("#divMainList #ProjectManager"), "User", $("#divMainList #ProjectManager").data('existcheck-url'), "ProjectManagerName");
+    ExistsCheck($("#divMainList #ProjectManager"), "User", $("#divMainList #ProjectManager").data('existcheck-url'), "divMainList #ProjectManagerName");
 }
 
 function CheckboxCheck(result) {
