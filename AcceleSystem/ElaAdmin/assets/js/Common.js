@@ -161,7 +161,7 @@ function ErrorCheckOnSave(v1) {
 }
 
 function KeyDown(e, ctrl, functionname) {
-    if (e.which == 13) {
+    if (e.which == 13 || e.which == 9) {
         e.preventDefault();
         var result = ErrChk(ctrl);
         if (result == "0") {
