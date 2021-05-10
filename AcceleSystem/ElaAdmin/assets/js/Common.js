@@ -645,13 +645,24 @@ function ErrChk(ctrl) {
 }
 
 function moveNext(ctrl) {
-    do {
-        ctrl = $('[tabIndex=' + (+$(ctrl).attr("tabIndex") + 1) + ']');
-        if (!$(ctrl).length) {
-            ctrl = $('[tabIndex=1]');
-            break;
-        }
-    } while ($(ctrl).is('[disabled=disabled]'));
+    if ($("#divSearch").is(":visible")) {
+        do {
+            ctrl = $('#divSearch [tabIndex=' + (+$(ctrl).attr("tabIndex") + 1) + ']');
+            if (!$(ctrl).length) {
+                ctrl = $('#divSearch [tabIndex=1]');
+                break;
+            }
+        } while ($(ctrl).is('[disabled=disabled]'));
+    }
+    else {
+        do {
+            ctrl = $('[tabIndex=' + (+$(ctrl).attr("tabIndex") + 1) + ']');
+            if (!$(ctrl).length) {
+                ctrl = $('[tabIndex=1]');
+                break;
+            }
+        } while ($(ctrl).is('[disabled=disabled]'));
+    }
     
     $(ctrl).select();
     $(ctrl).focus();
