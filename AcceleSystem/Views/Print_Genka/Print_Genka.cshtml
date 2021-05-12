@@ -387,7 +387,6 @@
                             var data = CalltoApiController('@Url.Action("Print_Genka_ProjectData", "api/Print_GenkaApi")', pmodel);
                             var prj_array = typeof JSONString != 'object' ? JSON.parse(data) : JSONString;
 
-
                             for (j = 0; j < prj_array.length; j++) {
                                 if (prj_array[j]["SortKey"] == '30' || prj_array[j]["SortKey"] == '31' || prj_array[j]["SortKey"] == '32') {
                                     switch (rowcountC) {
@@ -520,6 +519,81 @@
                                         commaSeparate(prjPTotal_array[l]["CostHaihu"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["Total"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["CostShikakari"]) + '</td>';
                                     $('#tblExcel tbody').append($('<tr>'));
                                     $('#tblExcel tbody tr:last').append(add_row);
+                                }
+                            }
+                        }
+                        else if (array[i]["SortKey"] == '40') {
+                            var pmodel = {
+                                ProjectCD: '',
+                                LoginID: '@LoginID',
+                                Type: 'CLite'
+                            };
+                            rowspancount = array[i]["Row_Count"];
+                            var hinban_data = CalltoApiController('@Url.Action("Print_Genka_ProjectData", "api/Print_GenkaApi")', pmodel);
+                            var hinban_array = typeof JSONString != 'object' ? JSON.parse(hinban_data) : JSONString;
+
+                            for (j = 0; j < hinban_array.length; j++) {
+                                if (hinban_array[j]["SortKey"] == '40') {
+                                    prj_count = 1;
+                                    var rowcountD = 1, colD2, k, style;
+                                    var pmodel = {
+                                        ProjectCD: hinban_array[j]["ProjectCD"],
+                                        HinbanCD: hinban_array[j]["HinbanCD"],
+                                        LoginID: '@LoginID',
+                                        Type: 'D'
+                                    };
+                                    var hdata = CalltoApiController('@Url.Action("Print_Genka_ProjectData", "api/Print_GenkaApi")', pmodel);
+                                    var hinbanD_array = typeof JSONString != 'object' ? JSON.parse(hdata) : JSONString;
+                                    for (k = 0; k < hinbanD_array.length; k++) {
+                                        switch (rowcountD) {
+                                            case 1: colD2 = hinbanD_array[0]["HinbanCD"] + '   ' + hinbanD_array[0]["HinbanName"];
+                                                break;
+                                            case 2: colD2 = '色数     ' + hinbanD_array[0]["Color"] + '色';
+                                                break;
+                                            case 3: colD2 = '生産数    ' + commaSeparate(hinbanD_array[0]["Production"]);
+                                                break;
+                                            case 4: colD2 = '累計納品数  ' + commaSeparate(hinbanD_array[0]["Complete"]);
+                                                break;
+                                            case 5: colD2 = '予定販売定価 ' + commaSeparate(hinbanD_array[0]["SalesPrice"]);
+                                                break;
+                                            case 6: colD2 = '総金額    ' + commaSeparate(hinbanD_array[0]["TotalValue"]); //2021-03-31 by syk
+                                                break;
+                                            case 7: colD2 = '金型名     ' + hinbanD_array[0]["CastingName"];
+                                                break;
+                                            case 8: colD2 = '見込利益   ' + commaSeparate(hinbanD_array[0]["Profit"]);
+                                                break;
+                                            case 9: colD2 = '見込利益率  ' + hinbanD_array[0]["ProfitPercentage"] + '%';
+                                                break;
+                                            default: colD2 = '';
+                                                break;
+                                        }
+
+                                        if (k == hinbanD_array.length - 1 && j < hinbanD_array.length - 1)
+                                            style = 'style = "border-bottom: 1px solid;"';
+                                        else
+                                            style = '';
+
+                                        if (hinbanD_array[k]["SortKey"] !== 42 && hinbanD_array[k]["SortKey"] !== 43) {
+                                            add_row = '<td>' + colD2 + '</td><td>' + hinbanD_array[k]["CostName"] + '</td><td>' + replaceZero(hinbanD_array[k]["CostPre"]) + '</td><td>' +
+                                                replaceZero(hinbanD_array[k]["Cost1"]) + '</td><td>' + replaceZero(hinbanD_array[k]["Cost2"]) + '</td><td>' + replaceZero(hinbanD_array[k]["Cost3"]) + '</td><td>' + replaceZero(hinbanD_array[k]["Cost4"]) + '</td><td>' +
+                                                replaceZero(hinbanD_array[k]["Cost5"]) + '</td><td>' + replaceZero(hinbanD_array[k]["Cost6"]) + '</td><td>' + replaceZero(hinbanD_array[k]["Cost7"]) + '</td><td>' + replaceZero(hinbanD_array[k]["Cost8"]) + '</td><td>' +
+                                                replaceZero(hinbanD_array[k]["Cost9"]) + '</td><td>' + replaceZero(hinbanD_array[k]["Cost10"]) + '</td><td>' + replaceZero(hinbanD_array[k]["Cost11"]) + '</td><td>' + replaceZero(hinbanD_array[k]["Cost12"]) + '</td><td>' +
+                                                replaceZero(hinbanD_array[k]["CostHaihu"]) + '</td><td>' + commaSeparate(hinbanD_array[k]["CostHimoku"]) + '</td><td>' + commaSeparate(hinbanD_array[k]["CostShikakari"]) + '</td>';
+                                        }
+                                        else if (hinbanD_array[k]["SortKey"] == '42') {
+                                            add_row = '<td>' + colD2 + '</td>';
+                                        }
+                                        else if (hinbanD_array[k]["SortKey"] == '43') {
+                                            add_row = '<td ' + style + '>' + colD2 + '</td><td style="border-bottom: 1px solid">' + hinbanD_array[k]["CostName"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(hinbanD_array[k]["CostPre"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
+                                                commaSeparate(hinbanD_array[k]["Cost1"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(hinbanD_array[k]["Cost2"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(hinbanD_array[k]["Cost3"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(hinbanD_array[k]["Cost4"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
+                                                commaSeparate(hinbanD_array[k]["Cost5"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(hinbanD_array[k]["Cost6"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(hinbanD_array[k]["Cost7"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(hinbanD_array[k]["Cost8"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
+                                                commaSeparate(hinbanD_array[k]["Cost9"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(hinbanD_array[k]["Cost10"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(hinbanD_array[k]["Cost11"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(hinbanD_array[k]["Cost12"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
+                                                commaSeparate(hinbanD_array[k]["CostHaihu"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(hinbanD_array[k]["CostHimoku"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(hinbanD_array[k]["CostShikakari"]) + '</td>';
+                                        }
+                                        rowcountD = rowcountD + 1;
+                                        $('#tblExcel tbody').append($('<tr>'));
+                                        $('#tblExcel tbody tr:last').append(add_row);
+                                    }
                                 }
                             }
                         }
