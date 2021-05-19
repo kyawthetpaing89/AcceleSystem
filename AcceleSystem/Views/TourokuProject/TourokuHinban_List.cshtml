@@ -124,8 +124,8 @@
                 <div class="card-body card-block" style="padding-right: 0px; padding-left: 10px;">
                     <div class="row form-group">
                         <div class="col col-md-12" style="padding-right: 0px;">
-                            <button id="btnAdd" onclick="btnAddClick()" class="btn btn-primary col-xl-3 text-center" tabindex="20">品番追加</button>&nbsp;
-                            <button id="btnnext" onclick="btnnextClick()" class="btn btn-next col-xl-6 text-center" tabindex="21">プロジェクト検索</button>
+                            <button id="btnAdd" onclick="btnAddClick()" class="btn btn-primary col-xl-3 text-center" tabindex="11">品番追加</button>&nbsp;
+                            <button id="btnnext" onclick="btnnextClick()" class="btn btn-next col-xl-6 text-center" tabindex="12">プロジェクト検索</button>
 
                             <div id="registration" style="padding-top: 1.8rem!important;">
                                 <div>
@@ -141,7 +141,7 @@
                                                    onkeydown="KeyDown(event,this,'ProjectCDCheck')" id="proCD" name="proCD" maxlength="10" required placeholder="入力"
                                                    data-existcheck-url='@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")' style="width:105px">
                                             <input type="button" id="btnProjectSearch" value="..." onclick="Search(6)" />
-                                            <input type="text" tabindex="2" class="text-line col-sm-12 col-md-12 col-xl-4 text-left" onkeydown="KeyDown(event,this)" id="proName" name="proName" maxlength="60" required placeholder="入力">
+                                            <input type="text" tabindex="-1" class="text-line col-sm-12 col-md-12 col-xl-4 text-left" onkeydown="KeyDown(event,this)" id="proName" name="proName" maxlength="60" required placeholder="入力">
                                         </div>
                                     </div>
                                 </div>
@@ -151,9 +151,9 @@
                                             <label id="text" style="padding-right:3px;">
                                                 年度/シーズン
                                             </label>
-                                            <input type="text" tabindex="3" class="text-line col-sm-12 col-md-12 col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="HLyear" name="year" maxlength="4" required placeholder="入力" style="width:70px">
+                                            <input type="text" tabindex="-1" class="text-line col-sm-12 col-md-12 col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="HLyear" name="year" maxlength="4" required placeholder="入力" style="width:70px">
 
-                                            <input type="text" tabindex="4" class="text-line col-sm-12 col-md-12 col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="HLseason" name="season" maxlength="40" required placeholder="入力" style="width:70px">
+                                            <input type="text" tabindex="-1" class="text-line col-sm-12 col-md-12 col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="HLseason" name="season" maxlength="40" required placeholder="入力" style="width:70px">
                                         </div>
                                     </div>
                                 </div>
@@ -163,8 +163,8 @@
                                             <label id="text" style="padding-right:3px;">
                                                 ブランド
                                             </label>
-                                            <input type="text" tabindex="5" class="text-line col-sm-12 col-md-12 col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="HLBrandCD" name="brand" maxlength="50" required placeholder="入力" style="width:70px">
-                                            <input type="text" tabindex="6" class="text-line col-sm-12 col-md-12 col-xl-6 text-left" onkeydown="KeyDown(event,this)" id="HLBrandName" name="brandname" maxlength="50" required placeholder="入力">
+                                            <input type="text" tabindex="-1" class="text-line col-sm-12 col-md-12 col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="HLBrandCD" name="brand" maxlength="50" required placeholder="入力" style="width:70px">
+                                            <input type="text" tabindex="-1" class="text-line col-sm-12 col-md-12 col-xl-6 text-left" onkeydown="KeyDown(event,this)" id="HLBrandName" name="brandname" maxlength="50" required placeholder="入力">
                                         </div>
                                     </div>
                                 </div>
@@ -174,9 +174,9 @@
                                             <label style="padding-right:3px;">
                                                 予定期間
                                             </label>
-                                            <input type="text" tabindex="7" class="text-line col-sm-12 col-md-12 col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="HLStartDate" name="StartDate" maxlength="7" required placeholder="入力" style="width:100px">
+                                            <input type="text" tabindex="-1" class="text-line col-sm-12 col-md-12 col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="HLStartDate" name="StartDate" maxlength="7" required placeholder="入力" style="width:100px">
                                             &nbsp;~&nbsp;
-                                            <input type="text" tabindex="8" class="text-line col-sm-12 col-md-12 col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="HLEndDate" name="EndDate" maxlength="7" required placeholder="入力" style="width:100px">
+                                            <input type="text" tabindex="-1" class="text-line col-sm-12 col-md-12 col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="HLEndDate" name="EndDate" maxlength="7" required placeholder="入力" style="width:100px">
 
                                         </div>
                                     </div>
@@ -187,9 +187,9 @@
                                             <label style="padding-right:3px;">
                                                 総生産数/総金額
                                             </label>
-                                            <input type="text" tabindex="9" class="text-line col-sm-12 col-md-12 col-xl-3 text-right" onkeydown="KeyDown(event,this)" id="tpNo" name="tpNo" maxlength="10" required placeholder="入力">
+                                            <input type="text" tabindex="-1" class="text-line col-sm-12 col-md-12 col-xl-3 text-right" onkeydown="KeyDown(event,this)" id="tpNo" name="tpNo" maxlength="10" required placeholder="入力">
 
-                                            <input type="text" tabindex="10" class="text-line col-sm-12 col-md-12 col-xl-3 text-right" onkeydown="KeyDown(event,this)" id="tAmount" name="tAmount" maxlength="10" required placeholder="入力">
+                                            <input type="text" tabindex="-1" class="text-line col-sm-12 col-md-12 col-xl-3 text-right" onkeydown="KeyDown(event,this)" id="tAmount" name="tAmount" maxlength="10" required placeholder="入力">
                                         </div>
                                     </div>
                                 </div>
@@ -197,13 +197,13 @@
                                     <div class="col-md-12" style="padding-left:69px;">
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label style="padding-right:3px;">品番名</label>
-                                            <input type="text" tabindex="11" class="text-line col-sm-12 col-md-12 col-xl-3 text-left"
+                                            <input type="text" tabindex="2" class="text-line col-sm-12 col-md-12 col-xl-3 text-left"
                                                    data-doublebytecheck-url='@Url.Action("DoubleByte_Checking", "api/CommonApi")'
                                                    data-existcheck-url='@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")'
                                                    data-checklist-url='@Url.Action("M_Hinban_Check_List", "api/TourokuProjectApi")'
                                                    onkeydown="KeyDown(event,this)" id="HLHinbanCD" name="HinbanCD" maxlength="6" required placeholder="入力" style="width:70px">
 
-                                            <input type="text" tabindex="12" class="text-line col-sm-12 col-md-12 col-xl-6 text-left" onkeydown="KeyDown(event,this)" id="HLHinbanName" name="HLHinbanName" maxlength="60" required placeholder="入力">
+                                            <input type="text" tabindex="3" class="text-line col-sm-12 col-md-12 col-xl-6 text-left" onkeydown="KeyDown(event,this)" id="HLHinbanName" name="HLHinbanName" maxlength="60" required placeholder="入力">
 
                                         </div>
                                     </div>
@@ -213,9 +213,9 @@
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label style="padding-right:3px;">予定単価</label>
 
-                                            <input type="text" tabindex="13" class="text-line col-sm-12 col-md-12 col-xl-3 text-right input-numeral1" onkeydown="KeyDown(event,this)" id="StartPrice" name="StartPrice" maxlength="7" required placeholder="0">
+                                            <input type="text" tabindex="4" class="text-line col-sm-12 col-md-12 col-xl-3 text-right input-numeral1" onkeydown="KeyDown(event,this)" id="StartPrice" name="StartPrice" maxlength="7" required placeholder="0">
                                             &nbsp;~&nbsp;
-                                            <input type="text" tabindex="14" class="text-line col-sm-12 col-md-12 col-xl-3 text-right input-numeral2" onkeydown="KeyDown(event,this,'CheckPrice')" id="EndPrice" name="EndPrice" maxlength="7" required placeholder="5,000">
+                                            <input type="text" tabindex="5" class="text-line col-sm-12 col-md-12 col-xl-3 text-right input-numeral2" onkeydown="KeyDown(event,this,'CheckPrice')" id="EndPrice" name="EndPrice" maxlength="7" required placeholder="5,000">
 
                                         </div>
                                     </div>
@@ -224,11 +224,11 @@
                                     <div class="col-md-12" style="padding-left:83px;">
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label style="padding-right:3px;">金型</label>
-                                            <input type="text" tabindex="15" class="text-line col-sm-12 col-md-12 col-xl-3 text-left"
+                                            <input type="text" tabindex="6" class="text-line col-sm-12 col-md-12 col-xl-3 text-left"
                                                    data-existcheck-url='@Url.Action("M_Casting_ExistsCheck", "api/TourokuProjectApi")'
                                                    onkeydown="KeyDown(event,this)" id="HLCastingCD" name="CastingCD" maxlength="10" required placeholder="入力" style="width:105px">
                                             <input type="button" id="btnHibanSearch" value="..." onclick="Search(7)" />
-                                            <input type="text" tabindex="16" class="text-line col-sm-12 col-md-12 col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="HLCastingName" name="CastingName" maxlength="40" required placeholder="入力">
+                                            <input type="text" tabindex="7" class="text-line col-sm-12 col-md-12 col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="HLCastingName" name="CastingName" maxlength="40" required placeholder="入力">
 
                                         </div>
                                     </div>
@@ -237,9 +237,9 @@
                                     <div class="col-md-12" style="padding-left:50px;">
                                         <div id="CompleteYMgp" class="text-s text-custom1 text-uppercase mb-1">
                                             <label class="text" style="padding-right:10px;">納品状況</label>
-                                            <input type="checkbox" tabindex="17" id="deliveryleft" name="check" value="0" onkeydown="KeyDown(event,this)" checked>
+                                            <input type="checkbox" tabindex="8" id="deliveryleft" name="check" value="0" onkeydown="KeyDown(event,this)" checked>
                                             <label for="deliveryleft" style="padding-right:20px;">納品残あり</label>
-                                            <input type="checkbox" tabindex="18" id="payment" name="check" value="1" onkeydown="KeyDown(event,this,'CheckCheckbox')">
+                                            <input type="checkbox" tabindex="9" id="payment" name="check" value="1" onkeydown="KeyDown(event,this,'CheckCheckbox')">
                                             <label for="payment" style="padding-right:20px;">完納</label>
 
                                         </div>
@@ -248,7 +248,7 @@
                                 <div class="pt-3 md-form" style="padding-left:0px; padding-top:2rem;">
                                     <div class="col-xl-12">
                                         <div class="col-xl-9">
-                                            <button id="btnSearch" tabindex="19" onclick="HinbanSearch()" class="btn btn-dark col-xl-4 text-center float-lg-right">検索</button>
+                                            <button id="btnSearch" tabindex="10" onclick="HinbanSearch()" class="btn btn-dark col-xl-4 text-center float-lg-right">検索</button>
                                             &nbsp;&nbsp;&nbsp;&nbsp;
 
                                         </div>

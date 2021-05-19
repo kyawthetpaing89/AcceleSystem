@@ -60,7 +60,7 @@
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <input type="text" tabindex="2" class="text-line col-xl-3 text-left" id="BrandCD" name="brandcd" onkeydown="KeyDown(event,this,'BrandCheck')" maxlength="6" style="width:140px;" placeholder="ブランド名">
-                            <label id="brandname"><b>ブランド表示</b></label>
+                            <label id="brandname"><b>@*ブランド表示*@</b></label>
                         </div>
                     </div>
                 </div>
@@ -182,10 +182,10 @@
         }
 
         function BrandCheck(result) {    // Make bold to BrandName after databind
-            if (result == 'OK') {
+            if (result == 'OK' && $("#BrandCD").val()) {
                 $("#brandname").css("font-weight", "Bold");
             }
-            else $("#brandname").text('ブランド表示');
+            else $("#brandname").text('');
             $("#brandname").css("font-weight", "Bold");
         }
 
@@ -273,7 +273,7 @@
 
                             ShowTargetYear();
                             $("#BrandCD").val('');
-                            $("#brandname").text('ブランド表示');
+                            $("#brandname").text('');
                             $("#brandname").css("font-weight", "Bold");
                             $('#allyear').prop('checked', true);
                             $('#SS').prop('checked', true);

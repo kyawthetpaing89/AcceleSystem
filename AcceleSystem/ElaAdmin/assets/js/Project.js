@@ -1,4 +1,4 @@
-﻿function ProjectList_Load(){
+﻿function ProjectList_Load() {
     $("#divMainList #BrandCD").focus();
     DoubleByteCheck($("#divMainList #BrandCD"), $("#divMainList #BrandCD").data('doublebytecheck-url'));
     ExistsCheck($("#divMainList #BrandCD"), "Brand", $("#divMainList #BrandCD").data('existcheck-url'), "divMainList #BrandName");
