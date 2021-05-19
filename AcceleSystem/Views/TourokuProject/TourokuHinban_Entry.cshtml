@@ -22,9 +22,9 @@
                             <label id="text" style="padding-right: 5px;">
                                 プロジェクト
                             </label>
-                            <input type="text" tabindex="1" class="text-line col-sm-12 col-md-12 col-lg-3 text-left" onkeydown="KeyDown(event,this,'ProjectCheck')" id="ProjectCD" name="ProjectCD" maxlength="10" required placeholder="入力" style="width:110px;">&nbsp;
-                            
-                            <input type="text" tabindex="-1" class="text-line col-sm-12 col-md-12 col-lg-6 text-left" onkeydown="KeyDown(event,this)" id="ProjectName" name="ProjectName" maxlength="60" required placeholder="入力">
+                            <input type="text" tabindex="1" class="text-line col-sm-12 col-md-12 col-lg-3 text-left" onkeydown="KeyDown(event,this,'ProjectCheck')" id="proCD" name="ProjectCD" maxlength="10" required placeholder="入力" style="width:110px;">&nbsp;
+                            <input type="button" id="btnProjectSearch" value="..." onclick="Search(6)" />
+                            <input type="text" tabindex="-1" class="text-line col-sm-12 col-md-12 col-lg-6 text-left" onkeydown="KeyDown(event,this)" id="proName" name="ProjectName" maxlength="60" required placeholder="入力">
                         </div>
                     </div>
                 </div>
@@ -159,6 +159,7 @@
     <script src="@Url.Content("~/ElaAdmin/assets/js/Search.js")"></script>
     <script src="@Url.Content("~/ElaAdmin/assets/js/Hinban.js")"></script>
     <script src="@Url.Content("~/ElaAdmin/assets/js/Kanagata.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Project.js")"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("品番登録");
@@ -180,10 +181,10 @@
             if (Mode == 'New') {
                 $('#btnSave').html('登録');
 
-                $("#ProjectCD").focus();
-                RequiredCheck($("#ProjectCD"));
-                DoubleByteCheck($("#ProjectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-                ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "ProjectName");
+                $("#proCD").focus();
+                RequiredCheck($("#proCD"));
+                DoubleByteCheck($("#proCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                ExistsCheck($("#proCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "proName");
 
                 RequiredCheck($("#HinbanCD"));
                 DoubleByteCheck($("#HinbanCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
@@ -204,14 +205,14 @@
                 $('#btnSave').html('更新');
                 $("#Color").focus();
 
-                $("#ProjectCD").attr('disabled', 'disabled');
+                $("#proCD").attr('disabled', 'disabled');
                 $("#HinbanCD").attr('disabled', 'disabled');
                 $("#HinbanName").attr('disabled', 'disabled');
                 $("#DeliverNo").attr('disabled', 'disabled');
                // $("#CastingName").attr('disabled', 'disabled');
 
-                DoubleByteCheck($("#ProjectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-                ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "ProjectName");
+                DoubleByteCheck($("#proCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                ExistsCheck($("#proCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "proName");
 
                 RequiredCheck($("#HinbanName"));
 
@@ -230,16 +231,16 @@
                 ShowData();
                 $('#btnSave').html('登録');
 
-                $("#ProjectCD").attr('disabled', 'disabled');
+                $("#proCD").attr('disabled', 'disabled');
                 $("#DeliverNo").attr('disabled', 'disabled');
                 //$("#CastingName").attr('disabled', 'disabled');
                 $("#HinbanCD").focus();
-                DoubleByteCheck($("#ProjectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-                ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "ProjectName");
+                DoubleByteCheck($("#proCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                ExistsCheck($("#proCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "proName");
 
                 RequiredCheck($("#HinbanCD"));
                 DoubleByteCheck($("#HinbanCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-                AlreadyExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', $("#ProjectCD").val());
+                AlreadyExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', $("#proCD").val());
 
                 RequiredCheck($("#HinbanName"));
 
@@ -256,7 +257,7 @@
             else if (Mode == 'Delete') {
                 $('#btnSave').html('削除');
                 ShowData();
-                $("#ProjectCD").attr('disabled', 'disabled');
+                $("#proCD").attr('disabled', 'disabled');
                 $("#HinbanCD").attr('disabled', 'disabled');
                 $("#HinbanName").attr('disabled', 'disabled');
                 $("#Color").attr('disabled', 'disabled');
@@ -283,19 +284,30 @@
 
         function ProjectCheck(result) {
             if (result == 'OK') {
-                AlreadyExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', $("#ProjectCD").val());
+                AlreadyExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', $("#proCD").val());
                 ShowProjectData();
+            }
+            else {
+                $("#proName").val('');
+                $("#Year").val('');
+                $("#Season").val('');
+                $("#BrandCD").val('');
+                $("#BrandName").val('');
+                $("#StartDate").val('');
+                $("#EndDate").val('');
+                $("#totalProNo").val('');
+                $("#totalamount").val('');
             }
         }
 
         function ShowProjectData() {
             var Tmodel = {
-                ProjectCD: $('#ProjectCD').val(),
+                ProjectCD: $('#proCD').val(),
             };
             var data = CalltoApiController('@Url.Action("M_Hinban_Check_List", "api/TourokuProjectApi")', Tmodel);
             var hbdata = JSON.parse(data);
-            $("#ProjectCD").val(hbdata[0].ProjectCD);
-            $("#ProjectName").val(hbdata[0].ProjectName);
+            $("#proCD").val(hbdata[0].ProjectCD);
+            $("#proName").val(hbdata[0].ProjectName);
             $("#Year").val(hbdata[0].Year);
             $("#Season").val(hbdata[0].Season);
             $("#BrandCD").val(hbdata[0].BrandCD);
@@ -364,8 +376,8 @@
 
             var data = CalltoApiController('@Url.Action("M_HinBan_Select_Edit", "api/TourokuProjectApi")', Tmodel);
             var hinbandata = JSON.parse(data);
-            $("#ProjectCD").val(hinbandata[0].ProjectCD);
-            $("#ProjectName").val(hinbandata[0].ProjectName);
+             $("#proCD").val(hinbandata[0].ProjectCD);
+             $("#proName").val(hinbandata[0].ProjectName);
             $("#Season").val(hinbandata[0].Season);
             $("#Year").val(hinbandata[0].Year);
             $("#BrandCD").val(hinbandata[0].BrandCD);
@@ -443,7 +455,7 @@
             }
             else {*@
                  var Tmodel = {
-                    ProjectCD: $("#ProjectCD").val(),
+                     ProjectCD: $("#proCD").val(),
                     HinbanCD: $("#HinbanCD").val(),
                     HinbanName: $("#HinbanName").val(),
                     Color: $("#Color").val(),
@@ -501,7 +513,7 @@
 
      function ErrorCheckBreforeDelete() {
         var Tmodel = {
-            ProjectCD: $("#ProjectCD").val(),
+            ProjectCD: $("#proCD").val(),
             HinbanCD: $("#HinbanCD").val()
         };
         var data = CalltoApiController('@Url.Action("D_Cost_ExistsDeleteCheck", "api/TourokuProjectApi")', Tmodel);
