@@ -47,7 +47,7 @@
                             <label id="text" style="padding-right: 5px;">
                                 年度
                             </label>
-                            <input type="text" tabindex="2" class="text-line col-sm-12 col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this)" id="Year" name="txtYear" maxlength="4" required placeholder="入力">
+                            <input type="text" tabindex="-1" class="text-line col-sm-12 col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this)" id="Year" name="txtYear" maxlength="4" required placeholder="入力">
                         </div>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                             <label id="text" style="padding-right: 5px;">
                                 ブランド
                             </label>
-                            <input type="text" tabindex="3" class="text-line col-sm-12 col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this)" id="BrandCD" name="txtBrandCD" maxlength="20" required placeholder="入力">
+                            <input type="text" tabindex="-1" class="text-line col-sm-12 col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this)" id="BrandCD" name="txtBrandCD" maxlength="20" required placeholder="入力">
                             <label id="BrandName"><b>@*ブランド表示*@</b></label>
                         </div>
                     </div>
@@ -67,11 +67,11 @@
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <div id="rdogp" class="custom-control custom-radio" style="padding-left:0px!important;">
                                 <label class="text" style="padding-right:15px!important">シーズン</label>
-                                <input type="radio" tabindex="4" id="rdoAllYear" name="radio" onkeydown="KeyDown(event,this)" checked>
+                                <input type="radio" tabindex="-1" id="rdoAllYear" name="radio" onkeydown="KeyDown(event,this)" checked>
                                 <label for="rdoC" style="padding-right:8px!important">通年</label>
-                                <input type="radio" tabindex="5" id="rdoSS" name="radio" onkeydown="KeyDown(event,this)">
+                                <input type="radio" tabindex="-1" id="rdoSS" name="radio" onkeydown="KeyDown(event,this)">
                                 <label for="rdoS" style="padding-right:8px!important">SS</label>
-                                <input type="radio" tabindex="6" id="rdoFW" name="radio" onkeydown="KeyDown(event,this)">
+                                <input type="radio" tabindex="-1" id="rdoFW" name="radio" onkeydown="KeyDown(event,this)">
                                 <label for="rdoF" style="padding-right:8px!important">FW</label>
                             </div>
                         </div>
@@ -83,7 +83,7 @@
                             <label id="text" style="padding-right: 5px;">
                                 納品日
                             </label>
-                            <input type="text" tabindex="7" class="text-line col-sm-12 col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this,'FiscalDateCheck')" id="DeliDate" name="txtDeliDate" maxlength="10" required placeholder="入力">
+                            <input type="text" tabindex="2" class="text-line col-sm-12 col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this,'FiscalDateCheck')" id="DeliDate" name="txtDeliDate" maxlength="10" required placeholder="入力">
                         </div>
                     </div>
                 </div>
@@ -93,16 +93,16 @@
                             <label id="text" style="padding-right: 5px;">
                                 備考
                             </label>
-                            <input type="text" tabindex="8" class="text-line col-sm-12 col-md-12 col-lg-10 text-left " onkeydown="KeyDown(event,this)" id="Remarks" name="txtRemarks" maxlength="40" required placeholder="入力">
+                            <input type="text" tabindex="3" class="text-line col-sm-12 col-md-12 col-lg-10 text-left " onkeydown="KeyDown(event,this)" id="Remarks" name="txtRemarks" maxlength="40" required placeholder="入力">
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-right">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <button id="btnAllCheck" tabindex="9" onclick="AllCheck()" class="btn btn-primary col-xl-2 text-center">全選択</button>
+                            <button id="btnAllCheck" tabindex="4" onclick="AllCheck()" class="btn btn-primary col-xl-2 text-center">全選択</button>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <button id="btnAllUnCheck" tabindex="10" onclick="AllUnCheck()" class="btn btn-next col-xl-2 text-center">全解除</button>
+                            <button id="btnAllUnCheck" tabindex="5" onclick="AllUnCheck()" class="btn btn-next col-xl-2 text-center">全解除</button>
                         </div>
                     </div>
                 </div>
