@@ -186,7 +186,7 @@
                                                 <input type="text" tabindex="6" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)"
                                                        data-doublebytecheck-url='@Url.Action("DoubleByte_Checking", "api/CommonApi")'
                                                        data-existcheck-url='@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")'
-                                                       id="BrandCD" name="brandCD" maxlength="6" required placeholder="入力">
+                                                       id="BrandCD" name="brandCD" maxlength="6" required placeholder="入力" style="width:70px">
                                                 <input type="button" id="btnBrandSearch" value="..." onclick="Search(1)" />
                                                 <input type="text" tabindex="7" class="text-line col-xl-6 text-left" onkeydown="KeyDown(event,this)" id="BrandName" name="brandname" maxlength="40" required placeholder="入力">
                                             </div>
@@ -211,9 +211,9 @@
                                                 <label id="text">プロジェクト</label>
                                                 <input type="text" tabindex="11" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this,'ProjectCheck')"
                                                        data-existcheck-url='@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")'
-                                                       id="proCD" name="projectCD" maxlength="10" required placeholder="入力">
+                                                       id="proCD" name="projectCD" maxlength="10" required placeholder="入力" style="width:105px">
                                                 <input type="button" id="btnProjectSearch" value="..." onclick="Search(6)" />
-                                                <input type="text" tabindex="12" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this)" id="proName" name="projectname" maxlength="60" required placeholder="入力">
+                                                <input type="text" tabindex="12" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="proName" name="projectname" maxlength="60" required placeholder="入力">
                                             </div>
                                         </div>
                                     </div>
@@ -223,7 +223,7 @@
                                                 <label id="text" style="padding-right: 7px;">品番</label>
                                                 <input type="text" tabindex="13" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)"
                                                        data-existcheck-url='@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")'
-                                                       id="HinbanCD" name="PartCD" maxlength="6" required placeholder="入力">
+                                                       id="HinbanCD" name="PartCD" maxlength="6" required placeholder="入力"  style="width:70px">
                                                 <input type="button" id="btnHinbanSearch" value="..." onclick="Search(3)" />
                                                 <input type="text" tabindex="14" class="text-line col-xl-6 text-left" onkeydown="KeyDown(event,this)" id="HinbanName" name="PartName" maxlength="60" required placeholder="入力">
                                             </div>

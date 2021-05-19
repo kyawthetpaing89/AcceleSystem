@@ -175,7 +175,7 @@
                                             <input type="text" tabindex="1" class="text-line col-xl-3 text-left" id="BrandCD"
                                                    data-doublebytecheck-url='@Url.Action("DoubleByte_Checking", "api/CommonApi")'
                                                    data-existcheck-url='@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")'
-                                                   name="brandcd" maxlength="6" onkeydown="KeyDown(event,this)" required placeholder="入力">
+                                                   name="brandcd" maxlength="6" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:70px">
                                             <input id="btnPSearch" type="button" value="..." onclick="Search(1)" />
                                             <input type="text" tabindex="2" class="text-line col-xl-5 text-left" id="BrandName" name="brandname" maxlength="40" onkeydown="KeyDown(event,this)" required placeholder="入力">
                                         </div>
@@ -216,7 +216,7 @@
                                                    data-existcheck-url='@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")'
                                                    data-projectselect-url='@Url.Action("M_Project_Select_List", "api/TourokuProjectApi")'
                                                    data-projectcsv-url='@Url.Action("M_Project_CSV", "api/TourokuProjectApi")'
-                                                   name="projectcd" maxlength="10" onkeydown="KeyDown(event,this)" required placeholder="入力">
+                                                   name="projectcd" maxlength="10" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:105px">
                                             <input type="text" tabindex="8" class="text-line col-xl-4 text-left" id="ProjectName" name="projectname" maxlength="60" onkeydown="KeyDown(event,this)" required placeholder="入力">
 
                                         </div>
@@ -229,9 +229,9 @@
                                             <label id="text">予定期間</label>
                                             <input type="text" tabindex="9" class="text-line col-xl-3 text-left"
                                                    data-yearmonthcheck-url='@Url.Action("YearMonth_Checking", "api/CommonApi")'
-                                                   id="PeriodStart" name="periodstart" onkeydown="KeyDown(event,this)" required placeholder="入力">
+                                                   id="PeriodStart" name="periodstart" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:100px">
                                             &nbsp;~&nbsp;
-                                            <input type="text" tabindex="10" class="text-line col-xl-3 text-left" id="PeriodEnd" name="periodend" onkeydown="KeyDown(event,this,'DateCompare')" required placeholder="入力">
+                                            <input type="text" tabindex="10" class="text-line col-xl-3 text-left" id="PeriodEnd" name="periodend" onkeydown="KeyDown(event,this,'DateCompare')" required placeholder="入力" style="width:100px">
 
                                         </div>
                                     </div>
