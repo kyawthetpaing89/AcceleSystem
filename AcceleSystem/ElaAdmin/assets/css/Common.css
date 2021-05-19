@@ -19,12 +19,6 @@
     border-top: 1px solid #d3dcd3;
 }
 
-    #tblKeihi td {
-        border-top: 1px solid #d3dcd3;
-    }
-
-   
-
 #tblTouroku_Keihi > tbody > tr > td {
     border-top: 1px solid #d3dcd3;
 }
@@ -69,7 +63,7 @@
     background-color:white;
 }
 
-#tblKeihi{
+/*#tblKeihi{
     width: 590px!important;
 }
 
@@ -79,12 +73,12 @@
 
  #tblKeihi td.Border2 {
         width: 180px;
-        /*color: #aba6a6;*/
+        
 }
 
  #tblKeihi td.Border1.sorting_1 {
       width: 180px !important;
- }
+ }*/
  
 #tblNouhinBS > tbody > tr > td {
     border-top: 1px solid #d3dcd3;
