@@ -323,7 +323,7 @@
             $("#CostCD").val(ProjectData[0].CostCD);
 
             if (!ProjectData[0].CostName)
-                $("#costname").text("経費名表示");
+                $("#costname").text("");
             else $("#costname").text(ProjectData[0].CostName);
 
             $("#CostDate").val(ProjectData[0].CostDate);
@@ -331,25 +331,25 @@
             $("#BrandCD").val(ProjectData[0].BrandCD);
 
             if (!ProjectData[0].BrandName)
-                $("#BrandName").text("ブランド表示");
+                $("#BrandName").text("");
             else $("#BrandName").text(ProjectData[0].BrandName);
 
             $("#proCD").val(ProjectData[0].ProjectCD);
 
             if (!ProjectData[0].ProjectName)
-                $("#proName").text("プロジェクト表示");
+                $("#proName").text("");
             else $("#proName").text(ProjectData[0].ProjectName);
 
             $("#HinbanCD").val(ProjectData[0].HinbanCD);
 
             if (!ProjectData[0].HinbanName)
-                $("#HinbanName").text("品番表示");
+                $("#HinbanName").text("");
             else $("#HinbanName").text(ProjectData[0].HinbanName);
 
             $("#CastingCD").val(ProjectData[0].CastingCD);
 
             if (!ProjectData[0].CastingName)
-                $("#CastingName").text("金型表示");
+                $("#CastingName").text("");
             else $("#CastingName").text(ProjectData[0].CastingName);
 
             $("#Item").val(ProjectData[0].FreeItem1);
@@ -428,6 +428,8 @@
             if ($("#accounting").text() == "1") {
                 $("#proCD").removeAttr('disabled');
                 $("#HinbanCD").removeAttr('disabled');
+                $("#btnProjectSearch").removeAttr('disabled');
+                $("#btnHinbanSearch").removeAttr('disabled');
                 RequiredCheck($("#proCD"));
                 RequiredCheck($("#HinbanCD"));
 
@@ -441,17 +443,20 @@
                 $("#Seasongp").children().attr('disabled', 'disabled');
                 $("#CastingCD").attr('disabled', 'disabled');
                 $("#Item").attr('disabled', 'disabled');
+                $("#btnBrandSearch").attr('disabled', 'disabled');
+                $("#btnKanagataSearch").attr('disabled', 'disabled');
 
                 $("#year").val('');
                 $("#BrandCD").val('');
-                $("#BrandName").text('ブランド表示');
+                $("#BrandName").text('');
                 $("#CastingCD").val('');
-                $("#CastingName").text('金型表示');
+                $("#CastingName").text('');
                 $("#Item").val('');
              }
             else if ($("#accounting").text() == "2") {
                 $("#year").removeAttr('disabled');
                 $("#BrandCD").removeAttr('disabled');
+                $("#btnBrandSearch").removeAttr('disabled');
                 $("#Seasongp").children().removeAttr('disabled');
                 RequiredCheck($("#year"));
                 RequiredCheck($("#BrandCD"));
@@ -465,17 +470,21 @@
                 $("#HinbanCD").attr('disabled', 'disabled');
                 $("#CastingCD").attr('disabled', 'disabled');
                 $("#Item").attr('disabled', 'disabled');
+                $("#btnProjectSearch").attr('disabled', 'disabled');
+                $("#btnHinbanSearch").attr('disabled', 'disabled');
+                $("#btnKanagataSearch").attr('disabled', 'disabled');
 
                 $("#proCD").val('');
-                $("#proName").text('プロジェクト表示');
+                $("#proName").text('');
                 $("#HinbanCD").val('');
-                $("#HinbanName").text('品番表示');
+                $("#HinbanName").text('');
                 $("#CastingCD").val('');
-                $("#CastingName").text('金型表示');
+                $("#CastingName").text('');
                 $("#Item").val('');
              }
              else if ($("#accounting").text() == "3") {
                 $("#proCD").removeAttr('disabled');
+                $("#btnProjectSearch").removeAttr('disabled');
                 RequiredCheck($("#proCD"));
 
                 RemoveRequired("#year");
@@ -490,18 +499,22 @@
                  $("#HinbanCD").attr('disabled', 'disabled');
                  $("#CastingCD").attr('disabled', 'disabled');
                  $("#Item").attr('disabled', 'disabled');
+                $("#btnBrandSearch").attr('disabled', 'disabled');
+                $("#btnHinbanSearch").attr('disabled', 'disabled');
+                $("#btnKanagataSearch").attr('disabled', 'disabled');
 
                 $("#year").val('');
                 $("#BrandCD").val('');
-                $("#BrandName").text('ブランド表示');
+                $("#BrandName").text('');
                 $("#HinbanCD").val('');
-                $("#HinbanName").text('品番表示');
+                $("#HinbanName").text('');
                 $("#CastingCD").val('');
-                $("#CastingName").text('金型表示');
+                $("#CastingName").text('');
                 $("#Item").val('');
             }
              else if ($("#accounting").text() == "4") {
                 $("#CastingCD").removeAttr('disabled');
+                $("#btnKanagataSearch").removeAttr('disabled');
                  RequiredCheck($("#CastingCD"));
 
                 RemoveRequired("#year");
@@ -516,14 +529,17 @@
                  $("#HinbanCD").attr('disabled', 'disabled');
                 $("#proCD").attr('disabled', 'disabled');
                  $("#Item").attr('disabled', 'disabled');
+                $("#btnBrandSearch").attr('disabled', 'disabled');
+                $("#btnHinbanSearch").attr('disabled', 'disabled');
+                $("#btnProjectSearch").attr('disabled', 'disabled');
 
                 $("#year").val('');
                 $("#BrandCD").val('');
-                $("#BrandName").text('ブランド表示');
+                $("#BrandName").text('');
                 $("#HinbanCD").val('');
-                $("#HinbanName").text('品番表示');
+                $("#HinbanName").text('');
                 $("#proCD").val('');
-                $("#proName").text('プロジェクト表示');
+                $("#proName").text('');
                 $("#Item").val('');
              }
              else if ($("#accounting").text() == "5") {
@@ -542,20 +558,24 @@
                  $("#HinbanCD").attr('disabled', 'disabled');
                  $("#CastingCD").attr('disabled', 'disabled');
                 $("#proCD").attr('disabled', 'disabled');
+                $("#btnBrandSearch").attr('disabled', 'disabled');
+                $("#btnHinbanSearch").attr('disabled', 'disabled');
+                $("#btnProjectSearch").attr('disabled', 'disabled');
+                $("#btnKanagataSearch").attr('disabled', 'disabled');
 
                 $("#year").val('');
                 $("#BrandCD").val('');
-                $("#BrandName").text('ブランド表示');
+                $("#BrandName").text('');
                 $("#HinbanCD").val('');
-                $("#HinbanName").text('品番表示');
+                $("#HinbanName").text('');
                 $("#CastingCD").val('');
-                $("#CastingName").text('金型表示');
+                $("#CastingName").text('');
                 $("#proCD").val('');
-                $("#proName").text('プロジェクト表示');
+                $("#proName").text('');
              }
         }
         else {
-            $("#costname").text('経費名表示');
+            $("#costname").text('');
         }
     }
 
@@ -576,7 +596,7 @@
               //  else $("#allyear").focus();
         }
         else {
-            $("#BrandName").text('ブランド表示');
+            $("#BrandName").text('');
         }
         $("#BrandName").css("font-weight", "Bold");
     }
@@ -602,12 +622,12 @@
                 }
             }
             else
-                $("#proName").text('プロジェクト表示');
+                $("#proName").text('');
 
             $("#proName").css("font-weight", "Bold");
         }
         else {
-            $("#proName").text('プロジェクト表示');
+            $("#proName").text('');
         }
         $("#proName").css("font-weight", "Bold");
     }
@@ -617,7 +637,7 @@
             $("#HinbanName").css("font-weight", "Bold");
         }
         else {
-            $("#HinbanName").text('品番表示');
+            $("#HinbanName").text('');
         }
         $("#HinbanName").css("font-weight", "Bold");
     }
@@ -627,7 +647,7 @@
             $("#CastingName").css("font-weight", "Bold");
         }
         else {
-            $("#CastingName").text('金型表示');
+           $("#CastingName").text('');
         }
         $("#CastingName").css("font-weight", "Bold");
     }
