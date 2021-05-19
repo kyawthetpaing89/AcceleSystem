@@ -270,7 +270,7 @@
         }
         else {
             //$("#BrandCD").val('');
-            $("#BrandName").text('ブランド表示');
+            $("#BrandName").text('');
             $("#Season").focus();
         }
 
@@ -281,10 +281,14 @@
         if (result == 'OK') {
             @*ExistsCheck($("#ProjectManager"), "User", '@Url.Action("M_User_ExistsCheck", "api/UserApi")', "ProjectManagerName");
             $("#ProjectManager").foucs();*@
+            if (!$("#ProjectManager").val()) {
+                $("#ProjectManagerName").text(' ');
+                $("#AllocationCount").focus();
+            }
         }
         else {
            // $("#ProjectManager").val('');
-            $("#ProjectManagerName").text('責任者表示');
+            $("#ProjectManagerName").text(' ');
             $("#AllocationCount").focus();
 
         }
@@ -310,20 +314,20 @@
          $("#AllocationCount").val(ProjectData[0].AllocationCount);
 
          if (!ProjectData[0].BrandName)
-             $("#BrandName").text("ブランド表示");
+             $("#BrandName").text("");
          else $("#BrandName").text(ProjectData[0].BrandName);
 
 
          if (!ProjectData[0].ProjectManagerName)
-             $("#ProjectManagerName").text("責任者表示");
+             $("#ProjectManagerName").text("");
          else $("#ProjectManagerName").text(ProjectData[0].ProjectManagerName);
 
          if (!ProjectData[0].Production)
-             $("#TotalProduction").text("総生産数表示");
+             $("#TotalProduction").text("");
          else $("#TotalProduction").text(ProjectData[0].Production);
 
          if (!ProjectData[0].SalesPrice)
-             $("#TotalSalesPrice").text("総金額表示");
+             $("#TotalSalesPrice").text("");
          else $("#TotalSalesPrice").text(ProjectData[0].SalesPrice);
 
          //Bind Season

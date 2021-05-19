@@ -11,7 +11,7 @@
     $("#divMainList #HLEndDate").attr('disabled', 'disabled');
     $("#divMainList #tpNo").attr('disabled', 'disabled');
     $("#divMainList #tAmount").attr('disabled', 'disabled');
-    $("#divMainList #HLCastingName").attr('disabled', 'disabled');
+    //$("#divMainList #HLCastingName").attr('disabled', 'disabled');
 
     //RequiredCheck($("#proCD"));
 
