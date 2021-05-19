@@ -11,14 +11,16 @@
     .tb1 td {
         border-top: 1px solid #d3dcd3;
     }
-    /*.text-keihisetti {
-        text-overflow: ellipsis;
-        display: inline-block;
-        overflow: hidden;
-        width: 150px;
-        white-space: nowrap;
-        vertical-align: middle;
-    }*/
+    @@media only screen and (min-width: 1200px) {
+        .text-keihisetti {
+            text-overflow: ellipsis;
+            display: inline-block;
+            overflow: hidden;
+            width: 150px;
+            white-space: nowrap;
+            vertical-align: middle;
+        }
+    }
 
     @@media only screen and (min-width: 1300px) {
         .text-keihisetti {
@@ -74,7 +76,7 @@
                 </button>
             </div>
 
-            <div class="col-xs-12 col-md-9">
+            <div class="col-xs-12 col-md-8">
                 <i class="fa fa-search" style="padding-left:15px;"></i>
                 <input type="text" id="myInput" placeholder="経費名入力" class="border border-white" style="width:50%;padding-bottom:10px">
                 <table id="tblKeihi" class="tb1 col-sm-12" style="padding-left:0px;width:100%;">
@@ -82,9 +84,9 @@
                         <tr>
                             <th style="width:15%;">経費コード</th>
                             <th style="width:25%;">経費名</th>
-                            <th style="width:30%;">計上単位</th>
-                            <th style="width:15%;">配賦基準</th>
-                            <th style="width:15%;"></th>
+                            <th style="width:25%;">計上単位</th>
+                            <th style="width:18%;">配賦基準</th>
+                            <th style="width:17%;"></th>
                         </tr>
 
                     </thead>
