@@ -27,7 +27,8 @@
                                 <label id="text" style="padding-right: 5px;">
                                     経費
                                 </label>
-                                <input type="text" tabindex="1" class="text-line col-sm-12 col-md-12 col-lg-2 text-left input-numeral8" onkeydown="KeyDown(event,this,'Cost')" id="CostCD" name="CostCD" maxlength="6" required placeholder="入力">&nbsp;&nbsp;
+                                <input type="text" tabindex="1" class="text-line col-sm-12 col-md-12 col-lg-2 text-left input-numeral8" onkeydown="KeyDown(event,this,'Cost')" id="CostCD" name="CostCD" maxlength="6" required placeholder="入力">
+                                <input type="button" id="btnKeihiSettie" value="..." onclick="Search(8)" />
                                 <label id="costname"><b>@*経費名表示*@</b></label>
                             </div>
                         </div>
@@ -185,6 +186,7 @@
     <script src="@Url.Content("~/ElaAdmin/assets/js/Hinban.js")"></script>
     <script src="@Url.Content("~/ElaAdmin/assets/js/Search.js")"></script>
     <script src="@Url.Content("~/ElaAdmin/assets/js/Kanagata.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/KeihiSettie.js")"></script>
     <script type="text/javascript">
     $(document).ready(function () {
         $("#formtitle").text("経費登録");

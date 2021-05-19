@@ -50,6 +50,12 @@
                     SearchSetting(typeID);
                 });
                 break;
+             case 8:
+                $(".iziModal-header-title").text("経費設定検索");
+                $("#divSearch1").load('@Url.Action("KeihiSetteiList", "KeihiSettei")', function () {
+                    SearchSetting(typeID);
+                });
+                break;
         }
     }
 
@@ -95,6 +101,12 @@
                 $("#divSearch1 #btnCSV").hide();
                 $("#divSearch1 #btnPSearch").hide();
                 $("#divSearch1 #btnPUser").hide();
+                break;
+            case 8:
+                $("#KeihiSettieType").val("2");
+                GetKeihi();
+                $("#myInput").focus();
+                $("#divAddKeihiSettie").hide();
                 break;
         }
 

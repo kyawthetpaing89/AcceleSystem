@@ -21,5 +21,8 @@
         case 7://Casting
             LoadSearchForm(type, $("#HLCastingCD"), $("#HLCastingName"));
             break;
+        case 8://KeihiSettie
+            LoadSearchForm(type, $("#CostCD"), $("#costname"));
+            break;
     }
 }

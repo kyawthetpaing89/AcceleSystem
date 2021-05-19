@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "KeihiSetteiList";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = Request.IsAjaxRequest() ? null : "~/Views/Shared/_Layout.cshtml";
 }
 
 @section Styles{
@@ -11,6 +11,7 @@
     .tb1 td {
         border-top: 1px solid #d3dcd3;
     }
+
     @@media only screen and (min-width: 1200px) {
         .text-keihisetti {
             text-overflow: ellipsis;
@@ -65,21 +66,24 @@
             vertical-align: middle;
         }
     }
-   
 </style>
+
+<input type="hidden" id="KeihiSettieType" value="1" />
 <div class="card">
     <div class="card-body">
         <div class="row">
             <div class="col-xs-12 col-md-3">
-                <button id="btnAdd" onclick="btnAddClick()" class="btn col-xl-10 text-center" tabindex="38" style="background-color:#1a8cff; color:azure;">
-                    経費設定追加
-                </button>
+                <div id="divAddKeihiSettie" >
+                    <button id="btnAdd" onclick="btnAddClick()" class="btn col-xl-10 text-center" tabindex="38" style="background-color:#1a8cff; color:azure;">
+                        経費設定追加
+                    </button>
+                </div>
             </div>
 
             <div class="col-xs-12 col-md-8">
                 <i class="fa fa-search" style="padding-left:15px;"></i>
                 <input type="text" id="myInput" placeholder="経費名入力" class="border border-white" style="width:50%;padding-bottom:10px">
-                <table id="tblKeihi" class="tb1 col-sm-12" style="padding-left:0px;width:100%;">
+                <table id="tblKeihi" data-request-url="@Url.Action("M_Keihi_Select_List", "api/KeihiSetteiApi")" class="tb1 col-sm-12" style="padding-left:0px;width:100%;">
                     <thead>
                         <tr>
                             <th style="width:15%;">経費コード</th>
@@ -101,107 +105,23 @@
 @section Scripts{
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#formtitle").text("経費設定検索");
-
-            GetKeihi();
-
-            $("#myInput").focus();
+            KeihiSettieList_Load();
         });
 
-        $('#myInput').on("keypress", function (e) {
-            if (e.keyCode == 13) {
-                GetKeihi();
-                return false; // prevent the button click from happening
-            }
-        });
 
-        function GetKeihi() {
-            var Kmodel = {
-                CostName: $('#myInput').val(),
-            };
-
-        $.ajax({
-            type: "Post",
-            url:"@Url.Action("M_Keihi_Select_List", "api/KeihiSetteiApi")",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            data: JSON.stringify(Kmodel),
-            headers:
-            {
-                Authorization: 'Basic ' + btoa('Capital_MM' + ':' + 'CKM12345!')
-            },
-            success: function (response) {
-                    BindTable(response);
-                }
-        });
-    }
-
-        function BindTable(response) {
-            table = $('#tblKeihi').DataTable({
-               
-                data: JSON.parse(response),
-                "bFilter": false,
-                "bLengthChange": false,
-                "bInfo": false,
-                "bSort": false,
-                destroy:true,
-                "columns": [
-                       {
-                        "data": null,
-                        className: "Border1",
-                        render: function (data, type, row) {
-                            return '<label>' + data.CostCD + '</label>';
-                        }
-                    },
-                    {
-                        "data": null,
-                        className: "Border2",
-                        render: function (data, type, row) {
-                            return '<label class="text-keihisetti">' + data.CostName + '</label>';
-                        }
-                    },
-                    {
-                        "data": null,
-                        className: "Border3",
-                        render: function (data, type, row) {
-                            return '<label>' + data.Accounting + '</label>';
-                        }
-                    },
-                    {
-                        "data": null,
-                        className: "Border4",
-                        render: function (data, type, row) {
-                            return '<label>' + data.Allocation + '</label>';
-                        }
-                    },
-                    {
-                        "data": null,
-                        className: "Border5",
-                        render: function (data, type, row) {
-                            return '<label><a href="#" onClick="btnEditClick(\'' + data.CostCD + '\')" style="color:blue">編集</a></label>&nbsp;&nbsp;&nbsp;<label><a href="#" onClick="btnDelClick(\'' + data.CostCD + '\')" style="color:red">削除</a></label>';
-                        }
-                    }
-                ]
-                //"drawCallback": function (settings) {
-                //    $("#tblKeihi thead").remove();
-                //}
-            });
-
+        function btnAddClick() {
+            location.href = '@Url.Action("KeihiSetteiEntry", "KeihiSettei")?Mode=New'
         }
 
-    function btnAddClick() {
-        location.href = '@Url.Action("KeihiSetteiEntry", "KeihiSettei")?Mode=New'
-    }
+         function btnEditClick(CostCD) {
+             location.href = '@Url.Action("KeihiSetteiEntry", "KeihiSettei")?CostCD='+CostCD+'&Mode=Edit';
+         }
 
-    function btnEditClick(CostCD) {
-        location.href = '@Url.Action("KeihiSetteiEntry", "KeihiSettei")?CostCD='+CostCD+'&Mode=Edit';
-    }
-
-    function btnDelClick(CostCD) {
-        location.href = '@Url.Action("KeihiSetteiEntry", "KeihiSettei")?CostCD='+CostCD+'&Mode=Delete';
+        function btnDelClick(CostCD) {
+            location.href = '@Url.Action("KeihiSetteiEntry", "KeihiSettei")?CostCD='+CostCD+'&Mode=Delete';
         }
     </script>
-
+    <script src="@Url.Content("~/ElaAdmin/assets/js/KeihiSettie.js")"></script>
     <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/datatables.min.js")"></script>
     <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/dataTables.bootstrap.min.js")"></script>
     <script src="@Url.Content("~/ElaAdmin/assets/js/lib/data-table/dataTables.buttons.min.js")"></script>
