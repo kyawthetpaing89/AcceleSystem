@@ -18,7 +18,7 @@
     ExistsCheck($("#divMainList #proCD"), "Project", $("#divMainList #proCD").data('existcheck-url'), "divMainList #proName");
     DoubleByteCheck($("#divMainList #HLHinbanCD"), $("#divMainList #HLHinbanCD").data('doublebytecheck-url'));
 
-    ExistsCheck($("#divMainList #HLCastingCD"), "Casting", $("#divMainList #HLCastingCD").data('existcheck-url'), "divMainList #CastingName");
+    ExistsCheck($("#divMainList #HLCastingCD"), "Casting", $("#divMainList #HLCastingCD").data('existcheck-url'), "divMainList #HLCastingName");
     DoubleByteCheck($("#divMainList #HLCastingCD"), $("#divMainList #HLHinbanCD").data('doublebytecheck-url'));
     //GetHinban();
 }
