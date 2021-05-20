@@ -59,8 +59,15 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="2" class="text-line col-xl-3 text-left" id="BrandCD" name="brandcd" onkeydown="KeyDown(event,this,'BrandCheck')" maxlength="6" style="width:140px;" placeholder="ブランド名">
-                            <label id="brandname"><b>@*ブランド表示*@</b></label>
+                            @*<input type="text" tabindex="2" class="text-line col-xl-3 text-left" id="BrandCD" name="brandcd" onkeydown="KeyDown(event,this,'BrandCheck')" maxlength="6" style="width:140px;" placeholder="ブランド名">
+                                <label id="brandname"><b>ブランド表示</b></label>*@
+                            <input type="text" tabindex="2" class="text-line col-xl-3 text-left" id="BrandCD"
+                                   data-doublebytecheck-url='@Url.Action("DoubleByte_Checking", "api/CommonApi")'
+                                   data-existcheck-url='@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")'
+                                   name="brandcd" maxlength="6" onkeydown="KeyDown(event,this)" required placeholder="ブランド名" style="width:140px">
+                            <input id="btnPSearch" type="button" value="..." onclick="Search(1)" />
+                            <input type="text" tabindex="3" class="text-line col-xl-5 text-left" id="BrandName" name="brandname" maxlength="40" onkeydown="KeyDown(event,this)" required placeholder="入力">
+
                         </div>
                     </div>
                 </div>
@@ -68,11 +75,11 @@
                     <div class="col-xs-12">
                         <div id="Seasongp" class="text-s text-custom1 text-uppercase mb-1">
                             <label id="text" style="padding-right:20px;">シーズン</label>
-                            <input type="checkbox" tabindex="3" id="allyear" name="chk" value="1" onkeydown="KeyDown(event,this)" checked>
+                            <input type="checkbox" tabindex="4" id="allyear" name="chk" value="1" onkeydown="KeyDown(event,this)" checked>
                             <label for="allyear" style="padding-right:20px!important;">通年</label>
-                            <input type="checkbox" tabindex="4" id="SS" name="chk" value="2" onkeydown="KeyDown(event,this)" checked>
+                            <input type="checkbox" tabindex="5" id="SS" name="chk" value="2" onkeydown="KeyDown(event,this)" checked>
                             <label for="SS" style="padding-right:20px!important;">SS</label>
-                            <input type="checkbox" tabindex="5" id="FW" name="chk" value="3" onkeydown="KeyDown(event,this,'SeasonCheck')" checked>
+                            <input type="checkbox" tabindex="6" id="FW" name="chk" value="3" onkeydown="KeyDown(event,this,'SeasonCheck')" checked>
                             <label for="FW" style="padding-right:20px!important;">FW</label>
                         </div>
                     </div>
@@ -81,7 +88,7 @@
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="text" style="padding-right:20px;">プロジェクト</label>
-                            <input type="text" tabindex="6" class="text-line col-xl-3 text-left" id="ProjectCD" name="projectcd" onkeydown="KeyDown(event,this)" maxlength="10" required placeholder="入力">
+                            <input type="text" tabindex="7" class="text-line col-xl-3 text-left" id="ProjectCD" name="projectcd" onkeydown="KeyDown(event,this)" maxlength="10" required placeholder="入力">
                         </div>
                     </div>
                 </div>
@@ -89,7 +96,7 @@
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="text" style="padding-right:116px;"></label>
-                            <input type="text" id="projectName" tabindex="7" class="text-line col-xl-8 text-left" onkeydown="KeyDown(event,this)" required placeholder="入力" maxlength="60">
+                            <input type="text" id="projectName" tabindex="8" class="text-line col-xl-8 text-left" onkeydown="KeyDown(event,this)" required placeholder="入力" maxlength="60">
                         </div>
                     </div>
                 </div>
@@ -97,9 +104,9 @@
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="text" style="padding-right:20px;">納品状況</label>
-                            <input type="checkbox" tabindex="8" id="deliver" name="chk" onkeydown="KeyDown(event,this)" checked>
+                            <input type="checkbox" tabindex="9" id="deliver" name="chk" onkeydown="KeyDown(event,this)" checked>
                             <label for="deliver" style="padding-right:20px!important;">納品残あり</label>
-                            <input type="checkbox" tabindex="9" id="undeliver" name="chk" onkeydown="KeyDown(event,this,'flgCheck')">
+                            <input type="checkbox" tabindex="10" id="undeliver" name="chk" onkeydown="KeyDown(event,this,'flgCheck')">
                             <label for="undeliver" style="padding-right:20px!important;">完納</label>
                         </div>
                     </div>
@@ -107,7 +114,7 @@
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                     <div class="col-xs-12" style="padding-left:110px;">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <button id="btnGenerate" tabindex="10" onclick="btnGenerateClick()" class="btn btn-dark col-xl-5 text-center">処理実行</button>
+                            <button id="btnGenerate" tabindex="11" onclick="btnGenerateClick()" class="btn btn-dark col-xl-5 text-center">処理実行</button>
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             @*<button id="btnCancel" tabindex="11" onclick="btnCancelClick()" class="btn btn-primary col-xl-5 text-center">戻る</button>*@
                         </div>
@@ -121,10 +128,11 @@
                 <thead></thead>
                 <tbody></tbody>
             </table>
-            <a id="dlink" style="display:none;" ></a>
+            <a id="dlink" style="display:none;"></a>
         </div>
     </div>
 </div>
+@Html.Partial("~/Views/Search/SearchBase.cshtml")
 @section Scripts{
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="~/Scripts/jquery.table2excel.js"></script>
@@ -149,7 +157,7 @@
 
                 //RequiredCheck($("#BrandCD"));
                 DoubleByteCheck($("#BrandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-                ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Print_GenkaApi")', "brandname");
+                ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Print_GenkaApi")', "BrandName");
 
                 //RequiredCheck($("#projectCD"));
                 DoubleByteCheck($("#ProjectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
@@ -183,10 +191,10 @@
 
         function BrandCheck(result) {    // Make bold to BrandName after databind
             if (result == 'OK' && $("#BrandCD").val()) {
-                $("#brandname").css("font-weight", "Bold");
+                $("#BrandName").css("font-weight", "Bold");
             }
-            else $("#brandname").text('');
-            $("#brandname").css("font-weight", "Bold");
+            else $("#BrandName").text('');
+            $("#BrandName").css("font-weight", "Bold");
         }
 
         function SeasonCheck(result) {
@@ -273,8 +281,8 @@
 
                             ShowTargetYear();
                             $("#BrandCD").val('');
-                            $("#brandname").text('');
-                            $("#brandname").css("font-weight", "Bold");
+                            $("#BrandName").text('');
+                            $("#BrandName").css("font-weight", "Bold");
                             $('#allyear').prop('checked', true);
                             $('#SS').prop('checked', true);
                             $('#FW').prop('checked', true);
@@ -291,6 +299,12 @@
             }
         }
 
+        $("#divSearch").iziModal({
+            top: 50,
+            width: "70%",
+            overlayClose: false,
+            zindex: 1000,
+        });
 
         //Convert Jsonstring to csv
         function JSON2CSV(objArray) {
@@ -698,24 +712,24 @@
         //Excel Print//
     </script>
     @*<script type="text/javascript">
-    function tableau(pid, iid, fmt, ofile) {
-        if (typeof Downloadify !== 'undefined') Downloadify.create(pid, {
-            swf: 'downloadify.swf',
-            downloadImage: 'download.png',
-            width: 100,
-            height: 30,
-            filename: ofile, data: function () { return doit(fmt, ofile, true); },
-            transparent: false,
-            append: false,
-            dataType: 'base64',
-            onComplete: function () { alert('Your File Has Been Saved!'); },
-            onCancel: function () { alert('You have cancelled the saving of this file.'); },
-            onError: function () { alert('You must put something in the File Contents or there will be nothing to save!'); }
-        }); else document.getElementById(pid).innerHTML = "";
-    }
-    tableau('xlsxbtn', 'xportxlsx', 'xlsx', 'SheetJSTableExport.xlsx');
+            function tableau(pid, iid, fmt, ofile) {
+                if (typeof Downloadify !== 'undefined') Downloadify.create(pid, {
+                    swf: 'downloadify.swf',
+                    downloadImage: 'download.png',
+                    width: 100,
+                    height: 30,
+                    filename: ofile, data: function () { return doit(fmt, ofile, true); },
+                    transparent: false,
+                    append: false,
+                    dataType: 'base64',
+                    onComplete: function () { alert('Your File Has Been Saved!'); },
+                    onCancel: function () { alert('You have cancelled the saving of this file.'); },
+                    onError: function () { alert('You must put something in the File Contents or there will be nothing to save!'); }
+                }); else document.getElementById(pid).innerHTML = "";
+            }
+            tableau('xlsxbtn', 'xportxlsx', 'xlsx', 'SheetJSTableExport.xlsx');
 
-</script>*@
+        </script>*@
     <script type="text/javascript">
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-36810333-1']);
@@ -729,4 +743,7 @@
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
     </script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Brand.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Project.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Search.js")"></script>
 }
