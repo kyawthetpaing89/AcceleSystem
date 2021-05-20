@@ -122,7 +122,10 @@
         //fire keydown of BrandName
         var e = jQuery.Event("keydown");
         e.which = 13; // # Some key code value
-       
+
+        if ($("#formtitle").text() == "品番検索" ) { Check(); } //BindProjectData as ProjectCD entered in HinbanList
+        else if ($("#formtitle").text() == "品番登録") { ShowProjectData();  } //BindProjectData as ProjectCD entered in HinbanEntry
+
         if ($(Name).is('input')) {
             $(Name).trigger(e);
         }
