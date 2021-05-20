@@ -50,7 +50,7 @@ function BindKeihiSettieTable(response) {
                 "data": null,
                 className: "Border3",
                 render: function (data, type, row) {
-                    return '<label>' + data.Accounting + '</label>';
+                    return '<label class="fixed-keihisetti">' + data.Accounting + '</label>';
                 }
             },
             {
@@ -65,7 +65,7 @@ function BindKeihiSettieTable(response) {
                 className: "Border5",
                 render: function (data, type, row) {
                     if ($("#KeihiSettieType").val() == "1") {
-                        return '<label><a href="#" onClick="btnEditClick(\'' + data.CostCD + '\')" style="color:blue">編集</a></label>&nbsp;&nbsp;&nbsp;<label><a href="#" onClick="btnDelClick(\'' + data.CostCD + '\')" style="color:red">削除</a></label>';
+                        return '<label><a href="#" onClick="btnEditClick(\'' + data.CostCD + '\')" style="color:blue">編集</a></label>&nbsp;&nbsp;<label><a href="#" onClick="btnDelClick(\'' + data.CostCD + '\')" style="color:red">削除</a></label>';
                     }
                     else {
                         return '<label><a href="#" onClick="ReturnSelected(\'' + data.CostCD + '\',\'' + data.CostName +'\')" style="color:blue">選択</a></label></td></tr></table>';
