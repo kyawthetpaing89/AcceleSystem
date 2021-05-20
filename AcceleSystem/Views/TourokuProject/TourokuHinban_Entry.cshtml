@@ -84,7 +84,7 @@
 
                             <input type="text" tabindex="2" class="text-line col-sm-12 col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this)"
                                    id="HinbanCD" name="HinbanCD" maxlength="6" required placeholder="入力" style="width:73px;">
-                            <input type="button" value="..." onclick="Search(3)" />
+                            <input type="button" id="btnHinbanSearch" value="..." onclick="Search(3)" />
                             <input type="text" tabindex="3" class="text-line col-sm-12 col-md-12 col-lg-8 text-left" onkeydown="KeyDown(event,this)" id="HinbanName" name="HinbanName" maxlength="60" required placeholder="入力">
                             <input type="text" tabindex="4" class="text-line col-sm-12 col-md-12 col-lg-1 text-right input-numeral14" onkeydown="KeyDown(event,this)" id="Color" name="Color" maxlength="2" required placeholder="入力" style="width:45px;">
                         </div>
@@ -121,7 +121,7 @@
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="text" style="padding-right:5px;">金型</label>
                             <input type="text" tabindex="9" class="text-line col-sm-12 col-md-12 col-lg-4 text-left" onkeydown="KeyDown(event,this)" id="CastingCD" name="CastingCD" maxlength="10" required placeholder="入力">&nbsp;
-                            <input type="button" value="..." onclick="Search(4)" />
+                            <input type="button" id="btnKanagataSearch" value="..." onclick="Search(4)" />
                             <input type="text" tabindex="10" class="text-line col-sm-12 col-md-12 col-lg-6 text-left" onkeydown="KeyDown(event,this)" id="CastingName" name="CastingName" maxlength="40" required placeholder="入力">
 
                         </div>
@@ -258,6 +258,7 @@
                 $('#btnSave').html('削除');
                 ShowData();
                 $("#proCD").attr('disabled', 'disabled');
+                $("#proName").attr('disabled', 'disabled');
                 $("#HinbanCD").attr('disabled', 'disabled');
                 $("#HinbanName").attr('disabled', 'disabled');
                 $("#Color").attr('disabled', 'disabled');
@@ -269,6 +270,9 @@
                 $("#CastingName").attr('disabled', 'disabled');
                 $("#freeitem1").attr('disabled', 'disabled');
                 $("#freeitem2").attr('disabled', 'disabled');
+                $("#btnProjectSearch").attr('disabled', 'disabled');
+                $("#btnHinbanSearch").attr('disabled', 'disabled');
+                $("#btnKanagataSearch").attr('disabled', 'disabled');
 
                 $("#btnSave").focus();
 
