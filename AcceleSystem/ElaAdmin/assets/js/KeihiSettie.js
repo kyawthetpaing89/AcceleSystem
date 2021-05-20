@@ -36,7 +36,7 @@ function BindKeihiSettieTable(response) {
                 "data": null,
                 className: "Border1",
                 render: function (data, type, row) {
-                    return '<label>' + data.CostCD + '</label>';
+                    return '<label  class="fixed-keihisetti">' + data.CostCD + '</label>';
                 }
             },
             {
@@ -57,7 +57,7 @@ function BindKeihiSettieTable(response) {
                 "data": null,
                 className: "Border4",
                 render: function (data, type, row) {
-                    return '<label>' + data.Allocation + '</label>';
+                    return '<label  class="fixed-keihisetti">' + data.Allocation + '</label>';
                 }
             },
             {
