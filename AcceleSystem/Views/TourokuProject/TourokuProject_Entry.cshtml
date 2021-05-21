@@ -48,7 +48,7 @@
                                 ブランド
                             </label>
                             <input type="text" tabindex="4" class="text-line col-sm-12 col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this,'BrandCheck')" id="BrandCD" name="brandcd" maxlength="6" required placeholder="入力">&nbsp;&nbsp;
-                            <input type="button" value="..." onclick="Search(1)" />
+                            <input type="button" id="btnBrandSearch"value="..." onclick="Search(1)" />
                             <label id="BrandName">@*<b>ブランド表示</b>*@</label>
 
                         </div>
@@ -100,7 +100,7 @@
                                 責任者
                             </label>
                             <input type="text" tabindex="10" class="text-line col-sm-12 col-md-12 col-lg-4 text-left" onkeydown="KeyDown(event,this,'ProjectManagerCheck')" id="ProjectManager" name="projectmanager" maxlength="20" required placeholder="入力">&nbsp;&nbsp;
-                            <input type="button" value="..." onclick="Search(2)" />
+                            <input type="button" id="btnManagerSearch" value="..." onclick="Search(2)" />
                             <label id="ProjectManagerName"><b>@*責任者表示*@</b></label>
                         </div>
                     </div>
@@ -138,7 +138,7 @@
     <script src="@Url.Content("~/ElaAdmin/assets/js/Brand.js")"></script>
     <script src="@Url.Content("~/ElaAdmin/assets/js/User.js")"></script>
     <script type="text/javascript">
-    $(document).ready(function () {
+        $(document).ready(function () {
             $("#formtitle").text("プロジェクト登録");
             $("#ProjectCD").focus();
              var Mode = '@Model.Mode';
@@ -223,22 +223,24 @@
                      DoubleByteCheck($("#Season"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
 
                      ShowData();
-            }
-            else{
+                   }
+                   else{
                         $('#btnSave').html('削除');
                         $("#ProjectCD").attr('disabled', 'disabled');
                         $("#ProjectName").attr('disabled', 'disabled');
                         $("#Year").attr('disabled', 'disabled');
                         $("#BrandCD").attr('disabled', 'disabled');
+                        $("#btnBrandSearch").attr('disabled', 'disabled');
                         $("#Season").attr('disabled', 'disabled');
                         $("#PeriodStart").attr('disabled', 'disabled');
                         $("#PeriodEnd").attr('disabled', 'disabled');
                         $("#ProjectManager").attr('disabled', 'disabled');
+                        $("#btnManagerSearch").attr('disabled', 'disabled');
                         $("#AllocationCount").attr('disabled', 'disabled');
                         $("#btnSave").focus();
 
                         ShowData();
-        }
+                   }
 
         $("#divSearch").iziModal({
             top: 50,
