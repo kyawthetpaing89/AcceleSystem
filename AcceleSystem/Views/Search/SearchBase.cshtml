@@ -136,25 +136,25 @@
         //errortask 200->208 tabcase_2021/05/12 by sypk
         if ($("#divMainList").is(":visible")) {
             do {
-                ctrl = $('#divMainList [tabIndex=' + (+$(CD).attr("tabIndex") + 1) + ']');
-                if (!$(ctrl).length) {
+                CD = $('#divMainList [tabIndex=' + (+$(CD).attr("tabIndex") + 1) + ']');
+                if (!$(CD).length) {
                     ctrl = $('#divMainList [tabIndex=1]');
                     break;
                 }
             } while ($(CD).is('[disabled=disabled]'));
-            $(ctrl).select();
-            $(ctrl).focus();
+            $(CD).select();
+            $(CD).focus();
         }
         else if ($("#divMain").is(":visible")) {
             do {
-                ctrl = $('#divMain [tabIndex=' + (+$(CD).attr("tabIndex") + 1) + ']');
-                if (!$(ctrl).length) {
+                CD = $('#divMain [tabIndex=' + (+$(CD).attr("tabIndex") + 1) + ']');
+                if (!$(CD).length) {
                     ctrl = $('#divMain [tabIndex=1]');
                     break;
                 }
             } while ($(CD).is('[disabled=disabled]'));
-            $(ctrl).select();
-            $(ctrl).focus();
+            $(CD).select();
+            $(CD).focus();
         }
     }
        
