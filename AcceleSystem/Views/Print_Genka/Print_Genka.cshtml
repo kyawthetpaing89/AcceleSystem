@@ -60,14 +60,14 @@
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             @*<input type="text" tabindex="2" class="text-line col-xl-3 text-left" id="BrandCD" name="brandcd" onkeydown="KeyDown(event,this,'BrandCheck')" maxlength="6" style="width:140px;" placeholder="ブランド名">
-                                <label id="brandname"><b>ブランド表示</b></label>*@
+                              <label id="brandname"><b>ブランド表示</b></label>*@
                             <input type="text" tabindex="2" class="text-line col-xl-3 text-left" id="BrandCD"
                                    data-doublebytecheck-url='@Url.Action("DoubleByte_Checking", "api/CommonApi")'
                                    data-existcheck-url='@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")'
                                    name="brandcd" maxlength="6" onkeydown="KeyDown(event,this)" required placeholder="ブランド名" style="width:140px">
                             <input id="btnPSearch" type="button" value="..." onclick="Search(1)" />
-                            <input type="text" tabindex="3" class="text-line col-xl-5 text-left" id="BrandName" name="brandname" maxlength="40" onkeydown="KeyDown(event,this)" required placeholder="入力">
-
+                            @*<input type="text" tabindex="3" class="text-line col-xl-5 text-left" id="BrandName" name="brandname" maxlength="40" onkeydown="KeyDown(event,this)" required placeholder="入力">*@
+                            <label id="BrandName"><b>@*ブランド表示*@</b></label>
                         </div>
                     </div>
                 </div>
@@ -88,7 +88,12 @@
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="text" style="padding-right:20px;">プロジェクト</label>
-                            <input type="text" tabindex="7" class="text-line col-xl-3 text-left" id="ProjectCD" name="projectcd" onkeydown="KeyDown(event,this)" maxlength="10" required placeholder="入力">
+                            @*<input type="text" tabindex="7" class="text-line col-xl-3 text-left" id="proCD" name="projectcd" onkeydown="KeyDown(event,this)" maxlength="10" required placeholder="入力">*@
+
+                            <input type="text" tabindex="7" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)"
+                                   data-existcheck-url='@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")'
+                                   id="proCD" name="projectcd" maxlength="10" required placeholder="入力" style="width:105px">
+                            <input type="button" id="btnProjectSearch" value="..." onclick="Search(6)" />
                         </div>
                     </div>
                 </div>
@@ -134,7 +139,7 @@
 </div>
 @Html.Partial("~/Views/Search/SearchBase.cshtml")
 @section Scripts{
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    
     <script src="~/Scripts/jquery.table2excel.js"></script>
     <script type="text/css" src="@Url.Content("~/Scripts/jquery.table2excel.js")">
     </script>
@@ -143,7 +148,7 @@
     <script type="text/javascript" src="https://unpkg.com/blob.js@1.0.1/Blob.js"></script>
     <script type="text/javascript" src="https://unpkg.com/file-saver@1.3.3/FileSaver.js"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function () {            
             $("#formtitle").text("原価集計表");
             $("#targetyear").attr('disabled', 'disabled');
             $("#BrandCD").focus();
@@ -159,12 +164,19 @@
                 DoubleByteCheck($("#BrandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Print_GenkaApi")', "BrandName");
 
-                //RequiredCheck($("#projectCD"));
-                DoubleByteCheck($("#ProjectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-                ExistsCheck($("#ProjectCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Print_GenkaApi")', "projectName");
+                //RequiredCheck($("#proCD"));
+                DoubleByteCheck($("#proCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                ExistsCheck($("#proCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/Print_GenkaApi")', "projectName");
 
                 ShowTargetYear();
             }
+
+            $("#divSearch").iziModal({
+                top: 50,
+                width: "80%",
+                overlayClose: false,
+                zindex: 1000,
+            });
         });
 
         function ShowTargetYear() {
@@ -234,17 +246,17 @@
             else {
                 var res = ErrorCheckOnSave();
                 var brandname;
-                if ($("#brandname").text() == 'ブランド表示')
+                if ($("#BrandName").text() == 'ブランド表示')
                     brandname = '';
                 else
-                    brandname = $("#brandname").text();
+                    brandname = $("#BrandName").text();
 
                 if (res == "0") {
                     var pmodel = {
                         TargetYear: $("#targetyear").val(),
                         BrandCD: $("#BrandCD").val(),
                         BrandName: brandname,
-                        ProjectCD: $("#ProjectCD").val(),
+                        ProjectCD: $("#proCD").val(),
                         ProjectName: $("#projectName").val(),
                         LoginID: '@LoginID'
                     };
@@ -286,7 +298,7 @@
                             $('#allyear').prop('checked', true);
                             $('#SS').prop('checked', true);
                             $('#FW').prop('checked', true);
-                            $("#ProjectCD").val('');
+                            $("#proCD").val('');
                             $("#projectName").val('');
                             $('#deliver').prop('checked', true);
                             $('#undeliver').prop('checked', false);
@@ -298,13 +310,6 @@
                 }
             }
         }
-
-        $("#divSearch").iziModal({
-            top: 50,
-            width: "70%",
-            overlayClose: false,
-            zindex: 1000,
-        });
 
         //Convert Jsonstring to csv
         function JSON2CSV(objArray) {
@@ -393,7 +398,7 @@
                         else if (array[i]["SortKey"] == '30') {
                             var rowcountC = 1, colC2, j, newrowspan, rowspancount = 0;
                             var pmodel = {
-                                ProjectCD: array[i]["ProjectCD"],
+                                ProjectCD: array[i]["proCD"],
                                 LoginID: '@LoginID',
                                 Type: 'C'
                             };
@@ -404,7 +409,7 @@
                             for (j = 0; j < prj_array.length; j++) {
                                 if (prj_array[j]["SortKey"] == '30' || prj_array[j]["SortKey"] == '31' || prj_array[j]["SortKey"] == '32') {
                                     switch (rowcountC) {
-                                        case 1: colC2 = prj_array[0]["ProjectCD"] + '    ' + prj_array[0]["ProjectName"];
+                                        case 1: colC2 = prj_array[0]["proCD"] + '    ' + prj_array[0]["ProjectName"];
                                             break;
                                         case 2: colC2 = prj_array[0]["PeriodStart"] + ' ～ ' + prj_array[0]["PeriodEnd"];
                                             break;
@@ -450,7 +455,7 @@
                                         prj_count = 1;
                                         var rowcountD = 1, colD2, k, style;
                                         var pmodel = {
-                                            ProjectCD: prj_array[j]["ProjectCD"],
+                                            ProjectCD: prj_array[j]["proCD"],
                                             HinbanCD: prj_array[j]["HinbanCD"],
                                             LoginID: '@LoginID',
                                             Type: 'D'
@@ -518,7 +523,7 @@
                             if (prj_count == 1) {
                                 var l;
                                 var pmodel = {
-                                    ProjectCD: prj_array[0]["ProjectCD"],
+                                    ProjectCD: prj_array[0]["proCD"],
                                     HinbanCD: prj_array[0]["HinbanCD"],
                                     LoginID: '@LoginID',
                                     Type: 'P_Total'
@@ -551,7 +556,7 @@
                                     prj_count = 1;
                                     var rowcountD = 1, colD2, k, style;
                                     var pmodel = {
-                                        ProjectCD: hinban_array[j]["ProjectCD"],
+                                        ProjectCD: hinban_array[j]["proCD"],
                                         HinbanCD: hinban_array[j]["HinbanCD"],
                                         LoginID: '@LoginID',
                                         Type: 'D'
