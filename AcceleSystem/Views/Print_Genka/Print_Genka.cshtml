@@ -473,7 +473,7 @@
                                                 style = '';
 
                                             if (prjD_array[k]["SortKey"] !== 42 && prjD_array[k]["SortKey"] !== 43) {
-                                                add_row = '<td>' + colD2 + '</td><td>' + prjD_array[k]["CostName"] + '</td><td>' + replaceZero(prjD_array[k]["CostPre"]) + '</td><td>' +
+                                                add_row = '<td>' + colD2 + '</td><td>' + replaceNull(prjD_array[k]["CostName"]) + '</td><td>' + replaceZero(prjD_array[k]["CostPre"]) + '</td><td>' +
                                                     replaceZero(prjD_array[k]["Cost1"]) + '</td><td>' + replaceZero(prjD_array[k]["Cost2"]) + '</td><td>' + replaceZero(prjD_array[k]["Cost3"]) + '</td><td>' + replaceZero(prjD_array[k]["Cost4"]) + '</td><td>' +
                                                     replaceZero(prjD_array[k]["Cost5"]) + '</td><td>' + replaceZero(prjD_array[k]["Cost6"]) + '</td><td>' + replaceZero(prjD_array[k]["Cost7"]) + '</td><td>' + replaceZero(prjD_array[k]["Cost8"]) + '</td><td>' +
                                                     replaceZero(prjD_array[k]["Cost9"]) + '</td><td>' + replaceZero(prjD_array[k]["Cost10"]) + '</td><td>' + replaceZero(prjD_array[k]["Cost11"]) + '</td><td>' + replaceZero(prjD_array[k]["Cost12"]) + '</td><td>' +
@@ -484,7 +484,7 @@
                                             }
                                             else if (prjD_array[k]["SortKey"] == '43') {
 
-                                                add_row = '<td ' + style + '>' + colD2 + '</td><td style="border-bottom: 1px solid">' + prjD_array[k]["CostName"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["CostPre"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
+                                                add_row = '<td ' + style + '>' + colD2 + '</td><td style="border-bottom: 1px solid">' + replaceNull(prjD_array[k]["CostName"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["CostPre"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
                                                     commaSeparate(prjD_array[k]["Cost1"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["Cost2"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["Cost3"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["Cost4"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
                                                     commaSeparate(prjD_array[k]["Cost5"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["Cost6"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["Cost7"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["Cost8"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
                                                     commaSeparate(prjD_array[k]["Cost9"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["Cost10"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["Cost11"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["Cost12"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
@@ -574,7 +574,7 @@
                                             style = '';
 
                                         if (hinbanD_array[k]["SortKey"] !== 42 && hinbanD_array[k]["SortKey"] !== 43) {
-                                            add_row = '<td>' + colD2 + '</td><td>' + hinbanD_array[k]["CostName"] + '</td><td>' + replaceZero(hinbanD_array[k]["CostPre"]) + '</td><td>' +
+                                            add_row = '<td>' + colD2 + '</td><td>' + replaceNull(hinbanD_array[k]["CostName"]) + '</td><td>' + replaceZero(hinbanD_array[k]["CostPre"]) + '</td><td>' +
                                                 replaceZero(hinbanD_array[k]["Cost1"]) + '</td><td>' + replaceZero(hinbanD_array[k]["Cost2"]) + '</td><td>' + replaceZero(hinbanD_array[k]["Cost3"]) + '</td><td>' + replaceZero(hinbanD_array[k]["Cost4"]) + '</td><td>' +
                                                 replaceZero(hinbanD_array[k]["Cost5"]) + '</td><td>' + replaceZero(hinbanD_array[k]["Cost6"]) + '</td><td>' + replaceZero(hinbanD_array[k]["Cost7"]) + '</td><td>' + replaceZero(hinbanD_array[k]["Cost8"]) + '</td><td>' +
                                                 replaceZero(hinbanD_array[k]["Cost9"]) + '</td><td>' + replaceZero(hinbanD_array[k]["Cost10"]) + '</td><td>' + replaceZero(hinbanD_array[k]["Cost11"]) + '</td><td>' + replaceZero(hinbanD_array[k]["Cost12"]) + '</td><td>' +
@@ -584,7 +584,7 @@
                                             add_row = '<td>' + colD2 + '</td>';
                                         }
                                         else if (hinbanD_array[k]["SortKey"] == '43') {
-                                            add_row = '<td ' + style + '>' + colD2 + '</td><td style="border-bottom: 1px solid">' + hinbanD_array[k]["CostName"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(hinbanD_array[k]["CostPre"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
+                                            add_row = '<td ' + style + '>' + colD2 + '</td><td style="border-bottom: 1px solid">' + replaceNull(hinbanD_array[k]["CostName"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(hinbanD_array[k]["CostPre"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
                                                 commaSeparate(hinbanD_array[k]["Cost1"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(hinbanD_array[k]["Cost2"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(hinbanD_array[k]["Cost3"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(hinbanD_array[k]["Cost4"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
                                                 commaSeparate(hinbanD_array[k]["Cost5"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(hinbanD_array[k]["Cost6"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(hinbanD_array[k]["Cost7"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(hinbanD_array[k]["Cost8"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
                                                 commaSeparate(hinbanD_array[k]["Cost9"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(hinbanD_array[k]["Cost10"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(hinbanD_array[k]["Cost11"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(hinbanD_array[k]["Cost12"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
@@ -692,6 +692,13 @@
         function commaSeparate(str) {
             if (str)
                 return str.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            else
+                return str;
+        }
+
+        function replaceNull(str) {
+            if (str === null)
+                return '';
             else
                 return str;
         }
