@@ -85,7 +85,8 @@
                             <input type="text" tabindex="2" class="text-line col-sm-12 col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this)"
                                    id="HinbanCD" name="HinbanCD" maxlength="6" required placeholder="入力" style="width:73px;">
                             <input type="button" id="btnHinbanSearch" value="..." onclick="Search(3)" />
-                            <input type="text" tabindex="3" class="text-line col-sm-12 col-md-12 col-lg-8 text-left" onkeydown="KeyDown(event,this)" id="HinbanName" name="HinbanName" maxlength="60" required placeholder="入力"><label id="proCD1" hidden></label>
+                            <input type="text" tabindex="3" class="text-line col-sm-12 col-md-12 col-lg-8 text-left" onkeydown="KeyDown(event,this)" id="HinbanName" name="HinbanName" maxlength="60" required placeholder="入力">
+                            <label id="proCD1" hidden></label><label id="hCD" hidden></label><label id="hName" hidden></label>
                             <input type="text" tabindex="4" class="text-line col-sm-12 col-md-12 col-lg-1 text-right input-numeral14" onkeydown="KeyDown(event,this)" id="Color" name="Color" maxlength="2" required placeholder="入力" style="width:45px;">
                         </div>
 
@@ -203,6 +204,8 @@
             }
             else if (Mode == 'Edit') {
                 ShowData();
+                $("#hCD").val($("#HinbanCD").val());
+                $("#hName").val($("#HinbanName").val());
                 $('#btnSave').html('更新');
                 $("#Color").focus();
 
@@ -395,6 +398,8 @@
                 $("#Color").val(hinbandata[0].Color);
                 $("#freeitem1").val(hinbandata[0].FreeItem1);
                 $("#freeitem2").val(hinbandata[0].FreeItem2);
+                $("#HinbanCD").val($("#hCD").val());
+                $("#HinbanName").val($("#hName").val());
             } else {
                 $("#HinbanCD").val(hinbandata[0].HinbanCD);
                 $("#HinbanName").val(hinbandata[0].HinbanName);
