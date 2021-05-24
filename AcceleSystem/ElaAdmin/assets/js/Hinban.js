@@ -79,7 +79,7 @@ function BindHinbanTable(response) {
                         return '<table class="col-md-12">' +
                             '<tr> <td colspan=4><span class="fixed-hinban" > ' + data.ProjectCD + '  ' + data.ProjectName + '</span></td > <td style="width: 70px; max-width: 70px; text-align: center; white-space: nowrap;"></td></tr > ' +
                             '<tr><td colspan=4><span class="fixed-hinban">' + data.HinbanCD + '  ' + data.HinbanName + '</span></td><td style="width: 70px; max-width: 70px; text-align: center; white-space: nowrap;"></td></tr>' +
-                            '<tr><td style="width: 33%; max-width: 33%;"><span class="fixed-width">' + data.Casting + '  ' + data.CastingName + '</span></td><td style="text-align: center; width: 18%; max-width: 18%;">' + data.Production + '</td><td style="text-align: center; width: 18%; max-width: 18%;">' + data.SalesPrice + '</td><td style="text-align: center; width: 18%; max-width: 18%;">' + data.TotalSalesPrice + '</td><td style="width: 70px; max-width: 70px; text-align: center; white-space: nowrap;"><label><a href="#" onClick="ReturnSelected(\'' + data.HinbanCD + '\',\'' + data.HinbanName + '\')" style="color:blue">選択</a></label></td></tr></table>';
+                            '<tr><td style="width: 33%; max-width: 33%;"><span class="fixed-width">' + data.Casting + '  ' + data.CastingName + '</span></td><td style="text-align: center; width: 18%; max-width: 18%;">' + data.Production + '</td><td style="text-align: center; width: 18%; max-width: 18%;">' + data.SalesPrice + '</td><td style="text-align: center; width: 18%; max-width: 18%;">' + data.TotalSalesPrice + '</td><td style="width: 70px; max-width: 70px; text-align: center; white-space: nowrap;"><label><a href="#" onClick="ReturnSelected(\'' + data.HinbanCD + '\',\'' + data.HinbanName + '\',\'' + data.ProjectCD + '\')" style="color:blue">選択</a></label></td></tr></table>';
                     }
                     
                 }
@@ -102,12 +102,15 @@ function CheckCheckbox(result) {
 function ProjectCDCheck(result) {
     if (result == 'OK') {
         Check();
-        ExistsCheck($("#divMainList #HLHinbanCD"), "Hinban", $("#divMainList #HLHinbanCD").data('existcheck-url') , "HinbanName", $("#proCD").val());
+        ExistsCheck($("#divMainList #HLHinbanCD"), "Hinban", $("#divMainList #HLHinbanCD").data('existcheck-url'), "HLHinbanName", $("#proCD").val());
+        
     }
 }
 
 function Check() {
+    ExistsCheck($("#divMainList #HLHinbanCD"), "Hinban", $("#divMainList #HLHinbanCD").data('existcheck-url'), "HLHinbanName", $("#proCD").val());
     if ($("#divMainList #proCD").val()) {
+        
         var Tmodel = {
             ProjectCD: $('#divMainList #proCD').val(),
             //HinbanCD: $('#HinbanCD').val(),

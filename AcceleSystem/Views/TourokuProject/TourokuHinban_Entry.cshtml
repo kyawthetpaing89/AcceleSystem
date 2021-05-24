@@ -85,7 +85,7 @@
                             <input type="text" tabindex="2" class="text-line col-sm-12 col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this)"
                                    id="HinbanCD" name="HinbanCD" maxlength="6" required placeholder="入力" style="width:73px;">
                             <input type="button" id="btnHinbanSearch" value="..." onclick="Search(3)" />
-                            <input type="text" tabindex="3" class="text-line col-sm-12 col-md-12 col-lg-8 text-left" onkeydown="KeyDown(event,this)" id="HinbanName" name="HinbanName" maxlength="60" required placeholder="入力">
+                            <input type="text" tabindex="3" class="text-line col-sm-12 col-md-12 col-lg-8 text-left" onkeydown="KeyDown(event,this)" id="HinbanName" name="HinbanName" maxlength="60" required placeholder="入力"><label id="proCD1" hidden></label>
                             <input type="text" tabindex="4" class="text-line col-sm-12 col-md-12 col-lg-1 text-right input-numeral14" onkeydown="KeyDown(event,this)" id="Color" name="Color" maxlength="2" required placeholder="入力" style="width:45px;">
                         </div>
 
@@ -161,6 +161,7 @@
     <script src="@Url.Content("~/ElaAdmin/assets/js/Kanagata.js")"></script>
     <script src="@Url.Content("~/ElaAdmin/assets/js/Project.js")"></script>
     <script type="text/javascript">
+        var Mode = '@Model.Mode';
         $(document).ready(function () {
             $("#formtitle").text("品番登録");
 
@@ -177,7 +178,7 @@
             $("#Amount").attr('disabled', 'disabled');
             //$("#CastingName").attr('disabled', 'disabled');
 
-            var Mode = '@Model.Mode';
+            
             if (Mode == 'New') {
                 $('#btnSave').html('登録');
 
@@ -305,6 +306,7 @@
         }
 
         function ShowProjectData() {
+            AlreadyExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', $("#proCD").val());
             var Tmodel = {
                 ProjectCD: $('#proCD').val(),
             };
@@ -322,6 +324,9 @@
             $("#totalamount").val(hbdata[0].TotalSP);
             //$("#DeliverNo").val(hbdata[0].TotalDeliveryAmount);
             //$("#Amount").val(hbdata[0].TotalSP);
+
+
+            
         }
 
     function CalculateTotalAmt(result) {
@@ -369,6 +374,41 @@
                     return "0";
                 }
             }
+        }
+
+        function GetSearchData() {
+            ExistsCheck($("#divMainList #HLHinbanCD"), "Hinban", $("#divMainList #HLHinbanCD").data('existcheck-url'), "HinbanName", $("#proCD").val());
+            var Tmodel = {
+                HinbanCD: $("#HinbanCD").val(),
+                ProjectCD: $("#proCD1").val()
+
+            };
+            var data = CalltoApiController('@Url.Action("M_HinBan_Select_Edit", "api/TourokuProjectApi")', Tmodel);
+            var hinbandata = JSON.parse(data);
+            if (Mode == 'Edit') {
+                $("#Production").val(hinbandata[0].Production);
+                $("#saleprice").val(hinbandata[0].SalesPrice);
+                $("#DeliverNo").val(hinbandata[0].TotalDeliveryAmount);
+                $("#Amount").val(hinbandata[0].SP);
+                $("#CastingCD").val(hinbandata[0].CastingCD);
+                $("#CastingName").val(hinbandata[0].CastingName);
+                $("#Color").val(hinbandata[0].Color);
+                $("#freeitem1").val(hinbandata[0].FreeItem1);
+                $("#freeitem2").val(hinbandata[0].FreeItem2);
+            } else {
+                $("#HinbanCD").val(hinbandata[0].HinbanCD);
+                $("#HinbanName").val(hinbandata[0].HinbanName);
+                $("#Production").val(hinbandata[0].Production);
+                $("#saleprice").val(hinbandata[0].SalesPrice);
+                $("#DeliverNo").val(hinbandata[0].TotalDeliveryAmount);
+                $("#Amount").val(hinbandata[0].SP);
+                $("#CastingCD").val(hinbandata[0].CastingCD);
+                $("#CastingName").val(hinbandata[0].CastingName);
+                $("#Color").val(hinbandata[0].Color);
+                $("#freeitem1").val(hinbandata[0].FreeItem1);
+                $("#freeitem2").val(hinbandata[0].FreeItem2);
+            }
+            
         }
 
          function ShowData() {

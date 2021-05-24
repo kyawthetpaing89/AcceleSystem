@@ -7,7 +7,7 @@
             LoadSearchForm(type, $("#ProjectManager"), $("#ProjectManagerName"));
             break;
         case 3://hinban
-            LoadSearchForm(type, $("#HinbanCD"), $("#HinbanName"));
+            LoadSearchForm(type, $("#HinbanCD"), $("#HinbanName"), $("#proCD1"));
             break;
         case 4:
             LoadSearchForm(type, $("#CastingCD"), $("#CastingName"));
