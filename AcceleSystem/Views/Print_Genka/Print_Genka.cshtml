@@ -61,7 +61,7 @@
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <input type="text" tabindex="2" class="text-line col-xl-3 text-left" id="BrandCD" name="brandcd" onkeydown="KeyDown(event,this,'BrandCheck')" maxlength="6" style="width:140px;" placeholder="ブランド名">
                             <input id="btnPSearch" type="button" value="..." onclick="Search(1)" />
-                            <label id="brandname"><b>@*ブランド表示*@</b></label>
+                            <label id="BrandName"><b>@*ブランド表示*@</b></label>
                         </div>
                     </div>
                 </div>
@@ -151,7 +151,7 @@
 
                 //RequiredCheck($("#BrandCD"));
                 DoubleByteCheck($("#BrandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
-                ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Print_GenkaApi")', "brandname");
+                ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/Print_GenkaApi")', "BrandName");
 
                 //RequiredCheck($("#projectCD"));
                 DoubleByteCheck($("#ProjectCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
@@ -191,10 +191,10 @@
 
         function BrandCheck(result) {    // Make bold to BrandName after databind
             if (result == 'OK' && $("#BrandCD").val()) {
-                $("#brandname").css("font-weight", "Bold");
+                $("#BrandName").css("font-weight", "Bold");
             }
-            else $("#brandname").text('');
-            $("#brandname").css("font-weight", "Bold");
+            else $("#BrandName").text('');
+            $("#BrandName").css("font-weight", "Bold");
         }
 
         function SeasonCheck(result) {
@@ -234,10 +234,10 @@
             else {
                 var res = ErrorCheckOnSave();
                 var brandname;
-                if ($("#brandname").text() == 'ブランド表示')
+                if ($("#BrandName").text() == 'ブランド表示')
                     brandname = '';
                 else
-                    brandname = $("#brandname").text();
+                    brandname = $("#BrandName").text();
 
                 if (res == "0") {
                     var pmodel = {
@@ -281,8 +281,8 @@
 
                             ShowTargetYear();
                             $("#BrandCD").val('');
-                            $("#brandname").text('');
-                            $("#brandname").css("font-weight", "Bold");
+                            $("#BrandName").text('');
+                            $("#BrandName").css("font-weight", "Bold");
                             $('#allyear').prop('checked', true);
                             $('#SS').prop('checked', true);
                             $('#FW').prop('checked', true);
