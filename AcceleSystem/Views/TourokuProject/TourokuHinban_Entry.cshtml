@@ -309,7 +309,7 @@
         }
 
         function ShowProjectData() {
-            AlreadyExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', $("#proCD").val());
+            //AlreadyExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', $("#proCD").val());
             var Tmodel = {
                 ProjectCD: $('#proCD').val(),
             };
@@ -404,7 +404,8 @@
                 $("#HinbanName").val(hinbandata[0].HinbanName);
                 $("#Production").val(hinbandata[0].Production);
                 $("#saleprice").val(hinbandata[0].SalesPrice);
-                $("#DeliverNo").val(hinbandata[0].TotalDeliveryAmount);
+                if (Mode == 'New') $("#DeliverNo").val(0);
+                else $("#DeliverNo").val(hinbandata[0].TotalDeliveryAmount);
                 $("#Amount").val(hinbandata[0].SP);
                 $("#CastingCD").val(hinbandata[0].CastingCD);
                 $("#CastingName").val(hinbandata[0].CastingName);
