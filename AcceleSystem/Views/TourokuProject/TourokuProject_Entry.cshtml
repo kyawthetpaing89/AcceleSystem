@@ -76,9 +76,9 @@
                             <label id="text" style="padding-right: 5px;">
                                 予定期間
                             </label>
-                            <input type="text" tabindex="8" class="text-line col-sm-12 col-md-12 col-lg-3 text-left" onkeydown="KeyDown(event,this)" id="PeriodStart" name="periodstart" required placeholder="入力">
+                            <input type="text" tabindex="8" class="text-line col-sm-12 col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this)" id="PeriodStart" name="periodstart" required placeholder="入力">
                             <label  style="font-size: 1.4rem;text-align:center;">~</label>
-                            <input type="text" tabindex="9" class="text-line col-sm-12 col-md-12 col-lg-3 text-left" onkeydown="KeyDown(event,this,'DateCompare')" id="PeriodEnd" name="periodend" required placeholder="入力">
+                            <input type="text" tabindex="9" class="text-line col-sm-12 col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this,'DateCompare')" id="PeriodEnd" name="periodend" required placeholder="入力">
 
                         </div>
                     </div>
@@ -87,9 +87,9 @@
                     <div class="col-xs-12" style="padding-left:30px">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="Production" style="padding-right:5px;">総生産数</label>
-                            <label id="TotalProduction" class="col-sm-12 col-md-12 col-lg-4"><b>@*総生産数表示*@</b></label>
-                            <label id="SalesPrice" style="padding-right:20px;">総金額</label>
-                            <label id="TotalSalesPrice"><b>@*総金額表示*@</b></label>
+                            <input type="text" tabindex="9" class="text-line border-bottom-0 col-md-12 col-lg-3 text-right" onkeydown="KeyDown(event,this)" id="TotalProduction"  name="TotalProduction">&nbsp;&nbsp;
+                            <label id="SalesPrice" style="padding-right:5px;">総金額</label>
+                            <input type="text" tabindex="9" class="text-line border-bottom-0 col-md-12 col-lg-3 text-right" onkeydown="KeyDown(event,this)" id="TotalSalesPrice" name="TotalSalesPrice">
                         </div>
                     </div>
                 </div>
@@ -325,12 +325,12 @@
          else $("#ProjectManagerName").text(ProjectData[0].ProjectManagerName);
 
          if (!ProjectData[0].Production)
-             $("#TotalProduction").text("");
-         else $("#TotalProduction").text(ProjectData[0].Production);
+             $("#TotalProduction").val("");
+         else $("#TotalProduction").val(ProjectData[0].Production);
 
          if (!ProjectData[0].SalesPrice)
-             $("#TotalSalesPrice").text("");
-         else $("#TotalSalesPrice").text(ProjectData[0].SalesPrice);
+             $("#TotalSalesPrice").val("");
+         else $("#TotalSalesPrice").val(ProjectData[0].SalesPrice);
 
          //Bind Season
          if (ProjectData[0].Season == "1")
