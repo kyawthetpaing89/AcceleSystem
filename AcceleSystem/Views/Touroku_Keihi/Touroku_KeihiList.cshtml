@@ -326,6 +326,19 @@
            KeihiList_Load();
        });
 
+
+        function CheckboxCheck(result) {
+            if (result == 'OK') {
+                var allyear = $("#allyear").is(":checked");
+                var ss = $("#SS").is(":checked");
+                var fw = $("#FW").is(":checked");
+                if (!allyear && !ss && !fw) {
+                    $("#FW").focus();
+                    ShowErrorMessage("E111");
+                }
+            }
+        }
+
        $('#btnAdd').keydown(function (e) {
            var code = e.keyCode || e.which;
            if (code == 9) {

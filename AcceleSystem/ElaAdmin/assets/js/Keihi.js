@@ -62,17 +62,7 @@ function DateCompareCheckOnSave() {
     else return "0";
 }
 
-function CheckboxCheck(result) {
-    if (result == 'OK') {
-        var allyear = $("#allyear").is(":checked");
-        var ss = $("#SS").is(":checked");
-        var fw = $("#FW").is(":checked");
-        if (!allyear && !ss && !fw) {
-            $("#FW").focus();
-            ShowErrorMessage("E111");
-        }
-    }
-}
+
 
 function Get_KeihiData() {
     var kmodel = {
