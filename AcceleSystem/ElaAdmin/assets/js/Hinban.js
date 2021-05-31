@@ -15,7 +15,7 @@
 
     //RequiredCheck($("#proCD"));
 
-    ExistsCheck($("#divMainList #proCD"), "Project", $("#divMainList #proCD").data('existcheck-url'), "#divMainList #proName");
+    ExistsCheck($("#divMainList #proCD"), "Project", $("#divMainList #proCD").data('existcheck-url'), "divMainList #proName");
     DoubleByteCheck($("#divMainList #HLHinbanCD"), $("#divMainList #HLHinbanCD").data('doublebytecheck-url'));
 
     ExistsCheck($("#divMainList #HLCastingCD"), "Casting", $("#divMainList #HLCastingCD").data('existcheck-url'), "divMainList #HLCastingName");
