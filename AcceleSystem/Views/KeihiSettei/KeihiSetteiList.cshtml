@@ -223,7 +223,7 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <i class="fa fa-search" style="padding-left:15px;"></i>
-                <input type="text" id="myInput" placeholder="経費名入力" class="border border-white" style="width:70%;padding-bottom:10px">
+                <input type="text" id="myInput" onkeydown="KeihiSettieKeyDown(event)" placeholder="経費名入力" class="border border-white" style="width:70%;padding-bottom:10px">
                 <table id="tblKeihi" data-request-url="@Url.Action("M_Keihi_Select_List", "api/KeihiSetteiApi")" class="tb1 col-sm-12 table-responsive{-sm|-md|-lg|-xl}" style="padding-left:0px;width:100%;">
                     <thead>
                         <tr>
