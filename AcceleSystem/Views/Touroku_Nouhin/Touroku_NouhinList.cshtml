@@ -216,7 +216,7 @@
                                             <label id="text" style="padding-right:2px;">プロジェクト</label>
                                             <input type="text" tabindex="7" id="proCD" name="txtProjectCD" onkeydown="KeyDown(event,this,'ProjectCheck')" class="text-line col-xl-4 text-left" maxlength="10" required placeholder="入力"  style="width:105px">
                                             <input type="button" id="btnProjectSearch" value="..." onclick="Search(6)" />
-                                            <input type="text" tabindex="8" id="proName" name="txtProjectName" onkeydown="KeyDown(event,this)" class="text-line col-xl-5 text-left" maxlength="60" required placeholder="入力">
+                                            <input type="text" tabindex="8" id="proName" name="txtProjectName" onkeydown="KeyDown(event,this,'ProjectCheck')" class="text-line col-xl-5 text-left" maxlength="60" required placeholder="入力">
                                         </div>
                                     </div>
                                 </div>
@@ -355,7 +355,7 @@
 
             DoubleByteCheck($("#HinbanCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
            // ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_HinBan_ExistsCheck", "api/TourokuProjectApi")', "HinbanName");
-           // ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "HinbanName", $("#ProjectCD").val());
+           ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "HinbanName", $("#proCD").val());
 
             DateCheck($("#StartDate"), '@Url.Action("Date_Checking", "api/CommonApi")');
             DateCheck($("#EndDate"), '@Url.Action("Date_Checking", "api/CommonApi")');
@@ -374,7 +374,10 @@
         });
         function ProjectCheck(result) {
             if (result == 'OK') {
-                ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "HinbanName", $("#proCD").val());
+
+                if ($("#proCD").val()) {
+                    ExistsCheck($("#HinbanCD"), "Hinban", '@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")', "HinbanName", $("#proCD").val());
+                }
             }
         }
 
