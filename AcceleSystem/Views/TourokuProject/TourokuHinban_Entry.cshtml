@@ -235,13 +235,22 @@
             else if (Mode == 'Copy') {
                 ShowData();
                 $('#btnSave').html('登録');
-
-                //$("#proCD").attr('disabled', 'disabled');
+                $("#btnProjectSearch").attr('disabled', 'disabled');
+                $("#proCD").attr('disabled', 'disabled');
+                $("#proName").attr('disabled', 'disabled');
                 $("#DeliverNo").attr('disabled', 'disabled');
-                $("#proCD").focus();
-                //$("#CastingName").attr('disabled', 'disabled');
+                $("#Year").attr('disabled', 'disabled');
+                $("#Season").attr('disabled', 'disabled');
+                $("#BrandCD").attr('disabled', 'disabled');
+                $("#BrandName").attr('disabled', 'disabled');
+                $("#StartDate").attr('disabled', 'disabled');
+                $("#EndDate").attr('disabled', 'disabled');
+                $("#totalProNo").attr('disabled', 'disabled');
+                $("#totalamount").attr('disabled', 'disabled');
+                //$("#proCD").focus();
                 //$("#HinbanCD").focus();
                 DoubleByteCheck($("#proCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
+                //$("#CastingName").attr('disabled', 'disabled');
                 ExistsCheck($("#proCD"), "Project", '@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")', "proName");
 
                 RequiredCheck($("#HinbanCD"));
