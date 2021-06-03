@@ -87,9 +87,9 @@
                     <div class="col-xs-12" style="padding-left:30px">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="Production" style="padding-right:5px;">総生産数</label>
-                            <input type="text" tabindex="9" class="text-line border-bottom-0 col-md-12 col-lg-3 text-right" onkeydown="KeyDown(event,this)" id="TotalProduction"  name="TotalProduction">&nbsp;&nbsp;
+                            <input type="text" tabindex="10" class="text-line border-bottom-0 col-md-12 col-lg-3 text-right" onkeydown="KeyDown(event,this)" id="TotalProduction"  name="TotalProduction">&nbsp;&nbsp;
                             <label id="SalesPrice" style="padding-right:5px;">総金額</label>
-                            <input type="text" tabindex="9" class="text-line border-bottom-0 col-md-12 col-lg-3 text-right" onkeydown="KeyDown(event,this)" id="TotalSalesPrice" name="TotalSalesPrice">
+                            <input type="text" tabindex="11" class="text-line border-bottom-0 col-md-12 col-lg-3 text-right" onkeydown="KeyDown(event,this)" id="TotalSalesPrice" name="TotalSalesPrice">
                         </div>
                     </div>
                 </div>
@@ -99,7 +99,7 @@
                             <label id="text" style="padding-right: 5px;">
                                 責任者
                             </label>
-                            <input type="text" tabindex="10" class="text-line col-sm-12 col-md-12 col-lg-4 text-left" onkeydown="KeyDown(event,this,'ProjectManagerCheck')" id="ProjectManager" name="projectmanager" maxlength="20" required placeholder="入力">&nbsp;&nbsp;
+                            <input type="text" tabindex="12" class="text-line col-sm-12 col-md-12 col-lg-4 text-left" onkeydown="KeyDown(event,this,'ProjectManagerCheck')" id="ProjectManager" name="projectmanager" maxlength="20" required placeholder="入力">&nbsp;&nbsp;
                             <input type="button" id="btnManagerSearch" value="..." onclick="Search(2)" />
                             <label id="ProjectManagerName"  style="text-transform: none;"><b>@*責任者表示*@</b></label>
                         </div>
@@ -111,7 +111,7 @@
                             <label id="text" style="padding-right: 5px;">
                                 配賦用固定値
                             </label>
-                            <input type="text" tabindex="11" class="text-line col-sm-12 col-md-12 col-lg-5 text-left input-numeral11" onkeydown="KeyDown(event,this)" id="AllocationCount" name="allocationcount" maxlength="4" required placeholder="入力">
+                            <input type="text" tabindex="13" class="text-line col-sm-12 col-md-12 col-lg-5 text-left input-numeral11" onkeydown="KeyDown(event,this)" id="AllocationCount" name="allocationcount" maxlength="4" required placeholder="入力">
 
                         </div>
                     </div>
@@ -119,9 +119,9 @@
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <button id="btnSave" tabindex="12" onclick="btnSaveClick()" class="btn btn-dark col-xl-3 text-center">登録</button>
+                            <button id="btnSave" tabindex="14" onclick="btnSaveClick()" class="btn btn-dark col-xl-3 text-center">登録</button>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <button id="btnCancel" tabindex="13" onclick="btnCancelClick()" class="btn btn-primary col-xl-3 text-center">戻る</button>
+                            <button id="btnCancel" tabindex="15" onclick="btnCancelClick()" class="btn btn-primary col-xl-3 text-center">戻る</button>
                         </div>
                     </div>
                 </div>
