@@ -32,8 +32,8 @@
                     <div class="col-xl-12 text-center">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <input type="text" tabindex="3" class="text-line col-xl-3 text-left" id="BrandCD" onkeydown="KeyDown(event,this)" name="brandCD" maxlength="6" required placeholder="ブランドコード">
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="text" tabindex="4"  class="text-line col-xl-8 text-left" id="BrandName" name="brandname" maxlength="40" required placeholder="ブランド名">
+                            <input type="button" id="btnBrandSearch" value="..." onclick="Search(1)" />
+                            <input type="text" tabindex="4" class="text-line col-xl-8 text-left" id="BrandName" name="brandname" maxlength="40" required placeholder="ブランド名">
                             @*<input type="text" class="text-line col-11" id="BrandName" name="brandname" style="width:91%" required placeholder="ブランド名">*@
                         </div>
                     </div>
@@ -50,7 +50,7 @@
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <button id="btnSave" tabindex="6" onclick="btnSaveClick()" class="btn btn-dark col-xl-4 text-center" ></button>
+                            <button id="btnSave" tabindex="6" onclick="btnSaveClick()" class="btn btn-dark col-xl-4 text-center"></button>
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <button id="btnCancel" tabindex="7" onclick="btnCancelClick()" class="btn btn-primary col-xl-4 text-center">戻る</button>
                         </div>
@@ -61,9 +61,11 @@
         </div>
     </div>
 </div>
-
+@Html.Partial("~/Views/Search/SearchBase.cshtml")
 
 @section Scripts{
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Search.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Brand.js")"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("金型登録");
@@ -89,13 +91,13 @@
                 $("#CastingCD").attr('disabled', 'disabled');
                 $("#CastingName").focus();
                 $("#BrandName").attr('disabled', 'disabled');
-                
+
 
                 RequiredCheck($("#CastingCD"));
                 RequiredCheck($("#CastingName"));
-                RequiredCheck($("#BrandCD")); 
+                RequiredCheck($("#BrandCD"));
 
-               
+
                 ExistsCheck($("#BrandCD"), "Brand", '@Url.Action("M_Brand_ExistsCheck", "api/BrandApi")', "BrandName");
                 DoubleByteCheck($("#BrandCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 DateCheck($("#UseLimit"), '@Url.Action("Date_Checking", "api/CommonApi")');
@@ -110,7 +112,13 @@
                 $("#UseLimit").attr('disabled', 'disabled');
                 $("#btnSave").focus();
                 ShowData();
-            } 
+            }
+            $("#divSearch").iziModal({
+                top: 50,
+                width: "70%",
+                overlayClose: false,
+                zindex: 1000,
+            });
         });
 
         //set data
@@ -139,7 +147,7 @@
             };
 
             var data = CalltoApiController('@Url.Action("Casting_CUD", "api/KanagataApi")', kgmodel);
-            ShowSuccessMessage(data,'@Url.Action("KanagataList", "Kanagata")');           
+            ShowSuccessMessage(data,'@Url.Action("KanagataList", "Kanagata")');
         }
 
         function DeleteConfrim() {
@@ -162,7 +170,7 @@
             else
                 ShowErrorMessage(res);
         }
-          
+
         function btnCancelClick() {
             location.href = '@Url.Action("KanagataList", "Kanagata")';
         }
