@@ -706,12 +706,12 @@
                  CostCD: $('#CostCD').val(),
                  CostDate: $('#CostDate').val(),
                  Year: $('#year').val(),
-                 CostAmount: ($('#AmountMoney').val()).replace(",",""),
-                 InputAmount: ($('#BodyAmount').val()).replace(",",""),
+                 CostAmount: ($('#AmountMoney').val().toString().replace(/,/g, "")),
+                 InputAmount: ($('#BodyAmount').val().toString().replace(/,/g, "")),
                  Remarks: $('#Remark').val(),
                  Mode:'@Model.Mode'
             };
-
+            alert(Kmodel.CostAmount);
             //For Brand
             if ($('#accounting').text() == "2") {
                 Kmodel.BrandCD = $('#BrandCD').val();
