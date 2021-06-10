@@ -46,11 +46,12 @@ namespace Print_GenkaBL
         public string Print_Genka_ProjectData(Print_GenkaModel Pmodel)
         {
             BaseDL bdl = new BaseDL();
-            Pmodel.Sqlprms = new SqlParameter[4];
+            Pmodel.Sqlprms = new SqlParameter[5];
             Pmodel.Sqlprms[0] = new SqlParameter("@ProjectCD", SqlDbType.VarChar) { Value = (object)Pmodel.ProjectCD ?? DBNull.Value };
-            Pmodel.Sqlprms[1] = new SqlParameter("@LoginID", SqlDbType.VarChar) { Value = (object)Pmodel.LoginID ?? DBNull.Value };
-            Pmodel.Sqlprms[2] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = (object)Pmodel.HinbanCD ?? DBNull.Value };
-            Pmodel.Sqlprms[3] = new SqlParameter("@Type", SqlDbType.VarChar) { Value = (object)Pmodel.Type ?? DBNull.Value };
+            Pmodel.Sqlprms[1] = new SqlParameter("@BrandCD", SqlDbType.VarChar) { Value = (object)Pmodel.BrandCD ?? DBNull.Value };
+            Pmodel.Sqlprms[2] = new SqlParameter("@LoginID", SqlDbType.VarChar) { Value = (object)Pmodel.LoginID ?? DBNull.Value };
+            Pmodel.Sqlprms[3] = new SqlParameter("@HinbanCD", SqlDbType.VarChar) { Value = (object)Pmodel.HinbanCD ?? DBNull.Value };
+            Pmodel.Sqlprms[4] = new SqlParameter("@Type", SqlDbType.VarChar) { Value = (object)Pmodel.Type ?? DBNull.Value };
             return bdl.SelectJson("Print_Genka_ProjectData", Pmodel.Sqlprms);
         }
 
