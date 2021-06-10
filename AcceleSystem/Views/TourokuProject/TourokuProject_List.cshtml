@@ -201,7 +201,7 @@
                                     <div class="col-md-12" style="padding-left:64px;">
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label id="text">年度</label>
-                                            <input type="text" tabindex="6" class="text-line col-xl-3 text-left" id="Year"
+                                            <input type="text" tabindex="6" class="text-line col-xl-2 text-left" id="Year"
                                                    data-yearcheck-url='@Url.Action("Year_Checking", "api/CommonApi")'
                                                    name="year" onkeydown="KeyDown(event,this)" required placeholder="入力">
                                         </div>
@@ -216,8 +216,8 @@
                                                    data-existcheck-url='@Url.Action("M_Project_ExistsCheck", "api/TourokuProjectApi")'
                                                    data-projectselect-url='@Url.Action("M_Project_Select_List", "api/TourokuProjectApi")'
                                                    data-projectcsv-url='@Url.Action("M_Project_CSV", "api/TourokuProjectApi")'
-                                                   name="projectcd" maxlength="10" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width:105px">
-                                            <input type="text" tabindex="8" class="text-line col-xl-4 text-left" id="ProjectName" name="projectname" maxlength="60" onkeydown="KeyDown(event,this)" required placeholder="入力">
+                                                   name="projectcd" maxlength="15" onkeydown="KeyDown(event,this)" required placeholder="入力" style="width: 150px;">
+                                            <input type="text" tabindex="8" class="text-line col-xl-5 text-left" id="ProjectName" name="projectname" maxlength="60" onkeydown="KeyDown(event,this)" required placeholder="入力">
 
                                         </div>
                                     </div>
