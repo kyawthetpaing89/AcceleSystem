@@ -677,7 +677,7 @@
                     Mode: 2,
                     CostDate: $('#CostDate').val(),
                     flg: 1,
-                    CostAmount: ($('#AmountMoney').val()).replace(",", ""),
+                    CostAmount: ($('#AmountMoney').val().toString().replace(/,/g, "")),
                 };
                 var data = CalltoApiController('@Url.Action("Fnc_TAXCalculation", "api/Touroku_KeihiApi")', Kmodel);
                 var tax = JSON.parse(data);
