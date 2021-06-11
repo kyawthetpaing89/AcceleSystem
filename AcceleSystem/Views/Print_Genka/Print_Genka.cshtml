@@ -1,4 +1,4 @@
-﻿ty@model Models.Print_GenkaModel
+﻿@model Models.Print_GenkaModel
 @{
     ViewBag.Title = "Print_Genka";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -550,7 +550,6 @@
                             }
 
                             if (prj_count == 1) {
-                                debugger;
                                 var m;
                                 var pmodel = {
                                     LoginID: '@LoginID',
