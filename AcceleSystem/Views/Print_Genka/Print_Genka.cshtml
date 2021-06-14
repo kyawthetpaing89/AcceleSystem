@@ -82,7 +82,7 @@
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="text" style="padding-right:20px;">プロジェクト</label>
-                            <input type="text" tabindex="6" class="text-line col-xl-3 text-left" id="proCD" name="projectcd" onkeydown="KeyDown(event,this)" maxlength="10" required placeholder="入力">
+                            <input type="text" tabindex="6" class="text-line col-xl-3 text-left" id="proCD" name="projectcd" onkeydown="KeyDown(event,this)" maxlength="15" required placeholder="入力">
                             <input type="button" id="btnProjectSearch" value="..." onclick="Search(6)" />
                         </div>
                     </div>
@@ -365,6 +365,7 @@
                             var prj_count = 0
                             var pmodel = {
                                 BrandCD: array[i]["BrandCD"],
+                                Season: array[i]["Season"],
                                 LoginID: '@LoginID',
                                 Type: 'B'
                             };
@@ -405,6 +406,7 @@
                                     var rowcountC = 1, colC2, j, newrowspan, rowspancount = 0;
                                     var pmodel = {
                                         BrandCD: B_array[b]["BrandCD"],
+                                        Season: B_array[b]["Season"],
                                         ProjectCD: B_array[b]["ProjectCD"],
                                         LoginID: '@LoginID',
                                         Type: 'C'
@@ -462,6 +464,7 @@
                                                 var rowcountD = 1, colD2, k, style;
                                                 var pmodel = {
                                                     BrandCD: prj_array[j]["BrandCD"],
+                                                    Season: prj_array[j]["Season"],
                                                     ProjectCD: prj_array[j]["ProjectCD"],
                                                     HinbanCD: prj_array[j]["HinbanCD"],
                                                     LoginID: '@LoginID',
@@ -529,6 +532,7 @@
                                         var l;
                                         var pmodel = {
                                             BrandCD: prj_array[0]["BrandCD"],
+                                            Season: prj_array[0]["Season"],
                                             ProjectCD: prj_array[0]["ProjectCD"],
                                             HinbanCD: prj_array[0]["HinbanCD"],
                                             LoginID: '@LoginID',

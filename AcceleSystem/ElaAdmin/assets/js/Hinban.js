@@ -21,6 +21,38 @@
     ExistsCheck($("#divMainList #HLCastingCD"), "Casting", $("#divMainList #HLCastingCD").data('existcheck-url'), "divMainList #HLCastingName");
     DoubleByteCheck($("#divMainList #HLCastingCD"), $("#divMainList #HLHinbanCD").data('doublebytecheck-url'));
     //GetHinban();
+
+
+    if ($("#divMain #proCD").val()) {
+
+        var Tmodel = {
+            ProjectCD: $('#divMain #proCD').val()
+        };
+        var data = CalltoApiController($("#divMainList #HLHinbanCD").data('checklist-url'), Tmodel);
+        var hbdata = JSON.parse(data);
+        $("#divMainList #proCD").val(hbdata[0].ProjectCD);
+        $("#divMainList #proName").val(hbdata[0].ProjectName);
+        $("#divMainList #HLyear").val(hbdata[0].Year);
+        $("#divMainList #HLseason").val(hbdata[0].Season);
+        $("#divMainList #HLBrandCD").val(hbdata[0].BrandCD);
+        $("#divMainList #HLBrandName").val(hbdata[0].BrandName);
+        $("#divMainList #HLStartDate").val(hbdata[0].PeriodStart);
+        $("#divMainList #HLEndDate").val(hbdata[0].PeriodEnd);
+        $("#divMainList #tpNo").val(hbdata[0].TotalProduction);
+        $("#divMainList #tAmount").val(hbdata[0].TotalSP);
+    }
+    else {
+        $("#divMainList #proCD").val('');
+        $("#divMainList #proName").val('');
+        $("#divMainList #HLyear").val('');
+        $("#divMainList #HLseason").val('');
+        $("#divMainList #HLBrandCD").val('');
+        $("#divMainList #HLBrandName").val('');
+        $("#divMainList #HLStartDate").val('');
+        $("#divMainList #HLEndDate").val('');
+        $("#divMainList #tpNo").val('');
+        $("#divMainList #tAmount").val('');
+    }
 }
 
 function GetHinban() {
