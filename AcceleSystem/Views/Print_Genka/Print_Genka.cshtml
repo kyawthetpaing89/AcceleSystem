@@ -82,7 +82,7 @@
                     <div class="col-xs-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="text" style="padding-right:20px;">プロジェクト</label>
-                            <input type="text" tabindex="6" class="text-line col-xl-3 text-left" id="proCD" name="projectcd" onkeydown="KeyDown(event,this)" maxlength="10" required placeholder="入力">
+                            <input type="text" tabindex="6" class="text-line col-xl-3 text-left" id="proCD" name="projectcd" onkeydown="KeyDown(event,this)" maxlength="15" required placeholder="入力">
                             <input type="button" id="btnProjectSearch" value="..." onclick="Search(6)" />
                         </div>
                     </div>
@@ -403,7 +403,6 @@
                                     o_row = 0;
                                 }
                                 else if (B_array[b]["SortKey"] == '30') {
-                                    debugger;
                                     var rowcountC = 1, colC2, j, newrowspan, rowspancount = 0;
                                     var pmodel = {
                                         BrandCD: B_array[b]["BrandCD"],
