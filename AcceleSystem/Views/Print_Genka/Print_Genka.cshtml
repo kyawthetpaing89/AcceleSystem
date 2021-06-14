@@ -365,6 +365,7 @@
                             var prj_count = 0
                             var pmodel = {
                                 BrandCD: array[i]["BrandCD"],
+                                Season: array[i]["Season"],
                                 LoginID: '@LoginID',
                                 Type: 'B'
                             };
@@ -402,9 +403,11 @@
                                     o_row = 0;
                                 }
                                 else if (B_array[b]["SortKey"] == '30') {
+                                    debugger;
                                     var rowcountC = 1, colC2, j, newrowspan, rowspancount = 0;
                                     var pmodel = {
                                         BrandCD: B_array[b]["BrandCD"],
+                                        Season: B_array[b]["Season"],
                                         ProjectCD: B_array[b]["ProjectCD"],
                                         LoginID: '@LoginID',
                                         Type: 'C'
@@ -462,6 +465,7 @@
                                                 var rowcountD = 1, colD2, k, style;
                                                 var pmodel = {
                                                     BrandCD: prj_array[j]["BrandCD"],
+                                                    Season: prj_array[j]["Season"],
                                                     ProjectCD: prj_array[j]["ProjectCD"],
                                                     HinbanCD: prj_array[j]["HinbanCD"],
                                                     LoginID: '@LoginID',
@@ -529,6 +533,7 @@
                                         var l;
                                         var pmodel = {
                                             BrandCD: prj_array[0]["BrandCD"],
+                                            Season: prj_array[0]["Season"],
                                             ProjectCD: prj_array[0]["ProjectCD"],
                                             HinbanCD: prj_array[0]["HinbanCD"],
                                             LoginID: '@LoginID',
