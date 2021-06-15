@@ -1,7 +1,6 @@
 ﻿function HinbanList_Load() {
     $("#HinbanType").val("1");
-    $("#divMainList #proCD").focus();
-
+   
     $("#divMainList #proName").attr('disabled', 'disabled');
     $("#divMainList #HLyear").attr('disabled', 'disabled');
     $("#divMainList #HLseason").attr('disabled', 'disabled');
@@ -24,7 +23,7 @@
 
 
     if ($("#divMain #proCD").val()) {
-
+        $("#divMainList #HLHinbanCD").focus();
         var Tmodel = {
             ProjectCD: $('#divMain #proCD').val()
         };
@@ -62,6 +61,7 @@ function GetHinban() {
         HinbanCD: $('#divMainList #HLHinbanCD').val(),
         HinbanName: $('#divMainList #HLHinbanName').val(),
         CastingCD: $('#divMainList #HLCastingCD').val(),
+    CastingName: $('#divMainList #HLCastingName').val(),
         StartPrice: $('#divMainList #StartPrice').val(),
         EndPrice: $('#divMainList #EndPrice').val(),
     };
