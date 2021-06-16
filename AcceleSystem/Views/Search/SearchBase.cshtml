@@ -31,6 +31,7 @@
                 $(".iziModal-header-title").text("品番検索");
                 $("#divSearch1").load('@Url.Action("TourokuHinban_List", "TourokuProject")', function () {
                     SearchSetting(typeID);
+                    $("#divMainList #HLHinbanCD").focus();
                 });
                 break;
             case 4:
