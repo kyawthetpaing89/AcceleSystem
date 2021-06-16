@@ -344,6 +344,7 @@
                 var sp = parseInt($('#Production').val().toString().replace(/,/g, "")) * parseInt($('#saleprice').val().toString().replace(/,/g, ""));
                 if (sp.toString().length > 8) {
                     $('#saleprice').focus();
+                    $('#Amount').val('');
                     ShowErrorMessage("E132");
                     
                 }
