@@ -1,6 +1,6 @@
 ﻿function HinbanList_Load() {
     $("#HinbanType").val("1");
-   
+    $("#proCD").focus();
     $("#divMainList #proName").attr('disabled', 'disabled');
     $("#divMainList #HLyear").attr('disabled', 'disabled');
     $("#divMainList #HLseason").attr('disabled', 'disabled');
