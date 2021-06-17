@@ -123,7 +123,7 @@
                             <label id="text" style="padding-right:5px;">金型</label>
                             <input type="text" tabindex="9" class="text-line col-sm-12 col-md-12 col-lg-4 text-left" onkeydown="KeyDown(event,this)" id="CastingCD" name="CastingCD" maxlength="10" required placeholder="入力">&nbsp;
                             <input type="button" id="btnKanagataSearch" value="..." onclick="Search(4)" />
-                            <input type="text" tabindex="10" class="text-line col-sm-12 col-md-12 col-lg-6 text-left" onkeydown="KeyDown(event,this)" id="CastingName" name="CastingName" maxlength="40">
+                            <input type="text" tabindex="-1" class="text-line col-sm-12 col-md-12 col-lg-6 text-left" onkeydown="KeyDown(event,this)" id="CastingName" name="CastingName" maxlength="40">
 
                         </div>
                     </div>
@@ -134,18 +134,18 @@
                             <label id="text" style="padding-right: 5px;">
                                 自由配賦項目/配賦用固定値
                             </label>
-                            <input type="text" tabindex="11" class="text-line col-sm-12 col-md-12 col-lg-3 text-left" onkeydown="KeyDown(event,this)" id="freeitem1" name="freeitem1" maxlength="10" required placeholder="入力">&nbsp;
+                            <input type="text" tabindex="10" class="text-line col-sm-12 col-md-12 col-lg-3 text-left" onkeydown="KeyDown(event,this)" id="freeitem1" name="freeitem1" maxlength="10" required placeholder="入力">&nbsp;
 
-                            <input type="text" tabindex="12" class="text-line col-sm-12 col-md-12 col-lg-3 text-left input-numeral13" onkeydown="KeyDown(event,this)" id="freeitem2" name="freeitem2" maxlength="4" required placeholder="入力">
+                            <input type="text" tabindex="11" class="text-line col-sm-12 col-md-12 col-lg-3 text-left input-numeral13" onkeydown="KeyDown(event,this)" id="freeitem2" name="freeitem2" maxlength="4" required placeholder="入力">
                         </div>
                     </div>
                 </div>
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <button id="btnSave" tabindex="13" onclick="btnSaveClick()" class="btn btn-dark col-xl-3 text-center">登録</button>
+                            <button id="btnSave" tabindex="12" onclick="btnSaveClick()" class="btn btn-dark col-xl-3 text-center">登録</button>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <button id="btnCancel" tabindex="14" onclick="btnCancelClick()" class="btn btn-primary col-xl-3 text-center">戻る</button>
+                            <button id="btnCancel" tabindex="13" onclick="btnCancelClick()" class="btn btn-primary col-xl-3 text-center">戻る</button>
                         </div>
                     </div>
                 </div>
