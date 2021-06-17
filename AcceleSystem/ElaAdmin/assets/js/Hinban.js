@@ -4,8 +4,8 @@
     $("#divMainList #proName").attr('disabled', 'disabled');
     $("#divMainList #HLyear").attr('disabled', 'disabled');
     $("#divMainList #HLseason").attr('disabled', 'disabled');
-    $("#divMainList #HLBrandCD").attr('disabled', 'disabled');
-    $("#divMainList #HLBrandName").attr('disabled', 'disabled');
+    $("#divMainList #BrandCD").attr('disabled', 'disabled');
+    $("#divMainList #BrandName").attr('disabled', 'disabled');
     $("#divMainList #HLStartDate").attr('disabled', 'disabled');
     $("#divMainList #HLEndDate").attr('disabled', 'disabled');
     $("#divMainList #tpNo").attr('disabled', 'disabled');
@@ -33,8 +33,8 @@
         $("#divMainList #proName").val(hbdata[0].ProjectName);
         $("#divMainList #HLyear").val(hbdata[0].Year);
         $("#divMainList #HLseason").val(hbdata[0].Season);
-        $("#divMainList #HLBrandCD").val(hbdata[0].BrandCD);
-        $("#divMainList #HLBrandName").val(hbdata[0].BrandName);
+        $("#divMainList #BrandCD").val(hbdata[0].BrandCD);
+        $("#divMainList #BrandName").val(hbdata[0].BrandName);
         $("#divMainList #HLStartDate").val(hbdata[0].PeriodStart);
         $("#divMainList #HLEndDate").val(hbdata[0].PeriodEnd);
         $("#divMainList #tpNo").val(hbdata[0].TotalProduction);
@@ -45,8 +45,8 @@
         $("#divMainList #proName").val('');
         $("#divMainList #HLyear").val('');
         $("#divMainList #HLseason").val('');
-        $("#divMainList #HLBrandCD").val('');
-        $("#divMainList #HLBrandName").val('');
+        $("#divMainList #BrandCD").val('');
+        $("#divMainList #BrandName").val('');
         $("#divMainList #HLStartDate").val('');
         $("#divMainList #HLEndDate").val('');
         $("#divMainList #tpNo").val('');
@@ -58,10 +58,18 @@ function GetHinban() {
     var Tmodel = {
         ProjectCD: $('#divMainList #proCD').val(),
         ProjectName: $('#divMainList #proName').val(),
+        Year: $('#divMainList #HLyear').val(),
+        Season: $('#divMainList #HLseason').val(),
+        BrandCD: $('#divMainList #BrandCD').val(),
+        BrandName: $('#divMainList #BrandName').val(),
+        PeriodStart: $('#divMainList #HLStartDate').val(),
+        PeriodEnd: $('#divMainList #HLEndDate').val(),
+        Production: $('#divMainList #tpNo').val(),
+        SalePrice: $('#divMainList #tAmount').val(),
         HinbanCD: $('#divMainList #HLHinbanCD').val(),
         HinbanName: $('#divMainList #HLHinbanName').val(),
         CastingCD: $('#divMainList #HLCastingCD').val(),
-    CastingName: $('#divMainList #HLCastingName').val(),
+        CastingName: $('#divMainList #HLCastingName').val(),
         StartPrice: $('#divMainList #StartPrice').val(),
         EndPrice: $('#divMainList #EndPrice').val(),
     };
@@ -141,38 +149,40 @@ function ProjectCDCheck(result) {
 
 function Check() {
     ExistsCheck($("#divMainList #HLHinbanCD"), "Hinban", $("#divMainList #HLHinbanCD").data('existcheck-url'), "HLHinbanName", $("#proCD").val());
+    
     if ($("#divMainList #proCD").val()) {
-        
-        var Tmodel = {
-            ProjectCD: $('#divMainList #proCD').val(),
-            //HinbanCD: $('#HinbanCD').val(),
-        };
-        var data = CalltoApiController($("#divMainList #HLHinbanCD").data('checklist-url'), Tmodel);
-        var hbdata = JSON.parse(data);
-        $("#divMainList #proCD").val(hbdata[0].ProjectCD);
-        $("#divMainList #proName").val(hbdata[0].ProjectName);
-        $("#divMainList #HLyear").val(hbdata[0].Year);
-        $("#divMainList #HLseason").val(hbdata[0].Season);
-        $("#divMainList #HLBrandCD").val(hbdata[0].BrandCD);
-        $("#divMainList #HLBrandName").val(hbdata[0].BrandName);
-        $("#divMainList #HLStartDate").val(hbdata[0].PeriodStart);
-        $("#divMainList #HLEndDate").val(hbdata[0].PeriodEnd);
-        $("#divMainList #tpNo").val(hbdata[0].TotalProduction);
-        $("#divMainList #tAmount").val(hbdata[0].TotalSP);
-    }
-    else {
-        $("#divMainList #proCD").val('');
-        $("#divMainList #proName").val('');
-        $("#divMainList #HLyear").val('');
-        $("#divMainList #HLseason").val('');
-        $("#divMainList #HLBrandCD").val('');
-        $("#divMainList #HLBrandName").val('');
-        $("#divMainList #HLStartDate").val('');
-        $("#divMainList #HLEndDate").val('');
-        $("#divMainList #tpNo").val('');
-        $("#divMainList #tAmount").val('');
+            var Tmodel = {
+                ProjectCD: $('#divMainList #proCD').val(),
+                //HinbanCD: $('#HinbanCD').val(),
+            };
+            var data = CalltoApiController($("#divMainList #HLHinbanCD").data('checklist-url'), Tmodel);
+            var hbdata = JSON.parse(data);
+            $("#divMainList #proCD").val(hbdata[0].ProjectCD);
+            $("#divMainList #proName").val(hbdata[0].ProjectName);
+            $("#divMainList #HLyear").val(hbdata[0].Year);
+            $("#divMainList #HLseason").val(hbdata[0].Season);
+            $("#divMainList #BrandCD").val(hbdata[0].BrandCD);
+            $("#divMainList #BrandName").val(hbdata[0].BrandName);
+            $("#divMainList #HLStartDate").val(hbdata[0].PeriodStart);
+            $("#divMainList #HLEndDate").val(hbdata[0].PeriodEnd);
+            $("#divMainList #tpNo").val(hbdata[0].TotalProduction);
+            $("#divMainList #tAmount").val(hbdata[0].TotalSP);
+        }
+        else {
+            $("#divMainList #proCD").val('');
+            $("#divMainList #proName").val('');
+            $("#divMainList #HLyear").val('');
+            $("#divMainList #HLseason").val('');
+            $("#divMainList #BrandCD").val('');
+            $("#divMainList #BrandName").val('');
+            $("#divMainList #HLStartDate").val('');
+            $("#divMainList #HLEndDate").val('');
+            $("#divMainList #tpNo").val('');
+            $("#divMainList #tAmount").val('');
     }
 }
+
+
 
 function CheckPrice(result) {
     if (result == 'OK') {
@@ -252,8 +262,8 @@ function GetHinbanData() {
         ProjectCD1: $('#divMainList #proCD').val(),
         ProjectName: $('#divMainList #proName').val(),
         Year: $('#divMainList #HLyear').val(),
-        BrandCD1: $('#divMainList #HLBrandCD').val(),
-        BrandName: $('#divMainList #HLBrandName').val(),
+        BrandCD1: $('#divMainList #BrandCD').val(),
+        BrandName: $('#divMainList #BrandName').val(),
         StartDate: $('#divMainList #HLStartDate').val(),
         EndDate: $('#divMainList #HLEndDate').val(),
         Production: $('#divMainList #tpNo').val(),
