@@ -62,10 +62,8 @@ function GetHinban() {
         Season: $('#divMainList #HLseason').val(),
         BrandCD: $('#divMainList #BrandCD').val(),
         BrandName: $('#divMainList #BrandName').val(),
-        PeriodStart: $('#divMainList #HLStartDate').val(),
-        PeriodEnd: $('#divMainList #HLEndDate').val(),
-        Production: $('#divMainList #tpNo').val(),
-        SalePrice: $('#divMainList #tAmount').val(),
+        PeriodStart: $('#divMainList #HLStartDate').val().toString().replace(/\//g, ''),
+        PeriodEnd: $('#divMainList #HLEndDate').val().toString().replace(/\//g, ''),
         HinbanCD: $('#divMainList #HLHinbanCD').val(),
         HinbanName: $('#divMainList #HLHinbanName').val(),
         CastingCD: $('#divMainList #HLCastingCD').val(),
@@ -73,6 +71,12 @@ function GetHinban() {
         StartPrice: $('#divMainList #StartPrice').val(),
         EndPrice: $('#divMainList #EndPrice').val(),
     };
+
+    if ($('#divMainList #HLseason').val() == '通年')
+        Tmodel.Season = 1;
+    else if ($('#divMainList #HLseason').val() == 'SS')
+        Tmodel.Season = 2;
+    else Tmodel.Season = 3;
 
     var selected = new Array();
     $("#divMainList #CompleteYMgp input[type=checkbox]:checked").each(function () {
