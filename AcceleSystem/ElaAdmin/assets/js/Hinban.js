@@ -76,7 +76,9 @@ function GetHinban() {
         Tmodel.Season = 1;
     else if ($('#divMainList #HLseason').val() == 'SS')
         Tmodel.Season = 2;
-    else Tmodel.Season = 3;
+    else if ($('#divMainList #HLseason').val() == 'FW')
+        Tmodel.Season = 3;
+    else Tmodel.Season = '';
 
     var selected = new Array();
     $("#divMainList #CompleteYMgp input[type=checkbox]:checked").each(function () {
