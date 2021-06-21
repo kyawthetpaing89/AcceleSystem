@@ -163,8 +163,11 @@
                                             <label id="text" style="padding-right:3px;">
                                                 ブランド
                                             </label>
-                                            <input type="text" tabindex="-1" class="text-line col-sm-12 col-md-12 col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="HLBrandCD" name="brand" maxlength="50" required placeholder="入力" style="width:70px">
-                                            <input type="text" tabindex="-1" class="text-line col-sm-12 col-md-12 col-xl-6 text-left" onkeydown="KeyDown(event,this)" id="HLBrandName" name="brandname" maxlength="50" required placeholder="入力">
+                                            <input type="text" tabindex="-1" class="text-line col-sm-12 col-md-12 col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="BrandCD" name="brand" maxlength="50" 
+                                            data-doublebytecheck-url='@Url.Action("DoubleByte_Checking", "api/CommonApi")'
+                                             data-existcheck-url='@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")'required placeholder="入力" style="width:70px">
+                                            <input type="button" id="btnBrandSearch" value="..." onclick="Search(1)" />
+                                            <input type="text" tabindex="-1" class="text-line col-sm-12 col-md-12 col-xl-6 text-left" onkeydown="KeyDown(event,this)" id="BrandName" name="brandname" maxlength="50" required placeholder="入力">
                                         </div>
                                     </div>
                                 </div>
@@ -308,6 +311,7 @@
     <script src="@Url.Content("~/ElaAdmin/assets/js/Project.js")"></script>
     <script src="@Url.Content("~/ElaAdmin/assets/js/Search.js")"></script>
     <script src="@Url.Content("~/ElaAdmin/assets/js/Kanagata.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Brand.js")"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $("#formtitle").text("品番検索");
@@ -315,8 +319,8 @@
             $('#proCD').val('@Model.ProjectCD1');
             $('#proName').val('@Model.ProjectName');
             $('#HLyear').val('@Model.Year');
-            $('#HLBrandCD').val('@Model.BrandCD1');
-            $('#HLBrandName').val('@Model.BrandName');
+            $('#BrandCD').val('@Model.BrandCD1');
+            $('#BrandName').val('@Model.BrandName');
             $('#HLStartDate').val('@Model.startDate');
             $('#HLEndDate').val('@Model.endDate');
             $('#tpNo').val('@Model.Production');

@@ -8,10 +8,12 @@
     var CD;
     var Name;
     var CD1;
+    var typeID;
     function LoadSearchForm(typeID, CD, Name,CD1) {
         this.CD = CD;
         this.Name = Name;
         this.CD1 = CD1;
+        this.typeID = typeID;
         $("#divSearch1").empty();
 
         switch (typeID) {
@@ -122,11 +124,12 @@
 
     function ReturnSelected(cd, name, cd1) {
         $("#divSearch1").empty();
+        
         $(CD).val(cd);
         $(Name).val(name);
         $(CD1).val(cd1);
         $("#divSearch").iziModal('close');
-
+        
         //fire keydown of BrandName
         var e = jQuery.Event("keydown");
         e.which = 13; // # Some key code value
@@ -140,11 +143,11 @@
         else {
             $(CD1).trigger(e);
         }
-
-        if ($("#formtitle").text() == "品番検索") { Check(); } //BindProjectData as ProjectCD(From ProjectSearch) entered in HinbanList
-        else if ($("#formtitle").text() == "品番登録" && (!$(CD1).length)) { ShowProjectData(); }//Bind ProjectData as ProjectCD (From ProjectSearch) entered in HinbanEntry
-        else if ($("#formtitle").text() == "品番登録" && ($(CD1).length)) { GetSearchData(); } //Bind HinbanData as HinbanCD and ProjectCD (From HinbanSearch) entered in HinbanEntry
        
+        if ($("#formtitle").text() == "品番検索" && typeID == 6) { Check(); } //BindProjectData as ProjectCD(From ProjectSearch) entered in HinbanList
+        else if ($("#formtitle").text() == "品番登録" &&  (!$(CD1).length)) { ShowProjectData(); }//Bind ProjectData as ProjectCD (From ProjectSearch) entered in HinbanEntry
+        else if ($("#formtitle").text() == "品番登録" && ($(CD1).length)) { GetSearchData(); } //Bind HinbanData as HinbanCD and ProjectCD (From HinbanSearch) entered in HinbanEntry
+        
         //errortask 200->208 tabcase_2021/05/12 by sypk
         if ($("#divMainList").is(":visible")) {
             do {

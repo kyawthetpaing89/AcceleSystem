@@ -308,7 +308,7 @@
         function JSON2CSV(objArray) {
             if (!(objArray == "[]")) {
                 var fiscalMM;
-                var i, result = [];
+                var i, b, result = [];
                 var array = typeof JSONString != 'object' ? JSON.parse(objArray) : JSONString;
                 var replacer = function (key, value) { return value === null ? '' : value }
                 if (array.length > 0) {
@@ -362,7 +362,7 @@
                         }
 
                         else if (array[i]["SortKey"] == '20') {
-                            var prj_count = 0
+                            var prj_count = 0;
                             var pmodel = {
                                 BrandCD: array[i]["BrandCD"],
                                 Season: array[i]["Season"],
@@ -541,7 +541,7 @@
                                         var data = CalltoApiController('@Url.Action("Print_Genka_ProjectData", "api/Print_GenkaApi")', pmodel);
                                         var prjPTotal_array = typeof JSONString != 'object' ? JSON.parse(data) : JSONString;
                                         for (l = 0; l < prjPTotal_array.length; l++) {
-                                            add_row = '<td style="border-bottom: 1px solid"></td><td style="border-bottom: 1px solid">' + prjPTotal_array[l]["CostName"] + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["CostPre"]) + '</td><td style="border-bottom: 1px solid">' +
+                                            add_row = '<td style="border-bottom: 1px solid; background-color: #8FAADC;"></td><td style="border-bottom: 1px solid">' + prjPTotal_array[l]["CostName"] + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["CostPre"]) + '</td><td style="border-bottom: 1px solid">' +
                                                 commaSeparate(prjPTotal_array[l]["Cost1"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["Cost2"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["Cost3"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["Cost4"]) + '</td><td style="border-bottom: 1px solid">' +
                                                 commaSeparate(prjPTotal_array[l]["Cost5"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["Cost6"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["Cost7"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["Cost8"]) + '</td><td style="border-bottom: 1px solid">' +
                                                 commaSeparate(prjPTotal_array[l]["Cost9"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["Cost10"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["Cost11"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["Cost12"]) + '</td><td style="border-bottom: 1px solid">' +
@@ -563,6 +563,186 @@
                                 var prjDTotal_array = typeof JSONString != 'object' ? JSON.parse(data) : JSONString;
                                 for (m = 0; m < prjDTotal_array.length; m++) {
                                     add_row = '<td style="border-bottom: 1px solid"></td><td style="border-bottom: 1px solid">' + prjDTotal_array[m]["CostName"] + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["CostPre"]) + '</td><td style="border-bottom: 1px solid">' +
+                                        commaSeparate(prjDTotal_array[m]["Cost1"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["Cost2"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["Cost3"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["Cost4"]) + '</td><td style="border-bottom: 1px solid">' +
+                                        commaSeparate(prjDTotal_array[m]["Cost5"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["Cost6"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["Cost7"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["Cost8"]) + '</td><td style="border-bottom: 1px solid">' +
+                                        commaSeparate(prjDTotal_array[m]["Cost9"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["Cost10"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["Cost11"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["Cost12"]) + '</td><td style="border-bottom: 1px solid">' +
+                                        commaSeparate(prjDTotal_array[m]["CostHaihu"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["Total"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["CostShikakari"]) + '</td>';
+                                    $('#tblExcel tbody').append($('<tr>'));
+                                    $('#tblExcel tbody tr:last').append(add_row);
+                                }
+                            }
+                        }
+
+                        else if (array[i]["SortKey"] == '30') {
+                            var prj_count = 0;
+                            var pmodel = {
+                                BrandCD: array[i]["BrandCD"],
+                                Season: array[i]["Season"],
+                                LoginID: '@LoginID',
+                                Type: 'B'
+                            };
+                            var B30_data = CalltoApiController('@Url.Action("Print_Genka_ProjectData", "api/Print_GenkaApi")', pmodel);
+                            var B30_array = typeof JSONString != 'object' ? JSON.parse(B30_data) : JSONString;
+
+                            for (b = 0; b < B30_array.length; b++) {
+                                var rowcountC = 1, colC2, j, newrowspan, rowspancount = 0, isrowspan = 0;
+                                var pmodel = {
+                                    BrandCD: B30_array[b]["BrandCD"],
+                                    Season: B30_array[b]["Season"],
+                                    ProjectCD: B30_array[b]["ProjectCD"],
+                                    LoginID: '@LoginID',
+                                    Type: 'C'
+                                };
+                                rowspancount = B30_array[b]["Row_Count"];
+                                var data = CalltoApiController('@Url.Action("Print_Genka_ProjectData", "api/Print_GenkaApi")', pmodel);
+                                var prj_array = typeof JSONString != 'object' ? JSON.parse(data) : JSONString;
+
+                                for (j = 0; j < prj_array.length; j++) {
+                                    if (prj_array[j]["SortKey"] == '30' || prj_array[j]["SortKey"] == '31' || prj_array[j]["SortKey"] == '32') {
+                                        switch (rowcountC) {
+                                            case 1: colC2 = prj_array[0]["ProjectCD"] + '    ' + prj_array[0]["ProjectName"];
+                                                break;
+                                            case 2: colC2 = prj_array[0]["PeriodStart"] + ' ～ ' + prj_array[0]["PeriodEnd"];
+                                                break;
+                                            case 3: colC2 = '総金額      ' + commaSeparate(prj_array[0]["ProductionSum"]);
+                                                break;
+                                            case 4: colC2 = '総生産数    ' + commaSeparate(prj_array[0]["TotalValueSum"]);
+                                                break;
+                                            default: colC2 = '';
+                                                break;
+                                        }
+
+                                        if (prj_array[j]["SortKey"] == '30') {
+                                            if (isrowspan == 0) {
+                                                newrowspan = '<td rowspan = ' + rowspancount + ' style="text-align: center; background-color: #8FAADC; vertical-align: middle;">' + prj_array[0]["BrandName"] + '</td>';
+                                                isrowspan = 1;
+                                            }
+
+                                            add_row = newrowspan + '<td>' + colC2 + '</td><td>' + prj_array[j]["CostName"] + '</td><td>' + replaceZero(prj_array[j]["CostPre"]) + '</td><td>' +
+                                                replaceZero(prj_array[j]["Cost1"]) + '</td><td>' + replaceZero(prj_array[j]["Cost2"]) + '</td><td>' + replaceZero(prj_array[j]["Cost3"]) + '</td><td>' + replaceZero(prj_array[j]["Cost4"]) + '</td><td>' +
+                                                replaceZero(prj_array[j]["Cost5"]) + '</td><td>' + replaceZero(prj_array[j]["Cost6"]) + '</td><td>' + replaceZero(prj_array[j]["Cost7"]) + '</td><td>' + replaceZero(prj_array[j]["Cost8"]) + '</td><td>' +
+                                                replaceZero(prj_array[j]["Cost9"]) + '</td><td>' + replaceZero(prj_array[j]["Cost10"]) + '</td><td>' + replaceZero(prj_array[j]["Cost11"]) + '</td><td>' + replaceZero(prj_array[j]["Cost12"]) + '</td><td>' +
+                                                replaceZero(prj_array[j]["CostHaihu"]) + '</td><td>' + commaSeparate(prj_array[j]["CostHimoku"]) + '</td><td>' + commaSeparate(prj_array[j]["CostShikakari"]) + '</td>';
+
+                                            newrowspan = '';
+                                        }
+                                        else if (prj_array[j]["SortKey"] == '31') {
+                                            add_row = '<td>' + colC2 + '</td>';
+                                        }
+                                        else if (prj_array[j]["SortKey"] == '32') {
+                                            add_row = '<td style="border-bottom: 1px solid">' + colC2 + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + prj_array[j]["CostName"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prj_array[j]["CostPre"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
+                                                commaSeparate(prj_array[j]["Cost1"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prj_array[j]["Cost2"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prj_array[j]["Cost3"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prj_array[j]["Cost4"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
+                                                commaSeparate(prj_array[j]["Cost5"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prj_array[j]["Cost6"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prj_array[j]["Cost7"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prj_array[j]["Cost8"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
+                                                commaSeparate(prj_array[j]["Cost9"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prj_array[j]["Cost10"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prj_array[j]["Cost11"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prj_array[j]["Cost12"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
+                                                commaSeparate(prj_array[j]["CostHaihu"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prj_array[j]["CostHimoku"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prj_array[j]["CostShikakari"]) + '</td>';
+                                        }
+                                        rowcountC = rowcountC + 1;
+                                        $('#tblExcel tbody').append($('<tr>'));
+                                        $('#tblExcel tbody tr:last').append(add_row);
+                                    }
+
+                                    else {
+                                        if (prj_array[j]["SortKey"] == '40') {
+                                            prj_count = 1;
+                                            var rowcountD = 1, colD2, k, style;
+                                            var pmodel = {
+                                                BrandCD: prj_array[j]["BrandCD"],
+                                                Season: prj_array[j]["Season"],
+                                                ProjectCD: prj_array[j]["ProjectCD"],
+                                                HinbanCD: prj_array[j]["HinbanCD"],
+                                                LoginID: '@LoginID',
+                                                Type: 'D'
+                                            };
+                                            var data = CalltoApiController('@Url.Action("Print_Genka_ProjectData", "api/Print_GenkaApi")', pmodel);
+                                            var prjD_array = typeof JSONString != 'object' ? JSON.parse(data) : JSONString;
+                                            for (k = 0; k < prjD_array.length; k++) {
+                                                switch (rowcountD) {
+                                                    case 1: colD2 = prjD_array[0]["HinbanCD"] + '   ' + prjD_array[0]["HinbanName"];
+                                                        break;
+                                                    case 2: colD2 = '色数     ' + prjD_array[0]["Color"] + '色';
+                                                        break;
+                                                    case 3: colD2 = '生産数    ' + commaSeparate(prjD_array[0]["Production"]);
+                                                        break;
+                                                    case 4: colD2 = '累計納品数  ' + commaSeparate(prjD_array[0]["Complete"]);
+                                                        break;
+                                                    case 5: colD2 = '予定販売定価 ' + commaSeparate(prjD_array[0]["SalesPrice"]);
+                                                        break;
+                                                    case 6: colD2 = '総金額    ' + commaSeparate(prjD_array[0]["TotalValue"]); //2021-03-31 by syk
+                                                        break;
+                                                    case 7: colD2 = '金型名     ' + prjD_array[0]["CastingName"];
+                                                        break;
+                                                    case 8: colD2 = '見込利益   ' + commaSeparate(prjD_array[0]["Profit"]);
+                                                        break;
+                                                    case 9: colD2 = '見込利益率  ' + prjD_array[0]["ProfitPercentage"] + '%';
+                                                        break;
+                                                    default: colD2 = '';
+                                                        break;
+                                                }
+
+                                                if (k == prjD_array.length - 1 && j < prj_array.length - 1)
+                                                    style = 'style = "border-bottom: 1px solid;"';
+                                                else
+                                                    style = '';
+
+                                                if (prjD_array[k]["SortKey"] !== 42 && prjD_array[k]["SortKey"] !== 43) {
+                                                    add_row = '<td>' + colD2 + '</td><td>' + replaceNull(prjD_array[k]["CostName"]) + '</td><td>' + replaceZero(prjD_array[k]["CostPre"]) + '</td><td>' +
+                                                        replaceZero(prjD_array[k]["Cost1"]) + '</td><td>' + replaceZero(prjD_array[k]["Cost2"]) + '</td><td>' + replaceZero(prjD_array[k]["Cost3"]) + '</td><td>' + replaceZero(prjD_array[k]["Cost4"]) + '</td><td>' +
+                                                        replaceZero(prjD_array[k]["Cost5"]) + '</td><td>' + replaceZero(prjD_array[k]["Cost6"]) + '</td><td>' + replaceZero(prjD_array[k]["Cost7"]) + '</td><td>' + replaceZero(prjD_array[k]["Cost8"]) + '</td><td>' +
+                                                        replaceZero(prjD_array[k]["Cost9"]) + '</td><td>' + replaceZero(prjD_array[k]["Cost10"]) + '</td><td>' + replaceZero(prjD_array[k]["Cost11"]) + '</td><td>' + replaceZero(prjD_array[k]["Cost12"]) + '</td><td>' +
+                                                        replaceZero(prjD_array[k]["CostHaihu"]) + '</td><td>' + commaSeparate(prjD_array[k]["CostHimoku"]) + '</td><td>' + commaSeparate(prjD_array[k]["CostShikakari"]) + '</td>';
+                                                }
+                                                else if (prjD_array[k]["SortKey"] == '42') {
+                                                    add_row = '<td>' + colD2 + '</td>';
+                                                }
+                                                else if (prjD_array[k]["SortKey"] == '43') {
+                                                    add_row = '<td ' + style + '>' + colD2 + '</td><td style="border-bottom: 1px solid">' + replaceNull(prjD_array[k]["CostName"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["CostPre"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
+                                                        commaSeparate(prjD_array[k]["Cost1"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["Cost2"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["Cost3"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["Cost4"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
+                                                        commaSeparate(prjD_array[k]["Cost5"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["Cost6"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["Cost7"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["Cost8"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
+                                                        commaSeparate(prjD_array[k]["Cost9"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["Cost10"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["Cost11"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["Cost12"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' +
+                                                        commaSeparate(prjD_array[k]["CostHaihu"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["CostHimoku"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid">' + commaSeparate(prjD_array[k]["CostShikakari"]) + '</td>';
+                                                }
+                                                rowcountD = rowcountD + 1;
+                                                $('#tblExcel tbody').append($('<tr>'));
+                                                $('#tblExcel tbody tr:last').append(add_row);
+                                            }
+                                        }
+                                    }
+                                }
+
+                                if (prj_count == 1) {
+                                    var l;
+                                    var pmodel = {
+                                        BrandCD: prj_array[0]["BrandCD"],
+                                        Season: prj_array[0]["Season"],
+                                        ProjectCD: prj_array[0]["ProjectCD"],
+                                        HinbanCD: prj_array[0]["HinbanCD"],
+                                        LoginID: '@LoginID',
+                                        Type: 'P_Total'
+                                    };
+                                    var data = CalltoApiController('@Url.Action("Print_Genka_ProjectData", "api/Print_GenkaApi")', pmodel);
+                                    var prjPTotal_array = typeof JSONString != 'object' ? JSON.parse(data) : JSONString;
+                                    for (l = 0; l < prjPTotal_array.length; l++) {
+                                        add_row = '<td style="border-bottom: 1px solid"></td><td style="border-bottom: 1px solid">' + prjPTotal_array[l]["CostName"] + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["CostPre"]) + '</td><td style="border-bottom: 1px solid">' +
+                                            commaSeparate(prjPTotal_array[l]["Cost1"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["Cost2"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["Cost3"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["Cost4"]) + '</td><td style="border-bottom: 1px solid">' +
+                                            commaSeparate(prjPTotal_array[l]["Cost5"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["Cost6"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["Cost7"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["Cost8"]) + '</td><td style="border-bottom: 1px solid">' +
+                                            commaSeparate(prjPTotal_array[l]["Cost9"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["Cost10"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["Cost11"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["Cost12"]) + '</td><td style="border-bottom: 1px solid">' +
+                                            commaSeparate(prjPTotal_array[l]["CostHaihu"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["Total"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjPTotal_array[l]["CostShikakari"]) + '</td>';
+                                        $('#tblExcel tbody').append($('<tr>'));
+                                        $('#tblExcel tbody tr:last').append(add_row);
+                                    }
+                                }
+                            }
+
+                            if (prj_count == 1) {
+                                var m;
+                                var pmodel = {
+                                    LoginID: '@LoginID',
+                                    Type: 'D_Total'
+                                };
+                                var data = CalltoApiController('@Url.Action("Print_Genka_ProjectData", "api/Print_GenkaApi")', pmodel);
+                                var prjDTotal_array = typeof JSONString != 'object' ? JSON.parse(data) : JSONString;
+                                for (m = 0; m < prjDTotal_array.length; m++) {
+                                    add_row = '<td style="border-bottom: 1px solid; background-color: #8FAADC;"></td><td style="border-bottom: 1px solid">' + prjDTotal_array[m]["CostName"] + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["CostPre"]) + '</td><td style="border-bottom: 1px solid">' +
                                         commaSeparate(prjDTotal_array[m]["Cost1"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["Cost2"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["Cost3"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["Cost4"]) + '</td><td style="border-bottom: 1px solid">' +
                                         commaSeparate(prjDTotal_array[m]["Cost5"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["Cost6"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["Cost7"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["Cost8"]) + '</td><td style="border-bottom: 1px solid">' +
                                         commaSeparate(prjDTotal_array[m]["Cost9"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["Cost10"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["Cost11"]) + '</td><td style="border-bottom: 1px solid">' + commaSeparate(prjDTotal_array[m]["Cost12"]) + '</td><td style="border-bottom: 1px solid">' +
