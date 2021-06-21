@@ -386,7 +386,9 @@
             location.href = '@Url.Action("TourokuHinban_Entry", "TourokuProject")?ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName=' + Tmodel.ProjectName + '&BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&StartDate=' + Tmodel.StartDate + '&EndDate=' + Tmodel.EndDate + '&Year=' + Tmodel.Year + '&Season=' + Tmodel.Season + '&Production=' + Tmodel.Production + '&TotalAmount=' + Tmodel.TotalAmount + '&HinbanCD1=' + Tmodel.HinbanCD1 + '&HinbanName=' + Tmodel.HinbanName + '&CastingCD=' + Tmodel.CastingCD + '&CastingName=' + Tmodel.CastingName + '&StartPrice=' + Tmodel.StartPrice + '&EndPrice=' + Tmodel.EndPrice + '&CompleteYM=' + Tmodel.CompleteYM + '&flg=' + Tmodel.flg + '&HinbanCD=' + HinbanCD + '&ProjectCD=' + ProjectCD + '&Mode=Copy';
         }
 
-     $('#btnnext').keydown(function (e) {
+        
+        $('#btnnext').keydown(function (e) {
+           
          var code = e.keyCode || e.which;
          if (code == 9) {
              if (e.shiftKey) {
