@@ -1,6 +1,14 @@
 ﻿function Search(type) {
+
+    if ($('#divSearch').css('display') == 'block') {
+        type = 9;
+    }
+
     switch (type) {
         case 1://Brand
+            LoadSearchForm(type, $("#BrandCD"), $("#BrandName"));
+            break;
+        case 9:
             LoadSearchForm(type, $("#BrandCD"), $("#BrandName"));
             break;
         case 2://user

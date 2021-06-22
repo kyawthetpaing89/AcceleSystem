@@ -1,5 +1,11 @@
 ﻿<div id="divSearch" data-iziModal-title="Order Select" data-iziModal-icon="icon-home">
+    <input id="Htype" type="hidden" value="0"/>
     <div id="divSearch1">
+
+    </div>
+</div>
+<div id="divSearch2" data-iziModal-title="Order Select" data-iziModal-icon="icon-home">
+    <div id="divSearch3">
 
     </div>
 </div>
@@ -9,17 +15,32 @@
     var Name;
     var CD1;
     var typeID;
-    function LoadSearchForm(typeID, CD, Name,CD1) {
+    function LoadSearchForm(typeID, CD, Name, CD1) {
+        $('#Htype').val(typeID);
+
         this.CD = CD;
         this.Name = Name;
         this.CD1 = CD1;
         this.typeID = typeID;
-        $("#divSearch1").empty();
+
+        if (typeID == 9) {
+            $("#divSearch1 #divMainList").hide();
+            $("#divSearch3").empty();
+        }
+        else {
+            $("#divSearch1").empty();
+        }
 
         switch (typeID) {
             case 1:
                 $(".iziModal-header-title").text("ブランド検索");
                 $("#divSearch1").load('@Url.Action("BrandList","Brand")', function () {
+                    SearchSetting(typeID);
+                });
+                break;
+            case 9:
+                $(".iziModal-header-title").text("ブランド検索");
+                $("#divSearch3").load('@Url.Action("BrandList","Brand")', function () {
                     SearchSetting(typeID);
                 });
                 break;
@@ -96,6 +117,7 @@
 
         switch (type) {
             case 1:
+            case 9:
                 $("#BrandType").val("2");
                 GetBrand();
                 $("#myInput").focus();
@@ -144,59 +166,79 @@
                 break;
         }
 
-        $("#divSearch").iziModal('open');
+        if (typeID == 9) {
+            $("#divSearch2").iziModal('open');
+        }
+        else {
+            $("#divSearch").iziModal('open');
+        }
+        //$("#divSearch").iziModal('open');
     }
 
     function ReturnSelected(cd, name, cd1) {
-        $("#divSearch1").empty();
-        
-        $(CD).val(cd);
-        $(Name).val(name);
-        $(CD1).val(cd1);
-        $("#divSearch").iziModal('close');
-        
-        //fire keydown of BrandName
-        var e = jQuery.Event("keydown");
-        e.which = 13; // # Some key code value
+        if (($("#Htype").val() == 9)){
+            $("#divSearch1 #divMainList").show();
+            $("#divSearch3").empty();
 
-        if ($(Name).is('input')) {
-            $(Name).trigger(e);
-        }
-        else if ($(CD).is('input')) {
-            $(CD).trigger(e);
+            $("#divMainList #BrandCD").val(cd);
+            $("#divMainList #BrandName").val(name);
+            $(".iziModal-header-title").text("品番検索");
+            $('#Htype').val(6);
+            
+            CD = $("#divMainList #proCD")
         }
         else {
-            $(CD1).trigger(e);
-        }
-       
-        if ($("#formtitle").text() == "品番検索" && typeID == 6) { Check(); } //BindProjectData as ProjectCD(From ProjectSearch) entered in HinbanList
-        else if ($("#formtitle").text() == "品番登録" &&  (!$(CD1).length)) { ShowProjectData(); }//Bind ProjectData as ProjectCD (From ProjectSearch) entered in HinbanEntry
-        else if ($("#formtitle").text() == "品番登録" && ($(CD1).length)) { GetSearchData(); } //Bind HinbanData as HinbanCD and ProjectCD (From HinbanSearch) entered in HinbanEntry
-        
-        //errortask 200->208 tabcase_2021/05/12 by sypk
-        if ($("#divMainList").is(":visible")) {
-            do {
-                CD = $('#divMainList [tabIndex=' + (+$(CD).attr("tabIndex") + 1) + ']');
-                if (!$(CD).length) {
-                    ctrl = $('#divMainList [tabIndex=1]');
-                    break;
-                }
-            } while ($(CD).is('[disabled=disabled]'));
-            $(CD).select();
-            $(CD).focus();
-        }
-        else if ($("#divMain").is(":visible")) {
-            do {
-                CD = $('#divMain [tabIndex=' + (+$(CD).attr("tabIndex") + 1) + ']');
-                if (!$(CD).length) {
-                    ctrl = $('#divMain [tabIndex=1]');
-                    break;
-                }
-            } while ($(CD).is('[disabled=disabled]'));
-            $(CD).select();
-            $(CD).focus();
-        }
+            typeID = $('#Htype').val();
+            $("#divSearch1").empty();
+
+            $(CD).val(cd);
+            $(Name).val(name);
+            $(CD1).val(cd1);
+            $("#divSearch").iziModal('close');
+
+            //fire keydown of BrandName
+            var e = jQuery.Event("keydown");
+            e.which = 13; // # Some key code value
+
+            if ($(Name).is('input')) {
+                $(Name).trigger(e);
+            }
+            else if ($(CD).is('input')) {
+                $(CD).trigger(e);
+            }
+            else {
+                $(CD1).trigger(e);
+            }
+
+            if ($("#formtitle").text() == "品番検索" && typeID == 6) { Check(); } //BindProjectData as ProjectCD(From ProjectSearch) entered in HinbanList
+            else if ($("#formtitle").text() == "品番登録" && (!$(CD1).length)) { alert('a'); ShowProjectData(); }//Bind ProjectData as ProjectCD (From ProjectSearch) entered in HinbanEntry
+            else if ($("#formtitle").text() == "品番登録" && ($(CD1).length)) { GetSearchData(); } //Bind HinbanData as HinbanCD and ProjectCD (From HinbanSearch) entered in HinbanEntry
+
+            //errortask 200->208 tabcase_2021/05/12 by sypk
+            if ($("#divMainList").is(":visible")) {
+                do {
+                    CD = $('#divMainList [tabIndex=' + (+$(CD).attr("tabIndex") + 1) + ']');
+                    if (!$(CD).length) {
+                        ctrl = $('#divMainList [tabIndex=1]');
+                        break;
+                    }
+                } while ($(CD).is('[disabled=disabled]'));
+                $(CD).select();
+                $(CD).focus();
+            }
+            else if ($("#divMain").is(":visible")) {
+                do {
+                    CD = $('#divMain [tabIndex=' + (+$(CD).attr("tabIndex") + 1) + ']');
+                    if (!$(CD).length) {
+                        ctrl = $('#divMain [tabIndex=1]');
+                        break;
+                    }
+                } while ($(CD).is('[disabled=disabled]'));
+                $(CD).select();
+                $(CD).focus();
+            }
+        }      
     }
-       
-    
+
+
 </script>
