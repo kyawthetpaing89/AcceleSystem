@@ -172,7 +172,7 @@ namespace TourokuProjectBL
             Tmodel.Sqlprms[12] = new SqlParameter("@StartPrice", SqlDbType.Int) { Value = (object)Tmodel.StartPrice ?? DBNull.Value };
             Tmodel.Sqlprms[13] = new SqlParameter("@EndPrice", SqlDbType.Int) { Value = (object)Tmodel.EndPrice ?? DBNull.Value };
             Tmodel.Sqlprms[14] = new SqlParameter("@CompleteYM", SqlDbType.VarChar) { Value = Tmodel.CompleteYM  };
-            return bdl.SelectJson("M_HinBan_Search_List_bak", Tmodel.Sqlprms);
+            return bdl.SelectJson("M_HinBan_Search_List", Tmodel.Sqlprms);
 
         }
 
