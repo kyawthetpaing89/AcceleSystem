@@ -182,10 +182,11 @@
 
             $("#divMainList #BrandCD").val(cd);
             $("#divMainList #BrandName").val(name);
-            $(".iziModal-header-title").text("品番検索");
+            $(".iziModal-header-title").text("プロジェクト検索");
             $('#Htype').val(6);
             
-            CD = $("#divMainList #proCD")
+            CD = $("#proCD")
+            Name = $("#proName")
         }
         else {
             typeID = $('#Htype').val();
@@ -211,7 +212,7 @@
             }
 
             if ($("#formtitle").text() == "品番検索" && typeID == 6) { Check(); } //BindProjectData as ProjectCD(From ProjectSearch) entered in HinbanList
-            else if ($("#formtitle").text() == "品番登録" && (!$(CD1).length)) { alert('a'); ShowProjectData(); }//Bind ProjectData as ProjectCD (From ProjectSearch) entered in HinbanEntry
+            else if ($("#formtitle").text() == "品番登録" && (!$(CD1).length)) { ShowProjectData(); }//Bind ProjectData as ProjectCD (From ProjectSearch) entered in HinbanEntry
             else if ($("#formtitle").text() == "品番登録" && ($(CD1).length)) { GetSearchData(); } //Bind HinbanData as HinbanCD and ProjectCD (From HinbanSearch) entered in HinbanEntry
 
             //errortask 200->208 tabcase_2021/05/12 by sypk
