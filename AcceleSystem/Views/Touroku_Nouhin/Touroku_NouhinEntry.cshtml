@@ -24,20 +24,20 @@
 <div id="divMain" class="container-fluid">
     <div class="content">
         <div class="p-5 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white; border-radius:5px;">
-            <div class="col-sm-12 col-md-1 col-lg-2"></div>
-            <div class="col-sm-12 col-md-10 col-lg-10">
+            <div class="col-sm-12 col-md-1 col-lg-1"></div>
+            <div class="col-sm-12 col-md-10 col-lg-11">
                 <div>
                     <h2 class=" hr-text text-center">納品登録</h2>
                 </div>
                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                    <div class="col-xs-12">
+                    <div class="col-xs-12 col-md-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
                             <label id="text" style="padding-right: 5px;">
                                 プロジェクト
                             </label>
-                            <input type="text" tabindex="1" class="text-line col-sm-12 col-md-12 col-lg-3 text-left" onkeydown="KeyDown(event,this,'ShowNewmodeData')" id="proCD" name="txtProjectCD" maxlength="15" required placeholder="入力" style="width:150px;">
+                            <input type="text" tabindex="1" class="text-line col-sm-12 col-md-12 col-lg-3 text-left" onkeydown="KeyDown(event,this,'ShowNewmodeData')" id="proCD" name="txtProjectCD" maxlength="15" required placeholder="入力" style="width:160px;">
                             <input type="button" id="btnProjectSearch" value="..." onclick="Search(6)" />
-                            <label id="proName" style="text-transform: none;"><b>@*プロジェクト表示*@</b></label>
+                            <label id="proName" class="col-xs-12 col-md-7" style="text-transform: none;"><b>@*プロジェクト表示*@</b></label>
                         </div>
                     </div>
                 </div>

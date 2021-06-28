@@ -191,7 +191,7 @@
                                     <div class="col-md-12" style="padding-left:13px;">
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label id="text" style="padding-right:3px;">ブランド名</label>
-                                            <input type="text" tabindex="2" id="BrandCD" name="txtBrandCD" onkeydown="KeyDown(event,this)" class="text-line col-xl-3 text-left" maxlength="20" required placeholder="入力"  style="width:70px">
+                                            <input type="text" tabindex="2" id="BrandCD" name="txtBrandCD" onkeydown="KeyDown(event,this)" class="text-line col-xl-3 text-left" maxlength="6" required placeholder="入力"  style="width:70px">
                                             <input type="button" id="btnBrandSearch" value="..." onclick="Search(1)" />
                                             <input type="text" tabindex="3" id="BrandName" name="txtBrandName" onkeydown="KeyDown(event,this)" class="text-line col-xl-5 text-left" maxlength="40" required placeholder="入力">
                                         </div>
@@ -214,12 +214,16 @@
                                     <div class="col-md-12" style="padding-left:0px;">
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label id="text" style="padding-right:2px;">プロジェクト</label>
-                                            <input type="text" tabindex="7" id="proCD" name="txtProjectCD" onkeydown="KeyDown(event,this,'ProjectCheck')" class="text-line col-xl-5 text-left" maxlength="15" required placeholder="入力"  style="width:150px">
+                                            <input type="text" tabindex="7" id="proCD" name="txtProjectCD" onkeydown="KeyDown(event,this,'ProjectCheck')" class="text-line col-xl-6 text-left" maxlength="15" required placeholder="入力" style="width:160px">
                                             <input type="button" id="btnProjectSearch" value="..." onclick="Search(6)" />
-                                            <input type="text" tabindex="8" id="proName" name="txtProjectName" onkeydown="KeyDown(event,this,'ProjectCheck')" class="text-line col-xl-5 text-left" maxlength="60" required placeholder="入力">
+                                            <div class="col-md-12" style="padding-left:0px;">
+                                                <label id="text" style="padding-left:100px;" ></label>
+                                                <input type="text" tabindex="8" id="proName" name="txtProjectName" onkeydown="KeyDown(event,this,'ProjectCheck')" class="text-line col-xl-12 text-left" maxlength="60" required placeholder="入力" style="width:460px">
+                                            </div>                                        
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                                     <div class="col-md-12" style="padding-left:63px;">
                                         <div class="text-s text-custom1 text-uppercase mb-1">
