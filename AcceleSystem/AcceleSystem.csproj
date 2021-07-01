@@ -233,6 +233,7 @@
     <Content Include="ElaAdmin\assets\js\Cleave.js" />
     <Content Include="ElaAdmin\assets\js\Common.js" />
     <Content Include="ElaAdmin\assets\js\Hinban.js" />
+    <Content Include="ElaAdmin\assets\js\HinbanSearch.js" />
     <Content Include="ElaAdmin\assets\js\iziModal.js" />
     <Content Include="ElaAdmin\assets\js\iziModal.min.js" />
     <Content Include="ElaAdmin\assets\js\Kanagata.js" />
@@ -573,6 +574,7 @@
     <Content Include="Views\Search\SearchBase.cshtml" />
     <Content Include="Views\Search\BrandSearch.cshtml" />
     <Content Include="Views\Search\BSearch.cshtml" />
+    <Content Include="Views\TourokuProject\TourokuHinban_Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

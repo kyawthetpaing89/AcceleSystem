@@ -1,0 +1,372 @@
+﻿@model Models.TourokuProjectModel
+@{
+    ViewBag.Title = "TourokuHinban_Search";
+    Layout = Request.IsAjaxRequest() ? null : "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles{
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
+}
+
+<style>
+    @@media only screen and (min-width: 400px) {
+        .fixed-width {
+            width: 120px;
+        }
+
+        .fixed-hinban {
+            width: 330px;
+        }
+    }
+
+    @@media only screen and (min-width: 600px) {
+        .fixed-width {
+            width: 140px;
+        }
+
+        .fixed-hinban {
+            width: 350px;
+        }
+    }
+
+    @@media only screen and (min-width: 800px) {
+        .fixed-width {
+            width: 150px;
+        }
+
+        .fixed-hinban {
+            width: 340px;
+        }
+    }
+
+    @@media only screen and (min-width: 1020px) {
+        .fixed-width {
+            width: 100px;
+        }
+
+        .fixed-hinban {
+            width: 290px;
+        }
+    }
+
+    @@media only screen and (min-width: 1300px) {
+        .fixed-width {
+            width: 160px;
+        }
+
+        .fixed-hinban {
+            width: 440px;
+        }
+    }
+
+    @@media only screen and (min-width: 1450px) {
+        .fixed-width {
+            width: 210px;
+        }
+
+        .fixed-hinban {
+            width: 500px;
+        }
+    }
+
+    @@media only screen and (min-width: 1600px) {
+        .fixed-width {
+            width: 240px;
+        }
+
+        .fixed-hinban {
+            width: 560px;
+        }
+    }
+
+    @@media only screen and (min-width: 1900px) {
+        .fixed-width {
+            width: 285px;
+        }
+
+        .fixed-hinban {
+            width: 650px;
+        }
+    }
+
+    .fixed-width {
+        line-height: unset;
+        color: unset;
+        margin-bottom: unset;
+    }
+
+    .fixed-hinban {
+        line-height: unset;
+        color: unset;
+        margin-bottom: unset;
+    }
+
+    .fixed-width {
+        text-overflow: ellipsis;
+        display: inline-block;
+        overflow: hidden;
+        /*width: 190px;*/
+        white-space: nowrap;
+    }
+
+    .fixed-hinban {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        /*width: 440px;*/
+        white-space: nowrap;
+        display: inline-block;
+    }
+</style>
+<input type="hidden" id="HinbanType" value="1" />
+<div id="divMainList" class="container-fluid">
+    <div class="card">
+        <div class="row">
+            <div class="col-xs-12 col-md-12 col-lg-5" style="padding-right: 0px;">
+                <div class="card-body card-block" style="padding-right: 0px; padding-left: 10px;">
+                    <div class="row form-group">
+                        <div class="col col-md-12" style="padding-right: 0px;">
+                            <button id="btnAdd" onclick="btnAddClick()" class="btn btn-primary col-xl-3 text-center" tabindex="11">品番追加</button>&nbsp;
+                            <button id="btnnext" onclick="btnnextClick()" class="btn btn-next col-xl-6 text-center" tabindex="12">プロジェクト検索</button>
+
+                            <div id="registration" style="padding-top: 1.8rem!important;">
+                                <div>
+                                    <h4 class=" hr-text text-center">検索条件入力</h4>
+                                </div>
+                                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                    <div class="col-md-12" style="padding-left:20px;">
+                                        <div class="text-s text-custom1 text-uppercase mb-1">
+                                            <label id="text" style="padding-right: 3px;">
+                                                プロジェクト
+                                            </label>
+                                            <input type="text" tabindex="1" class="text-line col-sm-12 col-md-12 col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="proName" name="proName" maxlength="60" required placeholder="入力">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                    <div class="col-md-12" style="padding-left:85px;">
+                                        <div class="text-s text-custom1 text-uppercase mb-1">
+                                            <label id="text" style="padding-right:3px;">
+                                                年度
+                                            </label>
+                                            <input type="text" tabindex="2" class="text-line col-sm-12 col-md-12 col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="HLyear" name="year" maxlength="4" required placeholder="入力" style="width:70px">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                    <div class="col-md-12" style="padding-left:53px;">
+                                            <div id="Seasongp" class="text-s text-custom1 text-uppercase mb-1">
+                                                <label id="text" style="padding-right:5px;">シーズン</label>
+
+                                                <input type="checkbox" tabindex="3" id="Degreeyear" name="ck" value="1" onkeydown="KeyDown(event,this)" checked>
+                                                <label for="Degreeyear" style="padding-right:20px;">通年</label>
+
+                                                <input type="checkbox" tabindex="4" id="SS" name="ck" value="2" onkeydown="KeyDown(event,this)" checked>
+                                                <label for="SS" style="padding-right:20px;">SS</label>
+
+                                                <input type="checkbox" tabindex="5" id="FW" name="ck" value="3" onkeydown="KeyDown(event,this,'SeasonCheck')" checked>
+                                                <label for="FW">FW</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                    <div class="col-md-12" style="padding-left:55px;">
+                                        <div class="text-s text-custom1 text-uppercase mb-1">
+                                            <label id="text" style="padding-right:3px;">
+                                                ブランド
+                                            </label>
+                                            <input type="text" tabindex="6" class="text-line col-sm-12 col-md-12 col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="BrandCD" name="brand" maxlength="50"
+                                                   data-doublebytecheck-url='@Url.Action("DoubleByte_Checking", "api/CommonApi")'
+                                                   data-existcheck-url='@Url.Action("M_Brand_ExistsCheck", "api/Touroku_KeihiApi")' required placeholder="入力" style="width:70px">
+                                            <input type="button" id="btnBrandSearch" value="..." onclick="Search(1)" />
+                                            <input type="text" tabindex="7" class="text-line col-sm-12 col-md-12 col-xl-6 text-left" onkeydown="KeyDown(event,this)" id="BrandName" name="brandname" maxlength="50" required placeholder="入力">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                    <div class="col-md-12" style="padding-left:55px;">
+                                        <div class="text-s text-custom1 text-uppercase mb-1">
+                                            <label style="padding-right:3px;">
+                                                予定期間
+                                            </label>
+                                            <input type="text" tabindex="8" class="text-line col-sm-12 col-md-12 col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="HLStartDate" name="StartDate" 
+                                               data-yearmonthcheck-url='@Url.Action("YearMonth_Checking", "api/CommonApi")'  maxlength="7" required placeholder="入力" style="width:100px">
+                                            &nbsp;~&nbsp;
+                                            <input type="text" tabindex="9" class="text-line col-sm-12 col-md-12 col-xl-3 text-left" onkeydown="KeyDown(event,this,'DateCompare')" id="HLEndDate" name="EndDate"
+                                               data-yearmonthcheck-url='@Url.Action("YearMonth_Checking", "api/CommonApi")' maxlength="7" required placeholder="入力" style="width:100px">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                    <div class="col-md-12" style="padding-left:69px;">
+                                        <div class="text-s text-custom1 text-uppercase mb-1">
+                                            <label style="padding-right:3px;">品番名</label>
+                                            <input type="text" tabindex="10" class="text-line col-sm-12 col-md-12 col-xl-6 text-left" onkeydown="KeyDown(event,this)" id="HLHinbanName" name="HLHinbanName" maxlength="60" required placeholder="入力">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                    <div class="col-md-12" style="padding-left:53px;">
+                                        <div class="text-s text-custom1 text-uppercase mb-1">
+                                            <label style="padding-right:3px;">予定単価</label>
+
+                                            <input type="text" tabindex="11" class="text-line col-sm-12 col-md-12 col-xl-3 text-right input-numeral17" onkeydown="KeyDown(event,this)" id="StartPrice" name="StartPrice" maxlength="7" required placeholder="0">
+                                            &nbsp;~&nbsp;
+                                            <input type="text" tabindex="12" class="text-line col-sm-12 col-md-12 col-xl-3 text-right input-numeral18" onkeydown="KeyDown(event,this,'CheckPrice')" id="EndPrice" name="EndPrice" maxlength="7" required placeholder="5,000">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                    <div class="col-md-12" style="padding-left:83px;">
+                                        <div class="text-s text-custom1 text-uppercase mb-1">
+                                            <label style="padding-right:3px;">金型</label>
+                                            <input type="text" tabindex="13" class="text-line col-sm-12 col-md-12 col-xl-3 text-left"
+                                                   data-existcheck-url='@Url.Action("M_Casting_ExistsCheck", "api/TourokuProjectApi")'
+                                                   data-doublebytecheck-url='@Url.Action("DoubleByte_Checking", "api/CommonApi")'
+                                                   onkeydown="KeyDown(event,this)" id="HLCastingCD" name="CastingCD" maxlength="10" required placeholder="入力" style="width:105px">
+                                            <input type="button" id="btnHibanSearch" value="..." onclick="Search(7)" />
+                                            <input type="text" tabindex="14" class="text-line col-sm-12 col-md-12 col-xl-5 text-left" onkeydown="KeyDown(event,this)" id="HLCastingName" name="CastingName" maxlength="40" required placeholder="入力">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                    <div class="col-md-12" style="padding-left:50px;">
+                                        <div id="CompleteYMgp" class="text-s text-custom1 text-uppercase mb-1">
+                                            <label class="text" style="padding-right:10px;">納品状況</label>
+                                            <input type="checkbox" tabindex="15" id="deliveryleft" name="check" value="0" onkeydown="KeyDown(event,this)" checked>
+                                            <label for="deliveryleft" style="padding-right:20px;">納品残あり</label>
+                                            <input type="checkbox" tabindex="16" id="payment" name="check" value="1" onkeydown="KeyDown(event,this,'CheckCheckbox')">
+                                            <label for="payment" style="padding-right:20px;">完納</label>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pt-3 md-form" style="padding-left:0px; padding-top:2rem;">
+                                    <div class="col-xl-12">
+                                        <div class="col-xl-9">
+                                            <button id="btnSearch1" tabindex="17" onclick="HinbanSearch()" class="btn btn-dark col-xl-4 text-center float-lg-right">検索</button>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-12 col-lg-7" style="padding-left:0px;padding-right:0px;">
+                <div class="card-body card-block" style="padding-left:0px;">
+                    <table id="tblHinban" data-request-url='@Url.Action("M_HinBan_Search_Search", "api/TourokuProjectApi")' class="tb1 col-sm-12" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <table class="col-md-12">
+                                        <tr>
+                                            <th style="width: 30%; max-width: 30%;">プロジェクト</th>
+                                            <th style="width: 18%; max-width: 18%;"></th>
+                                            <th style="width: 18%; max-width: 18%;"></th>
+                                            <th style="width: 18%; max-width: 18%;"></th>
+                                            <th style="width: 70px; max-width: 70px;"></th>
+                                        </tr>
+                                        <tr>
+                                            <th>品番</th>
+                                            <th class="text-right"></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                        <tr>
+                                            <th style="width: 30%; max-width: 30%;">金型</th>
+                                            <th class="text-right" style="width: 18%; max-width: 18%;">生産数</th>
+                                            <th class="text-right" style="width: 18%; max-width: 18%;">予定単価</th>
+                                            <th class="text-right" style="width: 18%; max-width: 18%;">総金額</th>
+                                            <th style="width: 70px; max-width: 70px;"></th>
+                                        </tr>
+                                    </table>
+                                </th>
+                            </tr>
+
+                        </thead>
+                    </table>
+                </div>
+
+            </div>
+            @*<div class="col-xs-12 col-md-2"></div>*@
+        </div>
+
+    </div>
+</div>
+@Html.Partial("~/Views/Search/SearchBase.cshtml")
+
+@section Scripts{
+    <script src="@Url.Content("~/ElaAdmin/assets/js/HinbanSearch.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Project.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Search.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Kanagata.js")"></script>
+    <script src="@Url.Content("~/ElaAdmin/assets/js/Brand.js")"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            alert("1");
+            $("#formtitle").text("品番検索");
+            $("#divSearch").iziModal({
+                top: 50,
+                width: "80%",
+                overlayClose: false,
+                zindex: 1000,
+            });
+
+            $("#divSearch2").iziModal({
+                top: 50,
+                width: "80%",
+                overlayClose: false,
+                zindex: 1000,
+            });
+
+            HinbanSearch_Load();
+        });
+
+        function btnnextClick() {
+        location.href = '@Url.Action("TourokuProject_List", "TourokuProject")';
+    }
+
+        function btnAddClick() {
+            var Tmodel = GetHinbanData();
+            location.href = '@Url.Action("TourokuHinban_Entry", "TourokuProject")?ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName=' + Tmodel.ProjectName + '&BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&StartDate=' + Tmodel.StartDate + '&EndDate=' + Tmodel.EndDate + '&Year=' + Tmodel.Year + '&Season=' + Tmodel.Season + '&Production=' + Tmodel.Production + '&TotalAmount=' + Tmodel.TotalAmount + '&HinbanCD1=' + Tmodel.HinbanCD1 + '&HinbanName=' + Tmodel.HinbanName + '&CastingCD=' + Tmodel.CastingCD + '&CastingName=' + Tmodel.CastingName + '&StartPrice=' + Tmodel.StartPrice + ' &EndPrice=' + Tmodel.EndPrice + '&CompleteYM=' + Tmodel.CompleteYM + '&flg=' + Tmodel.flg + '&Mode=New';
+    }
+
+        function btnEditClick(ProjectCD, HinbanCD) {
+            var Tmodel = GetHinbanData();
+            location.href = '@Url.Action("TourokuHinban_Entry", "TourokuProject")?ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName=' + Tmodel.ProjectName + '&BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&StartDate=' + Tmodel.StartDate + '&EndDate=' + Tmodel.EndDate + '&Year=' + Tmodel.Year + '&Season=' + Tmodel.Season + '&Production=' + Tmodel.Production + '&TotalAmount=' + Tmodel.TotalAmount + '&HinbanCD1=' + Tmodel.HinbanCD1 + '&HinbanName=' + Tmodel.HinbanName + '&CastingCD=' + Tmodel.CastingCD + '&CastingName=' + Tmodel.CastingName + '&StartPrice=' + Tmodel.StartPrice + '&EndPrice=' + Tmodel.EndPrice + '&CompleteYM=' + Tmodel.CompleteYM + '&flg=' + Tmodel.flg + '&HinbanCD=' + HinbanCD + '&ProjectCD=' + ProjectCD + '&Mode=Edit';
+    }
+
+        function btnDelClick(ProjectCD, HinbanCD) {
+            Tmodel = GetHinbanData();
+            location.href = '@Url.Action("TourokuHinban_Entry", "TourokuProject")?ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName=' + Tmodel.ProjectName + '&BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&StartDate=' + Tmodel.StartDate + '&EndDate=' + Tmodel.EndDate + '&Year=' + Tmodel.Year + '&Season=' + Tmodel.Season + '&Production=' + Tmodel.Production + '&TotalAmount=' + Tmodel.TotalAmount + '&HinbanCD1=' + Tmodel.HinbanCD1 + '&HinbanName=' + Tmodel.HinbanName + '&CastingCD=' + Tmodel.CastingCD + '&CastingName=' + Tmodel.CastingName + '&StartPrice=' + Tmodel.StartPrice + '&EndPrice=' + Tmodel.EndPrice + '&CompleteYM=' + Tmodel.CompleteYM + '&flg=' + Tmodel.flg + '&HinbanCD=' + HinbanCD + '&ProjectCD=' + ProjectCD + '&Mode=Delete';
+        }
+
+        function btnCopyClick(ProjectCD, HinbanCD) {
+            Tmodel = GetHinbanData();
+            location.href = '@Url.Action("TourokuHinban_Entry", "TourokuProject")?ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName=' + Tmodel.ProjectName + '&BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&StartDate=' + Tmodel.StartDate + '&EndDate=' + Tmodel.EndDate + '&Year=' + Tmodel.Year + '&Season=' + Tmodel.Season + '&Production=' + Tmodel.Production + '&TotalAmount=' + Tmodel.TotalAmount + '&HinbanCD1=' + Tmodel.HinbanCD1 + '&HinbanName=' + Tmodel.HinbanName + '&CastingCD=' + Tmodel.CastingCD + '&CastingName=' + Tmodel.CastingName + '&StartPrice=' + Tmodel.StartPrice + '&EndPrice=' + Tmodel.EndPrice + '&CompleteYM=' + Tmodel.CompleteYM + '&flg=' + Tmodel.flg + '&HinbanCD=' + HinbanCD + '&ProjectCD=' + ProjectCD + '&Mode=Copy';
+        }
+
+        
+        $('#btnnext').keydown(function (e) {
+           
+         var code = e.keyCode || e.which;
+         if (code == 9) {
+             if (e.shiftKey) {
+                 //Focus previous input
+                 if (thisTab == startIndex) {
+                     $("." + tabLimitInID).find('[tabindex=' + lastIndex + ']').focus();
+                     return false;
+                 }
+                 else {
+                     e.preventDefault();
+                 }
+             }
+             e.preventDefault();
+         }
+     });
+        
+    </script>
+}
