@@ -200,7 +200,6 @@ function CheckPrice(result) {
                 StartPrice: $('#divMainList #StartPrice').val().toString().replace(/,/g, ""),
                 EndPrice: $('#divMainList #EndPrice').val().toString().replace(/,/g, ""),
             };
-            alert(Tmodel.StartPrice + "," + Tmodel.EndPrice);
             if (parseInt(Tmodel.StartPrice) < parseInt(Tmodel.EndPrice)) {
                 $("#divMainList #HLCastingCD").focus();
 

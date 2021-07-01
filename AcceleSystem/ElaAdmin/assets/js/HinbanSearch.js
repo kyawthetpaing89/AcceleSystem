@@ -14,14 +14,16 @@
             ProjectCD: $('#divMain #proCD').val()
         };
         var data = CalltoApiController("/api/TourokuProjectApi/M_Hinban_Check_List", Tmodel)
-        var hbdata = JSON.parse(data);
-        $("#divMainList #proName").val(hbdata[0].ProjectName);
-        $("#divMainList #HLyear").val(hbdata[0].Year);
-        $("#divMainList #HLseason").val(hbdata[0].Season);
-        $("#divMainList #BrandCD").val(hbdata[0].BrandCD);
-        $("#divMainList #BrandName").val(hbdata[0].BrandName);
-        $("#divMainList #HLStartDate").val(hbdata[0].PeriodStart);
-        $("#divMainList #HLEndDate").val(hbdata[0].PeriodEnd);
+        if (!(data == "[]")) {
+            var hbdata = JSON.parse(data);
+            $("#divMainList #proName").val(hbdata[0].ProjectName);
+            $("#divMainList #HLyear").val(hbdata[0].Year);
+            $("#divMainList #HLseason").val(hbdata[0].Season);
+            $("#divMainList #BrandCD").val(hbdata[0].BrandCD);
+            $("#divMainList #BrandName").val(hbdata[0].BrandName);
+            $("#divMainList #HLStartDate").val(hbdata[0].PeriodStart);
+            $("#divMainList #HLEndDate").val(hbdata[0].PeriodEnd);
+        }
     }
     else {
         //$("#divMainList #proCD").val('');
@@ -37,6 +39,7 @@
 
 function GetHinban() {
     var Tmodel = {
+        ProjectCD: $('#divMain #proCD').val(),
         ProjectName: $('#divMainList #proName').val(),
         Year: $('#divMainList #HLyear').val(),
         Season: $('#divMainList #HLseason').val(),
@@ -144,7 +147,7 @@ function DateCompare(result) {
 }
 
 //Date Error check when search button click
-function DateCompareOnSave() {
+function DateCompareSave() {
     if (!($('#divMainList #HLStartDate').val().trim() == '' || $('#divMainList #HLEndDate').val().trim() == '')) {
         var model = {
             startDate: $("#divMainList #HLStartDate").val().toString().replace(/\//g, ''),
@@ -216,7 +219,7 @@ function HinbanSearch() {
         else {
             var res = ErrorCheckOnSave('divMainList');
             if (res == "0") {
-                var res2 = DateCompareOnSave();
+                var res2 = DateCompareSave();
                 if (res2 == "0") {
                     var res1 = CheckPriceOnSearch();
                     if (res1 == "0") {
@@ -236,6 +239,42 @@ function HinbanSearch() {
                 ShowErrorMessage(res);
             }
         }
+    }
+}
+
+
+function Check() {
+    ExistsCheck($("#divMainList #HLHinbanCD"), "Hinban", $("#divMainList #HLHinbanCD").data('existcheck-url'), "HLHinbanName", $("#proCD").val());
+
+    if ($("#divMainList #proCD").val()) {
+        var Tmodel = {
+            ProjectCD: $('#divMainList #proCD').val(),
+            //HinbanCD: $('#HinbanCD').val(),
+        };
+        var data = CalltoApiController($("#divMainList #HLHinbanCD").data('checklist-url'), Tmodel);
+        var hbdata = JSON.parse(data);
+        $("#divMainList #proCD").val(hbdata[0].ProjectCD);
+        $("#divMainList #proName").val(hbdata[0].ProjectName);
+        $("#divMainList #HLyear").val(hbdata[0].Year);
+        $("#divMainList #HLseason").val(hbdata[0].Season);
+        $("#divMainList #BrandCD").val(hbdata[0].BrandCD);
+        $("#divMainList #BrandName").val(hbdata[0].BrandName);
+        $("#divMainList #HLStartDate").val(hbdata[0].PeriodStart);
+        $("#divMainList #HLEndDate").val(hbdata[0].PeriodEnd);
+        $("#divMainList #tpNo").val(hbdata[0].TotalProduction);
+        $("#divMainList #tAmount").val(hbdata[0].TotalSP);
+    }
+    else {
+        $("#divMainList #proCD").val('');
+        $("#divMainList #proName").val('');
+        $("#divMainList #HLyear").val('');
+        $("#divMainList #HLseason").val('');
+        $("#divMainList #BrandCD").val('');
+        $("#divMainList #BrandName").val('');
+        $("#divMainList #HLStartDate").val('');
+        $("#divMainList #HLEndDate").val('');
+        $("#divMainList #tpNo").val('');
+        $("#divMainList #tAmount").val('');
     }
 }
 
