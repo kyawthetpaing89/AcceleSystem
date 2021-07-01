@@ -52,13 +52,8 @@
                 break;
             case 3:
                 $(".iziModal-header-title").text("品番検索");
-                $("#divSearch1").load('@Url.Action("TourokuHinban_List", "TourokuProject")', function () {
+                $("#divSearch1").load('@Url.Action("TourokuHinban_Search", "TourokuProject")', function () {
                     SearchSetting(typeID);
-                    if ($("#divMain #proCD").val()) {
-                        $("#divMainList #HLHinbanCD").focus();
-                    }
-                    else {
-                    }
                     $("#divMainList #proName").removeAttr('disabled');
                     $("#divMainList #HLyear").removeAttr('disabled');
                     $("#divMainList #HLseason").removeAttr('disabled');
@@ -83,6 +78,13 @@
                     $("#divMainList #HLCastingName").removeAttr('placeholder');
                     $("#divMainList #StartPrice").removeAttr('placeholder');
                     $("#divMainList #EndPrice").removeAttr('placeholder');
+
+                    if ($("#divMain #proCD").val()) {
+                        $("#divMainList #HLHinbanCD").focus();
+                    }
+                    else {
+                        $("#divMainList #proName").focus();
+                    }
                 });
                 break;
             case 4:
@@ -114,7 +116,6 @@
     }
 
     function SearchSetting(type) {
-
         switch (type) {
             case 1:
             case 9:
@@ -130,7 +131,7 @@
                 $("#divAddUser").hide();
                 break;
             case 3:
-                HinbanList_Load();
+                HinbanSearch_Load();
                 $("#HinbanType").val("2");
                 $("#divSearch1 #btnAdd").hide();
                 $("#divSearch1 #btnnext").hide();

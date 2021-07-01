@@ -32,5 +32,10 @@ namespace AcceleSystem.Controllers
         {
             return View(Tmodel);
         }
+
+        public ActionResult TourokuHinban_Search(TourokuProjectModel Tmodel)
+        {
+            return View(Tmodel);
+        }
     }
 }

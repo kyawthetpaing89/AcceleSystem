@@ -71,8 +71,8 @@ function GetHinban() {
         HinbanName: $('#divMainList #HLHinbanName').val(),
         CastingCD: $('#divMainList #HLCastingCD').val(),
         CastingName: $('#divMainList #HLCastingName').val(),
-        StartPrice: $('#divMainList #StartPrice').val(),
-        EndPrice: $('#divMainList #EndPrice').val(),
+        StartPrice: $('#divMainList #StartPrice').val().toString().replace(/,/g, ""),
+        EndPrice: $('#divMainList #EndPrice').val().toString().replace(/,/g, ""),
     };
 
     if ($('#divMainList #HLseason').val() == '通年')
@@ -197,13 +197,11 @@ function CheckPrice(result) {
     if (result == 'OK') {
         if (!($('#divMainList #StartPrice').val().trim() == '' || $('#divMainList #EndPrice').val().trim() == '')) {
             var Tmodel = {
-                StartPrice: $('#divMainList #StartPrice').val(),
-                EndPrice: $('#divMainList #EndPrice').val(),
+                StartPrice: $('#divMainList #StartPrice').val().toString().replace(/,/g, ""),
+                EndPrice: $('#divMainList #EndPrice').val().toString().replace(/,/g, ""),
             };
-            //@*var data = CalltoApiController('@Url.Action("M_Hinban_Price_Check", "api/TourokuProjectApi")', Tmodel);
-            //var SalePriceData = JSON.parse(data);
-            //if (SalePriceData[0].flg == "false") {*@
-            if (Tmodel.StartPrice <= Tmodel.EndPrice) {
+            alert(Tmodel.StartPrice + "," + Tmodel.EndPrice);
+            if (parseInt(Tmodel.StartPrice) < parseInt(Tmodel.EndPrice)) {
                 $("#divMainList #HLCastingCD").focus();
 
                 //var data = ShowErrorMessage("E124");
@@ -223,13 +221,11 @@ function CheckPrice(result) {
 function CheckPriceOnSearch() {
     if (!($('#divMainList #StartPrice').val().trim() == '' || $('#EndPrice').val().trim() == '')) {
         var Tmodel = {
-            StartPrice: $('#divMainList #StartPrice').val(),
-            EndPrice: $('#divMainList #EndPrice').val(),
+            StartPrice: $('#divMainList #StartPrice').val().toString().replace(/,/g, ""),
+            EndPrice: $('#divMainList #EndPrice').val().toString().replace(/,/g, ""),
         };
-        //@*var data = CalltoApiController('@Url.Action("M_Hinban_Price_Check", "api/TourokuProjectApi")', Tmodel);
-        //var SalePriceData = JSON.parse(data);
-        //if (SalePriceData[0].flg == "false") {*@
-        if (Tmodel.StartPrice <= Tmodel.EndPrice) {
+
+        if (parseInt(Tmodel.StartPrice) < parseInt(Tmodel.EndPrice)) {
             return "0";
         }
         else {
