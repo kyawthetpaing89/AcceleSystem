@@ -10,14 +10,85 @@
 }
 
 <style>
+    @@media only screen and (min-width: 400px) {
+        .text-Entry {
+            width: 40px;
+        }
+    }
+    @@media only screen and (min-width: 600px) {
+        .text-Entry {
+            width: 40px;
+        }
+    }
+
+    @@media only screen and (min-width: 700px) {
+        .text-Entry {
+            width: 45px;
+        }
+    }
+
+    @@media only screen and (min-width: 800px) {
+        .text-Entry {
+            width: 45px;
+        }
+    }
+
+    @@media only screen and (min-width: 900px) {
+        .text-Entry {
+            width: 80px;
+        }
+    }
+
+    @@media only screen and (min-width: 1020px) {
+        .text-Entry {
+            width: 90px;
+        }
+    }
+
+    @@media only screen and (min-width: 1150px) {
+        .text-Entry {
+            width: 130px;
+        }
+    }
+
+    @@media only screen and (min-width: 1300px) {
+        .text-Entry {
+            width: 180px;
+        }
+    }
+
+
+    @@media only screen and (min-width: 1450px) {
+        .text-Entry {
+            width: 230px;
+        }
+    }
+
+    @@media only screen and (min-width: 1600px) {
+        .text-Entry {
+            width: 290px;
+        }
+    }
+
+    @@media only screen and (min-width: 1750px) {
+        .text-Entry {
+            width: 330px;
+        }
+    }
+
+    @@media only screen and (min-width: 1900px) {
+        .text-Entry {
+            width: 340px;
+        }
+    }
     .text-Entry {
         text-overflow: ellipsis;
         display: inline-block;
         overflow: hidden;
-        width: 170px;
+        /*width: 85%;*/
         white-space: nowrap;
         vertical-align: middle;
-        padding-top: 2%;
+        padding-top: 1%;
     }
 </style>
 
@@ -177,7 +248,8 @@
             }
             else if (Mode == 'Edit') {
                 $('#btnSave').html('更新');
-
+                $("#proCD").attr('disabled', 'disabled');
+                $("#DeliDate").focus();
                 RequiredCheck($("#proCD"));
                 DoubleByteCheck($("#proCD"), '@Url.Action("DoubleByte_Checking", "api/CommonApi")');
                 ExistsCheck($("#proCD"), "Project", '@Url.Action("M_Nouhin_Project_ExistsCheck", "api/Touroku_NouhinApi")', "proName");
