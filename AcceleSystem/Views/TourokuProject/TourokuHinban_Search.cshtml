@@ -147,23 +147,24 @@
                                             <label id="text" style="padding-right:3px;">
                                                 年度
                                             </label>
-                                            <input type="text" tabindex="2" class="text-line col-sm-12 col-md-12 col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="HLyear" name="year" maxlength="4" required placeholder="入力" style="width:70px">
+                                            <input type="text" tabindex="2" class="text-line col-sm-12 col-md-12 col-xl-3 text-left input-numeral17" onkeydown="KeyDown(event,this)" 
+                                                   data-yearcheck-url='@Url.Action("Year_Checking", "api/CommonApi")' id="HLyear" name="year" maxlength="4" required placeholder="入力" style="width:70px">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                                     <div class="col-md-12" style="padding-left:53px;">
-                                            <div id="Seasongp" class="text-s text-custom1 text-uppercase mb-1">
-                                                <label id="text" style="padding-right:5px;">シーズン</label>
+                                        <div id="Seasongp" class="text-s text-custom1 text-uppercase mb-1">
+                                            <label id="text" style="padding-right:5px;">シーズン</label>
 
-                                                <input type="checkbox" tabindex="3" id="Degreeyear" name="ck" value="1" onkeydown="KeyDown(event,this)" checked>
-                                                <label for="Degreeyear" style="padding-right:20px;">通年</label>
+                                            <input type="checkbox" tabindex="3" id="Degreeyear" name="ck" value="1" onkeydown="KeyDown(event,this)" checked>
+                                            <label for="Degreeyear" style="padding-right:20px;">通年</label>
 
-                                                <input type="checkbox" tabindex="4" id="SS" name="ck" value="2" onkeydown="KeyDown(event,this)" checked>
-                                                <label for="SS" style="padding-right:20px;">SS</label>
+                                            <input type="checkbox" tabindex="4" id="chkSS" name="ck" value="2" onkeydown="KeyDown(event,this)" checked>
+                                            <label for="chkSS" style="padding-right:20px;">SS</label>
 
-                                                <input type="checkbox" tabindex="5" id="FW" name="ck" value="3" onkeydown="KeyDown(event,this,'SeasonCheck')" checked>
-                                                <label for="FW">FW</label>
+                                            <input type="checkbox" tabindex="5" id="chkFW" name="ck" value="3" onkeydown="KeyDown(event,this,'SeasonCheck')" checked>
+                                            <label for="chkFW">FW</label>
                                         </div>
                                     </div>
                                 </div>
@@ -187,11 +188,11 @@
                                             <label style="padding-right:3px;">
                                                 予定期間
                                             </label>
-                                            <input type="text" tabindex="8" class="text-line col-sm-12 col-md-12 col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="HLStartDate" name="StartDate" 
-                                               data-yearmonthcheck-url='@Url.Action("YearMonth_Checking", "api/CommonApi")'  maxlength="7" required placeholder="入力" style="width:100px">
+                                            <input type="text"  tabindex="8" class="text-line col-sm-12 col-md-12 col-xl-3 text-left" onkeydown="KeyDown(event,this)" id="HLStartDate" name="StartDate"
+                                                   data-yearmonthcheck-url='@Url.Action("YearMonth_Checking", "api/CommonApi")' maxlength="7" required placeholder="入力" style="width:100px">
                                             &nbsp;~&nbsp;
                                             <input type="text" tabindex="9" class="text-line col-sm-12 col-md-12 col-xl-3 text-left" onkeydown="KeyDown(event,this,'DateCompare')" id="HLEndDate" name="EndDate"
-                                               data-yearmonthcheck-url='@Url.Action("YearMonth_Checking", "api/CommonApi")' maxlength="7" required placeholder="入力" style="width:100px">
+                                                   data-yearmonthcheck-url='@Url.Action("YearMonth_Checking", "api/CommonApi")' maxlength="7" required placeholder="入力" style="width:100px">
                                         </div>
                                     </div>
                                 </div>
@@ -208,9 +209,9 @@
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label style="padding-right:3px;">予定単価</label>
 
-                                            <input type="text" tabindex="11" class="text-line col-sm-12 col-md-12 col-xl-3 text-right input-numeral17" onkeydown="KeyDown(event,this)" id="StartPrice" name="StartPrice" maxlength="7" required placeholder="0">
+                                            <input type="text" tabindex="11" class="text-line number col-sm-12 col-md-12 col-xl-3 text-right " onkeydown="KeyDown(event,this)" id="HLStartPrice" name="HLStartPrice" maxlength="7" required placeholder="0">
                                             &nbsp;~&nbsp;
-                                            <input type="text" tabindex="12" class="text-line col-sm-12 col-md-12 col-xl-3 text-right input-numeral18" onkeydown="KeyDown(event,this,'CheckPrice')" id="EndPrice" name="EndPrice" maxlength="7" required placeholder="5,000">
+                                            <input type="text" tabindex="12" class="text-line input-numeral18 col-sm-12 col-md-12 col-xl-3 text-right " onkeydown="KeyDown(event,this,'CheckPrice')" id="HLEndPrice" name="HLEndPrice" maxlength="7" required placeholder="5,000">
 
                                         </div>
                                     </div>
@@ -245,7 +246,7 @@
                                     <div class="col-xl-12">
                                         <div class="col-xl-9">
                                             <button id="btnSearch1" tabindex="17" onclick="HinbanSearch()" class="btn btn-dark col-xl-4 text-center float-lg-right">検索</button>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -325,6 +326,21 @@
             HinbanSearch_Load();
         });
 
+
+        $('#divMainList #HLStartPrice').keyup(function (event) {
+            alert("a");
+            // skip for arrow keys
+            if (event.which >= 37 && event.which <= 40) return;
+
+            // format number
+            $(this).val(function (index, value) {
+                return value
+                    .replace(/\D/g, "")
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                    ;
+            });
+        });
+
         function btnnextClick() {
         location.href = '@Url.Action("TourokuProject_List", "TourokuProject")';
     }
@@ -349,9 +365,9 @@
             location.href = '@Url.Action("TourokuHinban_Entry", "TourokuProject")?ProjectCD1=' + Tmodel.ProjectCD1 + '&ProjectName=' + Tmodel.ProjectName + '&BrandCD1=' + Tmodel.BrandCD1 + '&BrandName=' + Tmodel.BrandName + '&StartDate=' + Tmodel.StartDate + '&EndDate=' + Tmodel.EndDate + '&Year=' + Tmodel.Year + '&Season=' + Tmodel.Season + '&Production=' + Tmodel.Production + '&TotalAmount=' + Tmodel.TotalAmount + '&HinbanCD1=' + Tmodel.HinbanCD1 + '&HinbanName=' + Tmodel.HinbanName + '&CastingCD=' + Tmodel.CastingCD + '&CastingName=' + Tmodel.CastingName + '&StartPrice=' + Tmodel.StartPrice + '&EndPrice=' + Tmodel.EndPrice + '&CompleteYM=' + Tmodel.CompleteYM + '&flg=' + Tmodel.flg + '&HinbanCD=' + HinbanCD + '&ProjectCD=' + ProjectCD + '&Mode=Copy';
         }
 
-        
+
         $('#btnnext').keydown(function (e) {
-           
+
          var code = e.keyCode || e.which;
          if (code == 9) {
              if (e.shiftKey) {
@@ -367,6 +383,6 @@
              e.preventDefault();
          }
      });
-        
+
     </script>
 }

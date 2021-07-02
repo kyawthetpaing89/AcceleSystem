@@ -1,4 +1,26 @@
 ﻿function HinbanSearch_Load() {
+    //$("#divMainList #proName").removeAttr('disabled');
+    //$("#divMainList #HLyear").removeAttr('disabled');
+    //$("#divMainList #HLseason").removeAttr('disabled');
+    //$("#divMainList #BrandCD").removeAttr('disabled');
+    //$("#divMainList #BrandName").removeAttr('disabled');
+    //$("#divMainList #HLStartDate").removeAttr('disabled');
+    //$("#divMainList #HLEndDate").removeAttr('disabled');
+
+   
+    $("#divMainList #proName").removeAttr('placeholder');
+    $("#divMainList #HLyear").removeAttr('placeholder');
+    $("#divMainList #HLseason").removeAttr('placeholder');
+    $("#divMainList #BrandCD").removeAttr('placeholder');
+    $("#divMainList #BrandName").removeAttr('placeholder');
+    $("#divMainList #HLStartDate").removeAttr('placeholder');
+    $("#divMainList #HLEndDate").removeAttr('placeholder');
+    $("#divMainList #HLHinbanName").removeAttr('placeholder');
+    $("#divMainList #HLCastingCD").removeAttr('placeholder');
+    $("#divMainList #HLCastingName").removeAttr('placeholder');
+    $("#divMainList #HLStartPrice").removeAttr('placeholder');
+    $("#divMainList #HLEndPrice").removeAttr('placeholder');
+
     DoubleByteCheck($("#divMainList #BrandCD"), $("#divMainList #BrandCD").data('doublebytecheck-url'));
     ExistsCheck($("#divMainList #BrandCD"), "Brand", $("#divMainList #BrandCD").data('existcheck-url'), "divMainList #BrandName");
 
@@ -7,6 +29,8 @@
     
     YearMonthCheck($("#divMainList  #HLStartDate"), $("#divMainList #HLStartDate").data('yearmonthcheck-url'));
     YearMonthCheck($("#divMainList  #HLEndDate"), $("#divMainList #HLEndDate").data('yearmonthcheck-url'));
+
+    YearCheck($("#divMainList #HLyear"), $("#divMainList #HLyear").data('yearcheck-url'));
 
     if ($("#divMain #proCD").val()) {
         $("#divMainList #HLHinbanCD").focus();
@@ -50,8 +74,8 @@ function GetHinban() {
         HinbanName: $('#divMainList #HLHinbanName').val(),
         CastingCD: $('#divMainList #HLCastingCD').val(),
         CastingName: $('#divMainList #HLCastingName').val(),
-        StartPrice: $('#divMainList #StartPrice').val().toString().replace(/,/g, ""),
-        EndPrice: $('#divMainList #EndPrice').val().toString().replace(/,/g, ""),
+        StartPrice: $('#divMainList #HLStartPrice').val().toString().replace(/,/g, ""),
+        EndPrice: $('#divMainList #HLEndPrice').val().toString().replace(/,/g, ""),
     };
     var selected1 = new Array();
     $("#divMainList #Seasongp input[type=checkbox]:checked").each(function () {
@@ -118,10 +142,10 @@ function CheckCheckbox(result) {
 function SeasonCheck(result) {
     if (result == 'OK') {
         var degreeyear = $("#divMainList #Degreeyear").is(":checked");
-        var ss = $("#divMainList #SS").is(":checked");
-        var fw = $("#divMainList #FW").is(":checked");
+        var ss = $("#divMainList #chkSS").is(":checked");
+        var fw = $("#divMainList #chkFW").is(":checked");
         if (!degreeyear && !ss && !fw) {
-            $("#divMainList #FW").focus();
+            $("#divMainList #chkFW").focus();
             ShowErrorMessage("E111");
         }
     }
@@ -166,16 +190,16 @@ function DateCompareSave() {
 //Compare Price Check at Enter
 function CheckPrice(result) {
     if (result == 'OK') {
-        if (!($('#divMainList #StartPrice').val().trim() == '' || $('#divMainList #EndPrice').val().trim() == '')) {
+        if (!($('#divMainList #HLStartPrice').val().trim() == '' || $('#divMainList #HLEndPrice').val().trim() == '')) {
             var Tmodel = {
-                StartPrice: $('#divMainList #StartPrice').val().toString().replace(/,/g, ""),
-                EndPrice: $('#divMainList #EndPrice').val().toString().replace(/,/g, ""),
+                StartPrice: $('#divMainList #HLStartPrice').val().toString().replace(/,/g, ""),
+                EndPrice: $('#divMainList #HLEndPrice').val().toString().replace(/,/g, ""),
             };
             if (parseInt(Tmodel.StartPrice) < parseInt(  Tmodel.EndPrice)) {
                 $("#divMainList #HLCastingCD").focus();
             }
             else {
-                $("#divMainList #EndPrice").focus();
+                $("#divMainList #HLEndPrice").focus();
                 ShowErrorMessage("E124");
             }
         }
@@ -184,10 +208,10 @@ function CheckPrice(result) {
 
 //Compare Price Check when search button click
 function CheckPriceOnSearch() {
-    if (!($('#divMainList #StartPrice').val().trim() == '' || $('#EndPrice').val().trim() == '')) {
+    if (!($('#divMainList #HLStartPrice').val().trim() == '' || $('#divMainList #HLEndPrice').val().trim() == '')) {
         var Tmodel = {
-            StartPrice: $('#divMainList #StartPrice').val().toString().replace(/,/g, ""),
-            EndPrice: $('#divMainList #EndPrice').val().toString().replace(/,/g, ""),
+            StartPrice: $('#divMainList #HLStartPrice').val().toString().replace(/,/g, ""),
+            EndPrice: $('#divMainList #HLEndPrice').val().toString().replace(/,/g, ""),
         };
         if (parseInt(Tmodel.StartPrice) < parseInt(Tmodel.EndPrice)) {
             return "0";
@@ -201,10 +225,10 @@ function CheckPriceOnSearch() {
 
 function HinbanSearch() {
     var allyear = $("#divMainList #Degreeyear").is(":checked");
-    var ss = $("#divMainList #SS").is(":checked");
-    var fw = $("#divMainList #FW").is(":checked");
+    var ss = $("#divMainList #chkSS").is(":checked");
+    var fw = $("#divMainList #chkFW").is(":checked");
     if (!allyear && !ss && !fw) {
-        $("#divMainList #FW").focus();
+        $("#divMainList #chkFW").focus();
         var data = ShowErrorMessage("E111");
         return data;
     }
@@ -226,7 +250,7 @@ function HinbanSearch() {
                         GetHinban();
                     }
                     else {
-                        $("#divMainList #EndPrice").focus();
+                        $("#divMainList #HLEndPrice").focus();
                         ShowErrorMessage(res1);
                     }
                 }
@@ -292,8 +316,8 @@ function GetHinbanData() {
         HinbanName: $('#divMainList #HLHinbanName').val(),
         CastingCD: $('#divMainList #HLCastingCD').val(),
         CastingName: $('#divMainList #HLCastingName').val(),
-        StartPrice: $('#divMainList #StartPrice').val(),
-        EndPrice: $('#divMainList #EndPrice').val(),
+        StartPrice: $('#divMainList #HLStartPrice').val(),
+        EndPrice: $('#divMainList #HLEndPrice').val(),
         Season: $('#divMainList #HLseason').val(),
         flg: "list"
     };
