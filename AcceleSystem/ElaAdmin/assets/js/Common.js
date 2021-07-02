@@ -781,11 +781,11 @@ $(document).ready(function () {
             numeralThousandsGroupStyle: 'none'
         });
     }
-
+    
     if ($('.input-numeral17')[0]) {  
         var cleaveNumeral17 = new Cleave('.input-numeral17', {
             numeral: true,
-            numeralThousandsGroupStyle: 'thousand'
+            numeralThousandsGroupStyle: 'none'
         });
     }
 
