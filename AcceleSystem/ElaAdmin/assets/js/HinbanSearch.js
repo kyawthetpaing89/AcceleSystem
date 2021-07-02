@@ -302,6 +302,18 @@ function Check() {
     }
 }
 
+function KeyUp(e, ctrl) {
+    if (e.which >= 37 && e.which <= 40) event.preventDefault();
+
+    // format number
+    $(ctrl).val(function (index, value) {
+        return value
+            .replace(/\D/g, "")
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            ;
+    });
+}
+
 function GetHinbanData() {
     var Tmodel = {
         ProjectName: $('#divMainList #proName').val(),

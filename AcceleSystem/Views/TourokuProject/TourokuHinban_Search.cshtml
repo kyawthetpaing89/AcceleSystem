@@ -209,9 +209,9 @@
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label style="padding-right:3px;">予定単価</label>
 
-                                            <input type="text" tabindex="11" class="text-line number col-sm-12 col-md-12 col-xl-3 text-right " onkeydown="KeyDown(event,this)" id="HLStartPrice" name="HLStartPrice" maxlength="7" required placeholder="0">
+                                            <input type="text" tabindex="11" class="text-line col-sm-12 col-md-12 col-xl-3 text-right " onkeydown="KeyDown(event,this)" onkeyup="KeyUp(event,this)" id="HLStartPrice" name="HLStartPrice" maxlength="7" placeholder="0">
                                             &nbsp;~&nbsp;
-                                            <input type="text" tabindex="12" class="text-line input-numeral18 col-sm-12 col-md-12 col-xl-3 text-right " onkeydown="KeyDown(event,this,'CheckPrice')" id="HLEndPrice" name="HLEndPrice" maxlength="7" required placeholder="5,000">
+                                            <input type="text" tabindex="12" class="text-line col-sm-12 col-md-12 col-xl-3 text-right " onkeydown="KeyDown(event,this,'CheckPrice')" onkeyup="KeyUp(event,this)" id="HLEndPrice" name="HLEndPrice" maxlength="7" required placeholder="5,000">
 
                                         </div>
                                     </div>
@@ -324,21 +324,6 @@
             });
 
             HinbanSearch_Load();
-        });
-
-
-        $('#divMainList #HLStartPrice').keyup(function (event) {
-            alert("a");
-            // skip for arrow keys
-            if (event.which >= 37 && event.which <= 40) return;
-
-            // format number
-            $(this).val(function (index, value) {
-                return value
-                    .replace(/\D/g, "")
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                    ;
-            });
         });
 
         function btnnextClick() {
