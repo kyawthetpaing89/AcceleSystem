@@ -182,7 +182,7 @@
                                 <div>
                                     <h4 class=" hr-text text-center">検索条件入力</h4>
                                 </div>
-                                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                <div class="pt-3 md-form">
                                     <div class="col-md-12" style="padding-left:63px;">
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label id="text" style="padding-right:3px;">年度</label>
@@ -190,17 +190,17 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                <div class="pt-3 md-form">
                                     <div class="col-md-12" style="padding-left:13px;">
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label id="text" style="padding-right:3px;">ブランド名</label>
-                                            <input type="text" tabindex="2" id="BrandCD" name="txtBrandCD" onkeydown="KeyDown(event,this)" class="text-line col-xl-3 text-left" maxlength="6" required placeholder="入力"  style="width:70px">
+                                            <input type="text" tabindex="2" id="BrandCD" name="txtBrandCD" onkeydown="KeyDown(event,this)" class="text-line col-xl-3 text-left" maxlength="6" required placeholder="入力" style="width:70px">
                                             <input type="button" id="btnBrandSearch" value="..." onclick="Search(1)" />
                                             <input type="text" tabindex="3" id="BrandName" name="txtBrandName" onkeydown="KeyDown(event,this)" class="text-line col-xl-5 text-left" maxlength="40" required placeholder="入力">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                <div class="pt-3 md-form">
                                     <div class="col-md-12" style="padding-left:29px;">
                                         <div id="Seasongp" class="text-s text-custom1 text-uppercase mb-1">
                                             <label id="text" style="padding-right:5px;">シーズン</label>
@@ -213,14 +213,20 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                    <div class="col-md-12" style="padding-left:0px;">
+                                <div class="pt-3 md-form">
+                                    <div class="col-xs-12">
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label id="text" style="padding-right:2px;">プロジェクト</label>
-                                            <input type="text" tabindex="7" id="proCD" name="txtProjectCD" onkeydown="KeyDown(event,this,'ProjectCheck')" class="text-line col-xl-4 text-left" maxlength="15" required placeholder="入力" style="width:160px">
+                                            <input type="text" tabindex="7" id="proCD" name="txtProjectCD" onkeydown="KeyDown(event,this,'ProjectCheck')" class="text-line text-left" maxlength="15" required placeholder="入力" style="width:160px">
                                             <input type="button" id="btnProjectSearch" value="..." onclick="Search(6)" />
-                                            <input type="text" tabindex="8" id="proName" name="txtProjectName" onkeydown="KeyDown(event,this,'ProjectCheck')" class="text-line col-xl-5 text-left" maxlength="60" required placeholder="入力">
-                                                                                   
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pt-3 md-form">
+                                    <div class="col-xs-12">
+                                        <div class="text-s text-custom1 text-uppercase mb-1">
+                                            <label id="text" style="padding-right:100px;padding-left:0px;"></label>
+                                            <input type="text" id="proName" name="txtProjectName" onkeydown="KeyDown(event,this,'ProjectCheck')" tabindex="8" class="text-line col-xl-8 text-left" required placeholder="入力" maxlength="60">
                                         </div>
                                     </div>
                                 </div>
@@ -229,7 +235,7 @@
                                     <div class="col-md-12" style="padding-left:63px;">
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label id="text" style="padding-right:3px;">品番</label>
-                                            <input type="text" tabindex="9" id="HinbanCD" name="txtHinbanCD" onkeydown="KeyDown(event,this)" class="text-line col-xl-4 text-left" maxlength="6" required placeholder="入力"  style="width:70px">
+                                            <input type="text" tabindex="9" id="HinbanCD" name="txtHinbanCD" onkeydown="KeyDown(event,this)" class="text-line col-xl-4 text-left" maxlength="6" required placeholder="入力" style="width:70px">
                                             <input type="button" id="btnProjectSearch" value="..." onclick="Search(3)" />
                                             <input type="text" tabindex="10" id="HinbanName" name="txtHinbanName" onkeydown="KeyDown(event,this)" class="text-line col-xl-6 text-left" maxlength="60" required placeholder="入力">
                                         </div>
@@ -239,9 +245,9 @@
                                     <div class="col-md-12" style="padding-left:48px;">
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label id="text" style="padding-right:3px;">納品日</label>
-                                            <input type="text" tabindex="11" id="StartDate" name="txtStartDate" onkeydown="KeyDown(event,this)" class="text-line col-xl-4 text-left" maxlength="10" required placeholder="入力"  style="width:100px">
+                                            <input type="text" tabindex="11" id="StartDate" name="txtStartDate" onkeydown="KeyDown(event,this)" class="text-line col-xl-4 text-left" maxlength="10" required placeholder="入力" style="width:100px">
                                             &nbsp;~&nbsp;
-                                            <input type="text" tabindex="12" id="EndDate" name="txtEndDate" onkeydown="KeyDown(event,this,'DateCompareCheck')" class="text-line col-xl-4 text-left" maxlength="10" required placeholder="入力"  style="width:100px">
+                                            <input type="text" tabindex="12" id="EndDate" name="txtEndDate" onkeydown="KeyDown(event,this,'DateCompareCheck')" class="text-line col-xl-4 text-left" maxlength="10" required placeholder="入力" style="width:100px">
                                         </div>
                                     </div>
                                 </div>
