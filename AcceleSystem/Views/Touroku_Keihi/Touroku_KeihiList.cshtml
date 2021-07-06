@@ -286,15 +286,32 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                                        <div class="col-md-12" style="padding-left:0px;">
+                            <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
+                                <div class="col-md-12" style="padding-left:0px;">
+                                   <div class="text-s text-custom1 text-uppercase mb-1">
+                                       <label id="text">プロジェクト</label>
+                                       <input type="text" tabindex="11" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this,'ProjectCheck')"
+                                       data-existcheck-url='@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")'
+                                       id="proCD" name="projectCD" maxlength="15" required placeholder="入力" style="width:160px">
+                                       <input type="button" id="btnProjectSearch" value="..." onclick="Search(6)" />
+                                       @*<input type="text" tabindex="12" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this)" id="proName" name="projectname" maxlength="60" required placeholder="入力">*@
+                                    </div>
+                                </div>
+                            </div>
+                                    @*<div class="pt-3 md-form">
+                                        <div class="col-xs-12">
                                             <div class="text-s text-custom1 text-uppercase mb-1">
-                                                <label id="text">プロジェクト</label>
-                                                <input type="text" tabindex="11" class="text-line col-xl-5 text-left" onkeydown="KeyDown(event,this,'ProjectCheck')"
-                                                       data-existcheck-url='@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")'
-                                                       id="proCD" name="projectCD" maxlength="15" required placeholder="入力" style="width:150px">
+                                                <label id="text" style="padding-right:2px;">プロジェクト</label>
+                                                <input type="text" tabindex="11" id="proCD" name="projectCD" data-existcheck-url='@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")' onkeydown="KeyDown(event,this,'ProjectCheck')" class="text-line text-left" maxlength="15" required placeholder="入力" style="width:160px">
                                                 <input type="button" id="btnProjectSearch" value="..." onclick="Search(6)" />
-                                                <input type="text" tabindex="12" class="text-line col-xl-4 text-left" onkeydown="KeyDown(event,this)" id="proName" name="projectname" maxlength="60" required placeholder="入力">
+                                            </div>
+                                        </div>
+                                    </div>*@
+                                    <div class="pt-3 md-form">
+                                        <div class="col-xs-12">
+                                            <div class="text-s text-custom1 text-uppercase mb-1">
+                                                <label id="text" style="padding-right:97px;padding-left:0px;"></label>
+                                                <input type="text" id="proName" name="projectname" onkeydown="KeyDown(event,this)" tabindex="12" class="text-line col-xl-8 text-left" required placeholder="入力" maxlength="60">
                                             </div>
                                         </div>
                                     </div>
@@ -304,7 +321,7 @@
                                                 <label id="text" style="padding-right: 7px;">品番</label>
                                                 <input type="text" tabindex="13" class="text-line col-xl-3 text-left" onkeydown="KeyDown(event,this)"
                                                        data-existcheck-url='@Url.Action("M_Hinban_ProjectExistCheck", "api/TourokuProjectApi")'
-                                                       id="HinbanCD" name="PartCD" maxlength="6" required placeholder="入力"  style="width:70px">
+                                                       id="HinbanCD" name="PartCD" maxlength="6" required placeholder="入力" style="width:70px">
                                                 <input type="button" id="btnHinbanSearch" value="..." onclick="Search(3)" />
                                                 <input type="text" tabindex="14" class="text-line col-xl-6 text-left" onkeydown="KeyDown(event,this)" id="HinbanName" name="PartName" maxlength="60" required placeholder="入力">
                                             </div>
