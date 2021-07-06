@@ -754,9 +754,9 @@
             else Kmodel.Item = "@@@@@@";
 
             if ($('#taxNotInclude').is(':checked'))
-                Kmodel.ZeikomiKBN = "1";
-            else if ($('#taxInclude').is(':checked'))
                 Kmodel.ZeikomiKBN = "2";
+            else if ($('#taxInclude').is(':checked'))
+                Kmodel.ZeikomiKBN = "1";
 
 
             var data = CalltoApiController('@Url.Action("D_Cost_CUD", "api/Touroku_KeihiApi")', Kmodel);
