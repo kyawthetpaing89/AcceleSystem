@@ -29,7 +29,7 @@
                                 </label>
                                 <input type="text" tabindex="1" class="text-line col-sm-12 col-md-12 col-lg-2 text-left input-numeral8" onkeydown="KeyDown(event,this,'Cost')" id="CostCD" name="CostCD" maxlength="6" required placeholder="入力">
                                 <input type="button" id="btnKeihiSettie" value="..." onclick="Search(8)" />
-                                <label id="costname" style="text-transform: none;"><b>@*経費名表示*@</b></label>
+                                <label id="costname" style="text-transform: none;"><b></b></label>
                             </div>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                                 </label>
                                 <input type="text" tabindex="4" class="text-line col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this,'Brand')" id="BrandCD" name="BrandCD" maxlength="6" required placeholder="入力">
                                 <input type="button" id="btnBrandSearch" value="..." onclick="Search(1)" />
-                                <label id="BrandName" style="text-transform: none;"><b>@*ブランド表示*@</b></label>
+                                <label id="BrandName" style="text-transform: none;"><b></b></label>
                             </div>
                         </div>
                     </div>
@@ -86,27 +86,25 @@
                     <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
                         <div class="col-xs-12" style="padding-left:5px;">
                             <div class="text-s text-custom1 text-uppercase mb-1">
-                                <label id="text" style="padding-right: 5px;">
+                                <label id="text" style="padding-right: 4px;">
                                     プロジェクト
                                 </label>
                                 <input type="text" tabindex="9" class="text-line col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this,'Project')" id="proCD" name="projectCD"
                                        data-existcheck-url='@Url.Action("M_Project_ExistsCheck", "api/Touroku_KeihiApi")' maxlength="15" required placeholder="入力">
                                 <input type="button" id="btnProjectSearch" value="..." onclick="Search(6)" />
-                                <input type="text"  class="text-line col-xl-7 text-left border-bottom-0 font-weight-bold" id="proName" name="projectname" >
-                                @*<label id="proName" style="text-transform: none;"><b>@*プロジェクト表示*@@*</b></label>*@
+                                <input type="text"  class="text-line col-xl-7 text-left border-bottom-0 font-weight-bold" id="proName" >
                             </div>
                         </div>
                     </div>
                     <div class="pt-3 md-form" style="padding-top:1.2rem!important;">
-                        <div class="col-xs-12" style="padding-left:69px;">
+                        <div class="col-xs-12" style="padding-left:67px;">
                             <div class="text-s text-custom1 text-uppercase mb-1">
-                                <label id="text" style="padding-right: 5px;">
+                                <label id="text" style="padding-right: 6px;">
                                     品番
                                 </label>
-                                <input type="text" tabindex="10" class="text-line col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this,'Hinban')" id="HinbanCD" name="HinbanCD" maxlength="10" required placeholder="入力">
+                                <input type="text" tabindex="10" class="text-line col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this,'Hinban')" id="HinbanCD" name="HinbanCD" maxlength="6" required placeholder="入力">
                                 <input type="button" id="btnHinbanSearch" value="..." onclick="Search(3)" />
-                                @* <label id="HinbanName" style="text-transform: none;"><b>@*品番表示*@@*</b></label>*@
-                                <input type="text"  class="text-line col-xl-7 text-left border-bottom-0 font-weight-bold"  id="HinbanName" name="PartName">
+                                <input type="text" class="text-line col-xl-7 text-left border-bottom-0 font-weight-bold" id="HinbanName" >
                             </div>
                         </div>
                     </div>
@@ -118,7 +116,7 @@
                                 </label>
                                 <input type="text" tabindex="11" class="text-line col-md-12 col-lg-2 text-left" onkeydown="KeyDown(event,this,'Casting')" id="CastingCD" name="CastingCD" maxlength="10" required placeholder="入力">
                                 <input type="button" id="btnKanagataSearch" value="..." onclick="Search(4)" />
-                                <label id="CastingName" style="text-transform: none;"><b>@*金型表示*@</b></label>
+                                <label id="CastingName" style="text-transform: none;"><b></b></label>
                             </div>
                         </div>
                     </div>
@@ -167,7 +165,6 @@
                     </div>
                 </div>
             </div>
-            @* <div class="col-sm-1 col-md-12 col-lg-1"></div>*@
         </div>
     </div>
 
@@ -371,11 +368,9 @@
         if (ProjectData[0].Season == "1")
             $("#allyear").prop("checked", true);
         else if (ProjectData[0].Season == "2") {
-            //$("#allyear").prop("checked", false);
             $("#SS").prop("checked", true);
         }
         else if (ProjectData[0].Season == "3") {
-            // $("#allyear").prop("checked", false);
             $("#FW").prop("checked", true);
         }
         else {
@@ -604,7 +599,6 @@
                         $("#FW").focus();
                     }
                 }
-              //  else $("#allyear").focus();
         }
         else {
             $("#BrandName").text('');
