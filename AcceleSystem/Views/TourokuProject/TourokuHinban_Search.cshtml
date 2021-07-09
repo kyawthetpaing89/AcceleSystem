@@ -200,7 +200,8 @@
                                     <div class="col-md-12" style="padding-left:69px;">
                                         <div class="text-s text-custom1 text-uppercase mb-1">
                                             <label style="padding-right:3px;">品番名</label>
-                                            <input type="text" tabindex="10" class="text-line col-sm-12 col-md-12 col-xl-6 text-left" onkeydown="KeyDown(event,this)" id="HLHinbanName" name="HLHinbanName" maxlength="60" required placeholder="入力">
+                                            <input type="text" tabindex="10" class="text-line col-sm-12 col-md-12 col-xl-6 text-left" onkeydown="KeyDown(event,this)"
+                                                   data-checklist-url='@Url.Action("M_Hinban_Check_List", "api/TourokuProjectApi")'  id="HLHinbanName" name="HLHinbanName" maxlength="60" required placeholder="入力">
                                         </div>
                                     </div>
                                 </div>

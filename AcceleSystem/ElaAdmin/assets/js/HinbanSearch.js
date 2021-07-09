@@ -37,7 +37,7 @@
         var Tmodel = {
             ProjectCD: $('#divMain #proCD').val()
         };
-        var data = CalltoApiController("/api/TourokuProjectApi/M_Hinban_Check_List", Tmodel)
+        var data = CalltoApiController($("#divMainList #HLHinbanName").data('checklist-url'), Tmodel)
         if (!(data == "[]")) {
             var hbdata = JSON.parse(data);
             $("#divMainList #proName").val(hbdata[0].ProjectName);
