@@ -381,10 +381,10 @@
         }
 
             if (ProjectData[0].ZeikomiKBN == "1")
-                $("#taxNotInclude").prop("checked", true);
-            else {
-                $("#taxNotInclude").prop("checked", false);
                 $("#taxInclude").prop("checked", true);
+            else {
+                $("#taxInclude").prop("checked", false);
+                $("#taxNotInclude").prop("checked", true);
             }
         $("#costname").css("font-weight", "Bold");
         $("#accounting").css("font-weight", "Bold");
