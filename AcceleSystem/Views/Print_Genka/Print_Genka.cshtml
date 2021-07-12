@@ -372,7 +372,7 @@
                         }
 
                         else if (array[i]["SortKey"] == '20') {
-                            var eo = 0, bgcolor;
+                            var eo = 0, bgcolor, b_border;
                             var prj_count = 0;
                             var pmodel = {
                                 BrandCD: array[i]["BrandCD"],
@@ -387,7 +387,7 @@
                                 if (B_array[b]["SortKey"] == '20') {
                                     if (o_row == 0) {
                                         isrowspan = 1;
-                                        add_row = '<td rowspan = ' + B_array[b]["Row_Count"] + ' style="text-align: center;background-color: #8FAADC; vertical-align: middle;">' + B_array[b]["BrandName"] + '</td><td style="background-color: #8FAADC"></td><td style="background-color: #BFBFBF;">' + B_array[b]["CostName"] + '</td><td style="background-color: #DDEBF7;">' +
+                                        add_row = '<td rowspan = ' + B_array[b]["Row_Count"] + ' style="text-align: center;background-color: #8FAADC; vertical-align: middle;border-bottom: 1px solid">' + B_array[b]["BrandName"] + '</td><td style="background-color: #8FAADC;"></td><td style="background-color: #BFBFBF; ">' + B_array[b]["CostName"] + '</td><td style="background - color: #DDEBF7; ">' +
                                             replaceZero(B_array[b]["CostPre"]) + '</td><td>' + replaceZero(B_array[b]["Cost1"]) + '</td><td>' + replaceZero(B_array[b]["Cost2"]) + '</td><td>' + replaceZero(B_array[b]["Cost3"]) + '</td><td>' +
                                             replaceZero(B_array[b]["Cost4"]) + '</td><td>' + replaceZero(B_array[b]["Cost5"]) + '</td><td>' + replaceZero(B_array[b]["Cost6"]) + '</td><td>' + replaceZero(B_array[b]["Cost7"]) + '</td><td>' +
                                             replaceZero(B_array[b]["Cost8"]) + '</td><td>' + replaceZero(B_array[b]["Cost9"]) + '</td><td>' + replaceZero(B_array[b]["Cost10"]) + '</td><td>' + replaceZero(B_array[b]["Cost11"]) + '</td><td>' +
@@ -404,7 +404,12 @@
                                     $('#tblExcel tbody tr:last').append(add_row);
                                 }
                                 else if (B_array[b]["SortKey"] == '21') {
-                                    add_row = '<td style="background-color: #8FAADC"></td><td style="border-top: 1px solid; border-bottom: 1px solid; background-color: #BFBFBF;">' + B_array[b]["CostName"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid; background-color: #DDEBF7;">' + commaSeparate(B_array[b]["CostPre"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid; background-color: #DDEBF7;">' + commaSeparate(B_array[b]["Cost1"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid; background-color: #DDEBF7;">' +
+                                    if (B_array[b]["Prj_Count"] > 0)
+                                        b_border = '';
+                                    else
+                                        b_border = 'border-bottom: 1px solid';
+
+                                    add_row = '<td style="background-color: #8FAADC;' + b_border + '"></td><td style="border-top: 1px solid; border-bottom: 1px solid; background-color: #BFBFBF;">' + B_array[b]["CostName"] + '</td><td style="border-top: 1px solid; border-bottom: 1px solid; background-color: #DDEBF7;">' + commaSeparate(B_array[b]["CostPre"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid; background-color: #DDEBF7;">' + commaSeparate(B_array[b]["Cost1"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid; background-color: #DDEBF7;">' +
                                         commaSeparate(B_array[b]["Cost2"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid; background-color: #DDEBF7;">' + commaSeparate(B_array[b]["Cost3"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid; background-color: #DDEBF7;">' + commaSeparate(B_array[b]["Cost4"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid; background-color: #DDEBF7;">' + commaSeparate(B_array[b]["Cost5"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid; background-color: #DDEBF7;">' +
                                         commaSeparate(B_array[b]["Cost6"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid; background-color: #DDEBF7;">' + commaSeparate(B_array[b]["Cost7"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid; background-color: #DDEBF7;">' + commaSeparate(B_array[b]["Cost8"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid; background-color: #DDEBF7;">' + commaSeparate(B_array[b]["Cost9"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid; background-color: #DDEBF7;">' +
                                         commaSeparate(B_array[b]["Cost10"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid; background-color: #DDEBF7;">' + commaSeparate(B_array[b]["Cost11"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid; background-color: #DDEBF7;">' + commaSeparate(B_array[b]["Cost12"]) + '</td><td style="border-top: 1px solid; border-bottom: 1px solid; background-color: #DDEBF7;">' +
@@ -636,7 +641,7 @@
 
                                         if (prj_array[j]["SortKey"] == '30') {
                                             if (isrowspan == 0) {
-                                                newrowspan = '<td rowspan = ' + rowspancount + ' style="text-align: center; background-color: #8FAADC; vertical-align: middle;">' + prj_array[0]["BrandName"] + '</td>';
+                                                newrowspan = '<td rowspan = ' + rowspancount + ' style="text-align: center; background-color: #8FAADC; vertical-align: middle; border-bottom: 1px solid;">' + prj_array[0]["BrandName"] + '</td>';
                                                 isrowspan = 1;
                                             }
 
