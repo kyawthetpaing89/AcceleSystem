@@ -9,21 +9,35 @@
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-textbox.css")" />
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/datepicker.css")" />
 }
+<style>
+    /*@@media only screen and (min-width: 1200px) {
+        .text-date {
+            width: 98%;
+        }
 
+    }
+
+
+    @@media only screen and (min-width: 1600px) {
+        .text-date {
+            width: 50%;
+        }
+    }*/
+</style>
 
 <div id="divMain" class="container-fluid">
     <div class="content">
         <div class="p-5 row shadow" style="box-shadow: 0 .1rem .4rem rgba(0,0,0,.1) !important; background:white; border-radius:5px;">
-            <div class="col-xs-6 col-md-3"></div>
-            <div class="col-xs-6 col-md-6">
+            <div class="col-xs-6 col-md-2"></div>
+            <div class="col-xs-6 col-md-8">
                 <div>
                     <h2 class=" hr-text text-center">金型登録</h2>
                 </div>
                 <div class="pt-3 md-form">
                     <div class="col-xl-12">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="1" class="text-line col-xl-3 text-left " onkeydown="KeyDown(event,this)" id="CastingCD" name="castingCD" maxlength="10" required placeholder="金型コード" style="width:150px;">
-                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" tabindex="1" class="text-line col-xl-3 text-left " onkeydown="KeyDown(event,this)" id="CastingCD" name="castingCD" maxlength="10" required placeholder="金型コード" @*style="width:150px;"*@>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <input type="text" tabindex="2" class="text-line col-xl-8 text-left" onkeydown="KeyDown(event,this)" id="CastingName" name="Name" maxlength="20" required placeholder="金型名">
                         </div>
                     </div>
@@ -31,7 +45,7 @@
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 ">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <input type="text" tabindex="3" class="text-line col-xl-3 text-left" id="BrandCD" onkeydown="KeyDown(event,this)" name="brandCD" maxlength="6" required placeholder="ブランドコード" style="width:140px;">
+                            <input type="text" tabindex="3" class="text-line col-xl-3 text-left" id="BrandCD" onkeydown="KeyDown(event,this)" name="brandCD" maxlength="6" required placeholder="ブランドコード" @*style="width:140px;"*@>
                             <input type="button" id="btnBrandSearch" value="..." onclick="Search(1)" />
                             <input type="text" tabindex="4" class="text-line col-xl-8 text-left" id="BrandName" name="brandname" maxlength="40" required placeholder="ブランド名">
                             @*<input type="text" class="text-line col-11" id="BrandName" name="brandname" style="width:91%" required placeholder="ブランド名">*@
@@ -40,7 +54,7 @@
                 </div>
                 <div class="pt-3 md-form">
                     <div class="col-xl-12">
-                        <input type="text" tabindex="5" onkeydown="KeyDown(event,this)" class="text-line col-xl-12" id="UseLimit" name="Limit" style="width: 93%" required placeholder="使用期限">
+                        <input type="text" tabindex="5" onkeydown="KeyDown(event,this)" class="text-line col-xl-11" id="UseLimit" name="Limit" required placeholder="使用期限">
                     </div>
 
                 </div>
@@ -50,14 +64,14 @@
                 <div class="pt-3 md-form">
                     <div class="col-xl-12 text-center">
                         <div class="text-s text-custom1 text-uppercase mb-1">
-                            <button id="btnSave" tabindex="6" onclick="btnSaveClick()" class="btn btn-dark col-xl-5 text-center"></button>
+                            <button id="btnSave" tabindex="6" onclick="btnSaveClick()" class="btn btn-dark col-xl-4 text-center"></button>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <button id="btnCancel" tabindex="7" onclick="btnCancelClick()" class="btn btn-primary col-xl-5 text-center">戻る</button>
+                            <button id="btnCancel" tabindex="7" onclick="btnCancelClick()" class="btn btn-primary col-xl-4 text-center">戻る</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xs-6 col-md-3"></div>
+            <div class="col-xs-6 col-md-2"></div>
         </div>
     </div>
 </div>
