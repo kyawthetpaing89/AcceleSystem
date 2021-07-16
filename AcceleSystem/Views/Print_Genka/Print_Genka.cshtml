@@ -344,14 +344,14 @@
                     for (i = 0; i < array.length; i++) {
                         if (array[i]["SortKey"] == '10') {
                             if (a_row == 0) {
-                                add_row = '<td rowspan = ' + array[i]["Row_Count"] + ' style="text-align: center; vertical-align: middle; background-color: #DDEBF7;">' + array[i]["BrandCD"] + '</td><td style="background-color: #DDEBF7;">' + convertToString(array[i]["Casting"]) + ' </td><td style="background-color: #BFBFBF;">' + array[i]["CostName"] + '</td><td style="background-color: #DDEBF7;">' + replaceZero(array[i]["CostPre"]) + '</td><td>' +
+                                add_row = '<td rowspan = ' + array[i]["Row_Count"] + ' style="text-align: center; vertical-align: middle; background-color: #DDEBF7;">' + array[i]["BrandCD"] + '</td><td style="background-color: #DDEBF7;">' + convertToString(array[i]["Casting"]) + '</td><td style="background-color: #BFBFBF;">' + array[i]["CostName"] + '</td><td style="background-color: #DDEBF7;">' + replaceZero(array[i]["CostPre"]) + '</td><td>' +
                                     replaceZero(array[i]["Cost1"]) + '</td><td>' + replaceZero(array[i]["Cost2"]) + '</td><td>' + replaceZero(array[i]["Cost3"]) + '</td><td>' + replaceZero(array[i]["Cost4"]) + '</td><td>' +
                                     replaceZero(array[i]["Cost5"]) + '</td><td>' + replaceZero(array[i]["Cost6"]) + '</td><td>' + replaceZero(array[i]["Cost7"]) + '</td><td>' + replaceZero(array[i]["Cost8"]) + '</td><td>' +
                                     replaceZero(array[i]["Cost9"]) + '</td><td>' + replaceZero(array[i]["Cost10"]) + '</td><td>' + replaceZero(array[i]["Cost11"]) + '</td><td>' + replaceZero(array[i]["Cost12"]) + '</td><td>' +
                                     replaceZero(array[i]["CostHaihu"]) + '</td><td style="background-color: #DDEBF7;">' + commaSeparate(array[i]["CostHimoku"]) + '</td><td>' + commaSeparate(array[i]["CostShikakari"]) + '</td>';
                             }
                             else {
-                                add_row = '<td style="background-color: #DDEBF7;">' + convertToString(array[i]["Casting"]) + ' </td><td style="background-color: #BFBFBF;">' + array[i]["CostName"] + '</td><td style="background-color: #DDEBF7;">' + replaceZero(array[i]["CostPre"]) + '</td><td>' +
+                                add_row = '<td style="background-color: #DDEBF7;">' + convertToString(array[i]["Casting"]) + '</td><td style="background-color: #BFBFBF;">' + array[i]["CostName"] + '</td><td style="background-color: #DDEBF7;">' + replaceZero(array[i]["CostPre"]) + '</td><td>' +
                                     replaceZero(array[i]["Cost1"]) + '</td><td>' + replaceZero(array[i]["Cost2"]) + '</td><td>' + replaceZero(array[i]["Cost3"]) + '</td><td>' + replaceZero(array[i]["Cost4"]) + '</td><td>' +
                                     replaceZero(array[i]["Cost5"]) + '</td><td>' + replaceZero(array[i]["Cost6"]) + '</td><td>' + replaceZero(array[i]["Cost7"]) + '</td><td>' + replaceZero(array[i]["Cost8"]) + '</td><td>' +
                                     replaceZero(array[i]["Cost9"]) + '</td><td>' + replaceZero(array[i]["Cost10"]) + '</td><td>' + replaceZero(array[i]["Cost11"]) + '</td><td>' + replaceZero(array[i]["Cost12"]) + '</td><td>' +
@@ -387,7 +387,7 @@
                                 if (B_array[b]["SortKey"] == '20') {
                                     if (o_row == 0) {
                                         isrowspan = 1;
-                                        add_row = '<td rowspan = ' + B_array[b]["Row_Count"] + ' style="text-align: center;background-color: #8FAADC; vertical-align: middle;border-bottom: 1px solid">' + B_array[b]["BrandName"] + '</td><td style="background-color: #8FAADC;"></td><td style="background-color: #BFBFBF; ">' + B_array[b]["CostName"] + '</td><td style="background - color: #DDEBF7; ">' +
+                                        add_row = '<td rowspan = ' + B_array[b]["Row_Count"] + ' style="text-align: center;background-color: #8FAADC; vertical-align: middle;border-bottom: 1px solid">' + B_array[b]["BrandName"] + '</td><td style="background-color: #8FAADC;"></td><td style="background-color: #BFBFBF; ">' + B_array[b]["CostName"] + '</td><td style="background-color: #DDEBF7; ">' +
                                             replaceZero(B_array[b]["CostPre"]) + '</td><td>' + replaceZero(B_array[b]["Cost1"]) + '</td><td>' + replaceZero(B_array[b]["Cost2"]) + '</td><td>' + replaceZero(B_array[b]["Cost3"]) + '</td><td>' +
                                             replaceZero(B_array[b]["Cost4"]) + '</td><td>' + replaceZero(B_array[b]["Cost5"]) + '</td><td>' + replaceZero(B_array[b]["Cost6"]) + '</td><td>' + replaceZero(B_array[b]["Cost7"]) + '</td><td>' +
                                             replaceZero(B_array[b]["Cost8"]) + '</td><td>' + replaceZero(B_array[b]["Cost9"]) + '</td><td>' + replaceZero(B_array[b]["Cost10"]) + '</td><td>' + replaceZero(B_array[b]["Cost11"]) + '</td><td>' +
@@ -496,21 +496,21 @@
                                                     switch (rowcountD) {
                                                         case 1: colD2 = prjD_array[0]["HinbanCD"] + '   ' + prjD_array[0]["HinbanName"];
                                                             break;
-                                                        case 2: colD2 = '色数     ' + prjD_array[0]["Color"] + '色';
+                                                        case 2: colD2 = '色数         ' + prjD_array[0]["Color"] + '色';
                                                             break;
-                                                        case 3: colD2 = '生産数    ' + commaSeparate(prjD_array[0]["Production"]);
+                                                        case 3: colD2 = '生産数       ' + commaSeparate(prjD_array[0]["Production"]);
                                                             break;
-                                                        case 4: colD2 = '累計納品数  ' + commaSeparate(prjD_array[0]["Complete"]);
+                                                        case 4: colD2 = '累計納品数   ' + commaSeparate(prjD_array[0]["Complete"]);
                                                             break;
                                                         case 5: colD2 = '予定販売定価 ' + commaSeparate(prjD_array[0]["SalesPrice"]);
                                                             break;
-                                                        case 6: colD2 = '総金額    ' + commaSeparate(prjD_array[0]["TotalValue"]); //2021-03-31 by syk
+                                                        case 6: colD2 = '総金額       ' + commaSeparate(prjD_array[0]["TotalValue"]); //2021-03-31 by syk
                                                             break;
-                                                        case 7: colD2 = '金型名     ' + prjD_array[0]["CastingName"];
+                                                        case 7: colD2 = '金型名       ' + prjD_array[0]["CastingName"];
                                                             break;
-                                                        case 8: colD2 = '見込利益   ' + commaSeparate(prjD_array[0]["Profit"]);
+                                                        case 8: colD2 = '見込利益     ' + commaSeparate(prjD_array[0]["Profit"]);
                                                             break;
-                                                        case 9: colD2 = '見込利益率  ' + prjD_array[0]["ProfitPercentage"] + '%';
+                                                        case 9: colD2 = '見込利益率   ' + prjD_array[0]["ProfitPercentage"] + '%';
                                                             break;
                                                         default: colD2 = '';
                                                             break;
@@ -686,21 +686,21 @@
                                                 switch (rowcountD) {
                                                     case 1: colD2 = prjD_array[0]["HinbanCD"] + '   ' + prjD_array[0]["HinbanName"];
                                                         break;
-                                                    case 2: colD2 = '色数     ' + prjD_array[0]["Color"] + '色';
+                                                    case 2: colD2 = '色数          ' + prjD_array[0]["Color"] + '色';
                                                         break;
-                                                    case 3: colD2 = '生産数    ' + commaSeparate(prjD_array[0]["Production"]);
+                                                    case 3: colD2 = '生産数        ' + commaSeparate(prjD_array[0]["Production"]);
                                                         break;
-                                                    case 4: colD2 = '累計納品数  ' + commaSeparate(prjD_array[0]["Complete"]);
+                                                    case 4: colD2 = '累計納品数    ' + commaSeparate(prjD_array[0]["Complete"]);
                                                         break;
-                                                    case 5: colD2 = '予定販売定価 ' + commaSeparate(prjD_array[0]["SalesPrice"]);
+                                                    case 5: colD2 = '予定販売定価  ' + commaSeparate(prjD_array[0]["SalesPrice"]);
                                                         break;
-                                                    case 6: colD2 = '総金額    ' + commaSeparate(prjD_array[0]["TotalValue"]); //2021-03-31 by syk
+                                                    case 6: colD2 = '総金額        ' + commaSeparate(prjD_array[0]["TotalValue"]); //2021-03-31 by syk
                                                         break;
-                                                    case 7: colD2 = '金型名     ' + prjD_array[0]["CastingName"];
+                                                    case 7: colD2 = '金型名        ' + prjD_array[0]["CastingName"];
                                                         break;
-                                                    case 8: colD2 = '見込利益   ' + commaSeparate(prjD_array[0]["Profit"]);
+                                                    case 8: colD2 = '見込利益      ' + commaSeparate(prjD_array[0]["Profit"]);
                                                         break;
-                                                    case 9: colD2 = '見込利益率  ' + prjD_array[0]["ProfitPercentage"] + '%';
+                                                    case 9: colD2 = '見込利益率    ' + prjD_array[0]["ProfitPercentage"] + '%';
                                                         break;
                                                     default: colD2 = '';
                                                         break;
