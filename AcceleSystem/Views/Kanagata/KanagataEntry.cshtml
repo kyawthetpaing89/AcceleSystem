@@ -10,19 +10,72 @@
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/datepicker.css")" />
 }
 <style>
-    /*@@media only screen and (min-width: 1200px) {
+    @@media only screen and (max-width: 1950px) {
+        .text-date{
+        padding-right : 50px;
+        }
+     }
+
+    @@media only screen and (max-width: 1780px) {
         .text-date {
-            width: 98%;
+            padding-right: 45px;
+        }
+    }
+
+    @@media only screen and (max-width: 1700px) {
+        .text-date {
+            padding-right: 50px;
+        }
+    }
+
+    @@media only screen and (max-width: 1680px) {
+        .text-date {
+            padding-right: 40px;
         }
 
     }
 
-
-    @@media only screen and (min-width: 1600px) {
+    @@media only screen and (max-width: 1640px) {
         .text-date {
-            width: 50%;
+            padding-right: 36px;
         }
-    }*/
+    }
+
+    @@media only screen and (max-width: 1600px) {
+        .text-date {
+            padding-right: 32px;
+        }
+    }
+
+    @@media only screen and (max-width: 1440px) {
+        .text-date {
+            padding-right: 25px;
+        }
+     }
+
+    @@media only screen and (max-width: 1360px) {
+        .text-date {
+            padding-right: 21px;
+        }
+    }
+
+    @@media only screen and (max-width: 1280px) {
+        .text-date {
+            padding-right: 16px;
+        }
+    }
+
+    @@media only screen and (max-width: 1200px) {
+        .text-date {
+            padding-right: 40px;
+        }
+    }
+
+    @@media only screen and (max-width: 1190px) {
+        .text-date {
+            padding-right: 15px;
+        }
+    }
 </style>
 
 <div id="divMain" class="container-fluid">
@@ -53,7 +106,7 @@
                     </div>
                 </div>
                 <div class="pt-3 md-form">
-                    <div class="col-xl-12" style="padding-right:50px">
+                    <div class="col-xl-12 text-date" @*style="padding-right:50px"*@>
                         <input type="text" tabindex="5" onkeydown="KeyDown(event,this)" class="text-line col-xl-12" id="UseLimit" name="Limit" required placeholder="使用期限">
                     </div>
 
